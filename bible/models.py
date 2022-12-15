@@ -1,6 +1,7 @@
 import functools
 import operator
 import re
+import textwrap
 
 from django.db import models
 from django.db.models import Q
@@ -10,7 +11,7 @@ from . import books
 ref_re   = re.compile('(?:([\w\s]+)\s+)?(\d.*)')
 # matches patterns like 26:40-27:2. In this example, group 1 is 26, group 2 is
 # 40, group 3 is 27, and group 4 is 2.
-range_re = re.compile('(?:(\d+)[\.:])?(\d+)(?:-(?:(\d+)[\.:])?(\d+))?')
+range_re = re.compile('(\d+)(?:[\.:](\d+))?(?:-(?:(\d+)[\.:])?(\d+))?')
 
 
 class ReferenceParseError(Exception):
@@ -18,35 +19,35 @@ class ReferenceParseError(Exception):
 
 
 class VerseManager(models.Manager):
-    def lookup_reference(self, reference):
+    def lookup_reference(self, reference, language='eng'):
         conditionals = []
         book = ''
 
         for passage in re.split('\s*;\s*', reference):
+
+            # Parse out the book and verse range
             m = ref_re.match(passage)
             book_abbreviation, specification = m.groups()
             if book_abbreviation:
                 book = books.normalize_book_name(book_abbreviation)
 
+            # Iterate over the verse ranges
             previous_chapter = ''
             for verse_range in re.split(',\s*', specification):
-                chapter = ''
 
+                # Parse out the range of verses
                 m = range_re.match(verse_range)
-
-                first_chapter, first_verse, last_chapter, last_verse = m.groups()
-
+                last_chapter, last_verse = m.group(3), m.group(4)
                 if books.is_chapterless(book):
-                    first_chapter = 1
+                    first_chapter, first_verse = 1, m.group(1)
+                elif m.group(2):
+                    first_chapter, first_verse = m.group(1), m.group(2)
+                elif previous_chapter:
+                    first_chapter, first_verse = previous_chapter, m.group(1)
+                else:
+                    first_chapter, first_verse = m.group(1), None
 
-                if not first_chapter:
-                    first_chapter = previous_chapter
-
-                if not first_chapter:
-                    # If we specify a full chapter, the regex puts the chapter
-                    # in group 2 instead of group 1.
-                    first_chapter, first_verse = first_verse, first_chapter
-
+                # create conditionals for the query
                 if last_verse:
                     if last_chapter and last_chapter != first_chapter:
                         # Handle ranges that span chapters
@@ -58,7 +59,6 @@ class VerseManager(models.Manager):
                     else:
                         # Handle ranges that are contained within a single chapter
                         conditional = Q(book=book) & Q(chapter=first_chapter) & Q(verse__gte=first_verse) & Q(verse__lte=last_verse)
-
                 elif first_verse:
                     # Handle a single verse
                     conditional = Q(book=book) & Q(chapter=first_chapter) & Q(verse=first_verse)
@@ -75,8 +75,9 @@ class VerseManager(models.Manager):
                 elif first_verse:
                     previous_chapter = first_chapter
 
+        # Run the query
         expression = functools.reduce(operator.or_, conditionals)
-        return self.filter(expression)
+        return self.filter(language=language).filter(expression)
 
 
 class Verse(models.Model):
@@ -93,4 +94,5 @@ class Verse(models.Model):
         index_together = 'book', 'chapter', 'verse', 'language'
 
     def __str__(self):
-        return f'{self.book} {self.chapter}:{self.verse}'
+        blurb = textwrap.shorten(self.content, width=20, placeholder='...')
+        return f'{self.book} {self.chapter}:{self.verse} {blurb}'
