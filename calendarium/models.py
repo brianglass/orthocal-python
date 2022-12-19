@@ -1,5 +1,9 @@
 from django.db import models
 
+# pdist is the distance between the given day and Pascha
+# pdist values >= 1000 are for floats and are programmatically mapped
+# Rows with pdist == 999 are for days on the fixed calendar (e.g. Menaion)
+
 
 class Day(models.Model):
     pdist = models.SmallIntegerField()
