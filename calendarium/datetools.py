@@ -3,7 +3,6 @@ from enum import IntEnum
 
 Weekday = IntEnum('Weekday', 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday', start=0)
 
-
 def compute_julian_pascha(year):
     """Compute the Julian date of Pascha for the given year."""
 

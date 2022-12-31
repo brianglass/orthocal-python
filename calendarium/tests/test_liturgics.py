@@ -5,7 +5,7 @@ from django.test import TestCase
 from .. import datetools, liturgics
 
 
-class TestPdists(TestCase):
+class TestYear(TestCase):
     def test_pascha(self):
         year = liturgics.Year(2018, False)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
@@ -68,4 +68,38 @@ class TestPdists(TestCase):
         paremias = -44, -41, -31, -9
         for pdist in paremias:
             with self.subTest(pdist):
-                self.assertTrue(year.has_paremias(pdist))
+                self.assertTrue(year.has_moved_paremias(pdist))
+
+
+class TestDay(TestCase):
+    fixtures = ['calendarium.json']
+
+    def test_commemorations(self):
+        day = liturgics.Day(2023, 2, 26)
+
+        print(day.titles)
+        print(day.saints)
+        print(day.feasts)
+        print(day.feast_level)
+        print(day.fast_level)
+        print(day.fast_exception)
+
+        print(day.readings)
+
+        for r in day.readings:
+            print(r.passage)
+
+    def test_paremias(self):
+        day = liturgics.Day(2023, 3, 30)
+
+        print(day.titles)
+        print(day.saints)
+        print(day.feasts)
+        print(day.feast_level)
+        print(day.fast_level)
+        print(day.fast_exception)
+
+        print(day.readings)
+
+        for r in day.readings:
+            print(r.passage)

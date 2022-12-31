@@ -1,13 +1,28 @@
 from datetime import date, datetime, timedelta, timezone
 
+from django.db.models import Q
 from django.utils.functional import cached_property
 
-from . import datetools
+from . import datetools, models
 from .datetools import Weekday
+from bible.models import Verse
+
+
+class Reading:
+    def __init__(self, reading, pericope):
+        self.reading = reading
+        self.pericope = pericope
+
+    def __repr__(self):
+        return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
+
+    @property
+    def passage(self):
+        return Verse.objects.lookup_reference(self.pericope.sdisplay)
 
 
 class Day:
-    def __init__(self, year, month, day, use_julian=False):
+    def __init__(self, year, month, day, use_julian=False, do_jump=True):
         if use_julian:
             dt = datetools.gregorian_to_julian(year, month, day)
         else:
@@ -17,6 +32,7 @@ class Day:
         self.year = dt.year
         self.month = dt.month
         self.day = dt.day
+        self.do_jump = do_jump
 
         if use_julian:
             pdist, pyear = datetools.compute_julian_pascha_distance(dt)
@@ -28,10 +44,157 @@ class Day:
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
 
-        self.year = Year(year, use_julian)
+        self.pyear = Year(year, use_julian)
+
+        self._collect_commemorations()
 
     def __str__(self):
         return str(self._date)
+
+    @cached_property
+    def has_matins_gospel(self):
+        if self.weekday != Weekday.Sunday:
+            return True
+
+        if -8 < self.pdist < 50:
+            return False
+
+        if self.feast_level < 7:
+            return False
+
+        return True
+
+    @cached_property
+    def eothinon_gospel(self):
+        if self.weekday != Weekday.Sunday:
+            return None
+
+        # There are no matins gospels from Holy Week until Pentecost
+        if -8 < self.pdist < 50:
+            return None
+
+        # high ranking feasts preempt the Eothinon
+        if self.feast_level >= 7:
+            return None
+
+        # Compute the index for the correct Eothinon Gospel
+
+        if self.pdist < 0:
+            pbase = self.jdn - self.pyear.previous_pascha
+        else:
+            pbase = self.pdist
+
+        x = (pbase - 49) % 77 or 77
+        return x // 7
+
+    def _collect_commemorations(self):
+        q = Q(month=self.month, day=self.day) | Q(pdist=self.pdist)
+        if float_index := self.pyear.floats.get(self.pdist):
+            q |= Q(pdist=float_index)
+
+        days = list(models.Day.objects.filter(q))
+
+        self.titles = [title for d in days if (title := d.get_title())]
+        self.saints = [d.saint for d in days if d.saint]
+        self.feasts = [d.feast_name for d in days if d.feast_name]
+        self.service_notes = [d.service_note for d in days if d.service_note]
+
+        self.feast_level = max(d.feast_level for d in days)
+        self.fast_level = max(d.fast for d in days)
+        self.fast_exception = max(d.fast_exception for d in days)
+
+    @cached_property
+    def has_no_paremias(self):
+        return self.pyear.has_no_paremias(self.pdist)
+
+    @cached_property
+    def has_moved_paremias(self):
+        return self.pyear.has_moved_paremias(self.pdist)
+
+    @cached_property
+    def readings(self):
+        query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
+
+        if self.gospel_pdist:
+            query |= Q(pdist=self.gospel_pdist, source='Gospel')
+
+        if self.epistle_pdist:
+            query |= Q(pdist=self.epistle_pdist, source='Epistle')
+
+        # include floats
+        if float_index := self.pyear.floats.get(self.pdist):
+            query |= Q(pdist=float_index)
+
+        # Add Matins Eothinon gospel
+        if self.eothinon_gospel:
+            query |= Q(pdist=self.eothinon_gospel + 700)
+
+        # add paremias
+        if self.has_moved_paremias:
+            # Grab the paremias from the succeeding day since it has been moved back 1 day
+            dt = self._date + timedelta(days=1)
+            query |= Q(month=dt.month, day=dt.day, source='Vespers')
+
+        # build conditional using month/day instead of pdist
+
+        subquery = Q(month=self.month, day=self.day)
+        if self.has_matins_gospel:
+            subquery &= ~Q(source='Matins Gospel')
+
+        if self.has_no_paremias:
+            subquery &= ~Q(source='Vespers')
+
+        if self.month == 3 and self.day == 26 and self.weekday in [Weekday.Monday, Weekday.Tuesday, Weekday.Thursday]:
+            # There are no readings for leavetaking of Annunciation on a non-liturgy day
+            subquery &= ~Q(desc='Theotokos')
+
+        query |= subquery
+
+        # Return the list of readings
+
+        return [
+            Reading(r, p) 
+                for r in models.Reading.objects.filter(query).order_by('ordering')
+                    for p in r.get_pericopes()
+        ]
+
+    @cached_property
+    def jump(self):
+        _, _, _, sun_after_elevation = datetools.surrounding_weekends(self.pyear.elevation)
+        return self.pyear.locan_jump if self.do_jump and self.pdist > sun_after_elevation else 0
+
+    @cached_property
+    def has_daily_readings(self):
+        return self.pyear.has_daily_readings(self.pdist)
+
+    @cached_property
+    def epistle_pdist(self):
+        if self.has_daily_readings:
+            limit = 272
+
+            if self.pdist == 252:
+                return self.pyear.forefathers
+            elif self.pdist > limit:
+                return self.jdn - self.pyear.next_pascha
+            else:
+                return self.pdist
+
+    @cached_property
+    def gospel_pdist(self):
+        if self.has_daily_readings:
+            limit = 279 if datetools.weekday_from_pdist(self.pyear.theophany) < Weekday.Tuesday else 272
+            _, _, _, sun_after_theophany = datetools.surrounding_weekends(self.pyear.theophany)
+
+            if self.pdist == 245 - self.pyear.lucan_jump:
+                return self.pyear.forefathers + self.pyear.lucan_jump
+            elif self.pdist > sun_after_theophany and self.weekday == Weekday.Sunday and self.pyear.extra_sundays > 1:
+                i = (self.pdist - sun_after_theophany) // 7
+                return self.pyear.reserves[i-1]
+            elif self.pdist + self.jump > limit:
+                # Theophany stepback
+                return self.jdn - self.pyear.next_pascha
+            else:
+                return self.pdist + self.jump
 
 
 class Year:
@@ -51,8 +214,8 @@ class Year:
     def has_daily_readings(self, pdist):
         return pdist not in self.no_daily
 
-    def has_paremias(self, pdist):
-        return self.paremias.get(pdist, None)
+    def has_moved_paremias(self, pdist):
+        return self.paremias.get(pdist, None) is True
 
     def has_no_paremias(self, pdist):
         return self.paremias.get(pdist, None) is False
@@ -77,7 +240,7 @@ class Year:
             no_daily.add(sat_after_theophany)
 
         if datetools.weekday_from_pdist(self.annunciation) == Weekday.Saturday:
-            nodaily.add(self.annunciation)
+            no_daily.add(self.annunciation)
 
         return no_daily
 
@@ -203,6 +366,46 @@ class Year:
     @cached_property
     def floats(self):
         """Return a dict of floating feasts and their indexes into the database."""
+
+        # TODO: Turn this into an Enum
+        # Index numbers for floating feasts:
+        # 1001 Fathers of the first six ecumenical councils
+        # 1002 Fathers of the seventh ecumenical council
+        # 1003 Demetrius Saturday
+        # 1004 Synaxis of unmercenaries
+        # 1005 Saturday before Elevation when moved to September 13
+        # 1006 Saturday before Elevation on Saturday
+        # 1007 Sunday before Elevation
+        # 1008 Saturday after Elevation
+        # 1009 Sunday after Elevation
+        # 1010 Sunday of Forefathers
+        # 1011 Saturday before Nativity standalone
+        # 1012 Sunday before Nativity standalone
+        # 1013 Royal Hours of Nativity when moved to Friday
+        # 1014 Eve of Nativity standalone
+        # 1015 Saturday before Nativity == Eve
+        # 1016 Sunday before Nativity == Eve
+        # 1017 Saturday after Nativity == Saturday before Theophany
+        # 1018 Saturday after Nativity moved to Friday
+        # 1019 Saturday after Nativity standalone
+        # 1020 Sunday after Nativity moved to Monday
+        # 1021 Sunday after Nativity standalone
+        # 1022 Saturday before Theophany standalone
+        # 1023 Saturday before Theophany moved to January 1
+        # 1024 Sunday before Theophany standalone
+        # 1025 Royal Hours of Theophany when moved to Friday
+        # 1026 Eve of Theophany standalone
+        # 1027 Saturday before Theophany == Eve
+        # 1028 Sunday before Theophany == Eve
+        # 1029 Saturday after Theophany
+        # 1030 Sunday after Theophany
+        # 1031 New Martyrs of Russia
+        # 1032 Annunciation Paremias on Friday
+        # 1033 Annunciation on Saturday
+        # 1034 Annunciation on Sunday
+        # 1035 Annunciation on Monday
+        # 1036 Annunciation Paremias on Eve
+        # 1037 Annunciation on Tuesday-Friday
 
         sat_before_elevation, sun_before_elevation, sat_after_elevation, sun_after_elevation = \
                 datetools.surrounding_weekends(self.elevation)
