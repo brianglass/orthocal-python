@@ -1,3 +1,6 @@
+import re
+import textwrap
+
 from datetime import date, datetime, timedelta, timezone
 
 from django.db.models import Q
@@ -6,6 +9,19 @@ from django.utils.functional import cached_property
 from . import datetools, models
 from .datetools import Weekday
 from bible.models import Verse
+
+
+class CompositeVerse:
+    def __init__(self, book, chapter, verse, content, language='en'):
+        self.book = book
+        self.chapter = chapter
+        self.verse = verse
+        self.content = content
+        self.language = language
+
+    def __repr__(self):
+        blurb = textwrap.shorten(self.content, width=20, placeholder='...')
+        return f'{self.book}: {blurb}'
 
 
 class Reading:
@@ -18,7 +34,12 @@ class Reading:
 
     @property
     def passage(self):
-        return Verse.objects.lookup_reference(self.pericope.sdisplay)
+        match = re.match('Composite (\d+)', self.pericope.display)
+        if match:
+            composite = models.Composite.objects.get(composite_num=match.group(1))
+            return CompositeVerse(book=match.group(0), chapter=1, verse=1, content=composite.reading)
+        else:
+            return Verse.objects.lookup_reference(self.pericope.sdisplay)
 
 
 class Day:
@@ -63,6 +84,34 @@ class Day:
             return False
 
         return True
+
+    @cached_property
+    def tone(self):
+        # Lent ends on Friday before Lazarus Saturday. From Lazarus Saturday
+        # until Holy Saturday, the octoechoes is not followed.
+        if -9 < self.pdist < 0:
+            return 0
+
+        # Bright week is different. We cycle through the tones one per day.
+        if 0 <= self.pdist < 6:
+            return self.pdist + 1
+
+        # We skip tone 7 during bright week and go straight to tone eight on
+        # Bright Saturday.
+        if self.pdist == 6:
+            return 8
+
+        # TODO: check for great feasts and set tone to 0 for them
+        pass
+
+        # We count from the Pascha prior to this day.
+        pdist = self.pdist if self.pdist >= 0 else self.jdn - self.pyear.previous_pascha
+
+        # We start the cycle with Thomas Sunday, which has pdist == 7 and so is
+        # the 1st Sunday (7 // 7 == 1).  The mod cycle is 0 origin, so 0-7 for
+        # mod 8. We add 1 to shift it to 1-8.
+        nth_sunday = pdist // 7
+        return (nth_sunday-1) % 8 + 1
 
     @cached_property
     def eothinon_gospel(self):

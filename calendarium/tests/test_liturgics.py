@@ -103,3 +103,20 @@ class TestDay(TestCase):
 
         for r in day.readings:
             print(r.passage)
+
+    def test_tone(self):
+        data = [
+			(2023, 1, 1, 4),   # 29th Sunday after Pentecost
+			(2023, 4, 8, 0),   # Lazarus Saturday
+			(2023, 4, 17, 2),  # Bright Friday
+			(2023, 4, 21, 6),  # Bright Friday
+			(2023, 4, 22, 8),  # Bright Saturday
+			(2023, 4, 23, 1),  # Thomas Sunday
+			(2023, 6, 11, 8),  # 1st Sunday after Pentecost; All Saints
+            (2023, 6, 18, 1),  # 2nd Sunday after Pentecost
+        ]
+
+        for year, month, day, tone in data:
+            with self.subTest(tone):
+                day = liturgics.Day(year, month, day)
+                self.assertEqual(tone, day.tone)
