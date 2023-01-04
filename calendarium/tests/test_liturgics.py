@@ -74,37 +74,67 @@ class TestYear(TestCase):
 class TestDay(TestCase):
     fixtures = ['calendarium.json']
 
-    def test_commemorations(self):
-        day = liturgics.Day(2023, 2, 26)
+    async def test_no_memorial(self):
+        """Memorial Saturday with no memorial readings should not have John 5.24-30."""
 
-        print(day.titles)
-        print(day.saints)
-        print(day.feasts)
-        print(day.feast_level)
-        print(day.fast_level)
-        print(day.fast_exception)
+        day = liturgics.Day(2022, 3, 26)
+        await day.ainitialize()
+        readings = await day.aget_readings()
+        short_displays = [r.sdisplay for r in readings]
+        self.assertNotIn('John 5.24-30', short_displays)
 
-        print(day.readings)
+    async def test_scriptures(self):
+        # Cheesefare Sunday
+        day = liturgics.Day(2018, 2, 18)
+        await day.ainitialize()
+        readings = await day.aget_readings()
 
-        for r in day.readings:
-            print(r.passage)
+        self.assertEqual(len(readings), 3)
 
-    def test_paremias(self):
-        day = liturgics.Day(2023, 3, 30)
+        count = await readings[0].get_passage().acount()
+        self.assertEqual(count, 12)
+        count = await readings[1].get_passage().acount()
+        self.assertEqual(count, 8)
+        count = await readings[2].get_passage().acount()
+        self.assertEqual(count, 8)
 
-        print(day.titles)
-        print(day.saints)
-        print(day.feasts)
-        print(day.feast_level)
-        print(day.fast_level)
-        print(day.fast_exception)
+    async def test_annunciation(self):
+        """Test a sample feast day."""
 
-        print(day.readings)
+        day = liturgics.Day(2018, 3, 25)
+        await day.ainitialize()
 
-        for r in day.readings:
-            print(r.passage)
+        self.assertIn('Annunciation Most Holy Theotokos', day.feasts)
+        self.assertIn('St Mary of Egypt', day.feasts)
 
-    def test_tone(self):
+        self.assertEqual(day.feast_level, 7)
+        self.assertEqual(day.fast_level, 2)
+        self.assertEqual(day.fast_exception, 4)
+        readings = await day.aget_readings()
+        self.assertEqual(len(readings), 12)
+
+    async def test_paremias(self):
+        """Paremias should be moved from the subsequent day."""
+
+        day = liturgics.Day(2018, 3, 8)
+        await day.ainitialize()
+        readings = await day.aget_readings()
+        self.assertEqual(len(readings), 6)
+
+    async def test_sebaste(self):
+        """Paremias should be moved to the previous day."""
+
+        day = liturgics.Day(2018, 3, 9)
+        await day.ainitialize()
+        readings = await day.aget_readings()
+
+        self.assertEqual(len(readings), 6)
+        self.assertEqual(readings[0].source, 'Matins Gospel')
+
+        short_displays = [r.sdisplay for r in readings]
+        self.assertEqual(len(short_displays), len(set(short_displays)))
+
+    async def test_tone(self):
         data = [
 			(2023, 1, 1, 4),   # 29th Sunday after Pentecost
 			(2023, 4, 8, 0),   # Lazarus Saturday
@@ -117,6 +147,79 @@ class TestDay(TestCase):
         ]
 
         for year, month, day, tone in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
             with self.subTest(tone):
-                day = liturgics.Day(year, month, day)
                 self.assertEqual(tone, day.tone)
+
+    async def test_fasting_levels(self):
+        # Use Apostles Fast as a test case
+        data = [
+			(2018, 6, 3, 0, 0),
+			(2018, 6, 4, 3, 0),
+			(2018, 6, 12, 3, 1),
+			(2018, 6, 14, 3, 1),
+			(2018, 6, 16, 3, 2),
+			(2018, 6, 17, 3, 2),
+			(2018, 6, 28, 3, 1),
+			(2018, 6, 29, 1, 2),
+			(2018, 6, 30, 0, 0),
+        ]
+
+        for year, month, day, fast, exception in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
+            with self.subTest():
+                self.assertEqual(day.fast_level, fast)
+                self.assertEqual(day.fast_exception, exception)
+
+    async def test_fast_free(self):
+        """Test fast free days."""
+
+        data = [
+			(2018, 12, 26, 0, "No Fast"),
+			(2018, 12, 28, 0, "No Fast"),
+			(2019, 1, 2, 0, "No Fast"),
+			(2019, 1, 4, 0, "No Fast"),
+        ]
+
+        for year, month, day, fast, description in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
+            with self.subTest():
+                self.assertEqual(day.fast_level, fast)
+                self.assertEqual(day.fast_level_desc, description)
+
+    async def test_eothinon(self):
+        data = [
+            (2018, 3, 11, 7),
+            (2023, 1, 1, 7),
+            (2023, 1, 8, 8),
+        ]
+
+        for year, month, day, gospel in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
+            with self.subTest(gospel):
+                self.assertEqual(day.eothinon_gospel, gospel)
+
+    async def test_composites(self):
+        """Test for composite scripture readings."""
+
+        # The lengths are slightly different than the Go version because they
+        # are unicode rather than utf-8.
+        data = [
+			(2019, 2, 27, 0, 1378), # 2
+			(2019, 2, 24, 0, 1486), # 3
+			(2019, 2, 24, 1, 1357), # 8
+			(2019, 2, 24, 2, 1306), # 9
+        ]
+
+        for year, month, day, reading, length in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
+            readings = await day.aget_readings()
+            with self.subTest(f'{day}: {reading}'):
+                passage = readings[reading].get_passage()
+                verse = await passage.afirst()
+                self.assertEqual(len(verse.content), length)

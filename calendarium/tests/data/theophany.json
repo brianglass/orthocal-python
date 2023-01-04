@@ -1,0 +1,397 @@
+{
+	"pascha_distance": 257,
+	"julian_day_number": 2459951,
+	"year": 2023,
+	"month": 1,
+	"day": 6,
+	"weekday": 5,
+	"tone": 4,
+	"titles": [
+		"Friday of the 30th week after Pentecost"
+	],
+	"feast_level": 8,
+	"feast_level_description": "Major feast Lord",
+	"feasts": [
+		"Theophany of Our Lord and Savior Jesus Christ"
+	],
+	"fast_level": 0,
+	"fast_level_desc": "No Fast",
+	"fast_exception": 11,
+	"fast_exception_desc": "Fast Free",
+	"saints": null,
+	"service_notes": null,
+	"readings": [
+		{
+			"source": "Matins Gospel",
+			"book": "Mark",
+			"description": "",
+			"display": "Mark 1.9-11",
+			"short_display": "Mark 1.9-11",
+			"passage": [
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 9,
+					"content": "And it came to pass in those days, that Jesus came from Nazareth of Galilee, and was baptized of John in Jordan."
+				},
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 10,
+					"content": "And straightway coming up out of the water, he saw the heavens opened, and the Spirit like a dove descending upon him:"
+				},
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 11,
+					"content": "And there came a voice from heaven, saying, Thou art my beloved Son, in whom I am well pleased."
+				}
+			]
+		},
+		{
+			"source": "Epistle",
+			"book": "Apostol",
+			"description": "Theophany",
+			"display": "Titus 2.11-14, 3.4-7",
+			"short_display": "Titus 2.11-14, 3.4-7",
+			"passage": [
+				{
+					"book": "TIT",
+					"chapter": 2,
+					"verse": 11,
+					"content": "For the grace of God that bringeth salvation hath appeared to all men,"
+				},
+				{
+					"book": "TIT",
+					"chapter": 2,
+					"verse": 12,
+					"content": "Teaching us that, denying ungodliness and worldly lusts, we should live soberly, righteously, and godly, in this present world;"
+				},
+				{
+					"book": "TIT",
+					"chapter": 2,
+					"verse": 13,
+					"content": "Looking for that blessed hope, and the glorious appearing of the great God and our Saviour Jesus Christ;"
+				},
+				{
+					"book": "TIT",
+					"chapter": 2,
+					"verse": 14,
+					"content": "Who gave himself for us, that he might redeem us from all iniquity, and purify unto himself a peculiar people, zealous of good works."
+				},
+				{
+					"book": "TIT",
+					"chapter": 3,
+					"verse": 4,
+					"content": "But after that the kindness and love of God our Saviour toward man appeared,"
+				},
+				{
+					"book": "TIT",
+					"chapter": 3,
+					"verse": 5,
+					"content": "Not by works of righteousness which we have done, but according to his mercy he saved us, by the washing of regeneration, and renewing of the Holy Ghost;"
+				},
+				{
+					"book": "TIT",
+					"chapter": 3,
+					"verse": 6,
+					"content": "Which he shed on us abundantly through Jesus Christ our Saviour;"
+				},
+				{
+					"book": "TIT",
+					"chapter": 3,
+					"verse": 7,
+					"content": "That being justified by his grace, we should be made heirs according to the hope of eternal life."
+				}
+			]
+		},
+		{
+			"source": "Gospel",
+			"book": "Matthew",
+			"description": "Theophany",
+			"display": "Matthew 3.13-17",
+			"short_display": "Matt 3.13-17",
+			"passage": [
+				{
+					"book": "MAT",
+					"chapter": 3,
+					"verse": 13,
+					"content": "Then cometh Jesus from Galilee to Jordan unto John, to be baptized of him."
+				},
+				{
+					"book": "MAT",
+					"chapter": 3,
+					"verse": 14,
+					"content": "But John forbad him, saying, I have need to be baptized of thee, and comest thou to me?"
+				},
+				{
+					"book": "MAT",
+					"chapter": 3,
+					"verse": 15,
+					"content": "And Jesus answering said unto him, Suffer it to be so now: for thus it becometh us to fulfil all righteousness. Then he suffered him."
+				},
+				{
+					"book": "MAT",
+					"chapter": 3,
+					"verse": 16,
+					"content": "And Jesus, when he was baptized, went up straightway out of the water: and, lo, the heavens were opened unto him, and he saw the Spirit of God descending like a dove, and lighting upon him:"
+				},
+				{
+					"book": "MAT",
+					"chapter": 3,
+					"verse": 17,
+					"content": "And lo a voice from heaven, saying, This is my beloved Son, in whom I am well pleased."
+				}
+			]
+		},
+		{
+			"source": "Great Blessing of Waters",
+			"book": "OT",
+			"description": "",
+			"display": "Isaiah 35.1-10",
+			"short_display": "Isa 35.1-10",
+			"passage": [
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 1,
+					"content": "The wilderness and the solitary place shall be glad for them; and the desert shall rejoice, and blossom as the rose."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 2,
+					"content": "It shall blossom abundantly, and rejoice even with joy and singing: the glory of Lebanon shall be given unto it, the excellency of Carmel and Sharon, they shall see the glory of the LORD, and the excellency of our God."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 3,
+					"content": "Strengthen ye the weak hands, and confirm the feeble knees."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 4,
+					"content": "Say to them that are of a fearful heart, Be strong, fear not: behold, your God will come with vengeance, even God with a recompence; he will come and save you."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 5,
+					"content": "Then the eyes of the blind shall be opened, and the ears of the deaf shall be unstopped."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 6,
+					"content": "Then shall the lame man leap as an hart, and the tongue of the dumb sing: for in the wilderness shall waters break out, and streams in the desert."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 7,
+					"content": "And the parched ground shall become a pool, and the thirsty land springs of water: in the habitation of dragons, where each lay, shall be grass with reeds and rushes."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 8,
+					"content": "And an highway shall be there, and a way, and it shall be called The way of holiness; the unclean shall not pass over it; but it shall be for those: the wayfaring men, though fools, shall not err therein."
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 9,
+					"content": "No lion shall be there, nor any ravenous beast shall go up thereon, it shall not be found there; but the redeemed shall walk there:"
+				},
+				{
+					"book": "ISA",
+					"chapter": 35,
+					"verse": 10,
+					"content": "And the ransomed of the LORD shall return, and come to Zion with songs and everlasting joy upon their heads: they shall obtain joy and gladness, and sorrow and sighing shall flee away."
+				}
+			]
+		},
+		{
+			"source": "Great Blessing of Waters",
+			"book": "OT",
+			"description": "",
+			"display": "Isaiah 55.1-13",
+			"short_display": "Isa 55.1-13",
+			"passage": [
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 1,
+					"content": "Ho, every one that thirsteth, come ye to the waters, and he that hath no money; come ye, buy, and eat; yea, come, buy wine and milk without money and without price."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 2,
+					"content": "Wherefore do ye spend money for that which is not bread? and your labour for that which satisfieth not? hearken diligently unto me, and eat ye that which is good, and let your soul delight itself in fatness."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 3,
+					"content": "Incline your ear, and come unto me: hear, and your soul shall live; and I will make an everlasting covenant with you, even the sure mercies of David."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 4,
+					"content": "Behold, I have given him for a witness to the people, a leader and commander to the people."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 5,
+					"content": "Behold, thou shalt call a nation that thou knowest not, and nations that knew not thee shall run unto thee because of the LORD thy God, and for the Holy One of Israel; for he hath glorified thee."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 6,
+					"content": "Seek ye the LORD while he may be found, call ye upon him while he is near:"
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 7,
+					"content": "Let the wicked forsake his way, and the unrighteous man his thoughts: and let him return unto the LORD, and he will have mercy upon him; and to our God, for he will abundantly pardon."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 8,
+					"content": "For my thoughts are not your thoughts, neither are your ways my ways, saith the LORD."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 9,
+					"content": "For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 10,
+					"content": "For as the rain cometh down, and the snow from heaven, and returneth not thither, but watereth the earth, and maketh it bring forth and bud, that it may give seed to the sower, and bread to the eater:"
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 11,
+					"content": "So shall my word be that goeth forth out of my mouth: it shall not return unto me void, but it shall accomplish that which I please, and it shall prosper in the thing whereto I sent it."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 12,
+					"content": "For ye shall go out with joy, and be led forth with peace: the mountains and the hills shall break forth before you into singing, and all the trees of the field shall clap their hands."
+				},
+				{
+					"book": "ISA",
+					"chapter": 55,
+					"verse": 13,
+					"content": "Instead of the thorn shall come up the fir tree, and instead of the brier shall come up the myrtle tree: and it shall be to the LORD for a name, for an everlasting sign that shall not be cut off."
+				}
+			]
+		},
+		{
+			"source": "Great Blessing of Waters",
+			"book": "OT",
+			"description": "",
+			"display": "Isaiah 12.3-6",
+			"short_display": "Isa 12.3-6",
+			"passage": [
+				{
+					"book": "ISA",
+					"chapter": 12,
+					"verse": 3,
+					"content": "Therefore with joy shall ye draw water out of the wells of salvation."
+				},
+				{
+					"book": "ISA",
+					"chapter": 12,
+					"verse": 4,
+					"content": "And in that day shall ye say, Praise the LORD, call upon his name, declare his doings among the people, make mention that his name is exalted."
+				},
+				{
+					"book": "ISA",
+					"chapter": 12,
+					"verse": 5,
+					"content": "Sing unto the LORD; for he hath done excellent things: this is known in all the earth."
+				},
+				{
+					"book": "ISA",
+					"chapter": 12,
+					"verse": 6,
+					"content": "Cry out and shout, thou inhabitant of Zion: for great is the Holy One of Israel in the midst of thee."
+				}
+			]
+		},
+		{
+			"source": "Great Blessing of Waters",
+			"book": "Apostol",
+			"description": "Epistle",
+			"display": "1 Corinthians 10.1-4",
+			"short_display": "1 Cor 10.1-4",
+			"passage": [
+				{
+					"book": "1CO",
+					"chapter": 10,
+					"verse": 1,
+					"content": "Moreover, brethren, I would not that ye should be ignorant, how that all our fathers were under the cloud, and all passed through the sea;"
+				},
+				{
+					"book": "1CO",
+					"chapter": 10,
+					"verse": 2,
+					"content": "And were all baptized unto Moses in the cloud and in the sea;"
+				},
+				{
+					"book": "1CO",
+					"chapter": 10,
+					"verse": 3,
+					"content": "And did all eat the same spiritual meat;"
+				},
+				{
+					"book": "1CO",
+					"chapter": 10,
+					"verse": 4,
+					"content": "And did all drink the same spiritual drink: for they drank of that spiritual Rock that followed them: and that Rock was Christ."
+				}
+			]
+		},
+		{
+			"source": "Great Blessing of Waters",
+			"book": "Mark",
+			"description": "Gospel",
+			"display": "Mark 1.9-11",
+			"short_display": "Mark 1.9-11",
+			"passage": [
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 9,
+					"content": "And it came to pass in those days, that Jesus came from Nazareth of Galilee, and was baptized of John in Jordan."
+				},
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 10,
+					"content": "And straightway coming up out of the water, he saw the heavens opened, and the Spirit like a dove descending upon him:"
+				},
+				{
+					"book": "MRK",
+					"chapter": 1,
+					"verse": 11,
+					"content": "And there came a voice from heaven, saying, Thou art my beloved Son, in whom I am well pleased."
+				}
+			]
+		}
+	]
+}

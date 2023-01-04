@@ -1,27 +1,11 @@
-import re
-import textwrap
-
 from datetime import date, datetime, timedelta, timezone
 
+from asgiref.sync import async_to_sync
 from django.db.models import Q
 from django.utils.functional import cached_property
 
 from . import datetools, models
-from .datetools import Weekday
-from bible.models import Verse
-
-
-class CompositeVerse:
-    def __init__(self, book, chapter, verse, content, language='en'):
-        self.book = book
-        self.chapter = chapter
-        self.verse = verse
-        self.content = content
-        self.language = language
-
-    def __repr__(self):
-        blurb = textwrap.shorten(self.content, width=20, placeholder='...')
-        return f'{self.book}: {blurb}'
+from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions
 
 
 class Reading:
@@ -32,14 +16,16 @@ class Reading:
     def __repr__(self):
         return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
 
-    @property
-    def passage(self):
-        match = re.match('Composite (\d+)', self.pericope.display)
-        if match:
-            composite = models.Composite.objects.get(composite_num=match.group(1))
-            return CompositeVerse(book=match.group(0), chapter=1, verse=1, content=composite.reading)
-        else:
-            return Verse.objects.lookup_reference(self.pericope.sdisplay)
+    def __getattr__(self, attr):
+        """Act as if we are a composite of both self.reading and self.pericope."""
+
+        if hasattr(self.reading, attr):
+            return getattr(self.reading, attr)
+
+        if hasattr(self.pericope, attr):
+            return getattr(self.pericope, attr)
+
+        raise AttributeError(f'{self.__class__} object has no attribute: {attr}.')
 
 
 class Day:
@@ -65,15 +51,98 @@ class Day:
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
 
-        self.pyear = Year(year, use_julian)
+        self.pyear = Year(pyear, use_julian)
 
-        self._collect_commemorations()
+    async def ainitialize(self):
+        await self._collect_commemorations()
+        self._apply_fasting_adjustments()
+
+    initialize = async_to_sync(ainitialize)
 
     def __str__(self):
         return str(self._date)
 
+    async def _collect_commemorations(self):
+        q = Q(month=self.month, day=self.day) | Q(pdist=self.pdist)
+        if float_index := self.pyear.floats.get(self.pdist):
+            q |= Q(pdist=float_index)
+
+        days = [d async for d in models.Day.objects.filter(q)]
+
+        self.titles = [title for d in days if (title := d.full_title)]
+        self.saints = [d.saint for d in days if d.saint]
+        self.feasts = [d.feast_name for d in days if d.feast_name]
+        self.service_notes = [d.service_note for d in days if d.service_note]
+
+        self.feast_level = max(d.feast_level for d in days)
+        self.fast_level = max(d.fast for d in days)
+        self.fast_exception = max(d.fast_exception for d in days)
+
+    def _apply_fasting_adjustments(self):
+        # Adjust for fast free days
+        if self.fast_exception == 11:
+            self.fast_level = FastLevels.NoFast
+            self.fast_level_desc = FastLevelDesc[self.fast_level]
+            return
+
+        # Are we in the Apostles fast?
+        if 56 < self.pdist < self.pyear.peter_and_paul:
+            self.fast_level = 3
+            if self.pdist == 57:
+                self.service_notes.append("Beginning of Apostles' Fast")
+
+        match self.fast_level:
+            case FastLevels.LentenFast:
+                # Remove fish for minor feast days in Lent
+                if self.fast_exception == 2:
+                    self.fast_exception -= 1
+            case FastLevels.DormitionFast:
+                # Allow wine and oil on weekdends during the Dormition fast
+                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
+                    self.fast_exception += 1
+            case FastLevels.ApostlesFast | FastLevels.NativityFast:
+                match self.weekday:
+                    case Weekday.Tuesday | Weekday.Thursday:
+                        if self.fast_exception == 0:
+                            self.fast_exception += 1
+                    case Weekday.Wednesday | Weekday.Friday:
+                        if self.feast_level < 4 and self.fast_exception > 1:
+                            self.fast_exception = 1
+                    case Weekday.Sunday | Weekday.Saturday:
+                        self.fast_exception = 2
+
+                # Ease restrictions during the week before Nativity
+                if self.pyear.nativity-6 < self.pdist < self.pyear.nativity-1 and self.fast_exception > 1:
+                    self.fast_exception = 1
+
+        # The days before Nativity and Theophany are wine and oil days
+        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
+            self.fast_exception = 1
+
+        self.fast_level_desc = FastLevelDesc[self.fast_level]
+        self.fast_exception_desc = FastExceptions[self.fast_exception]
+
+    @cached_property
+    def feast_level_desc(self):
+        return datetools.FeastLevels[self.feast_level]
+
+    @cached_property
+    def fast_level_desc(self):
+        return datetools.FastLevels[self.fast_level]
+
+    @cached_property
+    def fast_exception_desc(self):
+        return datetools.FastExceptions[self.fast_exception]
+
+    @cached_property
+    def has_no_memorial(self):
+        """True if Memorial Saturday is cancelled."""
+        return self.pdist in (-36, -29, -22) and self.month == 3 and self.day in (9, 24, 25, 26)
+
     @cached_property
     def has_matins_gospel(self):
+        """True if there could be a non-Eothinon Gospel reading for Matins, otherwise False."""
+
         if self.weekday != Weekday.Sunday:
             return True
 
@@ -86,35 +155,38 @@ class Day:
         return True
 
     @cached_property
+    def preceding_pdist(self):
+        """The number of days from the Pascha preceding this day to this day."""
+        return self.pdist if self.pdist >= 0 else self.jdn - self.pyear.previous_pascha
+
+    @cached_property
     def tone(self):
-        # Lent ends on Friday before Lazarus Saturday. From Lazarus Saturday
-        # until Holy Saturday, the octoechoes is not followed.
+        """The proper tone for this day."""
+
+        # The last day of Lent is on the Friday before Lazarus Saturday. From
+        # Lazarus Saturday until Holy Saturday, the octoechoes are not employed.
         if -9 < self.pdist < 0:
             return 0
 
-        # Bright week is different. We cycle through the tones one per day.
-        if 0 <= self.pdist < 6:
-            return self.pdist + 1
-
-        # We skip tone 7 during bright week and go straight to tone eight on
-        # Bright Saturday.
-        if self.pdist == 6:
-            return 8
+        # Bright week is different. We cycle through the tones one per day, skipping tone 7.
+        # Tone 7 is said to be too somber for bright week.
+        if 0 <= self.pdist < 7:
+            bright_tones = 1, 2, 3, 4, 5, 6, 8
+            return bright_tones[self.pdist]
 
         # TODO: check for great feasts and set tone to 0 for them
         pass
 
-        # We count from the Pascha prior to this day.
-        pdist = self.pdist if self.pdist >= 0 else self.jdn - self.pyear.previous_pascha
-
         # We start the cycle with Thomas Sunday, which has pdist == 7 and so is
         # the 1st Sunday (7 // 7 == 1).  The mod cycle is 0 origin, so 0-7 for
         # mod 8. We add 1 to shift it to 1-8.
-        nth_sunday = pdist // 7
+        nth_sunday = self.preceding_pdist // 7
         return (nth_sunday-1) % 8 + 1
 
     @cached_property
     def eothinon_gospel(self):
+        """The number of the Sunday Eothinon Gospel if relevant, otherwise None."""
+
         if self.weekday != Weekday.Sunday:
             return None
 
@@ -126,49 +198,37 @@ class Day:
         if self.feast_level >= 7:
             return None
 
-        # Compute the index for the correct Eothinon Gospel
-
-        if self.pdist < 0:
-            pbase = self.jdn - self.pyear.previous_pascha
-        else:
-            pbase = self.pdist
-
-        x = (pbase - 49) % 77 or 77
-        return x // 7
-
-    def _collect_commemorations(self):
-        q = Q(month=self.month, day=self.day) | Q(pdist=self.pdist)
-        if float_index := self.pyear.floats.get(self.pdist):
-            q |= Q(pdist=float_index)
-
-        days = list(models.Day.objects.filter(q))
-
-        self.titles = [title for d in days if (title := d.get_title())]
-        self.saints = [d.saint for d in days if d.saint]
-        self.feasts = [d.feast_name for d in days if d.feast_name]
-        self.service_notes = [d.service_note for d in days if d.service_note]
-
-        self.feast_level = max(d.feast_level for d in days)
-        self.fast_level = max(d.fast for d in days)
-        self.fast_exception = max(d.fast_exception for d in days)
+        # Compute the number of the correct Eothinon Gospel.  We cycle through
+        # the 11 gospels starting on the 1st Sunday after Pentecost.
+        nth_sunday = (self.preceding_pdist - 49) // 7
+        return (nth_sunday - 1) % 11 + 1
 
     @cached_property
     def has_no_paremias(self):
+        """True if the paremias for this day have been moved."""
         return self.pyear.has_no_paremias(self.pdist)
 
     @cached_property
     def has_moved_paremias(self):
+        """True if this day has moved paremias for the succeeding day."""
         return self.pyear.has_moved_paremias(self.pdist)
 
-    @cached_property
-    def readings(self):
+    async def aget_readings(self):
+        """A list of lectionary readings."""
+
         query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
 
         if self.gospel_pdist:
-            query |= Q(pdist=self.gospel_pdist, source='Gospel')
+            if self.has_no_memorial:
+                query |= Q(pdist=self.gospel_pdist, source='Gospel') & ~Q(desc='Departed')
+            else:
+                query |= Q(pdist=self.gospel_pdist, source='Gospel')
 
         if self.epistle_pdist:
-            query |= Q(pdist=self.epistle_pdist, source='Epistle')
+            if self.has_no_memorial:
+                query |= Q(pdist=self.epistle_pdist, source='Epistle') & ~Q(desc='Departed')
+            else:
+                query |= Q(pdist=self.epistle_pdist, source='Epistle')
 
         # include floats
         if float_index := self.pyear.floats.get(self.pdist):
@@ -187,7 +247,7 @@ class Day:
         # build conditional using month/day instead of pdist
 
         subquery = Q(month=self.month, day=self.day)
-        if self.has_matins_gospel:
+        if not self.has_matins_gospel:
             subquery &= ~Q(source='Matins Gospel')
 
         if self.has_no_paremias:
@@ -199,37 +259,48 @@ class Day:
 
         query |= subquery
 
-        # Return the list of readings
+        # Generate the list of readings
+        readings = []
+        async for r in models.Reading.objects.filter(query).order_by('ordering'):
+            async for p in r.get_pericopes():
+                reading = Reading(r, p) 
+                if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
+                    # Place Lenten Matins Gospel at the top
+                    readings.insert(0, reading)
+                else:
+                    readings.append(reading)
 
-        return [
-            Reading(r, p) 
-                for r in models.Reading.objects.filter(query).order_by('ordering')
-                    for p in r.get_pericopes()
-        ]
+        return readings
+
+    get_readings = async_to_sync(aget_readings)
 
     @cached_property
     def jump(self):
+        """The Lucan jump appropriate for this day."""
         _, _, _, sun_after_elevation = datetools.surrounding_weekends(self.pyear.elevation)
-        return self.pyear.locan_jump if self.do_jump and self.pdist > sun_after_elevation else 0
+        return self.pyear.lucan_jump if self.do_jump and self.pdist > sun_after_elevation else 0
 
     @cached_property
     def has_daily_readings(self):
+        """True if daily readings are not suppressed for this day."""
         return self.pyear.has_daily_readings(self.pdist)
 
     @cached_property
     def epistle_pdist(self):
-        if self.has_daily_readings:
-            limit = 272
+        """Adjusted pdist for the epistle."""
 
+        if self.has_daily_readings:
             if self.pdist == 252:
                 return self.pyear.forefathers
-            elif self.pdist > limit:
+            elif self.pdist > 272:
                 return self.jdn - self.pyear.next_pascha
             else:
                 return self.pdist
 
     @cached_property
     def gospel_pdist(self):
+        """Adjusted pdist for the Gospel."""
+
         if self.has_daily_readings:
             limit = 279 if datetools.weekday_from_pdist(self.pyear.theophany) < Weekday.Tuesday else 272
             _, _, _, sun_after_theophany = datetools.surrounding_weekends(self.pyear.theophany)
@@ -264,10 +335,10 @@ class Year:
         return pdist not in self.no_daily
 
     def has_moved_paremias(self, pdist):
-        return self.paremias.get(pdist, None) is True
+        return self.paremias.get(pdist) is True
 
     def has_no_paremias(self, pdist):
-        return self.paremias.get(pdist, None) is False
+        return self.paremias.get(pdist) is False
 
     @cached_property
     def no_daily(self):
@@ -398,7 +469,7 @@ class Year:
         for month, day in days:
             pdist = self._date_to_pdist(month, day, self.year)
             weekday = datetools.weekday_from_pdist(pdist)
-            if pdist > -44 and pdist < -7 and weekday > Weekday.Monday:
+            if -44 < pdist < -7 and weekday > Weekday.Monday:
                 paremias[pdist] = False
                 paremias[pdist-1] = True
 

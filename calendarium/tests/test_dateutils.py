@@ -83,9 +83,15 @@ class TestDateutil(TestCase):
         self.assertEqual(expected, actual)
 
     def test_compute_pascha_jdn(self):
-        expected = 2455676
-        actual = datetools.compute_pascha_jdn(2011)
-        self.assertEqual(expected, actual)
+        data = [
+            (2022, 2459694),
+            (2011, 2455676),
+        ]
+
+        for year, pascha in data:
+            with self.subTest(year):
+                actual = datetools.compute_pascha_jdn(year)
+                self.assertEqual(pascha, actual)
 
     def test_compute_pascha_distance(self):
         tests = [

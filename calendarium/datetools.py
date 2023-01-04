@@ -2,6 +2,26 @@ from datetime import date, datetime, timedelta, timezone
 from enum import IntEnum
 
 Weekday = IntEnum('Weekday', 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday', start=0)
+FastLevels = IntEnum('FastLevels', 'NoFast Fast LentenFast ApostlesFast DormitionFast NativityFast', start=0)
+
+FastLevelDesc = "No Fast", "Fast", "Lenten Fast", "Apostles Fast", "Dormition Fast", "Nativity Fast"
+FastExceptions = ('', "Wine and Oil are Allowed", "Fish, Wine and Oil are Allowed", "Wine and Oil are Allowed",
+    "Fish, Wine and Oil are Allowed", "Wine is Allowed", "Wine, Oil and Caviar are Allowed", "Meat Fast",
+    "Strict Fast (Wine and Oil)", "Strict Fast", "No overrides", "Fast Free",)
+
+FeastLevels = {
+	-1: "No Liturgy",
+	0:  "Liturgy",
+	1:  "Presanctified",
+	2:  "Black squigg (6-stich typikon symbol)",
+	3:  "Red squigg (doxology typikon symbol)",
+	4:  "Red cross (polyeleos typikon symbol)",
+	5:  "Red cross half-circle (vigil typikon symbol)",
+	6:  "Red cross circle (great feast typikon symbol)",
+	7:  "Major feast Theotokos",
+	8:  "Major feast Lord",
+}
+
 
 def compute_julian_pascha(year):
     """Compute the Julian date of Pascha for the given year."""
@@ -154,7 +174,7 @@ def julian_to_jdn(dt):
     day = dt.day
 
     # See https://en.wikipedia.org/wiki/Julian_day#Converting_Julian_calendar_date_to_Julian_Day_Number
-    return 367*year - (7*(year+5001+int((month-9)/7)))//4 + (275*month)//9 + day + 1729777
+    return 367 * year - (7 * (year + 5001 + int((month - 9) / 7))) // 4 + (275 * month) // 9 + day + 1729777
 
 def gregorian_to_jdn(dt):
     """Convert a Gregorian date to a Julian day number.
