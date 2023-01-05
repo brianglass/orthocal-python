@@ -7,6 +7,22 @@ from django.utils.functional import cached_property
 from . import datetools, models
 from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions
 
+async def amonth_of_days(year, month, use_julian=False):
+    dt = datetime(year, month, 1)
+    while dt.month == month:
+        day = Day(dt.year, dt.month, dt.day, use_julian=use_julian)
+        await day.ainitialize()
+        yield day
+        dt += timedelta(days=1)
+
+def month_of_days(year, month, use_julian=False):
+    dt = datetime(year, month, 1)
+    while dt.month == month:
+        day = Day(dt.year, dt.month, dt.day, use_julian=use_julian)
+        day.initialize()
+        yield day
+        dt += timedelta(days=1)
+
 
 class Reading:
     def __init__(self, reading, pericope):
