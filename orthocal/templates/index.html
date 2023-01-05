@@ -1,12 +1,78 @@
 {% extends "base.html" %}
 
 {% block main %}
-	<article id="orthocal">{{ content|safe }}</article>
+	<article id="orthocal">
+		<section class="orthocal">
+			<a href="{% url 'calendar' jurisdiction=jurisdiction year=previous_date.year month=previous_date.month day=previous_date.day %}">Previous Day</a>
+			<a href="{% url 'calendar' jurisdiction=jurisdiction year=now.year month=now.month day=now.day %}">Today</a>
+			<a href="{% url 'calendar' jurisdiction=jurisdiction year=next_date.year month=next_date.month day=next_date.day %}">Next Day</a>
+
+			<br/>
+
+			<label><input type="radio" name="jurisdiction" value="oca" {% if jurisdiction == "oca" %}checked=""{% endif %} />oca</label>
+			<label><input type="radio" name="jurisdiction" value="rocor" {% if jurisdiction == "rocor" %}checked=""{% endif %} />rocor</label>
+
+			<div class="day">
+				<h2>{{ day.date|date:"F j, Y" }}<span><br/>{{ day.titles.0 }}</span></h2>
+
+				<p>
+					{{ day.fast_level_desc }} 
+					{% if day.fast_level and day.fast_exception %}— {{ day.fast_exception_desc }}{% endif %}
+				</p>
+
+				{% if day.feasts %}
+				<section class="feasts">
+					<h3>Feasts</h3>
+					<ul>
+						{% for feast in day.feasts %}
+						<li>{{ feast }}</li>
+						{% endfor %}
+					</ul>
+				</section>
+				{% endif %}
+
+				{% if day.saints %}
+				<section class="commemorations">
+					<h3>Commemorations</h3>
+					<ul>
+						{% for saint in day.saints %}
+						<li>{{ saint }}</li>
+						{% endfor %}
+					</ul>
+				</section>
+				{% endif %}
+
+				<section class="readings">
+					<h3>Readings (KJV)</h3>
+
+					{% for reading in day.get_readings %}
+					<section class="passage">
+						<h4>
+							{{ reading.display }}
+							({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+						</h4>
+
+						{% for verse in reading.get_passage %}
+						<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
+						{% endfor %}
+					</section>
+					{% endfor %}
+				</section>
+
+		</section>
+	</article>
 {% endblock %}
 
 {% block scripts %}
-	{% if content %}
-			<script>window.__STATE__ = {{initialState|safe}}</script>
-			<script defer src="/dist/client.js"></script>
-	{% endif %}
+<script>
+	var radios = document.getElementsByName('jurisdiction');
+	for (var i = 0; i < radios.length; i++) {
+		radios[i].addEventListener('change', function() {
+			if (this.value == 'rocor')
+				location.href = '{% url 'calendar' jurisdiction='rocor' year=date.year month=date.month day=date.day %}';
+			else
+				location.href = '{% url 'calendar' jurisdiction='oca' year=date.year month=date.month day=date.day %}';
+		});
+	}
+</script>
 {% endblock %}

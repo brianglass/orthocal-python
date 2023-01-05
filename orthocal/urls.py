@@ -17,9 +17,10 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('api/', include('calendarium.api_urls')),
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
     path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
     path('ical/', TemplateView.as_view(template_name='ical.html'), name='ical'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('api/', include('calendarium.api_urls')),
+    path('', include('calendarium.urls')),
 ]

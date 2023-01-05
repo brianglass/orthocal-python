@@ -51,7 +51,7 @@ class Day:
         else:
             dt = date(year=year, month=month, day=day)
 
-        self._date = dt
+        self.date = dt
         self.year = dt.year
         self.month = dt.month
         self.day = dt.day
@@ -76,7 +76,7 @@ class Day:
     initialize = async_to_sync(ainitialize)
 
     def __str__(self):
-        return str(self._date)
+        return str(self.date)
 
     async def _collect_commemorations(self):
         q = Q(month=self.month, day=self.day) | Q(pdist=self.pdist)
@@ -257,7 +257,7 @@ class Day:
         # add paremias
         if self.has_moved_paremias:
             # Grab the paremias from the succeeding day since it has been moved back 1 day
-            dt = self._date + timedelta(days=1)
+            dt = self.date + timedelta(days=1)
             query |= Q(month=dt.month, day=dt.day, source='Vespers')
 
         # build conditional using month/day instead of pdist
@@ -382,40 +382,40 @@ class Year:
 
     @cached_property
     def theophany(self):
-        return self._date_to_pdist(1, 6, self.year+1)
+        return self.date_to_pdist(1, 6, self.year+1)
 
     @cached_property
     def finding(self):
-        return self._date_to_pdist(2, 24, self.year)
+        return self.date_to_pdist(2, 24, self.year)
 
     @cached_property
     def annunciation(self):
-        return self._date_to_pdist(3, 25, self.year)
+        return self.date_to_pdist(3, 25, self.year)
 
     @cached_property
     def peter_and_paul(self):
-        return self._date_to_pdist(6, 29, self.year)
+        return self.date_to_pdist(6, 29, self.year)
 
     @cached_property
     def beheading(self):
-        return self._date_to_pdist(8, 29, self.year)
+        return self.date_to_pdist(8, 29, self.year)
 
     @cached_property
     def nativity_theotokos(self):
-        return self._date_to_pdist(9, 8, self.year)
+        return self.date_to_pdist(9, 8, self.year)
 
     @cached_property
     def elevation(self):
-        return self._date_to_pdist(9, 14, self.year)
+        return self.date_to_pdist(9, 14, self.year)
 
     @cached_property
     def nativity(self):
-        return self._date_to_pdist(12, 25, self.year)
+        return self.date_to_pdist(12, 25, self.year)
 
     @cached_property
     def fathers_six(self):
         # The Fathers of the Sixth Ecumenical Council falls on the Sunday nearest 7/16
-        pdist = self._date_to_pdist(7, 16, self.year)
+        pdist = self.date_to_pdist(7, 16, self.year)
         weekday = datetools.weekday_from_pdist(pdist)
         if weekday < Weekday.Thursday:
             return pdist - weekday
@@ -426,7 +426,7 @@ class Year:
     def fathers_seven(self):
         # The Fathers of the Seventh Ecumenical Council falls on the Sunday
         # following 10/11 or 10/11 itself if it is a Sunday.
-        pdist = self._date_to_pdist(10, 11, self.year)
+        pdist = self.date_to_pdist(10, 11, self.year)
         weekday = datetools.weekday_from_pdist(pdist)
         if weekday > Weekday.Sunday:
             pdist += 7 - weekday
@@ -435,13 +435,13 @@ class Year:
     @cached_property
     def demetrius_saturday(self):
         # Demetrius Saturday is the Saturday before 10/26
-        pdist = self._date_to_pdist(10, 26, self.year)
+        pdist = self.date_to_pdist(10, 26, self.year)
         return pdist - datetools.weekday_from_pdist(pdist) - 1
 
     @cached_property
     def synaxis_unmercenaries(self):
         # The Synaxis of the Unmercenaries is the Sunday following 11/1
-        pdist = self._date_to_pdist(11, 1, self.year)
+        pdist = self.date_to_pdist(11, 1, self.year)
         return pdist + 7 - datetools.weekday_from_pdist(pdist)
 
     @cached_property
@@ -483,7 +483,7 @@ class Year:
 
         days = (2, 24), (2, 27), (3, 9), (3, 31), (4, 7), (4, 23), (4, 25), (4, 30)
         for month, day in days:
-            pdist = self._date_to_pdist(month, day, self.year)
+            pdist = self.date_to_pdist(month, day, self.year)
             weekday = datetools.weekday_from_pdist(pdist)
             if -44 < pdist < -7 and weekday > Weekday.Monday:
                 paremias[pdist] = False
@@ -491,7 +491,7 @@ class Year:
 
         return paremias
 
-    def _date_to_pdist(self, month, day, year):
+    def date_to_pdist(self, month, day, year):
         dt = date(year, month, day)
         if self.use_julian:
             # TODO: Need to test this and confirm it's valid
@@ -637,7 +637,7 @@ class Year:
                 })
 
         # New Martyrs of Russia (OCA) is the Sunday on or before 1/31
-        martyrs = self._date_to_pdist(1, 31, self.year)
+        martyrs = self.date_to_pdist(1, 31, self.year)
         weekday = datetools.weekday_from_pdist(martyrs)
         if weekday != Weekday.Sunday:
             # The Sunday before 1/31
