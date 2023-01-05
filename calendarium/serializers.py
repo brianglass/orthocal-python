@@ -24,6 +24,14 @@ class ReadingSerializer(serializers.Serializer):
     short_display = serializers.CharField(source='sdisplay')
     passage = VerseSerializer(source='get_passage', many=True)
 
+    def get_fields(self):
+        fields = super().get_fields()
+
+        if self.context.get('exclude_passage'):
+            fields.pop('passage', None)
+
+        return fields
+
 
 class DaySerializer(serializers.Serializer):
     pascha_distance = serializers.IntegerField(source='pdist')
@@ -52,4 +60,4 @@ class DaySerializer(serializers.Serializer):
 
     def get_readings(self, instance):
         readings = instance.get_readings()
-        return ReadingSerializer(readings, many=True).data
+        return ReadingSerializer(readings, many=True, context=self.context).data
