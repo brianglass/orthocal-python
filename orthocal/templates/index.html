@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<article id="orthocal">{{ content|safe }}</article>
+{% endblock %}
+
+{% block scripts %}
+	{% if content %}
+			<script>window.__STATE__ = {{initialState|safe}}</script>
+			<script defer src="/dist/client.js"></script>
+	{% endif %}
+{% endblock %}

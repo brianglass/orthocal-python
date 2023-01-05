@@ -1,0 +1,52 @@
+{% extends "content_base.html" %}
+
+{% block title %}Orthodox Calendar API{% endblock %}
+
+{% block content %}
+	<h2>API</h2>
+	<p>The api supports Cross-Origin Resource Sharing (CORS).  Information
+	for a day of the year can be fetched by including the jurisdiction and
+	date in the url as follows:
+	</p>
+
+	<blockquote>
+			/api/&lt;jurisdiction&gt;/&lt;year&gt;/&lt;month&gt;/&lt;day&gt;/<br/>
+			/api/&lt;jurisdiction&gt;/&lt;year&gt;/&lt;month&gt;/
+	</blockquote>
+
+	<p>For example:</p>
+
+	<blockquote><a href="/api/oca/2018/2/20/">/api/oca/2018/2/20/</a></blockquote>
+
+	<p>Though the month view excludes the text of scriptures due to size
+	and performance, you can fetch information for all of February using
+	the following:</p>
+
+	<blockquote><a href="/api/oca/2018/2/">/api/oca/2018/2/</a></blockquote>
+
+	<p>To get information for today, simply leave off the date as follows:</p>
+
+	<blockquote><a href="/api/oca/">/api/oca/</a></blockquote>
+
+	<p>Tentative support for ROCOR (and other jurisdictions that use the
+	Julian calendar) is available as well. For example:</p>
+
+	<blockquote><a href="/api/rocor/2018/1/7/">/api/rocor/2018/1/7/</a></blockquote>
+
+	<h3>React.js Example</h3>
+
+	<p>You can view the code for this site and for the React.js application
+	that provides the daily readings on this site in the <a
+	href="https://github.com/brianglass/orthocal-client">orthocal-client</a>
+	Github repository.<p>
+
+	<h3>HTML With jQuery Example</h3>
+
+	<p>A very simple example of how to fetch and display this information using jQuery follows.</p>
+
+	<script src="https://gist.github.com/brianglass/8e8f9f4ea9543911198bd6edf74dd77b.js"></script>
+
+	<h3>ES6 Example</h3>
+
+	<script src="https://gist.github.com/brianglass/24df39824f67a4fda7ff3a6c5f665d9b.js"></script>
+{% endblock %}

@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+html {
+    font-size: 16px;
+    font-family: 'Merriweather', serif;
+}
+body {
+    margin: 0;
+}
+h1, h2, h3, h4 {
+    text-align: center;
+}
+header {
+    margin: 0;
+    padding: 4% 0 0 0;
+    text-align: center;
+}
+header h1 {
+    font-size: 250%;
+    margin-bottom: 5px;
+    color: #666;
+}
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+header nav li {
+    display: inline;
+    border-right: 3px solid #ddd;
+    padding: 8px;
+    margin-left: -4px;
+}
+header nav li:last-child {
+    border-right: none;
+}
+header nav a:link, header nav a:visited {
+    color: black;
+    text-decoration: none;
+}
+header nav a:hover {
+    text-decoration: underline;
+}
+article {
+    margin: 2% auto;
+    width: 75%;
+}
+article#content {
+    border-top: 5px solid #eee;
+    padding-top: 1.5em;
+}
+article#orthocal {
+    text-align: center;
+}
+article#content p {
+    text-indent: 2em;
+}
+article#content iframe {
+    margin: 4% auto;
+    width: 100%;
+}
+#orthocal h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#orthocal div {
+    text-align: left;
+}
+#orthocal a, #orthocal button {
+    display: inline-block;
+    font-family: 'Merriweather', serif;
+    font-size: 85%;
+    background-color: #999;
+    border: 1px solid #999;
+    color: white;
+    padding: 6px;
+    margin: 2px;
+    transition-duration: 0.3s;
+    border-radius: 3px;
+}
+#orthocal a:hover, #orthocal button:hover {
+    background-color: white;
+    color: #666;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
+#orthocal button:focus {
+    background-color: #999;
+    color: white;
+    border: 1px solid #999;
+}
+#orthocal a.active, #orthocal button:active {
+    background-color: #ddd;
+}
+input {
+    font-family: 'Merriweather', serif;
+}
+.day {
+    margin-top: 1em;
+    padding-top: 1.5em;
+    border-top: 5px solid #eee;
+}
+.day .commemorations li, .day .feasts li, .day > p {
+    font-size: 100%;
+    color: #555;
+}
+.passage {
+    columns: 3 20em;
+    column-gap: 2em;
+    column-rule: 1px solid #ddd;
+    padding-bottom: 4em;
+}
+.passage h4 {
+    margin-top: 0;
+}
+.passage p {
+    text-indent: 1em;
+    margin: 0;
+}
+.passage p .verse-number {
+    vertical-align: super;
+    font-size: 75%;
+    color: gray;
+}
+.day>p {
+    text-align: center;
+}
+.day section {
+    text-align: left;
+}
+label {
+    margin-top: 35px;
+}
+.readings {
+    font-size: 100%;
+}
+.commemorations ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.commemorations li {
+    display: inline;
+}
+.commemorations li:last-child:after {
+    content: "";
+}
+.commemorations li:after {
+    content: "; ";
+}
+.feasts ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.feasts li {
+    display: inline;
+}
+.feasts li:last-child:after {
+    content: "";
+}
+.feasts li:after {
+    content: "; ";
+}
+.feasts h3, .commemorations h3 {
+    margin-bottom: 3px;
+}
+.readings h3 {
+    margin-top: 30px;
+}

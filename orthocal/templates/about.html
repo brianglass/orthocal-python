@@ -1,0 +1,64 @@
+{% extends "content_base.html" %}
+
+{% block title %}About the Orthodox Calendar{% endblock %}
+
+{% block content %}
+	<h1>About</h1>
+	<p>Orthocal.info is an Eastern Orthodox calendar service providing
+	a RESTful api describing commemorations, fasting, scripture
+	readings and other information for each day of the liturgical year.
+	Presently only the OCA is fully supported.  There is tentative
+	support for ROCOR, but fasting guidelines may not be 100% correct.
+	With assistance, I may eventually provide support for other US
+	jurisdictions.</p>
+
+	<p>
+	This service is meant to be a tool for mobile developers and parish
+	webmasters to use to provide this information to parishioners and
+	other guests.
+	<a href="https://github.com/brianglass/orthocal-service">Source code</a>
+	and a <a href="https://hub.docker.com/r/brianglass/orthocal-service/">docker
+	image</a> for self-hosting are freely available.</p>
+
+	<h2>Contact the Author</h2>
+	<p><a href="https://orthocal.info">Orthocal.info</a> is being
+	provided to the Orthodox community with no strings attached.
+	However, it is helpful to me, the author of the work, to know who is
+	using it and how. I will then be able to know how best to support
+	your usage of the api and will be able to keep you informed about
+	changes or maintenance work that needs to be done. Please contact
+	me via the 
+	<a href="https://parochianus.wordpress.com/contact/">contact form</a>
+	on my blog, 
+	<a href="https://parochianus.wordpress.com/">Parochianus</a>,
+	and let me know about your usage.
+				<p>Please report bugs using the 
+	<a href="https://github.com/brianglass/orthocal-service/issues">Github issue tracker</a>.</p>
+
+	<h2>Existing Bugs</h2>
+	<p>
+	There are some known issues. For instance, the composite readings
+	are put together based on normal scripture references. However, not
+	all of the composite readings can be reconstructed in this way.
+	Often they are very much paraphrased from large blocks of
+	scripture. I need to come up with a new system for the composites
+	to use the actual reading from the liturgical texts in order to
+	make these more correct.
+	</p>
+
+	<h2>Algorithm</h2>
+	<p>The algorithm and data used in this service are based on the
+	algorithm and data developed by Paul Kachur's 
+	<a href="https://github.com/paulkachur/orthodox_calendar">orthodox_calendar</a> project. 
+	As such, the commemoration data is incomplete.  The primary
+	purpose of this service is to provide daily scripture readings for lay
+	persons and not to be an authoritative guide to the feasts and fasts of the Church.</p>
+
+	<h2>Scriptures</h2>
+	<p>Because this is open-source and free, the service must use a
+	translation of the Bible that is either public domain or has agreeable
+	license terms. At this point I have chosen to stick with the King James
+	Version. While not ideal, many clergy consider this to be one of the
+	best options for Orthodox. Because the rubrics use Septuagint
+	versification, a handful of the Old Testament readings may be incorrect.</p>
+{% endblock %}
