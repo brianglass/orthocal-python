@@ -1,11 +1,14 @@
 import zoneinfo
 
 from datetime import date, datetime, timedelta
+from urllib.parse import urljoin
 
 import icalendar
 
+from dateutil.rrule import rrule, DAILY
 from django.conf import settings
 from django.http import HttpResponse, Http404
+from django.urls import reverse
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -36,14 +39,10 @@ class DayViewSet(viewsets.ViewSet):
 
 
 async def ical(request, jurisdiction):
-    base_url = request.build_absolute_uri('/').rstrip('/')
+    base_url = request.build_absolute_uri('/')
     title = jurisdiction.upper()
     ttl = settings.ORTHOCAL_ICAL_TTL
-    tz = settings.ORTHOCAL_ICAL_TZ
-
-    dt = date.today() - timedelta(days=30)
-    last_dt = dt + timedelta(days=30 * 7)
-    now = datetime.now()
+    timestamp = datetime.now()
 
     calendar = icalendar.Calendar()
     calendar.add('prodid', '-//brianglass//Orthocal//en')
@@ -52,31 +51,35 @@ async def ical(request, jurisdiction):
     calendar.add('x-wr-calname', f'Orthodox Feasts and Fasts ({title})')
     calendar.add('refresh-interval;value=duration', f'PT{ttl}H')
     calendar.add('x-published-ttl', f'PT{ttl}H')
-    calendar.add('timezone-id', tz)
-    calendar.add('x-wr-timezone', tz)
+    calendar.add('timezone-id', settings.ORTHOCAL_ICAL_TZ)
+    calendar.add('x-wr-timezone', settings.ORTHOCAL_ICAL_TZ)
 
-    while dt < last_dt:
+    start_dt = date.today() - timedelta(days=30)
+    end_dt = start_dt + timedelta(days=30 * 7)
+
+    for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
         day = liturgics.Day(dt.year, dt.month, dt.day)
         await day.ainitialize()
 
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
+        day_path = reverse('calendar', kwargs={
+            'jurisdiction': jurisdiction,
+            'year': day.year,
+            'month': day.month,
+            'day': day.day
+        })
 
         event = icalendar.Event()
         event.add('uid', uid)
-        event.add('dtstamp', now)
+        event.add('dtstamp', timestamp)
         event.add('dtstart', dt)
         event.add('summary', '; '.join(day.titles))
         event.add('description', await ical_description(day))
-        event.add('url', f'{base_url}/calendar/{title.lower()}/{day.year}/{day.month}/{day.day}/')
+        event.add('url', urljoin(base_url, day_path))
         event.add('class', 'public')
-
         calendar.add_component(event)
 
-        dt += timedelta(days=1)
-
-    ical = calendar.to_ical()
-
-    return HttpResponse(ical, content_type='text/calendar')
+    return HttpResponse(calendar.to_ical(), content_type='text/calendar')
 
 async def ical_description(day):
     description = ''
