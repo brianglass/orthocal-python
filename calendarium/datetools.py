@@ -39,7 +39,7 @@ def compute_pascha_jdn(year):
 
 def weekday_from_pdist(distance):
     """Return the day of the week given the distance from Pascha."""
-    return (7 + distance%7) % 7
+    return distance % 7
 
 def surrounding_weekends(distance):
     weekday = weekday_from_pdist(distance)
