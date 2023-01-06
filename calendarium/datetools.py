@@ -1,5 +1,11 @@
+import math
+
 from datetime import date, datetime, timedelta, timezone
 from enum import IntEnum
+
+import jdcal
+
+from dateutil.easter import easter
 
 Weekday = IntEnum('Weekday', 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday', start=0)
 FastLevels = IntEnum('FastLevels', 'NoFast Fast LentenFast ApostlesFast DormitionFast NativityFast', start=0)
@@ -23,63 +29,13 @@ FeastLevels = {
 }
 
 
-def compute_julian_pascha(year):
-    """Compute the Julian date of Pascha for the given year."""
-
-    # Use the Meeus Julian algorithm to calculate the Julian date
-    # See https://en.wikipedia.org/wiki/Computus#Meeus'_Julian_algorithm
-    a = year % 4
-    b = year % 7
-    c = year % 19
-    d = (19*c + 15) % 30
-    e = (2*a + 4*b - d + 34) % 7
-    month = (d + e + 114) // 31
-    day = (d+e+114)%31 + 1
-
-    return date(year, month, day)
-
 def compute_pascha_jdn(year):
     """Compute the Julian day number of Pascha for the given year."""
 
-    dt = compute_julian_pascha(year)
-    return julian_to_jdn(dt)
-
-def compute_gregorian_pascha(year):
-    """Compute the Gregorian date of Pascha for the given year.
-    The year must be between 2001 and 2099."""
-
-    pascha = compute_julian_pascha(year)
-    return julian_to_gregorian(pascha)
-
-def compute_pascha_distance(year, month, day):
-    """Compute the distance of a given day from Pascha.
-
-    Returns the distance and the year.  If the distance is < -77, the returned
-    year will be earlier than the one passed in."""
-
-    jdn = gregorian_date_to_jdn(year, month, day)
-    distance = jdn - compute_pascha_jdn(year)
-
-    if distance < -77:
-        year -= 1
-        distance = jdn - compute_pascha_jdn(year)
-
-    return distance, year
-
-def compute_julian_pascha_distance(dt):
-    """Compute the distance of a given day from Pascha.
-
-    Returns the distance and the year.  If the distance is < -77, the returned
-    year will be earlier than the one passed in."""
-
-    jdn = julian_to_jdn(dt)
-    distance = jdn - compute_pascha_jdn(year)
-
-    if distance < -77:
-        year -= 1
-        distance = jdn - compute_pascha_jdn(year)
-
-    return distance, year
+    # See https://dateutil.readthedocs.io/en/stable/easter.html
+    assert 1583 <= year <= 4099, 'The year is outside a valid range for this application.'
+    dt = easter(year, method=2)
+    return gregorian_to_jdn(dt)
 
 def weekday_from_pdist(distance):
     """Return the day of the week given the distance from Pascha."""
@@ -97,40 +53,13 @@ def surrounding_weekends(distance):
 
 # conversion functions
 
-def julian_to_gregorian(dt):
-    """convert a julian date to a gregorian date."""
-
-    # this function will be incorrect outside the range 2001-2099 for 2 reasons:
-    #
-    # 1. the offset of 13 is incorrect outside the range 1900-2099.
-    # 2. if the julian date is in february and on a year that is divisible by
-    #    100, the go time module will incorrectly add the offset because these years
-    #    are leap years on the julian, but not on the gregorian.
-    #
-    # hopefully this code will no longer be running by 2100.
-
-    assert 2001 <= dt.year <= 2099, 'The year must be between 2001 and 2099.'
-
-    # add an offset of 13 to convert from julian to gregorian
-    return dt + timedelta(days=13)
-
 def gregorian_to_julian(year, month, day):
     """Convert a Gregorian date to a Julian date."""
 
-    # This function will be incorrect outside the range 2001-2099 for 2 reasons:
-    #
-    # 1. The offset of 13 is incorrect outside the range 1900-2099.
-    # 2. If the Julian date is in February and on a year that is divisible by
-    #    100, the datetime module will incorrectly add the offset because these years
-    #    are leap years on the Julian, but not on the Gregorian.
-    #
-    # Hopefully this code will no longer be running by 2100.
-
-    assert 2001 <= year <= 2099, 'The year must be between 2001 and 2099.'
-
-    # Add an offset of 13 to convert from Gregory to Julian
-    gregorian_date = date(year=year, month=month, day=day)
-    return gregorian_date - timedelta(days=13)
+    assert 1583 <= year <= 4099, 'The year is outside a valid range for this application.'
+    jd = jdcal.gcal2jd(year, month, day)
+    year, month, day, _ = jdcal.jd2jcal(*jd)
+    return date(year, month, day)
 
 def compute_pascha_distance(dt):
     """Compute the distance of a given day from Pascha.
@@ -169,29 +98,14 @@ def compute_julian_pascha_distance(dt):
 def julian_to_jdn(dt):
     """Convert a Julian date to a Julian day number."""
 
-    year = dt.year
-    month = dt.month
-    day = dt.day
-
-    # See https://en.wikipedia.org/wiki/Julian_day#Converting_Julian_calendar_date_to_Julian_Day_Number
-    return 367 * year - (7 * (year + 5001 + int((month - 9) / 7))) // 4 + (275 * month) // 9 + day + 1729777
+    jd = jdcal.jcal2jd(dt.year, dt.month, dt.day)
+    jdn = math.ceil(sum(jd))
+    return jdn
 
 def gregorian_to_jdn(dt):
     """Convert a Gregorian date to a Julian day number.
     This function mimic's PHP's gregoriantojd()."""
 
-    year = dt.year
-    month = dt.month
-    day = dt.day
-
-    if month > 2:
-        month -= 3
-    else:
-        month += 9
-        year -= 1
-
-    # break up the year into the leftmost 2 digits (century) and the rightmost 2 digits
-    century = year // 100
-    ya = year - 100 * century
-
-    return 146097*century//4 + 1461*ya//4 + (153*month+2)//5 + day + 1721119
+    jd = jdcal.gcal2jd(dt.year, dt.month, dt.day)
+    jdn = math.ceil(sum(jd))
+    return jdn

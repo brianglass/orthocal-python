@@ -17,55 +17,6 @@ class TestDateutil(TestCase):
                 actual = datetools.gregorian_to_jdn(day)
                 self.assertEqual(actual, expected)
 
-    def test_compute_gregorian_pascha(self):
-        tests = [
-            date(2008, 4, 27),
-            date(2009, 4, 19),
-            date(2010, 4, 4),
-            date(2011, 4, 24),
-        ]
-
-        for expected in tests:
-            with self.subTest():
-                actual = datetools.compute_gregorian_pascha(expected.year)
-                self.assertEqual(actual, expected)
-
-    def test_compute_gregorian_pascha_error(self):
-        """compute_gregorian_pascha should raise an exception if given an invalid date."""
-
-        tests = [
-            date(2100, 5, 2),
-            date(1844, 4, 1),
-        ]
-
-        for expected in tests:
-            with self.subTest():
-                with self.assertRaises(Exception):
-                    actual = datetools.compute_gregorian_pascha(expected.year)
-
-    def test_compute_julian_pascha(self):
-        tests = [
-            date(2008, 4, 14),
-            date(2009, 4, 6),
-            date(2010, 3, 22),
-            date(2011, 4, 11),
-        ]
-
-        for expected in tests:
-            with self.subTest():
-                actual = datetools.compute_julian_pascha(expected.year)
-                self.assertEquals(actual, expected)
-
-    def test_julian_to_gregorian(self):
-        tests = [
-            (date(2008, 4, 14), date(2008, 4, 27)),
-            (date(2011, 4, 11), date(2011, 4, 24)),
-        ]
-
-        for julian, expected in tests:
-            actual = datetools.julian_to_gregorian(julian)
-            self.assertEqual(expected, actual)
-
     def test_julian_to_gregorian_error(self):
         tests = [
             date(2100, 4, 14),
