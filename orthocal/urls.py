@@ -13,8 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include, path
+from django.urls import include, path, register_converter
 from django.views.generic import TemplateView
+
+class JurisdictionConverter:
+    regex = '(oca|rocor)'
+
+    def to_python(self, value):
+        return value
+
+    def to_url(self, value):
+        return value
+
+register_converter(JurisdictionConverter, 'juris')
 
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),

@@ -1,5 +1,7 @@
 from datetime import date, timedelta
 
+import icalendar
+
 from django.http import Http404
 from django.shortcuts import render
 
@@ -7,9 +9,6 @@ from . import liturgics
 
 
 def readings(request, jurisdiction='oca', year=None, month=None, day=None):
-    if jurisdiction not in ('oca', 'rocor'):
-        raise Http404
-
     use_julian = jurisdiction == 'rocor'
 
     if year and month and day:

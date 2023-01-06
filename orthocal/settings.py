@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import zoneinfo
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -151,3 +153,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo('America/Los_Angeles')
+ORTHOCAL_ICAL_TTL = 12  # hours
