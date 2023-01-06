@@ -18,6 +18,15 @@ from . import serializers
 
 class DayViewSet(viewsets.ViewSet):
     def retrieve(self, request, year, month, day, jurisdiction='oca'):
+        # Easter date functions don't work correctly outside this range
+        if not 1583 <= year <= 4099:
+            raise Http404
+
+        try:
+            date(year, month, day)
+        except ValueError:
+            raise Http404
+
         if jurisdiction == 'oca':
             day = liturgics.Day(year, month, day)
         else:
@@ -28,6 +37,10 @@ class DayViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def list(self, request, year, month, jurisdiction='oca'):
+        # Easter date functions don't work correctly outside this range
+        if not 1583 <= year <= 4099 or not 1 <= month <= 12:
+            raise Http404
+
         if jurisdiction == 'oca':
             days = liturgics.month_of_days(year, month)
         else:

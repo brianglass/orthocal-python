@@ -12,7 +12,11 @@ def readings(request, jurisdiction='oca', year=None, month=None, day=None):
     use_julian = jurisdiction == 'rocor'
 
     if year and month and day:
-        dt = date(year, month, day)
+        try:
+            dt = date(year, month, day)
+        except ValueError:
+            raise Http404
+
         day = liturgics.Day(year, month, day, use_julian=use_julian)
     else:
         dt = date.today()
