@@ -8,7 +8,10 @@ from django.shortcuts import render
 from . import liturgics
 
 
-def readings(request, jurisdiction='oca', year=None, month=None, day=None):
+def readings(request, jurisdiction=None, year=None, month=None, day=None):
+    if not jurisdiction:
+        jurisdiction = request.COOKIES.get('jurisdiction', 'oca')
+
     use_julian = jurisdiction == 'rocor'
 
     if year and month and day:
