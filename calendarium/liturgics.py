@@ -79,9 +79,12 @@ class Day:
         return str(self.date)
 
     async def _collect_commemorations(self):
-        q = Q(month=self.month, day=self.day) | Q(pdist=self.pdist)
+        q = Q(pdist=self.pdist)
+
         if float_index := self.pyear.floats.get(self.pdist):
             q |= Q(pdist=float_index)
+
+        q |= Q(month=self.month, day=self.day)
 
         days = [d async for d in models.Day.objects.filter(q)]
 

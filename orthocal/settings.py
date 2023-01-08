@@ -33,11 +33,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    #'django.contrib.admin',
-    #'django.contrib.auth',
     'django.contrib.contenttypes',
-    #'django.contrib.sessions',
-    #'django.contrib.messages',
     'django.contrib.staticfiles',
 
     'rest_framework',
@@ -52,12 +48,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    #'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -72,8 +65,6 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                # 'django.contrib.auth.context_processors.auth',
-                # 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -124,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Los_Angeles'
 
 USE_I18N = True
 
@@ -155,5 +146,5 @@ REST_FRAMEWORK = {
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo('America/Los_Angeles')
+ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours

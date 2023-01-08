@@ -6,4 +6,4 @@ COPY . .
 RUN ./manage.py collectstatic --noinput
 
 EXPOSE 8000
-ENTRYPOINT uvicorn --host 0.0.0.0 --port 8000 orthocal.asgi:application
+CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "orthocal.asgi:application"]

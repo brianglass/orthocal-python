@@ -9,6 +9,7 @@ from dateutil.rrule import rrule, DAILY
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.urls import reverse
+from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.response import Response
 
@@ -36,6 +37,10 @@ class DayViewSet(viewsets.ViewSet):
         serializer = serializers.DaySerializer(day)
         return Response(serializer.data)
 
+    def retrieve_default(self, request, jurisdiction='oca'):
+        dt = timezone.localtime()
+        return self.retrieve(request, dt.year, dt.month, dt.day, jurisdiction)
+
     def list(self, request, year, month, jurisdiction='oca'):
         # Easter date functions don't work correctly outside this range
         if not 1583 <= year <= 4099 or not 1 <= month <= 12:
@@ -55,7 +60,7 @@ async def ical(request, jurisdiction):
     base_url = request.build_absolute_uri('/')
     title = jurisdiction.upper()
     ttl = settings.ORTHOCAL_ICAL_TTL
-    timestamp = datetime.now()
+    timestamp = timezone.localtime()
 
     calendar = icalendar.Calendar()
     calendar.add('prodid', '-//brianglass//Orthocal//en')
@@ -67,7 +72,7 @@ async def ical(request, jurisdiction):
     calendar.add('timezone-id', settings.ORTHOCAL_ICAL_TZ)
     calendar.add('x-wr-timezone', settings.ORTHOCAL_ICAL_TZ)
 
-    start_dt = date.today() - timedelta(days=30)
+    start_dt = timestamp.date() - timedelta(days=30)
     end_dt = start_dt + timedelta(days=30 * 7)
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):

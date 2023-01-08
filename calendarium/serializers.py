@@ -22,15 +22,14 @@ class ReadingSerializer(serializers.Serializer):
     description = serializers.CharField(source='desc')
     display = serializers.CharField()
     short_display = serializers.CharField(source='sdisplay')
-    passage = VerseSerializer(source='get_passage', many=True)
+    passage = serializers.SerializerMethodField()
 
-    def get_fields(self):
-        fields = super().get_fields()
-
+    def get_passage(self, instance):
         if self.context.get('exclude_passage'):
-            fields.pop('passage', None)
-
-        return fields
+            return None
+        else:
+            passage = instance.get_passage()
+            return VerseSerializer(passage, many=True, context=self.context).data
 
 
 class DaySerializer(serializers.Serializer):

@@ -81,7 +81,7 @@ class Pericope(models.Model):
                     composite_num=match.group(1)
             ).annotate(
                     # Make the composite look like a Verse instance.
-                    book=models.Value(self.book),
+                    book=models.Value(''),
                     chapter=models.Value(1),
                     verse=models.Value(1),
                     language=models.Value('en'),
