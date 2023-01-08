@@ -1,0 +1,241 @@
+{
+	"pascha_distance": 250,
+	"julian_day_number": 2459587,
+	"year": 2022,
+	"month": 1,
+	"day": 7,
+	"weekday": 5,
+	"tone": 3,
+	"titles": [
+		"Friday of the 29th week after Pentecost"
+	],
+	"feast_level": 3,
+	"feast_level_description": "Red squigg (doxology typikon symbol)",
+	"feasts": [
+		"Synaxis of St John the Baptist"
+	],
+	"fast_level": 1,
+	"fast_level_desc": "Fast",
+	"fast_exception": 2,
+	"fast_exception_desc": "Fish, Wine and Oil are Allowed",
+	"saints": null,
+	"service_notes": null,
+	"readings": [
+		{
+			"source": "Epistle",
+			"book": "Apostol",
+			"description": "Forerunner",
+			"display": "Acts 19.1-8",
+			"short_display": "Acts 19.1-8",
+			"passage": [
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 1,
+					"content": "And it came to pass, that, while Apollos was at Corinth, Paul having passed through the upper coasts came to Ephesus: and finding certain disciples,"
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 2,
+					"content": "He said unto them, Have ye received the Holy Ghost since ye believed? And they said unto him, We have not so much as heard whether there be any Holy Ghost."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 3,
+					"content": "And he said unto them, Unto what then were ye baptized? And they said, Unto John’s baptism."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 4,
+					"content": "Then said Paul, John verily baptized with the baptism of repentance, saying unto the people, that they should believe on him which should come after him, that is, on Christ Jesus."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 5,
+					"content": "When they heard this, they were baptized in the name of the Lord Jesus."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 6,
+					"content": "And when Paul had laid his hands upon them, the Holy Ghost came on them; and they spake with tongues, and prophesied."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 7,
+					"content": "And all the men were about twelve."
+				},
+				{
+					"book": "ACT",
+					"chapter": 19,
+					"verse": 8,
+					"content": "And he went into the synagogue, and spake boldly for the space of three months, disputing and persuading the things concerning the kingdom of God."
+				}
+			]
+		},
+		{
+			"source": "Epistle",
+			"book": "Apostol",
+			"description": "",
+			"display": "Hebrews 7.18-25",
+			"short_display": "Heb 7.18-25",
+			"passage": [
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 18,
+					"content": "For there is verily a disannulling of the commandment going before for the weakness and unprofitableness thereof."
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 19,
+					"content": "For the law made nothing perfect, but the bringing in of a better hope did; by the which we draw nigh unto God."
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 20,
+					"content": "And in asmuch as not without an oath he was made priest:"
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 21,
+					"content": "(For those priests were made without an oath; but this with an oath by him that said unto him, The Lord sware and will not repent, Thou art a priest for ever after the order of Melchisedec:)"
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 22,
+					"content": "By so much was Jesus made a surety of a better testament."
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 23,
+					"content": "And they truly were many priests, because they were not suffered to continue by reason of death:"
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 24,
+					"content": "But this man, because he continueth ever, hath an unchangeable priesthood."
+				},
+				{
+					"book": "HEB",
+					"chapter": 7,
+					"verse": 25,
+					"content": "Wherefore he is able also to save them to the uttermost that come unto God by him, seeing he ever liveth to make intercession for them."
+				}
+			]
+		},
+		{
+			"source": "Gospel",
+			"book": "John",
+			"description": "Forerunner",
+			"display": "John 1.29-34",
+			"short_display": "John 1.29-34",
+			"passage": [
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 29,
+					"content": "The next day John seeth Jesus coming unto him, and saith, Behold the Lamb of God, which taketh away the sin of the world."
+				},
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 30,
+					"content": "This is he of whom I said, After me cometh a man which is preferred before me: for he was before me."
+				},
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 31,
+					"content": "And I knew him not: but that he should be made manifest to Israel, therefore am I come baptizing with water."
+				},
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 32,
+					"content": "And John bare record, saying, I saw the Spirit descending from heaven like a dove, and it abode upon him."
+				},
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 33,
+					"content": "And I knew him not: but he that sent me to baptize with water, the same said unto me, Upon whom thou shalt see the Spirit descending, and remaining on him, the same is he which baptizeth with the Holy Ghost."
+				},
+				{
+					"book": "JHN",
+					"chapter": 1,
+					"verse": 34,
+					"content": "And I saw, and bare record that this is the Son of God."
+				}
+			]
+		},
+		{
+			"source": "Gospel",
+			"book": "Luke",
+			"description": "",
+			"display": "Luke 20.19-26",
+			"short_display": "Luke 20.19-26",
+			"passage": [
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 19,
+					"content": "And the chief priests and the scribes the same hour sought to lay hands on him; and they feared the people: for they perceived that he had spoken this parable against them."
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 20,
+					"content": "And they watched him, and sent forth spies, which should feign themselves just men, that they might take hold of his words, that so they might deliver him unto the power and authority of the governor."
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 21,
+					"content": "And they asked him, saying, Master, we know that thou sayest and teachest rightly, neither acceptest thou the person of any, but teachest the way of God truly:"
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 22,
+					"content": "Is it lawful for us to give tribute unto Cæsar, or no?"
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 23,
+					"content": "But he perceived their craftiness, and said unto them, Why tempt ye me?"
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 24,
+					"content": "Shew me a penny. Whose image and superscription hath it? They answered and said, Cæsar’s."
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 25,
+					"content": "And he said unto them, Render therefore unto Cæsar the things which be Cæsar’s, and unto God the things which be God’s."
+				},
+				{
+					"book": "LUK",
+					"chapter": 20,
+					"verse": 26,
+					"content": "And they could not take hold of his words before the people: and they marvelled at his answer, and held their peace."
+				}
+			]
+		}
+	]
+}
