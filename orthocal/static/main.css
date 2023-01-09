@@ -66,7 +66,7 @@ article#content iframe {
 #orthocal div {
     text-align: left;
 }
-#orthocal a, #orthocal button {
+a.cal-nav {
     display: inline-block;
     font-family: 'Merriweather', serif;
     font-size: 85%;
@@ -79,18 +79,13 @@ article#content iframe {
     border-radius: 3px;
 	text-decoration: none;
 }
-#orthocal a:hover, #orthocal button:hover {
+a.cal-nav:hover {
     background-color: white;
     color: #666;
     border: 1px solid #bbb;
     cursor: pointer;
 }
-#orthocal button:focus {
-    background-color: #999;
-    color: white;
-    border: 1px solid #999;
-}
-#orthocal a.active, #orthocal button:active {
+a.active {
     background-color: #ddd;
 }
 input {
@@ -169,8 +164,11 @@ label {
 .readings h3 {
     margin-top: 30px;
 }
+
 table.month {
+	margin-top: 1em;
 	border-collapse: collapse;
+    border-top: 5px solid #eee;
 }
 table.month td {
 	margin: 0;
@@ -178,17 +176,30 @@ table.month td {
 	border: 1px solid #ccc;
 	font-size: 75%;
 	vertical-align: top;
+	background-color: #f9f9f9;
+	text-align: left;
 }
-article#content table.month tr td p {
+table.month td.fast {
+	background-color: #eee;
+}
+table.month td.fast:hover {
+	background-color: #ddd !important;
+}
+table.month td.noday {
+	border: 0;
+	background-color: white;
+}
+table.month tr td p {
 	text-indent: 0;
 }
-article#content table.month tr th {
+table.month tr th {
 	font-size: 100%;
 	color: gray;
 }
-article#content table.month tr:first-child th {
-	font-size: 125%;
+table.month tr:first-child th {
+	font-size: 1.5em;
     color: black;
+    padding-top: 1.5em;
 	padding-bottom: 1em;
 }
 
@@ -200,20 +211,20 @@ p.feast {
 p.day-number {
 	font-size: 150%;
 }
-article#content table.month td a {
+table.month td a {
 	display: block;
 	padding: 1em;
 	text-decoration: none;
 	color: black;
 	height: 100%;
 }
-article#content table.month td.sun:hover,
-article#content table.month td.mon:hover,
-article#content table.month td.tue:hover,
-article#content table.month td.wed:hover,
-article#content table.month td.thu:hover,
-article#content table.month td.fri:hover,
-article#content table.month td.sat:hover
+table.month td.sun:hover,
+table.month td.mon:hover,
+table.month td.tue:hover,
+table.month td.wed:hover,
+table.month td.thu:hover,
+table.month td.fri:hover,
+table.month td.sat:hover
 {
 	background-color: #eee;
     cursor: pointer;

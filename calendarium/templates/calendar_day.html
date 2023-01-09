@@ -1,14 +1,24 @@
-<td class="{{ cell_class }}" onclick="location.href='{% url "calendar" jurisdiction=jurisdiction year=day.year month=day.month day=day.day%}'">
-	<a href="{% url "calendar" jurisdiction=jurisdiction year=day.year month=day.month day=day.day%}">
+<td class="{{ cell_class }} {% if day.fast_level %}fast{% endif %}" onclick="location.href='{% url "calendar-day" jurisdiction=jurisdiction year=day.year month=day.month day=day.day%}'">
+	<a href="{% url "calendar-day" jurisdiction=jurisdiction year=day.year month=day.month day=day.day%}">
 		<p class="day-number">
 			{{ day_number }}
 		</p>
 
-		{% if day.titles %}
-		<p>{{ day.titles|join:"; " }}</p>
+		{# Only show fasting information on fast days #}
+		{% if day.fast_level and day.fast_level != 10 or day.fast_level == 11 %}
+			<p>{{ day.fast_level_desc }}{% if day.fast_level and day.fast_exception_desc %}&mdash;{{ day.fast_exception_desc }}{% endif %}
 		{% endif %}
 
-		<p>{{ day.fast_level_desc }}{% if day.fast_level and day.fast_exception_desc %}&mdash;{{ day.fast_exception_desc }}{% endif %}
+		{% if day.service_notes %}
+			<p>{{ day.service_notes|join:"; " }}</p>
+		{% endif %}
+
+		{% if day.weekday == 0 or day.pdist > -9 and day.pdist < 7 %}
+			{% if day.titles %}
+				<p>{{ day.titles|join:"; " }}</p>
+			{% endif %}
+		{% endif %}
+
 
 		{% if day.feasts %}
 		<p class="feast">{{ day.feasts|join:"; " }}</p>

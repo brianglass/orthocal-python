@@ -2,6 +2,34 @@
 
 {% block title %}Monthly Calendar{% endblock %}
 
-{% block content %}
-	{{ content|safe }}
+{% block main %}
+	<article id="orthocal">
+		<section class="calendar">
+			<a class="cal-nav" href="{% url "calendar-month" jurisdiction=jurisdiction year=previous_month.year month=previous_month.month %}">&larr; {{ previous_month|date:"F" }}</a>
+			<a class="cal-nav" href="{% url "calendar-month" jurisdiction=jurisdiction year=next_month.year month=next_month.month %}">{{ next_month|date:"F" }} &rarr;</a>
+
+			<br/>
+
+			<label><input type="radio" name="jurisdiction" value="oca" {% if jurisdiction == "oca" %}checked=""{% endif %} />oca</label>
+			<label><input type="radio" name="jurisdiction" value="rocor" {% if jurisdiction == "rocor" %}checked=""{% endif %} />rocor</label>
+
+			{{ content|safe }}
+		</section>
+	</article>
+{% endblock %}
+
+{% block scripts %}
+<script>
+	var radios = document.getElementsByName('jurisdiction');
+	for (var i = 0; i < radios.length; i++) {
+		radios[i].addEventListener('change', function() {
+			if (this.value == 'rocor') {
+				document.cookie = 'jurisdiction=rocor; path=/';
+			}else{
+				document.cookie = 'jurisdiction=oca; path=/';
+			}
+			window.location.reload();
+		});
+	}
+</script>
 {% endblock %}

@@ -2,10 +2,9 @@
 
 {% block main %}
 	<article id="orthocal">
-		<section class="orthocal">
-			<a href="{% url 'calendar' jurisdiction=jurisdiction year=previous_date.year month=previous_date.month day=previous_date.day %}">Previous Day</a>
-			<a href="{% url 'calendar' jurisdiction=jurisdiction year=now.year month=now.month day=now.day %}">Today</a>
-			<a href="{% url 'calendar' jurisdiction=jurisdiction year=next_date.year month=next_date.month day=next_date.day %}">Next Day</a>
+			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>
+			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=now.year month=now.month day=now.day %}">Today</a>
+			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=next_date.year month=next_date.month day=next_date.day %}">Next Day &rarr;</a>
 
 			<br/>
 
@@ -58,8 +57,6 @@
 					</section>
 					{% endfor %}
 				</section>
-
-		</section>
 	</article>
 {% endblock %}
 
@@ -69,11 +66,11 @@
 	for (var i = 0; i < radios.length; i++) {
 		radios[i].addEventListener('change', function() {
 			if (this.value == 'rocor'){
-				document.cookie = 'jurisdiction=rocor';
-				location.href = '{% url 'calendar' jurisdiction='rocor' year=date.year month=date.month day=date.day %}';
+				document.cookie = 'jurisdiction=rocor; path=/';
+				location.href = '{% url "calendar-day" jurisdiction='rocor' year=date.year month=date.month day=date.day %}';
 			}else{
-				document.cookie = 'jurisdiction=oca';
-				location.href = '{% url 'calendar' jurisdiction='oca' year=date.year month=date.month day=date.day %}';
+				document.cookie = 'jurisdiction=oca; path=/';
+				location.href = '{% url "calendar-day" jurisdiction='oca' year=date.year month=date.month day=date.day %}';
 			}
 		});
 	}
