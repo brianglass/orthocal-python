@@ -6,6 +6,8 @@ from . import views
 
 urlpatterns = [
     path('calendar/<juris:jurisdiction>/<int:year>/<int:month>/<int:day>/', views.readings, name='calendar'),
+    path('calendar/<juris:jurisdiction>/<int:year>/<int:month>/', views.calendar_view),
+    path('calendar/<juris:jurisdiction>/', views.calendar_view),
     path('', views.readings, name='index'),
 ]
 

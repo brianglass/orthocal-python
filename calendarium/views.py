@@ -1,8 +1,9 @@
+import calendar
+
 from datetime import date, timedelta
 
-import icalendar
-
 from django.http import Http404
+from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -40,3 +41,32 @@ def readings(request, jurisdiction=None, year=None, month=None, day=None):
     }
 
     return render(request, 'index.html', context=context)
+
+async def calendar_view(request, jurisdiction=None, year=None, month=None):
+    class LiturgicalCalendar(calendar.HTMLCalendar):
+        def formatday(self, day, weekday):
+            if not day:
+                return super().formatday(day, weekday)
+
+            return render_to_string('calendar_day.html', {
+                'jurisdiction': jurisdiction,
+                'day_number': day,
+                'day': days[day],
+                'cell_class': self.cssclasses[weekday],
+            })
+
+    if not year or not month:
+        now = timezone.localtime()
+        year, month = now.year, now.month
+
+    if jurisdiction =='rocor':
+        day_generator = liturgics.amonth_of_days(year, month, use_julian=True)
+    else:
+        day_generator = liturgics.amonth_of_days(year, month)
+
+    days = {d.day: d async for d in day_generator}
+
+    cal = LiturgicalCalendar(firstweekday=6)
+    content = cal.formatmonth(year, month)
+
+    return render(request, 'calendar.html', context={'content': content})

@@ -169,3 +169,52 @@ label {
 .readings h3 {
     margin-top: 30px;
 }
+table.month {
+	border-collapse: collapse;
+}
+table.month td {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	font-size: 75%;
+	vertical-align: top;
+}
+article#content table.month tr td p {
+	text-indent: 0;
+}
+article#content table.month tr th {
+	font-size: 100%;
+	color: gray;
+}
+article#content table.month tr:first-child th {
+	font-size: 125%;
+    color: black;
+	padding-bottom: 1em;
+}
+
+p.feast {
+	font-weight: bold;
+	color: black;
+}
+
+p.day-number {
+	font-size: 150%;
+}
+article#content table.month td a {
+	display: block;
+	padding: 1em;
+	text-decoration: none;
+	color: black;
+	height: 100%;
+}
+article#content table.month td.sun:hover,
+article#content table.month td.mon:hover,
+article#content table.month td.tue:hover,
+article#content table.month td.wed:hover,
+article#content table.month td.thu:hover,
+article#content table.month td.fri:hover,
+article#content table.month td.sat:hover
+{
+	background-color: #eee;
+    cursor: pointer;
+}
