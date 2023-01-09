@@ -80,7 +80,7 @@ async def ical(request, jurisdiction):
         await day.ainitialize()
 
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
-        day_path = reverse('calendar', kwargs={
+        day_path = reverse('calendar-day', kwargs={
             'jurisdiction': jurisdiction,
             'year': day.year,
             'month': day.month,
@@ -91,7 +91,7 @@ async def ical(request, jurisdiction):
         event.add('uid', uid)
         event.add('dtstamp', timestamp)
         event.add('dtstart', dt)
-        event.add('summary', '; '.join(day.titles))
+        event.add('summary', day.summary_title)
         event.add('description', await ical_description(day))
         event.add('url', urljoin(base_url, day_path))
         event.add('class', 'public')

@@ -30,7 +30,7 @@ register_converter(JurisdictionConverter, 'juris')
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
     path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
-    path('ical/', TemplateView.as_view(template_name='ical.html'), name='ical'),
+    path('ical/', TemplateView.as_view(template_name='ical.html'), name='icalendar'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('api/', include('calendarium.api_urls')),
     path('', include('calendarium.urls')),

@@ -78,6 +78,18 @@ class Day:
     def __str__(self):
         return str(self.date)
 
+    @cached_property
+    def summary_title(self):
+        if self.weekday == 0 or -9 < self.pdist < 7:
+            if self.titles:
+                return '; '.join(self.titles)
+
+        if self.feasts:
+            return '; '.join(self.feasts)
+
+        if self.saints:
+            return '; '.join(self.saints)
+
     async def _collect_commemorations(self):
         q = Q(pdist=self.pdist)
 
