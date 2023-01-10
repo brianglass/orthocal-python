@@ -46,10 +46,12 @@ class Reading:
 
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
+        self.gregorian_date = date(year=year, month=month, day=day)
+
         if use_julian:
             dt = datetools.gregorian_to_julian(year, month, day)
         else:
-            dt = date(year=year, month=month, day=day)
+            dt = self.gregorian_date
 
         self.date = dt
         self.year = dt.year
