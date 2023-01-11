@@ -64,8 +64,8 @@ class LaunchHandler(AbstractRequestHandler):
         card = SimpleCard('About Today', card_text)
         builder.set_card(card)
 
-        # Prepare for next step in the session
-        builder.set_should_end_session(True)
+        # Prepare to read the scriptures if requested
+        builder.set_should_end_session(False)
         session_attributes['original_intent'] = 'Launch'
         session_attributes['next_reading'] = 0
         session_attributes['date'] = timezone.localtime().strftime('%Y-%m-%d')
@@ -74,7 +74,7 @@ class LaunchHandler(AbstractRequestHandler):
 
 
 class DayIntentHandler(AbstractRequestHandler):
-    """Give some basic details about a specificly requested day."""
+    """Give some basic details about an explicitly requested day."""
 
     def can_handle(self, handler_input):
         return is_intent_name('Day')(handler_input)
@@ -114,25 +114,40 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
+        session_attributes = handler_input.attributes_manager.session_attributes
 
         logger.debug('Running ScripturesIntentHander.')
 
         day = get_day(handler_input)
+        readings = day.get_readings()
 
         # Build card
 
         date_text = day.gregorian_date.strftime('%A, %B %-d')
         card_text = f'Readings for {date_text}:\n\n'
 
-        for reading in day.get_readings():
+        for reading in readings:
             card_text += f'{reading.display}\n'
 
         when = speech.when_speech(day)
         card = SimpleCard(f'About {when}', card_text)
         builder.set_card(card)
 
-        # TODO: Build speech
-        builder.speak('This is a test.')
+        # Build speech
+
+        group_size = speech.estimate_group_size(readings[0])
+
+        date_text = day.gregorian_date.strftime('%A, %B %-d')
+        reading_speech = speech.reading_speech(readings[0])
+        speech_text = (
+                f'<p>There are {readings.count()} readings for {date_text}.'
+                '<break strength="strong" time="1500ms"/>'
+                f'<p>{reading_speech}</p>'
+        )
+
+        session_attributes['original_intent'] = 'Scriptures'
+
+        builder.speak(speech_text)
 
         return builder.response
 

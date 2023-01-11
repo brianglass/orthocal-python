@@ -1,11 +1,14 @@
 import itertools
 import math
+import re
 
 from django.utils import timezone
 
 from .datetools import FastLevels
 
 MAX_SPEECH_LENGTH = 8000
+
+ref_re = re.compile('(\d*)\s*([\w\s]+)\s+(\d+)')
 
 EPISTLES = {
     "acts":          "The Acts of the Apostles",
@@ -115,6 +118,38 @@ def human_join(words):
         return ', '.join(words[:-1]) + f' and {words[-1]}'
     else:
         return words[0]
+
+def reading_speech(reading):
+    reference = reference_speech(reading)
+    return f'The reading is from {reference}.'
+
+def reference_speech(reading):
+    match = ref_re.search(reading.display)
+
+    try:
+        number, book, chapter = match.groups()
+    except ValueError:
+		# The reference is irregular so we just let Alexa do the best she can
+        return read.display.replace('.', ':')
+
+    match reading.book.lower():
+        case 'matthew' | 'mark' | 'luke' | 'john':
+            return f'The Holy Gospel according to Saint {book}, chapter {chapter}'
+        case 'apostol':
+            if epistle := EPISTLES.get(book.lower()):
+                if number:
+                    epistle = epistle % number
+
+                return f'{epistle}, chapter {chapter}'
+            else:
+                return f'{book}, chapter {chapter}'
+        case 'ot':
+            if number:
+                return f'<say-as interpret-as="ordinal">{number}</say-as> {book}, chapter {chapter}'
+            else:
+                return f'{book}, chapter {chapter}'
+        case _:
+            return reading.display.replace('.', ':')
 
 def expand_abbreviations(speech_text):
     for abbr, full in SUBSTITUTIONS:

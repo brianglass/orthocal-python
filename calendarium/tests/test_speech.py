@@ -94,3 +94,21 @@ class SpeechTestCase(TestCase):
 
         size = speech.estimate_group_size(passage)
         self.assertIs(size, None)
+
+    def test_reference_speech(self):
+        data = [
+                (2023, 4, 14, 'The Holy Gospel according to Saint John, chapter 13'),
+                (2023, 1, 11, 'Wisdom of Solomon, chapter 3'),
+                (2023, 1, 18, 'The Catholic letter of Saint James, chapter 3'),
+                (2023, 1, 21, 'Saint Paul\'s <say-as interpret-as="ordinal">1</say-as> letter to the Thessalonians, chapter 5'),
+        ]
+
+        for year, month, day, expected in data:
+            day = liturgics.Day(year, month, day)
+            day.initialize()
+            readings = day.get_readings()
+            reading = readings[0]
+
+            with self.subTest(day):
+                actual = speech.reference_speech(reading)
+                self.assertEqual(expected, actual)
