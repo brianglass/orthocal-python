@@ -2,7 +2,7 @@ import logging
 
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.skill_builder import SkillBuilder
-from ask_sdk_core.utils import is_request_type, is_intent_name
+from ask_sdk_core.utils import get_slot_value, is_request_type, is_intent_name
 from ask_sdk_model.ui import SimpleCard
 from django.utils import timezone
 
@@ -23,7 +23,7 @@ class OrthodoxDailyLaunchHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.request_attributes
 
-        logger.debug('Running OrthodoxDailyLaunchHandler: %s.', dir(handler_input.attributes_manager))
+        logger.debug('Running OrthodoxDailyLaunchHandler.')
 
         today = timezone.localtime()
         day = liturgics.Day(today.year, today.month, today.day)
@@ -46,9 +46,9 @@ class DayIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.request_attributes
 
-        logger.debug('Running DayIntentHander: %s.', dir(handler_input.attributes_manager))
+        logger.debug('Running DayIntentHander.')
 
-        if date_text := attributes.get('date'):
+        if date_text := get_slot_value(handler_input, 'date'):
             date = datetime.strptime('%Y-%m-%d', date_text)
             day = liturgics.Day(date.year, date.month, date.day)
         else:
