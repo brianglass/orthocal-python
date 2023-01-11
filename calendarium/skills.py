@@ -23,7 +23,7 @@ class OrthodoxDailyLaunchHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.request_attributes
 
-        logger.debug('Running OrthodoxDailyLaunchHandler: %s.', attributes)
+        logger.debug('Running OrthodoxDailyLaunchHandler: %s.', dir(handler_input.attributes_manager))
 
         today = timezone.localtime()
         day = liturgics.Day(today.year, today.month, today.day)
@@ -46,7 +46,7 @@ class DayIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.request_attributes
 
-        logger.debug('Running DayIntentHander: %s.', attributes)
+        logger.debug('Running DayIntentHander: %s.', dir(handler_input.attributes_manager))
 
         if date_text := attributes.get('date'):
             date = datetime.strptime('%Y-%m-%d', date_text)
