@@ -135,7 +135,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         # Build speech
 
-        group_size = speech.estimate_group_size(readings[0])
+        group_size = speech.estimate_group_size(readings[0].passage)
 
         date_text = day.gregorian_date.strftime('%A, %B %-d')
         reading_speech = speech.reading_speech(readings[0])
