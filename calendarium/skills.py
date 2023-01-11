@@ -22,7 +22,9 @@ class OrthodoxDailyLaunchHandler(AbstractRequestHandler):
         day = liturgics.Day(today.year, today.month, today.day)
         day.initialize()
 
-        card_text = speech.day_speech(builder, day)
+        speech, card_text = speech.day_speech(builder, day)
+        builder.speak(speech)
+
         card = SimpleCard('About Today', card_text)
         builder.set_card(card)
 

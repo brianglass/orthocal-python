@@ -1,5 +1,7 @@
 from django.utils import timezone
 
+from .datetools import FastLevels
+
 EPISTLES = {
     "acts":          "The Acts of the Apostles",
     "romans":        "Saint Paul's letter to the Romans",
@@ -20,7 +22,14 @@ EPISTLES = {
 }
 
 def day_speech(builder, day):
+    speech_text = ''
+
     when = when_speech(day)
+
+    if day.titles:
+        speech_text += f'<p>{when}, is the {day.titles[0]}.</p>'
+
+    speech_text += f'<p>{fasting_speech(day)}</p>'
 
     # Commemorations
     if len(day.feasts) > 1:
@@ -31,15 +40,12 @@ def day_speech(builder, day):
     else:
         feasts = ''
 
-    if day.titles:
-        builder.speak(f'{when}, is the {day.titles[0]}.')
-
-    builder.speak(fasting_speech(day))
-
     if feasts:
-        builder.speak(feasts.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>'))
+        feasts = feasts.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>')
+        speech_text += f'<p>{feasts}</p>'
 
-    return feasts
+    # TODO: make custom card text
+    return speech_text, speech_text
 
 def when_speech(day):
     today = timezone.localtime().date()
@@ -54,15 +60,15 @@ def when_speech(day):
 
 def fasting_speech(day):
     match day.fast_level:
-        case 0:
+        case FastLevels.NoFast:
             return 'On this day there is no fast.'
-        case 1:
+        case FastLevels.Fast:
             # normal weekly fast
             if len(day.fast_exception_desc) > 0:
                 return f'On this day there is a fast. {day.fast_exception_desc}.'
             else:
                 return 'On this day there is a fast.'
-        case _:
+        case FastLevels.LentenFast | FastLevels.ApostlesFast | FastLevels.DormitionFast | FastLevels.NativityFast:
             # One of the four great fasts
             if len(day.fast_exception_desc) > 0:
                 return f'This day is during the {day.fast_level_desc}. {day.fast_exception_desc}.'

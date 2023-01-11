@@ -44,10 +44,10 @@ class SpeechTestCase(TestCase):
         day = liturgics.Day(2023, 1, 7)
         await day.ainitialize()
 
-        card = speech.day_speech(builder, day)
+        speech_text, card_text = speech.day_speech(builder, day)
 
-        self.assertIn('Theophany', builder.response.output_speech.ssml)
-        self.assertIn('Theophany', card)
+        self.assertIn('Theophany', speech_text)
+        self.assertIn('Theophany', card_text)
 
     def test_fasting_speech(self):
         day = liturgics.Day(2023, 1, 5)
