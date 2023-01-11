@@ -150,18 +150,21 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         session_attributes['original_intent'] = 'Scriptures'
         if group_size:
+            # We continue with the first reading, since it's long
             builder.set_should_end_session(False)
             session_attributes['next_reading'] = 0
             session_attributes['next_verse'] = group_size
             session_attributes['group_size'] = group_size
             session_attributes['date'] = day.gregorian_date.strftime('%Y-%m-%d')
             speech_text += '<p>This is a long reading. Would you like me to continue?</p> '
-        elif len(day.readings) > 1:
+        elif len(readings) > 1:
+            # We move on the the 2nd reading
             builder.set_should_end_session(False)
             session_attributes['next_reading'] = 1
             session_attributes['date'] = day.gregorian_date.strftime('%Y-%m-%d')
             speech_text += '<p>Would you like to hear the next reading?</p> '
         else:
+            # There was only one reading and we're done. This should never happen.
             builder.set_should_end_session(True)
             speech_text += '<p>That is the end of the readings.</p>'
 
