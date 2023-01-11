@@ -9,6 +9,7 @@ from .datetools import FastLevels
 MAX_SPEECH_LENGTH = 8000
 
 ref_re = re.compile('(\d*)\s*([\w\s]+)\s+(\d+)')
+markup_re = re.compile('<.*?>')
 
 EPISTLES = {
     "acts":          "The Acts of the Apostles",
@@ -119,9 +120,23 @@ def human_join(words):
     else:
         return words[0]
 
-def reading_speech(reading):
+def reading_speech(reading, end=None):
     reference = reference_speech(reading)
-    return f'The reading is from {reference}.'
+    reading_text = f'<p>The reading is from {reference}.</p> <break strength="medium" time="750ms"/>'
+
+    passage = reading.get_passage()
+
+    if passage.count() == 0:
+        reading_text += '<p>Orthodox Daily could not find that reading.</p>'
+        return reading_text
+
+    for i, verse in enumerate(passage):
+        if end and i >= end:
+            break
+
+        reading_text += '<p>' + markup_re.sub('', verse.content) + '</p>'
+
+    return reading_text
 
 def reference_speech(reading):
     match = ref_re.search(reading.display)

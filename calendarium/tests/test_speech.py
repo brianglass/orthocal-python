@@ -112,3 +112,11 @@ class SpeechTestCase(TestCase):
             with self.subTest(day):
                 actual = speech.reference_speech(reading)
                 self.assertEqual(expected, actual)
+
+    def test_reading_speech(self):
+        day = liturgics.Day(2023, 1, 18)
+        day.initialize()
+        readings = day.get_readings()
+
+        speech_text = speech.reading_speech(readings[0])
+        self.assertIn('The spirit that dwelleth in us lusteth to envy', speech_text)
