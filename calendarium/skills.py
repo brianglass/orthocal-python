@@ -42,6 +42,7 @@ class LaunchHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
+        session_attributes = handler_input.attributes_manager.session_attributes
 
         logger.debug('Running OrthodoxDailyLaunchHandler.')
 
@@ -80,7 +81,6 @@ class DayIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
 
         logger.debug('Running DayIntentHander.')
 
