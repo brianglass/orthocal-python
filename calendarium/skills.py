@@ -1,5 +1,7 @@
 import logging
 
+from datetime import datetime
+
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import get_slot_value, is_request_type, is_intent_name
@@ -49,7 +51,7 @@ class DayIntentHandler(AbstractRequestHandler):
         logger.debug('Running DayIntentHander.')
 
         if date_text := get_slot_value(handler_input, 'date'):
-            date = datetime.strptime('%Y-%m-%d', date_text)
+            date = datetime.strptime(date_text, '%Y-%m-%d')
             day = liturgics.Day(date.year, date.month, date.day)
         else:
             today = timezone.localtime()
