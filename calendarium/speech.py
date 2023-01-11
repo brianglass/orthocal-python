@@ -1,6 +1,11 @@
+import itertools
+import math
+
 from django.utils import timezone
 
 from .datetools import FastLevels
+
+MAX_SPEECH_LENGTH = 8000
 
 EPISTLES = {
     "acts":          "The Acts of the Apostles",
@@ -20,6 +25,11 @@ EPISTLES = {
     "john":          "The <say-as interpret-as=\"ordinal\">%s</say-as> Catholic letter of Saint John",
     "jude":          "The Catholic letter of Saint Jude",
 }
+
+SUBSTITUTIONS = (
+    ('Ven.', '<sub alias="The Venerable">Ven.</sub>'),
+    ('Ss', '<sub alias="Saints">Ss.</sub>'),
+)
 
 def day_speech(day):
     speech_text = ''
@@ -69,7 +79,7 @@ def day_speech(day):
     for reading in day.get_readings():
         card_text += f'{reading.display}\n'
 
-    speech_text = speech_text.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>')
+    speech_text = expand_abbreviations(speech_text)
     return speech_text, card_text
 
 def when_speech(day):
@@ -105,3 +115,60 @@ def human_join(words):
         return ', '.join(words[:-1]) + f' and {words[-1]}'
     else:
         return words[0]
+
+def expand_abbreviations(speech_text):
+    for abbr, full in SUBSTITUTIONS:
+        speech_text = speech_text.replace(abbr, full)
+
+    return speech_text
+
+def get_passage_len(passage, start=None, end=None):
+    markup_len = len('<p></p>')
+
+    if start is None or end is None :
+        return sum(len(p.content) + markup_len for p in passage)
+    else:
+        return sum(len(p.content) + markup_len for p in passage[start:end])
+
+def estimate_group_size(passage):
+    """Estimate how many verses need to be in each group."""
+
+    # Use extreme examples for length guesses
+    prelude = len("<p>There are 29 readings for Tuesday, January 3. The reading is from Saint Paul's <say-as interpret-as=\"ordinal\">2</say-as> letter to the Thessalonians</p>")
+    postlude = len('<p>Would you like to hear the next reading?</p>')
+    group_postlude = len('<p>This is a long reading. Would you like me to continue?</p>')
+
+    verse_count = passage.count()
+
+    passage_len = prelude + get_passage_len(passage) + postlude
+    if passage_len < MAX_SPEECH_LENGTH:
+        return None
+
+    # Start with a good guess and then grow the group count until we find one
+    # that fits.
+    group_count = passage_len // MAX_SPEECH_LENGTH + 1
+
+    while True:
+        # estimate the number of verses per group
+        group_size = math.ceil(verse_count / group_count)
+
+        # Try building each group and fail if one is too big
+        for g in range(group_count):
+            start = g * group_size
+            end = start + group_size
+            length = get_passage_len(passage, start, end)
+
+            if g == 0:
+                length += prelude
+
+            if g == group_count - 1:
+                length += postlude
+            else:
+                length += group_postlude
+
+            # If a group is too big, it's time to try a bigger group count
+            if length > MAX_SPEECH_LENGTH:
+                group_count += 1
+                break
+        else:
+            return group_size

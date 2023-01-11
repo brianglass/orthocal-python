@@ -1,2 +1,9 @@
 ve
 *sqlite3
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.ackrc

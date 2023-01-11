@@ -1,9 +1,16 @@
 FROM python:3.11-slim
 
+WORKDIR /orthocal
+
 RUN pip install --upgrade pip
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
+
+# Precompile to bytecode to reduce warmup time
+RUN python -c "import compileall; compileall.compile_path(maxlevels=10)"
+RUN python -m compileall .
+
 RUN ./manage.py collectstatic --noinput
 RUN ./manage.py migrate
 RUN ./manage.py loaddata calendarium/fixtures/*

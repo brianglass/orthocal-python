@@ -69,3 +69,28 @@ class SpeechTestCase(TestCase):
 
         actual = speech.fasting_speech(day)
         self.assertIn('no fast', actual)
+
+    def test_expand_abbreviations(self):
+        text = 'Ss Cyril and Athanasius along with Ven. Bede'
+        actual = speech.expand_abbreviations(text)
+        self.assertIn('Saints', actual)
+        self.assertIn('Venerable', actual)
+
+    def test_estimate_group_size_long(self):
+        day = liturgics.Day(2023, 4, 14)
+        day.initialize()
+        readings = day.get_readings()
+        passage = readings[0].get_passage()
+        size = speech.estimate_group_size(passage)
+
+        # This passage should have 3 groups of 42 verses
+        self.assertEqual(42, size)
+
+    def test_estimate_group_size_short(self):
+        day = liturgics.Day(2023, 1, 18)
+        day.initialize()
+        readings = day.get_readings()
+        passage = readings[0].get_passage()
+
+        size = speech.estimate_group_size(passage)
+        self.assertIs(size, None)
