@@ -38,7 +38,7 @@ class DayIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        attributes = handler_input.attributes_manager.session_atttributes
+        attributes = handler_input.attributes_manager.session_attributes
 
         if date_text := attributes.get('date'):
             date = datetime.strptime('%Y-%m-%d', date_text)
