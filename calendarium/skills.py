@@ -55,7 +55,7 @@ class LaunchHandler(AbstractRequestHandler):
         # Set speech
         num_readings = len(day.get_readings())
         speech_text += (
-                f'<p>There are {num_readings} scriptures readings.'
+                f'<p>There are {num_readings} scripture readings.'
                 f'Would you like to hear the readings?</p>'
         )
         builder.speak(speech_text)
@@ -127,6 +127,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         for reading in day.get_readings():
             card_text += f'{reading.display}\n'
 
+        when = speech.when_speech(day)
         card = SimpleCard(f'About {when}', card_text)
         builder.set_card(card)
 
