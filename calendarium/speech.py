@@ -34,6 +34,8 @@ def day_speech(builder, day):
     if day.titles:
         builder.speak(f'{when}, is the {day.titles[0]}.')
 
+    builder.speak(fasting_speech(day))
+
     if feasts:
         builder.speak(feasts.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>'))
 
@@ -49,6 +51,23 @@ def when_speech(day):
         return 'Tomorrow, ' + day.gregorian_date.strftime("%B %-d")
     else:
         return day.gregorian_date.strftime("%A, %B %-d")
+
+def fasting_speech(day):
+    match day.fast_level:
+        case 0:
+            return 'On this day there is no fast.'
+        case 1:
+            # normal weekly fast
+            if len(day.fast_exception_desc) > 0:
+                return f'On this day there is a fast. {day.fast_exception_desc}.'
+            else:
+                return 'On this day there is a fast.'
+        case _:
+            # One of the four great fasts
+            if len(day.fast_exception_desc) > 0:
+                return f'This day is during the {day.fast_level_desc}. {day.fast_exception_desc}.'
+            else:
+                return f'This day is during the {day.fast_level_desc}.'
 
 def human_join(words):
     if len(words) > 1:

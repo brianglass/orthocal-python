@@ -48,3 +48,24 @@ class SpeechTestCase(TestCase):
 
         self.assertIn('Theophany', builder.response.output_speech.ssml)
         self.assertIn('Theophany', card)
+
+    def test_fasting_speech(self):
+        day = liturgics.Day(2023, 1, 5)
+        day.initialize()
+
+        actual = speech.fasting_speech(day)
+        self.assertIn('On this day there is a fast', actual)
+
+    def test_fasting_speech_great(self):
+        day = liturgics.Day(2023, 2, 28)
+        day.initialize()
+
+        actual = speech.fasting_speech(day)
+        self.assertIn('This day is during', actual)
+
+    def test_fasting_speech_no(self):
+        day = liturgics.Day(2023, 1, 10)
+        day.initialize()
+
+        actual = speech.fasting_speech(day)
+        self.assertIn('no fast', actual)
