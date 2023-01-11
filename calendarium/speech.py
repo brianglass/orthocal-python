@@ -46,21 +46,23 @@ def day_speech(day):
     if len(day.feasts) > 1:
         feast_list = human_join(day.feasts)
         text = f'The feasts celebrated are: {feast_list}.'
+        speech_text += f'<p>{text}</p>'
+        card_text += f'{text}\n\n'
     elif len(day.feasts) == 1:
         text = f'The feast of {day.feasts[0]} is celebrated.'
-
-    speech_text += f'<p>{text}</p>'
-    card_text += f'{text}\n\n'
+        speech_text += f'<p>{text}</p>'
+        card_text += f'{text}\n\n'
 
     # Commemorations
 
     if len(day.saints) > 1:
         text = f'The commemorations are for {human_join(day.saints)}.'
+        speech_text += f'<p>{text}</p>'
+        card_text += f'{text}\n\n'
     elif len(day.saints) == 1:
         text = f'The commemoration is for {day.saints[0]}.'
-
-    speech_text += f'<p>{text}</p>'
-    card_text += f'{text}\n\n'
+        speech_text += f'<p>{text}</p>'
+        card_text += f'{text}\n\n'
 
     # Readings
 
