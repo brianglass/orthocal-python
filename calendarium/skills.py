@@ -66,9 +66,9 @@ class LaunchHandler(AbstractRequestHandler):
 
         # Prepare for next step in the session
         builder.set_should_end_session(True)
-        session_attributes.original_intent = 'Launch'
-        session_attributes.next_reading = 0
-        session_attributes.date = timezone.localtime().strftime('%Y-%m-%d')
+        session_attributes['original_intent'] = 'Launch'
+        session_attributes['next_reading'] = 0
+        session_attributes['date'] = timezone.localtime().strftime('%Y-%m-%d')
 
         return builder.response
 
