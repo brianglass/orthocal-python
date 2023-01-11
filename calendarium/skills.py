@@ -63,7 +63,7 @@ class LaunchHandler(AbstractRequestHandler):
         builder.set_card(card)
 
         # Prepare for next step in the session
-        build.set_should_end_session(False)
+        builder.set_should_end_session(True)
         session_attributes.original_intent = 'Launch'
         session_attributes.next_reading = 0
         session_attributes.date = timezone.localtime().strftime('%Y-%m-%d')
@@ -95,7 +95,7 @@ class DayIntentHandler(AbstractRequestHandler):
         builder.set_card(card)
 
         # there are no further steps in this interaction
-        build.set_should_end_session(True)
+        builder.set_should_end_session(True)
 
         return builder.response
 
