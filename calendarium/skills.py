@@ -52,8 +52,9 @@ class LaunchHandler(AbstractRequestHandler):
         speech_text, card_text = speech.day_speech(day)
 
         # Set speech
+        num_readings = day.get_readings().count()
         speech_text += (
-                f'<p>There are {len(day.readings)} scriptures readings.'
+                f'<p>There are {num_readings} scriptures readings.'
                 f'Would you like to hear the readings?</p>'
         )
         builder.speak(speech_text)
