@@ -1,3 +1,5 @@
+import logging
+
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import is_request_type, is_intent_name
@@ -7,6 +9,7 @@ from django.utils import timezone
 from . import liturgics
 from . import speech
 
+logger = logging.getLogger(__name__)
 skill_builder = SkillBuilder()
 
 # These handlers don't seem to support async
@@ -40,6 +43,7 @@ class DayIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.session_attributes
 
+        logger.debug(dir(attributes))
         if date_text := attributes.get('date'):
             date = datetime.strptime('%Y-%m-%d', date_text)
             day = liturgics.Day(date.year, date.month, date.day)
