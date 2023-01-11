@@ -21,32 +21,54 @@ EPISTLES = {
     "jude":          "The Catholic letter of Saint Jude",
 }
 
-def day_speech(builder, day):
+def day_speech(day):
     speech_text = ''
+    card_text = ''
+
+    # Titles
 
     when = when_speech(day)
 
     if day.titles:
         speech_text += f'<p>{when}, is the {day.titles[0]}.</p>'
+        card_text += f'{when}, is the {day.titles[0]}\n\n'
+
+    # Fasting
 
     speech_text += f'<p>{fasting_speech(day)}</p>'
+    if day.fast_exception_desc:
+        card_text += f'{day.fast_level_desc} \u2013 {day.fast_exception_desc}\n\n'
+    else:
+        card_text += f'{day.fast_level_desc}\n\n'
 
     # Feasts
+
     if len(day.feasts) > 1:
         feast_list = human_join(day.feasts)
-        speech_text += f'<p>The feasts celebrated are: {feast_list}.</p>'
+        text = f'The feasts celebrated are: {feast_list}.'
     elif len(day.feasts) == 1:
-        speech_text += f'<p>The feast of {day.feasts[0]} is celebrated.</p>'
+        text = f'The feast of {day.feasts[0]} is celebrated.'
+
+    speech_text += f'<p>{text}</p>'
+    card_text += f'{text}\n\n'
 
     # Commemorations
-    if len(day.saints) > 1:
-        speech_text += f'The commemorations are for {human_join(day.saints)}.'
-    elif len(day.saints) == 1:
-        speech_text += f'The commemoration is for {day.saints[0]}.'
 
-    # TODO: make custom card text
+    if len(day.saints) > 1:
+        text = f'The commemorations are for {human_join(day.saints)}.'
+    elif len(day.saints) == 1:
+        text = f'The commemoration is for {day.saints[0]}.'
+
+    speech_text += f'<p>{text}</p>'
+    card_text += f'{text}\n\n'
+
+    # Readings
+
+    for reading in day.get_readings():
+        card_text += f'{reading.display}\n'
+
     speech_text = speech_text.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>')
-    return speech_text, speech_text
+    return speech_text, card_text
 
 def when_speech(day):
     today = timezone.localtime().date()

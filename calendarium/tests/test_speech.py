@@ -38,13 +38,13 @@ class SpeechTestCase(TestCase):
         self.assertIn('Today', actual)
         self.assertNotIn('Tomorrow', actual)
 
-    async def test_day_speech(self):
+    def test_day_speech(self):
         builder = ResponseFactory()
 
         day = liturgics.Day(2023, 1, 7)
-        await day.ainitialize()
+        day.initialize()
 
-        speech_text, card_text = speech.day_speech(builder, day)
+        speech_text, card_text = speech.day_speech(day)
 
         self.assertIn('Theophany', speech_text)
         self.assertIn('Theophany', card_text)
