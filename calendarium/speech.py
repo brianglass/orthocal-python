@@ -31,20 +31,21 @@ def day_speech(builder, day):
 
     speech_text += f'<p>{fasting_speech(day)}</p>'
 
-    # Commemorations
+    # Feasts
     if len(day.feasts) > 1:
         feast_list = human_join(day.feasts)
-        feasts = f'The feasts celebrated are: {feast_list}.'
+        speech_text += f'<p>The feasts celebrated are: {feast_list}.</p>'
     elif len(day.feasts) == 1:
-        feasts = f'The feast of {day.feasts[0]} is celebrated.'
-    else:
-        feasts = ''
+        speech_text += f'<p>The feast of {day.feasts[0]} is celebrated.</p>'
 
-    if feasts:
-        feasts = feasts.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>')
-        speech_text += f'<p>{feasts}</p>'
+    # Commemorations
+    if len(day.saints) > 1:
+        speech_text += f'The commemorations are for {human_join(day.saints)}.'
+    elif len(day.saints) == 1:
+        speech_text += f'The commemoration is for {day.saints[0]}.'
 
     # TODO: make custom card text
+    speech_text = speech_text.replace('Ven.', '<sub alias="The Venerable">Ven.</sub>')
     return speech_text, speech_text
 
 def when_speech(day):
