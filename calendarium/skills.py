@@ -141,7 +141,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         date_text = day.gregorian_date.strftime('%A, %B %-d')
         reading_speech = speech.reading_speech(readings[0])
         speech_text = (
-                f'<p>There are {readings.count()} readings for {date_text}.'
+                f'<p>There are {len(readings)} readings for {date_text}.'
                 '<break strength="strong" time="1500ms"/>'
                 f'<p>{reading_speech}</p>'
         )
