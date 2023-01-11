@@ -21,6 +21,9 @@ class OrthodoxDailyLaunchHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
+        attributes = handler_input.attributes_manager.request_attributes
+
+        logger.debug('Running OrthodoxDailyLaunchHandler: %s.', attributes)
 
         today = timezone.localtime()
         day = liturgics.Day(today.year, today.month, today.day)
@@ -43,7 +46,8 @@ class DayIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         attributes = handler_input.attributes_manager.request_attributes
 
-        logger.debug(dir(attributes))
+        logger.debug('Running DayIntentHander: %s.', attributes)
+
         if date_text := attributes.get('date'):
             date = datetime.strptime('%Y-%m-%d', date_text)
             day = liturgics.Day(date.year, date.month, date.day)
