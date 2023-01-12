@@ -217,7 +217,7 @@ class NextIntentHandler(AbstractRequestHandler):
             return self._bail(handler_input, "<p>I didn't understand the date you requested.</p>")
 
         # Figure out which is the next reading. If we can't, bail.
-        if not (next_reading := session_attributes.get('next_reading')):
+        if (next_reading := session_attributes.get('next_reading')) is None:
             return self._bail(handler_input, "<p>I don't know what you mean in this context.</p>")
 
         readings = day.get_readings()
@@ -258,8 +258,8 @@ class NextIntentHandler(AbstractRequestHandler):
         else:
             builder.set_should_end_session(False)
             session_attributes['next_reading'] = next_reading + 1
-            del session_attributes['next_verse']
-            del session_attributes['group_size']
+            session_attributes.pop('next_verse', None)
+            session_attributes.pop('group_size', None)
             speech_text += 'Would you like to hear the next reading?'
 
         builder.speak(speech_text)
