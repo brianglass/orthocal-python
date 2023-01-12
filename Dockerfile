@@ -15,5 +15,4 @@ RUN ./manage.py collectstatic --noinput
 RUN ./manage.py migrate
 RUN ./manage.py loaddata calendarium/fixtures/*
 
-EXPOSE 8000
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "orthocal.asgi:application"]
+CMD exec uvicorn --host 0.0.0.0 --port $PORT orthocal.asgi:application
