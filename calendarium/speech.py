@@ -142,9 +142,8 @@ def reading_speech(reading, end=None):
 def reading_range_speech(reading, start, end):
     reading_text = ''
     passage = reading.get_passage()
-    end = min(end, passage.count())
 
-    for i in range(start, end):
+    for verse in passage[start:end]:
         stripped = markup_re.sub('', verse.content)
         reading_text += f'<p>{stripped}</p>'
 

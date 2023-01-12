@@ -25,7 +25,7 @@ def get_day(handler_input):
             dt = datetime.strptime(date_text, '%Y-%m-%d')
         except ValueError:
             return None
-    if date_text := get_slot_value(handler_input, 'date'):
+    elif date_text := get_slot_value(handler_input, 'date'):
         try:
             dt = datetime.strptime(date_text, '%Y-%m-%d')
         except ValueError:

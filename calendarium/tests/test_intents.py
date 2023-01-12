@@ -57,6 +57,20 @@ class IntentTestCase(TestCase):
         self.assertEqual('Launch', response.session_attributes['original_intent'])
         self.assertEqual('2023-01-12', response.session_attributes['date'])
 
+    def test_next_intent_followup(self):
+        with open(BASE_DIR / 'data/next_intent_envelope_followup.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertIn('Would you like me to continue?', response.response.output_speech.ssml)
+        self.assertEqual(0, response.session_attributes['next_reading'])
+        self.assertEqual(84, response.session_attributes['next_verse'])
+        self.assertEqual('Scriptures', response.session_attributes['original_intent'])
+
     def test_help_intent(self):
         with open(BASE_DIR / 'data/help_intent_envelope.json') as f:
             envelope = f.read()
