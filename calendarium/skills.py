@@ -16,15 +16,23 @@ skill_builder = SkillBuilder()
 
 # These handlers don't seem to support async
 
-
 def get_day(handler_input):
-    if date_text := get_slot_value(handler_input, 'date'):
-        date = datetime.strptime(date_text, '%Y-%m-%d')
-        day = liturgics.Day(date.year, date.month, date.day)
-    else:
-        today = timezone.localtime()
-        day = liturgics.Day(today.year, today.month, today.day)
+    session_attributes = handler_input.attributes_manager.session_attributes
 
+    if date_text := session_attributes.get('date'):
+        try:
+            dt = datetime.strptime(date_text, '%Y-%m-%d')
+        except ValueError:
+            return None
+    if date_text := get_slot_value(handler_input, 'date'):
+        try:
+            dt = datetime.strptime(date_text, '%Y-%m-%d')
+        except ValueError:
+            return None
+    else:
+        dt = timezone.localtime()
+
+    day = liturgics.Day(dt.year, dt.month, dt.day)
     day.initialize()
 
     return day
@@ -46,9 +54,10 @@ class LaunchHandler(AbstractRequestHandler):
 
         logger.debug('Running OrthodoxDailyLaunchHandler.')
 
-        today = timezone.localtime()
-        day = liturgics.Day(today.year, today.month, today.day)
-        day.initialize()
+        if not (day := get_day(handler_input)):
+            builder.set_should_end_session(True)
+            builder.speak("<p>I didn't understand the date you requested.</p>")
+            return builder.response
 
         speech_text, card_text = speech.day_speech(day)
 
@@ -84,7 +93,10 @@ class DayIntentHandler(AbstractRequestHandler):
 
         logger.debug('Running DayIntentHander.')
 
-        day = get_day(handler_input)
+        if not (day := get_day(handler_input)):
+            builder.set_should_end_session(True)
+            builder.speak("<p>I didn't understand the date you requested.</p>")
+            return builder.response
 
         # Set speech
         speech_text, card_text = speech.day_speech(day)
@@ -118,7 +130,11 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         logger.debug('Running ScripturesIntentHander.')
 
-        day = get_day(handler_input)
+        if not (day := get_day(handler_input)):
+            builder.set_should_end_session(True)
+            builder.speak("<p>I didn't understand the date you requested.</p>")
+            return builder.response
+
         readings = day.get_readings()
 
         # Build card
@@ -172,9 +188,88 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         return builder.response
 
+class NextIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return (
+                is_intent_name('AMAZON.YesIntent')(handler_input) or
+                is_intent_name('AMAZON.NextIntent')(handler_input)
+        )
+
+    def _bail(self, handler_input, message):
+        builder = handler_input.response_builder
+        builder.set_should_end_session(True)
+        builder.speak(message)
+        return builder.response
+
+    def handle(self, handler_input):
+        builder = handler_input.response_builder
+        session_attributes = handler_input.attributes_manager.session_attributes
+
+        logger.debug('Running NextIntentHander.')
+
+        # Check for the original intent. If none are valid, bail.
+        original_intent = session_attributes.get('original_intent')
+        if original_intent not in ('Launch', 'Scriptures'):
+            return self._bail(handler_input, "<p>I'm not sure what you mean in this context.</p>")
+
+        # Get the relevant day. If we can't figure out which day, bail.
+        if not (day := get_day(handler_input)):
+            return self._bail(handler_input, "<p>I didn't understand the date you requested.</p>")
+
+        # Figure out which is the next reading. If we can't, bail.
+        if not (next_reading := session_attributes.get('next_reading')):
+            return self._bail(handler_input, "<p>I don't know what you mean in this context.</p>")
+
+        readings = day.get_readings()
+
+        # If we have already completed the final reading, let the user know and exit.
+        if next_reading >= len(readings):
+            return self._bail(handler_input, "<p>There are no more readings.</p>")
+
+        reading = readings[next_reading]
+        passage = reading.get_passage()
+
+        # Is this a long passage?
+        if group_size := session_attributes.get('group_size'):
+            next_verse = session_attributes.get('next_verse', 0)
+        else:
+            group_size = speech.estimate_group_size(passage)
+            next_verse = 0
+
+        # Get the scripture reading as speech
+        if next_verse > 0:
+            speech_text = speech.reading_range_speech(reading, next_verse, next_verse + group_size)
+        elif group_size is not None and group_size > 0:
+            speech_text = speech.reading_speech(reading, group_size)
+        else:
+            speech_text = speech.reading_speech(reading)
+
+        speech_text += '<break strength="medium" time="750ms"/>'
+
+        # Update session attributes
+        if group_size is not None and group_size > 0 and next_verse + group_size < passage.count():
+            builder.set_should_end_session(False)
+            session_attributes['next_verse'] = next_verse + group_size
+            session_attributes['group_size'] = group_size
+            speech_text += 'This is a long reading. Would you like me to continue?'
+        elif next_reading + 1 >= len(readings):
+            builder.set_should_end_session(True)
+            speech_text += 'That is the end of the readings.'
+        else:
+            builder.set_should_end_session(False)
+            session_attributes['next_reading'] = next_reading + 1
+            del session_attributes['next_verse']
+            del session_attributes['group_size']
+            speech_text += 'Would you like to hear the next reading?'
+
+        builder.speak(speech_text)
+
+        return builder.response
+
 
 skill_builder.add_request_handler(LaunchHandler())
 skill_builder.add_request_handler(DayIntentHandler())
 skill_builder.add_request_handler(ScripturesIntentHandler())
+skill_builder.add_request_handler(NextIntentHandler())
 
 orthodox_daily_skill = skill_builder.create()
