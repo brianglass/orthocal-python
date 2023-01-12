@@ -54,10 +54,9 @@ class LaunchHandler(AbstractRequestHandler):
 
         logger.debug('Running OrthodoxDailyLaunchHandler.')
 
-        if not (day := get_day(handler_input)):
-            builder.set_should_end_session(True)
-            builder.speak("<p>I didn't understand the date you requested.</p>")
-            return builder.response
+        today = timezone.localtime()
+        day = liturgics.Day(today.year, today.month, today.day)
+        day.initialize()
 
         speech_text, card_text = speech.day_speech(day)
 
@@ -187,6 +186,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         builder.speak(speech_text)
 
         return builder.response
+
 
 class NextIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):

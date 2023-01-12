@@ -26,6 +26,15 @@ class IntentTestCase(TestCase):
         request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
         response = skill.invoke(request_envelope=request_envelope, context=None)
 
-        #self.assertEqual(
+        print(response)
+
+    def test_launch_intent(self):
+        with open(BASE_DIR / 'data/launch_intent_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
 
         print(response)
