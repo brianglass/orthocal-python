@@ -6,6 +6,7 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.utils import get_slot_value, is_request_type, is_intent_name
 from ask_sdk_model.ui import SimpleCard
+from django.template.loader import render_to_string
 from django.utils import timezone
 
 from . import liturgics
@@ -272,9 +273,49 @@ class NextIntentHandler(AbstractRequestHandler):
         return builder.response
 
 
+class StopIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return (
+                is_intent_name('AMAZON.NoIntent')(handler_input) or
+                is_intent_name('AMAZON.CancelIntent')(handler_input) or
+                is_intent_name('AMAZON.StopIntent')(handler_input)
+        )
+
+    def handle(self, handler_input):
+        builder = handler_input.response_builder
+        builder.set_should_end_session(True)
+        return builder.response
+
+
+class HelpIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name('AMAZON.HelpIntent')(handler_input)
+
+    def handle(self, handler_input):
+        builder = handler_input.response_builder
+        session_attributes = handler_input.attributes_manager.session_attributes
+
+        speech_text = render_to_string('help.ssml')
+        card_text = speech.markup_re.sub('', speech_text)
+
+        builder.speak(speech_text)
+
+        card = SimpleCard('Help', card_text)
+        builder.set_card(card)
+
+        builder.set_should_end_session(False)
+        session_attributes.pop('date', None)
+        session_attributes.pop('next_reading', None)
+        session_attributes.pop('original_intent', None)
+
+        return builder.response
+
+
 skill_builder.add_request_handler(LaunchHandler())
 skill_builder.add_request_handler(DayIntentHandler())
 skill_builder.add_request_handler(ScripturesIntentHandler())
 skill_builder.add_request_handler(NextIntentHandler())
+skill_builder.add_request_handler(StopIntentHandler())
+skill_builder.add_request_handler(HelpIntentHandler())
 
 orthodox_daily_skill = skill_builder.create()

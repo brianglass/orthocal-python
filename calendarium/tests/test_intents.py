@@ -56,3 +56,15 @@ class IntentTestCase(TestCase):
         self.assertEqual(1, response.session_attributes['next_reading'])
         self.assertEqual('Launch', response.session_attributes['original_intent'])
         self.assertEqual('2023-01-12', response.session_attributes['date'])
+
+    def test_help_intent(self):
+        with open(BASE_DIR / 'data/help_intent_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertIn('Orthodox Daily makes it easy', response.response.output_speech.ssml)
+        self.assertFalse(response.response.should_end_session)
