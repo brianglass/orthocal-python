@@ -146,7 +146,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
                 f'<p>{reading_speech}</p>'
         )
 
-        # Prepare to hand the next step in the interaction
+        # Prepare to handle the next step in the interaction
 
         session_attributes['original_intent'] = 'Scriptures'
         if group_size:
