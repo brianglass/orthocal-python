@@ -284,6 +284,9 @@ class StopIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         builder = handler_input.response_builder
         builder.set_should_end_session(True)
+        session_attributes.pop('date', None)
+        session_attributes.pop('next_reading', None)
+        session_attributes.pop('original_intent', None)
         return builder.response
 
 
