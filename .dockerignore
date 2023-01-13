@@ -7,3 +7,4 @@ __pycache__
 *.pyd
 .Python
 .ackrc
+local_settings.py

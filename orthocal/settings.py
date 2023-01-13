@@ -139,3 +139,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

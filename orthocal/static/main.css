@@ -166,7 +166,9 @@ label {
 }
 
 table.month {
-	margin-top: 1em;
+	font-size: 1.5vw;
+	margin 1em auto;
+	table-layout: fixed;
 	border-collapse: collapse;
     border-top: 5px solid #eee;
 }
@@ -193,6 +195,7 @@ table.month tr td p {
 	text-indent: 0;
 }
 table.month tr th {
+	text-align: center;
 	font-size: 100%;
 	color: gray;
 }
@@ -213,7 +216,7 @@ p.day-number {
 }
 table.month td a {
 	display: block;
-	padding: 1em;
+	padding: 1vw;
 	text-decoration: none;
 	color: black;
 	height: 100%;
