@@ -82,3 +82,15 @@ class IntentTestCase(TestCase):
 
         self.assertIn('Orthodox Daily makes it easy', response.response.output_speech.ssml)
         self.assertFalse(response.response.should_end_session)
+
+    def test_No_intent(self):
+        with open(BASE_DIR / 'data/no_intent_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertTrue(response.response.should_end_session)
+        self.assertEqual(0, len(response.session_attributes))
