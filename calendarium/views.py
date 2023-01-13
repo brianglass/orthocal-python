@@ -15,7 +15,7 @@ def readings(request, jurisdiction=None, year=None, month=None, day=None):
     now = timezone.localtime()
 
     if not jurisdiction:
-        jurisdiction = request.COOKIES.get('jurisdiction', 'oca')
+        jurisdiction = request.COOKIES.get('__session', 'oca')
 
     use_julian = jurisdiction == 'rocor'
 
@@ -57,7 +57,7 @@ async def calendar_view(request, jurisdiction=None, year=None, month=None):
             })
 
     if not jurisdiction:
-        jurisdiction = request.COOKIES.get('jurisdiction', 'oca')
+        jurisdiction = request.COOKIES.get('__session', 'oca')
 
     use_julian = jurisdiction == 'rocor'
 

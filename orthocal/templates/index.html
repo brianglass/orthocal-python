@@ -66,10 +66,10 @@
 	for (var i = 0; i < radios.length; i++) {
 		radios[i].addEventListener('change', function() {
 			if (this.value == 'rocor'){
-				document.cookie = 'jurisdiction=rocor; path=/';
+				document.cookie = '__session=rocor; path=/';
 				location.href = '{% url "calendar-day" jurisdiction='rocor' year=date.year month=date.month day=date.day %}';
 			}else{
-				document.cookie = 'jurisdiction=oca; path=/';
+				document.cookie = '__session=oca; path=/';
 				location.href = '{% url "calendar-day" jurisdiction='oca' year=date.year month=date.month day=date.day %}';
 			}
 		});
