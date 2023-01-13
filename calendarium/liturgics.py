@@ -92,6 +92,9 @@ class Day:
         if self.saints:
             return '; '.join(self.saints)
 
+        if self.titles:
+            return '; '.join(self.titles)
+
     async def _collect_commemorations(self):
         q = Q(pdist=self.pdist)
 

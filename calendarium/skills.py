@@ -128,6 +128,9 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         session_attributes = handler_input.attributes_manager.session_attributes
 
+        # Clean out session attributes to reset the conversation
+        session_attributes.clear()
+
         logger.debug('Running ScripturesIntentHander.')
 
         if not (day := get_day(handler_input)):
@@ -285,9 +288,7 @@ class StopIntentHandler(AbstractRequestHandler):
         builder = handler_input.response_builder
         session_attributes = handler_input.attributes_manager.session_attributes
         builder.set_should_end_session(True)
-        session_attributes.pop('date', None)
-        session_attributes.pop('next_reading', None)
-        session_attributes.pop('original_intent', None)
+        session_attributes.clear()
         return builder.response
 
 
@@ -308,9 +309,6 @@ class HelpIntentHandler(AbstractRequestHandler):
         builder.set_card(card)
 
         builder.set_should_end_session(False)
-        session_attributes.pop('date', None)
-        session_attributes.pop('next_reading', None)
-        session_attributes.pop('original_intent', None)
 
         return builder.response
 

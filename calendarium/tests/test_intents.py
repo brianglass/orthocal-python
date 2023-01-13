@@ -83,7 +83,7 @@ class IntentTestCase(TestCase):
         self.assertIn('Orthodox Daily makes it easy', response.response.output_speech.ssml)
         self.assertFalse(response.response.should_end_session)
 
-    def test_No_intent(self):
+    def test_stop_intent(self):
         with open(BASE_DIR / 'data/no_intent_envelope.json') as f:
             envelope = f.read()
 
