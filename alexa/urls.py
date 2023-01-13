@@ -7,7 +7,7 @@ from . import skills
 orthodox_daily_view = SkillAdapter.as_view(skill=skills.orthodox_daily_skill)
 
 urlpatterns = [
-    path('alexa/', orthodox_daily_view),
+    path('echo/', orthodox_daily_view),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
