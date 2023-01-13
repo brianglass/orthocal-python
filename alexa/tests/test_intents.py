@@ -4,6 +4,7 @@ from pathlib import Path
 from unittest import mock
 
 from django.test import TestCase
+from django.utils import timezone
 
 from ask_sdk_core.response_helper import ResponseFactory
 from ask_sdk_model import RequestEnvelope
@@ -21,13 +22,15 @@ class IntentTestCase(TestCase):
         with open(BASE_DIR / 'data/launch_intent_envelope.json') as f:
             envelope = f.read()
 
+        today = timezone.localtime()
+
         skill = skills.orthodox_daily_skill
 
         request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
         response = skill.invoke(request_envelope=request_envelope, context=None)
 
         self.assertEqual('Launch', response.session_attributes['original_intent'])
-        self.assertEqual('2023-01-12', response.session_attributes['date'])
+        self.assertEqual(today.strftime('%Y-%m-%d'), response.session_attributes['date'])
         self.assertEqual(0, response.session_attributes['next_reading'])
         self.assertIn('Would you like to hear the readings?', response.response.output_speech.ssml)
 

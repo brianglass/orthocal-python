@@ -4,7 +4,8 @@ from ask_sdk_core.response_helper import ResponseFactory
 from django.test import TestCase
 from django.utils import timezone
 
-from .. import liturgics, speech
+from .. import speech
+from calendarium import liturgics
 
 
 class SpeechTestCase(TestCase):

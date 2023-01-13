@@ -9,8 +9,8 @@ from ask_sdk_model.ui import SimpleCard
 from django.template.loader import render_to_string
 from django.utils import timezone
 
-from . import liturgics
 from . import speech
+from calendarium import liturgics
 
 logger = logging.getLogger(__name__)
 skill_builder = SkillBuilder()

@@ -4,7 +4,7 @@ import re
 
 from django.utils import timezone
 
-from .datetools import FastLevels
+from calendarium.datetools import FastLevels
 
 MAX_SPEECH_LENGTH = 8000
 

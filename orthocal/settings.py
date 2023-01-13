@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'orthocal',
     'bible',
     'calendarium',
+    'alexa',
 ]
 
 MIDDLEWARE = [

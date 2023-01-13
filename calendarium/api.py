@@ -90,7 +90,7 @@ async def ical(request, jurisdiction):
         event = icalendar.Event()
         event.add('uid', uid)
         event.add('dtstamp', timestamp)
-        event.add('dtstart', dt)
+        event.add('dtstart', icalendar.vDate(dt))
         event.add('summary', day.summary_title)
         event.add('description', await ical_description(day))
         event.add('url', urljoin(base_url, day_path))

@@ -33,5 +33,6 @@ urlpatterns = [
     path('ical/', TemplateView.as_view(template_name='ical.html'), name='icalendar'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('api/', include('calendarium.api_urls')),
+    path('api/', include('alexa.urls')),
     path('', include('calendarium.urls')),
 ]
