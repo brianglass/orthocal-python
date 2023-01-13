@@ -15,10 +15,11 @@
 	<p>
 	This service is meant to be a tool for mobile developers and parish
 	webmasters to use to provide this information to parishioners and
-	other guests.
-	<a href="https://github.com/brianglass/orthocal-service">Source code</a>
-	and a <a href="https://hub.docker.com/r/brianglass/orthocal-service/">docker
-	image</a> for self-hosting are freely available.</p>
+	other guests. The
+	<a href="https://github.com/brianglass/orthocal-python">Source Code</a>
+	is freely available. The original version of this site was written in a
+	combination of Go and Node.js, but has been rewritten in Python since the
+	author finds that easier to maintain.</p>
 
 	<h2>Contact the Author</h2>
 	<p><a href="https://orthocal.info">Orthocal.info</a> is being
@@ -28,23 +29,11 @@
 	your usage of the api and will be able to keep you informed about
 	changes or maintenance work that needs to be done. Please contact
 	me via the 
-	<a href="https://parochianus.wordpress.com/contact/">contact form</a>
+	<a href="https://parochianus.blog/contact/">contact form</a>
 	on my blog, 
-	<a href="https://parochianus.wordpress.com/">Parochianus</a>,
-	and let me know about your usage.
-				<p>Please report bugs using the 
-	<a href="https://github.com/brianglass/orthocal-service/issues">Github issue tracker</a>.</p>
-
-	<h2>Existing Bugs</h2>
-	<p>
-	There are some known issues. For instance, the composite readings
-	are put together based on normal scripture references. However, not
-	all of the composite readings can be reconstructed in this way.
-	Often they are very much paraphrased from large blocks of
-	scripture. I need to come up with a new system for the composites
-	to use the actual reading from the liturgical texts in order to
-	make these more correct.
-	</p>
+	<a href="https://parochianus.blog/">Parochianus</a>,
+	and let me know about your usage. Please report bugs using the 
+	<a href="https://github.com/brianglass/orthocal-python/issues">Github issue tracker</a>.</p>
 
 	<h2>Algorithm</h2>
 	<p>The algorithm and data used in this service are based on the
@@ -61,4 +50,9 @@
 	Version. While not ideal, many clergy consider this to be one of the
 	best options for Orthodox. Because the rubrics use Septuagint
 	versification, a handful of the Old Testament readings may be incorrect.</p>
+
+	<p>Composite readings are taken from the translations of the Archimandrite
+	Ephrem (Lash). His translations can be accessed at 
+	<a href="https://github.com/brianglass/anastasis">Anastasis.</a>
+	</p>
 {% endblock %}
