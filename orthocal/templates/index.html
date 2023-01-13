@@ -12,7 +12,7 @@
 			<label><input type="radio" name="jurisdiction" value="rocor" {% if jurisdiction == "rocor" %}checked=""{% endif %} />rocor</label>
 
 			<div class="day">
-				<h2>{{ day.date|date:"F j, Y" }}<span><br/>{{ day.titles.0 }}</span></h2>
+				<h2>{{ day.gregorian_date|date:"F j, Y" }}<span><br/>{{ day.titles.0 }}</span></h2>
 
 				<p>
 					{{ day.fast_level_desc }} 
