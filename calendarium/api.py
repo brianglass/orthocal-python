@@ -18,7 +18,7 @@ from . import serializers
 
 
 class DayViewSet(viewsets.ViewSet):
-    def retrieve(self, request, year, month, day, jurisdiction='oca'):
+    def retrieve(self, request, year, month, day, cal='gregorian'):
         # Easter date functions don't work correctly outside this range
         if not 1583 <= year <= 4099:
             raise Http404
@@ -28,37 +28,31 @@ class DayViewSet(viewsets.ViewSet):
         except ValueError:
             raise Http404
 
-        if jurisdiction == 'oca':
-            day = liturgics.Day(year, month, day)
-        else:
-            day = liturgics.Day(year, month, day, use_julian=True)
+        day = liturgics.Day(year, month, day, use_julian=cal=='julian')
 
         day.initialize()
         serializer = serializers.DaySerializer(day)
         return Response(serializer.data)
 
-    def retrieve_default(self, request, jurisdiction='oca'):
+    def retrieve_default(self, request, cal='gregorian'):
         dt = timezone.localtime()
-        return self.retrieve(request, dt.year, dt.month, dt.day, jurisdiction)
+        return self.retrieve(request, dt.year, dt.month, dt.day, cal)
 
-    def list(self, request, year, month, jurisdiction='oca'):
+    def list(self, request, year, month, cal='gregorian'):
         # Easter date functions don't work correctly outside this range
         if not 1583 <= year <= 4099 or not 1 <= month <= 12:
             raise Http404
 
-        if jurisdiction == 'oca':
-            days = liturgics.month_of_days(year, month)
-        else:
-            days = liturgics.month_of_days(year, month, use_julian=True)
+        days = liturgics.month_of_days(year, month, use_julian=cal=='julian')
 
         # Exclude the scriptures passages for the list view to keep the response times low.
         serializer = serializers.DaySerializer(days, many=True, context={'exclude_passage': True})
         return Response(serializer.data)
 
 
-async def ical(request, jurisdiction):
+async def ical(request, cal):
     base_url = request.build_absolute_uri('/')
-    title = jurisdiction.upper()
+    title = cal.title()
     ttl = settings.ORTHOCAL_ICAL_TTL
     timestamp = timezone.localtime()
 
@@ -81,7 +75,7 @@ async def ical(request, jurisdiction):
 
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
         day_path = reverse('calendar-day', kwargs={
-            'jurisdiction': jurisdiction,
+            'cal': cal,
             'year': day.year,
             'month': day.month,
             'day': day.day

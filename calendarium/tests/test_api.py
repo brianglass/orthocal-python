@@ -18,7 +18,7 @@ class DayAPITestCase(APITestCase):
             expected = json.loads(f.read())
 
         url = reverse('day-get', kwargs={
-            'jurisdiction': 'oca',
+            'cal': 'gregorian',
             'year': 2022,
             'month': 1,
             'day': 7,
@@ -29,7 +29,7 @@ class DayAPITestCase(APITestCase):
         self.assertEqual(expected, actual)
 
     def test_get_day_default(self):
-        url = reverse('day-get-default', kwargs={'jurisdiction': 'oca'})
+        url = reverse('day-get-default', kwargs={'cal': 'gregorian'})
         response = self.client.get(url, format='json')
         dt = timezone.localtime()
         actual = response.json()
@@ -42,7 +42,7 @@ class DayAPITestCase(APITestCase):
             expected = json.loads(f.read())
 
         url = reverse('day-list', kwargs={
-            'jurisdiction': 'oca',
+            'cal': 'gregorian',
             'year': 2022,
             'month': 1,
         })

@@ -2,14 +2,14 @@
 
 {% block main %}
 	<article id="orthocal">
-			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>
-			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=now.year month=now.month day=now.day %}">Today</a>
-			<a class="cal-nav" href="{% url "calendar-day" jurisdiction=jurisdiction year=next_date.year month=next_date.month day=next_date.day %}">Next Day &rarr;</a>
+			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>
+			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=now.year month=now.month day=now.day %}">Today</a>
+			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=next_date.year month=next_date.month day=next_date.day %}">Next Day &rarr;</a>
 
 			<br/>
 
-			<label><input type="radio" name="jurisdiction" value="oca" {% if jurisdiction == "oca" %}checked=""{% endif %} />oca</label>
-			<label><input type="radio" name="jurisdiction" value="rocor" {% if jurisdiction == "rocor" %}checked=""{% endif %} />rocor</label>
+			<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} />Gregorian</label>
+			<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} />Julian</label>
 
 			<div class="day">
 				<h2>{{ day.gregorian_date|date:"F j, Y" }}<span><br/>{{ day.titles.0 }}</span></h2>
@@ -62,15 +62,15 @@
 
 {% block scripts %}
 <script>
-	var radios = document.getElementsByName('jurisdiction');
+	var radios = document.getElementsByName('calendar');
 	for (var i = 0; i < radios.length; i++) {
 		radios[i].addEventListener('change', function() {
-			if (this.value == 'rocor'){
-				document.cookie = '__session=rocor; path=/';
-				location.href = '{% url "calendar-day" jurisdiction='rocor' year=date.year month=date.month day=date.day %}';
+			if (this.value == 'julian'){
+				document.cookie = '__session=julian; path=/';
+				location.href = '{% url "calendar-day" cal='julian' year=date.year month=date.month day=date.day %}';
 			}else{
-				document.cookie = '__session=oca; path=/';
-				location.href = '{% url "calendar-day" jurisdiction='oca' year=date.year month=date.month day=date.day %}';
+				document.cookie = '__session=gregorian; path=/';
+				location.href = '{% url "calendar-day" cal='gregorian' year=date.year month=date.month day=date.day %}';
 			}
 		});
 	}

@@ -90,6 +90,10 @@ class DayIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
+        session_attributes = handler_input.attributes_manager.session_attributes
+
+        # Clean out session attributes to reset the conversation
+        session_attributes.clear()
 
         logger.debug('Running DayIntentHander.')
 

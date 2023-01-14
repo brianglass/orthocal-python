@@ -16,16 +16,9 @@ Including another URLconf
 from django.urls import include, path, register_converter
 from django.views.generic import TemplateView
 
-class JurisdictionConverter:
-    regex = '(oca|rocor)'
+from .converters import CalendarConverter
 
-    def to_python(self, value):
-        return value
-
-    def to_url(self, value):
-        return value
-
-register_converter(JurisdictionConverter, 'juris')
+register_converter(CalendarConverter, 'cal')
 
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
