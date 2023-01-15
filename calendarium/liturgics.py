@@ -1,3 +1,6 @@
+import functools
+import logging
+
 from datetime import date, datetime, timedelta, timezone
 
 from asgiref.sync import async_to_sync
@@ -6,6 +9,8 @@ from django.utils.functional import cached_property
 
 from . import datetools, models
 from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions
+
+logger = logging.getLogger(__name__)
 
 async def amonth_of_days(year, month, use_julian=False):
     dt = datetime(year, month, 1)
@@ -44,6 +49,7 @@ class Reading:
         raise AttributeError(f'{self.__class__} object has no attribute: {attr}.')
 
 
+@functools.cache
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
         self.gregorian_date = date(year=year, month=month, day=day)
@@ -353,6 +359,7 @@ class Day:
                 return self.pdist + self.jump
 
 
+@functools.cache
 class Year:
     def __init__(self, year, use_julian=False):
         self.year = year

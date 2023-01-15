@@ -160,13 +160,8 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         passage = readings[0].get_passage()
         group_size = speech.estimate_group_size(passage)
-
         date_text = day.gregorian_date.strftime('%A, %B %-d')
-
-        if group_size is not None and group_size > 0:
-            reading_speech = speech.reading_speech(readings[0], group_size)
-        else:
-            reading_speech = speech.reading_speech(readings[0])
+        reading_speech = speech.reading_speech(readings[0], group_size)
 
         speech_text = (
                 f'<p>There are {len(readings)} readings for {date_text}.</p> '

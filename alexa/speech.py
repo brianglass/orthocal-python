@@ -120,35 +120,6 @@ def human_join(words):
     else:
         return words[0]
 
-def reading_speech(reading, end=None):
-    reference = reference_speech(reading)
-    reading_text = f'<p>The reading is from {reference}.</p> <break strength="medium" time="750ms"/>'
-
-    passage = reading.get_passage()
-
-    if passage.count() == 0:
-        reading_text += '<p>Orthodox Daily could not find that reading.</p>'
-        return reading_text
-
-    for i, verse in enumerate(passage):
-        if end and i >= end:
-            break
-
-        stripped = markup_re.sub('', verse.content)
-        reading_text += f'<p>{stripped}</p>'
-
-    return reading_text
-
-def reading_range_speech(reading, start, end):
-    reading_text = ''
-    passage = reading.get_passage()
-
-    for verse in passage[start:end]:
-        stripped = markup_re.sub('', verse.content)
-        reading_text += f'<p>{stripped}</p>'
-
-    return reading_text
-
 def reference_speech(reading):
     match = ref_re.search(reading.display)
 
@@ -183,13 +154,28 @@ def expand_abbreviations(speech_text):
 
     return speech_text
 
-def get_passage_len(passage, start=None, end=None):
-    markup_len = len('<p></p>')
+def reading_speech(reading, end=None):
+    scripture_text = reading_range_speech(reading, end=end)
 
-    if start is None or end is None :
-        return sum(len(p.content) + markup_len for p in passage)
-    else:
-        return sum(len(p.content) + markup_len for p in passage[start:end])
+    if not scripture_text:
+        return '<p>Orthodox Daily could not find that reading.</p>'
+
+    reference = reference_speech(reading)
+
+    return (
+            f'<p>The reading is from {reference}.</p> '
+            f'<break strength="medium" time="750ms"/> {scripture_text}'
+    )
+
+def reading_range_speech(reading, start=None, end=None):
+    passage = reading.get_passage()
+
+    verses = []
+    for verse in passage[start:end]:
+        stripped = markup_re.sub('', verse.content)
+        verses.append(f'<p>{stripped}</p>')
+
+    return '\n'.join(verses)
 
 def estimate_group_size(passage):
     """Estimate how many verses need to be in each group."""
@@ -198,10 +184,11 @@ def estimate_group_size(passage):
     prelude = len("<p>There are 29 readings for Tuesday, January 3. The reading is from Saint Paul's <say-as interpret-as=\"ordinal\">2</say-as> letter to the Thessalonians</p>")
     postlude = len('<p>Would you like to hear the next reading?</p>')
     group_postlude = len('<p>This is a long reading. Would you like me to continue?</p>')
+    markup_len = len('<p></p>\n')
 
-    verse_count = passage.count()
+    verse_lengths = [len(p.content) + markup_len for p in passage]
 
-    passage_len = prelude + get_passage_len(passage) + postlude
+    passage_len = prelude + sum(verse_lengths) + postlude
     if passage_len < MAX_SPEECH_LENGTH:
         return None
 
@@ -211,13 +198,13 @@ def estimate_group_size(passage):
 
     while True:
         # estimate the number of verses per group
-        group_size = math.ceil(verse_count / group_count)
+        group_size = math.ceil(len(verse_lengths) / group_count)
 
         # Try building each group and fail if one is too big
         for g in range(group_count):
             start = g * group_size
             end = start + group_size
-            length = get_passage_len(passage, start, end)
+            length = sum(verse_lengths[start:end])
 
             if g == 0:
                 length += prelude
