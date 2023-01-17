@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class DayAPITestCase(APITestCase):
-    fixtures = ['calendarium.json']
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_get_day(self):
         with open(BASE_DIR / 'data/last_bday.json') as f:

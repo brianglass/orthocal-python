@@ -32,6 +32,15 @@ class ReadingSerializer(serializers.Serializer):
             return VerseSerializer(passage, many=True, context=self.context).data
 
 
+class StorySerializer(serializers.Serializer):
+    title = serializers.CharField()
+    story = serializers.SerializerMethodField()
+
+    def get_story(self, instance):
+        if not self.context.get('exclude_passage'):
+            return instance.story
+
+
 class DaySerializer(serializers.Serializer):
     pascha_distance = serializers.IntegerField(source='pdist')
     julian_day_number = serializers.IntegerField(source='jdn')
@@ -56,6 +65,8 @@ class DaySerializer(serializers.Serializer):
     service_notes = ListField(child=serializers.CharField())
 
     readings = serializers.SerializerMethodField()
+
+    stories = StorySerializer(many=True)
 
     def get_readings(self, instance):
         readings = instance.get_readings()

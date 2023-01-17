@@ -6,6 +6,8 @@ from .. import datetools, liturgics
 
 
 class TestYear(TestCase):
+    fixtures = ['calendarium.json', 'commemorations.json']
+
     def test_pascha(self):
         year = liturgics.Year(2018, False)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
@@ -72,7 +74,7 @@ class TestYear(TestCase):
 
 
 class TestDay(TestCase):
-    fixtures = ['calendarium.json']
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     async def test_no_memorial(self):
         """Memorial Saturday with no memorial readings should not have John 5.24-30."""

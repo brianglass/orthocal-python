@@ -96,16 +96,16 @@ async def ical(request, cal):
 async def ical_description(day):
     description = ''
 
-    if day.feasts:
-        description += '; '.join(day.feasts) + '\n\n'
-
-    if day.saints:
-        description += '; '.join(day.saints) + '\n\n'
-
     if day.fast_exception_desc and day.fast_level:
         description += f'{day.fast_level_desc} \u2013 {day.fast_exception_desc}\n\n'
     else:
         description += f'{day.fast_level_desc}\n\n'
+
+    if day.feasts:
+        description += ' \u2022 '.join(day.feasts) + '\n\n'
+
+    if day.saints:
+        description += ' \u2022 '.join(day.saints) + '\n\n'
 
     for reading in await day.aget_readings():
         if reading.desc:

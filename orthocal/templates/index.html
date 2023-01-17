@@ -42,7 +42,7 @@
 				{% endif %}
 
 				<section class="readings">
-					<h3>Readings (KJV)</h3>
+					<h2>Scripture Readings (KJV)</h2>
 
 					{% for reading in day.get_readings %}
 					<section class="passage">
@@ -56,6 +56,18 @@
 						{% endfor %}
 					</section>
 					{% endfor %}
+
+					{% if day.stories %}
+						<h2>Commemorations (<a href="http://abbamoses.com/months/{{ date|date:"F"|lower }}.html">abbamoses.com</a>)</h2>
+
+						{% for reading in day.stories %}
+						<section class="passage">
+							<h4>{{ reading.title }}</h4>
+
+							{{ reading.story|safe }}
+						</section>
+						{% endfor %}
+					{% endif %}
 				</section>
 	</article>
 {% endblock %}

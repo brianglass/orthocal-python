@@ -10,6 +10,11 @@ body {
 h1, h2, h3, h4 {
     text-align: center;
 }
+section.readings h2 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0.5em;
+	padding-top: 0.75em;
+}
 header {
     margin: 0;
     padding: 4% 0 0 0;
@@ -134,29 +139,13 @@ label {
     text-align: center;
     margin: 0;
     padding: 0;
-}
-.commemorations li {
-    display: inline;
-}
-.commemorations li:last-child:after {
-    content: "";
-}
-.commemorations li:after {
-    content: "; ";
+	list-style-type: none;
 }
 .feasts ul {
     text-align: center;
     margin: 0;
     padding: 0;
-}
-.feasts li {
-    display: inline;
-}
-.feasts li:last-child:after {
-    content: "";
-}
-.feasts li:after {
-    content: "; ";
+	list-style-type: none;
 }
 .feasts h3, .commemorations h3 {
     margin-bottom: 3px;
@@ -209,6 +198,26 @@ table.month tr:first-child th {
 p.feast {
 	font-weight: bold;
 	color: black;
+}
+
+table.month ul {
+	list-style-type: none;
+	margin: 0 0 1em 0;
+	padding: 0;
+}
+table.month li {
+	display: inline;
+}
+table.month li + li:before {
+	content: "●";
+	padding: 0 0.5vw;
+}
+ul.feasts li {
+	font-weight: bold;
+	color: black;
+}
+ul.saints li {
+	font-size: 75%;
 }
 
 p.day-number {

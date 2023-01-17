@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class DaySerializerTestCase(TestCase):
-    fixtures = ['calendarium.json']
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_theophany(self):
         # Theophany

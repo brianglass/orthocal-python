@@ -10,22 +10,38 @@
 		{% endif %}
 
 		{% if day.service_notes %}
-			<p>{{ day.service_notes|join:"; " }}</p>
+		<ul>
+			{% for note in day.service_notes %}
+			<li>{{ note }}</li>
+			{% endfor %}
+		</ul>
 		{% endif %}
 
 		{% if day.weekday == 0 or day.pdist > -9 and day.pdist < 7 %}
 			{% if day.titles %}
-				<p>{{ day.titles|join:"; " }}</p>
+			<ul>
+				{% for title in day.titles %}
+				<li>{{ title }}</li>
+				{% endfor %}
+			</ul>
 			{% endif %}
 		{% endif %}
 
 
 		{% if day.feasts %}
-		<p class="feast">{{ day.feasts|join:"; " }}</p>
+		<ul class="feasts">
+			{% for feast in day.feasts %}
+			<li>{{ feast }}</li>
+			{% endfor %}
+		</ul>
 		{% endif %}
 
 		{% if day.saints %}
-		<p>{{ day.saints|join:"; " }}</p>
+		<ul class="saints">
+			{% for saint in day.saints %}
+			<li>{{ saint }}</li>
+			{% endfor %}
+		</ul>
 		{% endif %}
 	</a>
 </td>

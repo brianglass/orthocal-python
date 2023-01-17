@@ -1,2022 +1,2447 @@
-[{
-	"pascha_distance": 244,
-	"julian_day_number": 2459581,
-	"year": 2022,
-	"month": 1,
-	"day": 1,
-	"weekday": 6,
-	"tone": 2,
-	"titles": [
-		"Saturday of the 28th week after Pentecost"
-	],
-	"feast_level": 6,
-	"feast_level_description": "Red cross circle (great feast typikon symbol)",
-	"feasts": [
-		"Saturday before Theophany",
-		"Circumcision of Our Lord; St Basil the Great"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 11,
-	"fast_exception_desc": "Fast Free",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 1 - Genesis 17.1-2, 4, 5-7, 8, 9-10, 11-12, 14",
-			"short_display": "Gen 17.1-2, 4, 5-7, 8, 9-10, 11-12, 14",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Proverbs 8.22-30",
-			"short_display": "Prov 8.22-30",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Proverbs 10.31-11.12",
-			"short_display": "Prov 10.31-11.12",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 10.9-16",
-			"short_display": "John 10.9-16",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Saturday before Theophany",
-			"display": "1 Timothy 3.14-4.5",
-			"short_display": "1 Tim 3.14-4.5",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Circumcision",
-			"display": "Colossians 2.8-12",
-			"short_display": "Col 2.8-12",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Basil",
-			"display": "Hebrews 7.26-8.2",
-			"short_display": "Heb 7.26-8.2",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "Saturday before Theophany",
-			"display": "Matthew 3.1-11",
-			"short_display": "Matt 3.1-11",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "Circumcision",
-			"display": "Luke 2.20-21, 40-52",
-			"short_display": "Luke 2.20-21, 40-52",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "St Basil",
-			"display": "Luke 6.17-23",
-			"short_display": "Luke 6.17-23",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 245,
-	"julian_day_number": 2459582,
-	"year": 2022,
-	"month": 1,
-	"day": 2,
-	"weekday": 0,
-	"tone": 3,
-	"titles": [
-		"28th Sunday after Pentecost"
-	],
-	"feast_level": 4,
-	"feast_level_description": "Red cross (polyeleos typikon symbol)",
-	"feasts": [
-		"Sunday before Theophany",
-		"Repose of St Seraphim of Sarov"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 11,
-	"fast_exception_desc": "Fast Free",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 3.1-9",
-			"short_display": "Wis 3.1-9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 5.15-6.3",
-			"short_display": "Wis 5.15-6.3",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 4.7-15",
-			"short_display": "Wis 4.7-15",
-			"passage": null
-		},
-		{
-			"source": "6th Matins Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 24.36-53",
-			"short_display": "Luke 24.36-53",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Sunday before Theophany",
-			"display": "2 Timothy 4.5-8",
-			"short_display": "2 Tim 4.5-8",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Seraphim",
-			"display": "Galatians 5.22-6.2",
-			"short_display": "Gal 5.22-6.2",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "Sunday before Theophany",
-			"display": "Mark 1.1-8",
-			"short_display": "Mark 1.1-8",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "St Seraphim",
-			"display": "Luke 6.17-23",
-			"short_display": "Luke 6.17-23",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 246,
-	"julian_day_number": 2459583,
-	"year": 2022,
-	"month": 1,
-	"day": 3,
-	"weekday": 1,
-	"tone": 3,
-	"titles": [
-		"Monday of the 29th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 11,
-	"fast_exception_desc": "Fast Free",
-	"saints": [
-		"Prophet Malachi"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 3.5-11, 17-19",
-			"short_display": "Heb 3.5-11, 17-19",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 19.37-44",
-			"short_display": "Luke 19.37-44",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 247,
-	"julian_day_number": 2459584,
-	"year": 2022,
-	"month": 1,
-	"day": 4,
-	"weekday": 2,
-	"tone": 3,
-	"titles": [
-		"Tuesday of the 29th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 11,
-	"fast_exception_desc": "Fast Free",
-	"saints": [
-		"Synaxis of Seventy Apostles"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 4.1-13",
-			"short_display": "Heb 4.1-13",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 19.45-48",
-			"short_display": "Luke 19.45-48",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 248,
-	"julian_day_number": 2459585,
-	"year": 2022,
-	"month": 1,
-	"day": 5,
-	"weekday": 3,
-	"tone": 3,
-	"titles": [
-		"Wednesday of the 29th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": [
-		"Eve of Theophany"
-	],
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 9,
-	"fast_exception_desc": "Strict Fast",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "1st Hour, Prophecy",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 35.1-10",
-			"short_display": "Isa 35.1-10",
-			"passage": null
-		},
-		{
-			"source": "1st Hour, Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Acts 13.25-33",
-			"short_display": "Acts 13.25-33",
-			"passage": null
-		},
-		{
-			"source": "1st Hour, Gospel",
-			"book": "Matthew",
-			"description": "",
-			"display": "Matthew 3.1-11",
-			"short_display": "Matt 3.1-11",
-			"passage": null
-		},
-		{
-			"source": "3rd Hour, Prophecy",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 1.16-20",
-			"short_display": "Isa 1.16-20",
-			"passage": null
-		},
-		{
-			"source": "3rd Hour, Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Acts 19.1-8",
-			"short_display": "Acts 19.1-8",
-			"passage": null
-		},
-		{
-			"source": "3rd Hour, Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 1.1-8",
-			"short_display": "Mark 1.1-8",
-			"passage": null
-		},
-		{
-			"source": "6th Hour, Prophecy",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 12.3-6",
-			"short_display": "Isa 12.3-6",
-			"passage": null
-		},
-		{
-			"source": "6th Hour, Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Romans 6.3-11",
-			"short_display": "Rom 6.3-11",
-			"passage": null
-		},
-		{
-			"source": "6th Hour, Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 1.9-15",
-			"short_display": "Mark 1.9-15",
-			"passage": null
-		},
-		{
-			"source": "9th Hour, Prophecy",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 49.8-15",
-			"short_display": "Isa 49.8-15",
-			"passage": null
-		},
-		{
-			"source": "9th Hour, Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Titus 2.11-14, 3.4-7",
-			"short_display": "Titus 2.11-14, 3.4-7",
-			"passage": null
-		},
-		{
-			"source": "9th Hour, Gospel",
-			"book": "Matthew",
-			"description": "",
-			"display": "Matthew 3.13-17",
-			"short_display": "Matt 3.13-17",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Genesis 1.1-13",
-			"short_display": "Gen 1.1-13",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Exodus 14.15-18, 21-23, 27-29",
-			"short_display": "Exod 14.15-18, 21-23, 27-29",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Exodus 15.22-16.1",
-			"short_display": "Exod 15.22-16.1",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Joshua 3.7-8, 15-17",
-			"short_display": "Josh 3.7-8, 15-17",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "4[2] Kings 2.6-14",
-			"short_display": "4 Kgs 2.6-14",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "4[2] Kings 5.9-14",
-			"short_display": "4 Kgs 5.9-14",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 1.16-20",
-			"short_display": "Isa 1.16-20",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Genesis 32.1-10",
-			"short_display": "Gen 32.1-10",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Exodus 2.5-10",
-			"short_display": "Exod 2.5-10",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Judges 6.36-40",
-			"short_display": "Judges 6.36-40",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "3[1] Kings 18.30-39",
-			"short_display": "3 Kgs 18.30-39",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "4[2] Kings 2.19-22",
-			"short_display": "4 Kgs 2.19-22",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 49.8-15",
-			"short_display": "Isa 49.8-15",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Eve of Theophany",
-			"display": "1 Corinthians 9.19-27",
-			"short_display": "1 Cor 9.19-27",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "Eve of Theophany",
-			"display": "Luke 3.1-18",
-			"short_display": "Luke 3.1-18",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 35.1-10",
-			"short_display": "Isa 35.1-10",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 55.1-13",
-			"short_display": "Isa 55.1-13",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 12.3-6",
-			"short_display": "Isa 12.3-6",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "Apostol",
-			"description": "Epistle",
-			"display": "1 Corinthians 10.1-4",
-			"short_display": "1 Cor 10.1-4",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "Mark",
-			"description": "Gospel",
-			"display": "Mark 1.9-11",
-			"short_display": "Mark 1.9-11",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 249,
-	"julian_day_number": 2459586,
-	"year": 2022,
-	"month": 1,
-	"day": 6,
-	"weekday": 4,
-	"tone": 3,
-	"titles": [
-		"Thursday of the 29th week after Pentecost"
-	],
-	"feast_level": 8,
-	"feast_level_description": "Major feast Lord",
-	"feasts": [
-		"Theophany of Our Lord and Savior Jesus Christ"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 11,
-	"fast_exception_desc": "Fast Free",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Matins Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 1.9-11",
-			"short_display": "Mark 1.9-11",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Theophany",
-			"display": "Titus 2.11-14, 3.4-7",
-			"short_display": "Titus 2.11-14, 3.4-7",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "Theophany",
-			"display": "Matthew 3.13-17",
-			"short_display": "Matt 3.13-17",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 35.1-10",
-			"short_display": "Isa 35.1-10",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 55.1-13",
-			"short_display": "Isa 55.1-13",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "OT",
-			"description": "",
-			"display": "Isaiah 12.3-6",
-			"short_display": "Isa 12.3-6",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "Apostol",
-			"description": "Epistle",
-			"display": "1 Corinthians 10.1-4",
-			"short_display": "1 Cor 10.1-4",
-			"passage": null
-		},
-		{
-			"source": "Great Blessing of Waters",
-			"book": "Mark",
-			"description": "Gospel",
-			"display": "Mark 1.9-11",
-			"short_display": "Mark 1.9-11",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 250,
-	"julian_day_number": 2459587,
-	"year": 2022,
-	"month": 1,
-	"day": 7,
-	"weekday": 5,
-	"tone": 3,
-	"titles": [
-		"Friday of the 29th week after Pentecost"
-	],
-	"feast_level": 3,
-	"feast_level_description": "Red squigg (doxology typikon symbol)",
-	"feasts": [
-		"Synaxis of St John the Baptist"
-	],
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 2,
-	"fast_exception_desc": "Fish, Wine and Oil are Allowed",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Forerunner",
-			"display": "Acts 19.1-8",
-			"short_display": "Acts 19.1-8",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 7.18-25",
-			"short_display": "Heb 7.18-25",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "John",
-			"description": "Forerunner",
-			"display": "John 1.29-34",
-			"short_display": "John 1.29-34",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 20.19-26",
-			"short_display": "Luke 20.19-26",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 251,
-	"julian_day_number": 2459588,
-	"year": 2022,
-	"month": 1,
-	"day": 8,
-	"weekday": 6,
-	"tone": 3,
-	"titles": [
-		"Saturday of the 29th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": [
-		"Saturday after Theophany"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. George the Chozebite"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Saturday after Theophany",
-			"display": "Ephesians 6.10-17",
-			"short_display": "Eph 6.10-17",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Ephesians 2.11-13",
-			"short_display": "Eph 2.11-13",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "Saturday after Theophany",
-			"display": "Matthew 4.1-11",
-			"short_display": "Matt 4.1-11",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 12.32-40",
-			"short_display": "Luke 12.32-40",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 252,
-	"julian_day_number": 2459589,
-	"year": 2022,
-	"month": 1,
-	"day": 9,
-	"weekday": 0,
-	"tone": 4,
-	"titles": [
-		"29th Sunday after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": [
-		"Sunday after Theophany"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Martyr Polyeuctus of Melitene in Armenia"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "7th Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 20.1-10",
-			"short_display": "John 20.1-10",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Sunday after Theophany",
-			"display": "Ephesians 4.7-13",
-			"short_display": "Eph 4.7-13",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "Sunday after Theophany",
-			"display": "Matthew 4.12-17",
-			"short_display": "Matt 4.12-17",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 253,
-	"julian_day_number": 2459590,
-	"year": 2022,
-	"month": 1,
-	"day": 10,
-	"weekday": 1,
-	"tone": 4,
-	"titles": [
-		"Monday of the 30th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"St Gregory of Nyssa"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 8.7-13",
-			"short_display": "Heb 8.7-13",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 20.27-44",
-			"short_display": "Luke 20.27-44",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 254,
-	"julian_day_number": 2459591,
-	"year": 2022,
-	"month": 1,
-	"day": 11,
-	"weekday": 2,
-	"tone": 4,
-	"titles": [
-		"Tuesday of the 30th week after Pentecost"
-	],
-	"feast_level": 4,
-	"feast_level_description": "Red cross (polyeleos typikon symbol)",
-	"feasts": [
-		"Ven. Theodosius the Great"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 3.1-9",
-			"short_display": "Wis 3.1-9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 5.15-6.3",
-			"short_display": "Wis 5.15-6.3",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 4.7-15",
-			"short_display": "Wis 4.7-15",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 6.17-23",
-			"short_display": "Luke 6.17-23",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 9.8-10, 15-23",
-			"short_display": "Heb 9.8-10, 15-23",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Theodosius",
-			"display": "2 Corinthians 4.6-15",
-			"short_display": "2 Cor 4.6-15",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 21.12-19",
-			"short_display": "Luke 21.12-19",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "St Theodosius",
-			"display": "Matthew 11.27-30",
-			"short_display": "Matt 11.27-30",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 255,
-	"julian_day_number": 2459592,
-	"year": 2022,
-	"month": 1,
-	"day": 12,
-	"weekday": 3,
-	"tone": 4,
-	"titles": [
-		"Wednesday of the 30th week after Pentecost"
-	],
-	"feast_level": 3,
-	"feast_level_description": "Red squigg (doxology typikon symbol)",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"St Sava, Archbishop of Serbia"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 10.1-18",
-			"short_display": "Heb 10.1-18",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 21.5-7, 10-11, 20-24",
-			"short_display": "Luke 21.5-7, 10-11, 20-24",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 256,
-	"julian_day_number": 2459593,
-	"year": 2022,
-	"month": 1,
-	"day": 13,
-	"weekday": 4,
-	"tone": 4,
-	"titles": [
-		"Thursday of the 30th week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Martyrs Hermylus and Stratonicus"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 10.35-11.7",
-			"short_display": "Heb 10.35-11.7",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 21.28-33",
-			"short_display": "Luke 21.28-33",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 257,
-	"julian_day_number": 2459594,
-	"year": 2022,
-	"month": 1,
-	"day": 14,
-	"weekday": 5,
-	"tone": 4,
-	"titles": [
-		"Friday of the 30th week after Pentecost"
-	],
-	"feast_level": 4,
-	"feast_level_description": "Red cross (polyeleos typikon symbol)",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"St Nino of Georgia"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 11.8, 11-16",
-			"short_display": "Heb 11.8, 11-16",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 21.37-22.8",
-			"short_display": "Luke 21.37-22.8",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 258,
-	"julian_day_number": 2459595,
-	"year": 2022,
-	"month": 1,
-	"day": 15,
-	"weekday": 6,
-	"tone": 4,
-	"titles": [
-		"Saturday of the 30th week after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Paul of Thebes and John Calabytes"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Ephesians 5.1-8",
-			"short_display": "Eph 5.1-8",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 13.18-29",
-			"short_display": "Luke 13.18-29",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 259,
-	"julian_day_number": 2459596,
-	"year": 2022,
-	"month": 1,
-	"day": 16,
-	"weekday": 0,
-	"tone": 5,
-	"titles": [
-		"30th Sunday after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Veneration of Chains of Apostle Peter"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "8th Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 20.11-18",
-			"short_display": "John 20.11-18",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 18.18-27",
-			"short_display": "Luke 18.18-27",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Colossians 3.12-16",
-			"short_display": "Col 3.12-16",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 260,
-	"julian_day_number": 2459597,
-	"year": 2022,
-	"month": 1,
-	"day": 17,
-	"weekday": 1,
-	"tone": 5,
-	"titles": [
-		"Monday of the 31st week after Pentecost"
-	],
-	"feast_level": 5,
-	"feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-	"feasts": [
-		"Ven. Godbearing Anthony the Great"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 2,
-	"fast_exception_desc": "Fish, Wine and Oil are Allowed",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 5.15-6.3",
-			"short_display": "Wis 5.15-6.3",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 3.1-9",
-			"short_display": "Wis 3.1-9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 4.7-15",
-			"short_display": "Wis 4.7-15",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "Matthew",
-			"description": "",
-			"display": "Matthew 11.27-30",
-			"short_display": "Matt 11.27-30",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 11.17-23, 27-31",
-			"short_display": "Heb 11.17-23, 27-31",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Anthony",
-			"display": "Hebrews 13.17-21",
-			"short_display": "Heb 13.17-21",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 8.11-21",
-			"short_display": "Mark 8.11-21",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "St Anthony",
-			"display": "Luke 6.17-23",
-			"short_display": "Luke 6.17-23",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 261,
-	"julian_day_number": 2459598,
-	"year": 2022,
-	"month": 1,
-	"day": 18,
-	"weekday": 2,
-	"tone": 5,
-	"titles": [
-		"Tuesday of the 31st week after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ss Athanasius the Great and Cyril of Alexandria"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Hebrews 12.25-26, 13.22-25",
-			"short_display": "Heb 12.25-26, 13.22-25",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 8.22-26",
-			"short_display": "Mark 8.22-26",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 262,
-	"julian_day_number": 2459599,
-	"year": 2022,
-	"month": 1,
-	"day": 19,
-	"weekday": 3,
-	"tone": 5,
-	"titles": [
-		"Wednesday of the 31st week after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Macarius the Great"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 1.1-18",
-			"short_display": "Jas 1.1-18",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 8.30-34",
-			"short_display": "Mark 8.30-34",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 263,
-	"julian_day_number": 2459600,
-	"year": 2022,
-	"month": 1,
-	"day": 20,
-	"weekday": 4,
-	"tone": 5,
-	"titles": [
-		"Thursday of the 31st week after Pentecost"
-	],
-	"feast_level": 5,
-	"feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-	"feasts": [
-		"Ven. Euthymius the Great"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 2,
-	"fast_exception_desc": "Fish, Wine and Oil are Allowed",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 5.15-6.3",
-			"short_display": "Wis 5.15-6.3",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 3.1-9",
-			"short_display": "Wis 3.1-9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 4.7-15",
-			"short_display": "Wis 4.7-15",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "Matthew",
-			"description": "",
-			"display": "Matthew 11.27-30",
-			"short_display": "Matt 11.27-30",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 1.19-27",
-			"short_display": "Jas 1.19-27",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Euthymius",
-			"display": "Hebrews 13.17-21",
-			"short_display": "Heb 13.17-21",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 9.10-16",
-			"short_display": "Mark 9.10-16",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "St Euthymius",
-			"display": "Luke 6.17-23",
-			"short_display": "Luke 6.17-23",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 264,
-	"julian_day_number": 2459601,
-	"year": 2022,
-	"month": 1,
-	"day": 21,
-	"weekday": 5,
-	"tone": 5,
-	"titles": [
-		"Friday of the 31st week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Maximus the Confessor"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 2.1-13",
-			"short_display": "Jas 2.1-13",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 9.33-41",
-			"short_display": "Mark 9.33-41",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 265,
-	"julian_day_number": 2459602,
-	"year": 2022,
-	"month": 1,
-	"day": 22,
-	"weekday": 6,
-	"tone": 5,
-	"titles": [
-		"Saturday of the 31st week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Apostle Timothy of the Seventy"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "Colossians 1.3-6",
-			"short_display": "Col 1.3-6",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 14.1-11",
-			"short_display": "Luke 14.1-11",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 266,
-	"julian_day_number": 2459603,
-	"year": 2022,
-	"month": 1,
-	"day": 23,
-	"weekday": 0,
-	"tone": 6,
-	"titles": [
-		"31st Sunday after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Hieromartyr Clement and Martyr Agathangel"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "9th Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 20.19-31",
-			"short_display": "John 20.19-31",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "1 Timothy 1.15-17",
-			"short_display": "1 Tim 1.15-17",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 18.35-43",
-			"short_display": "Luke 18.35-43",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 267,
-	"julian_day_number": 2459604,
-	"year": 2022,
-	"month": 1,
-	"day": 24,
-	"weekday": 1,
-	"tone": 6,
-	"titles": [
-		"Monday of the 32nd week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Xenia of Rome"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 2.14-26",
-			"short_display": "Jas 2.14-26",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 9.42-10.1",
-			"short_display": "Mark 9.42-10.1",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 268,
-	"julian_day_number": 2459605,
-	"year": 2022,
-	"month": 1,
-	"day": 25,
-	"weekday": 2,
-	"tone": 6,
-	"titles": [
-		"Tuesday of the 32nd week after Pentecost"
-	],
-	"feast_level": 4,
-	"feast_level_description": "Red cross (polyeleos typikon symbol)",
-	"feasts": [
-		"St Gregory the Theologian"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 2 - Proverbs 10, 3, 8",
-			"short_display": "Prov 10, 3, 8",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 4 - Proverbs 10; Wisdom of Solomon 6, 7, 8, 9",
-			"short_display": "Prov 10; Wis 6, 7, 8, 9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 4.7-15",
-			"short_display": "Wis 4.7-15",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 10.1-9",
-			"short_display": "John 10.1-9",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 3.1-10",
-			"short_display": "Jas 3.1-10",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St Gregory",
-			"display": "1 Corinthians 12.7-11",
-			"short_display": "1 Cor 12.7-11",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 10.2-12",
-			"short_display": "Mark 10.2-12",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "John",
-			"description": "St Gregory",
-			"display": "John 10.9-16",
-			"short_display": "John 10.9-16",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 269,
-	"julian_day_number": 2459606,
-	"year": 2022,
-	"month": 1,
-	"day": 26,
-	"weekday": 3,
-	"tone": 6,
-	"titles": [
-		"Wednesday of the 32nd week after Pentecost"
-	],
-	"feast_level": 0,
-	"feast_level_description": "Liturgy",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Xenophon and Mary"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 3.11-4.6",
-			"short_display": "Jas 3.11-4.6",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 10.11-16",
-			"short_display": "Mark 10.11-16",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 270,
-	"julian_day_number": 2459607,
-	"year": 2022,
-	"month": 1,
-	"day": 27,
-	"weekday": 4,
-	"tone": 6,
-	"titles": [
-		"Thursday of the 32nd week after Pentecost"
-	],
-	"feast_level": 4,
-	"feast_level_description": "Red cross (polyeleos typikon symbol)",
-	"feasts": [
-		"Transl. Relics of St John Chrysostom"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 2 - Proverbs 10, 3, 8",
-			"short_display": "Prov 10, 3, 8",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 4 - Proverbs 10; Wisdom of Solomon 6, 7, 8, 9",
-			"short_display": "Prov 10; Wis 6, 7, 8, 9",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Composite 5 - Wisdom of Solomon 4, 6, 7, 2",
-			"short_display": "Wis 4, 6, 7, 2",
-			"passage": null
-		},
-		{
-			"source": "Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 10.1-9",
-			"short_display": "John 10.1-9",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 4.7-5.9",
-			"short_display": "Jas 4.7-5.9",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "St John",
-			"display": "Hebrews 7.26-8.2",
-			"short_display": "Heb 7.26-8.2",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 10.17-27",
-			"short_display": "Mark 10.17-27",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "John",
-			"description": "St John",
-			"display": "John 10.9-16",
-			"short_display": "John 10.9-16",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 271,
-	"julian_day_number": 2459608,
-	"year": 2022,
-	"month": 1,
-	"day": 28,
-	"weekday": 5,
-	"tone": 6,
-	"titles": [
-		"Friday of the 32nd week after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 1,
-	"fast_level_desc": "Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Ven. Ephrem the Syrian"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "1 Peter 1.1-2, 10-12, 2.6-10",
-			"short_display": "1 Peter 1.1-2, 10-12, 2.6-10",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 10.23-32",
-			"short_display": "Mark 10.23-32",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 272,
-	"julian_day_number": 2459609,
-	"year": 2022,
-	"month": 1,
-	"day": 29,
-	"weekday": 6,
-	"tone": 6,
-	"titles": [
-		"Saturday of the 32nd week after Pentecost"
-	],
-	"feast_level": 2,
-	"feast_level_description": "Black squigg (6-stich typikon symbol)",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Trans. Rel. Ignatius the Godbearer"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "1 Thessalonians 5.14-23",
-			"short_display": "1 Thess 5.14-23",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Luke",
-			"description": "",
-			"display": "Luke 16.10-15",
-			"short_display": "Luke 16.10-15",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 273,
-	"julian_day_number": 2459610,
-	"year": 2022,
-	"month": 1,
-	"day": 30,
-	"weekday": 0,
-	"tone": 7,
-	"titles": [
-		"32nd Sunday after Pentecost"
-	],
-	"feast_level": 5,
-	"feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-	"feasts": [
-		"Synaxis 3 Hierarchs: Basil the Great, Gregory the Theologian, John Chrysostom"
-	],
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 2,
-	"fast_exception_desc": "Fish, Wine and Oil are Allowed",
-	"saints": null,
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Deuteronomy 1.8-11, 15-17",
-			"short_display": "Deut 1.8-11, 15-17",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Deuteronomy 10.14-21",
-			"short_display": "Deut 10.14-21",
-			"passage": null
-		},
-		{
-			"source": "Vespers",
-			"book": "OT",
-			"description": "",
-			"display": "Wisdom of Solomon 3.1-9",
-			"short_display": "Wis 3.1-9",
-			"passage": null
-		},
-		{
-			"source": "10th Matins Gospel",
-			"book": "John",
-			"description": "",
-			"display": "John 21.1-14",
-			"short_display": "John 21.1-14",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "1 Timothy 1.15-17",
-			"short_display": "1 Tim 1.15-17",
-			"passage": null
-		},
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "Hierarchs",
-			"display": "Hebrews 13.7-16",
-			"short_display": "Heb 13.7-16",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "",
-			"display": "Matthew 15.21-28",
-			"short_display": "Matt 15.21-28",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Matthew",
-			"description": "Hierarchs",
-			"display": "Matthew 5.14-19",
-			"short_display": "Matt 5.14-19",
-			"passage": null
-		}
-	]
-}
-, {
-	"pascha_distance": 274,
-	"julian_day_number": 2459611,
-	"year": 2022,
-	"month": 1,
-	"day": 31,
-	"weekday": 1,
-	"tone": 7,
-	"titles": [
-		"Monday of the 33rd week after Pentecost"
-	],
-	"feast_level": 3,
-	"feast_level_description": "Red squigg (doxology typikon symbol)",
-	"feasts": null,
-	"fast_level": 0,
-	"fast_level_desc": "No Fast",
-	"fast_exception": 0,
-	"fast_exception_desc": "",
-	"saints": [
-		"Unmercenaries Cyrus and John"
-	],
-	"service_notes": null,
-	"readings": [
-		{
-			"source": "Epistle",
-			"book": "Apostol",
-			"description": "",
-			"display": "James 2.14-26",
-			"short_display": "Jas 2.14-26",
-			"passage": null
-		},
-		{
-			"source": "Gospel",
-			"book": "Mark",
-			"description": "",
-			"display": "Mark 10.46-52",
-			"short_display": "Mark 10.46-52",
-			"passage": null
-		}
-	]
-}
+[
+    {
+        "pascha_distance": 244,
+        "julian_day_number": 2459581,
+        "year": 2022,
+        "month": 1,
+        "day": 1,
+        "weekday": 6,
+        "tone": 2,
+        "titles": [
+            "Saturday of the 28th week after Pentecost"
+        ],
+        "feast_level": 6,
+        "feast_level_description": "Red cross circle (great feast typikon symbol)",
+        "feasts": [
+            "Saturday before Theophany",
+            "Circumcision of Our Lord; St Basil the Great"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 11,
+        "fast_exception_desc": "Fast Free",
+        "saints": [
+            "St Gregory, Bishop of Nazianzus (374), father of St Gregory the Theologian",
+            "St Emilia (375), mother of Sts Macrina, Basil the Great and Gregory of Nyssa, Peter of Sebaste, and Theosevia"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 1 - Genesis 17.1-2, 4, 5-7, 8, 9-10, 11-12, 14",
+                "short_display": "Gen 17.1-2, 4, 5-7, 8, 9-10, 11-12, 14",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Proverbs 8.22-30",
+                "short_display": "Prov 8.22-30",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Proverbs 10.31-11.12",
+                "short_display": "Prov 10.31-11.12",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 10.9-16",
+                "short_display": "John 10.9-16",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Saturday before Theophany",
+                "display": "1 Timothy 3.14-4.5",
+                "short_display": "1 Tim 3.14-4.5",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Circumcision",
+                "display": "Colossians 2.8-12",
+                "short_display": "Col 2.8-12",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Basil",
+                "display": "Hebrews 7.26-8.2",
+                "short_display": "Heb 7.26-8.2",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Saturday before Theophany",
+                "display": "Matthew 3.1-11",
+                "short_display": "Matt 3.1-11",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "Circumcision",
+                "display": "Luke 2.20-21, 40-52",
+                "short_display": "Luke 2.20-21, 40-52",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "St Basil",
+                "display": "Luke 6.17-23",
+                "short_display": "Luke 6.17-23",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "The Circumcision of Our Lord Jesus Christ",
+                "story": null
+            },
+            {
+                "title": "Our Father among the Saints Basil the Great (379).",
+                "story": null
+            },
+            {
+                "title": "St Gregory, Bishop of Nazianzus (374), father of St Gregory the Theologian",
+                "story": null
+            },
+            {
+                "title": "St Emilia (375), mother of Sts Macrina, Basil the Great and Gregory of Nyssa, Peter of Sebaste, and Theosevia",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 245,
+        "julian_day_number": 2459582,
+        "year": 2022,
+        "month": 1,
+        "day": 2,
+        "weekday": 0,
+        "tone": 3,
+        "titles": [
+            "28th Sunday after Pentecost"
+        ],
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
+        "feasts": [
+            "Sunday before Theophany",
+            "Repose of St Seraphim of Sarov"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 11,
+        "fast_exception_desc": "Fast Free",
+        "saints": [
+            "Venerable Juliana of Lazarevskoye (1604)",
+            "Holy New Martyr George the Georgian (1770)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 3.1-9",
+                "short_display": "Wis 3.1-9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 5.15-6.3",
+                "short_display": "Wis 5.15-6.3",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 4.7-15",
+                "short_display": "Wis 4.7-15",
+                "passage": null
+            },
+            {
+                "source": "6th Matins Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 24.36-53",
+                "short_display": "Luke 24.36-53",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Sunday before Theophany",
+                "display": "2 Timothy 4.5-8",
+                "short_display": "2 Tim 4.5-8",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Seraphim",
+                "display": "Galatians 5.22-6.2",
+                "short_display": "Gal 5.22-6.2",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "Sunday before Theophany",
+                "display": "Mark 1.1-8",
+                "short_display": "Mark 1.1-8",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "St Seraphim",
+                "display": "Luke 6.17-23",
+                "short_display": "Luke 6.17-23",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "St Seraphim of Sarov (1833)",
+                "story": null
+            },
+            {
+                "title": "St Sylvester, Pope of Rome (335)",
+                "story": null
+            },
+            {
+                "title": "Venerable Juliana of Lazarevskoye (1604)",
+                "story": null
+            },
+            {
+                "title": "Holy New Martyr George the Georgian (1770)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 246,
+        "julian_day_number": 2459583,
+        "year": 2022,
+        "month": 1,
+        "day": 3,
+        "weekday": 1,
+        "tone": 3,
+        "titles": [
+            "Monday of the 29th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 11,
+        "fast_exception_desc": "Fast Free",
+        "saints": [
+            "Prophet Malachi",
+            "Holy Martyr Gordius of Caesarea (4th c.)",
+            "Our Holy Mother Genevieve of Paris (~502)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 3.5-11, 17-19",
+                "short_display": "Heb 3.5-11, 17-19",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 19.37-44",
+                "short_display": "Luke 19.37-44",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Prophet Malachi (~400 BC)",
+                "story": null
+            },
+            {
+                "title": "Holy Martyr Gordius of Caesarea (4th c.)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Mother Genevieve of Paris (~502)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 247,
+        "julian_day_number": 2459584,
+        "year": 2022,
+        "month": 1,
+        "day": 4,
+        "weekday": 2,
+        "tone": 3,
+        "titles": [
+            "Tuesday of the 29th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 11,
+        "fast_exception_desc": "Fast Free",
+        "saints": [
+            "Synaxis of Seventy Apostles",
+            "Venerable Apollinaria (5th c.)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 4.1-13",
+                "short_display": "Heb 4.1-13",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 19.45-48",
+                "short_display": "Luke 19.45-48",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Synaxis of the Seventy Apostles.",
+                "story": null
+            },
+            {
+                "title": "The Ethiopian Eunuch of Queen Candace",
+                "story": null
+            },
+            {
+                "title": "Venerable Apollinaria (5th c.)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 248,
+        "julian_day_number": 2459585,
+        "year": 2022,
+        "month": 1,
+        "day": 5,
+        "weekday": 3,
+        "tone": 3,
+        "titles": [
+            "Wednesday of the 29th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": [
+            "Eve of Theophany"
+        ],
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 9,
+        "fast_exception_desc": "Strict Fast",
+        "saints": [
+            "Holy Martyrs Theopemptus and Theonas (~290)",
+            "Our Venerable Mother Syncletike (4th c.)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "1st Hour, Prophecy",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 35.1-10",
+                "short_display": "Isa 35.1-10",
+                "passage": null
+            },
+            {
+                "source": "1st Hour, Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Acts 13.25-33",
+                "short_display": "Acts 13.25-33",
+                "passage": null
+            },
+            {
+                "source": "1st Hour, Gospel",
+                "book": "Matthew",
+                "description": "",
+                "display": "Matthew 3.1-11",
+                "short_display": "Matt 3.1-11",
+                "passage": null
+            },
+            {
+                "source": "3rd Hour, Prophecy",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 1.16-20",
+                "short_display": "Isa 1.16-20",
+                "passage": null
+            },
+            {
+                "source": "3rd Hour, Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Acts 19.1-8",
+                "short_display": "Acts 19.1-8",
+                "passage": null
+            },
+            {
+                "source": "3rd Hour, Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 1.1-8",
+                "short_display": "Mark 1.1-8",
+                "passage": null
+            },
+            {
+                "source": "6th Hour, Prophecy",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 12.3-6",
+                "short_display": "Isa 12.3-6",
+                "passage": null
+            },
+            {
+                "source": "6th Hour, Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Romans 6.3-11",
+                "short_display": "Rom 6.3-11",
+                "passage": null
+            },
+            {
+                "source": "6th Hour, Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 1.9-15",
+                "short_display": "Mark 1.9-15",
+                "passage": null
+            },
+            {
+                "source": "9th Hour, Prophecy",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 49.8-15",
+                "short_display": "Isa 49.8-15",
+                "passage": null
+            },
+            {
+                "source": "9th Hour, Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Titus 2.11-14, 3.4-7",
+                "short_display": "Titus 2.11-14, 3.4-7",
+                "passage": null
+            },
+            {
+                "source": "9th Hour, Gospel",
+                "book": "Matthew",
+                "description": "",
+                "display": "Matthew 3.13-17",
+                "short_display": "Matt 3.13-17",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Genesis 1.1-13",
+                "short_display": "Gen 1.1-13",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Exodus 14.15-18, 21-23, 27-29",
+                "short_display": "Exod 14.15-18, 21-23, 27-29",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Exodus 15.22-16.1",
+                "short_display": "Exod 15.22-16.1",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Joshua 3.7-8, 15-17",
+                "short_display": "Josh 3.7-8, 15-17",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "4[2] Kings 2.6-14",
+                "short_display": "4 Kgs 2.6-14",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "4[2] Kings 5.9-14",
+                "short_display": "4 Kgs 5.9-14",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 1.16-20",
+                "short_display": "Isa 1.16-20",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Genesis 32.1-10",
+                "short_display": "Gen 32.1-10",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Exodus 2.5-10",
+                "short_display": "Exod 2.5-10",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Judges 6.36-40",
+                "short_display": "Judges 6.36-40",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "3[1] Kings 18.30-39",
+                "short_display": "3 Kgs 18.30-39",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "4[2] Kings 2.19-22",
+                "short_display": "4 Kgs 2.19-22",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 49.8-15",
+                "short_display": "Isa 49.8-15",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Eve of Theophany",
+                "display": "1 Corinthians 9.19-27",
+                "short_display": "1 Cor 9.19-27",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "Eve of Theophany",
+                "display": "Luke 3.1-18",
+                "short_display": "Luke 3.1-18",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 35.1-10",
+                "short_display": "Isa 35.1-10",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 55.1-13",
+                "short_display": "Isa 55.1-13",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 12.3-6",
+                "short_display": "Isa 12.3-6",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "Apostol",
+                "description": "Epistle",
+                "display": "1 Corinthians 10.1-4",
+                "short_display": "1 Cor 10.1-4",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "Mark",
+                "description": "Gospel",
+                "display": "Mark 1.9-11",
+                "short_display": "Mark 1.9-11",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Martyrs Theopemptus and Theonas (~290)",
+                "story": null
+            },
+            {
+                "title": "Our Venerable Mother Syncletike (4th c.)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 249,
+        "julian_day_number": 2459586,
+        "year": 2022,
+        "month": 1,
+        "day": 6,
+        "weekday": 4,
+        "tone": 3,
+        "titles": [
+            "Thursday of the 29th week after Pentecost"
+        ],
+        "feast_level": 8,
+        "feast_level_description": "Major feast Lord",
+        "feasts": [
+            "Theophany of Our Lord and Savior Jesus Christ"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 11,
+        "fast_exception_desc": "Fast Free",
+        "saints": null,
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Matins Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 1.9-11",
+                "short_display": "Mark 1.9-11",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Theophany",
+                "display": "Titus 2.11-14, 3.4-7",
+                "short_display": "Titus 2.11-14, 3.4-7",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Theophany",
+                "display": "Matthew 3.13-17",
+                "short_display": "Matt 3.13-17",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 35.1-10",
+                "short_display": "Isa 35.1-10",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 55.1-13",
+                "short_display": "Isa 55.1-13",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "OT",
+                "description": "",
+                "display": "Isaiah 12.3-6",
+                "short_display": "Isa 12.3-6",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "Apostol",
+                "description": "Epistle",
+                "display": "1 Corinthians 10.1-4",
+                "short_display": "1 Cor 10.1-4",
+                "passage": null
+            },
+            {
+                "source": "Great Blessing of Waters",
+                "book": "Mark",
+                "description": "Gospel",
+                "display": "Mark 1.9-11",
+                "short_display": "Mark 1.9-11",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "The Holy Theophany of our Lord, God and Savior Jesus Christ",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 250,
+        "julian_day_number": 2459587,
+        "year": 2022,
+        "month": 1,
+        "day": 7,
+        "weekday": 5,
+        "tone": 3,
+        "titles": [
+            "Friday of the 29th week after Pentecost"
+        ],
+        "feast_level": 3,
+        "feast_level_description": "Red squigg (doxology typikon symbol)",
+        "feasts": [
+            "Synaxis of St John the Baptist"
+        ],
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 2,
+        "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "saints": [
+            "New Martyr Athanasius of Attalia (1700)",
+            "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Forerunner",
+                "display": "Acts 19.1-8",
+                "short_display": "Acts 19.1-8",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 7.18-25",
+                "short_display": "Heb 7.18-25",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "John",
+                "description": "Forerunner",
+                "display": "John 1.29-34",
+                "short_display": "John 1.29-34",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 20.19-26",
+                "short_display": "Luke 20.19-26",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.",
+                "story": null
+            },
+            {
+                "title": "New Martyr Athanasius of Attalia (1700)",
+                "story": null
+            },
+            {
+                "title": "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 251,
+        "julian_day_number": 2459588,
+        "year": 2022,
+        "month": 1,
+        "day": 8,
+        "weekday": 6,
+        "tone": 3,
+        "titles": [
+            "Saturday of the 29th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": [
+            "Saturday after Theophany"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. George the Chozebite",
+            "Our Venerable Mother Domnica (Domnina) (~474)",
+            "Saint Atticus, Patriarch of Constantinople (425)",
+            "Saint Severinus (482)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Saturday after Theophany",
+                "display": "Ephesians 6.10-17",
+                "short_display": "Eph 6.10-17",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Ephesians 2.11-13",
+                "short_display": "Eph 2.11-13",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Saturday after Theophany",
+                "display": "Matthew 4.1-11",
+                "short_display": "Matt 4.1-11",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 12.32-40",
+                "short_display": "Luke 12.32-40",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Venerable Mother Domnica (Domnina) (~474)",
+                "story": null
+            },
+            {
+                "title": "Saint Atticus, Patriarch of Constantinople (425)",
+                "story": null
+            },
+            {
+                "title": "Saint Severinus (482)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 252,
+        "julian_day_number": 2459589,
+        "year": 2022,
+        "month": 1,
+        "day": 9,
+        "weekday": 0,
+        "tone": 4,
+        "titles": [
+            "29th Sunday after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": [
+            "Sunday after Theophany"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Martyr Polyeuctus of Melitene in Armenia",
+            "Venerable Eustratius the Wonderworker (9th c.)",
+            "Saint Philip, Metropolitan of Moscow (1569)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "7th Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 20.1-10",
+                "short_display": "John 20.1-10",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Sunday after Theophany",
+                "display": "Ephesians 4.7-13",
+                "short_display": "Eph 4.7-13",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Sunday after Theophany",
+                "display": "Matthew 4.12-17",
+                "short_display": "Matt 4.12-17",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Martyr Polyeuctus (~250)",
+                "story": null
+            },
+            {
+                "title": "Saint Peter II, Bishop of Sebaste (4th c.)",
+                "story": null
+            },
+            {
+                "title": "Venerable Eustratius the Wonderworker (9th c.)",
+                "story": null
+            },
+            {
+                "title": "Saint Philip, Metropolitan of Moscow (1569)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 253,
+        "julian_day_number": 2459590,
+        "year": 2022,
+        "month": 1,
+        "day": 10,
+        "weekday": 1,
+        "tone": 4,
+        "titles": [
+            "Monday of the 30th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "St Gregory of Nyssa",
+            "Our Holy Father Gregory, Bishop of Nyssa (395)",
+            "Our Holy Father Theophan the Recluse (1894)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 8.7-13",
+                "short_display": "Heb 8.7-13",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 20.27-44",
+                "short_display": "Luke 20.27-44",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Gregory, Bishop of Nyssa (395)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Theophan the Recluse (1894)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 254,
+        "julian_day_number": 2459591,
+        "year": 2022,
+        "month": 1,
+        "day": 11,
+        "weekday": 2,
+        "tone": 4,
+        "titles": [
+            "Tuesday of the 30th week after Pentecost"
+        ],
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
+        "feasts": [
+            "Ven. Theodosius the Great"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "The Venerable Vitalis (5th c.)",
+            "Venerable Michael of Klops, Fool for Christ (1456)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 3.1-9",
+                "short_display": "Wis 3.1-9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 5.15-6.3",
+                "short_display": "Wis 5.15-6.3",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 4.7-15",
+                "short_display": "Wis 4.7-15",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 6.17-23",
+                "short_display": "Luke 6.17-23",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 9.8-10, 15-23",
+                "short_display": "Heb 9.8-10, 15-23",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Theodosius",
+                "display": "2 Corinthians 4.6-15",
+                "short_display": "2 Cor 4.6-15",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 21.12-19",
+                "short_display": "Luke 21.12-19",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "St Theodosius",
+                "display": "Matthew 11.27-30",
+                "short_display": "Matt 11.27-30",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Theodosius the Cenobiarch (519)",
+                "story": null
+            },
+            {
+                "title": "The Venerable Vitalis (5th c.)",
+                "story": null
+            },
+            {
+                "title": "Venerable Michael of Klops, Fool for Christ (1456)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 255,
+        "julian_day_number": 2459592,
+        "year": 2022,
+        "month": 1,
+        "day": 12,
+        "weekday": 3,
+        "tone": 4,
+        "titles": [
+            "Wednesday of the 30th week after Pentecost"
+        ],
+        "feast_level": 3,
+        "feast_level_description": "Red squigg (doxology typikon symbol)",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "St Sava, Archbishop of Serbia",
+            "Holy Martyr Tatiana (~230)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 10.1-18",
+                "short_display": "Heb 10.1-18",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 21.5-7, 10-11, 20-24",
+                "short_display": "Luke 21.5-7, 10-11, 20-24",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Martyr Tatiana (~230)",
+                "story": null
+            },
+            {
+                "title": "Venerable Benedict Biscop, Abbot of Wearmouth (689-690)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 256,
+        "julian_day_number": 2459593,
+        "year": 2022,
+        "month": 1,
+        "day": 13,
+        "weekday": 4,
+        "tone": 4,
+        "titles": [
+            "Thursday of the 30th week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Martyrs Hermylus and Stratonicus",
+            "Our Holy Father Maximos Kavsokalybites (the Hut-burner) (1365)",
+            "Our Holy Father Hilary, Bishop of Poitiers (369)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 10.35-11.7",
+                "short_display": "Heb 10.35-11.7",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 21.28-33",
+                "short_display": "Luke 21.28-33",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Martyrs Hermylus and Stratonicus (315)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Maximos Kavsokalybites (the Hut-burner) (1365)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Hilary, Bishop of Poitiers (369)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 257,
+        "julian_day_number": 2459594,
+        "year": 2022,
+        "month": 1,
+        "day": 14,
+        "weekday": 5,
+        "tone": 4,
+        "titles": [
+            "Friday of the 30th week after Pentecost"
+        ],
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "St Nino of Georgia",
+            "Our Holy Father Sava (Sabbas), Enlightener and first Archbishop of Serbia (1236)",
+            "The Holy Fathers slain at Sinai and Raithu (4th – 5th c.)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 11.8, 11-16",
+                "short_display": "Heb 11.8, 11-16",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 21.37-22.8",
+                "short_display": "Luke 21.37-22.8",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Saint Nina, Equal to the Apostles and Enlightener of Georgia (335)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Sava (Sabbas), Enlightener and first Archbishop of Serbia (1236)",
+                "story": null
+            },
+            {
+                "title": "The Holy Fathers slain at Sinai and Raithu (4th – 5th c.)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 258,
+        "julian_day_number": 2459595,
+        "year": 2022,
+        "month": 1,
+        "day": 15,
+        "weekday": 6,
+        "tone": 4,
+        "titles": [
+            "Saturday of the 30th week after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Paul of Thebes and John Calabytes",
+            "Our Holy Father John Kalyvites (the hut-dweller) (~450)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Ephesians 5.1-8",
+                "short_display": "Eph 5.1-8",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 13.18-29",
+                "short_display": "Luke 13.18-29",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Paul of Thebes (342)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father John Kalyvites (the hut-dweller) (~450)",
+                "story": null
+            },
+            {
+                "title": "Saint Ita of Kileedy, Ireland (570)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 259,
+        "julian_day_number": 2459596,
+        "year": 2022,
+        "month": 1,
+        "day": 16,
+        "weekday": 0,
+        "tone": 5,
+        "titles": [
+            "30th Sunday after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Veneration of Chains of Apostle Peter"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "8th Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 20.11-18",
+                "short_display": "John 20.11-18",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 18.18-27",
+                "short_display": "Luke 18.18-27",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Colossians 3.12-16",
+                "short_display": "Col 3.12-16",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Veneration of the precious Chains of the Holy and Glorious Apostle Peter.",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 260,
+        "julian_day_number": 2459597,
+        "year": 2022,
+        "month": 1,
+        "day": 17,
+        "weekday": 1,
+        "tone": 5,
+        "titles": [
+            "Monday of the 31st week after Pentecost"
+        ],
+        "feast_level": 5,
+        "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
+        "feasts": [
+            "Ven. Godbearing Anthony the Great"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 2,
+        "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "saints": [
+            "Pious Emperor Theodosius the Great (395)",
+            "Our Holy Father Makarios (Kalogeras) of Patmos (1737)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 5.15-6.3",
+                "short_display": "Wis 5.15-6.3",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 3.1-9",
+                "short_display": "Wis 3.1-9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 4.7-15",
+                "short_display": "Wis 4.7-15",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "Matthew",
+                "description": "",
+                "display": "Matthew 11.27-30",
+                "short_display": "Matt 11.27-30",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 11.17-23, 27-31",
+                "short_display": "Heb 11.17-23, 27-31",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Anthony",
+                "display": "Hebrews 13.17-21",
+                "short_display": "Heb 13.17-21",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 8.11-21",
+                "short_display": "Mark 8.11-21",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "St Anthony",
+                "display": "Luke 6.17-23",
+                "short_display": "Luke 6.17-23",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Godbearing Father Anthony the Great (356).",
+                "story": null
+            },
+            {
+                "title": "Pious Emperor Theodosius the Great (395)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Makarios (Kalogeras) of Patmos (1737)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 261,
+        "julian_day_number": 2459598,
+        "year": 2022,
+        "month": 1,
+        "day": 18,
+        "weekday": 2,
+        "tone": 5,
+        "titles": [
+            "Tuesday of the 31st week after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ss Athanasius the Great and Cyril of Alexandria"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Hebrews 12.25-26, 13.22-25",
+                "short_display": "Heb 12.25-26, 13.22-25",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 8.22-26",
+                "short_display": "Mark 8.22-26",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Fathers Athanasius the Great (373) and Cyril (444), Patriarchs of Alexandria",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 262,
+        "julian_day_number": 2459599,
+        "year": 2022,
+        "month": 1,
+        "day": 19,
+        "weekday": 3,
+        "tone": 5,
+        "titles": [
+            "Wednesday of the 31st week after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Macarius the Great"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 1.1-18",
+                "short_display": "Jas 1.1-18",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 8.30-34",
+                "short_display": "Mark 8.30-34",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Macarius (Makarios)the Great (~390)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Mark Eugenikos, Metropolitan of Ephesus and Confessor of the Orthodox Faith (1443)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 263,
+        "julian_day_number": 2459600,
+        "year": 2022,
+        "month": 1,
+        "day": 20,
+        "weekday": 4,
+        "tone": 5,
+        "titles": [
+            "Thursday of the 31st week after Pentecost"
+        ],
+        "feast_level": 5,
+        "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
+        "feasts": [
+            "Ven. Euthymius the Great"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 2,
+        "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "saints": [
+            "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st â 2nd c.)",
+            "Saint Peter the Tax Collector (6th c.)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 5.15-6.3",
+                "short_display": "Wis 5.15-6.3",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 3.1-9",
+                "short_display": "Wis 3.1-9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 4.7-15",
+                "short_display": "Wis 4.7-15",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "Matthew",
+                "description": "",
+                "display": "Matthew 11.27-30",
+                "short_display": "Matt 11.27-30",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 1.19-27",
+                "short_display": "Jas 1.19-27",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Euthymius",
+                "display": "Hebrews 13.17-21",
+                "short_display": "Heb 13.17-21",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 9.10-16",
+                "short_display": "Mark 9.10-16",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "St Euthymius",
+                "display": "Luke 6.17-23",
+                "short_display": "Luke 6.17-23",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Venerable Father Euthymius the Great (473)",
+                "story": null
+            },
+            {
+                "title": "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st â 2nd c.)",
+                "story": null
+            },
+            {
+                "title": "Saint Peter the Tax Collector (6th c.)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 264,
+        "julian_day_number": 2459601,
+        "year": 2022,
+        "month": 1,
+        "day": 21,
+        "weekday": 5,
+        "tone": 5,
+        "titles": [
+            "Friday of the 31st week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Maximus the Confessor",
+            "Holy Martyr Agnes of Rome (~304)",
+            "Our Holy Father Maximos the Greek (1556)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 2.1-13",
+                "short_display": "Jas 2.1-13",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 9.33-41",
+                "short_display": "Mark 9.33-41",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Venerable Father Maximos the Confessor (662)",
+                "story": null
+            },
+            {
+                "title": "Holy Martyr Agnes of Rome (~304)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Maximos the Greek (1556)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 265,
+        "julian_day_number": 2459602,
+        "year": 2022,
+        "month": 1,
+        "day": 22,
+        "weekday": 6,
+        "tone": 5,
+        "titles": [
+            "Saturday of the 31st week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Apostle Timothy of the Seventy",
+            "Holy Martyr Anastasius of Persia (628)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "Colossians 1.3-6",
+                "short_display": "Col 1.3-6",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 14.1-11",
+                "short_display": "Luke 14.1-11",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Apostle Timothy",
+                "story": null
+            },
+            {
+                "title": "Holy Martyr Anastasius of Persia (628)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 266,
+        "julian_day_number": 2459603,
+        "year": 2022,
+        "month": 1,
+        "day": 23,
+        "weekday": 0,
+        "tone": 6,
+        "titles": [
+            "31st Sunday after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Hieromartyr Clement and Martyr Agathangel"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "9th Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 20.19-31",
+                "short_display": "John 20.19-31",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "1 Timothy 1.15-17",
+                "short_display": "1 Tim 1.15-17",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 18.35-43",
+                "short_display": "Luke 18.35-43",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Hieromartyr Clement of Ancyra, and Martyr Agathangelus (296)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 267,
+        "julian_day_number": 2459604,
+        "year": 2022,
+        "month": 1,
+        "day": 24,
+        "weekday": 1,
+        "tone": 6,
+        "titles": [
+            "Monday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Xenia of Rome",
+            "Our Holy Mother Xenia of Petersburg, fool for Christ (~1800)",
+            "Our Holy Father Macedonian (ca. 430)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 2.14-26",
+                "short_display": "Jas 2.14-26",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 9.42-10.1",
+                "short_display": "Mark 9.42-10.1",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Mother Xenia of Petersburg, fool for Christ (~1800)",
+                "story": null
+            },
+            {
+                "title": "Our Venerable Mother Xenia of Rome, with her two maidservants (5th c.)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Macedonian (ca. 430)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 268,
+        "julian_day_number": 2459605,
+        "year": 2022,
+        "month": 1,
+        "day": 25,
+        "weekday": 2,
+        "tone": 6,
+        "titles": [
+            "Tuesday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
+        "feasts": [
+            "St Gregory the Theologian"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": null,
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 2 - Proverbs 10, 3, 8",
+                "short_display": "Prov 10, 3, 8",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 4 - Proverbs 10; Wisdom of Solomon 6, 7, 8, 9",
+                "short_display": "Prov 10; Wis 6, 7, 8, 9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 4.7-15",
+                "short_display": "Wis 4.7-15",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 10.1-9",
+                "short_display": "John 10.1-9",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 3.1-10",
+                "short_display": "Jas 3.1-10",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St Gregory",
+                "display": "1 Corinthians 12.7-11",
+                "short_display": "1 Cor 12.7-11",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 10.2-12",
+                "short_display": "Mark 10.2-12",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "John",
+                "description": "St Gregory",
+                "display": "John 10.9-16",
+                "short_display": "John 10.9-16",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Father among the Saints Gregory the Theologian, Archbishop of Constantinople (389)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 269,
+        "julian_day_number": 2459606,
+        "year": 2022,
+        "month": 1,
+        "day": 26,
+        "weekday": 3,
+        "tone": 6,
+        "titles": [
+            "Wednesday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 0,
+        "feast_level_description": "Liturgy",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Xenophon and Mary",
+            "Our Holy Mother Paula of Rome (404)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 3.11-4.6",
+                "short_display": "Jas 3.11-4.6",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 10.11-16",
+                "short_display": "Mark 10.11-16",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Xenophon, his wife Mary and their sons Arcadius and John (6th c.)",
+                "story": null
+            },
+            {
+                "title": "St Ammonas of Egypt, disciple of St Anthony the Great (350)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Mother Paula of Rome (404)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 270,
+        "julian_day_number": 2459607,
+        "year": 2022,
+        "month": 1,
+        "day": 27,
+        "weekday": 4,
+        "tone": 6,
+        "titles": [
+            "Thursday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
+        "feasts": [
+            "Transl. Relics of St John Chrysostom"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": null,
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 2 - Proverbs 10, 3, 8",
+                "short_display": "Prov 10, 3, 8",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 4 - Proverbs 10; Wisdom of Solomon 6, 7, 8, 9",
+                "short_display": "Prov 10; Wis 6, 7, 8, 9",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Composite 5 - Wisdom of Solomon 4, 6, 7, 2",
+                "short_display": "Wis 4, 6, 7, 2",
+                "passage": null
+            },
+            {
+                "source": "Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 10.1-9",
+                "short_display": "John 10.1-9",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 4.7-5.9",
+                "short_display": "Jas 4.7-5.9",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "St John",
+                "display": "Hebrews 7.26-8.2",
+                "short_display": "Heb 7.26-8.2",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 10.17-27",
+                "short_display": "Mark 10.17-27",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "John",
+                "description": "St John",
+                "display": "John 10.9-16",
+                "short_display": "John 10.9-16",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Translation of the relics (437) of St John Chrysostom.",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 271,
+        "julian_day_number": 2459608,
+        "year": 2022,
+        "month": 1,
+        "day": 28,
+        "weekday": 5,
+        "tone": 6,
+        "titles": [
+            "Friday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 1,
+        "fast_level_desc": "Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Ven. Ephrem the Syrian"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "1 Peter 1.1-2, 10-12, 2.6-10",
+                "short_display": "1 Peter 1.1-2, 10-12, 2.6-10",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 10.23-32",
+                "short_display": "Mark 10.23-32",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Our Holy Father Ephraim the Syrian (373)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 272,
+        "julian_day_number": 2459609,
+        "year": 2022,
+        "month": 1,
+        "day": 29,
+        "weekday": 6,
+        "tone": 6,
+        "titles": [
+            "Saturday of the 32nd week after Pentecost"
+        ],
+        "feast_level": 2,
+        "feast_level_description": "Black squigg (6-stich typikon symbol)",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Trans. Rel. Ignatius the Godbearer",
+            "St Andrei Rublev, iconographer (1430)",
+            "Our Holy Father Aphrahat the Persian (4th c.)",
+            "Repose of Blessed Father Dimitrios Gagastathis (1975)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "1 Thessalonians 5.14-23",
+                "short_display": "1 Thess 5.14-23",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 16.10-15",
+                "short_display": "Luke 16.10-15",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Translation of the relics of St Ignatius of Antioch (107)",
+                "story": null
+            },
+            {
+                "title": "St Andrei Rublev, iconographer (1430)",
+                "story": null
+            },
+            {
+                "title": "Our Holy Father Aphrahat the Persian (4th c.)",
+                "story": null
+            },
+            {
+                "title": "Repose of Blessed Father Dimitrios Gagastathis (1975)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 273,
+        "julian_day_number": 2459610,
+        "year": 2022,
+        "month": 1,
+        "day": 30,
+        "weekday": 0,
+        "tone": 7,
+        "titles": [
+            "32nd Sunday after Pentecost"
+        ],
+        "feast_level": 5,
+        "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
+        "feasts": [
+            "Synaxis 3 Hierarchs: Basil the Great, Gregory the Theologian, John Chrysostom"
+        ],
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 2,
+        "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "saints": [
+            "Saint Peter, King of Bulgaria (970)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Deuteronomy 1.8-11, 15-17",
+                "short_display": "Deut 1.8-11, 15-17",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Deuteronomy 10.14-21",
+                "short_display": "Deut 10.14-21",
+                "passage": null
+            },
+            {
+                "source": "Vespers",
+                "book": "OT",
+                "description": "",
+                "display": "Wisdom of Solomon 3.1-9",
+                "short_display": "Wis 3.1-9",
+                "passage": null
+            },
+            {
+                "source": "10th Matins Gospel",
+                "book": "John",
+                "description": "",
+                "display": "John 21.1-14",
+                "short_display": "John 21.1-14",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "1 Timothy 1.15-17",
+                "short_display": "1 Tim 1.15-17",
+                "passage": null
+            },
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "Hierarchs",
+                "display": "Hebrews 13.7-16",
+                "short_display": "Heb 13.7-16",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "",
+                "display": "Matthew 15.21-28",
+                "short_display": "Matt 15.21-28",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Hierarchs",
+                "display": "Matthew 5.14-19",
+                "short_display": "Matt 5.14-19",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Synaxis of the Three Holy Hierarchs: St Basil the Great, St Gregory the Theologian, and St John Chrysostom",
+                "story": null
+            },
+            {
+                "title": "Saint Peter, King of Bulgaria (970)",
+                "story": null
+            }
+        ]
+    },
+    {
+        "pascha_distance": 274,
+        "julian_day_number": 2459611,
+        "year": 2022,
+        "month": 1,
+        "day": 31,
+        "weekday": 1,
+        "tone": 7,
+        "titles": [
+            "Monday of the 33rd week after Pentecost"
+        ],
+        "feast_level": 3,
+        "feast_level_description": "Red squigg (doxology typikon symbol)",
+        "feasts": null,
+        "fast_level": 0,
+        "fast_level_desc": "No Fast",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
+        "saints": [
+            "Unmercenaries Cyrus and John",
+            "Venerable Nicetas, hermit of the Kiev Caves and Bishop of Novgorod (1108)",
+            "Marcella of Rome (410)"
+        ],
+        "service_notes": null,
+        "readings": [
+            {
+                "source": "Epistle",
+                "book": "Apostol",
+                "description": "",
+                "display": "James 2.14-26",
+                "short_display": "Jas 2.14-26",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Mark",
+                "description": "",
+                "display": "Mark 10.46-52",
+                "short_display": "Mark 10.46-52",
+                "passage": null
+            }
+        ],
+        "stories": [
+            {
+                "title": "Holy Wonderworkers and Unmercenaries Cyrus and John, and those with them (311)",
+                "story": null
+            },
+            {
+                "title": "Venerable Nicetas, hermit of the Kiev Caves and Bishop of Novgorod (1108)",
+                "story": null
+            },
+            {
+                "title": "Marcella of Rome (410)",
+                "story": null
+            }
+        ]
+    }
 ]

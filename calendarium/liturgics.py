@@ -6,9 +6,12 @@ from datetime import date, datetime, timedelta, timezone
 from asgiref.sync import async_to_sync
 from django.db.models import Q
 from django.utils.functional import cached_property
+from phonetics import metaphone
+from thefuzz import fuzz
 
 from . import datetools, models
 from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions
+from commemorations.models import Commemoration
 
 logger = logging.getLogger(__name__)
 
@@ -79,6 +82,7 @@ class Day:
 
     async def ainitialize(self):
         await self._collect_commemorations()
+        await self._add_supplemental_commemorations()
         self._apply_fasting_adjustments()
 
     initialize = async_to_sync(ainitialize)
@@ -96,7 +100,7 @@ class Day:
             return '; '.join(self.feasts)
 
         if self.saints:
-            return '; '.join(self.saints)
+            return '; '.join(self.minimal_saints)
 
         if self.titles:
             return '; '.join(self.titles)
@@ -113,12 +117,47 @@ class Day:
 
         self.titles = [title for d in days if (title := d.full_title)]
         self.saints = [d.saint for d in days if d.saint]
+        self.minimal_saints = [d.saint for d in days if d.saint]
         self.feasts = [d.feast_name for d in days if d.feast_name]
         self.service_notes = [d.service_note for d in days if d.service_note]
 
         self.feast_level = max(d.feast_level for d in days)
         self.fast_level = max(d.fast for d in days)
         self.fast_exception = max(d.fast_exception for d in days)
+
+    async def _add_supplemental_commemorations(self):
+        """Add additional commemorations and writeups from Abbamoses.com."""
+
+        def match(str1, str2):
+            s1 = ' '.join(metaphone(w) for w in str1.split() if w.isalpha())
+            s2 = ' '.join(metaphone(w) for w in str2.split() if w.isalpha())
+            return fuzz.partial_token_sort_ratio(s1, s2)
+
+        self.stories = Commemoration.objects.filter(month=self.month, day=self.day).defer('story')
+        stories = [s async for s in self.stories]
+
+        if not stories:
+            return
+
+        commemorations = self.titles + self.feasts + self.saints
+
+        # Find stories that match the existing commemorations
+        for c in commemorations:
+            scores = [(s, match(c, s.title)) for s in stories]
+            scores.sort(key=lambda x: x[1], reverse=True)
+            story, score = scores[0]
+            if score > 60:
+                # The story matched an already existing commemoration, so we
+                # don't add it to the commemorations again.
+                stories.remove(story)
+
+            if not stories:
+                # We matched all the stories
+                break
+
+        # Add unmatched stories to the list of commemorations
+        for s in stories:
+            self.saints.append(s.title)
 
     def _apply_fasting_adjustments(self):
         # Adjust for fast free days

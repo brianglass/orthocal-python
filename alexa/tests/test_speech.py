@@ -9,7 +9,7 @@ from calendarium import liturgics
 
 
 class SpeechTestCase(TestCase):
-    fixtures = ['calendarium.json']
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_human_join(self):
         items = 'Anthony', 'Athanasius', 'Cyril'
