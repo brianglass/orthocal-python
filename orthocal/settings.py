@@ -162,7 +162,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
-ORTHOCAL_PUBLIC_URL = 'https://orthocal.info/'
+ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info/')
 
 try:
     from local_settings import *
