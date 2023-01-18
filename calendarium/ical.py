@@ -15,7 +15,6 @@ from . import liturgics
 
 
 async def ical(request, cal):
-    base_url = request.build_absolute_uri('/')
     title = cal.title()
     ttl = settings.ORTHOCAL_ICAL_TTL
     timestamp = timezone.localtime()
@@ -51,7 +50,7 @@ async def ical(request, cal):
         event.add('dtstart', icalendar.vDate(dt))  # We use vDate to make an all-day event
         event.add('summary', day.summary_title)
         event.add('description', await ical_description(day))
-        event.add('url', urljoin(base_url, day_path))
+        event.add('url', urljoin(settings.ORTHOCAL_PUBLIC_URL, day_path))
         event.add('class', 'public')
         calendar.add_component(event)
 
