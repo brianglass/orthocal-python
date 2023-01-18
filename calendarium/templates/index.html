@@ -44,14 +44,14 @@
 				<section class="readings">
 					<h2>Scripture Readings (KJV)</h2>
 
-					{% for reading in day.get_readings %}
+					{% for reading in day.readings %}
 					<section class="passage">
 						<h4>
 							{{ reading.display }}
 							({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
 						</h4>
 
-						{% for verse in reading.get_passage %}
+						{% for verse in reading.passage %}
 						<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
 						{% endfor %}
 					</section>

@@ -13,9 +13,10 @@ from orthocal.converters import CalendarConverter
 from . import liturgics
 
 logger = logging.getLogger(__name__)
+cal_converter = CalendarConverter()
 
 
-def readings(request, cal=None, year=None, month=None, day=None):
+async def readings(request, cal=None, year=None, month=None, day=None):
     now = timezone.localtime()
 
     if not cal:
@@ -37,7 +38,8 @@ def readings(request, cal=None, year=None, month=None, day=None):
         dt = now
         day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
 
-    day.initialize()
+    await day.ainitialize()
+    await day.apopulate_readings()
 
     context = {
             'day': day,
@@ -64,10 +66,8 @@ async def calendar_view(request, cal=None, year=None, month=None):
             })
 
     if not cal:
-        converter = CalendarConverter()
-        logger.debug('__session=%s', request.COOKIES.get('__session', 'None'))
         slug = request.COOKIES.get('__session', 'gregorian')
-        cal = converter.to_python(slug)
+        cal = cal_converter.to_python(slug)
 
     use_julian = cal == 'julian'
 

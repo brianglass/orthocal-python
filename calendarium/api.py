@@ -1,116 +1,109 @@
-import zoneinfo
+import logging
 
-from datetime import date, datetime, timedelta
-from urllib.parse import urljoin
+from datetime import date
 
-import icalendar
-
-from dateutil.rrule import rrule, DAILY
-from django.conf import settings
-from django.http import HttpResponse, Http404
-from django.urls import reverse
+from django.http import Http404
 from django.utils import timezone
-from rest_framework import viewsets
-from rest_framework.response import Response
+from ninja import Field, NinjaAPI, Schema
+from ninja.renderers import JSONRenderer
+from pydantic import validator
 
 from . import liturgics
-from . import serializers
+
+logger = logging.getLogger(__name__)
+
+# We want the JSON in the api to be human readable.
+JSONRenderer.json_dumps_params['indent'] = 4
+
+api = NinjaAPI(urls_namespace='api')
 
 
-class DayViewSet(viewsets.ViewSet):
-    def retrieve(self, request, year, month, day, cal='gregorian'):
-        # Easter date functions don't work correctly outside this range
-        if not 1583 <= year <= 4099:
-            raise Http404
-
-        try:
-            date(year, month, day)
-        except ValueError:
-            raise Http404
-
-        day = liturgics.Day(year, month, day, use_julian=cal=='julian')
-
-        day.initialize()
-        serializer = serializers.DaySerializer(day)
-        return Response(serializer.data)
-
-    def retrieve_default(self, request, cal='gregorian'):
-        dt = timezone.localtime()
-        return self.retrieve(request, dt.year, dt.month, dt.day, cal)
-
-    def list(self, request, year, month, cal='gregorian'):
-        # Easter date functions don't work correctly outside this range
-        if not 1583 <= year <= 4099 or not 1 <= month <= 12:
-            raise Http404
-
-        days = liturgics.month_of_days(year, month, use_julian=cal=='julian')
-
-        # Exclude the scriptures passages for the list view to keep the response times low.
-        serializer = serializers.DaySerializer(days, many=True, context={'exclude_passage': True})
-        return Response(serializer.data)
+class VerseSchema(Schema):
+    book: str
+    chapter: int
+    verse: int
+    content: str
 
 
-async def ical(request, cal):
-    base_url = request.build_absolute_uri('/')
-    title = cal.title()
-    ttl = settings.ORTHOCAL_ICAL_TTL
-    timestamp = timezone.localtime()
+class ReadingSchema(Schema):
+    source: str
+    book: str
+    description: str = Field(None, alias='desc')
+    display: str
+    short_display: str = Field(None, alias='sdisplay')
+    passage: list[VerseSchema] = None
 
-    calendar = icalendar.Calendar()
-    calendar.add('prodid', '-//brianglass//Orthocal//en')
-    calendar.add('version', '2.0')
-    calendar.add('name', f'Orthodox Feasts and Fasts ({title})')
-    calendar.add('x-wr-calname', f'Orthodox Feasts and Fasts ({title})')
-    calendar.add('refresh-interval;value=duration', f'PT{ttl}H')
-    calendar.add('x-published-ttl', f'PT{ttl}H')
-    calendar.add('timezone-id', settings.ORTHOCAL_ICAL_TZ)
-    calendar.add('x-wr-timezone', settings.ORTHOCAL_ICAL_TZ)
 
-    start_dt = timestamp.date() - timedelta(days=30)
-    end_dt = start_dt + timedelta(days=30 * 7)
+class StorySchema(Schema):
+    title: str
+    story: str
 
-    for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
-        day = liturgics.Day(dt.year, dt.month, dt.day)
-        await day.ainitialize()
 
-        uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
-        day_path = reverse('calendar-day', kwargs={
-            'cal': cal,
-            'year': day.year,
-            'month': day.month,
-            'day': day.day
-        })
+class DaySchemaLite(Schema):
+    pascha_distance: int = Field(None, alias='pdist')
+    julian_day_number: int = Field(None, alias='jdn')
+    year: int
+    month: int
+    day: int
+    weekday: int
+    tone: int
 
-        event = icalendar.Event()
-        event.add('uid', uid)
-        event.add('dtstamp', timestamp)
-        event.add('dtstart', icalendar.vDate(dt))  # We use vDate to make an all-day event
-        event.add('summary', day.summary_title)
-        event.add('description', await ical_description(day))
-        event.add('url', urljoin(base_url, day_path))
-        event.add('class', 'public')
-        calendar.add_component(event)
+    titles: list[str]
 
-    return HttpResponse(calendar.to_ical(), content_type='text/calendar')
+    feast_level: int
+    feast_level_description: str = Field(None, alias='feast_level_desc')
+    feasts: list[str]
 
-async def ical_description(day):
-    description = ''
+    fast_level: int
+    fast_level_desc: str
+    fast_exception: int
+    fast_exception_desc: str
 
-    if day.fast_exception_desc and day.fast_level:
-        description += f'{day.fast_level_desc} \u2013 {day.fast_exception_desc}\n\n'
-    else:
-        description += f'{day.fast_level_desc}\n\n'
+    saints: list[str]
+    service_notes: list[str]
 
-    if day.feasts:
-        description += ' \u2022 '.join(day.feasts) + '\n\n'
+    readings: list[ReadingSchema] = None
 
-    if day.saints:
-        description += ' \u2022 '.join(day.saints) + '\n\n'
+    @validator('titles', 'feasts', 'saints', 'service_notes')
+    def list_or_null(cls, value):
+        """Force empty list to be None for backward compatibility."""
+        return value or None
 
-    for reading in await day.aget_readings():
-        if reading.desc:
-            description += f'{reading.display} ({reading.source}, {reading.desc})\n'
-        else:
-            description += f'{reading.display} ({reading.source})\n'
 
-    return description
+class DaySchema(DaySchemaLite):
+    stories: list[StorySchema] = None
+
+
+@api.get('/{cal:cal}/{year}/{month}/{day}/', response=DaySchema)
+async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
+    # Easter date functions don't work correctly outside this range
+    if not 1583 <= year <= 4099:
+        raise Http404
+
+    try:
+        date(year, month, day)
+    except ValueError:
+        raise Http404
+
+    day = liturgics.Day(year, month, day, use_julian=cal=='julian')
+    await day.ainitialize()
+    await day.apopulate_readings()
+
+    return day
+
+@api.get('/{cal:cal}/{year}/{month}/', response=list[DaySchemaLite])
+async def get_calendar_month(request, cal: str, year: int, month: int):
+    # Easter date functions don't work correctly outside this range
+    if not 1583 <= year <= 4099:
+        raise Http404
+
+    days = [d async for d in liturgics.amonth_of_days(year, month, use_julian=cal=='julian')]
+    for day in days:
+        await day.apopulate_readings(content=False)
+
+    return days
+
+@api.get('/{cal:cal}/', response=DaySchema)
+async def get_calendar_default(request, cal: str):
+    dt = timezone.localtime()
+    return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)

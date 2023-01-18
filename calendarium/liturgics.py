@@ -36,6 +36,10 @@ class Reading:
     def __init__(self, reading, pericope):
         self.reading = reading
         self.pericope = pericope
+        self.passage = None
+
+    async def apopulate_passage(self):
+        self.passage = [p async for p in self.pericope.get_passage()]
 
     def __repr__(self):
         return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
@@ -87,6 +91,14 @@ class Day:
 
     initialize = async_to_sync(ainitialize)
 
+    async def apopulate_readings(self, content=True):
+        """Fetch all the readings and add them as instance attributes."""
+
+        self.readings = await self.aget_readings()
+        if content:
+            for reading in self.readings:
+                await reading.apopulate_passage()
+
     def __str__(self):
         return str(self.date)
 
@@ -133,12 +145,12 @@ class Day:
             s2 = ' '.join(metaphone(w) for w in str2.split() if w.isalpha())
             return fuzz.partial_token_sort_ratio(s1, s2)
 
-        self.stories = Commemoration.objects.filter(month=self.month, day=self.day).defer('story')
-        stories = [s async for s in self.stories]
+        self.stories = [s async for s in Commemoration.objects.filter(month=self.month, day=self.day)]
 
-        if not stories:
+        if not self.stories:
             return
 
+        stories = self.stories.copy()
         commemorations = self.titles + self.feasts + self.saints
 
         # Find stories that match the existing commemorations
