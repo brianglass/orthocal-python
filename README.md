@@ -11,8 +11,11 @@ Load initial data:
 	./manage.py migrate
 	./manage.py loaddata calendarium/fixtures/*
 	./manage.py loaddata commemorations/fixtures/*
-    ./manage.py loaddata calendarium/fixtures/*
 
 Run developement server:
 
 	./manage.py runserver
+
+Run tests:
+
+	./manage.py test --keepdb
