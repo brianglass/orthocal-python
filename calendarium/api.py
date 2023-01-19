@@ -86,9 +86,15 @@ class DaySchema(DaySchemaLite):
 class OembedReadingSchema(Schema):
     type: str
     version: str
-    title: str
-    provider_name: str
-    provider_url: str
+    title: str = None
+    author_name: str = None
+    author_url: str = None
+    provider_name: str = None
+    provider_url: str = None
+    cache_age: int = None
+    thumbnail_url: str = None
+    thumbnail_width: int = None
+    thumbnail_height: int = None
     width: int
     height: int
     url: str

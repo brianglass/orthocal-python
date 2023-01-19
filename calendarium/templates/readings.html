@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link rel="alternate" type="application/json+oembed" href="{{ oembed_url }}?url={{ request.build_absolute_uri }}">
+<link rel="alternate" type="application/json+oembed" href="{{ PUBLIC_URL }}{% url "api:get_reading_embed" %}?url={{ PUBLIC_URL }}{{ request.path }}">
 {% endblock %}
 
 {% block main %}
