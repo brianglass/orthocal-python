@@ -165,4 +165,4 @@ try:
     from .local_settings import *
 except ImportError:
     # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = os.environ['SECRET_KEY']
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'Twas Brillig and the Slithy Toves')
