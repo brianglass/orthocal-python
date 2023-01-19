@@ -18,6 +18,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SECURITY WARNING: keep the secret key used in production secret!
+# We probably don't actually use this in this particular project, but it
+# never hurts to be prepared.
+SECRET_KEY = os.environ.get('SECRET_KEY', 'Twas Brillig and the Slithy Toves')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -164,5 +168,4 @@ ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info/')
 try:
     from .local_settings import *
 except ImportError:
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'Twas Brillig and the Slithy Toves')
+    pass

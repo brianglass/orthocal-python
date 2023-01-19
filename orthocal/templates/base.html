@@ -4,7 +4,7 @@
         <title>{% block title %}Orthodox Daily Readings{% endblock %}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/media/main.css"/>
+        <link rel="stylesheet" href="/media/main.css">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png">
@@ -14,6 +14,9 @@
         <link rel="mask-icon" href="/media/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
+
+		{# Links #}
+		{% block head %}{% endblock %}
     </head>
     <body>
         <header>

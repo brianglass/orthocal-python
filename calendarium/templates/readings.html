@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="alternate" type="application/json+oembed" href="{{ oembed_url }}?url={{ request.build_absolute_uri }}">
+{% endblock %}
+
 {% block main %}
 	<article id="orthocal">
 			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>
 			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=now.year month=now.month day=now.day %}">Today</a>
 			<a class="cal-nav" href="{% url "calendar-day" cal=cal year=next_date.year month=next_date.month day=next_date.day %}">Next Day &rarr;</a>
 
-			<br/>
+			<br>
 
-			<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} />Gregorian</label>
-			<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} />Julian</label>
+			<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
+			<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
 
 			<div class="day">
-				<h2>{{ day.gregorian_date|date:"F j, Y" }}<span><br/>{{ day.titles.0 }}</span></h2>
+				<h2>{{ day.gregorian_date|date:"F j, Y" }}<span><br>{{ day.titles.0 }}</span></h2>
 
 				<p>
 					{{ day.fast_level_desc }} 
@@ -69,6 +73,7 @@
 						{% endfor %}
 					{% endif %}
 				</section>
+			</div>
 	</article>
 {% endblock %}
 

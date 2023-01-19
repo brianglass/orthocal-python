@@ -2,11 +2,15 @@ import logging
 
 from datetime import date
 
-from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404, HttpResponse
+from django.template.loader import render_to_string
+from django.urls import resolve, reverse
+from django.urls.exceptions import Resolver404
 from django.utils import timezone
 from ninja import Field, NinjaAPI, Schema
 from ninja.renderers import JSONRenderer
-from pydantic import validator
+from pydantic import AnyHttpUrl, validator
 
 from . import liturgics
 
@@ -16,6 +20,11 @@ logger = logging.getLogger(__name__)
 JSONRenderer.json_dumps_params['indent'] = 4
 
 api = NinjaAPI(urls_namespace='api')
+
+
+@api.exception_handler(NotImplementedError)
+def not_implemented_handler(request, exc):
+    return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
 
 class VerseSchema(Schema):
@@ -74,12 +83,25 @@ class DaySchema(DaySchemaLite):
     stories: list[StorySchema] = None
 
 
+class OembedReadingSchema(Schema):
+    type: str
+    version: str
+    title: str
+    provider_name: str
+    provider_url: str
+    width: int
+    height: int
+    url: str
+    html: str
+
+
 @api.get('/{cal:cal}/{year}/{month}/{day}/', response=DaySchema)
 async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
     # Easter date functions don't work correctly outside this range
     if not 1583 <= year <= 4099:
         raise Http404
 
+    # Validate the date
     try:
         date(year, month, day)
     except ValueError:
@@ -107,3 +129,43 @@ async def get_calendar_month(request, cal: str, year: int, month: int):
 async def get_calendar_default(request, cal: str):
     dt = timezone.localtime()
     return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
+
+@api.get('/oembed/readings/', response=OembedReadingSchema)
+async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, maxwidth: int=350, maxheight: int=350, format: str='json'):
+    logger.debug('got url: %s', url)
+
+    if format != 'json':
+        raise NotImplementedError
+
+    try:
+        match = resolve(url.path)
+    except Resolver404:
+        raise Http404(url)
+
+    if match.url_name != 'calendar-day':
+        raise Http404(url)
+
+    kwargs = match.kwargs
+    use_julian = kwargs['cal'] == 'julian'
+
+    try:
+        day = liturgics.Day(kwargs['year'], kwargs['month'], kwargs['day'], use_julian=use_julian)
+    except ValueError:
+        raise Http404(url)
+
+    await day.ainitialize()
+    await day.apopulate_readings()
+
+    html = render_to_string('oembed_day.html', {'day': day})
+
+    return {
+            'type': 'rich',
+            'version': '1.0',
+            'title': 'This is a test',
+            'provider_name': 'Orthocal.info',
+            'provider_url': 'https://orthocal.info/',
+            'width': maxwidth or 350,
+            'height': maxheight or 350,
+            'url': url,
+            'html': html,
+    }

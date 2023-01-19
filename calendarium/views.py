@@ -7,6 +7,7 @@ from dateutil.relativedelta import relativedelta
 from django.http import Http404
 from django.template.loader import render_to_string
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils import timezone
 
 from orthocal.converters import CalendarConverter
@@ -47,9 +48,10 @@ async def readings(request, cal=None, year=None, month=None, day=None):
             'next_date': dt + timedelta(days=1),
             'previous_date': dt - timedelta(days=1),
             'cal': cal,
+            'oembed_url': request.build_absolute_uri(reverse('api:get_reading_embed')),
     }
 
-    return render(request, 'index.html', context=context)
+    return render(request, 'readings.html', context=context)
 
 async def calendar_view(request, cal=None, year=None, month=None):
     class LiturgicalCalendar(calendar.HTMLCalendar):
