@@ -22,9 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7vjk5-y^prtb)nt-z(5i*1)2cm!l22m@)!rz0*t($bx0q^2+hb'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -165,6 +162,7 @@ ORTHOCAL_ICAL_TTL = 12  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info/')
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
-    pass
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = os.environ['SECRET_KEY']

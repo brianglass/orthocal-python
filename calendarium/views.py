@@ -21,7 +21,6 @@ async def readings(request, cal=None, year=None, month=None, day=None):
 
     if not cal:
         converter = CalendarConverter()
-        logger.debug('__session=%s', request.COOKIES.get('__session', 'None'))
         slug = request.COOKIES.get('__session', 'gregorian')
         cal = converter.to_python(slug)
 
