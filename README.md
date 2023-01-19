@@ -1,11 +1,11 @@
 # orthocal-python
 Orthocal Rewritten in Python
 
-Install dependencies::
+Install dependencies:
 
 	pip install -r requirements.txt
 
-Load initial data::
+Load initial data:
 
 	./manage.py collectstatic --noinput
 	./manage.py migrate
@@ -13,6 +13,6 @@ Load initial data::
 	./manage.py loaddata commemorations/fixtures/*
     ./manage.py loaddata calendarium/fixtures/*
 
-Run developement server::
+Run developement server:
 
 	./manage.py runserver
