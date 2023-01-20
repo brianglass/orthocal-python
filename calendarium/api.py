@@ -147,7 +147,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     except Resolver404:
         raise Http404(url)
 
-    if not match.url_name.startswith('calendar-month'):
+    if not match.url_name.startswith('calendar'):
         raise Http404(url)
 
     kwargs = match.kwargs
@@ -164,7 +164,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     return {
             'type': 'rich',
             'version': '1.0',
-            'title': 'This is a test',
+            'title': 'Orthodox Calendar',
             'provider_name': 'Orthocal.info',
             'provider_url': settings.ORTHOCAL_PUBLIC_URL,
             'width': maxwidth,
