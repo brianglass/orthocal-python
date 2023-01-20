@@ -68,6 +68,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
     return render(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
+        'this_month': first_day,
         'previous_month': first_day - relativedelta(months=1),
         'next_month': first_day + relativedelta(months=1),
     })

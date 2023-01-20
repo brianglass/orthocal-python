@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/media/main.css">
+		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings" href="/api/feed/">
 
         <!-- Favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/media/apple-touch-icon.png">
@@ -26,7 +27,7 @@
 					<li><a href="{% url "calendar-default" %}">Calendar</a></li>
 					<li><a href="{% url "alexa" %}">Alexa Skill</a></li>
 					<li><a href="{% url "api" %}">API</a></li>
-					<li><a href="{% url "icalendar" %}">iCal</a></li>
+					<li><a href="{% url "feeds" %}">Feeds</a></li>
 					<li><a href="{% url "about" %}">About</a></li>
                 </ul>
             </nav>

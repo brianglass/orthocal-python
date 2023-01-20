@@ -1,0 +1,51 @@
+<h1>{{ day.titles.0 }}</h1>
+
+<p>
+	{{ day.fast_level_desc }} 
+	{% if day.fast_level and day.fast_exception %}— {{ day.fast_exception_desc }}{% endif %}
+</p>
+
+{% if day.feasts %}
+<h2>Feasts</h2>
+<ul>
+	{% for feast in day.feasts %}
+	<li>{{ feast }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+{% if day.saints %}
+<h2>Commemorations</h2>
+<ul>
+	{% for saint in day.saints %}
+	<li>{{ saint }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+<h2>Scripture Readings (KJV)</h2>
+
+{% for reading in day.get_readings %}
+<section>
+	<h3>
+		{{ reading.display }}
+		({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+	</h3>
+
+	{% for verse in reading.get_passage %}
+	<p><span style="font-size: small;">{{ verse.verse }}</span> {{ verse.content }}</p>
+	{% endfor %}
+</section>
+{% endfor %}
+
+{% if day.stories %}
+	<h2>Commemorations (<a href="http://abbamoses.com/months/{{ date|date:"F"|lower }}.html">abbamoses.com</a>)</h2>
+
+	{% for reading in day.stories %}
+	<section>
+		<h3>{{ reading.title }}</h3>
+
+		{{ reading.story|safe }}
+	</section>
+	{% endfor %}
+{% endif %}

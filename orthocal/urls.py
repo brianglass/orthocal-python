@@ -23,7 +23,8 @@ register_converter(CalendarConverter, 'cal')
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
     path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
-    path('ical/', TemplateView.as_view(template_name='ical.html'), name='icalendar'),
+    path('ical/', TemplateView.as_view(template_name='feeds.html'), name='icalendar'),
+    path('feeds/', TemplateView.as_view(template_name='feeds.html'), name='feeds'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('api/', include('calendarium.api_urls')),
     path('', include('alexa.urls')),
