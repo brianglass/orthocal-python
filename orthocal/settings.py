@@ -72,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'orthocal.wsgi.application'
 
+FIXTURE_DIRS = [BASE_DIR / 'fixtures']
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

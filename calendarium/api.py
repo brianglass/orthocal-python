@@ -13,7 +13,7 @@ from ninja import Field, NinjaAPI, Schema
 from ninja.renderers import JSONRenderer
 from pydantic import AnyHttpUrl, validator
 
-from . import liturgics
+from . import liturgics, views
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +84,7 @@ class DaySchema(DaySchemaLite):
     stories: list[StorySchema] = None
 
 
-class OembedReadingSchema(Schema):
+class OembedSchema(Schema):
     type: str
     version: str
     title: str = None
@@ -137,10 +137,8 @@ async def get_calendar_default(request, cal: str):
     dt = timezone.localtime()
     return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
 
-@api.get('/oembed/readings/', response=OembedReadingSchema, exclude_none=True)
-async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, maxwidth: int=350, maxheight: int=350, format: str='json'):
-    logger.debug('got url: %s', url)
-
+@api.get('/oembed/calendar/', response=OembedSchema, exclude_none=True)
+async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxheight: int=2000, format: str='json'):
     if format != 'json':
         raise NotImplementedError
 
@@ -149,21 +147,19 @@ async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, ma
     except Resolver404:
         raise Http404(url)
 
-    if match.url_name != 'calendar-day':
+    if not match.url_name.startswith('calendar-month'):
         raise Http404(url)
 
     kwargs = match.kwargs
-    use_julian = kwargs['cal'] == 'julian'
+    use_julian = kwargs.get('cal', 'gregorian') == 'julian'
 
-    try:
-        day = liturgics.Day(kwargs['year'], kwargs['month'], kwargs['day'], use_julian=use_julian)
-    except ValueError:
-        raise Http404(url)
+    if 'year' not in kwargs or 'month' not in kwargs:
+        now = timezone.localtime()
+        year, month = now.year, now.month
+    else:
+        year, month = kwargs['year'], kwargs['month']
 
-    await day.ainitialize()
-    await day.apopulate_readings()
-
-    html = render_to_string('oembed_day.html', {'day': day})
+    html = await views.render_calendar_html(year, month, use_julian=use_julian)
 
     return {
             'type': 'rich',
@@ -171,8 +167,8 @@ async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, ma
             'title': 'This is a test',
             'provider_name': 'Orthocal.info',
             'provider_url': settings.ORTHOCAL_PUBLIC_URL,
-            'width': maxwidth or 400,
-            'height': maxheight or 400,
+            'width': maxwidth,
+            'height': maxheight,
             'url': url,
             'html': html,
     }

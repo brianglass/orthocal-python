@@ -2,6 +2,10 @@
 
 {% block title %}Monthly Calendar{% endblock %}
 
+{% block head %}
+<link rel="alternate" type="application/json+oembed" href="{{ PUBLIC_URL }}{% url "api:get_calendar_embed" %}?url={{ PUBLIC_URL }}{{ request.path }}">
+{% endblock %}
+
 {% block main %}
 	<article id="orthocal">
 		<section class="calendar">

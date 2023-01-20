@@ -37,7 +37,7 @@ async def ical(request, cal):
         await day.ainitialize()
 
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
-        day_path = reverse('calendar-day', kwargs={
+        day_path = reverse('readings', kwargs={
             'cal': cal,
             'year': day.year,
             'month': day.month,
