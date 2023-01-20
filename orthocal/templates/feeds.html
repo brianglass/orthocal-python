@@ -3,6 +3,13 @@
 {% block title %}Orthodox iCal Feed{% endblock %}
 
 {% block content %}
+	<h2>RSS</h2>
+
+	<p>Orthocal.info provides an RSS feed that can be used to embed the daily readings on your website or 
+	used in an RSS feed reader:</p>
+
+	<blockquote><a href="{% url "rss-feed" %}">{% url "rss-feed" %}</a></blockquote>
+
 	<h2>iCal</h2>
 
 	<p>An ical feed for the new calendar is available at:</p>

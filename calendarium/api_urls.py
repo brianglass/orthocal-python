@@ -7,5 +7,5 @@ from .feeds import ReadingsFeed
 urlpatterns = [
     path('', api.urls),
     path('<cal:cal>/ical/', ical, name='ical'),
-    path('feed/', ReadingsFeed(), name='feed'),
+    path('feed/', ReadingsFeed(), name='rss-feed'),
 ]
