@@ -2,6 +2,7 @@ import logging
 
 from datetime import date
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
@@ -136,7 +137,7 @@ async def get_calendar_default(request, cal: str):
     dt = timezone.localtime()
     return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
 
-@api.get('/oembed/readings/', response=OembedReadingSchema)
+@api.get('/oembed/readings/', response=OembedReadingSchema, exclude_none=True)
 async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, maxwidth: int=350, maxheight: int=350, format: str='json'):
     logger.debug('got url: %s', url)
 
@@ -169,7 +170,7 @@ async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, ma
             'version': '1.0',
             'title': 'This is a test',
             'provider_name': 'Orthocal.info',
-            'provider_url': 'https://orthocal.info/',
+            'provider_url': settings.ORTHOCAL_PUBLIC_URL,
             'width': maxwidth or 350,
             'height': maxheight or 350,
             'url': url,
