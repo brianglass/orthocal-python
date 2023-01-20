@@ -1,23 +1,23 @@
-<h1>{{ day.titles.0 }}</h1>
+<h1>{{ obj.titles.0 }}</h1>
 
 <p>
-	{{ day.fast_level_desc }} 
-	{% if day.fast_level and day.fast_exception %}— {{ day.fast_exception_desc }}{% endif %}
+	{{ obj.fast_level_desc }} 
+	{% if obj.fast_level and obj.fast_exception %}— {{ obj.fast_exception_desc }}{% endif %}
 </p>
 
-{% if day.feasts %}
+{% if obj.feasts %}
 <h2>Feasts</h2>
 <ul>
-	{% for feast in day.feasts %}
+	{% for feast in obj.feasts %}
 	<li>{{ feast }}</li>
 	{% endfor %}
 </ul>
 {% endif %}
 
-{% if day.saints %}
+{% if obj.saints %}
 <h2>Commemorations</h2>
 <ul>
-	{% for saint in day.saints %}
+	{% for saint in obj.saints %}
 	<li>{{ saint }}</li>
 	{% endfor %}
 </ul>
@@ -25,7 +25,7 @@
 
 <h2>Scripture Readings (KJV)</h2>
 
-{% for reading in day.get_readings %}
+{% for reading in obj.get_readings %}
 <section>
 	<h3>
 		{{ reading.display }}
@@ -38,10 +38,10 @@
 </section>
 {% endfor %}
 
-{% if day.stories %}
+{% if obj.stories %}
 	<h2>Commemorations (<a href="http://abbamoses.com/months/{{ date|date:"F"|lower }}.html">abbamoses.com</a>)</h2>
 
-	{% for reading in day.stories %}
+	{% for reading in obj.stories %}
 	<section>
 		<h3>{{ reading.title }}</h3>
 

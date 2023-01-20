@@ -1,7 +1,6 @@
 import zoneinfo
 
 from datetime import date, datetime, timedelta
-from urllib.parse import urljoin
 
 import icalendar
 
@@ -50,7 +49,7 @@ async def ical(request, cal):
         event.add('dtstart', icalendar.vDate(dt))  # We use vDate to make an all-day event
         event.add('summary', day.summary_title)
         event.add('description', await ical_description(day))
-        event.add('url', urljoin(settings.ORTHOCAL_PUBLIC_URL, day_path))
+        event.add('url', request.build_absolute_uri(day_path))
         event.add('class', 'public')
         calendar.add_component(event)
 

@@ -13,7 +13,8 @@ from . import liturgics
 class ReadingsFeed(Feed):
     title = 'Orthodox Daily Readings'
     link = settings.ORTHOCAL_PUBLIC_URL
-    description = 'Orthodox scripture readings and lives of the saints.'
+    description = 'Orthodox scripture readings and lives of the saints for every day of the year.'
+    description_template = 'feed_description.html'
 
     def items(self):
         now = timezone.localtime()
@@ -30,9 +31,6 @@ class ReadingsFeed(Feed):
 
     def item_title(self, day):
         return day.summary_title
-
-    def item_description(self, day):
-        return render_to_string('feed_description.html', {'day': day})
 
     def item_link(self, day):
         dt = day.gregorian_date
