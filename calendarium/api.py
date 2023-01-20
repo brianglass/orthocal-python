@@ -171,8 +171,8 @@ async def get_reading_embed(request, url: AnyHttpUrl, response: HttpResponse, ma
             'title': 'This is a test',
             'provider_name': 'Orthocal.info',
             'provider_url': settings.ORTHOCAL_PUBLIC_URL,
-            'width': maxwidth or 350,
-            'height': maxheight or 350,
+            'width': maxwidth or 400,
+            'height': maxheight or 400,
             'url': url,
             'html': html,
     }
