@@ -31,6 +31,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+# This is because we're sitting behind the Firebase proxy
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 
 # Application definition
 
