@@ -56,7 +56,6 @@ class Reading:
         raise AttributeError(f'{self.__class__} object has no attribute: {attr}.')
 
 
-@functools.cache
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
         self.gregorian_date = date(year=year, month=month, day=day)
