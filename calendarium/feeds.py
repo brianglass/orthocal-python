@@ -11,19 +11,14 @@ from . import liturgics
 
 
 class ReadingsFeed(Feed):
+    link = '/'
     description_template = 'feed_description.html'
 
     def get_object(self, request, cal=None):
-        return {
-                'cal': cal or 'gregorian',
-                'base_url': request.build_absolute_uri('/'),
-        }
+        return {'cal': cal or 'gregorian'}
 
     def title(self, obj):
         return f'Orthodox Daily Readings ({obj["cal"].title()})'
-
-    def link(self, obj):
-        return obj['base_url']
 
     def description(self, obj):
         return f'Orthodox scripture readings and lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
