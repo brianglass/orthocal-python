@@ -39,7 +39,8 @@ class Reading:
         self.passage = None
 
     async def apopulate_passage(self):
-        self.passage = [p async for p in self.pericope.get_passage()]
+        if self.passage is None:
+            self.passage = [p async for p in self.pericope.get_passage()]
 
     def __repr__(self):
         return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
@@ -56,6 +57,7 @@ class Reading:
         raise AttributeError(f'{self.__class__} object has no attribute: {attr}.')
 
 
+@functools.cache
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
         self.gregorian_date = date(year=year, month=month, day=day)
@@ -83,17 +85,23 @@ class Day:
 
         self.pyear = Year(pyear, use_julian)
 
+        self._initialized = False
+
     async def ainitialize(self):
-        await self._collect_commemorations()
-        await self._add_supplemental_commemorations()
-        self._apply_fasting_adjustments()
+        if not self._initialized:
+            await self._collect_commemorations()
+            await self._add_supplemental_commemorations()
+            self._apply_fasting_adjustments()
+            self._initialized = True
 
     initialize = async_to_sync(ainitialize)
 
     async def apopulate_readings(self, content=True):
         """Fetch all the readings and add them as instance attributes."""
 
-        self.readings = await self.aget_readings()
+        if not hasattr(self, 'readings'):
+            self.readings = await self.aget_readings()
+
         if content:
             for reading in self.readings:
                 await reading.apopulate_passage()
@@ -140,6 +148,7 @@ class Day:
         """Add additional commemorations and writeups from Abbamoses.com."""
 
         def match(str1, str2):
+            """Combine a phonetic algorithm with fuzzy matching to try and align the two datasets."""
             s1 = ' '.join(metaphone(w) for w in str1.split() if w.isalpha())
             s2 = ' '.join(metaphone(w) for w in str2.split() if w.isalpha())
             return fuzz.partial_token_sort_ratio(s1, s2)
@@ -189,7 +198,7 @@ class Day:
                 if self.fast_exception == 2:
                     self.fast_exception -= 1
             case FastLevels.DormitionFast:
-                # Allow wine and oil on weekdends during the Dormition fast
+                # Allow wine and oil on weekends during the Dormition fast
                 if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
                     self.fast_exception += 1
             case FastLevels.ApostlesFast | FastLevels.NativityFast:

@@ -6,9 +6,11 @@
 	<h2>RSS</h2>
 
 	<p>Orthocal.info provides an RSS feed that can be used to embed the daily readings on your website or 
-	used in an RSS feed reader:</p>
+	used in an RSS feed reader. The default is the Gregorian calendar, but Julian is also available</p>
 
 	<blockquote><a href="{% url "rss-feed" %}">{% url "rss-feed" %}</a></blockquote>
+	<blockquote><a href="{% url "rss-feed-cal" cal="gregorian" %}">{% url "rss-feed-cal" cal="gregorian" %}</a></blockquote>
+	<blockquote><a href="{% url "rss-feed-cal" cal="julian" %}">{% url "rss-feed-cal" cal="julian" %}</a></blockquote>
 
 	<h2>iCal</h2>
 

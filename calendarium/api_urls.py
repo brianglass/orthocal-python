@@ -8,4 +8,5 @@ urlpatterns = [
     path('', api.urls),
     path('<cal:cal>/ical/', ical, name='ical'),
     path('feed/', ReadingsFeed(), name='rss-feed'),
+    path('feed/<cal:cal>/', ReadingsFeed(), name='rss-feed-cal'),
 ]

@@ -35,12 +35,16 @@ class VerseSchema(Schema):
     content: str
 
 
-class ReadingSchema(Schema):
+class ReadingSchemaLite(Schema):
     source: str
     book: str
     description: str = Field(None, alias='desc')
     display: str
     short_display: str = Field(None, alias='sdisplay')
+    passage: None = Field(None, alias='None')
+
+
+class ReadingSchema(ReadingSchemaLite):
     passage: list[VerseSchema] = None
 
 
@@ -72,7 +76,7 @@ class DaySchemaLite(Schema):
     saints: list[str]
     service_notes: list[str]
 
-    readings: list[ReadingSchema] = None
+    readings: list[ReadingSchemaLite] = None
 
     @validator('titles', 'feasts', 'saints', 'service_notes')
     def list_or_null(cls, value):
@@ -82,6 +86,7 @@ class DaySchemaLite(Schema):
 
 class DaySchema(DaySchemaLite):
     stories: list[StorySchema] = None
+    readings: list[ReadingSchema] = None
 
 
 class OembedSchema(Schema):
@@ -166,7 +171,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
             'version': '1.0',
             'title': 'Orthodox Calendar',
             'provider_name': 'Orthocal.info',
-            'provider_url': settings.ORTHOCAL_PUBLIC_URL,
+            'provider_url': request.build_absolute_uri('/'),
             'width': maxwidth,
             'height': maxheight,
             'url': url,

@@ -11,16 +11,29 @@ from . import liturgics
 
 
 class ReadingsFeed(Feed):
-    title = 'Orthodox Daily Readings'
-    link = settings.ORTHOCAL_PUBLIC_URL
-    description = 'Orthodox scripture readings and lives of the saints for every day of the year.'
     description_template = 'feed_description.html'
 
-    def items(self):
+    def get_object(self, request, cal=None):
+        return {
+                'cal': cal or 'gregorian',
+                'base_url': request.build_absolute_uri('/'),
+        }
+
+    def title(self, obj):
+        return f'Orthodox Daily Readings ({obj["cal"].title()})'
+
+    def link(self, obj):
+        return obj['base_url']
+
+    def description(self, obj):
+        return f'Orthodox scripture readings and lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
+
+    def items(self, obj):
+        use_julian = obj['cal'] == 'julian'
         now = timezone.localtime()
         start_dt = now - timedelta(days=10)
         for dt in rrule(DAILY, dtstart=start_dt, until=now):
-            day = liturgics.Day(dt.year, dt.month, dt.day)
+            day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
             day.initialize()
             yield day
 
@@ -34,4 +47,9 @@ class ReadingsFeed(Feed):
 
     def item_link(self, day):
         dt = day.gregorian_date
-        return reverse('readings', kwargs={'cal': 'gregorian', 'year': dt.year, 'month': dt.month, 'day': dt.day})
+        return reverse('readings', kwargs={
+            'cal': 'gregorian',
+            'year': dt.year,
+            'month': dt.month,
+            'day': dt.day
+        })

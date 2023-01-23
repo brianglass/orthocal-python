@@ -1,9 +1,10 @@
 {% extends "content_base.html" %}
+{% load fullurl %}
 
 {% block title %}{% if request.resolver_match.url_name == "calendar-default" %}Orthodox Monthly Calendar{% else %}Orthodox Calendar for {{ this_month|date:"F Y" }}{% endif %}{% endblock %}
 
 {% block head %}
-<link rel="alternate" type="application/json+oembed" href="{{ PUBLIC_URL }}{% url "api:get_calendar_embed" %}?url={{ PUBLIC_URL }}{{ request.path }}">
+<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
 {% endblock %}
 
 {% block main %}
