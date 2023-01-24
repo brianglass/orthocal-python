@@ -150,7 +150,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         card_text = f'Readings for {date_text}:\n\n'
 
         for reading in readings:
-            card_text += f'{reading.display}\n'
+            card_text += f'{reading.pericope.display}\n'
 
         when = speech.when_speech(day)
         card = SimpleCard(f'About {when}', card_text)
@@ -158,7 +158,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         # Build speech
 
-        passage = readings[0].get_passage()
+        passage = readings[0].pericope.get_passage()
         group_size = speech.estimate_group_size(passage)
         date_text = day.gregorian_date.strftime('%A, %B %-d')
         reading_speech = speech.reading_speech(readings[0], group_size)
@@ -235,7 +235,7 @@ class NextIntentHandler(AbstractRequestHandler):
             return self._bail(handler_input, "<p>There are no more readings.</p>")
 
         reading = readings[next_reading]
-        passage = reading.get_passage()
+        passage = reading.pericope.get_passage()
 
         # Is this a long passage?
         if group_size := session_attributes.get('group_size'):

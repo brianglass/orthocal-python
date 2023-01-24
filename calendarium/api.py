@@ -36,16 +36,16 @@ class VerseSchema(Schema):
 
 
 class ReadingSchemaLite(Schema):
-    source: str
-    book: str
+    source: str # = Field(None, alias='pericope.source')
+    book: str = Field(None, alias='pericope.book')
     description: str = Field(None, alias='desc')
-    display: str
-    short_display: str = Field(None, alias='sdisplay')
+    display: str = Field(None, alias='pericope.display')
+    short_display: str = Field(None, alias='pericope.sdisplay')
     passage: None = Field(None, alias='None')
 
 
 class ReadingSchema(ReadingSchemaLite):
-    passage: list[VerseSchema] = None
+    passage: list[VerseSchema] = Field(None, alias='pericope.passage')
 
 
 class StorySchema(Schema):

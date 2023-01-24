@@ -32,35 +32,6 @@ def month_of_days(year, month, use_julian=False):
         dt += timedelta(days=1)
 
 
-class Reading:
-    def __init__(self, reading, pericope):
-        self.reading = reading
-        self.pericope = pericope
-        self.passage = None
-
-    async def aget_passage(self):
-        if self.passage is not None:
-            # use cached readings if we have them
-            return self.passage
-
-        self.passage = [p async for p in self.pericope.get_passage()]
-        return self.passage
-
-    def __repr__(self):
-        return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
-
-    def __getattr__(self, attr):
-        """Act as if we are a composite of both self.reading and self.pericope."""
-
-        if hasattr(self.reading, attr):
-            return getattr(self.reading, attr)
-
-        if hasattr(self.pericope, attr):
-            return getattr(self.pericope, attr)
-
-        raise AttributeError(f'{self.__class__} object has no attribute: {attr}.')
-
-
 @functools.cache
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
@@ -367,17 +338,15 @@ class Day:
 
         # Generate the list of readings
         self.readings = []
-        async for r in queryset.order_by('ordering'):
-            reading = Reading(r, r.pericope) 
+        async for reading in queryset.order_by('ordering'):
+            if fetch_content:
+                await reading.pericope.aget_passage()
+
             if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
                 # Place Lenten Matins Gospel at the top
                 self.readings.insert(0, reading)
             else:
                 self.readings.append(reading)
-
-        if fetch_content:
-            for r in self.readings:
-                await r.aget_passage()
 
         return self.readings
 

@@ -81,7 +81,7 @@ class SpeechTestCase(TestCase):
         day = liturgics.Day(2023, 4, 14)
         day.initialize()
         readings = day.get_readings()
-        passage = readings[0].get_passage()
+        passage = readings[0].pericope.get_passage()
         size = speech.estimate_group_size(passage)
 
         # This passage should have 3 groups of 42 verses
@@ -91,7 +91,7 @@ class SpeechTestCase(TestCase):
         day = liturgics.Day(2023, 1, 18)
         day.initialize()
         readings = day.get_readings()
-        passage = readings[0].get_passage()
+        passage = readings[0].pericope.get_passage()
 
         size = speech.estimate_group_size(passage)
         self.assertIs(size, None)

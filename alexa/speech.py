@@ -81,7 +81,7 @@ def day_speech(day):
     # Readings
 
     for reading in day.get_readings():
-        card_text += f'{reading.display}\n'
+        card_text += f'{reading.pericope.display}\n'
 
     speech_text = expand_abbreviations(speech_text)
     return speech_text, card_text
@@ -121,7 +121,7 @@ def human_join(words):
         return words[0]
 
 def reference_speech(reading):
-    match = ref_re.search(reading.display)
+    match = ref_re.search(reading.pericope.display)
 
     try:
         number, book, chapter = match.groups()
@@ -129,7 +129,7 @@ def reference_speech(reading):
 		# The reference is irregular so we just let Alexa do the best she can
         return read.display.replace('.', ':')
 
-    match reading.book.lower():
+    match reading.pericope.book.lower():
         case 'matthew' | 'mark' | 'luke' | 'john':
             return f'The Holy Gospel according to Saint {book}, chapter {chapter}'
         case 'apostol':
@@ -146,7 +146,7 @@ def reference_speech(reading):
             else:
                 return f'{book}, chapter {chapter}'
         case _:
-            return reading.display.replace('.', ':')
+            return reading.pericope.display.replace('.', ':')
 
 def expand_abbreviations(speech_text):
     for abbr, full in SUBSTITUTIONS:
@@ -168,7 +168,7 @@ def reading_speech(reading, end=None):
     )
 
 def reading_range_speech(reading, start=None, end=None):
-    passage = reading.get_passage()
+    passage = reading.pericope.get_passage()
 
     verses = []
     for verse in passage[start:end]:

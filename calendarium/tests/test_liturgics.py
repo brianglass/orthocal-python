@@ -82,7 +82,7 @@ class TestDay(TestCase):
         day = liturgics.Day(2022, 3, 26)
         await day.ainitialize()
         readings = await day.aget_readings()
-        short_displays = [r.sdisplay for r in readings]
+        short_displays = [r.pericope.sdisplay for r in readings]
         self.assertNotIn('John 5.24-30', short_displays)
 
     async def test_scriptures(self):
@@ -93,11 +93,11 @@ class TestDay(TestCase):
 
         self.assertEqual(len(readings), 3)
 
-        count = await readings[0].get_passage().acount()
+        count = await readings[0].pericope.get_passage().acount()
         self.assertEqual(count, 12)
-        count = await readings[1].get_passage().acount()
+        count = await readings[1].pericope.get_passage().acount()
         self.assertEqual(count, 8)
-        count = await readings[2].get_passage().acount()
+        count = await readings[2].pericope.get_passage().acount()
         self.assertEqual(count, 8)
 
     async def test_annunciation(self):
@@ -133,7 +133,7 @@ class TestDay(TestCase):
         self.assertEqual(len(readings), 6)
         self.assertEqual(readings[0].source, 'Matins Gospel')
 
-        short_displays = [r.sdisplay for r in readings]
+        short_displays = [r.pericope.sdisplay for r in readings]
         self.assertEqual(len(short_displays), len(set(short_displays)))
 
     async def test_tone(self):
@@ -222,6 +222,6 @@ class TestDay(TestCase):
             await day.ainitialize()
             readings = await day.aget_readings()
             with self.subTest(f'{day}: {reading}'):
-                passage = readings[reading].get_passage()
+                passage = readings[reading].pericope.get_passage()
                 verse = await passage.afirst()
                 self.assertEqual(len(verse.content), length)
