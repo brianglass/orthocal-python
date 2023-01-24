@@ -72,7 +72,9 @@ class Pericope(models.Model):
         return self.display
 
     async def aget_passage(self):
-        self.passage = [verse async for verse in self.get_passage()]
+        if not hasattr(self, 'passage'):
+            self.passage = [verse async for verse in self.get_passage()]
+
         return self.passage
 
     def get_passage(self):
