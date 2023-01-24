@@ -35,6 +35,8 @@ SUBSTITUTIONS = (
     ('Ss', '<sub alias="Saints">Ss.</sub>'),
     ('~', '<sub alias="Approximately">~</sub>'),
     ('ca.', '<sub alias="Circa">ca.</sub>'),
+    ('Transl.', '<sub alias="Translation">Transl.</sub>'),
+    ('c.', '<sub alias="Century">c.</sub>'),
 )
 
 def day_speech(day):
@@ -105,13 +107,13 @@ def fasting_speech(day):
             return 'On this day there is no fast.'
         case FastLevels.Fast:
             # normal weekly fast
-            if len(day.fast_exception_desc) > 0:
+            if day.fast_exception_desc:
                 return f'On this day there is a fast. {day.fast_exception_desc}.'
             else:
                 return 'On this day there is a fast.'
         case FastLevels.LentenFast | FastLevels.ApostlesFast | FastLevels.DormitionFast | FastLevels.NativityFast:
             # One of the four great fasts
-            if len(day.fast_exception_desc) > 0:
+            if day.fast_exception_desc:
                 return f'This day is during the {day.fast_level_desc}. {day.fast_exception_desc}.'
             else:
                 return f'This day is during the {day.fast_level_desc}.'
@@ -196,7 +198,7 @@ def estimate_group_size(passage):
 
     # Start with a good guess and then grow the group count until we find one
     # that fits.
-    group_count = passage_len // MAX_SPEECH_LENGTH + 1
+    group_count = math.ceil(passage_len / MAX_SPEECH_LENGTH)
 
     while True:
         # estimate the number of verses per group

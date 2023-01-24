@@ -63,6 +63,7 @@ class DaySchemaLite(Schema):
     tone: int
 
     titles: list[str]
+    summary_title: str
 
     feast_level: int
     feast_level_description: str = Field(None, alias='feast_level_desc')
