@@ -1,8 +1,6 @@
 {% load fullurl %}
 <h1>{{ obj.titles.0 }}</h1>
 
-<img src="{% fullstatic "apple-touch-icon.png" %}" align="right">
-
 <p>
 	{{ obj.fast_level_desc }} 
 	{% if obj.fast_level and obj.fast_exception %}— {{ obj.fast_exception_desc }}{% endif %}
