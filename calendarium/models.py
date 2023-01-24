@@ -72,10 +72,12 @@ class Pericope(models.Model):
         return self.display
 
     async def aget_passage(self):
-        if not hasattr(self, 'passage'):
+        try:
+            return self.passage
+        except AttributeError:
             self.passage = [verse async for verse in self.get_passage()]
+            return self.passage
 
-        return self.passage
 
     def get_passage(self):
         match = re.match('Composite (\d+)', self.display)
