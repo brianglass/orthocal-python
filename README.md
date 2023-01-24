@@ -9,8 +9,7 @@ Load initial data:
 
 	./manage.py collectstatic --noinput
 	./manage.py migrate
-	./manage.py loaddata calendarium
-	./manage.py loaddata commemorations
+	./manage.py loaddata calendarium commemorations
 
 Run developement server:
 

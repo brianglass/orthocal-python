@@ -3,8 +3,9 @@ FROM python:3.11-slim
 WORKDIR /orthocal
 CMD exec uvicorn --host 0.0.0.0 --port $PORT --workers 2 orthocal.asgi:application
 
-COPY . .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 
 # Precompile to bytecode to reduce warmup time
 RUN \

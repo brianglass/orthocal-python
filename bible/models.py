@@ -81,9 +81,9 @@ class VerseManager(models.Manager):
 
 
 class Verse(models.Model):
-    book = models.CharField(max_length=3)
-    chapter = models.IntegerField()
-    verse = models.IntegerField()
+    book = models.CharField(max_length=3, db_index=True)
+    chapter = models.IntegerField(db_index=True)
+    verse = models.IntegerField(db_index=True)
     content = models.TextField()
     language = models.CharField(max_length=10)
 
@@ -91,7 +91,6 @@ class Verse(models.Model):
 
     class Meta:
         unique_together = 'book', 'chapter', 'verse', 'language'
-        index_together = 'book', 'chapter', 'verse', 'language'
 
     def __str__(self):
         blurb = textwrap.shorten(self.content, width=20, placeholder='...')

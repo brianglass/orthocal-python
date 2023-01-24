@@ -68,6 +68,9 @@ class Pericope(models.Model):
     suffix = models.CharField(max_length=255)
     flag = models.SmallIntegerField()
 
+    class Meta:
+        unique_together = 'pericope', 'book'
+
     def __str__(self):
         return self.display
 
@@ -77,7 +80,6 @@ class Pericope(models.Model):
         except AttributeError:
             self.passage = [verse async for verse in self.get_passage()]
             return self.passage
-
 
     def get_passage(self):
         match = re.match('Composite (\d+)', self.display)
