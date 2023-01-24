@@ -71,8 +71,8 @@ async def ical_description(day):
 
     for reading in await day.aget_readings():
         if reading.desc:
-            description += f'{reading.display} ({reading.source}, {reading.desc})\n'
+            description += f'{reading.pericope.display} ({reading.source}, {reading.desc})\n'
         else:
-            description += f'{reading.display} ({reading.source})\n'
+            description += f'{reading.pericope.display} ({reading.source})\n'
 
     return description

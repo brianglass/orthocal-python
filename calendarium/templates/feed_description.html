@@ -31,11 +31,11 @@
 {% for reading in obj.get_readings %}
 <section>
 	<h3>
-		{{ reading.display }}
+		{{ reading.pericope.display }}
 		({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
 	</h3>
 
-	{% for verse in reading.get_passage %}
+	{% for verse in reading.pericope.get_passage %}
 	<p><sup>{{ verse.verse }}</sup> {{ verse.content }}</p>
 	{% endfor %}
 </section>
