@@ -33,6 +33,8 @@ EPISTLES = {
 SUBSTITUTIONS = (
     ('Ven.', '<sub alias="The Venerable">Ven.</sub>'),
     ('Ss', '<sub alias="Saints">Ss.</sub>'),
+    ('~', '<sub alias="Approximately">~</sub>'),
+    ('ca.', '<sub alias="Circa">ca.</sub>'),
 )
 
 def day_speech(day):
