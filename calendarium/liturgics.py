@@ -285,8 +285,8 @@ class Day:
         if hasattr(self, 'readings'):
             # Grab cached readings if we already have them
             if fetch_content:
-                for r in self.readings:
-                    await r.aget_passage()
+                for reading in self.readings:
+                    await reading.pericope.aget_passage()
 
             return self.readings
 
