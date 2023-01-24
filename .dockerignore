@@ -8,3 +8,4 @@ __pycache__
 .Python
 .ackrc
 local_settings.py
+.DS_Store
