@@ -43,16 +43,16 @@ class Reading(models.Model):
     pdist = models.SmallIntegerField(db_index=True)
     source = models.CharField(max_length=64)
     desc = models.CharField(max_length=64)
-    book = models.CharField(max_length=8)
-    pericope = models.CharField(max_length=8)
+    pericope = models.ForeignKey('Pericope', on_delete=models.CASCADE)
     ordering = models.SmallIntegerField()
     flag = models.SmallIntegerField()
 
     class Meta:
         index_together = 'month', 'day'
 
-    def get_pericopes(self):
-        return Pericope.objects.filter(book=self.book, pericope=self.pericope)
+    async def aget_pericope(self):
+        # Using self.pericope only works synchronously.
+        return await Pericope.objects.aget(id=self.pericope_id)
 
 
 class Pericope(models.Model):
@@ -67,9 +67,6 @@ class Pericope(models.Model):
     verses = models.CharField(max_length=128)
     suffix = models.CharField(max_length=255)
     flag = models.SmallIntegerField()
-
-    class Meta:
-        index_together = 'book', 'pericope'
 
     def __str__(self):
         return self.display

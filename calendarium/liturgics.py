@@ -38,9 +38,13 @@ class Reading:
         self.pericope = pericope
         self.passage = None
 
-    async def apopulate_passage(self):
-        if self.passage is None:
-            self.passage = [p async for p in self.pericope.get_passage()]
+    async def aget_passage(self):
+        if self.passage is not None:
+            # use cached readings if we have them
+            return self.passage
+
+        self.passage = [p async for p in self.pericope.get_passage()]
+        return self.passage
 
     def __repr__(self):
         return f'{self.pericope.display} ({self.reading.source}, {self.reading.desc})'
@@ -95,16 +99,6 @@ class Day:
             self._initialized = True
 
     initialize = async_to_sync(ainitialize)
-
-    async def apopulate_readings(self, content=True):
-        """Fetch all the readings and add them as instance attributes."""
-
-        if not hasattr(self, 'readings'):
-            self.readings = await self.aget_readings()
-
-        if content:
-            for reading in self.readings:
-                await reading.apopulate_passage()
 
     def __str__(self):
         return str(self.date)
@@ -314,8 +308,16 @@ class Day:
         """True if this day has moved paremias for the succeeding day."""
         return self.pyear.has_moved_paremias(self.pdist)
 
-    async def aget_readings(self):
+    async def aget_readings(self, fetch_content=False):
         """A list of lectionary readings."""
+
+        if hasattr(self, 'readings'):
+            # Grab cached readings if we already have them
+            if fetch_content:
+                for r in self.readings:
+                    await r.aget_passage()
+
+            return self.readings
 
         query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
 
@@ -360,18 +362,24 @@ class Day:
 
         query |= subquery
 
-        # Generate the list of readings
-        readings = []
-        async for r in models.Reading.objects.filter(query).order_by('ordering'):
-            async for p in r.get_pericopes():
-                reading = Reading(r, p) 
-                if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
-                    # Place Lenten Matins Gospel at the top
-                    readings.insert(0, reading)
-                else:
-                    readings.append(reading)
+        # Do select_related to avoid later synchronous foreign key lookup
+        queryset = models.Reading.objects.filter(query).select_related('pericope')
 
-        return readings
+        # Generate the list of readings
+        self.readings = []
+        async for r in queryset.order_by('ordering'):
+            reading = Reading(r, r.pericope) 
+            if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
+                # Place Lenten Matins Gospel at the top
+                self.readings.insert(0, reading)
+            else:
+                self.readings.append(reading)
+
+        if fetch_content:
+            for r in self.readings:
+                await r.aget_passage()
+
+        return self.readings
 
     get_readings = async_to_sync(aget_readings)
 

@@ -39,7 +39,7 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
 
     await day.ainitialize()
-    await day.apopulate_readings()
+    await day.aget_readings(fetch_content=True)
 
     context = {
             'day': day,

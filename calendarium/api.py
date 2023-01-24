@@ -121,7 +121,7 @@ async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
 
     day = liturgics.Day(year, month, day, use_julian=cal=='julian')
     await day.ainitialize()
-    await day.apopulate_readings()
+    await day.aget_readings(fetch_content=True)
 
     return day
 
@@ -133,7 +133,7 @@ async def get_calendar_month(request, cal: str, year: int, month: int):
 
     days = [d async for d in liturgics.amonth_of_days(year, month, use_julian=cal=='julian')]
     for day in days:
-        await day.apopulate_readings(content=False)
+        await day.aget_readings()
 
     return days
 
