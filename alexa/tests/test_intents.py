@@ -29,9 +29,9 @@ class IntentTestCase(TestCase):
         request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
         response = skill.invoke(request_envelope=request_envelope, context=None)
 
-        self.assertEqual('Launch', response.session_attributes['original_intent'])
+        self.assertEqual(['scriptures', 'commemorations'], response.session_attributes['task_queue'])
         self.assertEqual(today.strftime('%Y-%m-%d'), response.session_attributes['date'])
-        self.assertEqual(0, response.session_attributes['next_reading'])
+        self.assertIsNone(response.session_attributes['current_task'])
         self.assertIn('Would you like to hear the readings?', response.response.output_speech.ssml)
 
     def test_scriptures_intent_long(self):
@@ -72,7 +72,8 @@ class IntentTestCase(TestCase):
         self.assertIn('Would you like me to continue?', response.response.output_speech.ssml)
         self.assertEqual(0, response.session_attributes['next_reading'])
         self.assertEqual(84, response.session_attributes['next_verse'])
-        self.assertEqual('Scriptures', response.session_attributes['original_intent'])
+        self.assertEqual('scriptures', response.session_attributes['current_task'])
+        self.assertEqual([], response.session_attributes['task_queue'])
 
     def test_help_intent(self):
         with open(BASE_DIR / 'data/help_intent_envelope.json') as f:

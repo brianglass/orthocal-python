@@ -51,7 +51,10 @@ class LaunchHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
+
+        # Make sure we don't have any left over junk from a previous session.
+        session.clear()
 
         logger.debug('Running OrthodoxDailyLaunchHandler.')
 
@@ -73,11 +76,11 @@ class LaunchHandler(AbstractRequestHandler):
         card = SimpleCard('About Today', card_text)
         builder.set_card(card)
 
-        # Prepare to read the scriptures if requested
+        # Prepare for the readings if requested.
         builder.set_should_end_session(False)
-        session_attributes['original_intent'] = 'Launch'
-        session_attributes['next_reading'] = 0
-        session_attributes['date'] = timezone.localtime().strftime('%Y-%m-%d')
+        session['date'] = today.strftime('%Y-%m-%d')
+        session['task_queue'] = ['scriptures', 'commemorations']
+        session['current_task'] = None
 
         return builder.response
 
@@ -90,10 +93,10 @@ class DayIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
 
-        # Clean out session attributes to reset the conversation
-        session_attributes.clear()
+        # Make sure we don't have any left over junk from a previous session.
+        session.clear()
 
         logger.debug('Running DayIntentHander.')
 
@@ -130,10 +133,10 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
 
-        # Clean out session attributes to reset the conversation
-        session_attributes.clear()
+        # Make sure we don't have any left over junk from a previous session.
+        session.clear()
 
         logger.debug('Running ScripturesIntentHander.')
 
@@ -164,27 +167,29 @@ class ScripturesIntentHandler(AbstractRequestHandler):
         reading_speech = speech.reading_speech(readings[0], group_size)
 
         speech_text = (
-                f'<p>There are {len(readings)} readings for {date_text}.</p> '
+                f'<p>There are {len(readings)} scripture readings for {date_text}.</p> '
                 '<break strength="strong" time="1500ms"/>'
                 f'<p>{reading_speech}</p>'
         )
 
         # Prepare to handle the next step in the interaction
 
-        session_attributes['original_intent'] = 'Scriptures'
+        session['task_queue'] = []
+        session['current_task'] = 'scriptures'
+
         if group_size:
             # We continue with the first reading, since it's long
             builder.set_should_end_session(False)
-            session_attributes['next_reading'] = 0
-            session_attributes['next_verse'] = group_size
-            session_attributes['group_size'] = group_size
-            session_attributes['date'] = day.gregorian_date.strftime('%Y-%m-%d')
+            session['next_reading'] = 0
+            session['next_verse'] = group_size
+            session['group_size'] = group_size
+            session['date'] = day.gregorian_date.strftime('%Y-%m-%d')
             speech_text += '<p>This is a long reading. Would you like me to continue?</p> '
         elif len(readings) > 1:
             # We move on the the 2nd reading
             builder.set_should_end_session(False)
-            session_attributes['next_reading'] = 1
-            session_attributes['date'] = day.gregorian_date.strftime('%Y-%m-%d')
+            session['next_reading'] = 1
+            session['date'] = day.gregorian_date.strftime('%Y-%m-%d')
             speech_text += '<p>Would you like to hear the next reading?</p> '
         else:
             # There was only one reading and we're done. This should never happen.
@@ -211,35 +216,47 @@ class NextIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
 
         logger.debug('Running NextIntentHander.')
 
-        # Check for the original intent. If none are valid, bail.
-        original_intent = session_attributes.get('original_intent')
-        if original_intent not in ('Launch', 'Scriptures'):
-            return self._bail(handler_input, "<p>I'm not sure what you mean in this context.</p>")
+        current_task = session.get('current_task')
 
+        if not current_task:
+            try:
+                # Get the next task from the queue
+                current_task = session['task_queue'].pop(0)
+            except (KeyError, IndexError):
+                # We're in a wierd state; bail.
+                return self._bail(handler_input, "<p>I'm not sure what you mean in this context.</p>")
+            else:
+                # Initialize the new task
+                if current_task == 'scriptures':
+                    session['next_reading'] = 0
+                    session['next_verse'] = 0
+                elif current_task == 'commemorations':
+                    session['next_commemoration'] = 0
+
+        if current_task == 'scriptures':
+            return self.scriptures_handler(session, builder)
+        elif current_task == 'commemorations':
+            return self.commemorations_handler(session, builder)
+
+    def scriptures_handler(self, session, builder):
         # Get the relevant day. If we can't figure out which day, bail.
-        if not (day := get_day(handler_input)):
-            return self._bail(handler_input, "<p>I didn't understand the date you requested.</p>")
 
-        # Figure out which is the next reading. If we can't, bail.
-        if (next_reading := session_attributes.get('next_reading')) is None:
-            return self._bail(handler_input, "<p>I don't know what you mean in this context.</p>")
-
+        dt = datetime.strptime(session['date'], '%Y-%m-%d')
+        day = liturgics.Day(dt.year, dt.month, dt.day)
         readings = day.get_readings()
 
-        # If we have already completed the final reading, let the user know and exit.
-        if next_reading >= len(readings):
-            return self._bail(handler_input, "<p>There are no more readings.</p>")
+        next_reading = session.get('next_reading')
 
         reading = readings[next_reading]
         passage = reading.pericope.get_passage()
 
         # Is this a long passage?
-        if group_size := session_attributes.get('group_size'):
-            next_verse = session_attributes.get('next_verse', 0)
+        if group_size := session.get('group_size'):
+            next_verse = session.get('next_verse', 0)
         else:
             group_size = speech.estimate_group_size(passage)
             next_verse = 0
@@ -256,18 +273,30 @@ class NextIntentHandler(AbstractRequestHandler):
 
         # Update session attributes
         if group_size is not None and group_size > 0 and next_verse + group_size < passage.count():
+            # We are reading a group of verses from the current reading
             builder.set_should_end_session(False)
-            session_attributes['next_verse'] = next_verse + group_size
-            session_attributes['group_size'] = group_size
+            session['next_verse'] = next_verse + group_size
+            session['group_size'] = group_size
             speech_text += 'This is a long reading. Would you like me to continue?'
         elif next_reading + 1 >= len(readings):
-            builder.set_should_end_session(True)
-            speech_text += 'That is the end of the readings.'
+            # We have finished all of the scripture readings
+            if session['task_queue']:
+                # We have another task to complete
+                builder.set_should_end_session(False)
+                session['current_task'] = None
+                speech_text += 'Would you like me to read the commemorations?'
+            else:
+                # We are done
+                builder.set_should_end_session(True)
+                session.clear()
+                speech_text += 'That is the end of the readings.'
         else:
+            # We have finished a complete reading and prompt to go on to the
+            # next reading.
             builder.set_should_end_session(False)
-            session_attributes['next_reading'] = next_reading + 1
-            session_attributes.pop('next_verse', None)
-            session_attributes.pop('group_size', None)
+            session['next_reading'] = next_reading + 1
+            session.pop('next_verse', None)
+            session.pop('group_size', None)
             speech_text += 'Would you like to hear the next reading?'
 
         builder.speak(speech_text)
@@ -285,9 +314,9 @@ class StopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
         builder.set_should_end_session(True)
-        session_attributes.clear()
+        session.clear()
         return builder.response
 
 
@@ -297,7 +326,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         builder = handler_input.response_builder
-        session_attributes = handler_input.attributes_manager.session_attributes
+        session = handler_input.attributes_manager.session_attributes
 
         speech_text = render_to_string('help.ssml')
         card_text = speech.markup_re.sub('', speech_text)

@@ -10,7 +10,8 @@
 			"next_verse": 42,
 			"date": "2023-04-14",
 			"group_size": 42,
-			"original_intent": "Scriptures",
+			"current_task": "scriptures",
+			"task_queue": [],
 			"next_reading": 0
 		},
 		"user": {

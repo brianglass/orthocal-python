@@ -185,14 +185,14 @@ def estimate_group_size(passage):
     """Estimate how many verses need to be in each group."""
 
     # Use extreme examples for length guesses
-    prelude = len("<p>There are 29 readings for Tuesday, January 3. The reading is from Saint Paul's <say-as interpret-as=\"ordinal\">2</say-as> letter to the Thessalonians</p>")
-    postlude = len('<p>Would you like to hear the next reading?</p>')
-    group_postlude = len('<p>This is a long reading. Would you like me to continue?</p>')
+    prelude_len = len('<p>There are 29 scripture readings for Tuesday, January 3. <break strength="strong" time="1500ms"/>The reading is from Saint Paul\'s <say-as interpret-as="ordinal">2</say-as> letter to the Thessalonians</p>')
+    postlude_len = len('<p>Would you like to hear the next reading?</p>')
+    prompt_len = len('<p>This is a long reading. Would you like me to continue?</p>')
     markup_len = len('<p></p>\n')
 
     verse_lengths = [len(p.content) + markup_len for p in passage]
 
-    passage_len = prelude + sum(verse_lengths) + postlude
+    passage_len = prelude_len + sum(verse_lengths) + postlude_len
     if passage_len < MAX_SPEECH_LENGTH:
         return None
 
@@ -211,12 +211,14 @@ def estimate_group_size(passage):
             length = sum(verse_lengths[start:end])
 
             if g == 0:
-                length += prelude
+                length += prelude_len
 
             if g == group_count - 1:
-                length += postlude
+                # The postlude is read after the last group of verses
+                length += postlude_len
             else:
-                length += group_postlude
+                # The prompt is read between groups of verses
+                length += prompt_len
 
             # If a group is too big, it's time to try a bigger group count
             if length > MAX_SPEECH_LENGTH:
