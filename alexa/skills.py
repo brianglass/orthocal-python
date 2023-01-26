@@ -220,22 +220,21 @@ class NextIntentHandler(AbstractRequestHandler):
 
         logger.debug('Running NextIntentHander.')
 
-        current_task = session.get('current_task')
-
-        if not current_task:
+        if not (current_task := session.get('current_task')):
             try:
                 # Get the next task from the queue
                 current_task = session['task_queue'].pop(0)
             except (KeyError, IndexError):
                 # We're in a wierd state; bail.
                 return self._bail(handler_input, "<p>I'm not sure what you mean in this context.</p>")
-            else:
-                # Initialize the new task
-                if current_task == 'scriptures':
-                    session['next_reading'] = 0
-                    session['next_verse'] = 0
-                elif current_task == 'commemorations':
-                    session['next_commemoration'] = 0
+
+            # Initialize the new task
+            session['current_task'] = current_task
+            if current_task == 'scriptures':
+                session['next_reading'] = 0
+                session['next_verse'] = 0
+            elif current_task == 'commemorations':
+                session['next_commemoration'] = 0
 
         if current_task == 'scriptures':
             return self.scriptures_handler(session, builder)

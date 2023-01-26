@@ -57,7 +57,8 @@ class IntentTestCase(TestCase):
         self.assertIn('deceiveth his own heart', response.response.output_speech.ssml)
         self.assertIn('Would you like to hear the next reading?', response.response.output_speech.ssml)
         self.assertEqual(1, response.session_attributes['next_reading'])
-        self.assertEqual('Launch', response.session_attributes['original_intent'])
+        self.assertEqual(['commemorations'], response.session_attributes['task_queue'])
+        self.assertEqual('scriptures', response.session_attributes['current_task'])
         self.assertEqual('2023-01-12', response.session_attributes['date'])
 
     def test_next_intent_followup(self):

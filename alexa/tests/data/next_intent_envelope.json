@@ -8,7 +8,6 @@
 		},
 		"attributes": {
 			"date": "2023-01-12",
-			"original_intent": "Launch",
 			"task_queue": ["scriptures", "commemorations"],
 			"current_task": null,
 			"next_reading": 0
