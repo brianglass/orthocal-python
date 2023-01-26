@@ -266,7 +266,7 @@ class NextIntentHandler(AbstractRequestHandler):
             speech_text += 'Would you like to hear the next commemoration?'
             builder.set_should_end_session(False)
             session['next_commemoration'] = next_commemoration
-        if session['task_queue']:
+        elif session['task_queue']:
             # We have another task to complete
             builder.set_should_end_session(False)
             session['current_task'] = None
