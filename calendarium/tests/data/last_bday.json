@@ -9,6 +9,7 @@
     "titles": [
         "Friday of the 29th week after Pentecost"
     ],
+    "summary_title": "Synaxis of St John the Baptist",
     "feast_level": 3,
     "feast_level_description": "Red squigg (doxology typikon symbol)",
     "feasts": [
@@ -47,7 +48,7 @@
                     "book": "ACT",
                     "chapter": 19,
                     "verse": 3,
-                    "content": "And he said unto them, Unto what then were ye baptized? And they said, Unto John’s baptism."
+                    "content": "And he said unto them, Unto what then were ye baptized? And they said, Unto John\u2019s baptism."
                 },
                 {
                     "book": "ACT",
@@ -212,7 +213,7 @@
                     "book": "LUK",
                     "chapter": 20,
                     "verse": 22,
-                    "content": "Is it lawful for us to give tribute unto Cæsar, or no?"
+                    "content": "Is it lawful for us to give tribute unto C\u00e6sar, or no?"
                 },
                 {
                     "book": "LUK",
@@ -224,13 +225,13 @@
                     "book": "LUK",
                     "chapter": 20,
                     "verse": 24,
-                    "content": "Shew me a penny. Whose image and superscription hath it? They answered and said, Cæsar’s."
+                    "content": "Shew me a penny. Whose image and superscription hath it? They answered and said, C\u00e6sar\u2019s."
                 },
                 {
                     "book": "LUK",
                     "chapter": 20,
                     "verse": 25,
-                    "content": "And he said unto them, Render therefore unto Cæsar the things which be Cæsar’s, and unto God the things which be God’s."
+                    "content": "And he said unto them, Render therefore unto C\u00e6sar the things which be C\u00e6sar\u2019s, and unto God the things which be God\u2019s."
                 },
                 {
                     "book": "LUK",

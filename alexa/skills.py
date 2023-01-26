@@ -241,11 +241,46 @@ class NextIntentHandler(AbstractRequestHandler):
         elif current_task == 'commemorations':
             return self.commemorations_handler(session, builder)
 
-    def scriptures_handler(self, session, builder):
-        # Get the relevant day. If we can't figure out which day, bail.
-
+    def commemorations_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
         day = liturgics.Day(dt.year, dt.month, dt.day)
+
+        next_commemoration = session.get('next_commemoration')
+
+        story = day.stories[next_commemoration]
+        next_commemoration += 1
+
+        speech_text = (
+                f'The commemoration is for {story.title}.'
+                '<break strength="medium" time="750ms"/>'
+                f'{story.story}'
+                '<break strength="medium" time="750ms"/>'
+        )
+
+        if next_commemoration < len(day.stories):
+            # There are more commemorations to be read.
+            speech_text += 'Would you like to hear the next commemoration?'
+            builder.set_should_end_session(False)
+            session['next_commemoration'] = next_commemoration
+        if session['task_queue']:
+            # We have another task to complete
+            builder.set_should_end_session(False)
+            session['current_task'] = None
+            speech_text += f'Would you like me to read the {session["task_queue"][0]}?'
+        else:
+            # We have read all the commemorations.
+            speech_text += 'That is the end of the commemorations.'
+            builder.set_should_end_session(True)
+            session.clear()
+
+        builder.speak(speech_text)
+
+        return builder.response
+
+    def scriptures_handler(self, session, builder):
+        dt = datetime.strptime(session['date'], '%Y-%m-%d')
+        day = liturgics.Day(dt.year, dt.month, dt.day)
+        day.initialize()
         readings = day.get_readings()
 
         next_reading = session.get('next_reading')
@@ -283,7 +318,7 @@ class NextIntentHandler(AbstractRequestHandler):
                 # We have another task to complete
                 builder.set_should_end_session(False)
                 session['current_task'] = None
-                speech_text += 'Would you like me to read the commemorations?'
+                speech_text += f'Would you like me to read the {session["task_queue"][0]}?'
             else:
                 # We are done
                 builder.set_should_end_session(True)

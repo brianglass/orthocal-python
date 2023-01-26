@@ -147,6 +147,8 @@ def reference_speech(reading):
         case 'ot':
             if number:
                 return f'<say-as interpret-as="ordinal">{number}</say-as> {book}, chapter {chapter}'
+            elif book == 'Composite':
+                return f'{book} {chapter}'
             else:
                 return f'{book}, chapter {chapter}'
         case _:

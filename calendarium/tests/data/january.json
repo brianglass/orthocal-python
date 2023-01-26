@@ -10,6 +10,7 @@
         "titles": [
             "Saturday of the 28th week after Pentecost"
         ],
+        "summary_title": "Saturday before Theophany; Circumcision of Our Lord; St Basil the Great",
         "feast_level": 6,
         "feast_level_description": "Red cross circle (great feast typikon symbol)",
         "feasts": [
@@ -119,6 +120,7 @@
         "titles": [
             "28th Sunday after Pentecost"
         ],
+        "summary_title": "28th Sunday after Pentecost",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
@@ -212,6 +214,7 @@
         "titles": [
             "Monday of the 29th week after Pentecost"
         ],
+        "summary_title": "Prophet Malachi",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -255,6 +258,7 @@
         "titles": [
             "Tuesday of the 29th week after Pentecost"
         ],
+        "summary_title": "Synaxis of Seventy Apostles",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -297,6 +301,7 @@
         "titles": [
             "Wednesday of the 29th week after Pentecost"
         ],
+        "summary_title": "Eve of Theophany",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": [
@@ -581,6 +586,7 @@
         "titles": [
             "Thursday of the 29th week after Pentecost"
         ],
+        "summary_title": "Theophany of Our Lord and Savior Jesus Christ",
         "feast_level": 8,
         "feast_level_description": "Major feast Lord",
         "feasts": [
@@ -670,6 +676,7 @@
         "titles": [
             "Friday of the 29th week after Pentecost"
         ],
+        "summary_title": "Synaxis of St John the Baptist",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
         "feasts": [
@@ -730,6 +737,7 @@
         "titles": [
             "Saturday of the 29th week after Pentecost"
         ],
+        "summary_title": "Saturday after Theophany",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": [
@@ -792,6 +800,7 @@
         "titles": [
             "29th Sunday after Pentecost"
         ],
+        "summary_title": "29th Sunday after Pentecost",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": [
@@ -845,6 +854,7 @@
         "titles": [
             "Monday of the 30th week after Pentecost"
         ],
+        "summary_title": "St Gregory of Nyssa",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -888,6 +898,7 @@
         "titles": [
             "Tuesday of the 30th week after Pentecost"
         ],
+        "summary_title": "Ven. Theodosius the Great",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
@@ -980,6 +991,7 @@
         "titles": [
             "Wednesday of the 30th week after Pentecost"
         ],
+        "summary_title": "St Sava, Archbishop of Serbia",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
         "feasts": null,
@@ -1022,6 +1034,7 @@
         "titles": [
             "Thursday of the 30th week after Pentecost"
         ],
+        "summary_title": "Martyrs Hermylus and Stratonicus",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1065,6 +1078,7 @@
         "titles": [
             "Friday of the 30th week after Pentecost"
         ],
+        "summary_title": "St Nino of Georgia",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
@@ -1108,6 +1122,7 @@
         "titles": [
             "Saturday of the 30th week after Pentecost"
         ],
+        "summary_title": "Ven. Paul of Thebes and John Calabytes",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1150,6 +1165,7 @@
         "titles": [
             "30th Sunday after Pentecost"
         ],
+        "summary_title": "30th Sunday after Pentecost",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1199,6 +1215,7 @@
         "titles": [
             "Monday of the 31st week after Pentecost"
         ],
+        "summary_title": "Ven. Godbearing Anthony the Great",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
         "feasts": [
@@ -1291,6 +1308,7 @@
         "titles": [
             "Tuesday of the 31st week after Pentecost"
         ],
+        "summary_title": "Ss Athanasius the Great and Cyril of Alexandria",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1332,6 +1350,7 @@
         "titles": [
             "Wednesday of the 31st week after Pentecost"
         ],
+        "summary_title": "Ven. Macarius the Great",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1373,6 +1392,7 @@
         "titles": [
             "Thursday of the 31st week after Pentecost"
         ],
+        "summary_title": "Ven. Euthymius the Great",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
         "feasts": [
@@ -1465,6 +1485,7 @@
         "titles": [
             "Friday of the 31st week after Pentecost"
         ],
+        "summary_title": "Ven. Maximus the Confessor",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1508,6 +1529,7 @@
         "titles": [
             "Saturday of the 31st week after Pentecost"
         ],
+        "summary_title": "Apostle Timothy of the Seventy",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1550,6 +1572,7 @@
         "titles": [
             "31st Sunday after Pentecost"
         ],
+        "summary_title": "31st Sunday after Pentecost",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1599,6 +1622,7 @@
         "titles": [
             "Monday of the 32nd week after Pentecost"
         ],
+        "summary_title": "Ven. Xenia of Rome",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1642,6 +1666,7 @@
         "titles": [
             "Tuesday of the 32nd week after Pentecost"
         ],
+        "summary_title": "St Gregory the Theologian",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
@@ -1731,6 +1756,7 @@
         "titles": [
             "Wednesday of the 32nd week after Pentecost"
         ],
+        "summary_title": "Ven. Xenophon and Mary",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1773,6 +1799,7 @@
         "titles": [
             "Thursday of the 32nd week after Pentecost"
         ],
+        "summary_title": "Transl. Relics of St John Chrysostom",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
@@ -1862,6 +1889,7 @@
         "titles": [
             "Friday of the 32nd week after Pentecost"
         ],
+        "summary_title": "Ven. Ephrem the Syrian",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1903,6 +1931,7 @@
         "titles": [
             "Saturday of the 32nd week after Pentecost"
         ],
+        "summary_title": "Trans. Rel. Ignatius the Godbearer",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1947,6 +1976,7 @@
         "titles": [
             "32nd Sunday after Pentecost"
         ],
+        "summary_title": "32nd Sunday after Pentecost",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
         "feasts": [
@@ -2038,6 +2068,7 @@
         "titles": [
             "Monday of the 33rd week after Pentecost"
         ],
+        "summary_title": "Unmercenaries Cyrus and John",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
         "feasts": null,
