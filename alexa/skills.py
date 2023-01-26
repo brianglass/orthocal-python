@@ -250,6 +250,7 @@ class NextIntentHandler(AbstractRequestHandler):
 
         story = day.stories[next_commemoration]
         story_text = re.sub(r'<it>(.*?)</it>', r'\1', story.story)
+        story_text = speech.expand_abbreviations(story_text)
         next_commemoration += 1
 
         speech_text = (
