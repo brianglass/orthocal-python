@@ -245,6 +245,7 @@ class NextIntentHandler(AbstractRequestHandler):
     def commemorations_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
         day = liturgics.Day(dt.year, dt.month, dt.day)
+        day.initialize()
 
         next_commemoration = session.get('next_commemoration')
 

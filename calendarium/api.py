@@ -17,10 +17,15 @@ from . import liturgics, views
 
 logger = logging.getLogger(__name__)
 
-# We want the JSON in the api to be human readable.
-JSONRenderer.json_dumps_params['indent'] = 4
 
-api = NinjaAPI(urls_namespace='api')
+class Renderer(JSONRenderer):
+    json_dumps_params = {
+            'indent': 4,
+            'ensure_ascii': False,
+    }
+
+
+api = NinjaAPI(urls_namespace='api', renderer=Renderer())
 
 
 @api.exception_handler(NotImplementedError)
