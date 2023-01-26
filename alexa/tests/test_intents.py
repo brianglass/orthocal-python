@@ -76,6 +76,18 @@ class IntentTestCase(TestCase):
         self.assertEqual('scriptures', response.session_attributes['current_task'])
         self.assertEqual([], response.session_attributes['task_queue'])
 
+    def test_next_intent_commemorations(self):
+        with open(BASE_DIR / 'data/next_intent_commemorations_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertIn('Our Father among the Saints Gregory the Theologian', response.response.output_speech.ssml)
+        self.assertNotIn('<it>', response.response.output_speech.ssml)
+
     def test_help_intent(self):
         with open(BASE_DIR / 'data/help_intent_envelope.json') as f:
             envelope = f.read()

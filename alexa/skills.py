@@ -1,4 +1,5 @@
 import logging
+import re
 
 from datetime import datetime
 
@@ -248,12 +249,13 @@ class NextIntentHandler(AbstractRequestHandler):
         next_commemoration = session.get('next_commemoration')
 
         story = day.stories[next_commemoration]
+        story_text = re.sub(r'<it>(.*?)</it>', r'\1', story.story)
         next_commemoration += 1
 
         speech_text = (
-                f'The commemoration is for {story.title}.'
+                f'<p>The commemoration is for {story.title}.</p>'
                 '<break strength="medium" time="750ms"/>'
-                f'{story.story}'
+                f'{story_text}'
                 '<break strength="medium" time="750ms"/>'
         )
 
