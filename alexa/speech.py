@@ -33,6 +33,7 @@ EPISTLES = {
 SUBSTITUTIONS = (
     ('Ven.', '<sub alias="The Venerable">Ven.</sub>'),
     ('Ss', '<sub alias="Saints">Ss.</sub>'),
+    ('Sts', '<sub alias="Saints">Ss.</sub>'),
     ('~', '<sub alias="Approximately">~</sub>'),
     ('ca.', '<sub alias="Circa">ca.</sub>'),
     ('Transl.', '<sub alias="Translation">Transl.</sub>'),
