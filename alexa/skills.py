@@ -451,7 +451,7 @@ class SessionEndedHandler(AbstractRequestHandler):
         return is_request_type('SessionEndedRequest')(handler_input)
 
     def handle(self, handler_input):
-        return handler_input.response_builder.response.response
+        return handler_input.response_builder.response
 
 
 skill_builder.add_request_handler(LaunchHandler())
