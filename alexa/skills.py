@@ -144,13 +144,14 @@ class CommemorationIntentHandler(AbstractRequestHandler):
             builder.speak('<p>There are no commemorations available.</p>')
             return builder.response
 
+        which = 'first' if len(day.stories) > 1 else ''
 
         story = day.stories[0]
         story_text = re.sub(r'<it>(.*?)</it>', r'\1', story.story)
         story_text = speech.expand_abbreviations(story_text)
         speech_text = (
                 '<break strength="medium" time="750ms"/>'
-                f'<p>The commemoration is for {story.title}.</p>'
+                f'<p>The {which} commemoration is for {story.title}.</p>'
                 '<break strength="medium" time="750ms"/>'
                 f'{story_text}'
                 '<break strength="medium" time="750ms"/>'
@@ -161,14 +162,6 @@ class CommemorationIntentHandler(AbstractRequestHandler):
             card_text = f'The commemorations are for {speech.human_join(saint_names)}.\n\n'
         elif len(saint_names) == 1:
             card_text = f'The commemoration is for {day.saints[0]}.\n\n'
-
-        # Set speech
-        builder.speak(speech_text)
-
-        # Set card
-        when = speech.when_speech(day)
-        card = SimpleCard(f'Commemorations for {when}', card_text)
-        builder.set_card(card)
 
         if len(day.stories) > 1:
             # We move on the the 2nd commemoration
@@ -183,6 +176,14 @@ class CommemorationIntentHandler(AbstractRequestHandler):
             builder.set_should_end_session(True)
             session.clear()
             speech_text += '<p>That is the end of the commemorations.</p>'
+
+        # Set speech
+        builder.speak(speech_text)
+
+        # Set card
+        when = speech.when_speech(day)
+        card = SimpleCard(f'Commemorations for {when}', card_text)
+        builder.set_card(card)
 
         return builder.response
 
