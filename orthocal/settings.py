@@ -40,6 +40,7 @@ USE_X_FORWARDED_PORT = True
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third party apps
     'corsheaders',

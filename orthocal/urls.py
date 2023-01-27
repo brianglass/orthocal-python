@@ -13,12 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path, register_converter
 from django.views.generic import TemplateView
 
 from .converters import CalendarConverter
+from . import sitemaps
 
 register_converter(CalendarConverter, 'cal')
+
+sitemaps = {
+        'static': sitemaps.StaticViewSitemap,
+        'calendar': sitemaps.CalendarSitemap,
+        'calendar-julian': sitemaps.CalendarJulianSitemap,
+        'readings': sitemaps.ReadingsSitemap,
+        'readings-julian': sitemaps.ReadingsJulianSitemap,
+}
 
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
@@ -29,4 +39,5 @@ urlpatterns = [
     path('api/', include('calendarium.api_urls')),
     path('', include('alexa.urls')),
     path('', include('calendarium.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
