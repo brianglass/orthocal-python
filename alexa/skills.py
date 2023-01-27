@@ -446,7 +446,16 @@ class HelpIntentHandler(AbstractRequestHandler):
         return builder.response
 
 
+class SessionEndedHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_request_type('SessionEndedRequest')(handler_input)
+
+    def handle(self, handler_input):
+        return handler_input.response_builder.response.response
+
+
 skill_builder.add_request_handler(LaunchHandler())
+skill_builder.add_request_handler(SessionEndedHandler())
 skill_builder.add_request_handler(DayIntentHandler())
 skill_builder.add_request_handler(ScripturesIntentHandler())
 skill_builder.add_request_handler(CommemorationIntentHandler())
