@@ -18,6 +18,8 @@ async def ical(request, cal):
     ttl = settings.ORTHOCAL_ICAL_TTL
     timestamp = timezone.localtime()
 
+    use_julian = True if cal == 'julian' else False
+
     calendar = icalendar.Calendar()
     calendar.add('prodid', '-//brianglass//Orthocal//en')
     calendar.add('version', '2.0')
@@ -32,7 +34,7 @@ async def ical(request, cal):
     end_dt = start_dt + timedelta(days=30 * 7)
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
-        day = liturgics.Day(dt.year, dt.month, dt.day)
+        day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
         await day.ainitialize()
 
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
