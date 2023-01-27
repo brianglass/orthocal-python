@@ -2,6 +2,14 @@
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Readings{% else %}Orthodox Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
+{% block head %}
+	{% if request.resolver_match.url_name == "index" %}
+		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the saints for every day of the year.">
+	{% else %}
+		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date:"F j, Y" }}.">
+	{% endif %}
+{% endblock %}
+
 {% block main %}
 	<article id="orthocal">
 			<a class="cal-nav" href="{% url "readings" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>

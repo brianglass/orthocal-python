@@ -4,7 +4,13 @@
 {% block title %}{% if request.resolver_match.url_name == "calendar-default" %}Orthodox Monthly Calendar{% else %}Orthodox Calendar for {{ this_month|date:"F Y" }}{% endif %}{% endblock %}
 
 {% block head %}
-<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
+	{% if request.resolver_match.url_name == "calendar-default" %}
+		<meta name="description" content="An Orthodox monthly calendar including information about feasts, fasts, commemorations, and readings.">
+	{% else %}
+		<meta name="description" content="An Orthodox calendar including information about feasts, fasts, commemorations, and readings for the month of {{ this_month|date:"F Y" }}.">
+	{% endif %}
+
+	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
 {% endblock %}
 
 {% block main %}
