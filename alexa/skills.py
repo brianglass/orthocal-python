@@ -121,6 +121,72 @@ class DayIntentHandler(AbstractRequestHandler):
         return builder.response
 
 
+class CommemorationIntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name('Commemorations')(handler_input)
+
+    def handle(self, handler_input):
+        builder = handler_input.response_builder
+        session = handler_input.attributes_manager.session_attributes
+
+        # Make sure we don't have any left over junk from a previous session.
+        session.clear()
+
+        logger.debug('Running CommemorationIntentHander.')
+
+        if not (day := get_day(handler_input)):
+            builder.set_should_end_session(True)
+            builder.speak("<p>I didn't understand the date you requested.</p>")
+            return builder.response
+
+        if not day.stories:
+            builder.set_should_end_session(True)
+            builder.speak('<p>There are no commemorations available.</p>')
+            return builder.response
+
+
+        story = day.stories[0]
+        story_text = re.sub(r'<it>(.*?)</it>', r'\1', story.story)
+        story_text = speech.expand_abbreviations(story_text)
+        speech_text = (
+                '<break strength="medium" time="750ms"/>'
+                f'<p>The commemoration is for {story.title}.</p>'
+                '<break strength="medium" time="750ms"/>'
+                f'{story_text}'
+                '<break strength="medium" time="750ms"/>'
+        )
+
+        saint_names = [s.title for s in day.stories]
+        if len(saint_names) > 1:
+            card_text = f'The commemorations are for {speech.human_join(saint_names)}.\n\n'
+        elif len(saint_names) == 1:
+            card_text = f'The commemoration is for {day.saints[0]}.\n\n'
+
+        # Set speech
+        builder.speak(speech_text)
+
+        # Set card
+        when = speech.when_speech(day)
+        card = SimpleCard(f'Commemorations for {when}', card_text)
+        builder.set_card(card)
+
+        if len(day.stories) > 1:
+            # We move on the the 2nd commemoration
+            builder.set_should_end_session(False)
+            session['task_queue'] = []
+            session['current_task'] = 'commemorations'
+            session['next_commemoration'] = 1
+            session['date'] = day.gregorian_date.strftime('%Y-%m-%d')
+            speech_text += '<p>Would you like to hear the next commemoration?</p> '
+        else:
+            # There was only one commemoration and we're done.
+            builder.set_should_end_session(True)
+            session.clear()
+            speech_text += '<p>That is the end of the commemorations.</p>'
+
+        return builder.response
+
+
 class ScripturesIntentHandler(AbstractRequestHandler):
     """Build the initial scriptures Speech.
 
@@ -382,6 +448,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 skill_builder.add_request_handler(LaunchHandler())
 skill_builder.add_request_handler(DayIntentHandler())
 skill_builder.add_request_handler(ScripturesIntentHandler())
+skill_builder.add_request_handler(CommemorationIntentHandler())
 skill_builder.add_request_handler(NextIntentHandler())
 skill_builder.add_request_handler(StopIntentHandler())
 skill_builder.add_request_handler(HelpIntentHandler())
