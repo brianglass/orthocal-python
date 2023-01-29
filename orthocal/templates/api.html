@@ -3,7 +3,7 @@
 {% block title %}Orthodox Calendar and Readings API{% endblock %}
 
 {% block head %}
-	<meta name="description" content="The orthocal.info provides a RESTful API enabling programmatic access to information about feasts, fasts, commemorations, daily scripture readings, and stories from the lives of the saints.">
+	<meta name="description" content="Orthocal.info provides a RESTful API for information about feasts, fasts, daily scripture readings, and commemorations.">
 {% endblock %}
 
 {% block content %}
@@ -39,7 +39,7 @@
 
 	<p>The rubrics are based on OCA rubrics.  For example:</p>
 
-	<h4>Legacy API Endpoints</h4>
+	<h3>Legacy API Endpoints</h3>
 
 	<p>The legacy endpoints (as follows below) using jurisdiction ('oca' or 'rocor') instead of
 	calendar are still supported, but new development should take place using
@@ -50,7 +50,7 @@
 			/api/&lt;jurisdiction&gt;/&lt;year&gt;/&lt;month&gt;/
 	</blockquote>
 
-	<h3>Javascript Embedding</h3>
+	<h2>Javascript Embedding</h2>
 
 	<p>Website administrators can use these apis in conjunction with front-end Javascript to 
 	embed the daily readings on the sites they maintain. Backend code can also be used, but that
@@ -59,19 +59,19 @@
 	<p>Following are some simple examples of how to fetch the data from the api and incorporate 
 	it into a page.</p>
 
-	<h4>ES6 Example</h4>
+	<h3>ES6 Example</h3>
 
 	<!-- This is an older example -->
 	<!-- <script src="https://gist.github.com/brianglass/24df39824f67a4fda7ff3a6c5f665d9b.js"></script> -->
 	<script src="https://gist.github.com/brianglass/4b31f5a98ea3e1a6eae9aff70d71d9e8.js"></script>
 
-	<h4>HTML With jQuery Example</h4>
+	<h3>HTML With jQuery Example</h3>
 
 	<p>A very simple example of how to fetch and display fasting information using jQuery follows.</p>
 
 	<script src="https://gist.github.com/brianglass/8e8f9f4ea9543911198bd6edf74dd77b.js"></script>
 
-	<h4>React.js Example</h4>
+	<h3>React.js Example</h3>
 
 	<p>You can view the code for the previous version of this site that was
 	built with React.js in the <a
