@@ -147,7 +147,7 @@ class CommemorationIntentHandler(AbstractRequestHandler):
         which = 'first' if len(day.stories) > 1 else ''
 
         story = day.stories[0]
-        story_text = re.sub(r'<it>(.*?)</it>', r'\1', story.story)
+        story_text = re.sub(r'<i>(.*?)</i>', r'\1', story.story)
         story_text = speech.expand_abbreviations(story_text)
         speech_text = (
                 '<break strength="medium" time="750ms"/>'
