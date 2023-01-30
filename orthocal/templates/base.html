@@ -34,10 +34,14 @@
 					<li><a href="{% url "feeds" %}">Feeds</a></li>
 					<li><a href="{% url "about" %}">About</a></li>
                 </ul>
+
+				{% block extra_nav %}{% endblock %}
             </nav>
         </header>
 
+		<main id="orthocal">
         {% block main %}{% endblock %}
+		</main>
 
         {% block scripts %}{% endblock %}
     </body>

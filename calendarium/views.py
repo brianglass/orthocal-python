@@ -96,4 +96,4 @@ async def render_calendar_html(year, month, use_julian=False):
     lcal = LiturgicalCalendar(firstweekday=6)
     content = lcal.formatmonth(year, month)
 
-    return render_to_string('oembed_calendar.html', {'content': content})
+    return content
