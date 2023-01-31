@@ -193,7 +193,8 @@ table.month td.noday {
 	background-color: white;
 }
 table.month tr td p {
-	text-indent: 0;
+	text-indent: 0 !important;
+	text-align: left;
 }
 table.month tr th {
 	text-align: center;
