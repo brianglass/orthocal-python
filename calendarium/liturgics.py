@@ -153,7 +153,7 @@ class Day:
 
         # Are we in the Apostles fast?
         if 56 < self.pdist < self.pyear.peter_and_paul:
-            self.fast_level = 3
+            self.fast_level = FastLevels.ApostlesFast
             if self.pdist == 57:
                 self.service_notes.append("Beginning of Apostles' Fast")
 

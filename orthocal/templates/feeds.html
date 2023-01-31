@@ -1,9 +1,14 @@
 {% extends "content_base.html" %}
 
+{% load fullurl %}
+
 {% block title %}Orthodox iCal and RSS Feeds{% endblock %}
 
 {% block head %}
 	<meta name="description" content="Orthocal.info provides iCal and RSS feeds for feasts, fasts, daily scripture readings, and commemorations.">
+
+	{# this page was moved from /ical/ to /feeds/. /ical/ is now a redirect, but we'll keep this here to help Google for now. #}
+	<link rel="canonical" href="{% fullurl "feeds" %}">
 {% endblock %}
 
 {% block content %}

@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib.sitemaps.views import sitemap
-from django.urls import include, path, register_converter
+from django.urls import include, path, register_converter, reverse
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from .converters import CalendarConverter
 from . import sitemaps
@@ -33,7 +34,7 @@ sitemaps = {
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
     path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
-    path('ical/', TemplateView.as_view(template_name='feeds.html'), name='icalendar'),
+    path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds'), name='icalendar'),
     path('feeds/', TemplateView.as_view(template_name='feeds.html'), name='feeds'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('api/', include('calendarium.api_urls')),

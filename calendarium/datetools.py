@@ -7,13 +7,48 @@ import jdcal
 
 from dateutil.easter import easter
 
-Weekday = IntEnum('Weekday', 'Sunday Monday Tuesday Wednesday Thursday Friday Saturday', start=0)
-FastLevels = IntEnum('FastLevels', 'NoFast Fast LentenFast ApostlesFast DormitionFast NativityFast', start=0)
+Weekday = IntEnum('Weekday', (
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+), start=0)
 
-FastLevelDesc = "No Fast", "Fast", "Lenten Fast", "Apostles Fast", "Dormition Fast", "Nativity Fast"
-FastExceptions = ('', "Wine and Oil are Allowed", "Fish, Wine and Oil are Allowed", "Wine and Oil are Allowed",
-    "Fish, Wine and Oil are Allowed", "Wine is Allowed", "Wine, Oil and Caviar are Allowed", "Meat Fast",
-    "Strict Fast (Wine and Oil)", "Strict Fast", "No overrides", "Fast Free",)
+FastLevels = IntEnum('FastLevels', (
+    'NoFast',
+    'Fast',
+    'LentenFast',
+    'ApostlesFast',
+    'DormitionFast',
+    'NativityFast',
+), start=0)
+
+FastLevelDesc = (
+    "No Fast",
+    "Fast",
+    "Lenten Fast",
+    "Apostles Fast",
+    "Dormition Fast",
+    "Nativity Fast",
+)
+
+FastExceptions = (
+    '',
+    "Wine and Oil are Allowed",
+    "Fish, Wine and Oil are Allowed",
+    "Wine and Oil are Allowed",
+    "Fish, Wine and Oil are Allowed",
+    "Wine is Allowed",
+    "Wine, Oil and Caviar are Allowed",
+    "Meat Fast",
+    "Strict Fast (Wine and Oil)",
+    "Strict Fast",
+    "No overrides",
+    "Fast Free",
+)
 
 FeastLevels = {
 	-1: "No Liturgy",
