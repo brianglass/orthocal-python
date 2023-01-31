@@ -23,21 +23,20 @@
 		{% block head %}{% endblock %}
     </head>
     <body>
-        <header>
-            <h1>Orthodox Calendar</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Daily Readings</a></li>
-					<li><a href="{% url "calendar-default" %}">Calendar</a></li>
-					<li><a href="{% url "alexa" %}">Alexa Skill</a></li>
-					<li><a href="{% url "api" %}">API</a></li>
-					<li><a href="{% url "feeds" %}">Feeds</a></li>
-					<li><a href="{% url "about" %}">About</a></li>
-                </ul>
+        <header>Orthodox Calendar</header>
 
-				{% block extra_nav %}{% endblock %}
-            </nav>
-        </header>
+		<nav>
+			<ul>
+				<li><a href="/">Daily Readings</a></li>
+				<li><a href="{% url "calendar-default" %}">Calendar</a></li>
+				<li><a href="{% url "alexa" %}">Alexa Skill</a></li>
+				<li><a href="{% url "api" %}">API</a></li>
+				<li><a href="{% url "feeds" %}">Feeds</a></li>
+				<li><a href="{% url "about" %}">About</a></li>
+			</ul>
+
+			{% block extra_nav %}{% endblock %}
+		</nav>
 
 		<main id="orthocal">
         {% block main %}{% endblock %}

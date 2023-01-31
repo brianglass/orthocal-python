@@ -14,38 +14,41 @@ h1, h2, h3, h4 {
 /* Site title and navigation */
 body > header {
     margin: 0;
-    padding: 4% 0 0 0;
+    padding: 6% 0 1% 0;
+    text-align: center;
+    font-size: 250%;
+    color: #666;
+	font-weight: bold;
+}
+body > nav {
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
-body > header h1 {
-    font-size: 250%;
-    margin-bottom: 5px;
-    color: #666;
-}
-body > header nav ul {
+body > nav ul {
     list-style: none;
     margin: 0 0 1.5em 0;
     padding: 0;
 }
-body > header nav li {
+body > nav li {
     display: inline;
     border-right: 3px solid #ddd;
     padding: 8px;
     margin-left: -4px;
 }
-body > header nav li:last-child {
+body > nav li:last-child {
     border-right: none;
 }
-body > header nav a:link, header nav a:visited {
+body > nav a:link, body > nav a:visited {
     color: black;
     text-decoration: none;
 }
-body > header nav a:hover {
+body > nav a:hover {
     text-decoration: underline;
 }
 
 /* Readings and Calendar navigation */
-body > header nav a.cal-nav {
+body > nav a.cal-nav {
     display: inline-block;
     font-family: 'Merriweather', serif;
     font-size: 85%;
@@ -58,7 +61,7 @@ body > header nav a.cal-nav {
     border-radius: 3px;
 	text-decoration: none;
 }
-body > header nav a.cal-nav:hover {
+body > nav a.cal-nav:hover {
     background-color: white;
     color: #666;
     border: 1px solid #bbb;
@@ -122,8 +125,9 @@ input {
     column-rule: 1px solid #ddd;
     padding-top: 2em;
 }
-.passage h1 {
+.passage h2 {
     margin-top: 0;
+	font-size: 110%;
 }
 .passage p {
     text-indent: 1em;
@@ -152,8 +156,9 @@ label {
     padding: 0;
 	list-style-type: none;
 }
-.service-notes h3, .feasts h3, .commemorations h3 {
+.service-notes h2, .feasts h2, .commemorations h2 {
     margin-bottom: 3px;
+	font-size: 1.2em;
 }
 .readings h3 {
     margin-top: 30px;

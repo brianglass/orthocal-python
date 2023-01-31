@@ -32,7 +32,7 @@
 
 		{% if day.service_notes %}
 		<section class="service-notes">
-			<h3>Service Notes</h3>
+			<h2>Service Notes</h2>
 			<ul>
 				{% for note in day.service_notes %}
 				<li>{{ note }}</li>
@@ -43,7 +43,7 @@
 
 		{% if day.feasts %}
 		<section class="feasts">
-			<h3>Feasts</h3>
+			<h2>Feasts</h2>
 			<ul>
 				{% for feast in day.feasts %}
 				<li>{{ feast }}</li>
@@ -54,7 +54,7 @@
 
 		{% if day.saints %}
 		<section class="commemorations">
-			<h3>Commemorations</h3>
+			<h2>Commemorations</h2>
 			<ul>
 				{% for saint in day.saints %}
 				<li>{{ saint }}</li>
@@ -69,10 +69,10 @@
 
 		{% for reading in day.readings %}
 		<article class="passage">
-			<h1>
+			<h2>
 				{{ reading.pericope.display }}
 				({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
-			</h1>
+			</h2>
 
 			{% for verse in reading.pericope.passage %}
 			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
@@ -87,7 +87,7 @@
 
 			{% for reading in day.stories %}
 			<article class="passage">
-				<h1>{{ reading.title }}</h1>
+				<h2>{{ reading.title }}</h2>
 
 				{{ reading.story|safe }}
 			</article>
