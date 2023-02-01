@@ -14,7 +14,7 @@ h1, h2, h3, h4 {
 /* Site title and navigation */
 body > header {
     margin: 0;
-    padding: 6% 0 1% 0;
+    padding: 2em 0 0.25em 0;
     text-align: center;
     font-size: 250%;
     color: #666;
@@ -72,7 +72,7 @@ a.active {
 }
 
 main#orthocal {
-    margin: 2% auto;
+    margin: 1em auto;
     border-top: 8px solid #eee;
     padding-top: 2em;
 	width: 75%;
