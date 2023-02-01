@@ -34,7 +34,7 @@ sitemaps = {
 urlpatterns = [
     path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
     path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
-    path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds'), name='icalendar'),
+    path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds')),
     path('feeds/', TemplateView.as_view(template_name='feeds.html'), name='feeds'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('api/', include('calendarium.api_urls')),

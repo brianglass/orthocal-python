@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+		<style>
+			body {
+				margin: 0;
+			}
+			table.month {
+				font-family: "Merriweather";
+				font-size: 1.5vw;
+				margin auto;
+				table-layout: fixed;
+				border-collapse: collapse;
+			}
+			table.month td {
+				margin: 0;
+				padding: 0;
+				border: 1px solid #ccc;
+				font-size: 75%;
+				vertical-align: top;
+				background-color: #f9f9f9;
+				text-align: left;
+			}
+			table.month td.fast {
+				background-color: #eee;
+			}
+			table.month td.fast:hover {
+				background-color: #ddd !important;
+			}
+			table.month td.noday {
+				border: 0;
+				background-color: white;
+			}
+			table.month tr td p {
+				text-indent: 0;
+			}
+			table.month tr th {
+				text-align: center;
+				font-size: 100%;
+				color: gray;
+			}
+			table.month tr:first-child th {
+				font-size: 1.5em;
+				color: black;
+				padding-top: 1.5em;
+				padding-bottom: 1em;
+			}
+			p.feast {
+				font-weight: bold;
+				color: black;
+			}
+			table.month ul {
+				list-style-type: none;
+				margin: 0 0 1em 0;
+				padding: 0;
+			}
+			table.month li {
+				display: inline;
+			}
+			table.month li + li:before {
+				content: "•";
+				padding: 0 0.5vw;
+			}
+			ul.feasts li {
+				font-weight: bold;
+				color: black;
+			}
+			ul.saints li {
+				font-size: 75%;
+			}
+
+			p.day-number {
+				font-size: 150%;
+			}
+			table.month td a {
+				display: block;
+				padding: 1vw;
+				text-decoration: none;
+				color: black;
+				height: 100%;
+			}
+			table.month td.sun:hover,
+			table.month td.mon:hover,
+			table.month td.tue:hover,
+			table.month td.wed:hover,
+			table.month td.thu:hover,
+			table.month td.fri:hover,
+			table.month td.sat:hover
+			{
+				background-color: #eee;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		{{ content|safe }}
+	</body>
+</html>

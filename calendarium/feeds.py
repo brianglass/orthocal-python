@@ -21,7 +21,7 @@ class ReadingsFeed(Feed):
         return f'Orthodox Daily Readings ({obj["cal"].title()})'
 
     def description(self, obj):
-        return f'Orthodox scripture readings and lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
+        return f'Orthodox scripture readings and stories from the lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
 
     def items(self, obj):
         use_julian = obj['cal'] == 'julian'

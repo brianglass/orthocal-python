@@ -63,7 +63,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     first_day = date(year, month, 1)
 
-    content = await render_calendar_html(year, month, use_julian=cal=='julian')
+    content = await render_calendar_html(request, year, month, use_julian=cal=='julian')
 
     return render(request, 'calendar.html', context={
         'content': content,
@@ -73,17 +73,39 @@ async def calendar_view(request, cal=None, year=None, month=None):
         'next_month': first_day + relativedelta(months=1),
     })
 
-async def render_calendar_html(year, month, use_julian=False):
+async def calendar_embed_view(request, cal=None, year=None, month=None):
+    if not cal:
+        slug = request.COOKIES.get('__session', 'gregorian')
+        cal = cal_converter.to_python(slug)
+
+    if not year or not month:
+        now = timezone.localtime()
+        year, month = now.year, now.month
+
+    first_day = date(year, month, 1)
+
+    content = await render_calendar_html(request, year, month, use_julian=cal=='julian')
+
+    return render(request, 'calendar_embed.html', context={
+        'content': content,
+        'cal': cal,
+        'this_month': first_day,
+        'previous_month': first_day - relativedelta(months=1),
+        'next_month': first_day + relativedelta(months=1),
+    })
+
+async def render_calendar_html(request, year, month, use_julian=False, full_urls=False):
     class LiturgicalCalendar(calendar.HTMLCalendar):
         def formatday(self, day, weekday):
             if not day:
                 return super().formatday(day, weekday)
 
-            return render_to_string('calendar_day.html', {
+            return render_to_string('calendar_day.html', request=request, context={
                 'cal': 'julian' if use_julian else 'gregorian',
                 'day_number': day,
                 'day': days[day-1],  # days is 0-origin and day is 1-origin
                 'cell_class': self.cssclasses[weekday],
+                'full_urls': full_urls,
             })
 
     day_generator = liturgics.amonth_of_days(year, month, use_julian=use_julian)

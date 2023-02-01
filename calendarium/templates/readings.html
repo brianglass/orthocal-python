@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Readings{% else %}Orthodox Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
+{% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
 {% block head %}
 	{% if request.resolver_match.url_name == "index" %}
