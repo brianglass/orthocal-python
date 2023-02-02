@@ -292,13 +292,13 @@ class Day:
 
         query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
 
-        if self.gospel_pdist:
+        if self.gospel_pdist is not None:
             if self.has_no_memorial:
                 query |= Q(pdist=self.gospel_pdist, source='Gospel') & ~Q(desc='Departed')
             else:
                 query |= Q(pdist=self.gospel_pdist, source='Gospel')
 
-        if self.epistle_pdist:
+        if self.epistle_pdist is not None:
             if self.has_no_memorial:
                 query |= Q(pdist=self.epistle_pdist, source='Epistle') & ~Q(desc='Departed')
             else:

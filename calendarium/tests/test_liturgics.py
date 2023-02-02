@@ -100,6 +100,22 @@ class TestDay(TestCase):
         count = await readings[2].pericope.get_passage().acount()
         self.assertEqual(count, 8)
 
+    async def test_scriptures_pascha(self):
+        day = liturgics.Day(2023, 4, 16)
+        await day.ainitialize()
+        readings = await day.aget_readings()
+
+        self.assertEqual(len(readings), 2)
+
+        self.assertEqual('Acts 1.1-8', readings[0].pericope.display)
+        self.assertEqual('John 1.1-17', readings[1].pericope.display)
+
+        # TODO: This is the Paschal Vespers. There are some missing records in
+        # the fixtures that we need to update from
+        # https://github.com/paulkachur/orthodox_calendar
+
+        #self.assertEqual('John 20.19-25', readings[2].pericope.display)
+
     async def test_annunciation(self):
         """Test a sample feast day."""
 
