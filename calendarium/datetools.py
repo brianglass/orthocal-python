@@ -17,14 +17,13 @@ Weekday = IntEnum('Weekday', (
     'Saturday',
 ), start=0)
 
-FastLevels = IntEnum('FastLevels', (
-    'NoFast',
-    'Fast',
-    'LentenFast',
-    'ApostlesFast',
-    'DormitionFast',
-    'NativityFast',
-), start=0)
+class FastLevels(IntEnum):
+    NoFast         = 0
+    Fast           = 1
+    LentenFast     = 2
+    ApostlesFast   = 3
+    DormitionFast  = 4
+    NativityFast   = 5
 
 FastLevelDesc = (
     "No Fast",
@@ -62,6 +61,46 @@ FeastLevels = {
 	7:  "Major feast Theotokos",
 	8:  "Major feast Lord",
 }
+
+class FloatIndex(IntEnum):
+    FathersSix                      = 1001   # Fathers of the first six ecumenical councils
+    FathersSeventh                  = 1002   # Fathers of the seventh ecumenical council
+    DemetriusSaturday               = 1003   # Demetrius Saturday
+    SynaxisUnmercenaries            = 1004   # Synaxis of unmercenaries
+    SatBeforeElevationMoved         = 1005   # Saturday before Elevation when moved to September 13
+    SatBeforeElevation              = 1006   # Saturday before Elevation on Saturday
+    SunBeforeElevation              = 1007   # Sunday before Elevation
+    SatAfterElevation               = 1008   # Saturday after Elevation
+    SunAfterElevation               = 1009   # Sunday after Elevation
+    SunForefathers                  = 1010   # Sunday of Forefathers
+    SatBeforeNativity               = 1011   # Saturday before Nativity standalone
+    SunBeforeNativity               = 1012   # Sunday before Nativity standalone
+    RoyalHoursNativityFriday        = 1013   # Royal Hours of Nativity when moved to Friday
+    EveNativity                     = 1014   # Eve of Nativity standalone
+    SatBeforeNativityEve            = 1015   # Saturday before Nativity == Eve
+    SunBeforeNativityEve            = 1016   # Sunday before Nativity == Eve
+    SatAfterNativityBeforeTheophany = 1017   # Saturday after Nativity == Saturday before Theophany
+    SatAfterNativityFriday          = 1018   # Saturday after Nativity moved to Friday
+    SatAfterNativity                = 1019   # Saturday after Nativity standalone
+    SunAfterNativityMonday          = 1020   # Sunday after Nativity moved to Monday
+    SunAfterNativitiy               = 1021   # Sunday after Nativity standalone
+    SatBeforeTheophany              = 1022   # Saturday before Theophany standalone
+    SatBeforeTheophanyJan           = 1023   # Saturday before Theophany moved to January 1
+    SunBeforeTheophany              = 1024   # Sunday before Theophany standalone
+    RoyalHoursTheophanyFriday       = 1025   # Royal Hours of Theophany when moved to Friday
+    TheophanyEve                    = 1026   # Eve of Theophany standalone
+    SatBeforeTheophanyEve           = 1027   # Saturday before Theophany == Eve
+    SunBeforeTheophanyEve           = 1028   # Sunday before Theophany == Eve
+    SatAfterTheophany               = 1029   # Saturday after Theophany
+    SunAfterTheophany               = 1030   # Sunday after Theophany
+    NewMartyrsRussia                = 1031   # New Martyrs of Russia
+    AnnunciationParemFriday         = 1032   # Annunciation Paremias on Friday
+    AnnunciationSat                 = 1033   # Annunciation on Saturday
+    AnnunciationSun                 = 1034   # Annunciation on Sunday
+    AnnunciationMon                 = 1035   # Annunciation on Monday
+    AnnunciationParemEve            = 1036   # Annunciation Paremias on Eve
+    AnnunciationWeekday             = 1037   # Annunciation on Tuesday-Friday
+
 
 
 def compute_pascha_jdn(year):

@@ -10,7 +10,7 @@ from phonetics import metaphone
 from thefuzz import fuzz
 
 from . import datetools, models
-from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions
+from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FloatIndex
 from commemorations.models import Commemoration
 
 logger = logging.getLogger(__name__)
@@ -564,47 +564,7 @@ class Year:
 
     @cached_property
     def floats(self):
-        """Return a dict of floating feasts and their indexes into the database."""
-
-        # TODO: Turn this into an Enum
-        # Index numbers for floating feasts:
-        # 1001 Fathers of the first six ecumenical councils
-        # 1002 Fathers of the seventh ecumenical council
-        # 1003 Demetrius Saturday
-        # 1004 Synaxis of unmercenaries
-        # 1005 Saturday before Elevation when moved to September 13
-        # 1006 Saturday before Elevation on Saturday
-        # 1007 Sunday before Elevation
-        # 1008 Saturday after Elevation
-        # 1009 Sunday after Elevation
-        # 1010 Sunday of Forefathers
-        # 1011 Saturday before Nativity standalone
-        # 1012 Sunday before Nativity standalone
-        # 1013 Royal Hours of Nativity when moved to Friday
-        # 1014 Eve of Nativity standalone
-        # 1015 Saturday before Nativity == Eve
-        # 1016 Sunday before Nativity == Eve
-        # 1017 Saturday after Nativity == Saturday before Theophany
-        # 1018 Saturday after Nativity moved to Friday
-        # 1019 Saturday after Nativity standalone
-        # 1020 Sunday after Nativity moved to Monday
-        # 1021 Sunday after Nativity standalone
-        # 1022 Saturday before Theophany standalone
-        # 1023 Saturday before Theophany moved to January 1
-        # 1024 Sunday before Theophany standalone
-        # 1025 Royal Hours of Theophany when moved to Friday
-        # 1026 Eve of Theophany standalone
-        # 1027 Saturday before Theophany == Eve
-        # 1028 Sunday before Theophany == Eve
-        # 1029 Saturday after Theophany
-        # 1030 Sunday after Theophany
-        # 1031 New Martyrs of Russia
-        # 1032 Annunciation Paremias on Friday
-        # 1033 Annunciation on Saturday
-        # 1034 Annunciation on Sunday
-        # 1035 Annunciation on Monday
-        # 1036 Annunciation Paremias on Eve
-        # 1037 Annunciation on Tuesday-Friday
+        """Return a dict of floating feast pdists and their indexes into the database."""
 
         sat_before_elevation, sun_before_elevation, sat_after_elevation, sun_after_elevation = \
                 datetools.surrounding_weekends(self.elevation)
@@ -614,42 +574,46 @@ class Year:
                 datetools.surrounding_weekends(self.nativity)
 
         floats = {
-                self.fathers_six: 1001,
-                self.fathers_seven: 1002,
-                self.demetrius_saturday: 1003,
-                self.synaxis_unmercenaries: 1004,
-                sun_before_elevation: 1007,
-                sat_after_elevation: 1008,
-                sun_after_elevation: 1009,
-                self.forefathers: 1010,
-                sat_after_theophany: 1029,
-                sun_after_theophany: 1030,
+                self.fathers_six:           FloatIndex.FathersSix,
+                self.fathers_seven:         FloatIndex.FathersSeventh,
+                self.demetrius_saturday:    FloatIndex.DemetriusSaturday,
+                self.synaxis_unmercenaries: FloatIndex.SynaxisUnmercenaries,
+                sun_before_elevation:       FloatIndex.SunBeforeElevation,
+                sat_after_elevation:        FloatIndex.SatAfterElevation,
+                sun_after_elevation:        FloatIndex.SunAfterElevation,
+                self.forefathers:           FloatIndex.SunForefathers,
+                sat_after_theophany:        FloatIndex.SatAfterTheophany,
+                sun_after_theophany:        FloatIndex.SunAfterTheophany,
         }
 
         if sat_before_elevation == self.nativity_theotokos:
-            floats[self.elevation - 1] = 1005
+            floats[self.elevation - 1] = FloatIndex.SatBeforeElevationMoved
         else:
-            floats[sat_before_elevation] = 1006
+            floats[sat_before_elevation] = FloatIndex.SatBeforeElevation
 
         nativity_eve = self.nativity - 1
         if nativity_eve == sat_before_nativity:
+            # Nativity is on Sunday; Royal Hours on Friday
             floats.update({
-                self.nativity - 2: 1013,
-                sun_before_nativity: 1012,
-                nativity_eve: 1015,
+                self.nativity - 2:      FloatIndex.RoyalHoursNativityFriday,
+                sun_before_nativity:    FloatIndex.SunBeforeNativity,
+                nativity_eve:           FloatIndex.SatBeforeNativityEve,
             })
         elif nativity_eve == sun_before_nativity:
+            # Nativity is on Monday; Royal Hours on Friday
             floats.update({
-                self.nativity - 2: 1013,
-                sat_before_nativity: 1011,
-                nativity_eve: 1016,
+                self.nativity - 3:      FloatIndex.RoyalHoursNativityFriday,
+                sat_before_nativity:    FloatIndex.SatBeforeNativity,
+                nativity_eve:           FloatIndex.SunBeforeNativityEve,
             })
         else:
             floats.update({
-                nativity_eve: 1014,
-                sat_before_nativity: 1011,
-                sun_before_nativity: 1012,
+                nativity_eve:           FloatIndex.EveNativity,
+                sat_before_nativity:    FloatIndex.SatBeforeNativity,
+                sun_before_nativity:    FloatIndex.SunBeforeNativity,
             })
+
+        # TODO: replace numbers with FloatIndex enum
 
         match datetools.weekday_from_pdist(self.nativity):
             case Weekday.Sunday:
