@@ -124,3 +124,15 @@ class IntentTestCase(TestCase):
 
         self.assertTrue(response.response.should_end_session)
         self.assertEqual(0, len(response.session_attributes))
+
+    def test_commemorations_without_saints(self):
+        with open(BASE_DIR / 'data/meeting_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertIn('The commemoration is for The Meeting', response.response.card.content)
+        self.assertTrue(response.response.should_end_session)

@@ -161,7 +161,7 @@ class CommemorationIntentHandler(AbstractRequestHandler):
         if len(saint_names) > 1:
             card_text = f'The commemorations are for {speech.human_join(saint_names)}.\n\n'
         elif len(saint_names) == 1:
-            card_text = f'The commemoration is for {day.saints[0]}.\n\n'
+            card_text = f'The commemoration is for {saint_names[0]}.\n\n'
 
         if len(day.stories) > 1:
             # We move on the the 2nd commemoration

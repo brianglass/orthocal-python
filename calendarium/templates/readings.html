@@ -12,7 +12,7 @@
 
 {% block extra_nav %}
 	<a class="cal-nav" href="{% url "readings" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}">&larr; Previous Day</a>
-	<a class="cal-nav" href="{% url "readings" cal=cal year=now.year month=now.month day=now.day %}">Today</a>
+	<a class="cal-nav" href="{% url "index" %}">Today</a>
 	<a class="cal-nav" href="{% url "readings" cal=cal year=next_date.year month=next_date.month day=next_date.day %}">Next Day &rarr;</a>
 
 	<br>
