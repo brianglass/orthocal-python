@@ -95,7 +95,13 @@
 			"slots": {
 				"date": {
 					"name": "date",
-					"confirmationStatus": "NONE"
+					"value": "2023-02-02",
+					"confirmationStatus": "NONE",
+					"source": "USER",
+					"slotValue": {
+						"type": "Simple",
+						"value": "2023-02-02"
+					}
 				}
 			}
 		}

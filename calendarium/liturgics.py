@@ -540,11 +540,24 @@ class Year:
 
     @cached_property
     def paremias(self):
+        """Return a table of paremias that should be moved."""
+
         # minor feasts on weekdays in lent have their paremias moved to previous day
 
         paremias = {}
 
-        days = (2, 24), (2, 27), (3, 9), (3, 31), (4, 7), (4, 23), (4, 25), (4, 30)
+        # These seem to be feasts with 3 <= FeastLevel <= 5. We could probably
+        # grab this from the database at run time.
+        days = (
+                (2, 24),    # 1st and 2nd finding of the head of John the Baptist
+                (2, 27),    # St. Raphael, Bishop of Brooklyn
+                (3, 9),     # Holy Forty Martyrs of Sebaste
+                (3, 31),    # Repose St Innocent, Metr. Moscow and Apostle to Americas
+                (4, 7),     # Repose St. Tikhon, Patriarch of Moscow, Enlightener N. America
+                (4, 23),    # Holy Greatmartyr, Victorybearer and Wonderworker George
+                (4, 25),    # Holy Apostle and Evangelist Mark
+                (4, 30),    # Holy Apostle James, Brother of St John
+        )
         for month, day in days:
             pdist = self.date_to_pdist(month, day, self.year)
             weekday = datetools.weekday_from_pdist(pdist)

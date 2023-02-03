@@ -102,7 +102,6 @@ class FloatIndex(IntEnum):
     AnnunciationWeekday             = 1037   # Annunciation on Tuesday-Friday
 
 
-
 def compute_pascha_jdn(year):
     """Compute the Julian day number of Pascha for the given year."""
 

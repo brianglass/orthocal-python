@@ -36,10 +36,11 @@
 		radios[i].addEventListener('change', function() {
 			if (this.value == 'julian') {
 				document.cookie = '__session=julian; path=/';
+				location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}';
 			}else{
 				document.cookie = '__session=gregorian; path=/';
+				location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}';
 			}
-			window.location.reload();
 		});
 	}
 </script>
