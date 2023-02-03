@@ -566,12 +566,20 @@ class Year:
     def floats(self):
         """Return a dict of floating feast pdists and their indexes into the database."""
 
-        sat_before_elevation, sun_before_elevation, sat_after_elevation, sun_after_elevation = \
-                datetools.surrounding_weekends(self.elevation)
-        sat_before_theophany, sun_before_theophany, sat_after_theophany, sun_after_theophany = \
-                datetools.surrounding_weekends(self.theophany)
-        sat_before_nativity, sun_before_nativity, sat_after_nativity, sun_after_nativity = \
-                datetools.surrounding_weekends(self.nativity)
+        (sat_before_elevation,
+         sun_before_elevation,
+         sat_after_elevation,
+         sun_after_elevation) = datetools.surrounding_weekends(self.elevation)
+
+        (sat_before_theophany,
+         sun_before_theophany,
+         sat_after_theophany,
+         sun_after_theophany) = datetools.surrounding_weekends(self.theophany)
+
+        (sat_before_nativity,
+         sun_before_nativity,
+         sat_after_nativity,
+         sun_after_nativity) = datetools.surrounding_weekends(self.nativity)
 
         floats = {
                 self.fathers_six:           FloatIndex.FathersSix,
@@ -587,6 +595,8 @@ class Year:
         }
 
         if sat_before_elevation == self.nativity_theotokos:
+            # If the Saturday before the Elevation falls on the Nativity of the
+            # Theotokos, we move its readings to the eve of the Elevation.
             floats[self.elevation - 1] = FloatIndex.SatBeforeElevationMoved
         else:
             floats[sat_before_elevation] = FloatIndex.SatBeforeElevation
@@ -595,72 +605,70 @@ class Year:
         if nativity_eve == sat_before_nativity:
             # Nativity is on Sunday; Royal Hours on Friday
             floats.update({
-                self.nativity - 2:      FloatIndex.RoyalHoursNativityFriday,
-                sun_before_nativity:    FloatIndex.SunBeforeNativity,
-                nativity_eve:           FloatIndex.SatBeforeNativityEve,
+                self.nativity - 2:   FloatIndex.RoyalHoursNativityFriday,
+                sun_before_nativity: FloatIndex.SunBeforeNativity,
+                nativity_eve:        FloatIndex.SatBeforeNativityEve,
             })
         elif nativity_eve == sun_before_nativity:
             # Nativity is on Monday; Royal Hours on Friday
             floats.update({
-                self.nativity - 3:      FloatIndex.RoyalHoursNativityFriday,
-                sat_before_nativity:    FloatIndex.SatBeforeNativity,
-                nativity_eve:           FloatIndex.SunBeforeNativityEve,
+                self.nativity - 3:   FloatIndex.RoyalHoursNativityFriday,
+                sat_before_nativity: FloatIndex.SatBeforeNativity,
+                nativity_eve:        FloatIndex.SunBeforeNativityEve,
             })
         else:
             floats.update({
-                nativity_eve:           FloatIndex.EveNativity,
-                sat_before_nativity:    FloatIndex.SatBeforeNativity,
-                sun_before_nativity:    FloatIndex.SunBeforeNativity,
+                nativity_eve:        FloatIndex.EveNativity,
+                sat_before_nativity: FloatIndex.SatBeforeNativity,
+                sun_before_nativity: FloatIndex.SunBeforeNativity,
             })
-
-        # TODO: replace numbers with FloatIndex enum
 
         match datetools.weekday_from_pdist(self.nativity):
             case Weekday.Sunday:
                 floats.update({
-                    sat_after_nativity: 1017,
-                    self.nativity+1: 1020,
-                    sun_before_theophany: 1024,
-                    self.theophany-1: 1026,
+                    sat_after_nativity:         FloatIndex.SatAfterNativityBeforeTheophany,
+                    self.nativity+1:            FloatIndex.SunAfterNativityMonday,
+                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Monday:
                 floats.update({
-                    sat_after_nativity: 1017,
-                    sun_after_nativity: 1021,
-                    self.theophany-5: 1023,
-                    self.theophany-1: 1026,
+                    sat_after_nativity:         FloatIndex.SatAfterNativityBeforeTheophany,
+                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
+                    self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Tuesday:
                 floats.update({
-                    sat_after_nativity: 1019,
-                    sun_after_nativity: 1021,
-                    sat_before_theophany: 1027,
-                    self.theophany-5: 1023,
-                    self.theophany-2: 1025,
+                    sat_after_nativity:         FloatIndex.SatAfterNativity,
+                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    sat_before_theophany:       FloatIndex.SatBeforeTheophanyEve,
+                    self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
+                    self.theophany-2:           FloatIndex.RoyalHoursTheophanyFriday,
                 })
             case Weekday.Wednesday:
                 floats.update({
-                    sat_after_nativity: 1019,
-                    sun_after_nativity: 1021,
-                    sat_before_theophany: 1022,
-                    sun_before_theophany: 1028,
-                    self.theophany-3: 1025,
+                    sat_after_nativity:         FloatIndex.SatAfterNativity,
+                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
+                    sun_before_theophany:       FloatIndex.SunBeforeTheophanyEve,
+                    self.theophany-3:           FloatIndex.RoyalHoursTheophanyFriday,
                 })
             case Weekday.Thursday | Weekday.Friday:
                 floats.update({
-                    sat_after_nativity: 1019,
-                    sun_after_nativity: 1021, 
-                    sat_before_theophany: 1022,
-                    sun_before_theophany: 1024, 
-                    self.theophany-1: 1026, 
+                    sat_after_nativity:         FloatIndex.SatAfterNativity,
+                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
+                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Saturday:
                 floats.update({
-                    self.nativity+6: 1018, 
-                    sun_after_nativity: 1021, 
-                    sat_before_theophany: 1022, 
-                    sun_before_theophany: 1024, 
-                    self.theophany-1: 1026, 
+                    self.nativity+6:            FloatIndex.SatAfterNativityFriday,
+                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
+                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.theophany-1:           FloatIndex.TheophanyEve,
                 })
 
         # New Martyrs of Russia (OCA) is the Sunday on or before 1/31
@@ -670,19 +678,21 @@ class Year:
             # The Sunday before 1/31
             martyrs = martyrs - 7 + ((7 - weekday) % 7)
 
-        floats[martyrs] = 1031
+        # TODO: replace numbers with FloatIndex enum
+
+        floats[martyrs] = FloatIndex.NewMartyrsRussia
 
         # Floats around Annunciation
         match datetools.weekday_from_pdist(self.annunciation):
             case Weekday.Saturday:
-                floats[self.annunciation-1] = 1032
-                floats[self.annunciation] = 1033
+                floats[self.annunciation-1]     = FloatIndex.AnnunciationParemFriday
+                floats[self.annunciation]       = FloatIndex.AnnunciationSat
             case Weekday.Sunday:
-                floats[self.annunciation] = 1034
+                floats[self.annunciation]       = FloatIndex.AnnunciationSun
             case Weekday.Monday:
-                floats[self.annunciation] = 1035
+                floats[self.annunciation]       = FloatIndex.AnnunciationMon
             case _:
-                floats[self.annunciation-1] = 1036
-                floats[self.annunciation] = 1037
+                floats[self.annunciation-1]     = FloatIndex.AnnunciationParemEve
+                floats[self.annunciation]       = FloatIndex.AnnunciationWeekday
 
         return floats
