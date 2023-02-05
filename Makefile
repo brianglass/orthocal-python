@@ -10,3 +10,6 @@ deploy:
 
 test:
 	docker run -it -e PORT=8000 -p8000:8000 orthocal ./manage.py test
+
+firebase:
+	firebase deploy --only hosting

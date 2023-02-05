@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /api/gregorian/
+Disallow: /api/julian/
+Disallow: /api/oca/
+Disallow: /api/rocor/
+Disallow: /echo/
+
+Sitemap: https://orthocal.info/sitemap.xml

@@ -229,6 +229,8 @@ class Day:
     def tone(self):
         """The proper tone for this day."""
 
+        # See https://mci.archpitt.org/liturgy/EightTones.html
+
         # The last day of Lent is on the Friday before Lazarus Saturday. From
         # Lazarus Saturday until Holy Saturday, the octoechoes are not employed.
         if -9 < self.pdist < 0:
@@ -570,7 +572,6 @@ class Year:
     def date_to_pdist(self, month, day, year):
         dt = date(year, month, day)
         if self.use_julian:
-            # TODO: Need to test this and confirm it's valid
             return datetools.julian_to_jdn(dt) - self.pascha
         else:
             return datetools.gregorian_to_jdn(dt) - self.pascha
