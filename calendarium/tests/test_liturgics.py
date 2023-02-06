@@ -255,3 +255,14 @@ class TestDay(TestCase):
             readings = await day.aget_minimal_readings()
             with self.subTest(f'{day}'):
                 self.assertEqual(length, len(readings))
+
+    async def test_new_martyrs_russia(self):
+        data = [
+            (2023, 22),
+            (2022, 23),
+        ]
+        for y, d in data:
+            year = liturgics.Year(y)
+            pdist = year.date_to_pdist(1, d, y)
+            with self.subTest(y):
+                self.assertEqual(year.floats.get(pdist), datetools.FloatIndex.NewMartyrsRussia)

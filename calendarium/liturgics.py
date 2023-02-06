@@ -537,6 +537,16 @@ class Year:
         return self.nativity - 14 + ((7 - weekday) % 7)
 
     @cached_property
+    def new_martyrs_russia(self):
+        # Holy New Martyrs and Confessors of Russia On the Sunday closest to January 25
+        pdist = self.date_to_pdist(1, 25, self.year)
+        dow = datetools.weekday_from_pdist(pdist)
+        if dow < Weekday.Thursday:
+            return pdist - dow
+        else:
+            return pdist + 7 - dow
+
+    @cached_property
     def lucan_jump(self):
         # 168 - (Sunday after Elevation)
         return 168 - (self.elevation + 7 - datetools.weekday_from_pdist(self.elevation))
@@ -611,6 +621,7 @@ class Year:
                 self.forefathers:               FloatIndex.SunForefathers,
                 self.sat_after_theophany:       FloatIndex.SatAfterTheophany,
                 self.sun_after_theophany:       FloatIndex.SunAfterTheophany,
+                self.new_martyrs_russia:        FloatIndex.NewMartyrsRussia,
         }
 
         if self.sat_before_elevation == self.nativity_theotokos:
@@ -689,17 +700,6 @@ class Year:
                     self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
                     self.theophany-1:           FloatIndex.TheophanyEve,
                 })
-
-        # New Martyrs of Russia (OCA) is the Sunday on or before 1/31
-        martyrs = self.date_to_pdist(1, 31, self.year)
-        weekday = datetools.weekday_from_pdist(martyrs)
-        if weekday != Weekday.Sunday:
-            # The Sunday before 1/31
-            martyrs = martyrs - 7 + ((7 - weekday) % 7)
-
-        # TODO: replace numbers with FloatIndex enum
-
-        floats[martyrs] = FloatIndex.NewMartyrsRussia
 
         # Floats around Annunciation
         match datetools.weekday_from_pdist(self.annunciation):
