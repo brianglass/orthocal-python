@@ -32,7 +32,7 @@ def month_of_days(year, month, use_julian=False):
         dt += timedelta(days=1)
 
 
-@functools.cache
+@functools.lru_cache
 class Day:
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
         self.gregorian_date = date(year=year, month=month, day=day)
@@ -407,7 +407,7 @@ class Day:
                 return self.pdist + self.jump
 
 
-@functools.cache
+@functools.lru_cache
 class Year:
     def __init__(self, year, use_julian=False):
         self.year = year
