@@ -106,7 +106,9 @@ def compute_pascha_jdn(year):
     """Compute the Julian day number of Pascha for the given year."""
 
     # See https://dateutil.readthedocs.io/en/stable/easter.html
-    assert 1583 <= year <= 4099, 'The year is outside a valid range for this application.'
+    if not 1583 <= year <= 4099:
+        raise ValueError('The year is outside a valid range for this application.')
+
     dt = easter(year, method=2)
     return gregorian_to_jdn(dt)
 
@@ -129,7 +131,9 @@ def surrounding_weekends(distance):
 def gregorian_to_julian(year, month, day):
     """Convert a Gregorian date to a Julian date."""
 
-    assert 1583 <= year <= 4099, 'The year is outside a valid range for this application.'
+    if not 1583 <= year <= 4099:
+        raise ValueError('The year is outside a valid range for this application.')
+
     jd = jdcal.gcal2jd(year, month, day)
     year, month, day, _ = jdcal.jd2jcal(*jd)
     return date(year, month, day)

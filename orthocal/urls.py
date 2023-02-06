@@ -18,10 +18,13 @@ from django.urls import include, path, register_converter, reverse
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
-from .converters import CalendarConverter
+from . import converters
 from . import sitemaps
 
-register_converter(CalendarConverter, 'cal')
+register_converter(converters.CalendarConverter, 'cal')
+register_converter(converters.YearConverter, 'year')
+register_converter(converters.MonthConverter, 'month')
+register_converter(converters.DayConverter, 'day')
 
 sitemaps = {
         'static': sitemaps.StaticViewSitemap,

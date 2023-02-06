@@ -113,12 +113,8 @@ class OembedSchema(Schema):
     html: str
 
 
-@api.get('/{cal:cal}/{year}/{month}/{day}/', response=DaySchema)
+@api.get('/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
-    # Easter date functions don't work correctly outside this range
-    if not 1583 <= year <= 4099:
-        raise Http404
-
     # Validate the date
     try:
         date(year, month, day)
@@ -131,12 +127,8 @@ async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
 
     return day
 
-@api.get('/{cal:cal}/{year}/{month}/', response=list[DaySchemaLite])
+@api.get('/{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
 async def get_calendar_month(request, cal: str, year: int, month: int):
-    # Easter date functions don't work correctly outside this range
-    if not 1583 <= year <= 4099:
-        raise Http404
-
     days = [d async for d in liturgics.amonth_of_days(year, month, use_julian=cal=='julian')]
     for day in days:
         await day.aget_readings()
