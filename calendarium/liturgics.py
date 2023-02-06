@@ -141,9 +141,8 @@ class Day:
                 break
 
         # Add unmatched stories to the list of commemorations
-        for s in stories:
-            self.saints.append(s.title)
-
+        self.saints.extend(s.title for s in stories)
+        
     def _apply_fasting_adjustments(self):
         # Adjust for fast free days
         if self.fast_exception == 11:
@@ -354,11 +353,23 @@ class Day:
 
     get_readings = async_to_sync(aget_readings)
 
+    async def aget_minimal_readings(self, fetch_content=False):
+        """Get just the first Epistle and Gospel if available."""
+
+        readings = await self.aget_readings()
+
+        epistles = [r for r in readings if r.source == 'Epistle']
+        gospels = [r for r in readings if r.source == 'Gospel']
+
+        if epistles and gospels:
+            return [epistles[0], gospels[0]]
+        else:
+            return readings
+        
     @cached_property
     def jump(self):
         """The Lucan jump appropriate for this day."""
-        _, _, _, sun_after_elevation = datetools.surrounding_weekends(self.pyear.elevation)
-        return self.pyear.lucan_jump if self.do_jump and self.pdist > sun_after_elevation else 0
+        return self.pyear.lucan_jump if self.do_jump and self.pdist > self.pyear.sun_after_elevation else 0
 
     @cached_property
     def has_daily_readings(self):
@@ -383,12 +394,11 @@ class Day:
 
         if self.has_daily_readings:
             limit = 279 if datetools.weekday_from_pdist(self.pyear.theophany) < Weekday.Tuesday else 272
-            _, _, _, sun_after_theophany = datetools.surrounding_weekends(self.pyear.theophany)
 
             if self.pdist == 245 - self.pyear.lucan_jump:
                 return self.pyear.forefathers + self.pyear.lucan_jump
-            elif self.pdist > sun_after_theophany and self.weekday == Weekday.Sunday and self.pyear.extra_sundays > 1:
-                i = (self.pdist - sun_after_theophany) // 7
+            elif self.pdist > self.pyear.sun_after_theophany and self.weekday == Weekday.Sunday and self.pyear.extra_sundays > 1:
+                i = (self.pdist - self.pyear.sun_after_theophany) // 7
                 return self.pyear.reserves[i-1]
             elif self.pdist + self.jump > limit:
                 # Theophany stepback
@@ -403,6 +413,22 @@ class Year:
         self.year = year
         self.use_julian = use_julian
         self.pascha = datetools.compute_pascha_jdn(year)
+
+        (self.sat_before_elevation,
+         self.sun_before_elevation,
+         self.sat_after_elevation,
+         self.sun_after_elevation) = datetools.surrounding_weekends(self.elevation)
+
+        (self.sat_before_theophany,
+         self.sun_before_theophany,
+         self.sat_after_theophany,
+         self.sun_after_theophany) = datetools.surrounding_weekends(self.theophany)
+
+        (self.sat_before_nativity,
+         self.sun_before_nativity,
+         self.sat_after_nativity,
+         self.sun_after_nativity) = datetools.surrounding_weekends(self.nativity)
+
 
     @cached_property
     def previous_pascha(self):
@@ -425,20 +451,15 @@ class Year:
     def no_daily(self):
         """Return a set() of days on which daily readings are suppressed"""
 
-        _, sun_before_theophany, sat_after_theophany, sun_after_theophany = \
-                datetools.surrounding_weekends(self.theophany)
-        _, sun_before_nativity, _, sun_after_nativity = \
-                datetools.surrounding_weekends(self.nativity)
-
         no_daily = {
-                sun_before_theophany, sun_after_theophany, self.theophany-5,
+                self.sun_before_theophany, self.sun_after_theophany, self.theophany-5,
                 self.theophany-1, self.theophany, self.forefathers,
-                sun_before_nativity, self.nativity-1, self.nativity,
-                self.nativity+1, sun_after_nativity,
+                self.sun_before_nativity, self.nativity-1, self.nativity,
+                self.nativity+1, self.sun_after_nativity,
         }
 
-        if sat_after_theophany == self.theophany+1:
-            no_daily.add(sat_after_theophany)
+        if self.sat_after_theophany == self.theophany+1:
+            no_daily.add(self.sat_after_theophany)
 
         if datetools.weekday_from_pdist(self.annunciation) == Weekday.Saturday:
             no_daily.add(self.annunciation)
@@ -522,8 +543,7 @@ class Year:
 
     @cached_property
     def extra_sundays(self):
-        _, _, _, sun_after_theophany = datetools.surrounding_weekends(self.theophany)
-        return (self.next_pascha - self.pascha - 84 - sun_after_theophany) // 7
+        return (self.next_pascha - self.pascha - 84 - self.sun_after_theophany) // 7
 
     @cached_property
     def reserves(self):
@@ -580,108 +600,93 @@ class Year:
     def floats(self):
         """Return a dict of floating feast pdists and their indexes into the database."""
 
-        (sat_before_elevation,
-         sun_before_elevation,
-         sat_after_elevation,
-         sun_after_elevation) = datetools.surrounding_weekends(self.elevation)
-
-        (sat_before_theophany,
-         sun_before_theophany,
-         sat_after_theophany,
-         sun_after_theophany) = datetools.surrounding_weekends(self.theophany)
-
-        (sat_before_nativity,
-         sun_before_nativity,
-         sat_after_nativity,
-         sun_after_nativity) = datetools.surrounding_weekends(self.nativity)
-
         floats = {
-                self.fathers_six:           FloatIndex.FathersSix,
-                self.fathers_seven:         FloatIndex.FathersSeventh,
-                self.demetrius_saturday:    FloatIndex.DemetriusSaturday,
-                self.synaxis_unmercenaries: FloatIndex.SynaxisUnmercenaries,
-                sun_before_elevation:       FloatIndex.SunBeforeElevation,
-                sat_after_elevation:        FloatIndex.SatAfterElevation,
-                sun_after_elevation:        FloatIndex.SunAfterElevation,
-                self.forefathers:           FloatIndex.SunForefathers,
-                sat_after_theophany:        FloatIndex.SatAfterTheophany,
-                sun_after_theophany:        FloatIndex.SunAfterTheophany,
+                self.fathers_six:               FloatIndex.FathersSix,
+                self.fathers_seven:             FloatIndex.FathersSeventh,
+                self.demetrius_saturday:        FloatIndex.DemetriusSaturday,
+                self.synaxis_unmercenaries:     FloatIndex.SynaxisUnmercenaries,
+                self.sun_before_elevation:      FloatIndex.SunBeforeElevation,
+                self.sat_after_elevation:       FloatIndex.SatAfterElevation,
+                self.sun_after_elevation:       FloatIndex.SunAfterElevation,
+                self.forefathers:               FloatIndex.SunForefathers,
+                self.sat_after_theophany:       FloatIndex.SatAfterTheophany,
+                self.sun_after_theophany:       FloatIndex.SunAfterTheophany,
         }
 
-        if sat_before_elevation == self.nativity_theotokos:
+        if self.sat_before_elevation == self.nativity_theotokos:
             # If the Saturday before the Elevation falls on the Nativity of the
             # Theotokos, we move its readings to the eve of the Elevation.
             floats[self.elevation - 1] = FloatIndex.SatBeforeElevationMoved
         else:
-            floats[sat_before_elevation] = FloatIndex.SatBeforeElevation
+            floats[self.sat_before_elevation] = FloatIndex.SatBeforeElevation
 
         nativity_eve = self.nativity - 1
-        if nativity_eve == sat_before_nativity:
+        if nativity_eve == self.sat_before_nativity:
             # Nativity is on Sunday; Royal Hours on Friday
             floats.update({
-                self.nativity - 2:   FloatIndex.RoyalHoursNativityFriday,
-                sun_before_nativity: FloatIndex.SunBeforeNativity,
-                nativity_eve:        FloatIndex.SatBeforeNativityEve,
+                self.nativity - 2:          FloatIndex.RoyalHoursNativityFriday,
+                self.sun_before_nativity:   FloatIndex.SunBeforeNativity,
+                nativity_eve:               FloatIndex.SatBeforeNativityEve,
             })
-        elif nativity_eve == sun_before_nativity:
+        elif nativity_eve == self.sun_before_nativity:
             # Nativity is on Monday; Royal Hours on Friday
             floats.update({
-                self.nativity - 3:   FloatIndex.RoyalHoursNativityFriday,
-                sat_before_nativity: FloatIndex.SatBeforeNativity,
-                nativity_eve:        FloatIndex.SunBeforeNativityEve,
+                self.nativity - 3:          FloatIndex.RoyalHoursNativityFriday,
+                self.sat_before_nativity:   FloatIndex.SatBeforeNativity,
+                nativity_eve:               FloatIndex.SunBeforeNativityEve,
             })
         else:
             floats.update({
-                nativity_eve:        FloatIndex.EveNativity,
-                sat_before_nativity: FloatIndex.SatBeforeNativity,
-                sun_before_nativity: FloatIndex.SunBeforeNativity,
+                nativity_eve:               FloatIndex.EveNativity,
+                self.sat_before_nativity:   FloatIndex.SatBeforeNativity,
+                self.sun_before_nativity:   FloatIndex.SunBeforeNativity,
             })
 
         match datetools.weekday_from_pdist(self.nativity):
             case Weekday.Sunday:
                 floats.update({
-                    sat_after_nativity:         FloatIndex.SatAfterNativityBeforeTheophany,
+                    self.sat_after_nativity:    FloatIndex.SatAfterNativityBeforeTheophany,
                     self.nativity+1:            FloatIndex.SunAfterNativityMonday,
-                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
                     self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Monday:
                 floats.update({
-                    sat_after_nativity:         FloatIndex.SatAfterNativityBeforeTheophany,
-                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
+                    self.sat_after_nativity:    FloatIndex.SatAfterNativityBeforeTheophany,
+                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
                     self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
                     self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Tuesday:
                 floats.update({
-                    sat_after_nativity:         FloatIndex.SatAfterNativity,
-                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
-                    sat_before_theophany:       FloatIndex.SatBeforeTheophanyEve,
+                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
+                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
+                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophanyEve,
                     self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
                     self.theophany-2:           FloatIndex.RoyalHoursTheophanyFriday,
                 })
             case Weekday.Wednesday:
                 floats.update({
-                    sat_after_nativity:         FloatIndex.SatAfterNativity,
-                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
-                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
-                    sun_before_theophany:       FloatIndex.SunBeforeTheophanyEve,
+                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
+                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
+                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
+                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophanyEve,
                     self.theophany-3:           FloatIndex.RoyalHoursTheophanyFriday,
                 })
             case Weekday.Thursday | Weekday.Friday:
                 floats.update({
-                    sat_after_nativity:         FloatIndex.SatAfterNativity,
-                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
-                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
-                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
+                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
+                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
+                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
                     self.theophany-1:           FloatIndex.TheophanyEve,
                 })
             case Weekday.Saturday:
                 floats.update({
                     self.nativity+6:            FloatIndex.SatAfterNativityFriday,
-                    sun_after_nativity:         FloatIndex.SunAfterNativitiy,
-                    sat_before_theophany:       FloatIndex.SatBeforeTheophany,
-                    sun_before_theophany:       FloatIndex.SunBeforeTheophany,
+                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
+                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
+                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
                     self.theophany-1:           FloatIndex.TheophanyEve,
                 })
 

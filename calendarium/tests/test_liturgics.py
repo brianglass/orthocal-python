@@ -241,3 +241,17 @@ class TestDay(TestCase):
                 passage = readings[reading].pericope.get_passage()
                 verse = await passage.afirst()
                 self.assertEqual(len(verse.content), length)
+
+    async def test_minimal_readings(self):
+        data = [
+			(2023, 2, 5, 2),
+			(2023, 2, 28, 3),
+			(2023, 4, 14, 2),  # passion gospels
+        ]
+
+        for year, month, day, length in data:
+            day = liturgics.Day(year, month, day)
+            await day.ainitialize()
+            readings = await day.aget_minimal_readings()
+            with self.subTest(f'{day}'):
+                self.assertEqual(length, len(readings))
