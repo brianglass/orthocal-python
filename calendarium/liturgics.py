@@ -63,6 +63,8 @@ class Day:
         self._initialized = False
 
     async def ainitialize(self):
+        """Do the expensive stuff here to keep it out of the constructor."""
+
         if not self._initialized:
             await self._collect_commemorations()
             await self._add_supplemental_commemorations()
@@ -76,6 +78,8 @@ class Day:
 
     @cached_property
     def summary_title(self):
+        """A simplified title that summarizes the day's commemorations."""
+
         if self.weekday == 0 or -9 < self.pdist < 7:
             if self.titles:
                 return '; '.join(self.titles)
@@ -90,14 +94,22 @@ class Day:
             return '; '.join(self.titles)
 
     async def _collect_commemorations(self):
+        """Fetch the feasts, fasts, and saints and bake them into a composite day."""
+
+        # Select items from the Paschal cycle
         q = Q(pdist=self.pdist)
 
+        # Select floating feasts; These are usually based on the Festal calendar
         if float_index := self.pyear.floats.get(self.pdist):
             q |= Q(pdist=float_index)
 
+        # Select items from the Festal cycle
         q |= Q(month=self.month, day=self.day)
 
+        # Fetch the items from the database
         days = [d async for d in models.Day.objects.filter(q)]
+
+        # Bake the mutliple "days" down into a single composite day.
 
         self.titles = [title for d in days if (title := d.full_title)]
         self.saints = [d.saint for d in days if d.saint]
@@ -283,13 +295,17 @@ class Day:
     async def aget_readings(self, fetch_content=False):
         """A list of lectionary readings."""
 
+        # Return cached readings if we already have them
+
         if hasattr(self, 'readings'):
-            # Grab cached readings if we already have them
             if fetch_content:
                 for reading in self.readings:
                     await reading.pericope.aget_passage()
 
             return self.readings
+
+        # Select readings based on the Paschal cycle. These include the moveable
+        # feasts.
 
         query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
 
@@ -305,21 +321,24 @@ class Day:
             else:
                 query |= Q(pdist=self.epistle_pdist, source='Epistle')
 
-        # include floats
+        # Select readings for floating feasts. Most of these are based on the
+        # Festal cycle. That is, their occurrence is not related to the date of Pascha.
+
         if float_index := self.pyear.floats.get(self.pdist):
             query |= Q(pdist=float_index)
 
-        # Add Matins Eothinon gospel
+        # Add Matins Eothinon gospel. This is a cycle of 11 readings sync'd
+        # with the Paschal cycle.
+
         if self.eothinon_gospel:
             query |= Q(pdist=self.eothinon_gospel + 700)
 
-        # add paremias
+        # Select readings based on the Festal cycle. These are the fixed feasts.
+
         if self.has_moved_paremias:
-            # Grab the paremias from the succeeding day since it has been moved back 1 day
+            # If paremias have been moved, fetch from the following day
             dt = self.date + timedelta(days=1)
             query |= Q(month=dt.month, day=dt.day, source='Vespers')
-
-        # build conditional using month/day instead of pdist
 
         subquery = Q(month=self.month, day=self.day)
         if not self.has_matins_gospel:
@@ -334,10 +353,11 @@ class Day:
 
         query |= subquery
 
+        # Generate the list of readings
+
         # Do select_related to avoid later synchronous foreign key lookup
         queryset = models.Reading.objects.filter(query).select_related('pericope')
 
-        # Generate the list of readings
         self.readings = []
         async for reading in queryset.order_by('ordering'):
             if fetch_content:
@@ -367,44 +387,69 @@ class Day:
             return readings
         
     @cached_property
-    def jump(self):
-        """The Lucan jump appropriate for this day."""
-        return self.pyear.lucan_jump if self.do_jump and self.pdist > self.pyear.sun_after_elevation else 0
-
-    @cached_property
     def has_daily_readings(self):
         """True if daily readings are not suppressed for this day."""
         return self.pyear.has_daily_readings(self.pdist)
 
     @cached_property
     def epistle_pdist(self):
-        """Adjusted pdist for the epistle."""
+        """Adjusted pdist for the epistle.
+
+        This needs to jump into the following year's Paschal cycle. The Paschal
+        cycle is shorter than the full 365 days in a year and we run out of
+        readings at the end of the range.
+
+        models.Reading has records as far back as pdist == -133
+        """
 
         if self.has_daily_readings:
             if self.pdist == 252:
                 return self.pyear.forefathers
             elif self.pdist > 272:
+                # The maximum pdist in the Readings model is 279
+                # We wrap around to the beginning of the next year
                 return self.jdn - self.pyear.next_pascha
             else:
                 return self.pdist
 
     @cached_property
     def gospel_pdist(self):
-        """Adjusted pdist for the Gospel."""
+        """Adjusted pdist for the Gospel.
+
+        This needs to be adjusted for the Lukan jump.
+
+        It will also need to jump into the following year's Paschal cycle. The
+        Paschal cycle is shorter than the full 365 days in a year and we run
+        out of readings at the end of the range.
+
+        models.Reading has records as far back as pdist == -133
+        """
 
         if self.has_daily_readings:
-            limit = 279 if datetools.weekday_from_pdist(self.pyear.theophany) < Weekday.Tuesday else 272
+            # The Lucan jump appropriate for this day.
+            if self.do_jump and self.pdist > self.pyear.sun_after_elevation:
+                jump = self.pyear.lukan_jump 
+            else:
+                jump = 0
 
-            if self.pdist == 245 - self.pyear.lucan_jump:
-                return self.pyear.forefathers + self.pyear.lucan_jump
-            elif self.pdist > self.pyear.sun_after_theophany and self.weekday == Weekday.Sunday and self.pyear.extra_sundays > 1:
+            theophany_weekday = datetools.weekday_from_pdist(self.pyear.theophany)
+            limit = 279 if theophany_weekday < Weekday.Tuesday else 272
+
+            if self.pdist == 245 - self.pyear.lukan_jump:
+                return self.pyear.forefathers + self.pyear.lukan_jump
+            elif self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:
+                # After Theophany, use the Sunday Gospels left unread after the Lukan jump
+
                 i = (self.pdist - self.pyear.sun_after_theophany) // 7
                 return self.pyear.reserves[i-1]
-            elif self.pdist + self.jump > limit:
+            elif self.pdist + jump > limit:
                 # Theophany stepback
+
+                # The maximum pdist in the Readings model is 279
+                # We wrap around to the beginning of the next year
                 return self.jdn - self.pyear.next_pascha
             else:
-                return self.pdist + self.jump
+                return self.pdist + jump
 
 
 @functools.lru_cache
@@ -555,7 +600,7 @@ class Year:
             return pdist - weekday + 7
 
     @cached_property
-    def lucan_jump(self):
+    def lukan_jump(self):
         # 168 - (Sunday after Elevation)
         return 168 - (self.elevation + 7 - datetools.weekday_from_pdist(self.elevation))
 
@@ -565,12 +610,15 @@ class Year:
 
     @cached_property
     def reserves(self):
-        """Return a list of pascha distances for days with unread Sunday gospels"""
+        """Return a list of pascha distances for days with unread Sunday gospels.
+
+        These are saved for use after Theophany. 
+        """
 
         reserves = []
 
         if self.extra_sundays:
-            first = self.forefathers + self.lucan_jump + 7
+            first = self.forefathers + self.lukan_jump + 7
             reserves.extend(range(first, 267, 7))
             if remainder := self.extra_sundays - len(reserves):
                 start = 175 - remainder * 7
@@ -616,7 +664,7 @@ class Year:
 
     @cached_property
     def floats(self):
-        """Return a dict of floating feast pdists and their indexes into the database."""
+        """Return a dict of floating feast pdists and their indices into the database."""
 
         floats = {
                 self.fathers_six:               FloatIndex.FathersSix,

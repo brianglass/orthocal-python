@@ -38,10 +38,10 @@ class TestYear(TestCase):
                 expected = datetools.gregorian_to_jdn(dt) - pascha
                 self.assertEqual(actual, expected)
 
-    def test_lucan_jump(self):
+    def test_lukan_jump(self):
         # TODO: Confirm this is actually working
         year = liturgics.Year(2018, False)
-        self.assertEqual(year.lucan_jump, 7)
+        self.assertEqual(year.lukan_jump, 7) 
 
     def test_daily_readings(self):
         year = liturgics.Year(2018, False)
