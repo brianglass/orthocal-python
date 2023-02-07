@@ -256,13 +256,13 @@ class TestDay(TestCase):
             with self.subTest(f'{day}'):
                 self.assertEqual(length, len(readings))
 
-    async def test_new_martyrs_russia(self):
+    async def test_new_martyrs_russia_2(self):
         data = [
-            (2023, 22),
-            (2022, 23),
+            (2023, 1, 22),
+            (2022, 1, 23),
         ]
-        for y, d in data:
-            year = liturgics.Year(y)
-            pdist = year.date_to_pdist(1, d, y)
+        for y, m, d in data:
+            day = liturgics.Day(y, m, d)
+            await day.ainitialize()
             with self.subTest(y):
-                self.assertEqual(year.floats.get(pdist), datetools.FloatIndex.NewMartyrsRussia)
+                self.assertIn('New Martyrs and Confessors of Russia', day.feasts)

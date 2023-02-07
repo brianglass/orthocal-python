@@ -539,7 +539,7 @@ class Year:
     @cached_property
     def new_martyrs_russia(self):
         # Holy New Martyrs and Confessors of Russia On the Sunday closest to January 25
-        pdist = self.date_to_pdist(1, 25, self.year)
+        pdist = self.date_to_pdist(1, 25, self.year+1)
         dow = datetools.weekday_from_pdist(pdist)
         if dow < Weekday.Thursday:
             return pdist - dow
