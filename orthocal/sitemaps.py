@@ -51,6 +51,7 @@ class ReadingsSitemap(sitemaps.Sitemap):
         return rrule(DAILY, dtstart=start_dt, until=end_dt)
 
     def location(self, item):
+        import pdb; pdb.set_trace()
         return reverse('readings', kwargs={'year': item.year, 'month': item.month, 'day': item.day, 'cal': 'gregorian',})
 
 

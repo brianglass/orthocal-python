@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 # behind a proxy, these should be disabled.
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
+SECURE_PROXY_SSL_HEADER = 'HTTP_X_FORWARDED_PROTO', 'https'
 
 # Application definition
 
