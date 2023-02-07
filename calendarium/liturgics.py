@@ -409,6 +409,15 @@ class Day:
 
 @functools.lru_cache
 class Year:
+    """Representation of a liturgical year.
+
+    While the literal Church year begins on September 1, for the purposes of
+    computing feasts, fasts, and readings, it is more practical to represent
+    the year with Pascha as its locus. For that reason, this Year class
+    represents the period starting 77 days before Pascha and going until 77
+    days before the following Pascha.
+    """
+
     def __init__(self, year, use_julian=False):
         self.year = year
         self.use_julian = use_julian
@@ -428,7 +437,6 @@ class Year:
          self.sun_before_nativity,
          self.sat_after_nativity,
          self.sun_after_nativity) = datetools.surrounding_weekends(self.nativity)
-
 
     @cached_property
     def previous_pascha(self):
@@ -540,11 +548,11 @@ class Year:
     def new_martyrs_russia(self):
         # Holy New Martyrs and Confessors of Russia On the Sunday closest to January 25
         pdist = self.date_to_pdist(1, 25, self.year+1)
-        dow = datetools.weekday_from_pdist(pdist)
-        if dow < Weekday.Thursday:
-            return pdist - dow
+        weekday = datetools.weekday_from_pdist(pdist)
+        if weekday < Weekday.Thursday:
+            return pdist - weekday
         else:
-            return pdist + 7 - dow
+            return pdist - weekday + 7
 
     @cached_property
     def lucan_jump(self):

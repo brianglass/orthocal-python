@@ -1089,7 +1089,7 @@
         "saints": [
             "St Nino of Georgia",
             "Our Holy Father Sava (Sabbas), Enlightener and first Archbishop of Serbia (1236)",
-            "The Holy Fathers slain at Sinai and Raithu (4th \u2013 5th c.)"
+            "The Holy Fathers slain at Sinai and Raithu (4th – 5th c.)"
         ],
         "service_notes": null,
         "readings": [
@@ -1403,7 +1403,7 @@
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
         "saints": [
-            "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st \u2013 2nd c.)",
+            "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st – 2nd c.)",
             "Saint Peter the Tax Collector (6th c.)"
         ],
         "service_notes": null,
@@ -1575,7 +1575,9 @@
         "summary_title": "31st Sunday after Pentecost",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
-        "feasts": null,
+        "feasts": [
+            "New Martyrs and Confessors of Russia"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
