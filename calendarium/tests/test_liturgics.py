@@ -256,7 +256,7 @@ class TestDay(TestCase):
             with self.subTest(f'{day}'):
                 self.assertEqual(length, len(readings))
 
-    async def test_new_martyrs_russia_2(self):
+    async def test_new_martyrs_russia(self):
         data = [
             (2023, 1, 22),
             (2022, 1, 23),

@@ -10,7 +10,7 @@ from phonetics import metaphone
 from thefuzz import fuzz
 
 from . import datetools, models
-from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FloatIndex
+from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 from commemorations.models import Commemoration
 
 logger = logging.getLogger(__name__)
@@ -147,7 +147,7 @@ class Day:
         # Adjust for fast free days
         if self.fast_exception == 11:
             self.fast_level = FastLevels.NoFast
-            self.fast_level_desc = FastLevelDesc[self.fast_level]
+            #self.fast_level_desc = FastLevelDesc[self.fast_level]
             return
 
         # Are we in the Apostles fast?
@@ -184,20 +184,20 @@ class Day:
         if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
             self.fast_exception = 1
 
-        self.fast_level_desc = FastLevelDesc[self.fast_level]
-        self.fast_exception_desc = FastExceptions[self.fast_exception]
-
-    @cached_property
-    def feast_level_desc(self):
-        return datetools.FeastLevels[self.feast_level]
+        # self.fast_level_desc = FastLevelDesc[self.fast_level]
+        # self.fast_exception_desc = FastExceptions[self.fast_exception]
 
     @cached_property
     def fast_level_desc(self):
-        return datetools.FastLevels[self.fast_level]
+        return FastLevelDesc[self.fast_level]
 
     @cached_property
     def fast_exception_desc(self):
-        return datetools.FastExceptions[self.fast_exception]
+        return FastExceptions[self.fast_exception]
+
+    @cached_property
+    def feast_level_desc(self):
+        return FeastLevels[self.feast_level]
 
     @cached_property
     def has_no_memorial(self):
