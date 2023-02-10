@@ -66,7 +66,7 @@ class LaunchHandler(AbstractRequestHandler):
         speech_text, card_text = speech.day_speech(day)
 
         # Set speech
-        num_readings = len(day.get_readings())
+        num_readings = len(day.get_abbreviated_readings())
         speech_text += (
                 f'<p>There are {num_readings} scripture readings. '
                 f'Would you like to hear the readings?</p>'
@@ -213,7 +213,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
             builder.speak("<p>I didn't understand the date you requested.</p>")
             return builder.response
 
-        readings = day.get_readings()
+        readings = day.get_abbreviated_readings()
 
         # Build card
 
@@ -352,7 +352,7 @@ class NextIntentHandler(AbstractRequestHandler):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
         day = liturgics.Day(dt.year, dt.month, dt.day)
         day.initialize()
-        readings = day.get_readings()
+        readings = day.get_abbreviated_readings()
 
         next_reading = session.get('next_reading')
 
