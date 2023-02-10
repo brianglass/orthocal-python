@@ -34,6 +34,12 @@ def month_of_days(year, month, use_julian=False):
 
 @functools.lru_cache
 class Day:
+    """Representation of a liturgical day.
+
+    This class is a composite of feasts, fasts, scripture readings, and lives
+    of the saints from both the Paschal cycle, the festal cycle.
+    """
+
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
         self.gregorian_date = date(year=year, month=month, day=day)
 
@@ -122,7 +128,7 @@ class Day:
         self.fast_exception = max(d.fast_exception for d in days)
 
     async def _add_supplemental_commemorations(self):
-        """Add additional commemorations and writeups from Abbamoses.com."""
+        """Add additional commemorations and stories from Abbamoses.com."""
 
         def match(str1, str2):
             """Combine a phonetic algorithm with fuzzy matching to try and align the two datasets."""
@@ -159,10 +165,11 @@ class Day:
         # Adjust for fast free days
         if self.fast_exception == 11:
             self.fast_level = FastLevels.NoFast
-            #self.fast_level_desc = FastLevelDesc[self.fast_level]
             return
 
-        # Are we in the Apostles fast?
+        # Are we in the Apostles fast? This can't be gleaned from the database
+        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
+        # but the beginning of this fast is defined by the Paschal cycle.
         if 56 < self.pdist < self.pyear.peter_and_paul:
             self.fast_level = FastLevels.ApostlesFast
             if self.pdist == 57:
@@ -195,9 +202,6 @@ class Day:
         # The days before Nativity and Theophany are wine and oil days
         if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
             self.fast_exception = 1
-
-        # self.fast_level_desc = FastLevelDesc[self.fast_level]
-        # self.fast_exception_desc = FastExceptions[self.fast_exception]
 
     @cached_property
     def fast_level_desc(self):
@@ -293,7 +297,7 @@ class Day:
         return self.pyear.has_moved_paremias(self.pdist)
 
     async def aget_readings(self, fetch_content=False):
-        """A list of lectionary readings."""
+        """Return a list of lectionary readings."""
 
         # Return cached readings if we already have them
 
@@ -373,19 +377,56 @@ class Day:
 
     get_readings = async_to_sync(aget_readings)
 
-    async def aget_minimal_readings(self, fetch_content=False):
-        """Get just the first Epistle and Gospel if available."""
+    async def aget_abbreviated_readings(self, fetch_content=False):
+        """Return an abbreviated list of lectionary readings."""
 
-        readings = await self.aget_readings()
+        # Pull in the usual items from the Paschal cycle
 
-        epistles = [r for r in readings if r.source == 'Epistle']
-        gospels = [r for r in readings if r.source == 'Gospel']
+        # This pulls in the OT readings we do on weekdays in Lent
+        query = Q(pdist=self.pdist) & ~Q(source='Gospel') & ~Q(source='Epistle')
 
-        if epistles and gospels:
-            return [epistles[0], gospels[0]]
-        else:
-            return readings
-        
+        if self.gospel_pdist is not None:
+            if self.has_no_memorial:
+                query |= Q(pdist=self.gospel_pdist, source='Gospel') & ~Q(desc='Departed')
+            else:
+                query |= Q(pdist=self.gospel_pdist, source='Gospel')
+
+        if self.epistle_pdist is not None:
+            if self.has_no_memorial:
+                query |= Q(pdist=self.epistle_pdist, source='Epistle') & ~Q(desc='Departed')
+            else:
+                query |= Q(pdist=self.epistle_pdist, source='Epistle')
+
+        # Pull in just Epistles and Gospels from the Festal cycle, but not
+        # during clean week or Holy week.
+        if self.feast_level >= 2 and self.fast_exception != 10:
+            query |= Q(month=self.month, day=self.day, source__in=['Epistle', 'Gospel'])
+
+        # Add Epistles and Gospels from the floating feasts as well
+        if float_index := self.pyear.floats.get(self.pdist):
+            query |= Q(pdist=float_index, source__in=['Epistle', 'Gospel'])
+
+        # Generate the list of readings.
+        # Do select_related to avoid later synchronous foreign key lookup.
+        queryset = models.Reading.objects.filter(query).select_related('pericope')
+        readings = [reading async for reading in queryset.order_by('ordering')]
+
+        # Include only the first Epistle and Gospel if we have them.
+        sources = [r.source for r in readings]
+        if 'Epistle' in sources and 'Gospel' in sources:
+            readings = [
+                readings[start := sources.index('Epistle')],
+                readings[sources.index('Gospel', start)]
+            ]
+
+        if fetch_content:
+            for reading in readings:
+                await reading.pericope.aget_passage()
+
+        return readings
+
+    get_abbreviated_readings = async_to_sync(aget_abbreviated_readings)
+
     @cached_property
     def has_daily_readings(self):
         """True if daily readings are not suppressed for this day."""
@@ -459,8 +500,8 @@ class Year:
     While the literal Church year begins on September 1, for the purposes of
     computing feasts, fasts, and readings, it is more practical to represent
     the year with Pascha as its locus. For that reason, this Year class
-    represents the period starting 77 days before Pascha and going until 77
-    days before the following Pascha.
+    represents the period from one Zacchaeus Sunday (77 days before Pascha)
+    to the next.
     """
 
     def __init__(self, year, use_julian=False):

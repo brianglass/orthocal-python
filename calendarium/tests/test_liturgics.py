@@ -44,12 +44,15 @@ class TestYear(TestCase):
         self.assertEqual(year.lukan_jump, 7) 
 
     def test_daily_readings(self):
-        year = liturgics.Year(2018, False)
+        data = [
+            (2018, {266, 280, 268, 272, 273, 252, 259, 260, 261, 262, 266}),
+            (2023, {259, 266, 260, 264, 265, 245, 252, 252, 253, 254, 259, -22}),
+        ]
 
-        expected = 266, 280, 268, 272, 273, 252, 259, 260, 261, 262, 266
-        for day in expected:
-            with self.subTest():
-                self.assertFalse(year.has_daily_readings(day))
+        for year, days in data:
+            year = liturgics.Year(year)
+            with self.subTest(year):
+                self.assertSetEqual(year.no_daily, days)
 
     def test_reserves(self):
         year = liturgics.Year(2018, False)
@@ -242,17 +245,21 @@ class TestDay(TestCase):
                 verse = await passage.afirst()
                 self.assertEqual(len(verse.content), length)
 
-    async def test_minimal_readings(self):
+    async def test_abbreviated_readings(self):
         data = [
-			(2023, 2, 5, 2),
-			(2023, 2, 28, 3),
-			(2023, 4, 14, 2),  # passion gospels
+			(2023, 2, 5, 2),    # Sunday of the Publican and Pharisee; 2 NT readings
+			(2023, 2, 27, 3),   # first day of Lent + St. Raphael of Brooklyn; 3 OT readings
+			(2023, 2, 28, 3),   # second day of Lent; 3 OT readings
+			(2023, 3, 9, 2),    # Holy 40 Martyrs of Sebaste during Lent; should be 2 NT readings
+			(2023, 3, 23, 3),   # Forefeast of Annunciation; should be 3 OT readings
+			(2023, 3, 25, 2),   # Annunciation; should be 2 NT readings
+			(2023, 4, 14, 2),   # Holy Thursday; should NOT include passion gospels
         ]
 
         for year, month, day, length in data:
             day = liturgics.Day(year, month, day)
             await day.ainitialize()
-            readings = await day.aget_minimal_readings()
+            readings = await day.aget_abbreviated_readings()
             with self.subTest(f'{day}'):
                 self.assertEqual(length, len(readings))
 
