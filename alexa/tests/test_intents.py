@@ -71,8 +71,8 @@ class IntentTestCase(TestCase):
         response = skill.invoke(request_envelope=request_envelope, context=None)
 
         self.assertIn('Would you like me to continue?', response.response.output_speech.ssml)
-        self.assertEqual(0, response.session_attributes['next_reading'])
-        self.assertEqual(84, response.session_attributes['next_verse'])
+        self.assertEqual(1, response.session_attributes['next_reading'])
+        self.assertEqual(37, response.session_attributes['next_verse'])
         self.assertEqual('scriptures', response.session_attributes['current_task'])
         self.assertEqual([], response.session_attributes['task_queue'])
 

@@ -251,7 +251,7 @@ class TestDay(TestCase):
 			(2023, 2, 27, 3),   # first day of Lent + St. Raphael of Brooklyn; 3 OT readings
 			(2023, 2, 28, 3),   # second day of Lent; 3 OT readings
 			(2023, 3, 9, 2),    # Holy 40 Martyrs of Sebaste during Lent; should be 2 NT readings
-			(2023, 3, 23, 3),   # Forefeast of Annunciation; should be 3 OT readings
+			(2023, 3, 24, 3),   # Forefeast of Annunciation; should be 3 OT readings
 			(2023, 3, 25, 2),   # Annunciation; should be 2 NT readings
 			(2023, 4, 14, 2),   # Holy Thursday; should NOT include passion gospels
         ]
