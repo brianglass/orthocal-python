@@ -72,7 +72,7 @@ a.active {
 }
 
 main#orthocal {
-    margin: 1em auto;
+    margin: 1em auto 4em auto;
     border-top: 8px solid #eee;
     padding-top: 2em;
 	width: 75%;
