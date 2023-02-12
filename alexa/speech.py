@@ -41,6 +41,7 @@ SUBSTITUTIONS = (
     ('Transl.', '<sub alias="Translation">Transl.</sub>'),
     ('c.', '<sub alias="Century">c.</sub>'),
     ('Metr.', '<sub alias="Metropolitan">Metr.</sub>'),
+    ('Theotokos', '<phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>'),
 )
 
 def day_speech(day):
