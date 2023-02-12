@@ -147,7 +147,7 @@ class CommemorationIntentHandler(AbstractRequestHandler):
         which = 'first' if len(day.stories) > 1 else ''
 
         story = day.stories[0]
-        story_text = re.sub(r'<i>(.*?)</i>', r'\1', story.story)
+        story_text = speech.ssml_strip_markup(story.story)
         story_text = speech.expand_abbreviations(story_text)
         speech_text = (
                 '<break strength="medium" time="750ms"/>'
@@ -317,7 +317,7 @@ class NextIntentHandler(AbstractRequestHandler):
         next_commemoration = session.get('next_commemoration')
 
         story = day.stories[next_commemoration]
-        story_text = re.sub(r'<i>(.*?)</i>', r'\1', story.story)
+        story_text = speech.ssml_strip_markup(story.story)
         story_text = speech.expand_abbreviations(story_text)
         next_commemoration += 1
 

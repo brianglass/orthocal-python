@@ -380,6 +380,15 @@ class Day:
     async def aget_abbreviated_readings(self, fetch_content=False):
         """Return an abbreviated list of lectionary readings."""
 
+        # Return cached readings if we already have them
+
+        if hasattr(self, 'abbreviated_readings'):
+            if fetch_content:
+                for reading in self.abbreviated_readings:
+                    await reading.pericope.aget_passage()
+
+            return self.abbreviated_readings
+
         # Pull in the usual items from the Paschal cycle
 
         # This pulls in the OT readings we do on weekdays in Lent
@@ -423,6 +432,7 @@ class Day:
             for reading in readings:
                 await reading.pericope.aget_passage()
 
+        self.abbreviated_readings = readings
         return readings
 
     get_abbreviated_readings = async_to_sync(aget_abbreviated_readings)

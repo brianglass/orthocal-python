@@ -10,6 +10,8 @@ MAX_SPEECH_LENGTH = 8000
 
 ref_re = re.compile('(\d*)\s*([\w\s]+)\s+(\d+)')
 markup_re = re.compile('<.*?>')
+ssml_re = re.compile(r'<(?!p\b)(.*?)>(.*?)</\1>')
+
 
 EPISTLES = {
     "acts":          "The Acts of the Apostles",
@@ -38,6 +40,7 @@ SUBSTITUTIONS = (
     ('ca.', '<sub alias="Circa">ca.</sub>'),
     ('Transl.', '<sub alias="Translation">Transl.</sub>'),
     ('c.', '<sub alias="Century">c.</sub>'),
+    ('Metr.', '<sub alias="Metropolitan">Metr.</sub>'),
 )
 
 def day_speech(day):
@@ -85,7 +88,7 @@ def day_speech(day):
 
     # Readings
 
-    for reading in day.get_readings():
+    for reading in day.get_abbreviated_readings():
         card_text += f'{reading.pericope.display}\n'
 
     speech_text = expand_abbreviations(speech_text)
@@ -124,6 +127,9 @@ def human_join(words):
         return ', '.join(words[:-1]) + f' and {words[-1]}'
     else:
         return words[0]
+
+def ssml_strip_markup(text):
+    return ssml_re.sub(r'\2', text)
 
 def reference_speech(reading):
     match = ref_re.search(reading.pericope.display)
