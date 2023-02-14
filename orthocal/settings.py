@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Third party apps
     'corsheaders',
     'fullurl',
+    'typogrify',
 
     # internal apps
     'orthocal',

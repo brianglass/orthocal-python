@@ -9,8 +9,8 @@
 {% block content %}
 	<h2>API</h2>
 	<p>The api supports Cross-Origin Resource Sharing (CORS).  Information for
-	any day of the year can be fetched by including the calendar ('gregorian'
-	or 'julian') and date in the url as follows:
+	any day of the year can be fetched by including the calendar (‘gregorian’
+	or ‘julian’) and date in the url as follows:
 	</p>
 
 	<blockquote>
@@ -32,7 +32,7 @@
 
 	<blockquote><a href="{% url "api:get_calendar_default" cal="gregorian" %}">/api/gregorian/</a></blockquote>
 
-	<p>Set the calendar to 'gregorian' for new calendar and to 'julian' for old
+	<p>Set the calendar to ‘gregorian’ for new calendar and to ‘julian’ for old
 	calendar usage.</p>
 
 	<blockquote><a href="{% url "api:get_calendar_day" cal="julian" year=2018 month=1 day=7 %}">{% url "api:get_calendar_day" cal="julian" year=2018 month=1 day=7 %}</a></blockquote>
@@ -41,7 +41,7 @@
 
 	<h3>Legacy API Endpoints</h3>
 
-	<p>The legacy endpoints (as follows below) using jurisdiction ('oca' or 'rocor') instead of
+	<p>The legacy endpoints (as follows below) using jurisdiction (‘oca’ or ‘rocor’) instead of
 	calendar are still supported, but new development should take place using
 	the names of the calendars instead of the jurisdictions.  </p>
 

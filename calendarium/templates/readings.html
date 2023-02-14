@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load typogrify_tags %}
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
@@ -23,11 +24,13 @@
 
 {% block main %}
 	<header>
-		<h1>{{ day.gregorian_date|date:"F j, Y" }}<span><br>{{ day.titles.0 }}</span></h1>
+		<h1>{{ day.gregorian_date|date:"F j, Y"|widont }}<span><br>{{ day.titles.0|widont }}</span></h1>
 
 		<p class="fasting">
+			{% filter widont %}
 			{{ day.fast_level_desc }} 
 			{% if day.fast_level and day.fast_exception %}— {{ day.fast_exception_desc }}{% endif %}
+			{% endfilter %}
 		</p>
 
 		{% if day.service_notes %}
@@ -35,7 +38,7 @@
 			<h2>Service Notes</h2>
 			<ul>
 				{% for note in day.service_notes %}
-				<li>{{ note }}</li>
+				<li>{{ note|widont }}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -46,7 +49,7 @@
 			<h2>Feasts</h2>
 			<ul>
 				{% for feast in day.feasts %}
-				<li>{{ feast }}</li>
+				<li>{{ feast|widont }}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -57,7 +60,7 @@
 			<h2>Commemorations</h2>
 			<ul>
 				{% for saint in day.saints %}
-				<li>{{ saint }}</li>
+				<li>{{ saint|widont }}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -65,17 +68,19 @@
 	</header>
 
 	<section class="readings">
-		<h1>Scripture Readings (KJV)</h1>
+		<h1>Scripture Readings&nbsp;(KJV)</h1>
 
 		{% for reading in day.readings %}
 		<article class="passage">
-			<h2>
+			<h2 name="{{ reading.pericope.verses }}">
+				{% filter widont %}
 				{{ reading.pericope.display }}
 				({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+				{% endfilter %}
 			</h2>
 
 			{% for verse in reading.pericope.passage %}
-			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
+			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content|smartypants }}</p>
 			{% endfor %}
 		</article>
 		{% endfor %}
@@ -87,9 +92,9 @@
 
 			{% for reading in day.stories %}
 			<article class="passage">
-				<h2>{{ reading.title }}</h2>
+				<h2 name="{{ reading.title|slugify }}">{{ reading.title|widont }}</h2>
 
-				{{ reading.story|safe }}
+				{{ reading.story|safe|smartypants }}
 			</article>
 			{% endfor %}
 		{% endif %}

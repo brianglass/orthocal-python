@@ -1,16 +1,27 @@
-{% load fullurl %}
+{% load fullurl typogrify_tags %}
 <h1>{{ obj.titles.0 }}</h1>
 
 <p>
+	{% filter widont %}
 	{{ obj.fast_level_desc }} 
 	{% if obj.fast_level and obj.fast_exception %}— {{ obj.fast_exception_desc }}{% endif %}
+	{% endfilter %}
 </p>
+
+{% if day.service_notes %}
+<h2>Service Notes</h2>
+<ul>
+	{% for note in day.service_notes %}
+	<li>{{ note|widont }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
 
 {% if obj.feasts %}
 <h2>Feasts</h2>
 <ul>
 	{% for feast in obj.feasts %}
-	<li>{{ feast }}</li>
+	<li>{{ feast|widont }}</li>
 	{% endfor %}
 </ul>
 {% endif %}
@@ -19,22 +30,24 @@
 <h2>Commemorations</h2>
 <ul>
 	{% for saint in obj.saints %}
-	<li>{{ saint }}</li>
+	<li>{{ saint|widont }}</li>
 	{% endfor %}
 </ul>
 {% endif %}
 
-<h2>Scripture Readings (KJV)</h2>
+<h2>Scripture Readings&nbsp;(KJV)</h2>
 
 {% for reading in obj.get_readings %}
 <section>
 	<h3>
+		{% filter widont %}
 		{{ reading.pericope.display }}
 		({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+		{% endfilter %}
 	</h3>
 
 	{% for verse in reading.pericope.get_passage %}
-	<p><sup>{{ verse.verse }}</sup> {{ verse.content }}</p>
+	<p><sup>{{ verse.verse }}</sup> {{ verse.content|smartypants }}</p>
 	{% endfor %}
 </section>
 {% endfor %}
@@ -44,9 +57,9 @@
 
 	{% for reading in obj.stories %}
 	<section>
-		<h3>{{ reading.title }}</h3>
+		<h3>{{ reading.title|widont }}</h3>
 
-		{{ reading.story|safe }}
+		{{ reading.story|safe|smartypants }}
 	</section>
 	{% endfor %}
 {% endif %}

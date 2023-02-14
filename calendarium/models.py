@@ -38,6 +38,20 @@ class Day(models.Model):
 
 
 class Reading(models.Model):
+    # Ordering field
+    #
+    # 1-99 lenten matins
+    # 100+ 1st hour (lent)
+    # 200+ 3rd hour
+    # 300+ 6th hour
+    # 400+ 9th hour
+    # 500+ lenten vespers
+    # 600+ vespers
+    # 700+ matins
+    # 800+ liturgy epistles
+    # 900+ liturgy gospels
+    # 100+ post-liturgy
+
     month = models.SmallIntegerField()
     day = models.SmallIntegerField()
     pdist = models.SmallIntegerField(db_index=True)
