@@ -128,8 +128,6 @@ input {
     column-gap: 2em;
     column-rule: 1px solid #ddd;
     padding-top: 2em;
-    widows: 3;
-    orphans: 3;
 }
 .passage h2 {
     margin-top: 0;
