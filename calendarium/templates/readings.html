@@ -80,7 +80,7 @@
 			</h2>
 
 			{% for verse in reading.pericope.passage %}
-			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content|smartypants }}</p>
+			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
 			{% endfor %}
 		</article>
 		{% endfor %}
@@ -94,7 +94,7 @@
 			<article class="passage">
 				<h2 name="{{ reading.title|slugify }}">{{ reading.title|widont }}</h2>
 
-				{{ reading.story|safe|smartypants }}
+				{{ reading.story|safe }}
 			</article>
 			{% endfor %}
 		{% endif %}

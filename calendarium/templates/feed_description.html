@@ -47,7 +47,7 @@
 	</h3>
 
 	{% for verse in reading.pericope.get_passage %}
-	<p><sup>{{ verse.verse }}</sup> {{ verse.content|smartypants }}</p>
+	<p><sup>{{ verse.verse }}</sup> {{ verse.content }}</p>
 	{% endfor %}
 </section>
 {% endfor %}
@@ -59,7 +59,7 @@
 	<section>
 		<h3>{{ reading.title|widont }}</h3>
 
-		{{ reading.story|safe|smartypants }}
+		{{ reading.story|safe }}
 	</section>
 	{% endfor %}
 {% endif %}
