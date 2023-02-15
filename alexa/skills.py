@@ -149,9 +149,10 @@ class CommemorationIntentHandler(AbstractRequestHandler):
         story = day.stories[0]
         story_text = speech.ssml_strip_markup(story.story)
         story_text = speech.expand_abbreviations(story_text)
+        title = speech.expand_abbreviations(story.title)
         speech_text = (
                 '<break strength="medium" time="750ms"/>'
-                f'<p>The {which} commemoration is for {story.title}.</p>'
+                f'<p>The {which} commemoration is for {title}.</p>'
                 '<break strength="medium" time="750ms"/>'
                 f'{story_text}'
                 '<break strength="medium" time="750ms"/>'
@@ -319,10 +320,11 @@ class NextIntentHandler(AbstractRequestHandler):
         story = day.stories[next_commemoration]
         story_text = speech.ssml_strip_markup(story.story)
         story_text = speech.expand_abbreviations(story_text)
+        title = speech.expand_abbreviations(story.title)
         next_commemoration += 1
 
         speech_text = (
-                f'<p>The commemoration is for {story.title}.</p>'
+                f'<p>The commemoration is for {title}.</p>'
                 '<break strength="medium" time="750ms"/>'
                 f'{story_text}'
                 '<break strength="medium" time="750ms"/>'
