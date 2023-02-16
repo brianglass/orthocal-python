@@ -18,19 +18,19 @@
 	<p>Orthocal.info provides an RSS feed that can be used to embed the daily readings on your website or 
 	used in an RSS feed reader. The default is the Gregorian calendar, but Julian is also available</p>
 
-	<blockquote><a href="{% url "rss-feed" %}">{% url "rss-feed" %}</a></blockquote>
-	<blockquote><a href="{% url "rss-feed-cal" cal="gregorian" %}">{% url "rss-feed-cal" cal="gregorian" %}</a></blockquote>
-	<blockquote><a href="{% url "rss-feed-cal" cal="julian" %}">{% url "rss-feed-cal" cal="julian" %}</a></blockquote>
+	<blockquote><a href="{% url "rss-feed" %}">{% fullurl "rss-feed" %}</a></blockquote>
+	<blockquote><a href="{% url "rss-feed-cal" cal="gregorian" %}">{% fullurl "rss-feed-cal" cal="gregorian" %}</a></blockquote>
+	<blockquote><a href="{% url "rss-feed-cal" cal="julian" %}">{% fullurl "rss-feed-cal" cal="julian" %}</a></blockquote>
 
 	<h3>iCal</h3>
 
 	<p>An ical feed for the new calendar is available at:</p>
 
-	<blockquote><a href="{% url "ical" cal="gregorian" %}">{% url "ical" cal="gregorian" %}</a></blockquote>
+	<blockquote><a href="{% url "ical" cal="gregorian" %}">{% fullurl "ical" cal="gregorian" %}</a></blockquote>
 
 	<p>Or for the old calendar:</p>
 
-	<blockquote><a href="{% url "ical" cal="julian" %}">{% url "ical" cal="julian" %}</a></blockquote>
+	<blockquote><a href="{% url "ical" cal="julian" %}">{% fullurl "ical" cal="julian" %}</a></blockquote>
 
 	<p>You can see what this looks like in Google Calendar below.</p>
 	<iframe src="https://calendar.google.com/calendar/embed?src=k8gcmal1m8t5dpgiqm9irq6efimiu4jc%40import.calendar.google.com&ctz=America%2FDenver" style="border: 0" width="800" height="600"></iframe>
