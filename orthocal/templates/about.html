@@ -3,30 +3,24 @@
 {% block title %}About the Orthodox Calendar{% endblock %}
 
 {% block head %}
-	<meta name="description" content="Orthocal.info provides a RESTful api and Alesa skill for daily scripture readings and commemorations.">
+	<meta name="description" content="Orthocal.info provides a REST api and Alesa skill for daily scripture readings and commemorations.">
 {% endblock %}
 
 {% block content %}
 	<h2>About</h2>
 	<p>Orthocal.info is an Eastern Orthodox calendar service providing
-	a RESTful api describing commemorations, fasting, scripture
+	commemorations, fasting, scripture
 	readings and other information for each day of the liturgical year.
-	Presently only the OCA is fully supported.  There is tentative
-	support for ROCOR, but fasting guidelines may not be 100% correct.
-	With assistance, I may eventually provide support for other US
-	jurisdictions.</p>
-
-	<p>
-	This service is meant to be a tool for mobile developers and parish
-	webmasters to use to provide this information to parishioners and
-	other guests. The
-	<a href="https://github.com/brianglass/orthocal-python">Source Code</a>
-	is freely available. The original version of this site was written in a
-	combination of Go and Node.js, but has been rewritten in Python since the
-	author finds that easier to maintain.</p>
+	The readings follow the Slavic calendar. The primary purpose of this
+	service is to provide convenient access to daily devotional material lay persons
+	and not to be an authoritative or comprehensive guide to the feasts and fasts
+	of the Church. The service supports this goal by providing tools for
+	mobile developers and parish webmasters, an Alexa skill, multiple types of
+	feeds, and a web interface.
+	</p>
 
 	<h2>Contact the Author</h2>
-	<p><a href="https://orthocal.info">Orthocal.info</a> is being
+	<p><a href="https://orthocal.info">Orthocal.info</a> is
 	provided to the Orthodox community with no strings attached.
 	However, it is helpful to me, the author of the work, to know who is
 	using it and how. I will then be able to know how best to support
@@ -39,13 +33,18 @@
 	and let me know about your usage. Please report bugs using the 
 	<a href="https://github.com/brianglass/orthocal-python/issues">Github issue tracker</a>.</p>
 
-	<h2>Algorithm</h2>
-	<p>The algorithm and data used in this service are based on the
-	algorithm and data developed by Paul Kachur's 
+	<h2>Technology & Data</h2>
+	<p>The <a href="https://github.com/brianglass/orthocal-python">Source Code</a>
+	is freely available. The original version of this site was written in a
+	combination of Go and Node.js, but has been rewritten in Python and Django
+	since the author finds that much easier to maintain. The site is deployed on
+	<a href="https://cloud.google.com/run">Google Cloud Run</a> and
+	<a href="https://firebase.google.com/">Firebase</a>.
+	The algorithm and calendar data used in this service are based on the
+	algorithm and data developed by Paul Kachur for his
 	<a href="https://github.com/paulkachur/orthodox_calendar">orthodox_calendar</a> project. 
-	As such, the commemoration data is incomplete.  The primary
-	purpose of this service is to provide daily scripture readings for lay
-	persons and not to be an authoritative guide to the feasts and fasts of the Church.</p>
+	The lives of the saints are taken by permission from John Brady's
+	<a href="http://abbamoses.com">Abbamoses.com</a>.</p>
 
 	<h2>Scriptures</h2>
 	<p>Because this is open-source and free, the service must use a
@@ -53,13 +52,8 @@
 	license terms. At this point I have chosen to stick with the King James
 	Version. While not ideal, many clergy consider this to be one of the
 	best options for Orthodox. Because the rubrics use Septuagint
-	versification, a handful of the Old Testament readings may be incorrect.</p>
-
-	<p>Composite readings are taken from the translations of the Archimandrite
-	Ephrem (Lash). His translations can be accessed at 
+	versification, a handful of the Old Testament readings may be incorrect.
+	Some of the composite readings are taken from the translations of the
+	Archimandrite Ephrem (Lash). His translations can be accessed at
 	<a href="https://github.com/brianglass/anastasis">Anastasis.</a>
-
-	<h2>Commemorations</h2>
-	<p>The lives of the saints are taken by permission from 
-	<a href="http://abbamoses.com">Abba Moses</a>.</p>
 {% endblock %}
