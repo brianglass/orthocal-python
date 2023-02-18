@@ -17,17 +17,6 @@ class TestDateutil(TestCase):
                 actual = datetools.gregorian_to_jdn(day)
                 self.assertEqual(actual, expected)
 
-    def test_julian_to_gregorian_error(self):
-        tests = [
-            date(2100, 4, 14),
-            date(1900, 4, 14),
-        ]
-
-        for julian in tests:
-            with self.subTest():
-                with self.assertRaises(Exception):
-                    datetools.julian_to_gregorian(julian)
-
     def test_julian_to_jdn(self):
         expected = 2455676
         actual = datetools.julian_to_jdn(date(2011, 4, 11))
@@ -57,7 +46,30 @@ class TestDateutil(TestCase):
                 self.assertEqual(expected_year, year)
 
     def test_weekday_from_pdist(self):
-        distance = 31
-        expected = datetools.Weekday.Wednesday
-        actual = datetools.weekday_from_pdist(distance)
-        self.assertEqual(expected, actual)
+        data = [
+            (-15, datetools.Weekday.Saturday),
+            (-14, datetools.Weekday.Sunday),
+            (-13, datetools.Weekday.Monday),
+            (-1, datetools.Weekday.Saturday),
+            (0, datetools.Weekday.Sunday),
+            (31, datetools.Weekday.Wednesday),
+            (49, datetools.Weekday.Sunday),
+        ]
+
+        for distance, expected in data:
+            with self.subTest(distance):
+                actual = datetools.weekday_from_pdist(distance)
+                self.assertEqual(expected, actual)
+
+    def test_surrounding_weekends(self):
+        data = [
+            (37, (34, 35, 41, 42)),         # May 23, 2023
+            (41, (34, 35, 48, 42)),         # May 27, 2023
+            (-61, (-64, -63, -57, -56)),    # February 14, 2023
+            (-63, (-64, -70, -57, -56)),    # February 12, 2023
+        ]
+
+        for pdist, expected in data:
+            with self.subTest(pdist):
+                actual = datetools.surrounding_weekends(pdist)
+                self.assertEqual(expected, actual)

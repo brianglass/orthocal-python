@@ -12,6 +12,7 @@ RUN \
 	python -c "import compileall; compileall.compile_path(maxlevels=10)" && \
 	python -m compileall .
 
+# The sqlite database is read-only, so we build it into the image.
 RUN \
 	./manage.py collectstatic --noinput && \
 	./manage.py migrate && \ 

@@ -12,5 +12,6 @@ urlpatterns = [
     path('calendar-embed/', views.calendar_embed_view, name='calendar-embed-default'),
     path('calendar/<cal:cal>/', views.calendar_view, name='calendar-calopt'),
     path('calendar/', views.calendar_view, name='calendar-default'),
+    path('lectionary/', views.lectionary, name='lectionary'),
     path('', views.readings_view, name='index'),
 ]

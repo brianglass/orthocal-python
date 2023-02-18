@@ -114,7 +114,7 @@ def compute_pascha_jdn(year):
 
 def weekday_from_pdist(distance):
     """Return the day of the week given the distance from Pascha."""
-    return distance % 7
+    return Weekday(distance % 7)
 
 def surrounding_weekends(distance):
     weekday = weekday_from_pdist(distance)
@@ -186,3 +186,23 @@ def gregorian_to_jdn(dt):
     jd = jdcal.gcal2jd(dt.year, dt.month, dt.day)
     jdn = math.ceil(sum(jd))
     return jdn
+
+# Function to generate an ordinal number from an integer
+def ordinal(n):
+    # This was written by Github Copilot. I have no idea how it works.
+    return "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
+
+def get_day_name(pdist):
+    weekday = weekday_from_pdist(pdist)
+    if pdist > 50:
+        # Generate the text "<weekday> of the <nth> week after Pentecost"
+        nth = ordinal(abs(pdist-50) // 7 + 1)
+        return f'{weekday.name} of the {nth} week after Pentecost'
+    elif pdist > 0:
+        nth = ordinal(abs(pdist) // 7 + 1)
+        return f'{weekday.name} of the {nth} week of Pascha'
+    elif pdist == 0:
+        return 'Great and Holy Pascha'
+    elif pdist < 0:
+        nth = ordinal(abs(pdist) // 7 + 1)
+        return f'{weekday.name} of the {nth} week before Pascha'

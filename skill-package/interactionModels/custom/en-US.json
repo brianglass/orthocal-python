@@ -1,0 +1,112 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "orthodox daily",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "Day",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "fasting {date}",
+            "{date}",
+            "about {date}",
+            "feasts",
+            "feasts {date}",
+            "for feasts {date}",
+            "for fasting information {date}",
+            "for fasting information",
+            "for the fast {date}",
+            "the fast",
+            "is there a fast {date}",
+            "fasting"
+          ]
+        },
+        {
+          "name": "Scriptures",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "for the readings on {date}",
+            "for the scriptures on {date}",
+            "Read the scriptures",
+            "Read the scriptures for {date}",
+            "read the bible for {date}",
+            "read the daily readings for {date}",
+            "read the readings for {date}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NextIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "Commemorations",
+          "slots": [
+            {
+              "name": "date",
+              "type": "AMAZON.DATE"
+            }
+          ],
+          "samples": [
+            "for the lives of saints",
+            "read the lives of saints",
+            "for the commemorations",
+            "about the saints",
+            "for the life of the saints",
+            "about the life of the saints",
+            "read the saints",
+            "about the life of the saint",
+            "give me the saints",
+            "tell me the saints for {date}",
+            "about the saints for {date}",
+            "about the commemorations",
+            "for the lives of the saints",
+            "for the saints",
+            "saint of the day",
+            "read the lives of the saints",
+            "read the commemorations",
+            "about the lives of the saints",
+            "about the saints on {date}",
+            "for the commemorations for {date}",
+            "about the commemorations on {date}"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "6"
+}

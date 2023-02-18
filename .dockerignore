@@ -10,3 +10,7 @@ orthocal/local_settings.py
 **/*.pyo
 **/*.pyd
 **/.DS_Store
+.ask
+skill-package
+.coverage
+static

@@ -2,3 +2,8 @@ __pycache__
 *.sqlite3
 local_settings.py
 .DS_Store
+.ask
+.ackrc
+ve
+.coverage
+static

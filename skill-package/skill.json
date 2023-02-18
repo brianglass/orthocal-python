@@ -1,0 +1,89 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Alexa can read the daily scripture readings and commemorations for you as well as keep you informed about the fasting guidelines for the day.",
+          "examplePhrases": [
+            "Alexa, open orthodox daily",
+            "Alexa, ask orthodox daily about fasting tomorrow",
+            "Alexa, ask orthodox daily to read the scriptures for yesterday"
+          ],
+          "keywords": [
+            "orthodox",
+            "lectionary",
+            "scriptures",
+            "fasting",
+            "christian",
+            "readings",
+            "bible",
+            "oca"
+          ],
+          "name": "Orthodox Daily",
+          "description": "Orthodox Daily makes it easy to access the daily scripture readings and lives of the saints. Simply ask Alexa to open Orthodox Daily, and she will provide you with a few details about today, including the fasting rules, and then read the prescribed scriptures and commemorations out loud. The scriptures are read from the King James Version and at present, follow OCA rubrics. The lives of the saints are from abbamoses.com.\n\nYou can also ask Alexa directly about a particular day. For instance you can say, \"Alexa, ask Orthodox Daily about tomorrow.\" Or you could say, \"Alexa, ask Orthodox daily about the fast on Friday,\" or \"Alexa, ask Orthodox Daily about saints on August 10.\"\n\nIf you want to skip all the extra details and go straight to the scriptures, just say, \"Alexa, ask Orthodox Daily to read the scriptures.\" If you missed the scriptures yesterday, you can say, \"Alexa, ask Orthodox Daily to read the scriptures for yesterday. Or if you want to jump to the saints you can say, \"Alexa, ask Orthodox Daily about the saints.\"\n\nThere are some known bugs. Orthodox Daily runs in Pacific timezone. If you live on the east coast and open Orthodox daily at 1am, you will get the information for the previous day.  Also, because the readings are specified using Septuagint versification, an incorrect reading may on rare occasions be provided (mostly in the Proverbs).",
+          "smallIconUri": "file://assets/images/en-US_smallIconUri.png",
+          "updatesDescription": "The lives of the saints (i.e. commemorations) are now available. These are provided by abbamoses.com.",
+          "largeIconUri": "file://assets/images/en-US_largeIconUri.png"
+        },
+        "en-CA": {
+          "summary": "Alexa can read the daily scripture readings for you as well as keep you informed about the fasting guidelines for the day.",
+          "examplePhrases": [
+            "Alexa, open orthodox daily",
+            "Alexa, ask orthodox daily about fasting tomorrow",
+            "Alexa, ask orthodox daily to read the scriptures for yesterday"
+          ],
+          "keywords": [
+            "orthodox",
+            "lectionary",
+            "scriptures",
+            "fasting",
+            "christian",
+            "readings",
+            "bible",
+            "oca"
+          ],
+          "name": "Orthodox Daily",
+          "description": "Orthodox Daily makes it easy to access the daily scripture readings. Simply ask Alexa to open Orthodox Daily, and she will provide you with a few details about today, including the fasting rules, and then read the prescribed scriptures out loud. The scriptures are read from the King James Version and at present, follow OCA rubrics.\n\nYou can also ask Alexa directly about a particular day. For instance you can say, \"Alexa, ask Orthodox Daily about tomorrow.\" Or you could say, \"Alexa, ask Orthodox daily about the fast on Friday,\" or \"Alexa, ask Orthodox Daily about saints on August 10.\"\n\nIf you want to skip all the extra details and go straight to the scriptures, just say, \"Alexa, ask Orthodox Daily to read the scriptures.\" If you missed the scriptures yesterday, you can say, \"Alexa, ask Orthodox Daily to read the scriptures for yesterday.\n\nThere are some known bugs. Orthodox Daily runs in Pacific timezone. If you live on the east coast and open Orthodox daily at 1am, you will get the information for the previous day. Orthodox Daily\u0027s scripture database does not contain the so-called deuterocanonical books, so Alexa will fail to find some of the readings. Also, because the readings are specified using Septuagint versification, an incorrect reading may on rare occasions be provided (mostly in the Proverbs).",
+          "smallIconUri": "file://assets/images/en-CA_smallIconUri.png",
+          "largeIconUri": "file://assets/images/en-CA_largeIconUri.png"
+        }
+      },
+      "automaticDistribution": {
+        "sourceLocaleForLanguages": [],
+        "isActive": false
+      },
+      "isAvailableWorldwide": false,
+      "testingInstructions": "This is a single-interaction app. The example phrases should suffice for testing. Some phrases use the Amazon.DATE slot.",
+      "category": "RELIGION_AND_SPIRITUALITY",
+      "distributionMode": "PUBLIC",
+      "distributionCountries": [
+        "US",
+        "CA"
+      ]
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sslCertificateType": "Wildcard",
+          "uri": "https://orthocal-dev-6czswbhara-uc.a.run.app/echo/"
+        },
+        "interfaces": []
+      }
+    },
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {}
+      },
+      "containsAds": false,
+      "isExportCompliant": true,
+      "isChildDirected": false,
+      "shoppingKit": {
+        "isShoppingActionsEnabled": false,
+        "isAmazonAssociatesOnAlexaEnabled": false
+      },
+      "usesPersonalInfo": false
+    }
+  }
+}

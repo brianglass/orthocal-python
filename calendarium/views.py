@@ -1,17 +1,18 @@
 import calendar
+import csv
 import logging
 
 from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
 from orthocal.converters import CalendarConverter
-from . import liturgics
+from . import liturgics, models
 
 logger = logging.getLogger(__name__)
 cal_converter = CalendarConverter()
@@ -93,6 +94,27 @@ async def calendar_embed_view(request, cal=None, year=None, month=None):
         'previous_month': first_day - relativedelta(months=1),
         'next_month': first_day + relativedelta(months=1),
     })
+
+async def lectionary(request):
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={'Content-Disposition': 'attachment; filename="lectionary.csv"'},
+    )
+    sources = models.Reading.objects.filter(pdist__lt=700).values_list('source', flat=True).distinct()
+
+    fieldnames = ['Pascha Distance', 'Day Name'] + [s async for s in sources]
+    writer = csv.DictWriter(response, fieldnames=fieldnames)
+    writer.writeheader()
+
+    queryset = models.Reading.objects.filter(pdist__lt=700).select_related('pericope')
+    async for r in queryset.order_by('pdist', 'ordering'):
+        writer.writerow({
+            'Pascha Distance': r.pdist,
+            'Day Name': r.day_name,
+            r.source: r.pericope.display
+        })
+
+    return response
 
 async def render_calendar_html(request, year, month, use_julian=False, full_urls=False):
     class LiturgicalCalendar(calendar.HTMLCalendar):
