@@ -24,6 +24,10 @@
         "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
     ],
     "service_notes": null,
+    "abbreviated_reading_indices": [
+        0,
+        2
+    ],
     "readings": [
         {
             "source": "Epistle",

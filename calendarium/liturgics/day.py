@@ -1,7 +1,5 @@
-import functools
-import logging
-
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, timedelta
+from functools import lru_cache
 
 from asgiref.sync import async_to_sync
 from django.db.models import Q
@@ -9,30 +7,14 @@ from django.utils.functional import cached_property
 from phonetics import metaphone
 from thefuzz import fuzz
 
-from . import datetools, models
-from .datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
+from .. import datetools, models
+from ..datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 from commemorations.models import Commemoration
 
-logger = logging.getLogger(__name__)
-
-async def amonth_of_days(year, month, use_julian=False):
-    dt = datetime(year, month, 1)
-    while dt.month == month:
-        day = Day(dt.year, dt.month, dt.day, use_julian=use_julian)
-        await day.ainitialize()
-        yield day
-        dt += timedelta(days=1)
-
-def month_of_days(year, month, use_julian=False):
-    dt = datetime(year, month, 1)
-    while dt.month == month:
-        day = Day(dt.year, dt.month, dt.day, use_julian=use_julian)
-        day.initialize()
-        yield day
-        dt += timedelta(days=1)
+from .year import Year
 
 
-@functools.lru_cache
+@lru_cache
 class Day:
     """Representation of a liturgical day.
 
@@ -423,10 +405,18 @@ class Day:
         # Include only the first Epistle and Gospel if we have them.
         sources = [r.source for r in readings]
         if 'Epistle' in sources and 'Gospel' in sources:
-            readings = [
-                readings[start := sources.index('Epistle')],
-                readings[sources.index('Gospel', start)]
-            ]
+            epistle = readings[start := sources.index('Epistle')]
+            try:
+                # Attempt to fetch the gospel that comes after the selected epistle
+                gospel = readings[sources.index('Gospel', start)]
+            except ValueError:
+                # If this goes wrong, we'll take any epistle. This shouldn't
+                # happen, but there are some epistles out of order in the
+                # database. This should be fixed in the data, but for now we'll
+                # be forgiving.
+                gospel = readings[sources.index('Gospel')]
+
+            readings = [epistle, gospel]
 
         if fetch_content:
             for reading in readings:
@@ -436,6 +426,14 @@ class Day:
         return readings
 
     get_abbreviated_readings = async_to_sync(aget_abbreviated_readings)
+
+    @cached_property
+    def abbreviated_reading_indices(self):
+        if not hasattr(self, 'readings') or not hasattr(self, 'abbreviated_readings'):
+            raise RuntimeError('get_readings and get_abbreviated_readings must be called before abbreviated_reading_indices')
+
+        texts = [r.pericope.display for r in self.readings]
+        return [texts.index(r.pericope.display) for r in self.abbreviated_readings]
 
     @cached_property
     def has_daily_readings(self):
@@ -477,7 +475,7 @@ class Day:
         """
 
         if self.has_daily_readings:
-            # The Lucan jump appropriate for this day.
+            # The Lukan jump appropriate for this day.
             if self.do_jump and self.pdist > self.pyear.sun_after_elevation:
                 jump = self.pyear.lukan_jump 
             else:
@@ -486,339 +484,18 @@ class Day:
             theophany_weekday = datetools.weekday_from_pdist(self.pyear.theophany)
             limit = 279 if theophany_weekday < Weekday.Tuesday else 272
 
-            if self.pdist == 245 - self.pyear.lukan_jump:
+            if self.pdist + self.pyear.lukan_jump == 245:
+                # pdist 245 -> 28th Sunday after Pentecost
+                # TODO: Figure out why we have this special case
                 return self.pyear.forefathers + self.pyear.lukan_jump
             elif self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:
-                # After Theophany, use the Sunday Gospels left unread after the Lukan jump
-
+                # On Sundays after Theophany, use the Gospels left unread after the Lukan jump
                 i = (self.pdist - self.pyear.sun_after_theophany) // 7
                 return self.pyear.reserves[i-1]
             elif self.pdist + jump > limit:
                 # Theophany stepback
-
-                # The maximum pdist in the Readings model is 279
-                # We wrap around to the beginning of the next year
+                # The maximum pdist in the Readings model is 279.
+                # We "step back" to the beginning of the next year.
                 return self.jdn - self.pyear.next_pascha
             else:
                 return self.pdist + jump
-
-
-@functools.lru_cache
-class Year:
-    """Representation of a liturgical year.
-
-    While the literal Church year begins on September 1, for the purposes of
-    computing feasts, fasts, and readings, it is more practical to represent
-    the year with Pascha as its locus. For that reason, this Year class
-    represents the period from one Zacchaeus Sunday (77 days before Pascha)
-    to the next.
-    """
-
-    def __init__(self, year, use_julian=False):
-        self.year = year
-        self.use_julian = use_julian
-        self.pascha = datetools.compute_pascha_jdn(year)
-
-        (self.sat_before_elevation,
-         self.sun_before_elevation,
-         self.sat_after_elevation,
-         self.sun_after_elevation) = datetools.surrounding_weekends(self.elevation)
-
-        (self.sat_before_theophany,
-         self.sun_before_theophany,
-         self.sat_after_theophany,
-         self.sun_after_theophany) = datetools.surrounding_weekends(self.theophany)
-
-        (self.sat_before_nativity,
-         self.sun_before_nativity,
-         self.sat_after_nativity,
-         self.sun_after_nativity) = datetools.surrounding_weekends(self.nativity)
-
-    @cached_property
-    def previous_pascha(self):
-        return datetools.compute_pascha_jdn(self.year - 1)
-
-    @cached_property
-    def next_pascha(self):
-        return datetools.compute_pascha_jdn(self.year + 1)
-
-    def has_daily_readings(self, pdist):
-        return pdist not in self.no_daily
-
-    def has_moved_paremias(self, pdist):
-        return self.paremias.get(pdist) is True
-
-    def has_no_paremias(self, pdist):
-        return self.paremias.get(pdist) is False
-
-    @cached_property
-    def no_daily(self):
-        """Return a set() of days on which daily readings are suppressed"""
-
-        no_daily = {
-                self.sun_before_theophany, self.sun_after_theophany, self.theophany-5,
-                self.theophany-1, self.theophany, self.forefathers,
-                self.sun_before_nativity, self.nativity-1, self.nativity,
-                self.nativity+1, self.sun_after_nativity,
-        }
-
-        if self.sat_after_theophany == self.theophany+1:
-            no_daily.add(self.sat_after_theophany)
-
-        if datetools.weekday_from_pdist(self.annunciation) == Weekday.Saturday:
-            no_daily.add(self.annunciation)
-
-        return no_daily
-
-    @cached_property
-    def theophany(self):
-        return self.date_to_pdist(1, 6, self.year+1)
-
-    @cached_property
-    def finding(self):
-        return self.date_to_pdist(2, 24, self.year)
-
-    @cached_property
-    def annunciation(self):
-        return self.date_to_pdist(3, 25, self.year)
-
-    @cached_property
-    def peter_and_paul(self):
-        return self.date_to_pdist(6, 29, self.year)
-
-    @cached_property
-    def beheading(self):
-        return self.date_to_pdist(8, 29, self.year)
-
-    @cached_property
-    def nativity_theotokos(self):
-        return self.date_to_pdist(9, 8, self.year)
-
-    @cached_property
-    def elevation(self):
-        return self.date_to_pdist(9, 14, self.year)
-
-    @cached_property
-    def nativity(self):
-        return self.date_to_pdist(12, 25, self.year)
-
-    @cached_property
-    def fathers_six(self):
-        # The Fathers of the Sixth Ecumenical Council falls on the Sunday nearest 7/16
-        pdist = self.date_to_pdist(7, 16, self.year)
-        weekday = datetools.weekday_from_pdist(pdist)
-        if weekday < Weekday.Thursday:
-            return pdist - weekday
-        else:
-            return pdist + 7 - weekday
-
-    @cached_property
-    def fathers_seven(self):
-        # The Fathers of the Seventh Ecumenical Council falls on the Sunday
-        # following 10/11 or 10/11 itself if it is a Sunday.
-        pdist = self.date_to_pdist(10, 11, self.year)
-        weekday = datetools.weekday_from_pdist(pdist)
-        if weekday > Weekday.Sunday:
-            pdist += 7 - weekday
-        return pdist
-
-    @cached_property
-    def demetrius_saturday(self):
-        # Demetrius Saturday is the Saturday before 10/26
-        pdist = self.date_to_pdist(10, 26, self.year)
-        return pdist - datetools.weekday_from_pdist(pdist) - 1
-
-    @cached_property
-    def synaxis_unmercenaries(self):
-        # The Synaxis of the Unmercenaries is the Sunday following 11/1
-        pdist = self.date_to_pdist(11, 1, self.year)
-        return pdist + 7 - datetools.weekday_from_pdist(pdist)
-
-    @cached_property
-    def forefathers(self):
-        # Forefathers Sunday is the week before the week of Nativity
-        weekday = datetools.weekday_from_pdist(self.nativity)
-        return self.nativity - 14 + ((7 - weekday) % 7)
-
-    @cached_property
-    def new_martyrs_russia(self):
-        # Holy New Martyrs and Confessors of Russia On the Sunday closest to January 25
-        pdist = self.date_to_pdist(1, 25, self.year+1)
-        weekday = datetools.weekday_from_pdist(pdist)
-        if weekday < Weekday.Thursday:
-            return pdist - weekday
-        else:
-            return pdist - weekday + 7
-
-    @cached_property
-    def lukan_jump(self):
-        # 168 - (Sunday after Elevation)
-        return 168 - (self.elevation + 7 - datetools.weekday_from_pdist(self.elevation))
-
-    @cached_property
-    def extra_sundays(self):
-        return (self.next_pascha - self.pascha - 84 - self.sun_after_theophany) // 7
-
-    @cached_property
-    def reserves(self):
-        """Return a list of pascha distances for days with unread Sunday gospels.
-
-        These are saved for use after Theophany. 
-        """
-
-        reserves = []
-
-        if self.extra_sundays:
-            first = self.forefathers + self.lukan_jump + 7
-            reserves.extend(range(first, 267, 7))
-            if remainder := self.extra_sundays - len(reserves):
-                start = 175 - remainder * 7
-                reserves.extend(range(start, 169, 7))
-
-        return reserves
-
-    @cached_property
-    def paremias(self):
-        """Return a table of paremias that should be moved."""
-
-        # minor feasts on weekdays in lent have their paremias moved to previous day
-
-        paremias = {}
-
-        # These seem to be feasts with 3 <= FeastLevel <= 5. We could probably
-        # grab this from the database at run time.
-        days = (
-                (2, 24),    # 1st and 2nd finding of the head of John the Baptist
-                (2, 27),    # St. Raphael, Bishop of Brooklyn
-                (3, 9),     # Holy Forty Martyrs of Sebaste
-                (3, 31),    # Repose St Innocent, Metr. Moscow and Apostle to Americas
-                (4, 7),     # Repose St. Tikhon, Patriarch of Moscow, Enlightener N. America
-                (4, 23),    # Holy Greatmartyr, Victorybearer and Wonderworker George
-                (4, 25),    # Holy Apostle and Evangelist Mark
-                (4, 30),    # Holy Apostle James, Brother of St John
-        )
-        for month, day in days:
-            pdist = self.date_to_pdist(month, day, self.year)
-            weekday = datetools.weekday_from_pdist(pdist)
-            if -44 < pdist < -7 and weekday > Weekday.Monday:
-                paremias[pdist] = False
-                paremias[pdist-1] = True
-
-        return paremias
-
-    def date_to_pdist(self, month, day, year):
-        dt = date(year, month, day)
-        if self.use_julian:
-            return datetools.julian_to_jdn(dt) - self.pascha
-        else:
-            return datetools.gregorian_to_jdn(dt) - self.pascha
-
-    @cached_property
-    def floats(self):
-        """Return a dict of floating feast pdists and their indices into the database."""
-
-        floats = {
-                self.fathers_six:               FloatIndex.FathersSix,
-                self.fathers_seven:             FloatIndex.FathersSeventh,
-                self.demetrius_saturday:        FloatIndex.DemetriusSaturday,
-                self.synaxis_unmercenaries:     FloatIndex.SynaxisUnmercenaries,
-                self.sun_before_elevation:      FloatIndex.SunBeforeElevation,
-                self.sat_after_elevation:       FloatIndex.SatAfterElevation,
-                self.sun_after_elevation:       FloatIndex.SunAfterElevation,
-                self.forefathers:               FloatIndex.SunForefathers,
-                self.sat_after_theophany:       FloatIndex.SatAfterTheophany,
-                self.sun_after_theophany:       FloatIndex.SunAfterTheophany,
-                self.new_martyrs_russia:        FloatIndex.NewMartyrsRussia,
-        }
-
-        if self.sat_before_elevation == self.nativity_theotokos:
-            # If the Saturday before the Elevation falls on the Nativity of the
-            # Theotokos, we move its readings to the eve of the Elevation.
-            floats[self.elevation - 1] = FloatIndex.SatBeforeElevationMoved
-        else:
-            floats[self.sat_before_elevation] = FloatIndex.SatBeforeElevation
-
-        nativity_eve = self.nativity - 1
-        if nativity_eve == self.sat_before_nativity:
-            # Nativity is on Sunday; Royal Hours on Friday
-            floats.update({
-                self.nativity - 2:          FloatIndex.RoyalHoursNativityFriday,
-                self.sun_before_nativity:   FloatIndex.SunBeforeNativity,
-                nativity_eve:               FloatIndex.SatBeforeNativityEve,
-            })
-        elif nativity_eve == self.sun_before_nativity:
-            # Nativity is on Monday; Royal Hours on Friday
-            floats.update({
-                self.nativity - 3:          FloatIndex.RoyalHoursNativityFriday,
-                self.sat_before_nativity:   FloatIndex.SatBeforeNativity,
-                nativity_eve:               FloatIndex.SunBeforeNativityEve,
-            })
-        else:
-            floats.update({
-                nativity_eve:               FloatIndex.EveNativity,
-                self.sat_before_nativity:   FloatIndex.SatBeforeNativity,
-                self.sun_before_nativity:   FloatIndex.SunBeforeNativity,
-            })
-
-        match datetools.weekday_from_pdist(self.nativity):
-            case Weekday.Sunday:
-                floats.update({
-                    self.sat_after_nativity:    FloatIndex.SatAfterNativityBeforeTheophany,
-                    self.nativity+1:            FloatIndex.SunAfterNativityMonday,
-                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
-                    self.theophany-1:           FloatIndex.TheophanyEve,
-                })
-            case Weekday.Monday:
-                floats.update({
-                    self.sat_after_nativity:    FloatIndex.SatAfterNativityBeforeTheophany,
-                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
-                    self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
-                    self.theophany-1:           FloatIndex.TheophanyEve,
-                })
-            case Weekday.Tuesday:
-                floats.update({
-                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
-                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
-                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophanyEve,
-                    self.theophany-5:           FloatIndex.SatBeforeTheophanyJan,
-                    self.theophany-2:           FloatIndex.RoyalHoursTheophanyFriday,
-                })
-            case Weekday.Wednesday:
-                floats.update({
-                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
-                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
-                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
-                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophanyEve,
-                    self.theophany-3:           FloatIndex.RoyalHoursTheophanyFriday,
-                })
-            case Weekday.Thursday | Weekday.Friday:
-                floats.update({
-                    self.sat_after_nativity:    FloatIndex.SatAfterNativity,
-                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
-                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
-                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
-                    self.theophany-1:           FloatIndex.TheophanyEve,
-                })
-            case Weekday.Saturday:
-                floats.update({
-                    self.nativity+6:            FloatIndex.SatAfterNativityFriday,
-                    self.sun_after_nativity:    FloatIndex.SunAfterNativitiy,
-                    self.sat_before_theophany:  FloatIndex.SatBeforeTheophany,
-                    self.sun_before_theophany:  FloatIndex.SunBeforeTheophany,
-                    self.theophany-1:           FloatIndex.TheophanyEve,
-                })
-
-        # Floats around Annunciation
-        match datetools.weekday_from_pdist(self.annunciation):
-            case Weekday.Saturday:
-                floats[self.annunciation-1]     = FloatIndex.AnnunciationParemFriday
-                floats[self.annunciation]       = FloatIndex.AnnunciationSat
-            case Weekday.Sunday:
-                floats[self.annunciation]       = FloatIndex.AnnunciationSun
-            case Weekday.Monday:
-                floats[self.annunciation]       = FloatIndex.AnnunciationMon
-            case _:
-                floats[self.annunciation-1]     = FloatIndex.AnnunciationParemEve
-                floats[self.annunciation]       = FloatIndex.AnnunciationWeekday
-
-        return floats

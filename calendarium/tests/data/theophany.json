@@ -21,6 +21,10 @@
     "fast_exception_desc": "Fast Free",
     "saints": null,
     "service_notes": null,
+    "abbreviated_reading_indices": [
+        1,
+        2
+    ],
     "readings": [
         {
             "source": "Matins Gospel",

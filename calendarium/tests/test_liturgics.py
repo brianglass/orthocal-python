@@ -273,3 +273,14 @@ class TestDay(TestCase):
             await day.ainitialize()
             with self.subTest(y):
                 self.assertIn('New Martyrs and Confessors of Russia', day.feasts)
+
+    async def test_gospel_pdist(self):
+        data = [
+            (2022, 12, 4, 252),  # 25th Sunday after Pentecost -> with jump, 28th, swapped to 29th
+        ]
+
+        for y, m, d, pdist in data:
+            day = liturgics.Day(y, m, d)
+            await day.ainitialize()
+            with self.subTest(day.gregorian_date):
+                self.assertEqual(day.gospel_pdist, pdist)

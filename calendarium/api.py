@@ -82,6 +82,7 @@ class DaySchemaLite(Schema):
     saints: list[str]
     service_notes: list[str]
 
+    abbreviated_reading_indices: list[int] = None
     readings: list[ReadingSchemaLite] = None
 
     @validator('titles', 'feasts', 'saints', 'service_notes')
@@ -124,6 +125,7 @@ async def get_calendar_day(request, cal: str, year: int, month: int, day: int):
     day = liturgics.Day(year, month, day, use_julian=cal=='julian')
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
+    await day.aget_abbreviated_readings()
 
     return day
 
@@ -132,6 +134,7 @@ async def get_calendar_month(request, cal: str, year: int, month: int):
     days = [d async for d in liturgics.amonth_of_days(year, month, use_julian=cal=='julian')]
     for day in days:
         await day.aget_readings()
+        await day.aget_abbreviated_readings()
 
     return days
 

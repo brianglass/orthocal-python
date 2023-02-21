@@ -111,7 +111,7 @@ async def lectionary(request):
         writer.writerow({
             'Pascha Distance': r.pdist,
             'Day Name': r.day_name,
-            r.source: r.pericope.display
+            r.source: f'{r.pericope.display} ({r.desc})' if r.desc else r.pericope.display,
         })
 
     return response

@@ -26,6 +26,10 @@
             "St Emilia (375), mother of Sts Macrina, Basil the Great and Gregory of Nyssa, Peter of Sebaste, and Theosevia"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            5,
+            8
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -136,6 +140,10 @@
             "Holy New Martyr George the Georgian (1770)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -228,6 +236,10 @@
             "Our Holy Mother Genevieve of Paris (~502)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -271,6 +283,10 @@
             "Venerable Apollinaria (5th c.)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -316,6 +332,10 @@
             "Our Venerable Mother Syncletike (4th c.)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            25,
+            26
+        ],
         "readings": [
             {
                 "source": "1st Hour, Prophecy",
@@ -598,6 +618,10 @@
         "fast_exception_desc": "Fast Free",
         "saints": null,
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            1,
+            2
+        ],
         "readings": [
             {
                 "source": "Matins Gospel",
@@ -691,6 +715,10 @@
             "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            2
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -754,6 +782,10 @@
             "Saint Severinus (482)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            2
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -816,6 +848,10 @@
             "Saint Philip, Metropolitan of Moscow (1569)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            1,
+            2
+        ],
         "readings": [
             {
                 "source": "7th Matins Gospel",
@@ -868,6 +904,10 @@
             "Our Holy Father Theophan the Recluse (1894)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -913,6 +953,10 @@
             "Venerable Michael of Klops, Fool for Christ (1456)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -1004,6 +1048,10 @@
             "Holy Martyr Tatiana (~230)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1048,6 +1096,10 @@
             "Our Holy Father Hilary, Bishop of Poitiers (369)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1092,6 +1144,10 @@
             "The Holy Fathers slain at Sinai and Raithu (4th – 5th c.)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1135,6 +1191,10 @@
             "Our Holy Father John Kalyvites (the hut-dweller) (~450)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1177,6 +1237,10 @@
             "Veneration of Chains of Apostle Peter"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            1,
+            2
+        ],
         "readings": [
             {
                 "source": "8th Matins Gospel",
@@ -1187,19 +1251,19 @@
                 "passage": null
             },
             {
-                "source": "Gospel",
-                "book": "Luke",
-                "description": "",
-                "display": "Luke 18.18-27",
-                "short_display": "Luke 18.18-27",
-                "passage": null
-            },
-            {
                 "source": "Epistle",
                 "book": "Apostol",
                 "description": "",
                 "display": "Colossians 3.12-16",
                 "short_display": "Col 3.12-16",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Luke",
+                "description": "",
+                "display": "Luke 18.18-27",
+                "short_display": "Luke 18.18-27",
                 "passage": null
             }
         ]
@@ -1230,6 +1294,10 @@
             "Our Holy Father Makarios (Kalogeras) of Patmos (1737)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -1320,6 +1388,10 @@
             "Ss Athanasius the Great and Cyril of Alexandria"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1362,6 +1434,10 @@
             "Ven. Macarius the Great"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1407,6 +1483,10 @@
             "Saint Peter the Tax Collector (6th c.)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -1499,6 +1579,10 @@
             "Our Holy Father Maximos the Greek (1556)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1542,6 +1626,10 @@
             "Holy Martyr Anastasius of Persia (628)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1586,6 +1674,10 @@
             "Hieromartyr Clement and Martyr Agathangel"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            1,
+            2
+        ],
         "readings": [
             {
                 "source": "9th Matins Gospel",
@@ -1638,6 +1730,10 @@
             "Our Holy Father Macedonian (ca. 430)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1680,6 +1776,10 @@
         "fast_exception_desc": "",
         "saints": null,
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -1771,6 +1871,10 @@
             "Our Holy Mother Paula of Rome (404)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1813,6 +1917,10 @@
         "fast_exception_desc": "",
         "saints": null,
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -1903,6 +2011,10 @@
             "Ven. Ephrem the Syrian"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1948,6 +2060,10 @@
             "Repose of Blessed Father Dimitrios Gagastathis (1975)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
@@ -1992,6 +2108,10 @@
             "Saint Peter, King of Bulgaria (970)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            4,
+            6
+        ],
         "readings": [
             {
                 "source": "Vespers",
@@ -2084,6 +2204,10 @@
             "Marcella of Rome (410)"
         ],
         "service_notes": null,
+        "abbreviated_reading_indices": [
+            0,
+            1
+        ],
         "readings": [
             {
                 "source": "Epistle",
