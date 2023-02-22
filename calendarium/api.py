@@ -65,7 +65,7 @@ class ReadingSchema(ReadingSchemaLite):
 
 class StorySchema(Schema):
     title: str
-    story: str
+    story: str = Field(..., description='HTML content of the story.')
 
 
 class DaySchemaLite(Schema):
