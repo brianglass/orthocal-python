@@ -12,7 +12,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
     priority = 1.0
 
     def items(self):
-        return ['index', 'alexa', 'api', 'feeds', 'about']
+        return ['index', 'alexa', 'api', 'feeds', 'about', 'api:openapi-view']
 
     def location(self, item):
         return reverse(item)

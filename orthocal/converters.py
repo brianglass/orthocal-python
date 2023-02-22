@@ -1,8 +1,9 @@
 from django.urls.converters import IntConverter
 
+CAL_RE = '(gregorian|julian|oca|rocor)'
 
 class CalendarConverter:
-    regex = '(oca|rocor|gregorian|julian)'
+    regex = CAL_RE
 
     def to_python(self, value):
         if value == 'oca':

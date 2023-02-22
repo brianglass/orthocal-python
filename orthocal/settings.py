@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'fullurl',
     'typogrify',
+    'ninja',
 
     # internal apps
     'orthocal',
@@ -172,6 +173,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+NINJA_DOCS_VIEW = 'redoc'
 
 ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
