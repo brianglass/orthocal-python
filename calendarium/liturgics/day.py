@@ -19,7 +19,7 @@ class Day:
     """Representation of a liturgical day.
 
     This class is a composite of feasts, fasts, scripture readings, and lives
-    of the saints from both the Paschal cycle, the festal cycle.
+    of the saints from both the Paschal cycle and the festal cycle.
     """
 
     def __init__(self, year, month, day, use_julian=False, do_jump=True):
