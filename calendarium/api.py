@@ -24,16 +24,25 @@ class Renderer(JSONRenderer):
             'ensure_ascii': False,
     }
 
-api = NinjaAPI(
+class API(NinjaAPI):
+    def get_openapi_operation_id(self, operation):
+        return operation.view_func.__name__
+
+api = API(
     urls_namespace='api',
     renderer=Renderer(),
     title='Orthocal API',
+    version='1.1',
+    docs_url='/docs/',
     description=(
         'Orthocal.info provides an API for looking up information about '
         'days and months in the Orthodox Calendar, including the ability '
         'to look up the scripture readings and lives of the saints for a given day.'
         'The API follow OCA rubrics.'
     ),
+    servers=[
+        {'url': settings.ORTHOCAL_PUBLIC_URL, 'description': 'Public API'},
+    ]
 )
 
 
