@@ -5,7 +5,8 @@ def normalize_book_name(name):
 def is_chapterless(book):
     return book in CHAPTERLESS_BOOKS
 
-CHAPTERLESS_BOOKS = {'OBA', 'PHM', '2JN', '3JN', 'JUD'}
+# This is populated by AppConfig.ready()
+CHAPTERLESS_BOOKS = None
 
 BOOK_NAMES = {
 	# Old Testament

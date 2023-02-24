@@ -30,6 +30,7 @@ class VerseTestCase(TestCase):
             ("4 Kgs 2.6-14", 9),
             ("Baruch 3.35-4.4", 3 + 4),
             ("Wis 3.1-9", 9),
+            ("Daniel 3.1-23; Song of the Three 1-66", 23 + 66),
         ]
 
         for reference, count in tests:
