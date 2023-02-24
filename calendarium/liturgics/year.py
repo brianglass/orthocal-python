@@ -5,7 +5,6 @@ from django.utils.functional import cached_property
 
 from .. import datetools
 from ..datetools import Weekday, FloatIndex
-from ..models import Day
 
 
 @lru_cache
@@ -18,16 +17,6 @@ class Year:
     represents the period from one Zacchaeus Sunday (77 days before Pascha)
     to the next.
     """
-
-    # Fetch this at compile time to avoid a database query on every instantiation
-    minor_feasts_lent = tuple(
-        Day.objects.exclude(
-            feast_name=''
-        ).filter(
-            month__range=(2, 4),
-            feast_level__range=(3, 5)
-        ).values_list('month', 'day')
-    )
 
     def __init__(self, year, use_julian=False):
         self.year = year
@@ -209,7 +198,19 @@ class Year:
 
         paremias = {}
 
-        for month, day in self.minor_feasts_lent:
+        # These seem to be feasts with 3 <= FeastLevel <= 5. We could probably
+        # grab this from the database at run time.
+        days = (
+                (2, 24),    # 1st and 2nd finding of the head of John the Baptist
+                (2, 27),    # St. Raphael, Bishop of Brooklyn
+                (3, 9),     # Holy Forty Martyrs of Sebaste
+                (3, 31),    # Repose St Innocent, Metr. Moscow and Apostle to Americas
+                (4, 7),     # Repose St. Tikhon, Patriarch of Moscow, Enlightener N. America
+                (4, 23),    # Holy Greatmartyr, Victorybearer and Wonderworker George
+                (4, 25),    # Holy Apostle and Evangelist Mark
+                (4, 30),    # Holy Apostle James, Brother of St John
+        )
+        for month, day in days:
             pdist = self.date_to_pdist(month, day, self.year)
             weekday = datetools.weekday_from_pdist(pdist)
             if -44 < pdist < -7 and weekday > Weekday.Monday:
