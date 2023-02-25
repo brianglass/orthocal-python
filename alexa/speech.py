@@ -32,17 +32,22 @@ EPISTLES = {
     "jude":          "The Catholic letter of Saint Jude",
 }
 
-SUBSTITUTIONS = (
-    ('Ven.', '<sub alias="The Venerable">Ven.</sub>'),
-    ('Ss', '<sub alias="Saints">Ss.</sub>'),
-    ('Sts', '<sub alias="Saints">Ss.</sub>'),
-    ('~', '<sub alias="Approximately">~</sub>'),
-    ('ca.', '<sub alias="Circa">ca.</sub>'),
-    ('Transl.', '<sub alias="Translation">Transl.</sub>'),
-    ('c.', '<sub alias="Century">c.</sub>'),
-    ('Metr.', '<sub alias="Metropolitan">Metr.</sub>'),
-    ('Theotokos', '<phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>'),
-)
+ABBREVIATIONS = {
+    # The keys should not have '.' in them. That is taken care of by the RE.
+    'Ven':      '<sub alias="The Venerable">Ven.</sub>',
+    'St':       '<sub alias="Saint">St.</sub>',
+    'Ss':       '<sub alias="Saints">Ss.</sub>',
+    'Sts':      '<sub alias="Saints">Ss.</sub>',
+    '~':        '<sub alias="Approximately">~</sub>',
+    'ca':       '<sub alias="Circa">ca.</sub>',
+    'Transl':   '<sub alias="Translation">Transl.</sub>',
+    'c':        '<sub alias="Century">c.</sub>',
+    'Metr':     '<sub alias="Metropolitan">Metr.</sub>',
+    'Abp':      '<sub alias="Archbishop">Abp.</sub>',
+    'Theotokos':'<phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>',
+}
+
+abbreviations_re = re.compile(r'\b((' + '|'.join(ABBREVIATIONS.keys()) + r')\.?)\b', flags=re.IGNORECASE)
 
 def day_speech(day):
     speech_text = ''
@@ -163,10 +168,11 @@ def reference_speech(reading):
             return reading.pericope.display.replace('.', ':')
 
 def expand_abbreviations(speech_text):
-    for abbr, full in SUBSTITUTIONS:
-        speech_text = speech_text.replace(abbr, full)
+    def replace(match):
+        abbr = match.group(0)
+        return ABBREVIATIONS[abbr]
 
-    return speech_text
+    return abbreviations_re.sub(replace, speech_text)
 
 def reading_speech(reading, end=None):
     scripture_text = reading_range_speech(reading, end=end)
