@@ -436,7 +436,7 @@ class HelpIntentHandler(AbstractRequestHandler):
         session = handler_input.attributes_manager.session_attributes
 
         speech_text = render_to_string('help.ssml')
-        card_text = speech.markup_re.sub('', speech_text)
+        card_text = re.sub(r'<.*?>', '', speech_text)
 
         builder.speak(speech_text)
 

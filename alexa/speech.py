@@ -9,7 +9,6 @@ from calendarium.datetools import FastLevels
 MAX_SPEECH_LENGTH = 8000
 
 ref_re = re.compile('(\d*)\s*([\w\s]+)\s+(\d+)')
-markup_re = re.compile('<.*?>')
 ssml_re = re.compile(r'<(?!p\b)(.*?)>(.*?)</\1>')
 
 
@@ -34,20 +33,38 @@ EPISTLES = {
 
 ABBREVIATIONS = {
     # The keys should not have '.' in them. That is taken care of by the RE.
-    'Ven':      '<sub alias="The Venerable">Ven.</sub>',
-    'St':       '<sub alias="Saint">St.</sub>',
-    'Ss':       '<sub alias="Saints">Ss.</sub>',
-    'Sts':      '<sub alias="Saints">Ss.</sub>',
-    '~':        '<sub alias="Approximately">~</sub>',
-    'ca':       '<sub alias="Circa">ca.</sub>',
-    'Transl':   '<sub alias="Translation">Transl.</sub>',
-    'c':        '<sub alias="Century">c.</sub>',
-    'Metr':     '<sub alias="Metropolitan">Metr.</sub>',
-    'Abp':      '<sub alias="Archbishop">Abp.</sub>',
-    'Theotokos':'<phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>',
+    'Ven':      'The Venerable',
+    'St':       'Saint',
+    'Ss':       'Saints',
+    'Sts':      'Saints',
+    '~':        'Approximately',
+    'ca':       'Circa',
+    'Transl':   'Translation',
+    'c':        'Century',
+    'Metr':     'Metropolitan',
+    'Abp':      'Archbishop',
 }
 
-abbreviations_re = re.compile(r'\b((' + '|'.join(ABBREVIATIONS.keys()) + r')\.?)\b', flags=re.IGNORECASE)
+PHONETICS = {
+    # Use the International Phonetic Alphabet (IPA) for phonetics.
+    'Theotokos':    'θɛːoʊtˈoʊˌkoʊs',
+}
+
+abbreviations_re = re.compile(
+    r'(\b(' + '|'.join(ABBREVIATIONS.keys()) + r')\b\.?)'
+    r'|\b(' + '|'.join(PHONETICS.keys()) + r')\b',
+    flags=re.IGNORECASE
+)
+
+def expand_abbreviations(speech_text):
+    def replace(match):
+        full_abbr, abbr, phonetic = match.groups()
+        if abbr:
+            return f'<sub alias="{ABBREVIATIONS[abbr]}">{full_abbr}</sub>'
+        elif phonetic:
+            return f'<phoneme alphabet="ipa" ph="{PHONETICS[phonetic]}">{phonetic}</phoneme>'
+
+    return abbreviations_re.sub(replace, speech_text)
 
 def day_speech(day):
     speech_text = ''
@@ -167,13 +184,6 @@ def reference_speech(reading):
         case _:
             return reading.pericope.display.replace('.', ':')
 
-def expand_abbreviations(speech_text):
-    def replace(match):
-        abbr = match.group(0)
-        return ABBREVIATIONS[abbr]
-
-    return abbreviations_re.sub(replace, speech_text)
-
 def reading_speech(reading, end=None):
     scripture_text = reading_range_speech(reading, end=end)
 
@@ -189,13 +199,7 @@ def reading_speech(reading, end=None):
 
 def reading_range_speech(reading, start=None, end=None):
     passage = reading.pericope.get_passage()
-
-    verses = []
-    for verse in passage[start:end]:
-        stripped = markup_re.sub('', verse.content)
-        verses.append(f'<p>{stripped}</p>')
-
-    return '\n'.join(verses)
+    return '\n'.join(f'<p>{verse.content}</p>' for verse in passage[start:end])
 
 def estimate_group_size(passage):
     """Estimate how many verses need to be in each group."""

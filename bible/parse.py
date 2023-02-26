@@ -50,8 +50,7 @@ def parse_usfx(filename):
             # Character content
             case [pulldom.CHARACTERS, _]:
                 if is_valid_content:
-                    text = node.wholeText.replace('¶','').strip()
-                    if text:
+                    if text := node.wholeText.replace('¶','').strip():
                         if text[0] in string.punctuation or content.endswith('(') or not content:
                             content += text
                         else:
