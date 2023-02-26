@@ -75,6 +75,7 @@ class SpeechTestCase(TestCase):
         data = [
             ('Ss Cyril and Athanasius along with Ven. Bede', '<sub alias="Saints">Ss</sub> Cyril and Athanasius along with <sub alias="The Venerable">Ven.</sub> Bede'),
             ('The most Holy Theotokos.', 'The most Holy <phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>.'),
+            ('The most Holytheotokos.', 'The most Holytheotokos.')
         ]
         for text, expected in data:
             with self.subTest(text):

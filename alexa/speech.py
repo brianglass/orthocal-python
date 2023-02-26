@@ -32,22 +32,24 @@ EPISTLES = {
 }
 
 ABBREVIATIONS = {
-    # The keys should not have '.' in them. That is taken care of by the RE.
-    'Ven':      'The Venerable',
-    'St':       'Saint',
-    'Ss':       'Saints',
-    'Sts':      'Saints',
+    # Keys should not have '.' in them. That is taken care of by the RE.
+    # Keys should all be lowercase.
+    'ven':      'The Venerable',
+    'st':       'Saint',
+    'ss':       'Saints',
+    'sts':      'Saints',
     '~':        'Approximately',
     'ca':       'Circa',
-    'Transl':   'Translation',
+    'transl':   'Translation',
     'c':        'Century',
-    'Metr':     'Metropolitan',
-    'Abp':      'Archbishop',
+    'metr':     'Metropolitan',
+    'abp':      'Archbishop',
 }
 
 PHONETICS = {
     # Use the International Phonetic Alphabet (IPA) for phonetics.
-    'Theotokos':    'θɛːoʊtˈoʊˌkoʊs',
+    # Keys should all be lowercase.
+    'theotokos':    'θɛːoʊtˈoʊˌkoʊs',
 }
 
 abbreviations_re = re.compile(
@@ -60,9 +62,9 @@ def expand_abbreviations(speech_text):
     def replace(match):
         full_abbr, abbr, phonetic = match.groups()
         if abbr:
-            return f'<sub alias="{ABBREVIATIONS[abbr]}">{full_abbr}</sub>'
+            return f'<sub alias="{ABBREVIATIONS[abbr.lower()]}">{full_abbr}</sub>'
         elif phonetic:
-            return f'<phoneme alphabet="ipa" ph="{PHONETICS[phonetic]}">{phonetic}</phoneme>'
+            return f'<phoneme alphabet="ipa" ph="{PHONETICS[phonetic.lower()]}">{phonetic}</phoneme>'
 
     return abbreviations_re.sub(replace, speech_text)
 
