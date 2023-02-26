@@ -44,12 +44,15 @@ ABBREVIATIONS = {
     'c':        'Century',
     'metr':     'Metropolitan',
     'abp':      'Archbishop',
+    'ch':       'Chapter',
 }
 
 PHONETICS = {
     # Use the International Phonetic Alphabet (IPA) for phonetics.
     # Keys should all be lowercase.
     'theotokos':    'θɛːoʊtˈoʊˌkoʊs',
+    'paschal':      'pæs.kəl',
+    'pascha':       'pɑskə',
 }
 
 abbreviations_re = re.compile(
