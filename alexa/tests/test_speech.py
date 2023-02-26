@@ -85,12 +85,14 @@ class SpeechTestCase(TestCase):
     def test_abbreviations(self):
         """Abbreviation keys should all be lowercase."""
         for key in speech.ABBREVIATIONS:
-            self.assertEqual(key, key.lower())
+            with self.subTest(key):
+                self.assertEqual(key, key.lower())
 
     def test_phonetics(self):
         """Phonetic keys should all be lowercase."""
         for key in speech.PHONETICS:
-            self.assertEqual(key, key.lower())
+            with self.subTest(key):
+                self.assertEqual(key, key.lower())
 
     def test_estimate_group_size_long(self):
         day = liturgics.Day(2023, 4, 14)
