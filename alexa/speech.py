@@ -50,7 +50,7 @@ ABBREVIATIONS = {
 PHONETICS = {
     # Use the International Phonetic Alphabet (IPA) for phonetics.
     # Keys should all be lowercase.
-    'theotokos':    'θɛːoʊtˈoʊˌkoʊs',
+    'theotokos':    'θˈɛoʊtˈoʊkoʊs',
     'paschal':      'pæs.kəl',
     'pascha':       'pɑskə',
 }
@@ -66,7 +66,7 @@ def expand_abbreviations(speech_text):
         full_abbr, abbr, phonetic = match.groups()
         if abbr:
             return f'<sub alias="{ABBREVIATIONS[abbr.lower()]}">{full_abbr}</sub>'
-        elif phonetic:
+        else:
             return f'<phoneme alphabet="ipa" ph="{PHONETICS[phonetic.lower()]}">{phonetic}</phoneme>'
 
     return abbreviations_re.sub(replace, speech_text)

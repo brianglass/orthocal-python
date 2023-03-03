@@ -22,7 +22,7 @@ class Day:
     of the saints from both the Paschal cycle and the festal cycle.
     """
 
-    def __init__(self, year, month, day, use_julian=False, do_jump=True):
+    def __init__(self, year, month, day, use_julian=False):
         self.gregorian_date = date(year=year, month=month, day=day)
 
         if use_julian:
@@ -34,7 +34,6 @@ class Day:
         self.year = dt.year
         self.month = dt.month
         self.day = dt.day
-        self.do_jump = do_jump
 
         if use_julian:
             pdist, pyear = datetools.compute_julian_pascha_distance(dt)
@@ -451,15 +450,18 @@ class Day:
         models.Reading has records as far back as pdist == -133
         """
 
-        if self.has_daily_readings:
-            if self.pdist == 252:
-                return self.pyear.forefathers
-            elif self.pdist > 272:
-                # The maximum pdist in the Readings model is 279
-                # We wrap around to the beginning of the next year
-                return self.jdn - self.pyear.next_pascha
-            else:
-                return self.pdist
+        if not self.has_daily_readings:
+            return None
+
+        if self.pdist == 252:
+            return self.pyear.forefathers
+
+        if self.pdist > 272:
+            # The maximum pdist in the Readings model is 279
+            # We wrap around to the beginning of the next year
+            return self.jdn - self.pyear.next_pascha
+
+        return self.pdist
 
     @cached_property
     def gospel_pdist(self):
@@ -474,28 +476,29 @@ class Day:
         models.Reading has records as far back as pdist == -133
         """
 
-        if self.has_daily_readings:
-            # The Lukan jump appropriate for this day.
-            if self.do_jump and self.pdist > self.pyear.sun_after_elevation:
-                jump = self.pyear.lukan_jump 
-            else:
-                jump = 0
+        if not self.has_daily_readings:
+            return None
 
-            theophany_weekday = datetools.weekday_from_pdist(self.pyear.theophany)
-            limit = 279 if theophany_weekday < Weekday.Tuesday else 272
+        if self.pdist == self.pyear.first_sun_luke + 10*7:
+            # On the 11th Sunday of Luke we commemorate the forefathers of the
+            # Lord. We read the Gospel that is assigned to Forefathers Sunday
+            # from the Paschal cycle. On Forefathers Sunday, we read the Gospel
+            # pulled from the Festal cycle for that day (from self.pyear.floats).
+            return self.pyear.forefathers + self.pyear.lukan_jump
 
-            if self.pdist + self.pyear.lukan_jump == 245:
-                # pdist 245 -> 28th Sunday after Pentecost
-                # TODO: Figure out why we have this special case
-                return self.pyear.forefathers + self.pyear.lukan_jump
-            elif self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:
-                # On Sundays after Theophany, use the Gospels left unread after the Lukan jump
-                i = (self.pdist - self.pyear.sun_after_theophany) // 7
-                return self.pyear.reserves[i-1]
-            elif self.pdist + jump > limit:
-                # Theophany stepback
-                # The maximum pdist in the Readings model is 279.
-                # We "step back" to the beginning of the next year.
-                return self.jdn - self.pyear.next_pascha
-            else:
-                return self.pdist + jump
+        if (self.weekday == Weekday.Sunday and
+            self.pdist > self.pyear.sun_after_theophany and
+            self.pyear.extra_sundays > 1):
+            # On Sundays after Theophany, use the Gospels left unread after the Lukan jump
+            i = (self.pdist - self.pyear.sun_after_theophany) // 7
+            return self.pyear.reserves[i-1]
+
+        if self.pdist > self.pyear.sat_before_theophany:
+            # We jump into the paschal cycle for the upcoming Pashcha instead
+            # of the previous one.
+            return self.jdn - self.pyear.next_pascha
+
+        if self.pdist > self.pyear.sun_after_elevation:
+            return self.pdist + self.pyear.lukan_jump
+
+        return self.pdist

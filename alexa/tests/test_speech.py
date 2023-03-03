@@ -74,7 +74,7 @@ class SpeechTestCase(TestCase):
     def test_expand_abbreviations(self):
         data = [
             ('Ss Cyril and Athanasius along with Ven. Bede', '<sub alias="Saints">Ss</sub> Cyril and Athanasius along with <sub alias="The Venerable">Ven.</sub> Bede'),
-            ('The most Holy Theotokos.', 'The most Holy <phoneme alphabet="ipa" ph="θɛːoʊtˈoʊˌkoʊs">Theotokos</phoneme>.'),
+            ('The most Holy Theotokos.', 'The most Holy <phoneme alphabet="ipa" ph="θˈɛoʊtˈoʊkoʊs">Theotokos</phoneme>.'),
             ('The most Holytheotokos.', 'The most Holytheotokos.')
         ]
         for text, expected in data:
@@ -85,14 +85,12 @@ class SpeechTestCase(TestCase):
     def test_abbreviations(self):
         """Abbreviation keys should all be lowercase."""
         for key in speech.ABBREVIATIONS:
-            with self.subTest(key):
-                self.assertEqual(key, key.lower())
+            self.assertEqual(key, key.lower())
 
     def test_phonetics(self):
         """Phonetic keys should all be lowercase."""
         for key in speech.PHONETICS:
-            with self.subTest(key):
-                self.assertEqual(key, key.lower())
+            self.assertEqual(key, key.lower())
 
     def test_estimate_group_size_long(self):
         day = liturgics.Day(2023, 4, 14)

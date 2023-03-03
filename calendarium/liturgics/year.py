@@ -158,35 +158,59 @@ class Year:
     def lukan_jump(self):
         """The number of days to jump forward in the gospel cycle. Divisible by 7."""
 
-        sun_after_elevation = self.elevation + 7 - datetools.weekday_from_pdist(self.elevation)
-
-        # pdist == 169 is the Monday of the 18th week after Pentecost. The
-        # Gospel reading for this day, Luke 3.19-22 (Lukan pericope 10), must
-        # be read on the Monday after the Sunday after the Elevation of the
-        # cross. This gives us the number of days we have to jump forward in
-        # the readings. This number should be divisible by 7.
+        # The Gospel reading for the Monday of the 18th week after Pentecost,
+        # Luke 3.19-22 (Lukan pericope 10), must be read on the Monday AFTER
+        # the Sunday AFTER the Elevation of the cross.
+        #
+        # This syncs the remainder of the paschal cycle to within 1 week of a
+        # fixed point in the festal cycle, but only for the Gospel.
+        #
         # See https://www.orthodox.net/ustav/lukan-jump.html
-        return 168 - sun_after_elevation
+
+        eighteenth_monday = 49 + 1 + 7 * 17  # Pentecost+1 + 17 weeks
+        mon_after_elevation = self.sun_after_elevation + 1
+        return eighteenth_monday - mon_after_elevation
+
+    @cached_property
+    def first_sun_luke(self):
+        """The first Sunday of Luke, after the Lukan jump."""
+        return self.sun_after_elevation + 7
 
     @cached_property
     def extra_sundays(self):
-        return (self.next_pascha - self.pascha - 84 - self.sun_after_theophany) // 7
+        """The number of sundays between Sunday after Theophany and the Triodion."""
+        sun_before_zaccheus = self.next_pascha - 12*7
+        sun_after_theophany = self.pascha + self.sun_after_theophany
+        return (sun_before_zaccheus - sun_after_theophany) // 7
 
     @cached_property
     def reserves(self):
-        """Return a list of pascha distances for days with unread Sunday gospels.
+        """A list of pascha distances for days with unread Sunday gospels.
 
-        These are saved for use after Theophany. 
+        These are saved for use between Theophany and the Triodion. 
         """
 
         reserves = []
 
+        # This is the Gospel we read on the first Sunday of Luke. It is
+        # assigned to the eighteenth Sunday after Pentecost. 
+        first_luke = 49 + 7*18
+
+        # The Gospel that is read on the 13th Sunday of Luke.
+        thirteenth_luke = first_luke + 7*13
+        
         if self.extra_sundays:
-            first = self.forefathers + self.lukan_jump + 7
-            reserves.extend(range(first, 267, 7))
+            # These are the Sunday Gospels we skipped between Forefathers
+            # Sunday and Theophany because they were overshadowed by the
+            # readings from the Festal cycle (e.g. Nativity).
+            forefathers = self.forefathers + self.lukan_jump + 7
+            reserves.extend(range(forefathers, thirteenth_luke+1, 7))
+
             if remainder := self.extra_sundays - len(reserves):
-                start = 175 - remainder * 7
-                reserves.extend(range(start, 169, 7))
+                # these are the Sunday Gospels we jumped over in the lukan jump.
+                start = first_luke - remainder * 7
+                end = first_luke - 6  # First Monday of Luke
+                reserves.extend(range(start, end, 7))
 
         return reserves
 

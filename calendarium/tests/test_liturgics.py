@@ -276,7 +276,11 @@ class TestDay(TestCase):
 
     async def test_gospel_pdist(self):
         data = [
-            (2022, 12, 4, 252),  # 25th Sunday after Pentecost -> with jump, 28th, swapped to 29th
+            (2022, 12, 4, 252),  # Sunday of the Forefathers of Christ
+            (2023, 12, 3, 259),  # Sunday of the Forefathers of Christ
+            (2023, 1, 2, -104),
+            (2022, 12, 30, 271),
+            (2022, 12, 31, 272),
         ]
 
         for y, m, d, pdist in data:
