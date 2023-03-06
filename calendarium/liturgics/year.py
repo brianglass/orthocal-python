@@ -167,13 +167,14 @@ class Year:
         #
         # See https://www.orthodox.net/ustav/lukan-jump.html
 
-        eighteenth_monday = 49 + 1 + 7 * 17  # Pentecost+1 + 17 weeks
+        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
         mon_after_elevation = self.sun_after_elevation + 1
         return eighteenth_monday - mon_after_elevation
 
     @cached_property
     def first_sun_luke(self):
         """The first Sunday of Luke, after the Lukan jump."""
+        # Reading of Luke starts on self.sun_after_elevation + 1, which is a Monday
         return self.sun_after_elevation + 7
 
     @cached_property

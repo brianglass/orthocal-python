@@ -15,6 +15,8 @@ import zoneinfo
 
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -61,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.cache_control',
 ]
@@ -152,11 +155,16 @@ LOGGING = {
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('ro', _('Romanian')),
+)
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = os.environ.get('TZ', 'America/Los_Angeles')
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
 
@@ -180,6 +188,7 @@ ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
+ORTHOCAL_LANGUAGES = 'en', 'ro'
 
 try:
     from .local_settings import *

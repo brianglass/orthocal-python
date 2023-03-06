@@ -11,13 +11,13 @@ def cache_control(get_response):
         async def middleware(request):
             response = await get_response(request)
             patch_cache_control(response, public=True, max_age=settings.ORTHOCAL_MAX_AGE)
-            patch_vary_headers(response, ['Cookie'])
+            patch_vary_headers(response, ['Cookie', 'Accept-Language'])
             return response
     else:
         def middleware(request):
             response = get_response(request)
             patch_cache_control(response, public=True, max_age=settings.ORTHOCAL_MAX_AGE)
-            patch_vary_headers(response, ['Cookie'])
+            patch_vary_headers(response, ['Cookie', 'Accept-Language'])
             return response
 
     return middleware

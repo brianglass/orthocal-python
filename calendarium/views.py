@@ -5,6 +5,7 @@ import logging
 from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
+from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
 from django.shortcuts import render
@@ -34,10 +35,10 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         except ValueError:
             raise Http404
 
-        day = liturgics.Day(year, month, day, use_julian=use_julian)
+        day = liturgics.Day(year, month, day, use_julian=use_julian, language=request.LANGUAGE_CODE)
     else:
         dt = now
-        day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
+        day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian, language=request.LANGUAGE_CODE)
 
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)

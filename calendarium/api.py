@@ -9,6 +9,7 @@ from django.template.loader import render_to_string
 from django.urls import resolve, reverse
 from django.urls.exceptions import Resolver404
 from django.utils import timezone
+from django.utils.translation import get_language_from_request
 from ninja import Field, NinjaAPI, Schema
 from ninja.renderers import JSONRenderer
 from pydantic import AnyHttpUrl, conint, constr, validator
@@ -158,7 +159,7 @@ async def get_calendar_day(request, cal: calname, year: year, month: month, day:
     except ValueError:
         raise Http404
 
-    day = liturgics.Day(year, month, day, use_julian=cal=='julian')
+    day = liturgics.Day(year, month, day, use_julian=cal=='julian', language=request.LANGUAGE_CODE)
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
     await day.aget_abbreviated_readings()

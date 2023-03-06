@@ -24,7 +24,7 @@
 
 {% block main %}
 	<header>
-		<h1>{{ day.gregorian_date|date:"F j, Y"|widont }}<span><br>{{ day.titles.0|widont }}</span></h1>
+		<h1>{{ day.gregorian_date|date|widont }}<span><br>{{ day.titles.0|widont }}</span></h1>
 
 		<p class="fasting">
 			{% filter widont %}

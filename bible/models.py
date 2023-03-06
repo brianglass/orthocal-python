@@ -19,7 +19,7 @@ class ReferenceParseError(Exception):
 
 
 class VerseManager(models.Manager):
-    def lookup_reference(self, reference, language='eng'):
+    def lookup_reference(self, reference, language='en'):
         conditionals = []
         book = ''
 

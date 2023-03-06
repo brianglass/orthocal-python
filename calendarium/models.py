@@ -93,14 +93,14 @@ class Pericope(models.Model):
     def __str__(self):
         return self.display
 
-    async def aget_passage(self):
+    async def aget_passage(self, language='en'):
         try:
             return self.passage
         except AttributeError:
-            self.passage = [verse async for verse in self.get_passage()]
+            self.passage = [verse async for verse in self.get_passage(language=language)]
             return self.passage
 
-    def get_passage(self):
+    def get_passage(self, language='en'):
         match = re.match('Composite (\d+)', self.display)
         if match:
             return Composite.objects.filter(
@@ -113,7 +113,7 @@ class Pericope(models.Model):
                     language=models.Value('en'),
             )
         else:
-            return Verse.objects.lookup_reference(self.sdisplay)
+            return Verse.objects.lookup_reference(self.sdisplay, language=language)
 
 
 class Composite(models.Model):

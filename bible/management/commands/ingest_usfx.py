@@ -8,7 +8,8 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('path')
+        parser.add_argument('-l', '--language')
 
     def handle(self, *args, **options):
-        for verse in parse.parse_usfx(options['path']):
+        for verse in parse.parse_usfx(options['path'], language=options['language']):
             models.Verse.objects.create(**verse)

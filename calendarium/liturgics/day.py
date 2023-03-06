@@ -22,37 +22,31 @@ class Day:
     of the saints from both the Paschal cycle and the festal cycle.
     """
 
-    def __init__(self, year, month, day, use_julian=False):
+    def __init__(self, year, month, day, use_julian=False, language='en'):
         self.gregorian_date = date(year=year, month=month, day=day)
 
         if use_julian:
             dt = datetools.gregorian_to_julian(year, month, day)
+            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
+            self.jdn = datetools.julian_to_jdn(dt)
         else:
             dt = self.gregorian_date
+            pdist, pyear = datetools.compute_pascha_distance(dt)
+            self.jdn = datetools.gregorian_to_jdn(dt)
 
         self.date = dt
         self.year = dt.year
         self.month = dt.month
         self.day = dt.day
-
-        if use_julian:
-            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
-            self.jdn = datetools.julian_to_jdn(dt)
-        else:
-            pdist, pyear = datetools.compute_pascha_distance(dt)
-            self.jdn = datetools.gregorian_to_jdn(dt)
-
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
-
         self.pyear = Year(pyear, use_julian)
-
-        self._initialized = False
+        self.language = language
 
     async def ainitialize(self):
         """Do the expensive stuff here to keep it out of the constructor."""
 
-        if not self._initialized:
+        if not hasattr(self, '_initialized'):
             await self._collect_commemorations()
             await self._add_supplemental_commemorations()
             self._apply_fasting_adjustments()
@@ -285,7 +279,7 @@ class Day:
         if hasattr(self, 'readings'):
             if fetch_content:
                 for reading in self.readings:
-                    await reading.pericope.aget_passage()
+                    await reading.pericope.aget_passage(language=self.language)
 
             return self.readings
 
@@ -346,7 +340,7 @@ class Day:
         self.readings = []
         async for reading in queryset.order_by('ordering'):
             if fetch_content:
-                await reading.pericope.aget_passage()
+                await reading.pericope.aget_passage(language=self.language)
 
             if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
                 # Place Lenten Matins Gospel at the top
@@ -366,7 +360,7 @@ class Day:
         if hasattr(self, 'abbreviated_readings'):
             if fetch_content:
                 for reading in self.abbreviated_readings:
-                    await reading.pericope.aget_passage()
+                    await reading.pericope.aget_passage(language=self.language)
 
             return self.abbreviated_readings
 
@@ -419,7 +413,7 @@ class Day:
 
         if fetch_content:
             for reading in readings:
-                await reading.pericope.aget_passage()
+                await reading.pericope.aget_passage(language=self.language)
 
         self.abbreviated_readings = readings
         return readings
@@ -453,12 +447,13 @@ class Day:
         if not self.has_daily_readings:
             return None
 
-        if self.pdist == 252:
+        if self.pdist == 49 + 29*7:  # Pentecost + 29 weeks
+            # 29th Sunday after Pentecost
             return self.pyear.forefathers
 
-        if self.pdist > 272:
-            # The maximum pdist in the Readings model is 279
-            # We wrap around to the beginning of the next year
+        if self.pdist >= 49 + 32*7:  # Pentecost + 32 weeks
+            # Starting on the 32nd Sunday after Pentecost, we wrap around to
+            # the beginning of the next year.
             return self.jdn - self.pyear.next_pascha
 
         return self.pdist
@@ -484,18 +479,19 @@ class Day:
             # Lord. We read the Gospel that is assigned to Forefathers Sunday
             # from the Paschal cycle. On Forefathers Sunday, we read the Gospel
             # pulled from the Festal cycle for that day (from self.pyear.floats).
+            #
+            # This might not happen in the Greek lectionary. This reading seems
+            # to be included in the reserves for the Greeks.
             return self.pyear.forefathers + self.pyear.lukan_jump
 
-        if (self.weekday == Weekday.Sunday and
-            self.pdist > self.pyear.sun_after_theophany and
-            self.pyear.extra_sundays > 1):
+        if self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:
             # On Sundays after Theophany, use the Gospels left unread after the Lukan jump
             i = (self.pdist - self.pyear.sun_after_theophany) // 7
             return self.pyear.reserves[i-1]
 
         if self.pdist > self.pyear.sat_before_theophany:
-            # We jump into the paschal cycle for the upcoming Pashcha instead
-            # of the previous one.
+            # We jump into the paschal cycle for the upcoming Pascha.
+            # Some sources say this jump should happen after the 13th week of Luke
             return self.jdn - self.pyear.next_pascha
 
         if self.pdist > self.pyear.sun_after_elevation:
