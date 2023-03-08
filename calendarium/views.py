@@ -20,8 +20,6 @@ cal_converter = CalendarConverter()
 
 
 async def readings_view(request, cal=None, year=None, month=None, day=None):
-    now = timezone.localtime()
-
     if not cal:
         converter = CalendarConverter()
         slug = request.COOKIES.get('__session', 'gregorian')
@@ -31,28 +29,23 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
 
     if year and month and day:
         try:
-            dt = date(year, month, day)
+            day = liturgics.Day(year, month, day, use_julian=use_julian, language=request.LANGUAGE_CODE)
         except ValueError:
             raise Http404
-
-        day = liturgics.Day(year, month, day, use_julian=use_julian, language=request.LANGUAGE_CODE)
     else:
-        dt = now
-        day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian, language=request.LANGUAGE_CODE)
+        now = timezone.localtime()
+        day = liturgics.Day(now.year, now.month, now.day, use_julian=use_julian, language=request.LANGUAGE_CODE)
 
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
 
-    context = {
+    return render(request, 'readings.html', context={
             'day': day,
-            'date': dt,
-            'now': now,
-            'next_date': dt + timedelta(days=1),
-            'previous_date': dt - timedelta(days=1),
+            'date': day.gregorian_date,
+            'next_date': day.gregorian_date + timedelta(days=1),
+            'previous_date': day.gregorian_date - timedelta(days=1),
             'cal': cal,
-    }
-
-    return render(request, 'readings.html', context=context)
+    })
 
 async def calendar_view(request, cal=None, year=None, month=None):
     if not cal:
@@ -131,12 +124,10 @@ async def render_calendar_html(request, year, month, use_julian=False, full_urls
                 'full_urls': full_urls,
             })
 
-    day_generator = liturgics.amonth_of_days(year, month, use_julian=use_julian)
-
-    # d.day is the Julian day if use_julian is True. We can't use that since
-    # we're rendering as a Gregorian calendar. So instead of a dict with d.day
-    # as key, we just index into a list by sequence.
-    days = [d async for d in day_generator]
+    days = [
+        d async for d in
+        liturgics.amonth_of_days(year, month, use_julian=use_julian)
+    ]
 
     lcal = LiturgicalCalendar(firstweekday=6)
     content = lcal.formatmonth(year, month)

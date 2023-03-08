@@ -153,13 +153,12 @@ async def get_calendar_day(request, cal: calname, year: year, month: month, day:
     will still work, but should be avoided for new code.
     """
 
-    # Validate the date
     try:
-        date(year, month, day)
+        day = liturgics.Day(year, month, day, use_julian=cal=='julian', language=request.LANGUAGE_CODE)
     except ValueError:
+        # The date is out of range or invalid
         raise Http404
 
-    day = liturgics.Day(year, month, day, use_julian=cal=='julian', language=request.LANGUAGE_CODE)
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
     await day.aget_abbreviated_readings()

@@ -72,7 +72,7 @@
 
 		{% for reading in day.readings %}
 		<article class="passage">
-			<h2 name="{{ reading.pericope.verses }}">
+			<h2>
 				{% filter widont %}
 				{{ reading.pericope.display }}
 				({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
@@ -92,7 +92,7 @@
 
 			{% for reading in day.stories %}
 			<article class="passage">
-				<h2 name="{{ reading.title|slugify }}">{{ reading.title|widont }}</h2>
+				<h2>{{ reading.title|widont }}</h2>
 
 				{{ reading.story|safe }}
 			</article>

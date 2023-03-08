@@ -23,7 +23,7 @@ class Day:
     """
 
     def __init__(self, year, month, day, use_julian=False, language='en'):
-        self.gregorian_date = date(year=year, month=month, day=day)
+        self.gregorian_date = date(year, month, day)
 
         if use_julian:
             dt = datetools.gregorian_to_julian(year, month, day)

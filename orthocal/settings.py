@@ -144,6 +144,11 @@ LOGGING = {
             'propagate': True,
             'level': 'DEBUG',
         },
+        'commemorations': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
         'orthocal': {
             'handlers': ['console'],
             'propagate': True,
@@ -188,7 +193,7 @@ ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
-ORTHOCAL_LANGUAGES = 'en', 'ro'
+ORTHOCAL_VARY_HEADERS = 'Cookie', 'Accept-Language'
 
 try:
     from .local_settings import *
