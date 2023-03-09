@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap');
 
 html {
-    font-size: 16px;
-    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    font-family: 'EB Garamond', serif;
 }
 body {
     margin: 0;
@@ -14,11 +14,17 @@ h1, h2, h3, h4 {
 /* Site title and navigation */
 body > header {
     margin: 0;
-    padding: 2em 0 0.25em 0;
+    padding: 1.75em 0 0.25em 0;
     text-align: center;
-    font-size: 250%;
+    font-size: 2.5em;
     color: #666;
 	font-weight: bold;
+    font-variant: small-caps;
+}
+body > header a {
+    text-decoration: none;
+    color: #666;
+    text-shadow: 2px 2px 4px #ddd;
 }
 body > nav {
     margin: 0;
@@ -35,33 +41,35 @@ body > nav li {
     border-right: 3px solid #ddd;
     padding: 8px;
     margin-left: -4px;
+    text-transform: lowercase;
 }
 body > nav li:last-child {
     border-right: none;
 }
 body > nav a:link, body > nav a:visited {
-    color: black;
     text-decoration: none;
+    color: #777;
+    transition-property: color, text-shadow;
+    transition-duration: 0.3s;
 }
 body > nav a:hover {
-    text-decoration: underline;
+    color: black;
+    text-shadow: 2px 2px 3px #bbb;
 }
 
 /* Readings and Calendar navigation */
 body > nav a.cal-nav {
     display: inline-block;
-    font-family: 'Merriweather', serif;
-    font-size: 85%;
+    font-size: 0.85em;
     background-color: #999;
     border: 1px solid #999;
     color: white;
-    padding: 6px;
+    padding: 2px 6px;
     margin: 2px;
-    transition-duration: 0.3s;
     border-radius: 3px;
 	text-decoration: none;
     transition-property: background-color, color, border;
-    transition-duration: 0.5s;
+    transition-duration: 0.4s;
 }
 body > nav a.cal-nav:hover {
     background-color: white;
@@ -76,40 +84,40 @@ a.active {
 main#orthocal {
     margin: 1em auto 4em auto;
     border-top: 8px solid #eee;
-    padding-top: 2em;
 	width: 75%;
 }
 main#orthocal p {
-    text-indent: 2em;
+    text-indent: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 main#orthocal iframe {
     margin: 4% auto;
     width: 100%;
 }
 main#orthocal > header {
+    padding-top: 1.5em;
+    padding-bottom: 1em;
 }
 main#orthocal > header h1 {
 	margin-top: 0;
 	color: #555;
-	font-size: 150%;
+	font-size: 1.5em;
 }
 main#orthocal > header h1 span {
 	margin-top: 0;
 	color: black;
-	font-size: 110%;
+	font-size: 1.1em;
 }
 
 section.readings {
 	border-top: 3px solid #ddd;
-	padding-top: 2em;
-	margin-top: 3em;
+	padding-top: 1.5em;
+	margin-top: 1.5em;
 }
 
-input {
-    font-family: 'Merriweather', serif;
-}
 .fasting {
-	font-size: 140%;
+	font-size: 1.4em;
 	color: #555;
 	text-align: center;
 	text-indent: 0 !important;
@@ -120,7 +128,6 @@ input {
     border-top: 5px solid #eee;
 }
 .commemorations li, .feasts li, .day > p {
-    font-size: 100%;
     color: #555;
 }
 .passage {
@@ -133,16 +140,15 @@ input {
 }
 .passage h2 {
     margin-top: 0;
-	font-size: 110%;
+	font-size: 1.1em;
     break-inside: avoid;
 }
 .passage p {
-    text-indent: 1em;
-    margin: 0;
+    text-indent: 1em !important;
 }
 .passage p .verse-number {
     vertical-align: super;
-    font-size: 75%;
+    font-size: 0.75em;
     color: gray;
 }
 .day>p {
@@ -151,11 +157,8 @@ input {
 .day section {
     text-align: left;
 }
-label {
-    margin-top: 35px;
-}
-.readings {
-    font-size: 100%;
+label input[type="radio"] {
+    accent-color: #888;
 }
 .service-notes ul, .commemorations ul, .feasts ul {
     text-align: center;
@@ -164,19 +167,13 @@ label {
 	list-style-type: none;
 }
 .service-notes h2, .feasts h2, .commemorations h2 {
-    margin-bottom: 3px;
+    margin-bottom: 0em;
 	font-size: 1.2em;
-}
-.readings h3 {
-    margin-top: 30px;
 }
 
 table.month {
-	font-size: 1.5vw;
-	margin-top: 0;
-	margin-bottom: 2em;
-	margin-left: auto;
-	margin-right: auto;
+	font-size: 1.65vw;
+    margin: 2em auto;
 	table-layout: fixed;
 	border-collapse: collapse;
 }
@@ -184,7 +181,7 @@ table.month td {
 	margin: 0;
 	padding: 0;
 	border: 1px solid #ccc;
-	font-size: 75%;
+	font-size: 0.75em;
 	vertical-align: top;
 	background-color: #f9f9f9;
 	text-align: left;
@@ -205,7 +202,6 @@ table.month tr td p {
 }
 table.month tr th {
 	text-align: center;
-	font-size: 100%;
 	color: gray;
 }
 table.month tr:first-child th {
@@ -245,11 +241,11 @@ ul.feasts li {
 	color: black;
 }
 ul.saints li {
-	font-size: 75%;
+	font-size: 0.75em;
 }
 
 p.day-number {
-	font-size: 150%;
+	font-size: 1.5em;
 }
 table.month td {
     transition-property: background-color;

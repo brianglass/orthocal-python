@@ -7,7 +7,7 @@
 	{% if request.resolver_match.url_name == "index" %}
 		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the saints for every day of the year.">
 	{% else %}
-		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date:"F j, Y" }}.">
+		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date }}.">
 	{% endif %}
 {% endblock %}
 
