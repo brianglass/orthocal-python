@@ -1,6 +1,6 @@
 html {
     font-size: 18px;
-    font-family: 'EB Garamond', serif;
+    font-family: 'EB Garamond', 'Times New Roman', Georgia, serif;
     /* Prevent page shifting when scrollbar disappears on short pages */
     overflow-y: scroll;
 }

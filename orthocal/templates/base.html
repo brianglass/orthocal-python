@@ -17,16 +17,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+		<!-- Load Styles -->
+		<link rel="preload" href="{% static "main.css" %}" as="style">
+		<link rel="stylesheet" href="{% static "main.css" %}">
+		<link rel="stylesheet" media="print" href="{% static "print.css" %}">
+
 		<!-- Load Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" rel="preload" as="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
-
-		<!-- Load Styles -->
-		<link rel="preload" href="{% static "main.css" %}" as="style">
-		<link rel="stylesheet" href="{% static "main.css" %}">
-		<link rel="stylesheet" media="print" href="{% static "print.css" %}">
 
 		<!-- RSS Feeds -->
 		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings" href="{% url "rss-feed" %}">
