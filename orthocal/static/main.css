@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap');
-
 html {
     font-size: 18px;
     font-family: 'EB Garamond', serif;
+    /* Prevent page shifting when scrollbar disappears on short pages */
+    overflow-y: scroll;
 }
 body {
     margin: 0;
@@ -85,6 +85,7 @@ main#orthocal {
     margin: 1em auto 4em auto;
     border-top: 8px solid #eee;
 	width: 75%;
+    min-height: 100%;
 }
 main#orthocal p {
     text-indent: 1.5em;
