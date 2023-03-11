@@ -20,6 +20,9 @@ main#orthocal {
     margin: 0;
     padding: 0;
 }
+table.month {
+    margin-top: -1in;
+}
 .print-exclude {
     display: none;
 }
