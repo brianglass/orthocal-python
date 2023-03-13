@@ -29,17 +29,21 @@
 
 {% block scripts %}
 <script>
-	var radios = document.getElementsByName('calendar');
-	for (var i = 0; i < radios.length; i++) {
-		radios[i].addEventListener('change', function() {
-			if (this.value == 'julian') {
-				document.cookie = '__session=julian; path=/';
-				location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}';
-			}else{
-				document.cookie = '__session=gregorian; path=/';
-				location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}';
-			}
-		});
+	function set_calendar(){
+		var radios = document.getElementsByName('calendar');
+		for (var i = 0; i < radios.length; i++) {
+			radios[i].addEventListener('change', function() {
+				if (this.value == 'julian') {
+					document.cookie = '__session=julian; path=/';
+					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}';
+				}else{
+					document.cookie = '__session=gregorian; path=/';
+					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}';
+				}
+			});
+		}
 	}
+
+	document.addEventListener('DOMContentLoaded', set_calendar)
 </script>
 {% endblock %}
