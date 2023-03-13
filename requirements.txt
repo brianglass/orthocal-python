@@ -15,5 +15,5 @@ phonetics==1.0.5
 python-dateutil==2.8.2
 thefuzz[speedup]==0.19.0
 typogrify==2.0.7
-uvicorn[standard]==0.20.0
+uvicorn[standard]==0.21.0
 whitenoise==6.4.0
