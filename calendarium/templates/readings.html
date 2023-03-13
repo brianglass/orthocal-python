@@ -103,17 +103,21 @@
 
 {% block scripts %}
 <script>
-	var radios = document.getElementsByName('calendar');
-	for (var i = 0; i < radios.length; i++) {
-		radios[i].addEventListener('change', function() {
-			if (this.value == 'julian'){
-				document.cookie = '__session=julian; path=/';
-				location.href = '{% url "readings" cal='julian' year=date.year month=date.month day=date.day %}';
-			}else{
-				document.cookie = '__session=gregorian; path=/';
-				location.href = '{% url "readings" cal='gregorian' year=date.year month=date.month day=date.day %}';
-			}
-		});
+	function set_calendar(){
+		var radios = document.getElementsByName('calendar');
+		for (var i = 0; i < radios.length; i++) {
+			radios[i].addEventListener('change', function() {
+				if (this.value == 'julian'){
+					document.cookie = '__session=julian; path=/';
+					location.href = '{% url "readings" cal='julian' year=date.year month=date.month day=date.day %}';
+				}else{
+					document.cookie = '__session=gregorian; path=/';
+					location.href = '{% url "readings" cal='gregorian' year=date.year month=date.month day=date.day %}';
+				}
+			});
+		}
 	}
+
+	document.addEventListener('DOMContentLoaded', set_calendar)
 </script>
 {% endblock %}
