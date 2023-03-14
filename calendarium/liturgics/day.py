@@ -4,8 +4,6 @@ from functools import lru_cache
 from asgiref.sync import async_to_sync
 from django.db.models import Q
 from django.utils.functional import cached_property
-from phonetics import metaphone
-from thefuzz import fuzz
 
 from .. import datetools, models
 from ..datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
@@ -105,12 +103,6 @@ class Day:
     async def _add_supplemental_commemorations(self):
         """Add additional commemorations and stories from Abbamoses.com."""
 
-        def match(str1, str2):
-            """Combine a phonetic algorithm with fuzzy matching to try and align the two datasets."""
-            s1 = ' '.join(metaphone(w) for w in str1.split() if w.isalpha())
-            s2 = ' '.join(metaphone(w) for w in str2.split() if w.isalpha())
-            return fuzz.partial_token_sort_ratio(s1, s2)
-
         self.stories = [s async for s in Commemoration.objects.filter(month=self.month, day=self.day)]
 
         if not self.stories:
@@ -121,17 +113,9 @@ class Day:
 
         # Find stories that match the existing commemorations
         for c in commemorations:
-            scores = [(s, match(c, s.title)) for s in stories]
-            scores.sort(key=lambda x: x[1], reverse=True)
-            story, score = scores[0]
-            if score > 60:
-                # The story matched an already existing commemoration, so we
-                # don't add it to the commemorations again.
-                stories.remove(story)
-
-            if not stories:
-                # We matched all the stories
-                break
+            for story in tuple(stories):
+                if story.alt_title and story.alt_title in c:
+                    stories.remove(story)
 
         # Add unmatched stories to the list of commemorations
         self.saints.extend(s.title for s in stories)

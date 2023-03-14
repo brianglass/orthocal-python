@@ -108,7 +108,7 @@
     "pk": 9,
     "fields": {
         "title": "Prophet Malachi (~400 BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Malachi",
         "high_rank": false,
         "month": 1,
         "day": 3,
@@ -290,7 +290,7 @@
     "pk": 23,
     "fields": {
         "title": "Saint Severinus (482)",
-        "alt_title": "Ven. George the Chozebite",
+        "alt_title": null,
         "high_rank": false,
         "month": 1,
         "day": 8,
@@ -537,7 +537,7 @@
     "pk": 42,
     "fields": {
         "title": "Our Holy Father John Kalyvites (the hut-dweller) (~450)",
-        "alt_title": null,
+        "alt_title": "Ven. Paul of Thebes and John Calabytes",
         "high_rank": false,
         "month": 1,
         "day": 15,
