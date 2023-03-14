@@ -186,6 +186,7 @@ table.month td {
 	vertical-align: top;
 	background-color: #f9f9f9;
 	text-align: left;
+    width: 14.28%;
 }
 table.month td.fast {
 	background-color: #eee;
@@ -200,6 +201,7 @@ table.month td.noday {
 table.month tr td p {
 	text-indent: 0 !important;
 	text-align: left;
+    margin-bottom: 1em !important;
 }
 table.month tr th {
 	text-align: center;

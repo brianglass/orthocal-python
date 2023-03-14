@@ -21,7 +21,12 @@ main#orthocal {
     padding: 0;
 }
 table.month {
-    margin-top: -1in;
+    font-size: 8pt;
+    margin: -1in -1in -1in 0in;
+    width: 100%;
+}
+table.month tr:first-child th {
+    padding-bottom: 0.5em;
 }
 .print-exclude {
     display: none;
