@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
         "title": "The Circumcision of Our Lord Jesus Christ",
-        "alt_title": null,
+        "alt_title": "Circumcision of Our Lord",
         "high_rank": true,
         "month": 1,
         "day": 1,
@@ -17,7 +17,7 @@
     "pk": 2,
     "fields": {
         "title": "Our Father among the Saints Basil the Great (379).",
-        "alt_title": null,
+        "alt_title": "St Basil the Great",
         "high_rank": true,
         "month": 1,
         "day": 1,
@@ -56,7 +56,7 @@
     "pk": 5,
     "fields": {
         "title": "St Seraphim of Sarov (1833)",
-        "alt_title": null,
+        "alt_title": "Repose of St Seraphim of Sarov",
         "high_rank": true,
         "month": 1,
         "day": 2,
@@ -147,7 +147,7 @@
     "pk": 12,
     "fields": {
         "title": "Synaxis of the Seventy Apostles.",
-        "alt_title": null,
+        "alt_title": "Synaxis of Seventy Apostles",
         "high_rank": false,
         "month": 1,
         "day": 4,
@@ -212,7 +212,7 @@
     "pk": 17,
     "fields": {
         "title": "The Holy Theophany of our Lord, God and Savior Jesus Christ",
-        "alt_title": null,
+        "alt_title": "Theophany of Our Lord and Savior Jesus Christ",
         "high_rank": true,
         "month": 1,
         "day": 6,
@@ -225,7 +225,7 @@
     "pk": 18,
     "fields": {
         "title": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.",
-        "alt_title": null,
+        "alt_title": "Synaxis of St John the Baptist",
         "high_rank": true,
         "month": 1,
         "day": 7,
@@ -277,7 +277,7 @@
     "pk": 22,
     "fields": {
         "title": "Saint Atticus, Patriarch of Constantinople (425)",
-        "alt_title": null,
+        "alt_title": "Sunday after Theophany",
         "high_rank": false,
         "month": 1,
         "day": 8,
@@ -290,7 +290,7 @@
     "pk": 23,
     "fields": {
         "title": "Saint Severinus (482)",
-        "alt_title": null,
+        "alt_title": "Ven. George the Chozebite",
         "high_rank": false,
         "month": 1,
         "day": 8,
@@ -303,7 +303,7 @@
     "pk": 24,
     "fields": {
         "title": "Holy Martyr Polyeuctus (~250)",
-        "alt_title": null,
+        "alt_title": "Martyr Polyeuctus of Melitene in Armenia",
         "high_rank": false,
         "month": 1,
         "day": 9,
@@ -355,7 +355,7 @@
     "pk": 28,
     "fields": {
         "title": "Our Holy Father Gregory, Bishop of Nyssa (395)",
-        "alt_title": null,
+        "alt_title": "St Gregory of Nyssa",
         "high_rank": false,
         "month": 1,
         "day": 10,
@@ -381,7 +381,7 @@
     "pk": 30,
     "fields": {
         "title": "Our Holy Father Theodosius the Cenobiarch (519)",
-        "alt_title": null,
+        "alt_title": "Ven. Theodosius the Great",
         "high_rank": true,
         "month": 1,
         "day": 11,
@@ -446,7 +446,7 @@
     "pk": 35,
     "fields": {
         "title": "Holy Martyrs Hermylus and Stratonicus (315)",
-        "alt_title": null,
+        "alt_title": "Martyrs Hermylus and Stratonicus",
         "high_rank": false,
         "month": 1,
         "day": 13,
@@ -485,7 +485,7 @@
     "pk": 38,
     "fields": {
         "title": "Saint Nina, Equal to the Apostles and Enlightener of Georgia (335)",
-        "alt_title": null,
+        "alt_title": "St Nino of Georgia",
         "high_rank": false,
         "month": 1,
         "day": 14,
@@ -524,7 +524,7 @@
     "pk": 41,
     "fields": {
         "title": "Our Holy Father Paul of Thebes (342)",
-        "alt_title": null,
+        "alt_title": "Ven. Paul of Thebes and John Calabytes",
         "high_rank": false,
         "month": 1,
         "day": 15,
@@ -563,7 +563,7 @@
     "pk": 44,
     "fields": {
         "title": "Veneration of the precious Chains of the Holy and Glorious Apostle Peter.",
-        "alt_title": null,
+        "alt_title": "Veneration of Chains of Apostle Peter",
         "high_rank": true,
         "month": 1,
         "day": 16,
@@ -615,7 +615,7 @@
     "pk": 48,
     "fields": {
         "title": "Our Holy Fathers Athanasius the Great (373) and Cyril (444), Patriarchs of Alexandria",
-        "alt_title": null,
+        "alt_title": "Ss Athanasius the Great and Cyril of Alexandria",
         "high_rank": true,
         "month": 1,
         "day": 18,
@@ -628,7 +628,7 @@
     "pk": 49,
     "fields": {
         "title": "Our Holy Father Macarius (Makarios)the Great (~390)",
-        "alt_title": null,
+        "alt_title": "Ven. Macarius the Great",
         "high_rank": true,
         "month": 1,
         "day": 19,
@@ -654,7 +654,7 @@
     "pk": 51,
     "fields": {
         "title": "Our Venerable Father Euthymius the Great (473)",
-        "alt_title": null,
+        "alt_title": "Ven. Euthymius the Great",
         "high_rank": true,
         "month": 1,
         "day": 20,
@@ -693,7 +693,7 @@
     "pk": 54,
     "fields": {
         "title": "Our Venerable Father Maximos the Confessor (662)",
-        "alt_title": null,
+        "alt_title": "Ven. Maximus the Confessor",
         "high_rank": false,
         "month": 1,
         "day": 21,
@@ -732,7 +732,7 @@
     "pk": 57,
     "fields": {
         "title": "Holy Apostle Timothy",
-        "alt_title": null,
+        "alt_title": "Apostle Timothy of the Seventy",
         "high_rank": false,
         "month": 1,
         "day": 22,
@@ -758,7 +758,7 @@
     "pk": 59,
     "fields": {
         "title": "Hieromartyr Clement of Ancyra, and Martyr Agathangelus (296)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Clement and Martyr Agathangel",
         "high_rank": false,
         "month": 1,
         "day": 23,
@@ -784,7 +784,7 @@
     "pk": 61,
     "fields": {
         "title": "Our Venerable Mother Xenia of Rome, with her two maidservants (5th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Xenia of Rome",
         "high_rank": false,
         "month": 1,
         "day": 24,
@@ -810,7 +810,7 @@
     "pk": 63,
     "fields": {
         "title": "Our Father among the Saints Gregory the Theologian, Archbishop of Constantinople (389)",
-        "alt_title": null,
+        "alt_title": "St Gregory the Theologian",
         "high_rank": true,
         "month": 1,
         "day": 25,
@@ -823,7 +823,7 @@
     "pk": 64,
     "fields": {
         "title": "Our Holy Father Xenophon, his wife Mary and their sons Arcadius and John (6th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Xenophon and Mary",
         "high_rank": false,
         "month": 1,
         "day": 26,
@@ -862,7 +862,7 @@
     "pk": 67,
     "fields": {
         "title": "Translation of the relics (437) of St John Chrysostom.",
-        "alt_title": null,
+        "alt_title": "Transl. Relics of St John Chrysostom",
         "high_rank": true,
         "month": 1,
         "day": 27,
@@ -875,7 +875,7 @@
     "pk": 68,
     "fields": {
         "title": "Our Holy Father Ephraim the Syrian (373)",
-        "alt_title": null,
+        "alt_title": "Ven. Ephrem the Syrian",
         "high_rank": false,
         "month": 1,
         "day": 28,
@@ -901,7 +901,7 @@
     "pk": 70,
     "fields": {
         "title": "Translation of the relics of St Ignatius of Antioch (107)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Ignatius the Godbearer",
         "high_rank": false,
         "month": 1,
         "day": 29,
@@ -953,7 +953,7 @@
     "pk": 74,
     "fields": {
         "title": "Synaxis of the Three Holy Hierarchs: St Basil the Great, St Gregory the Theologian, and St John Chrysostom",
-        "alt_title": null,
+        "alt_title": "Synaxis 3 Hierarchs: Basil the Great, Gregory the Theologian, John Chrysostom",
         "high_rank": true,
         "month": 1,
         "day": 30,
@@ -979,7 +979,7 @@
     "pk": 76,
     "fields": {
         "title": "Holy Wonderworkers and Unmercenaries Cyrus and John, and those with them (311)",
-        "alt_title": null,
+        "alt_title": "Unmercenaries Cyrus and John",
         "high_rank": false,
         "month": 1,
         "day": 31,
@@ -1018,7 +1018,7 @@
     "pk": 79,
     "fields": {
         "title": "Holy Martyr Tryphon (250)",
-        "alt_title": null,
+        "alt_title": "Martyr Tryphon",
         "high_rank": false,
         "month": 2,
         "day": 1,
@@ -1057,7 +1057,7 @@
     "pk": 82,
     "fields": {
         "title": "The Meeting of our Lord, God and Savior Jesus Christ",
-        "alt_title": null,
+        "alt_title": "Meeting of Christ in the Temple",
         "high_rank": true,
         "month": 2,
         "day": 2,
@@ -1070,7 +1070,7 @@
     "pk": 83,
     "fields": {
         "title": "Holy and Righteous Symeon the God-receiver and the Prophetess Anna",
-        "alt_title": null,
+        "alt_title": "Righteous Simeon the Godbearer and Anna the Prophetess",
         "high_rank": false,
         "month": 2,
         "day": 3,
@@ -1096,7 +1096,7 @@
     "pk": 85,
     "fields": {
         "title": "St Isidore of Pelusium, monk (440-449)",
-        "alt_title": null,
+        "alt_title": "Ven. Isidore of Pelusium",
         "high_rank": false,
         "month": 2,
         "day": 4,
@@ -1200,7 +1200,7 @@
     "pk": 93,
     "fields": {
         "title": "Our Holy Father Parthenius, Bishop of Lampsacus (4th c.)",
-        "alt_title": null,
+        "alt_title": "St Parthenius, Bishop of Lampsacus",
         "high_rank": false,
         "month": 2,
         "day": 7,
@@ -1226,7 +1226,7 @@
     "pk": 95,
     "fields": {
         "title": "Great-Martyr Theodore Stratelates (\"the General\") of Heraclea (319)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Theodore Stratelates",
         "high_rank": false,
         "month": 2,
         "day": 8,
@@ -1265,7 +1265,7 @@
     "pk": 98,
     "fields": {
         "title": "Holy Martyr Nicephorus (~257)",
-        "alt_title": null,
+        "alt_title": "Martyr Nicephorus of Antioch",
         "high_rank": false,
         "month": 2,
         "day": 9,
@@ -1369,7 +1369,7 @@
     "pk": 106,
     "fields": {
         "title": "Venerable Demetrius of Priluki (1392)",
-        "alt_title": null,
+        "alt_title": "Ven. Dimitry of Priluk",
         "high_rank": false,
         "month": 2,
         "day": 11,
@@ -1395,7 +1395,7 @@
     "pk": 108,
     "fields": {
         "title": "St Alexis, metropolitan of Moscow and wonder-worker of all Russia (1378)",
-        "alt_title": null,
+        "alt_title": "St Aleksy, Metr. of All Russia",
         "high_rank": false,
         "month": 2,
         "day": 12,
@@ -1408,7 +1408,7 @@
     "pk": 109,
     "fields": {
         "title": "St Martinian, monk, of Caesarea in Palestine (422)",
-        "alt_title": null,
+        "alt_title": "Ven. Martinian of Caesarea",
         "high_rank": false,
         "month": 2,
         "day": 13,
@@ -1460,7 +1460,7 @@
     "pk": 113,
     "fields": {
         "title": "Saint Cyril, Equal to the Apostles and Enlightener of the Slavs (869)",
-        "alt_title": null,
+        "alt_title": "St Cyril, Teacher of the Slavs",
         "high_rank": false,
         "month": 2,
         "day": 14,
@@ -1499,7 +1499,7 @@
     "pk": 116,
     "fields": {
         "title": "Holy Apostle Onesimos (~109)",
-        "alt_title": null,
+        "alt_title": "Apostle Onesimus of the Seventy",
         "high_rank": false,
         "month": 2,
         "day": 15,
@@ -1538,7 +1538,7 @@
     "pk": 119,
     "fields": {
         "title": "Martyrs Pamphilius and those with him, at Caesarea in Palestine (308)",
-        "alt_title": null,
+        "alt_title": "Martyr Pamphylius and His Companions",
         "high_rank": false,
         "month": 2,
         "day": 16,
@@ -1551,7 +1551,7 @@
     "pk": 120,
     "fields": {
         "title": "Great-martyr Theodore the Tyro (~306)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Theodore Tyro",
         "high_rank": true,
         "month": 2,
         "day": 17,
@@ -1564,7 +1564,7 @@
     "pk": 121,
     "fields": {
         "title": "St Leo the Great, pope of Rome(461)",
-        "alt_title": null,
+        "alt_title": "St Leo the Great, Pope of Rome",
         "high_rank": false,
         "month": 2,
         "day": 18,
@@ -1577,7 +1577,7 @@
     "pk": 122,
     "fields": {
         "title": "Apostles Archippus and Philemon of the Seventy, and Martyr Apphia",
-        "alt_title": null,
+        "alt_title": "Apostles of the Seventy Archippus and Philemon",
         "high_rank": false,
         "month": 2,
         "day": 19,
@@ -1603,7 +1603,7 @@
     "pk": 124,
     "fields": {
         "title": "St Leo, bishop of Catania in Sicily (~780)",
-        "alt_title": null,
+        "alt_title": "St Leo, Bishop of Catania",
         "high_rank": false,
         "month": 2,
         "day": 20,
@@ -1681,7 +1681,7 @@
     "pk": 130,
     "fields": {
         "title": "Uncovering of the relics of the Holy Martyrs at the gate of Eugenius at Constantinople (395-423)",
-        "alt_title": null,
+        "alt_title": "Unc. Rel. Holy Martyrs at Gate of Eugenius",
         "high_rank": false,
         "month": 2,
         "day": 22,
@@ -1694,7 +1694,7 @@
     "pk": 131,
     "fields": {
         "title": "Hieromartyr Polycarp, bishop of Smyrna (167)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Polycarp, Bishop of Smyrna",
         "high_rank": false,
         "month": 2,
         "day": 23,
@@ -1733,7 +1733,7 @@
     "pk": 134,
     "fields": {
         "title": "First (4th c.) and Second (9th c.) Findings of the Precious Head of St John the Baptist",
-        "alt_title": null,
+        "alt_title": "1st and 2nd Finding Honorable Head of St John the Baptist",
         "high_rank": false,
         "month": 2,
         "day": 24,
@@ -1759,7 +1759,7 @@
     "pk": 136,
     "fields": {
         "title": "St Tarasios, archbishop of Constantinople (806)",
-        "alt_title": null,
+        "alt_title": "St Tarasius, Abp. of Constantinople",
         "high_rank": false,
         "month": 2,
         "day": 25,
@@ -1772,7 +1772,7 @@
     "pk": 137,
     "fields": {
         "title": "St Porphyrius, bishop of Gaza (420)",
-        "alt_title": null,
+        "alt_title": "St Porphyrius, Bishop of Gaza",
         "high_rank": false,
         "month": 2,
         "day": 26,
@@ -1811,7 +1811,7 @@
     "pk": 140,
     "fields": {
         "title": "St Raphael, bishop of Brooklyn (1915)",
-        "alt_title": null,
+        "alt_title": "St Raphael Bishop of Brooklyn",
         "high_rank": false,
         "month": 2,
         "day": 27,
@@ -1863,7 +1863,7 @@
     "pk": 144,
     "fields": {
         "title": "Holy New Martyr Kyranna (1751)",
-        "alt_title": null,
+        "alt_title": "Ven. Basil the Confessor",
         "high_rank": false,
         "month": 2,
         "day": 28,
@@ -1902,7 +1902,7 @@
     "pk": 147,
     "fields": {
         "title": "Martyr Eudocia of Heliopolis (2nd c.)",
-        "alt_title": null,
+        "alt_title": "Martyr Eudoxia of Heliopolis",
         "high_rank": false,
         "month": 3,
         "day": 1,
@@ -1915,7 +1915,7 @@
     "pk": 148,
     "fields": {
         "title": "Hieromartyr Theodotus, bishop of Cyrenia (326)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Theodotus, Bishop of Cyrenia",
         "high_rank": false,
         "month": 3,
         "day": 2,
@@ -1967,7 +1967,7 @@
     "pk": 152,
     "fields": {
         "title": "Holy Martyrs Eutropius, Cleonicus and Basiliscus (308)",
-        "alt_title": null,
+        "alt_title": "Martyrs Eutropius, Cleonicus and Basiliscus",
         "high_rank": false,
         "month": 3,
         "day": 3,
@@ -1993,7 +1993,7 @@
     "pk": 154,
     "fields": {
         "title": "St Gerasimos of the Jordan (475)",
-        "alt_title": null,
+        "alt_title": "Ven. Gerasimus of the Jordan",
         "high_rank": false,
         "month": 3,
         "day": 4,
@@ -2019,7 +2019,7 @@
     "pk": 156,
     "fields": {
         "title": "Martyr Conon of Isauria (2nd c.)",
-        "alt_title": null,
+        "alt_title": "Martyr Conon of Isauria",
         "high_rank": false,
         "month": 3,
         "day": 5,
@@ -2058,7 +2058,7 @@
     "pk": 159,
     "fields": {
         "title": "The 42 Martyrs of Ammorion (845)",
-        "alt_title": null,
+        "alt_title": "Forty-two Martyrs of Ammoria",
         "high_rank": false,
         "month": 3,
         "day": 6,
@@ -2071,7 +2071,7 @@
     "pk": 160,
     "fields": {
         "title": "Holy Hieromartyrs of Cherson: Basileus, Ephraim, Eugenios, Capito, Aetherios, Agathodoros, and Elpidios (4th c.)",
-        "alt_title": null,
+        "alt_title": "Seven Hieromartyrs of Cherson",
         "high_rank": false,
         "month": 3,
         "day": 7,
@@ -2084,7 +2084,7 @@
     "pk": 161,
     "fields": {
         "title": "St Theophylactus, bishop of Nicomedia (845)",
-        "alt_title": null,
+        "alt_title": "St Theophylactus, Bishop of Nicomedia",
         "high_rank": false,
         "month": 3,
         "day": 8,
@@ -2110,7 +2110,7 @@
     "pk": 163,
     "fields": {
         "title": "The Holy Forty Martyrs of Sebastia (Sebaste) (320)",
-        "alt_title": null,
+        "alt_title": "Holy Forty Martyrs of Sebaste",
         "high_rank": true,
         "month": 3,
         "day": 9,
@@ -2136,7 +2136,7 @@
     "pk": 165,
     "fields": {
         "title": "Martyrs Codratus (Quadratus) and those with him (258)",
-        "alt_title": null,
+        "alt_title": "Martyr Quadratus and Companions",
         "high_rank": false,
         "month": 3,
         "day": 10,
@@ -2201,7 +2201,7 @@
     "pk": 170,
     "fields": {
         "title": "St Gregory the Great (the Dialogist), Pope of Rome (604)",
-        "alt_title": null,
+        "alt_title": "No match",
         "high_rank": false,
         "month": 3,
         "day": 12,
@@ -2214,7 +2214,7 @@
     "pk": 171,
     "fields": {
         "title": "Our Holy Father Theophanes the Confessor (818)",
-        "alt_title": null,
+        "alt_title": "Ven. Theophanes the Confessor",
         "high_rank": false,
         "month": 3,
         "day": 12,
@@ -2227,7 +2227,7 @@
     "pk": 172,
     "fields": {
         "title": "Repose of St Symeon the New Theologian (1021)",
-        "alt_title": null,
+        "alt_title": "No match",
         "high_rank": false,
         "month": 3,
         "day": 12,
@@ -2240,7 +2240,7 @@
     "pk": 173,
     "fields": {
         "title": "Translation of the Relics (847) of St Nicephoros, Patriarch of Constantinople (827)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Nicephorus, Patr. Constantinopole",
         "high_rank": false,
         "month": 3,
         "day": 13,
@@ -2253,7 +2253,7 @@
     "pk": 174,
     "fields": {
         "title": "St Benedict of Nursia, abbot (547)",
-        "alt_title": null,
+        "alt_title": "Ven. Benedict of Nursia",
         "high_rank": false,
         "month": 3,
         "day": 14,
@@ -2279,7 +2279,7 @@
     "pk": 176,
     "fields": {
         "title": "Martyr Agapius and seven with him (303)",
-        "alt_title": null,
+        "alt_title": "Martyr Agapius and Seven with Him",
         "high_rank": false,
         "month": 3,
         "day": 15,
@@ -2305,7 +2305,7 @@
     "pk": 178,
     "fields": {
         "title": "Martyr Sabinas of Hermopolis, Egypt (287)",
-        "alt_title": null,
+        "alt_title": "Martyr Sabinas of Egypt",
         "high_rank": false,
         "month": 3,
         "day": 16,
@@ -2370,7 +2370,7 @@
     "pk": 183,
     "fields": {
         "title": "St Cyril, archbishop of Jerusalem (386)",
-        "alt_title": null,
+        "alt_title": "St Cyril, Archbishop of Jerusalem",
         "high_rank": false,
         "month": 3,
         "day": 18,
@@ -2409,7 +2409,7 @@
     "pk": 186,
     "fields": {
         "title": "Martyrs Chrysanthos and Daria, and those with them at Rome (283)",
-        "alt_title": null,
+        "alt_title": "Martyrs Chrysanthius and Daria",
         "high_rank": false,
         "month": 3,
         "day": 19,
@@ -2422,7 +2422,7 @@
     "pk": 187,
     "fields": {
         "title": "Our righteous Fathers martyred at the Monastery of St Sabbas the Sanctified (633? 796?)",
-        "alt_title": null,
+        "alt_title": "Holy Fathers Slain at St Sabbas Monastery",
         "high_rank": false,
         "month": 3,
         "day": 20,
@@ -2461,7 +2461,7 @@
     "pk": 190,
     "fields": {
         "title": "Our Holy Father James the Confessor, bishop, of the Studion (8th c.)",
-        "alt_title": null,
+        "alt_title": "St James the Confessor of Catania",
         "high_rank": false,
         "month": 3,
         "day": 21,
@@ -2487,7 +2487,7 @@
     "pk": 192,
     "fields": {
         "title": "Hieromartyr Basil of Ancyra (362)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Basil of Ancyra",
         "high_rank": false,
         "month": 3,
         "day": 22,
@@ -2513,7 +2513,7 @@
     "pk": 194,
     "fields": {
         "title": "Monk-martyr Nikon and 199 disciples, in Sicily (251)",
-        "alt_title": null,
+        "alt_title": "Martyr Nikon and 199 Disciples",
         "high_rank": false,
         "month": 3,
         "day": 23,
@@ -2552,7 +2552,7 @@
     "pk": 197,
     "fields": {
         "title": "The Annunciation of Our Most Holy Lady, the Theotokos and Ever-Virgin Mary",
-        "alt_title": null,
+        "alt_title": "Annunciation Most Holy Theotokos",
         "high_rank": true,
         "month": 3,
         "day": 25,
@@ -2578,7 +2578,7 @@
     "pk": 199,
     "fields": {
         "title": "Synaxis of the Archangel Gabriel",
-        "alt_title": null,
+        "alt_title": "Leavetaking of Annunciation; Synaxis of Archangel Gabriel",
         "high_rank": true,
         "month": 3,
         "day": 26,
@@ -2591,7 +2591,7 @@
     "pk": 200,
     "fields": {
         "title": "St Matrona of Thessalonica (4th c.)",
-        "alt_title": null,
+        "alt_title": "Martyr Matrona of Thessalonica",
         "high_rank": false,
         "month": 3,
         "day": 27,
@@ -2604,7 +2604,7 @@
     "pk": 201,
     "fields": {
         "title": "St Hilarion the New, abbot of Pelecete, Confessor (754)",
-        "alt_title": null,
+        "alt_title": "Ven. Hilarion the New",
         "high_rank": false,
         "month": 3,
         "day": 28,
@@ -2630,7 +2630,7 @@
     "pk": 203,
     "fields": {
         "title": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Mark, Bishop of Anthusa",
         "high_rank": false,
         "month": 3,
         "day": 29,
@@ -2656,7 +2656,7 @@
     "pk": 205,
     "fields": {
         "title": "St John Klimakos (John of the Ladder) of Sinai (649)",
-        "alt_title": null,
+        "alt_title": "Ven. John Climacus",
         "high_rank": false,
         "month": 3,
         "day": 30,
@@ -2682,7 +2682,7 @@
     "pk": 207,
     "fields": {
         "title": "St Innocent, enlightener of Alaska and Siberia (1879)",
-        "alt_title": null,
+        "alt_title": "Repose St Innocent, Metr. Moscow and Apostle to Americas",
         "high_rank": false,
         "month": 3,
         "day": 31,
@@ -2734,7 +2734,7 @@
     "pk": 211,
     "fields": {
         "title": "Our Holy Father Titus the Wonderworker (9th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Titus the Wonderworker",
         "high_rank": false,
         "month": 4,
         "day": 2,
@@ -2760,7 +2760,7 @@
     "pk": 213,
     "fields": {
         "title": "Our Holy Father Nicetas the Confessor (824)",
-        "alt_title": null,
+        "alt_title": "Ven. Nicetas the Confessor",
         "high_rank": false,
         "month": 4,
         "day": 3,
@@ -2812,7 +2812,7 @@
     "pk": 217,
     "fields": {
         "title": "Holy Martyrs Agathopous and Theodoulos (303)",
-        "alt_title": null,
+        "alt_title": "Martyrs Agathopedes, Theodulus and Their Companions",
         "high_rank": false,
         "month": 4,
         "day": 5,
@@ -2903,7 +2903,7 @@
     "pk": 224,
     "fields": {
         "title": "St Justin (Popovic) of Chelije in Serbia (1979) (March 25 OC)",
-        "alt_title": null,
+        "alt_title": "Repose St. Tikhon, Patriarch of Moscow, Enlightener N. America",
         "high_rank": false,
         "month": 4,
         "day": 7,
@@ -2942,7 +2942,7 @@
     "pk": 227,
     "fields": {
         "title": "Martyr Eupsychius of Caesarea in Cappadocia (362)",
-        "alt_title": null,
+        "alt_title": "Martyr Eupsychius of Caesarea in Cappadocia",
         "high_rank": false,
         "month": 4,
         "day": 9,
@@ -2955,7 +2955,7 @@
     "pk": 228,
     "fields": {
         "title": "Martyrs Terence, Africanus, Maximus, Pompeius and 36 with them, beheaded at Carthage (250)",
-        "alt_title": null,
+        "alt_title": "Martyrs Terence, Pompeius, Africanus and Companions",
         "high_rank": false,
         "month": 4,
         "day": 10,
@@ -2994,7 +2994,7 @@
     "pk": 231,
     "fields": {
         "title": "Hieromartyr Antipas, bishop of Pergamum (92), disciple of St John the Theologian",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Antipas, Bishop of Pergamum",
         "high_rank": false,
         "month": 4,
         "day": 11,
@@ -3059,7 +3059,7 @@
     "pk": 236,
     "fields": {
         "title": "Hieromartyr Artemon, presbyter of Laodicea in Syria (303)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Artemon, Presbyter of Laodicea",
         "high_rank": false,
         "month": 4,
         "day": 13,
@@ -3124,7 +3124,7 @@
     "pk": 241,
     "fields": {
         "title": "Virgin Martyrs Agape, Irene, and Chionia in Illyria (295 or 304)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyrs Agape, Irene and Chionia",
         "high_rank": false,
         "month": 4,
         "day": 16,
@@ -3150,7 +3150,7 @@
     "pk": 243,
     "fields": {
         "title": "Our Holy Father John, Disciple of St Gregory of Decapolis (820)",
-        "alt_title": null,
+        "alt_title": "Ven. John, Disciple of Gregory Decapolites",
         "high_rank": false,
         "month": 4,
         "day": 18,
@@ -3176,7 +3176,7 @@
     "pk": 245,
     "fields": {
         "title": "St John of the Ancient Caves in Palestine (8th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. John of Ancient Caves in Palestine",
         "high_rank": false,
         "month": 4,
         "day": 19,
@@ -3215,7 +3215,7 @@
     "pk": 248,
     "fields": {
         "title": "St Theodore Trichinas (the Hair-shirt wearer), hermit near Constantinople (400)",
-        "alt_title": null,
+        "alt_title": "Ven. Theodore Trichinas",
         "high_rank": false,
         "month": 4,
         "day": 20,
@@ -3241,7 +3241,7 @@
     "pk": 250,
     "fields": {
         "title": "Hieromartyr Januarius and those with him (305)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Januarius and Companions",
         "high_rank": false,
         "month": 4,
         "day": 21,
@@ -3254,7 +3254,7 @@
     "pk": 251,
     "fields": {
         "title": "Our Holy Father Theodore of Sykeon (613)",
-        "alt_title": null,
+        "alt_title": "St Theodore the Sykeote",
         "high_rank": false,
         "month": 4,
         "day": 22,
@@ -3293,7 +3293,7 @@
     "pk": 254,
     "fields": {
         "title": "Holy Glorious Great-martyr, Victory-bearer and Wonderworker George (303)",
-        "alt_title": null,
+        "alt_title": "Holy Greatmartyr, Victorybearer and Wonderworker George",
         "high_rank": true,
         "month": 4,
         "day": 23,
@@ -3306,7 +3306,7 @@
     "pk": 255,
     "fields": {
         "title": "Martyr Sabbas Strateletes (\"the General\") of Rome, and 70 soldiers with him (272)",
-        "alt_title": null,
+        "alt_title": "Martyr Sabbas Stratelates",
         "high_rank": false,
         "month": 4,
         "day": 24,
@@ -3319,7 +3319,7 @@
     "pk": 256,
     "fields": {
         "title": "Holy Apostle and Evangelist Mark (68?)",
-        "alt_title": null,
+        "alt_title": "Holy Apostle and Evangelist Mark",
         "high_rank": true,
         "month": 4,
         "day": 25,
@@ -3358,7 +3358,7 @@
     "pk": 259,
     "fields": {
         "title": "St Stephen,Bishop of Perm (1396)",
-        "alt_title": null,
+        "alt_title": "St Stephen, Bishop of Perm",
         "high_rank": false,
         "month": 4,
         "day": 26,
@@ -3371,7 +3371,7 @@
     "pk": 260,
     "fields": {
         "title": "Hieromartyr Symeon the Kinsman of the Lord (107)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Simeon, Kinsman of the Lord",
         "high_rank": true,
         "month": 4,
         "day": 27,
@@ -3410,7 +3410,7 @@
     "pk": 263,
     "fields": {
         "title": "The Nine Martyrs at Cyzicus (3rd c.)",
-        "alt_title": null,
+        "alt_title": "",
         "high_rank": false,
         "month": 4,
         "day": 28,
@@ -3423,7 +3423,7 @@
     "pk": 264,
     "fields": {
         "title": "Apostles Jason and Sosipater",
-        "alt_title": null,
+        "alt_title": "Nine Martyrs at Cyzicus",
         "high_rank": false,
         "month": 4,
         "day": 29,
@@ -3449,7 +3449,7 @@
     "pk": 266,
     "fields": {
         "title": "Holy Apostle James, the brother of St John the Theologian (45)",
-        "alt_title": null,
+        "alt_title": "Holy Apostle James, Brother of St John",
         "high_rank": true,
         "month": 4,
         "day": 30,
@@ -3475,7 +3475,7 @@
     "pk": 268,
     "fields": {
         "title": "Holy Prophet Jeremiah (583 BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Jeremiah",
         "high_rank": true,
         "month": 5,
         "day": 1,
@@ -3553,7 +3553,7 @@
     "pk": 274,
     "fields": {
         "title": "Translation of the Relics of St Athanasius the Great, patriarch of Alexandria",
-        "alt_title": null,
+        "alt_title": "St Athanasius the Great, Patr. of Alexandria",
         "high_rank": false,
         "month": 5,
         "day": 2,
@@ -3605,7 +3605,7 @@
     "pk": 278,
     "fields": {
         "title": "Virgin-martyr Pelagia of Tarsus in Asia Minor (287)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyr Pelagia of Tarsus",
         "high_rank": false,
         "month": 5,
         "day": 4,
@@ -3631,7 +3631,7 @@
     "pk": 280,
     "fields": {
         "title": "Great-martyr Irene of Thessalonica (4th c.)",
-        "alt_title": null,
+        "alt_title": "Great Martyr Irene of Thessalonica",
         "high_rank": false,
         "month": 5,
         "day": 5,
@@ -3644,7 +3644,7 @@
     "pk": 281,
     "fields": {
         "title": "Righteous Job the Long-suffering",
-        "alt_title": null,
+        "alt_title": "Righteous Job the Longsuffering",
         "high_rank": false,
         "month": 5,
         "day": 6,
@@ -3696,7 +3696,7 @@
     "pk": 285,
     "fields": {
         "title": "Commemoration of the Apparition of the Sign of the Precious Cross over Jerusalem in 351 AD",
-        "alt_title": null,
+        "alt_title": "Paralytic",
         "high_rank": true,
         "month": 5,
         "day": 7,
@@ -3735,7 +3735,7 @@
     "pk": 288,
     "fields": {
         "title": "St Alexis Toth of Wilkes-Barre, Pennsylvania (1909) (April 24 OC)",
-        "alt_title": null,
+        "alt_title": "St Alexis Toth, Confessor and Defender of Orthodoxy in America",
         "high_rank": false,
         "month": 5,
         "day": 7,
@@ -3761,7 +3761,7 @@
     "pk": 290,
     "fields": {
         "title": "Holy Apostle and Evangelist John the Theologian",
-        "alt_title": null,
+        "alt_title": "Holy Apostle John the Theologian",
         "high_rank": true,
         "month": 5,
         "day": 8,
@@ -3800,7 +3800,7 @@
     "pk": 293,
     "fields": {
         "title": "Translation of the relics of St Nicholas the Wonderworker from Myra to Bari (1087)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. St Nicholas the Wonderworker",
         "high_rank": true,
         "month": 5,
         "day": 9,
@@ -3813,7 +3813,7 @@
     "pk": 294,
     "fields": {
         "title": "Holy Prophet Isaiah (7th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Isaiah",
         "high_rank": false,
         "month": 5,
         "day": 9,
@@ -3839,7 +3839,7 @@
     "pk": 296,
     "fields": {
         "title": "Apostle Simon Zelotes",
-        "alt_title": null,
+        "alt_title": "Apostle Simeon the Zealot",
         "high_rank": true,
         "month": 5,
         "day": 10,
@@ -3891,7 +3891,7 @@
     "pk": 300,
     "fields": {
         "title": "Holy Equals-to-the-Apostles Methodius (885) and Cyril (869), first teachers of the Slavs",
-        "alt_title": null,
+        "alt_title": "SS Cyril and Methodius, Apostles to the Slavs",
         "high_rank": true,
         "month": 5,
         "day": 11,
@@ -3982,7 +3982,7 @@
     "pk": 307,
     "fields": {
         "title": "Blessed Isidore the Fool for Christ (1484)",
-        "alt_title": null,
+        "alt_title": "Ven. Isidore, Fool-for-Christ of Rostov",
         "high_rank": false,
         "month": 5,
         "day": 14,
@@ -3995,7 +3995,7 @@
     "pk": 308,
     "fields": {
         "title": "St Pachomius the Great, founder of cenobitic monasticism (346)",
-        "alt_title": null,
+        "alt_title": "Ven. Pachomius the Great",
         "high_rank": true,
         "month": 5,
         "day": 15,
@@ -4021,7 +4021,7 @@
     "pk": 310,
     "fields": {
         "title": "Our Holy Father Theodore the Sanctified (368), disciple of St Pachomius the Great",
-        "alt_title": null,
+        "alt_title": "Ven. Theodore the Sanctified; Trans. Rel. Ephraim, Abbot of Perekop",
         "high_rank": false,
         "month": 5,
         "day": 16,
@@ -4073,7 +4073,7 @@
     "pk": 314,
     "fields": {
         "title": "Apostles Andronicus of the Seventy and his fellow-laborer Junia",
-        "alt_title": null,
+        "alt_title": "Apostle Andronicus of the Seventy",
         "high_rank": false,
         "month": 5,
         "day": 17,
@@ -4099,7 +4099,7 @@
     "pk": 316,
     "fields": {
         "title": "Martyr Theodotus of Ancyra and seven virgin-martyrs with him (303)",
-        "alt_title": null,
+        "alt_title": "Martyr Theodotus of Ancyra",
         "high_rank": false,
         "month": 5,
         "day": 18,
@@ -4125,7 +4125,7 @@
     "pk": 318,
     "fields": {
         "title": "Hieromartyr Patrick, bishop of Prusa, and three priests with him (3rd c?)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Patrick, Bishop of Prussa",
         "high_rank": false,
         "month": 5,
         "day": 19,
@@ -4151,7 +4151,7 @@
     "pk": 320,
     "fields": {
         "title": "Our Father among the Saints Alexis, Metropolitan of Moscow (1378)",
-        "alt_title": null,
+        "alt_title": "Unc. Rel. St Aleksy, Metropolitan of Kiev",
         "high_rank": false,
         "month": 5,
         "day": 20,
@@ -4164,7 +4164,7 @@
     "pk": 321,
     "fields": {
         "title": "Holy Equals-to-the-Apostles Emperor Constantine (337) and Helen, his mother (327)",
-        "alt_title": null,
+        "alt_title": "SS Constantine and Helen, Equals-to-the-Apostles",
         "high_rank": true,
         "month": 5,
         "day": 21,
@@ -4190,7 +4190,7 @@
     "pk": 323,
     "fields": {
         "title": "Hieromartyr Basiliscus of Comana (308)",
-        "alt_title": null,
+        "alt_title": "Martyr Basiliscus, Bishop of Comana",
         "high_rank": false,
         "month": 5,
         "day": 22,
@@ -4229,7 +4229,7 @@
     "pk": 326,
     "fields": {
         "title": "St Michael the Confessor, bishop of Synnada (818)",
-        "alt_title": null,
+        "alt_title": "St Michael the Confessor; Unc. Rel. St Leonty, Bishop of Rostov",
         "high_rank": false,
         "month": 5,
         "day": 23,
@@ -4281,7 +4281,7 @@
     "pk": 330,
     "fields": {
         "title": "St Symeon Stylites (the Younger) of the Wonderful Mountain (595)",
-        "alt_title": null,
+        "alt_title": "Ven. Simeon the Stylite",
         "high_rank": true,
         "month": 5,
         "day": 24,
@@ -4294,7 +4294,7 @@
     "pk": 331,
     "fields": {
         "title": "Our Holy Father Nikita Stylites (1186)",
-        "alt_title": null,
+        "alt_title": "Ven. Nikita the Stylite",
         "high_rank": false,
         "month": 5,
         "day": 24,
@@ -4320,7 +4320,7 @@
     "pk": 333,
     "fields": {
         "title": "Third Finding of the Precious Head of St John the Baptist (~850)",
-        "alt_title": null,
+        "alt_title": "3rd Finding of the Head of St John the Baptist",
         "high_rank": true,
         "month": 5,
         "day": 25,
@@ -4359,7 +4359,7 @@
     "pk": 336,
     "fields": {
         "title": "Holy Apostle Carpus of the Seventy",
-        "alt_title": null,
+        "alt_title": "Apostles Carpus and Alphaeus of the Seventy",
         "high_rank": false,
         "month": 5,
         "day": 26,
@@ -4398,7 +4398,7 @@
     "pk": 339,
     "fields": {
         "title": "Hieromartyr Therapon, bishop of Sardis (259)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Therapon; Trans. Rel. Ven. Nilus of Stolbensk",
         "high_rank": false,
         "month": 5,
         "day": 27,
@@ -4463,7 +4463,7 @@
     "pk": 344,
     "fields": {
         "title": "St Nicetas the Confessor, bishop of Chalcedon (9th c.)",
-        "alt_title": null,
+        "alt_title": "St Nicetas, Bishop of Chalcedon; St Ignaty, Bishop of Rostov",
         "high_rank": false,
         "month": 5,
         "day": 28,
@@ -4476,7 +4476,7 @@
     "pk": 345,
     "fields": {
         "title": "Virgin-martyr Theodosia of Tyre (308)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyr Theodosia of Tyre",
         "high_rank": false,
         "month": 5,
         "day": 29,
@@ -4515,7 +4515,7 @@
     "pk": 348,
     "fields": {
         "title": "St Isaac, founder of the Dalmatian Monastery at Constantinople (383)",
-        "alt_title": null,
+        "alt_title": "Ven. Isaac, Founder of Dalmatian Monastery",
         "high_rank": false,
         "month": 5,
         "day": 30,
@@ -4541,7 +4541,7 @@
     "pk": 350,
     "fields": {
         "title": "Apostle Hermas of the Seventy",
-        "alt_title": null,
+        "alt_title": "Apostle Hermes of the Seventy",
         "high_rank": false,
         "month": 5,
         "day": 31,
@@ -4554,7 +4554,7 @@
     "pk": 351,
     "fields": {
         "title": "Martyr Justin the Philosopher and those with him at Rome (166)",
-        "alt_title": null,
+        "alt_title": "Martyr Justin the Philosopher",
         "high_rank": false,
         "month": 6,
         "day": 1,
@@ -4580,7 +4580,7 @@
     "pk": 353,
     "fields": {
         "title": "St Nikephoros the Confessor, patriarch of Constantinople (829)",
-        "alt_title": null,
+        "alt_title": "St Nicephorus the Confessor",
         "high_rank": false,
         "month": 6,
         "day": 2,
@@ -4619,7 +4619,7 @@
     "pk": 356,
     "fields": {
         "title": "Holy Martyr Lucillian and those with him (270)",
-        "alt_title": null,
+        "alt_title": "Martyr Lucillian and His Companions",
         "high_rank": false,
         "month": 6,
         "day": 3,
@@ -4658,7 +4658,7 @@
     "pk": 359,
     "fields": {
         "title": "St Metrophanes, Archbishop of Constantinople (325)",
-        "alt_title": null,
+        "alt_title": "St Metrophanes, First Patriarch of Constantinople",
         "high_rank": false,
         "month": 6,
         "day": 4,
@@ -4684,7 +4684,7 @@
     "pk": 361,
     "fields": {
         "title": "Hieromartyr Dorotheus, bishop of Tyre (361)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Dorotheus, Bishop of Tyre",
         "high_rank": false,
         "month": 6,
         "day": 5,
@@ -4762,7 +4762,7 @@
     "pk": 367,
     "fields": {
         "title": "St Bessarion the Wonderworker of Egypt (466)",
-        "alt_title": null,
+        "alt_title": "Ven. Bessarion the Wonderworker of Egypt",
         "high_rank": false,
         "month": 6,
         "day": 6,
@@ -4775,7 +4775,7 @@
     "pk": 368,
     "fields": {
         "title": "Martyr Theodotus of Ancyra (303)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Theodotus, Bishop of Ancyra",
         "high_rank": false,
         "month": 6,
         "day": 7,
@@ -4814,7 +4814,7 @@
     "pk": 371,
     "fields": {
         "title": "Translation of the relics of Great-martyr Theodore Strateletes (319)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Theodore Stratelates",
         "high_rank": true,
         "month": 6,
         "day": 8,
@@ -4866,7 +4866,7 @@
     "pk": 375,
     "fields": {
         "title": "St Cyril, archbishop of Alexandria (444)",
-        "alt_title": null,
+        "alt_title": "St Cyril of Alexandria",
         "high_rank": true,
         "month": 6,
         "day": 9,
@@ -4892,7 +4892,7 @@
     "pk": 377,
     "fields": {
         "title": "Saint Kyril of Belozersk (1427)",
-        "alt_title": null,
+        "alt_title": "Ven. Kirill of Belozersk",
         "high_rank": false,
         "month": 6,
         "day": 9,
@@ -4905,7 +4905,7 @@
     "pk": 378,
     "fields": {
         "title": "Hieromartyr Timothy, bishop of Prusa (362)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Timothy, Bishop of Prussa",
         "high_rank": false,
         "month": 6,
         "day": 10,
@@ -4944,7 +4944,7 @@
     "pk": 381,
     "fields": {
         "title": "Holy Apostles Bartholomew and Barnabas",
-        "alt_title": null,
+        "alt_title": "Holy Apostles Bartholomew and Barnabas",
         "high_rank": true,
         "month": 6,
         "day": 11,
@@ -4970,7 +4970,7 @@
     "pk": 383,
     "fields": {
         "title": "Our Holy Fathers Onuphrios the Great and Peter of Mount Athos",
-        "alt_title": null,
+        "alt_title": "Ven. Onuphrius the Great",
         "high_rank": true,
         "month": 6,
         "day": 12,
@@ -4983,7 +4983,7 @@
     "pk": 384,
     "fields": {
         "title": "Holy Martyr Aquilina of Byblos (293)",
-        "alt_title": null,
+        "alt_title": "Martyr Aquilina of Byblos",
         "high_rank": false,
         "month": 6,
         "day": 13,
@@ -5022,7 +5022,7 @@
     "pk": 387,
     "fields": {
         "title": "Holy Prophet Elisha (Elisseus) (10th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Elisha",
         "high_rank": true,
         "month": 6,
         "day": 14,
@@ -5113,7 +5113,7 @@
     "pk": 394,
     "fields": {
         "title": "St Tikhon (Tychon), bishop of Amathus in Cyprus (425)",
-        "alt_title": null,
+        "alt_title": "St Tycho, Bishop of Amathus",
         "high_rank": false,
         "month": 6,
         "day": 16,
@@ -5139,7 +5139,7 @@
     "pk": 396,
     "fields": {
         "title": "Martyrs Manuel, Sabael, and Ismael of Persia (362)",
-        "alt_title": null,
+        "alt_title": "Martyrs Manuel, Sabel, Ismael of Persia",
         "high_rank": true,
         "month": 6,
         "day": 17,
@@ -5165,7 +5165,7 @@
     "pk": 398,
     "fields": {
         "title": "Martyr Leontius, and with him Martyrs Hypatius and Theodoulos, at Tripoli in Syria (73)",
-        "alt_title": null,
+        "alt_title": "Martyr Leontius and Companions",
         "high_rank": true,
         "month": 6,
         "day": 18,
@@ -5178,7 +5178,7 @@
     "pk": 399,
     "fields": {
         "title": "Holy Apostle Jude, the Brother of the Lord (80)",
-        "alt_title": null,
+        "alt_title": "Holy Apostle Jude, Brother of the Lord",
         "high_rank": true,
         "month": 6,
         "day": 19,
@@ -5204,7 +5204,7 @@
     "pk": 401,
     "fields": {
         "title": "Hieromartyr Methodius, bishop of Patara/Olympia (312)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Methodius, Bishop of Patar",
         "high_rank": false,
         "month": 6,
         "day": 20,
@@ -5243,7 +5243,7 @@
     "pk": 404,
     "fields": {
         "title": "Martyr Julian of Tarsus in Cilicia (305)",
-        "alt_title": null,
+        "alt_title": "Martyr Julian of Tarsus",
         "high_rank": true,
         "month": 6,
         "day": 21,
@@ -5269,7 +5269,7 @@
     "pk": 406,
     "fields": {
         "title": "Hieromartyr Eusebius, bishop of Samosata (380)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Eusebius, Bishop of Samosata",
         "high_rank": false,
         "month": 6,
         "day": 22,
@@ -5321,7 +5321,7 @@
     "pk": 410,
     "fields": {
         "title": "Nativity of St John the Baptist",
-        "alt_title": null,
+        "alt_title": "Nativity of St John the Baptist",
         "high_rank": true,
         "month": 6,
         "day": 24,
@@ -5360,7 +5360,7 @@
     "pk": 413,
     "fields": {
         "title": "Virgin-Martyr Febronia of Nisibis (310)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyr Febronia",
         "high_rank": true,
         "month": 6,
         "day": 25,
@@ -5386,7 +5386,7 @@
     "pk": 415,
     "fields": {
         "title": "St David of Thessalonica (540)",
-        "alt_title": null,
+        "alt_title": "Ven. David of Thessalonica",
         "high_rank": false,
         "month": 6,
         "day": 26,
@@ -5399,7 +5399,7 @@
     "pk": 416,
     "fields": {
         "title": "Feast of the Tikhvin Icon of the Mother of God. Feast of the Hodigritia Icon of the Mother of God",
-        "alt_title": null,
+        "alt_title": "Tikhvin Icon",
         "high_rank": false,
         "month": 6,
         "day": 26,
@@ -5412,7 +5412,7 @@
     "pk": 417,
     "fields": {
         "title": "St Sampson the Hospitable of Constantinople (530)",
-        "alt_title": null,
+        "alt_title": "Ven. Sampson the Hospitable of Constantinople",
         "high_rank": true,
         "month": 6,
         "day": 27,
@@ -5477,7 +5477,7 @@
     "pk": 422,
     "fields": {
         "title": "Translation of the Relics (412)of the Holy and Wonderworking Unmercenaries Cyrus & John",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Ven. Cyrus and John",
         "high_rank": false,
         "month": 6,
         "day": 28,
@@ -5503,7 +5503,7 @@
     "pk": 424,
     "fields": {
         "title": "The Holy, Glorious and All-praised Leaders of the Apostles, Peter and Paul",
-        "alt_title": null,
+        "alt_title": "Holy Apostles Peter and Paul",
         "high_rank": true,
         "month": 6,
         "day": 29,
@@ -5516,7 +5516,7 @@
     "pk": 425,
     "fields": {
         "title": "Synaxis of the Holy, Glorious and All-praised Twelve Apostles",
-        "alt_title": null,
+        "alt_title": "Synaxis of the Twelve Apostles",
         "high_rank": false,
         "month": 6,
         "day": 30,
@@ -5529,7 +5529,7 @@
     "pk": 426,
     "fields": {
         "title": "Holy and Wonderworking Unmercenaries Cosmas and Damian, martyrs at Rome (284)",
-        "alt_title": null,
+        "alt_title": "Unmercenary Wonderworkers Cosmas and Damian",
         "high_rank": true,
         "month": 7,
         "day": 1,
@@ -5542,7 +5542,7 @@
     "pk": 427,
     "fields": {
         "title": "The Placing of the Honorable Robe of the Most Holy Theotokos at Blachernae",
-        "alt_title": null,
+        "alt_title": "Robe of the Theotokos at Blachernae",
         "high_rank": true,
         "month": 7,
         "day": 2,
@@ -5594,7 +5594,7 @@
     "pk": 431,
     "fields": {
         "title": "Martyr Hyacinth of Caesarea in Cappadocia, and those with him (108)",
-        "alt_title": null,
+        "alt_title": "Martyr Hyacinth; Trans. Rel. Philip, Metr. Moscow",
         "high_rank": false,
         "month": 7,
         "day": 3,
@@ -5659,7 +5659,7 @@
     "pk": 436,
     "fields": {
         "title": "St Andrew, archbishop of Crete (720?)",
-        "alt_title": null,
+        "alt_title": "St Andrew of Crete",
         "high_rank": true,
         "month": 7,
         "day": 4,
@@ -5698,7 +5698,7 @@
     "pk": 439,
     "fields": {
         "title": "St Athanasius of Mt Athos (1003) and his six disciples",
-        "alt_title": null,
+        "alt_title": "Ven. Athanasius of Athos",
         "high_rank": true,
         "month": 7,
         "day": 5,
@@ -5711,7 +5711,7 @@
     "pk": 440,
     "fields": {
         "title": "Uncovering of the Relics (1422) of St Sergius of Radonezh (1392)",
-        "alt_title": null,
+        "alt_title": "Unc. Rel. Ven. Sergius of Radonezh",
         "high_rank": true,
         "month": 7,
         "day": 5,
@@ -5750,7 +5750,7 @@
     "pk": 443,
     "fields": {
         "title": "Our Holy Father Sisoës the Great of Egypt (429)",
-        "alt_title": null,
+        "alt_title": "Ven. Sisoes the Great",
         "high_rank": false,
         "month": 7,
         "day": 6,
@@ -5776,7 +5776,7 @@
     "pk": 445,
     "fields": {
         "title": "St Thomas of Mt Maleon (10th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Thomas of Mt Maleon",
         "high_rank": false,
         "month": 7,
         "day": 7,
@@ -5815,7 +5815,7 @@
     "pk": 448,
     "fields": {
         "title": "Holy Great Martyr Prokopios (303)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Procopius of Caesarea",
         "high_rank": true,
         "month": 7,
         "day": 8,
@@ -5841,7 +5841,7 @@
     "pk": 450,
     "fields": {
         "title": "Hieromartyr Pancratius, bishop of Taormina in Sicily (1st c.)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Pancratius, Bishop of Taormina",
         "high_rank": false,
         "month": 7,
         "day": 9,
@@ -5867,7 +5867,7 @@
     "pk": 452,
     "fields": {
         "title": "St Anthony of the Kiev Caves (1073)",
-        "alt_title": null,
+        "alt_title": "Ven. Anthony of the Kiev Caves",
         "high_rank": true,
         "month": 7,
         "day": 10,
@@ -5893,7 +5893,7 @@
     "pk": 454,
     "fields": {
         "title": "Commemoration of the Miracle (451) of Great-martyr Euphemia the All-praised, of Chalcedon (304)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Euphemia",
         "high_rank": true,
         "month": 7,
         "day": 11,
@@ -5906,7 +5906,7 @@
     "pk": 455,
     "fields": {
         "title": "Blessed Equal-to-the-Apostles Olga, princess of Russia, in holy baptism called Helen (969).",
-        "alt_title": null,
+        "alt_title": "Blessed Princess Olga",
         "high_rank": false,
         "month": 7,
         "day": 11,
@@ -5945,7 +5945,7 @@
     "pk": 458,
     "fields": {
         "title": "Holy Martyrs Proclus and Hilarius (2nd c.)",
-        "alt_title": null,
+        "alt_title": "Martyrs Proclus and Hilary of Ancyra",
         "high_rank": false,
         "month": 7,
         "day": 12,
@@ -5997,7 +5997,7 @@
     "pk": 462,
     "fields": {
         "title": "Synaxis of the Holy Archangel Gabriel",
-        "alt_title": null,
+        "alt_title": "Synaxis of Archangel Gabriel",
         "high_rank": true,
         "month": 7,
         "day": 13,
@@ -6088,7 +6088,7 @@
     "pk": 469,
     "fields": {
         "title": "Holy Equal-to-the-Apostles Great Prince Vladimir (in holy baptism Basil), enlightener of the Russian Land (1051)",
-        "alt_title": null,
+        "alt_title": "Great Prince Vladimir, Equal-to-the-Apostles, Enlightener of the Lands of Rus",
         "high_rank": true,
         "month": 7,
         "day": 15,
@@ -6114,7 +6114,7 @@
     "pk": 471,
     "fields": {
         "title": "Hieromartyr Athenogenes, bishop of Sebaste, and his ten disciples (311)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Athenogenes, Bishop of Heracleopolis",
         "high_rank": false,
         "month": 7,
         "day": 16,
@@ -6127,7 +6127,7 @@
     "pk": 472,
     "fields": {
         "title": "Great-martyr Marina (Margaret) of Antioch in Pisidia (270)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Marina",
         "high_rank": true,
         "month": 7,
         "day": 17,
@@ -6140,7 +6140,7 @@
     "pk": 473,
     "fields": {
         "title": "Holy Martyr Emilian (362)",
-        "alt_title": null,
+        "alt_title": "Martyr Emilian of Silistria",
         "high_rank": false,
         "month": 7,
         "day": 18,
@@ -6166,7 +6166,7 @@
     "pk": 475,
     "fields": {
         "title": "Uncovering of the relics (1903) of St Seraphim of Sarov",
-        "alt_title": null,
+        "alt_title": "Unc. Rel. Ven. Seraphim of Sarov",
         "high_rank": true,
         "month": 7,
         "day": 19,
@@ -6192,7 +6192,7 @@
     "pk": 477,
     "fields": {
         "title": "Holy Glorious Prophet Elias (Elijah) (9th c. BC)",
-        "alt_title": null,
+        "alt_title": "Holy Prophet Elijah",
         "high_rank": true,
         "month": 7,
         "day": 20,
@@ -6244,7 +6244,7 @@
     "pk": 481,
     "fields": {
         "title": "Prophet Ezekiel (6th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Ezekiel",
         "high_rank": false,
         "month": 7,
         "day": 21,
@@ -6257,7 +6257,7 @@
     "pk": 482,
     "fields": {
         "title": "Holy Myrrh-bearer and Equal-to-the-Apostles Mary Magdalene",
-        "alt_title": null,
+        "alt_title": "Holy Myrrhbearer Mary Magdalene, Equal-to-the-Apostles",
         "high_rank": true,
         "month": 7,
         "day": 22,
@@ -6322,7 +6322,7 @@
     "pk": 487,
     "fields": {
         "title": "Holy Martyrs and Passion-bearers Boris and Gleb of Russia, in holy baptism Romanus and David (1015)",
-        "alt_title": null,
+        "alt_title": "Martyrs Boris and Gleb, Passionbearers",
         "high_rank": false,
         "month": 7,
         "day": 24,
@@ -6335,7 +6335,7 @@
     "pk": 488,
     "fields": {
         "title": "Dormition of the Righteous Anna, mother of the Most Holy Theotokos",
-        "alt_title": null,
+        "alt_title": "Dormition Righteous Anna, Mother of Theotokos",
         "high_rank": true,
         "month": 7,
         "day": 25,
@@ -6400,7 +6400,7 @@
     "pk": 493,
     "fields": {
         "title": "Saint James (Jakov) Netsvetov, Missionary to Alaska (1864)",
-        "alt_title": null,
+        "alt_title": "Repose of St Jacob Netsvetov, Enlightener of the Peoples of Alaska",
         "high_rank": false,
         "month": 7,
         "day": 26,
@@ -6413,7 +6413,7 @@
     "pk": 494,
     "fields": {
         "title": "Holy Great-martyr and Healer Panteleimon (305)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr and Healer Panteleimon",
         "high_rank": true,
         "month": 7,
         "day": 27,
@@ -6452,7 +6452,7 @@
     "pk": 497,
     "fields": {
         "title": "Holy Apostles of the Seventy and Deacons Prochorus, Nicanor, Timon and Parmenas",
-        "alt_title": null,
+        "alt_title": "Apostles of 70 Prochorus, Nicanor, Timon, Parmenas",
         "high_rank": false,
         "month": 7,
         "day": 28,
@@ -6478,7 +6478,7 @@
     "pk": 499,
     "fields": {
         "title": "Holy Martyr Callinicus of Gangra in Asia Minor (c. 250)",
-        "alt_title": null,
+        "alt_title": "Martyr Callinicus of Gangra",
         "high_rank": false,
         "month": 7,
         "day": 29,
@@ -6504,7 +6504,7 @@
     "pk": 501,
     "fields": {
         "title": "Apostles Silas, Silvanus, Crescens, Epenetus, and Andronicus of the Seventy",
-        "alt_title": null,
+        "alt_title": "Apostles Silas and Silvanus of the Seventy",
         "high_rank": false,
         "month": 7,
         "day": 30,
@@ -6569,7 +6569,7 @@
     "pk": 506,
     "fields": {
         "title": "Procession of the Precious Wood of the Life-giving Cross of the Lord (1164)",
-        "alt_title": null,
+        "alt_title": "Procession of the Lifegiving Cross",
         "high_rank": true,
         "month": 8,
         "day": 1,
@@ -6582,7 +6582,7 @@
     "pk": 507,
     "fields": {
         "title": "Holy Seven Maccabees, their mother Solomonia, and their teacher Eleazar (168 BC)",
-        "alt_title": null,
+        "alt_title": "7 Maccabean Martyrs",
         "high_rank": false,
         "month": 8,
         "day": 1,
@@ -6608,7 +6608,7 @@
     "pk": 509,
     "fields": {
         "title": "Translation of the relics of the Protomartyr and Archdeacon Stephen (428)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Protomartyr Stephen",
         "high_rank": false,
         "month": 8,
         "day": 2,
@@ -6634,7 +6634,7 @@
     "pk": 511,
     "fields": {
         "title": "Blessed Basil of Moscow, fool-for-Christ (1552)",
-        "alt_title": null,
+        "alt_title": "Bl. Vasily, Fool-for-Christ",
         "high_rank": false,
         "month": 8,
         "day": 2,
@@ -6647,7 +6647,7 @@
     "pk": 512,
     "fields": {
         "title": "Sts Isaac, Dalmatus and Faustus, ascetics of the Dalmatian Monastery, Constantinople (5th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Isaac, Dalmatius, Faustus",
         "high_rank": false,
         "month": 8,
         "day": 3,
@@ -6673,7 +6673,7 @@
     "pk": 514,
     "fields": {
         "title": "Our Holy Father Antony the Roman (1148)",
-        "alt_title": null,
+        "alt_title": "Ven. Anthony the Roman of Novgorod",
         "high_rank": false,
         "month": 8,
         "day": 3,
@@ -6686,7 +6686,7 @@
     "pk": 515,
     "fields": {
         "title": "Holy Seven Youths (the \"Seven Sleepers\") of Ephesus (250 & 5th c.)",
-        "alt_title": null,
+        "alt_title": "Seven Sleepers of Ephesus",
         "high_rank": false,
         "month": 8,
         "day": 4,
@@ -6699,7 +6699,7 @@
     "pk": 516,
     "fields": {
         "title": "Martyr Eusignius of Antioch (362)",
-        "alt_title": null,
+        "alt_title": "Martyr Eusignius of Antioch",
         "high_rank": false,
         "month": 8,
         "day": 5,
@@ -6738,7 +6738,7 @@
     "pk": 519,
     "fields": {
         "title": "The Holy Transfiguration of Our Lord, God and Saviour Jesus Christ",
-        "alt_title": null,
+        "alt_title": "Transfiguration of Our Lord",
         "high_rank": true,
         "month": 8,
         "day": 6,
@@ -6868,7 +6868,7 @@
     "pk": 529,
     "fields": {
         "title": "Holy Martyrs Archdeacon Laurence, Pope Sixtus, and others with them (258)",
-        "alt_title": null,
+        "alt_title": "Holy Martyr and Archdeacon Lawrence of Rome",
         "high_rank": false,
         "month": 8,
         "day": 10,
@@ -6881,7 +6881,7 @@
     "pk": 530,
     "fields": {
         "title": "Holy Martyr and Archdeacon Euplus of Catania (304)",
-        "alt_title": null,
+        "alt_title": "Holy Martyr and Archdeacon Euplus of Catania",
         "high_rank": false,
         "month": 8,
         "day": 11,
@@ -6933,7 +6933,7 @@
     "pk": 534,
     "fields": {
         "title": "Martyrs Anicetas and Photius of Nicomedia (305)",
-        "alt_title": null,
+        "alt_title": "Martyrs Anicletus and Photius of Nicomedia",
         "high_rank": false,
         "month": 8,
         "day": 12,
@@ -7024,7 +7024,7 @@
     "pk": 541,
     "fields": {
         "title": "Holy Prophet Micah (8th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Micah",
         "high_rank": false,
         "month": 8,
         "day": 14,
@@ -7050,7 +7050,7 @@
     "pk": 543,
     "fields": {
         "title": "The Dormition of Our Most Holy Lady the Theotokos and Ever-Virgin Mary.",
-        "alt_title": null,
+        "alt_title": "Dormition of the Most-Holy Theotokos",
         "high_rank": true,
         "month": 8,
         "day": 15,
@@ -7063,7 +7063,7 @@
     "pk": 544,
     "fields": {
         "title": "Translation of the Image Not-Made-By-Hands of our Lord Jesus Christ from Edessa to Constantinople (944)",
-        "alt_title": null,
+        "alt_title": "Image of Christ Not Made by Hands",
         "high_rank": true,
         "month": 8,
         "day": 16,
@@ -7089,7 +7089,7 @@
     "pk": 546,
     "fields": {
         "title": "Martyr Myron of Cyzicus (250)",
-        "alt_title": null,
+        "alt_title": "Martyr Myron, Presbyter of Cyzicus",
         "high_rank": false,
         "month": 8,
         "day": 17,
@@ -7115,7 +7115,7 @@
     "pk": 548,
     "fields": {
         "title": "Martyrs Florus and Laurus of Illyria (2nd c.)",
-        "alt_title": null,
+        "alt_title": "Martyrs Florus and Laurus of Illyria",
         "high_rank": false,
         "month": 8,
         "day": 18,
@@ -7141,7 +7141,7 @@
     "pk": 550,
     "fields": {
         "title": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (~289)",
-        "alt_title": null,
+        "alt_title": "No match found",
         "high_rank": false,
         "month": 8,
         "day": 19,
@@ -7154,7 +7154,7 @@
     "pk": 551,
     "fields": {
         "title": "Holy Prophet Samuel (11th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Samuel",
         "high_rank": false,
         "month": 8,
         "day": 20,
@@ -7219,7 +7219,7 @@
     "pk": 556,
     "fields": {
         "title": "Martyr Agathonicus of Nicomedia and his companions (4th c.)",
-        "alt_title": null,
+        "alt_title": "Martyr Agathonicus and Companions",
         "high_rank": false,
         "month": 8,
         "day": 22,
@@ -7271,7 +7271,7 @@
     "pk": 560,
     "fields": {
         "title": "Martyr Lupus (306), slave of St Demetrios of Thessalonica",
-        "alt_title": null,
+        "alt_title": "Martyr Lupus, Slave of St Demetrius",
         "high_rank": false,
         "month": 8,
         "day": 23,
@@ -7297,7 +7297,7 @@
     "pk": 562,
     "fields": {
         "title": "Hieromartyr Eutyches (1st c.)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Eutichius",
         "high_rank": false,
         "month": 8,
         "day": 24,
@@ -7323,7 +7323,7 @@
     "pk": 564,
     "fields": {
         "title": "Translation of the relics of St Peter, metropolitan of Kiev (1479)",
-        "alt_title": null,
+        "alt_title": "Trans. Rel. Peter, Metr. Kiev",
         "high_rank": true,
         "month": 8,
         "day": 24,
@@ -7349,7 +7349,7 @@
     "pk": 566,
     "fields": {
         "title": "Return of the relics of the Apostle Bartholomew from Anastasiopolis to Lipari (6th c.)",
-        "alt_title": null,
+        "alt_title": "Relics of Apostle Bartholomew",
         "high_rank": false,
         "month": 8,
         "day": 25,
@@ -7362,7 +7362,7 @@
     "pk": 567,
     "fields": {
         "title": "Martyrs Adrian and Natalia and 23 companions of Nicomedia (4th c.)",
-        "alt_title": null,
+        "alt_title": "Martyrs Adrian and Natalia",
         "high_rank": false,
         "month": 8,
         "day": 26,
@@ -7388,7 +7388,7 @@
     "pk": 569,
     "fields": {
         "title": "Our Holy Father Poemen (Pimen) the Great (450)",
-        "alt_title": null,
+        "alt_title": "Ven. Poemen the Great",
         "high_rank": false,
         "month": 8,
         "day": 27,
@@ -7427,7 +7427,7 @@
     "pk": 572,
     "fields": {
         "title": "Uncovering of the Relics of St Job of Pochaev (1651)",
-        "alt_title": null,
+        "alt_title": "Ven. Job of Pochaev",
         "high_rank": true,
         "month": 8,
         "day": 28,
@@ -7492,7 +7492,7 @@
     "pk": 577,
     "fields": {
         "title": "The Beheading of the Glorious Prophet, Forerunner and Baptist John",
-        "alt_title": null,
+        "alt_title": "Beheading of St John the Baptist",
         "high_rank": true,
         "month": 8,
         "day": 29,
@@ -7531,7 +7531,7 @@
     "pk": 580,
     "fields": {
         "title": "Sts Alexander (340), John (595), and Paul the New (784), patriarchs of Constantinople",
-        "alt_title": null,
+        "alt_title": "Ss Alexander, John, Paul, Pats. Constantinople",
         "high_rank": false,
         "month": 8,
         "day": 30,
@@ -7596,7 +7596,7 @@
     "pk": 585,
     "fields": {
         "title": "The Beginning of the Church's Year",
-        "alt_title": null,
+        "alt_title": "Church New Year",
         "high_rank": true,
         "month": 9,
         "day": 1,
@@ -7609,7 +7609,7 @@
     "pk": 586,
     "fields": {
         "title": "Our Holy Father Symeon Stylites (459)",
-        "alt_title": null,
+        "alt_title": "Ven. Simeon the Stylite (The Elder)",
         "high_rank": true,
         "month": 9,
         "day": 1,
@@ -7713,7 +7713,7 @@
     "pk": 594,
     "fields": {
         "title": "Hieromartyr Anthimos, bishop of Nicomedia, and those with him (303-304)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Anthimus, Bishop of Nicomedia",
         "high_rank": false,
         "month": 9,
         "day": 3,
@@ -7752,7 +7752,7 @@
     "pk": 597,
     "fields": {
         "title": "Hieromartyr Babylas, bishop of Antioch, and those with him (251)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Babylas, Bishop of Antioch",
         "high_rank": false,
         "month": 9,
         "day": 4,
@@ -7830,7 +7830,7 @@
     "pk": 603,
     "fields": {
         "title": "Holy and Glorious Prophet Zacharias, Father of St John the Baptist",
-        "alt_title": null,
+        "alt_title": "Prophet Zachariah",
         "high_rank": false,
         "month": 9,
         "day": 5,
@@ -7869,7 +7869,7 @@
     "pk": 606,
     "fields": {
         "title": "Commemoration of the Miracle of the Archangel Michael at Colossae (Chonae) (4th c.)",
-        "alt_title": null,
+        "alt_title": "Miracle of Archangel Michael at Colossae",
         "high_rank": true,
         "month": 9,
         "day": 6,
@@ -7947,7 +7947,7 @@
     "pk": 612,
     "fields": {
         "title": "Our Holy Father John, Archbishop of Novgorod (1185)",
-        "alt_title": null,
+        "alt_title": "St John, Archbishop of Novgorod",
         "high_rank": false,
         "month": 9,
         "day": 7,
@@ -7973,7 +7973,7 @@
     "pk": 614,
     "fields": {
         "title": "The Nativity of the Most Holy Theotokos",
-        "alt_title": null,
+        "alt_title": "Nativity of the Most-Holy Theotokos",
         "high_rank": true,
         "month": 9,
         "day": 8,
@@ -8012,7 +8012,7 @@
     "pk": 617,
     "fields": {
         "title": "Holy Ancestors of God Joachim and Anna",
-        "alt_title": null,
+        "alt_title": "Righteous Joachim and Anna; Ven. Joseph of Volotsk",
         "high_rank": true,
         "month": 9,
         "day": 9,
@@ -8064,7 +8064,7 @@
     "pk": 621,
     "fields": {
         "title": "Martyrs Menodora, Metrodora, and Nymphodora at Nicomedia (305-311)",
-        "alt_title": null,
+        "alt_title": "Martyrs Menodora, Metrodora, Nymphodora",
         "high_rank": false,
         "month": 9,
         "day": 10,
@@ -8077,7 +8077,7 @@
     "pk": 622,
     "fields": {
         "title": "Our Holy Mother Theodora of Alexandria (490)",
-        "alt_title": null,
+        "alt_title": "Ven. Theodora of Alexandria",
         "high_rank": false,
         "month": 9,
         "day": 11,
@@ -8129,7 +8129,7 @@
     "pk": 626,
     "fields": {
         "title": "Hieromartyr Autonomus, bishop of Italy (313)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Autonomus, Bishop in Italy",
         "high_rank": false,
         "month": 9,
         "day": 12,
@@ -8155,7 +8155,7 @@
     "pk": 628,
     "fields": {
         "title": "Commemoration of the Founding of the Church of the Resurrection (Holy Sepulchre) at Jerusalem (335)",
-        "alt_title": null,
+        "alt_title": "Founding of Church of the Holy Sepulchre",
         "high_rank": false,
         "month": 9,
         "day": 13,
@@ -8194,7 +8194,7 @@
     "pk": 631,
     "fields": {
         "title": "The Universal Exaltation of the Precious and Life-giving Cross",
-        "alt_title": null,
+        "alt_title": "Exaltation (Elevation) of the Precious Cross",
         "high_rank": true,
         "month": 9,
         "day": 14,
@@ -8233,7 +8233,7 @@
     "pk": 634,
     "fields": {
         "title": "Great Martyr Nicetas the Goth (372)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Nicetas the Goth",
         "high_rank": false,
         "month": 9,
         "day": 15,
@@ -8259,7 +8259,7 @@
     "pk": 636,
     "fields": {
         "title": "Great-Martyr Euphemia the All-praised, of Chalcedon (304)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Euphemia the All-Praised",
         "high_rank": true,
         "month": 9,
         "day": 16,
@@ -8311,7 +8311,7 @@
     "pk": 640,
     "fields": {
         "title": "Martyrs Sophia and her three daughters Faith, Hope and Love, at Rome (137)",
-        "alt_title": null,
+        "alt_title": "Martyr Sophia and Daughters Faith, Hope, and Love",
         "high_rank": false,
         "month": 9,
         "day": 17,
@@ -8337,7 +8337,7 @@
     "pk": 642,
     "fields": {
         "title": "St Eumenes, bishop of Gortyrna (7th c.)",
-        "alt_title": null,
+        "alt_title": "St Eumenes, Bishop of Gortyna",
         "high_rank": false,
         "month": 9,
         "day": 18,
@@ -8363,7 +8363,7 @@
     "pk": 644,
     "fields": {
         "title": "Martyrs Trophimus, Sabbatius, and Dorymedon of Synnada (278)",
-        "alt_title": null,
+        "alt_title": "Martyrs Trophimus, Sabbatius, Dorymedon",
         "high_rank": false,
         "month": 9,
         "day": 19,
@@ -8389,7 +8389,7 @@
     "pk": 646,
     "fields": {
         "title": "Great Martyr Eustathius (Eustace) Placidas, with his family (118)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Eustathius and Martyr Theopistes",
         "high_rank": true,
         "month": 9,
         "day": 20,
@@ -8467,7 +8467,7 @@
     "pk": 652,
     "fields": {
         "title": "Finding of the Relics of St Dimitri of Rostov (1752)",
-        "alt_title": null,
+        "alt_title": "Unc. Rel. St Dimitry, Metr. Rostov",
         "high_rank": false,
         "month": 9,
         "day": 21,
@@ -8480,7 +8480,7 @@
     "pk": 653,
     "fields": {
         "title": "Hieromartyr Phocas, Bishop of Sinope (102)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Phocas, Bishop of Sinope",
         "high_rank": false,
         "month": 9,
         "day": 22,
@@ -8506,7 +8506,7 @@
     "pk": 655,
     "fields": {
         "title": "The Conception of John the Baptist",
-        "alt_title": null,
+        "alt_title": "Conception of St John the Baptist",
         "high_rank": true,
         "month": 9,
         "day": 23,
@@ -8636,7 +8636,7 @@
     "pk": 665,
     "fields": {
         "title": "Repose of the Holy Apostle and Evangelist St John the Theologian",
-        "alt_title": null,
+        "alt_title": "Repose of St John the Theologian",
         "high_rank": true,
         "month": 9,
         "day": 26,
@@ -8649,7 +8649,7 @@
     "pk": 666,
     "fields": {
         "title": "Holy Martyr Callistratus and the Forty-nine Martyrs with Him (288/304)",
-        "alt_title": null,
+        "alt_title": "Martyr Callistratus and Companions",
         "high_rank": true,
         "month": 9,
         "day": 27,
@@ -8675,7 +8675,7 @@
     "pk": 668,
     "fields": {
         "title": "Our Venerable Father Sabbatius, Founder of the Monastery of Solovki (1435)",
-        "alt_title": null,
+        "alt_title": "Ven. Sabbatius of Solovetsk",
         "high_rank": false,
         "month": 9,
         "day": 27,
@@ -8701,7 +8701,7 @@
     "pk": 670,
     "fields": {
         "title": "St Chariton the Confessor of Palestine (350)",
-        "alt_title": null,
+        "alt_title": "Ven. Chariton the Confessor",
         "high_rank": true,
         "month": 9,
         "day": 28,
@@ -8740,7 +8740,7 @@
     "pk": 673,
     "fields": {
         "title": "St Cyriacus the Solitary (555/557)",
-        "alt_title": null,
+        "alt_title": "Ven. Cyriacos, Hermit of Palestine",
         "high_rank": false,
         "month": 9,
         "day": 29,
@@ -8792,7 +8792,7 @@
     "pk": 677,
     "fields": {
         "title": "St Gregory the Enlightener, Bishop of Armenia (325/335)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Gregory of Armenia",
         "high_rank": true,
         "month": 9,
         "day": 30,
@@ -8831,7 +8831,7 @@
     "pk": 680,
     "fields": {
         "title": "The Protection of Our Most Holy Lady the Theotokos and Ever-Virgin Mary",
-        "alt_title": null,
+        "alt_title": "Protection (Pokrov) of the Most-Holy Theotokos",
         "high_rank": true,
         "month": 10,
         "day": 1,
@@ -8883,7 +8883,7 @@
     "pk": 684,
     "fields": {
         "title": "St Andrew the Fool for Christ (911)",
-        "alt_title": null,
+        "alt_title": "Bl. Andrew, Fool-for-Christ",
         "high_rank": false,
         "month": 10,
         "day": 2,
@@ -8922,7 +8922,7 @@
     "pk": 687,
     "fields": {
         "title": "Hieromartyr Dionysius the Areopagite (96)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Dionysius the Areopagite",
         "high_rank": false,
         "month": 10,
         "day": 3,
@@ -8961,7 +8961,7 @@
     "pk": 690,
     "fields": {
         "title": "Hieromartyr Hierotheos, Bishop of Athens (1st c.)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Hierotheus, Bishop of Athens",
         "high_rank": false,
         "month": 10,
         "day": 4,
@@ -9000,7 +9000,7 @@
     "pk": 693,
     "fields": {
         "title": "Holy Hierarchs of Moscow Peter (1326), Alexis (1378), Jonas (1461), Macarius (1563), Philip (1569), Hermogenes (1612), Philaret (1867), Innocent (1879), and Tikhon (1925)",
-        "alt_title": null,
+        "alt_title": "Ss Peter, Aleksy, Jonah, Philip, Germogen, Metrs. Moscow",
         "high_rank": true,
         "month": 10,
         "day": 5,
@@ -9026,7 +9026,7 @@
     "pk": 695,
     "fields": {
         "title": "Holy Apostle Thomas",
-        "alt_title": null,
+        "alt_title": "Holy Apostle Thomas",
         "high_rank": true,
         "month": 10,
         "day": 6,
@@ -9039,7 +9039,7 @@
     "pk": 696,
     "fields": {
         "title": "Holy Martyrs Sergius and Bacchus (296/303)",
-        "alt_title": null,
+        "alt_title": "Martyrs Sergius and Bacchus in Syria",
         "high_rank": false,
         "month": 10,
         "day": 7,
@@ -9078,7 +9078,7 @@
     "pk": 699,
     "fields": {
         "title": "Our Holy Mother Pelagia (461)",
-        "alt_title": null,
+        "alt_title": "Ven. Pelagia the Penitent",
         "high_rank": false,
         "month": 10,
         "day": 8,
@@ -9169,7 +9169,7 @@
     "pk": 706,
     "fields": {
         "title": "Holy Martyrs Eulampius and Eulampia (196)",
-        "alt_title": null,
+        "alt_title": "Martyrs Eulampius and Eulampia at Nicomedia",
         "high_rank": false,
         "month": 10,
         "day": 10,
@@ -9195,7 +9195,7 @@
     "pk": 708,
     "fields": {
         "title": "Holy Apostle Philip, One of the Seven Deacons",
-        "alt_title": null,
+        "alt_title": "Apostle Philip of the Seventy",
         "high_rank": false,
         "month": 10,
         "day": 11,
@@ -9273,7 +9273,7 @@
     "pk": 714,
     "fields": {
         "title": "Holy Martyrs Probus, Tarachus and Andronicus (304)",
-        "alt_title": null,
+        "alt_title": "Martyrs Probus, Tarachus and Andronicus",
         "high_rank": false,
         "month": 10,
         "day": 12,
@@ -9286,7 +9286,7 @@
     "pk": 715,
     "fields": {
         "title": "Holy Martyrs Carpus and Papylus, with Agathodorus and Agathonica (251)",
-        "alt_title": null,
+        "alt_title": "Martyr Carpus and Companions at Pergamus",
         "high_rank": false,
         "month": 10,
         "day": 13,
@@ -9351,7 +9351,7 @@
     "pk": 720,
     "fields": {
         "title": "Holy Hieromartyr Lucian, Presbyter of the Church of Antioch (312)",
-        "alt_title": null,
+        "alt_title": "Fathers of the Seventh Ecumenical Council",
         "high_rank": false,
         "month": 10,
         "day": 15,
@@ -9364,7 +9364,7 @@
     "pk": 721,
     "fields": {
         "title": "Holy Martyr Longinus the Centurion (1st c.)",
-        "alt_title": null,
+        "alt_title": "Martyr Longinus the Centurion",
         "high_rank": false,
         "month": 10,
         "day": 16,
@@ -9390,7 +9390,7 @@
     "pk": 723,
     "fields": {
         "title": "Holy Prophet Hosea (820 BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Hosea",
         "high_rank": false,
         "month": 10,
         "day": 17,
@@ -9416,7 +9416,7 @@
     "pk": 725,
     "fields": {
         "title": "Holy Apostle and Evangelist St Luke",
-        "alt_title": null,
+        "alt_title": "Holy Apostle and Evangelist Luke",
         "high_rank": true,
         "month": 10,
         "day": 18,
@@ -9442,7 +9442,7 @@
     "pk": 727,
     "fields": {
         "title": "Holy Prophet Joel (8th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Joel",
         "high_rank": false,
         "month": 10,
         "day": 19,
@@ -9481,7 +9481,7 @@
     "pk": 730,
     "fields": {
         "title": "Holy Great Martyr Artemius (362)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Artemius at Antioch",
         "high_rank": false,
         "month": 10,
         "day": 20,
@@ -9520,7 +9520,7 @@
     "pk": 733,
     "fields": {
         "title": "St Hilarion the Great of Palestine (371)",
-        "alt_title": null,
+        "alt_title": "Ven. Hilarion the Great",
         "high_rank": false,
         "month": 10,
         "day": 21,
@@ -9546,7 +9546,7 @@
     "pk": 735,
     "fields": {
         "title": "St Abercius, Bishop of Hierapolis, Wonderworker and Equal to the Apostles (167)",
-        "alt_title": null,
+        "alt_title": "St Abercius, Equal-to-the-Apostles",
         "high_rank": false,
         "month": 10,
         "day": 22,
@@ -9585,7 +9585,7 @@
     "pk": 738,
     "fields": {
         "title": "Holy Apostle James, the Brother of the Lord and First Bishop of Jerusalem (63)",
-        "alt_title": null,
+        "alt_title": "Holy Apostle James, Brother of the Lord",
         "high_rank": true,
         "month": 10,
         "day": 23,
@@ -9611,7 +9611,7 @@
     "pk": 740,
     "fields": {
         "title": "Holy Martyr Arethas and those with him (524)",
-        "alt_title": null,
+        "alt_title": "Martyr Arethas and Companions",
         "high_rank": false,
         "month": 10,
         "day": 24,
@@ -9624,7 +9624,7 @@
     "pk": 741,
     "fields": {
         "title": "Holy Martyrs Marcian and Martyrius (346)",
-        "alt_title": null,
+        "alt_title": "Martyrs Marcian and Martyrius the Notaries",
         "high_rank": false,
         "month": 10,
         "day": 25,
@@ -9650,7 +9650,7 @@
     "pk": 743,
     "fields": {
         "title": "Holy, Glorious and Great Martyr Demetrius the Outpourer of Myrrh (306)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Demetrius",
         "high_rank": true,
         "month": 10,
         "day": 26,
@@ -9663,7 +9663,7 @@
     "pk": 744,
     "fields": {
         "title": "Holy Martyr Nestor, Companion of St Demetrius (306)",
-        "alt_title": null,
+        "alt_title": "Martyr Nestor of Thessalonica",
         "high_rank": false,
         "month": 10,
         "day": 27,
@@ -9741,7 +9741,7 @@
     "pk": 750,
     "fields": {
         "title": "Holy Virgin Martyr Anastasia of Rome (256)",
-        "alt_title": null,
+        "alt_title": "Martyr Anastasia the Roman",
         "high_rank": false,
         "month": 10,
         "day": 29,
@@ -9767,7 +9767,7 @@
     "pk": 752,
     "fields": {
         "title": "Holy Martyrs Zenobius and his sister Zenobia (~290)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Zenobius and His Sister Zenobia",
         "high_rank": false,
         "month": 10,
         "day": 30,
@@ -9858,7 +9858,7 @@
     "pk": 759,
     "fields": {
         "title": "Holy and Wonderworking Unmercenaries Cosmas and Damian of Asia (3rd c.)",
-        "alt_title": null,
+        "alt_title": "Unmercenaries and Wonderworkers Cosmas and Damian",
         "high_rank": true,
         "month": 11,
         "day": 1,
@@ -9884,7 +9884,7 @@
     "pk": 761,
     "fields": {
         "title": "Holy Martyrs Acindynus, Pegasius, Aphthonius, Elpidophorus and Anempodistus of Persia (376)",
-        "alt_title": null,
+        "alt_title": "Martyr Acindynus of Persia and Others",
         "high_rank": false,
         "month": 11,
         "day": 2,
@@ -9897,7 +9897,7 @@
     "pk": 762,
     "fields": {
         "title": "Holy Martyrs Acepsimas the bishop, Joseph the priest and Aithalas the deacon (378-379)",
-        "alt_title": null,
+        "alt_title": "Martyrs Acepsimus, Joseph, Aithalas",
         "high_rank": false,
         "month": 11,
         "day": 3,
@@ -9923,7 +9923,7 @@
     "pk": 764,
     "fields": {
         "title": "Our Holy Father Joannicius the Great, hermit on Mt Olympus (846)",
-        "alt_title": null,
+        "alt_title": "Ven. Joannicus the Great",
         "high_rank": false,
         "month": 11,
         "day": 4,
@@ -9936,7 +9936,7 @@
     "pk": 765,
     "fields": {
         "title": "Holy Martyrs Galaction and Episteme (~250)",
-        "alt_title": null,
+        "alt_title": "Martyrs Galacteon and Wife Epistemis; Repose St Jonah of Novgorod",
         "high_rank": false,
         "month": 11,
         "day": 5,
@@ -9975,7 +9975,7 @@
     "pk": 768,
     "fields": {
         "title": "Paul the Confessor, Archbishop of Constantinople (~350)",
-        "alt_title": null,
+        "alt_title": "St Paul the Confessor of Constantinople",
         "high_rank": false,
         "month": 11,
         "day": 6,
@@ -10001,7 +10001,7 @@
     "pk": 770,
     "fields": {
         "title": "St Hieron and his thirty-three Companions, martyred at Melitene (290)",
-        "alt_title": null,
+        "alt_title": "Holy 33 Martyrs of Melitene",
         "high_rank": false,
         "month": 11,
         "day": 7,
@@ -10027,7 +10027,7 @@
     "pk": 772,
     "fields": {
         "title": "Synaxis of the Chief Captains of the Heavenly Host, Michael and Gabriel, and of the other Bodiless Powers of Heaven",
-        "alt_title": null,
+        "alt_title": "Synaxis of Archangel Michael and the Bodiless Powers",
         "high_rank": true,
         "month": 11,
         "day": 8,
@@ -10066,7 +10066,7 @@
     "pk": 775,
     "fields": {
         "title": "Holy Martyrs Onesiphorus and Porphyrius (284)",
-        "alt_title": null,
+        "alt_title": "Martyrs Onesiphorus and Porphyrius",
         "high_rank": false,
         "month": 11,
         "day": 9,
@@ -10105,7 +10105,7 @@
     "pk": 778,
     "fields": {
         "title": "Holy Apostles of the Seventy Olympas, Rodion, Erastus, Sosipater and Quartus",
-        "alt_title": null,
+        "alt_title": "Apostles of the 70 Erastus, Olympas, Herodion, Sosipater, Quartus",
         "high_rank": false,
         "month": 11,
         "day": 10,
@@ -10131,7 +10131,7 @@
     "pk": 780,
     "fields": {
         "title": "Holy Martyr Menas (~304)",
-        "alt_title": null,
+        "alt_title": "Martyrs Menas, Victor and Vincent",
         "high_rank": false,
         "month": 11,
         "day": 11,
@@ -10170,7 +10170,7 @@
     "pk": 783,
     "fields": {
         "title": "Our Father among the Saints John the Merciful, Patriarch of Alexandria (619)",
-        "alt_title": null,
+        "alt_title": "St John the Merciful, Patriarch of Alexandria",
         "high_rank": false,
         "month": 11,
         "day": 12,
@@ -10209,7 +10209,7 @@
     "pk": 786,
     "fields": {
         "title": "Our Father among the Saints John Chrysostom, Archbishop of Constantinople (407)",
-        "alt_title": null,
+        "alt_title": "St John Chrysostom, Archbishop of Constantinople",
         "high_rank": true,
         "month": 11,
         "day": 13,
@@ -10222,7 +10222,7 @@
     "pk": 787,
     "fields": {
         "title": "Holy Apostle Philip",
-        "alt_title": null,
+        "alt_title": "Holy Apostle Philip",
         "high_rank": true,
         "month": 11,
         "day": 14,
@@ -10261,7 +10261,7 @@
     "pk": 790,
     "fields": {
         "title": "Our Venerable Father Paisius Velichkovsky (1794)",
-        "alt_title": null,
+        "alt_title": "No match found",
         "high_rank": false,
         "month": 11,
         "day": 15,
@@ -10274,7 +10274,7 @@
     "pk": 791,
     "fields": {
         "title": "Holy Apostle and Evangelist Matthew",
-        "alt_title": null,
+        "alt_title": "Holy Apostle and Evangelist Mathew",
         "high_rank": true,
         "month": 11,
         "day": 16,
@@ -10287,7 +10287,7 @@
     "pk": 792,
     "fields": {
         "title": "Our Venerable Father Gregory the Wonderworker, Bishop of Neocaesarea (~275)",
-        "alt_title": null,
+        "alt_title": "St Gregory the Wonderworker",
         "high_rank": false,
         "month": 11,
         "day": 17,
@@ -10326,7 +10326,7 @@
     "pk": 795,
     "fields": {
         "title": "Our Holy Father Nikon of Radonezh (1426)",
-        "alt_title": null,
+        "alt_title": "Ven. Nikon of Radonezh",
         "high_rank": false,
         "month": 11,
         "day": 17,
@@ -10339,7 +10339,7 @@
     "pk": 796,
     "fields": {
         "title": "Holy Martyr Plato (266)",
-        "alt_title": null,
+        "alt_title": "Martyrs Platon and Roman",
         "high_rank": false,
         "month": 11,
         "day": 18,
@@ -10352,7 +10352,7 @@
     "pk": 797,
     "fields": {
         "title": "Holy Martyr Romanus and the holy child who declared for Christ (305)",
-        "alt_title": null,
+        "alt_title": "Martyrs Platon and Roman",
         "high_rank": false,
         "month": 11,
         "day": 18,
@@ -10378,7 +10378,7 @@
     "pk": 799,
     "fields": {
         "title": "Holy Prophet Obadiah (Abdias)",
-        "alt_title": null,
+        "alt_title": "Prophet Obadiah",
         "high_rank": false,
         "month": 11,
         "day": 19,
@@ -10417,7 +10417,7 @@
     "pk": 802,
     "fields": {
         "title": "Our Holy Fathers Barlaam and Joasaph of India (4th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Barlaam and Joasaph",
         "high_rank": false,
         "month": 11,
         "day": 19,
@@ -10430,7 +10430,7 @@
     "pk": 803,
     "fields": {
         "title": "Our Holy Father Gregory of Decapolis (842)",
-        "alt_title": null,
+        "alt_title": "Ven. Gregory Decapolites",
         "high_rank": false,
         "month": 11,
         "day": 20,
@@ -10456,7 +10456,7 @@
     "pk": 805,
     "fields": {
         "title": "The Entry of the Most Holy Theotokos into the Temple in Jerusalem.",
-        "alt_title": null,
+        "alt_title": "Entry of the Most-Holy Theotokos into the Temple",
         "high_rank": false,
         "month": 11,
         "day": 21,
@@ -10469,7 +10469,7 @@
     "pk": 806,
     "fields": {
         "title": "Holy Apostle Philemon and Sts Apphia, Archippus and Onesimus",
-        "alt_title": null,
+        "alt_title": "Apostles of the 70 Philemon, Archippus, Apphia",
         "high_rank": false,
         "month": 11,
         "day": 22,
@@ -10508,7 +10508,7 @@
     "pk": 809,
     "fields": {
         "title": "Holy Grand Prince and Martyr Michael of Tver (1318)",
-        "alt_title": null,
+        "alt_title": "St Michael, Prince of Tver",
         "high_rank": false,
         "month": 11,
         "day": 22,
@@ -10521,7 +10521,7 @@
     "pk": 810,
     "fields": {
         "title": "St Alexander Nevsky (1263)",
-        "alt_title": null,
+        "alt_title": "Rt. Blv. Great Prince Alexander Nevsky",
         "high_rank": false,
         "month": 11,
         "day": 23,
@@ -10638,7 +10638,7 @@
     "pk": 819,
     "fields": {
         "title": "Our Holy Father Alypius the Stylite (~607)",
-        "alt_title": null,
+        "alt_title": "Ven. Alypius the Stylite",
         "high_rank": false,
         "month": 11,
         "day": 26,
@@ -10677,7 +10677,7 @@
     "pk": 822,
     "fields": {
         "title": "Holy Great Martyr James the Persian (421)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Jacob of Persia",
         "high_rank": false,
         "month": 11,
         "day": 27,
@@ -10703,7 +10703,7 @@
     "pk": 824,
     "fields": {
         "title": "Our Holy Father, Confessor and Martyr Stephen the New (767)",
-        "alt_title": null,
+        "alt_title": "Monk Martyr and Confessor Stephen the New",
         "high_rank": false,
         "month": 11,
         "day": 28,
@@ -10716,7 +10716,7 @@
     "pk": 825,
     "fields": {
         "title": "Holy Martyr Paramon and his 370 Companions (~250)",
-        "alt_title": null,
+        "alt_title": "Martyr Paramon and Companions",
         "high_rank": false,
         "month": 11,
         "day": 29,
@@ -10742,7 +10742,7 @@
     "pk": 827,
     "fields": {
         "title": "Holy, Glorious and Illustrious Apostle Andrew the First-Called",
-        "alt_title": null,
+        "alt_title": "Holy Apostle Andrew the First Called",
         "high_rank": true,
         "month": 11,
         "day": 30,
@@ -10768,7 +10768,7 @@
     "pk": 829,
     "fields": {
         "title": "Holy Prophet Nahum (7th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Nahum",
         "high_rank": false,
         "month": 12,
         "day": 1,
@@ -10872,7 +10872,7 @@
     "pk": 837,
     "fields": {
         "title": "Holy Prophet Zephaniah (Sophonias) (7th c. BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Zephaniah",
         "high_rank": false,
         "month": 12,
         "day": 3,
@@ -10937,7 +10937,7 @@
     "pk": 842,
     "fields": {
         "title": "Our Venerable, Godbearing Father Sabbas the Sanctified (533)",
-        "alt_title": null,
+        "alt_title": "Ven. Sabbas the Sanctified",
         "high_rank": true,
         "month": 12,
         "day": 5,
@@ -10963,7 +10963,7 @@
     "pk": 844,
     "fields": {
         "title": "Our Father among the Saints Nicholas the Wonderworker, Archbishop of Myra (345)",
-        "alt_title": null,
+        "alt_title": "St Nicholas the Wonderworker, Abp. of Myra in Lycia",
         "high_rank": true,
         "month": 12,
         "day": 6,
@@ -11002,7 +11002,7 @@
     "pk": 847,
     "fields": {
         "title": "Our Father among the Saints Ambrose, Bishop of Milan (397)",
-        "alt_title": null,
+        "alt_title": "St Ambrose, Bishop of Milan",
         "high_rank": false,
         "month": 12,
         "day": 7,
@@ -11041,7 +11041,7 @@
     "pk": 850,
     "fields": {
         "title": "Our Venerable Father Patapius (6th or 7th c.)",
-        "alt_title": null,
+        "alt_title": "Ven. Patapius of Thebes",
         "high_rank": false,
         "month": 12,
         "day": 8,
@@ -11067,7 +11067,7 @@
     "pk": 852,
     "fields": {
         "title": "The Conception of the Most Holy Mother of God",
-        "alt_title": null,
+        "alt_title": "Conception by St Anna of the Theotokos",
         "high_rank": true,
         "month": 12,
         "day": 9,
@@ -11106,7 +11106,7 @@
     "pk": 855,
     "fields": {
         "title": "Holy Martyrs Menas, Hermogenes and Eugraphus (235)",
-        "alt_title": null,
+        "alt_title": "Martyrs Menas, Hermogenes, Eugraphus",
         "high_rank": false,
         "month": 12,
         "day": 10,
@@ -11119,7 +11119,7 @@
     "pk": 856,
     "fields": {
         "title": "Our Venerable Father Daniel the Stylite (490)",
-        "alt_title": null,
+        "alt_title": "Ven. Daniel the Stylite",
         "high_rank": false,
         "month": 12,
         "day": 11,
@@ -11210,7 +11210,7 @@
     "pk": 863,
     "fields": {
         "title": "St Herman, Wonderworker of Alaska (1836). First Martyrs of America Juvenaly (1796) and Peter the Aleut (1815 )",
-        "alt_title": null,
+        "alt_title": "Repose Ven. Herman of Alaska, Wonderworker of All America",
         "high_rank": true,
         "month": 12,
         "day": 13,
@@ -11249,7 +11249,7 @@
     "pk": 866,
     "fields": {
         "title": "Holy Martyrs Thyrsus, Leucis and Callinicus (250)",
-        "alt_title": null,
+        "alt_title": "Martyrs Thyrsus, Leucis, Callinicus",
         "high_rank": false,
         "month": 12,
         "day": 14,
@@ -11275,7 +11275,7 @@
     "pk": 868,
     "fields": {
         "title": "Holy Hieromartyr Eleutherius, Bishop of Illyria, and those with him (126)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Eleutherius of Illyria",
         "high_rank": true,
         "month": 12,
         "day": 15,
@@ -11327,7 +11327,7 @@
     "pk": 872,
     "fields": {
         "title": "Holy Prophet Haggai (~520 BC)",
-        "alt_title": null,
+        "alt_title": "Prophet Haggai",
         "high_rank": false,
         "month": 12,
         "day": 16,
@@ -11353,7 +11353,7 @@
     "pk": 874,
     "fields": {
         "title": "Holy Prophet Daniel and the Three Holy Youths Ananias, Azarias and Misael",
-        "alt_title": null,
+        "alt_title": "Holy Prophet Daniel and Three Holy Youths",
         "high_rank": false,
         "month": 12,
         "day": 17,
@@ -11379,7 +11379,7 @@
     "pk": 876,
     "fields": {
         "title": "Holy Martyr Sebastian and those with him (287)",
-        "alt_title": null,
+        "alt_title": "Martyr Sebastian and Companions at Rome",
         "high_rank": false,
         "month": 12,
         "day": 18,
@@ -11418,7 +11418,7 @@
     "pk": 879,
     "fields": {
         "title": "Holy Martyr Boniface (290)",
-        "alt_title": null,
+        "alt_title": "Martyr Boniface and Righteous Aglaida",
         "high_rank": false,
         "month": 12,
         "day": 19,
@@ -11431,7 +11431,7 @@
     "pk": 880,
     "fields": {
         "title": "Holy Hieromartyr Ignatius the God-bearer, Bishop of Antioch (107)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Ignatius the Godbearer",
         "high_rank": false,
         "month": 12,
         "day": 20,
@@ -11457,7 +11457,7 @@
     "pk": 882,
     "fields": {
         "title": "Holy Martyr Juliana of Nicomedia and those with her (304)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyr Juliana and Companions",
         "high_rank": false,
         "month": 12,
         "day": 21,
@@ -11496,7 +11496,7 @@
     "pk": 885,
     "fields": {
         "title": "Holy Great Martyr Anastasia the Widow, the Deliverer from Potions (290)",
-        "alt_title": null,
+        "alt_title": "Greatmartyr Anastasia and Companions",
         "high_rank": false,
         "month": 12,
         "day": 22,
@@ -11509,7 +11509,7 @@
     "pk": 886,
     "fields": {
         "title": "The Ten Holy Martyrs of Crete (250)",
-        "alt_title": null,
+        "alt_title": "Holy Ten Martyrs of Crete",
         "high_rank": false,
         "month": 12,
         "day": 23,
@@ -11548,7 +11548,7 @@
     "pk": 889,
     "fields": {
         "title": "Eve of the Nativity of Christ",
-        "alt_title": null,
+        "alt_title": "Eve of Nativity",
         "high_rank": false,
         "month": 12,
         "day": 24,
@@ -11574,7 +11574,7 @@
     "pk": 891,
     "fields": {
         "title": "The Nativity according to the Flesh of our Lord, God and Savior Jesus Christ",
-        "alt_title": null,
+        "alt_title": "Nativity of Christ",
         "high_rank": true,
         "month": 12,
         "day": 25,
@@ -11613,7 +11613,7 @@
     "pk": 894,
     "fields": {
         "title": "Synaxis of the Most Holy Theotokos.",
-        "alt_title": null,
+        "alt_title": "Synaxis of the Most-Holy Theotokos",
         "high_rank": true,
         "month": 12,
         "day": 26,
@@ -11639,7 +11639,7 @@
     "pk": 896,
     "fields": {
         "title": "Our Holy Father Euthymius the Confessor, Bishop of Sardis (840)",
-        "alt_title": null,
+        "alt_title": "Hieromartyr Euthymius of Sardis",
         "high_rank": false,
         "month": 12,
         "day": 26,
@@ -11678,7 +11678,7 @@
     "pk": 899,
     "fields": {
         "title": "Holy First Martyr and Archdeacon Stephen",
-        "alt_title": null,
+        "alt_title": "Protomartyr Stephen",
         "high_rank": true,
         "month": 12,
         "day": 27,
@@ -11730,7 +11730,7 @@
     "pk": 903,
     "fields": {
         "title": "The Holy Infants Killed for Christ's Sake in Bethlehem",
-        "alt_title": null,
+        "alt_title": "Holy Innocents Slain by Herod",
         "high_rank": false,
         "month": 12,
         "day": 29,
@@ -11756,7 +11756,7 @@
     "pk": 905,
     "fields": {
         "title": "Holy Virgin and Martyr Anysia (298)",
-        "alt_title": null,
+        "alt_title": "Virgin Martyr Anysia at Thessalonica",
         "high_rank": false,
         "month": 12,
         "day": 30,
