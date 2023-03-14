@@ -86,6 +86,7 @@ class SpeechTestCase(TestCase):
         """Abbreviation keys should all be lowercase."""
         for key in speech.ABBREVIATIONS:
             self.assertEqual(key, key.lower())
+            self.assertNotIn('.', key)
 
     def test_phonetics(self):
         """Phonetic keys should all be lowercase."""
