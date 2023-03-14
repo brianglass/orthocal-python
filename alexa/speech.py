@@ -41,8 +41,11 @@ ABBREVIATIONS = {
     '~':        'Approximately',
     'ca':       'Circa',
     'transl':   'Translation',
+    'trans':    'Translation',
+    'rel':      'Relics',
     'c':        'Century',
     'metr':     'Metropolitan',
+    'patr':     'Patriarch',
     'abp':      'Archbishop',
     'ch':       'Chapter',
 }
