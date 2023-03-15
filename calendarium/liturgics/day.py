@@ -111,14 +111,12 @@ class Day:
         stories = self.stories.copy()
         commemorations = self.titles + self.feasts + self.saints
 
-        # Find stories that match the existing commemorations
-        for c in commemorations:
-            for story in tuple(stories):
-                if story.alt_title and story.alt_title in c:
-                    stories.remove(story)
-
         # Add unmatched stories to the list of commemorations
-        self.saints.extend(s.title for s in stories)
+        self.saints.extend(
+            s.title
+            for s in stories
+            if not s.alt_title or not any(s.alt_title in c for c in commemorations)
+        )
         
     def _apply_fasting_adjustments(self):
         # Adjust for fast free days

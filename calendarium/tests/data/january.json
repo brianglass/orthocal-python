@@ -136,6 +136,7 @@
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
         "saints": [
+            "St Sylvester, Pope of Rome (335)",
             "Venerable Juliana of Lazarevskoye (1604)",
             "Holy New Martyr George the Georgian (1770)"
         ],
@@ -280,6 +281,7 @@
         "fast_exception_desc": "Fast Free",
         "saints": [
             "Synaxis of Seventy Apostles",
+            "The Ethiopian Eunuch of Queen Candace",
             "Venerable Apollinaria (5th c.)"
         ],
         "service_notes": null,
@@ -844,6 +846,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Martyr Polyeuctus of Melitene in Armenia",
+            "Saint Peter II, Bishop of Sebaste (4th c.)",
             "Venerable Eustratius the Wonderworker (9th c.)",
             "Saint Philip, Metropolitan of Moscow (1569)"
         ],
@@ -900,7 +903,6 @@
         "fast_exception_desc": "",
         "saints": [
             "St Gregory of Nyssa",
-            "Our Holy Father Gregory, Bishop of Nyssa (395)",
             "Our Holy Father Theophan the Recluse (1894)"
         ],
         "service_notes": null,
@@ -1045,7 +1047,8 @@
         "fast_exception_desc": "",
         "saints": [
             "St Sava, Archbishop of Serbia",
-            "Holy Martyr Tatiana (~230)"
+            "Holy Martyr Tatiana (~230)",
+            "Venerable Benedict Biscop, Abbot of Wearmouth (689-690)"
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -1188,7 +1191,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Ven. Paul of Thebes and John Calabytes",
-            "Our Holy Father John Kalyvites (the hut-dweller) (~450)"
+            "Saint Ita of Kileedy, Ireland (570)"
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -1431,7 +1434,8 @@
         "fast_exception": 0,
         "fast_exception_desc": "",
         "saints": [
-            "Ven. Macarius the Great"
+            "Ven. Macarius the Great",
+            "Our Holy Father Mark Eugenikos, Metropolitan of Ephesus and Confessor of the Orthodox Faith (1443)"
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -1868,6 +1872,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Ven. Xenophon and Mary",
+            "St Ammonas of Egypt, disciple of St Anthony the Great (350)",
             "Our Holy Mother Paula of Rome (404)"
         ],
         "service_notes": null,
@@ -2008,7 +2013,8 @@
         "fast_exception": 0,
         "fast_exception_desc": "",
         "saints": [
-            "Ven. Ephrem the Syrian"
+            "Ven. Ephrem the Syrian",
+            "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)"
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
