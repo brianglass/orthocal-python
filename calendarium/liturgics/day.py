@@ -1,3 +1,5 @@
+import logging
+
 from datetime import date, timedelta
 from functools import lru_cache
 
@@ -10,6 +12,8 @@ from ..datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, Feas
 from commemorations.models import Commemoration
 
 from .year import Year
+
+logger = logging.getLogger(__name__)
 
 
 @lru_cache
@@ -338,7 +342,6 @@ class Day:
         """Return an abbreviated list of lectionary readings."""
 
         # Return cached readings if we already have them
-
         if hasattr(self, 'abbreviated_readings'):
             if fetch_content:
                 for reading in self.abbreviated_readings:
@@ -366,7 +369,13 @@ class Day:
         # Pull in just Epistles and Gospels from the Festal cycle, but not
         # during clean week or Holy week.
         if self.feast_level >= 2 and self.fast_exception != 10:
-            query |= Q(month=self.month, day=self.day, source__in=['Epistle', 'Gospel'])
+            subquery = Q(month=self.month, day=self.day, source__in=['Epistle', 'Gospel'])
+
+            if self.month == 3 and self.day == 26 and self.weekday in [Weekday.Monday, Weekday.Tuesday, Weekday.Thursday]:
+                # There are no readings for leavetaking of Annunciation on a non-liturgy day
+                subquery &= ~Q(desc='Theotokos')
+
+            query |= subquery
 
         # Add Epistles and Gospels from the floating feasts as well
         if float_index := self.pyear.floats.get(self.pdist):
@@ -408,7 +417,14 @@ class Day:
             raise RuntimeError('get_readings and get_abbreviated_readings must be called before abbreviated_reading_indices')
 
         texts = [r.pericope.display for r in self.readings]
-        return [texts.index(r.pericope.display) for r in self.abbreviated_readings]
+        try:
+            return [texts.index(r.pericope.display) for r in self.abbreviated_readings]
+        except ValueError:
+            # This means that the aget_abbreviated_readings() is not returning
+            # a subset of the readings. This should never happen, but if it
+            # does, we'll just return the full list of readings.
+            logger.error('Could not find abbreviated reading in full reading list')
+            return list(range(len(self.readings)))
 
     @cached_property
     def has_daily_readings(self):

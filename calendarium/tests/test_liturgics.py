@@ -254,6 +254,7 @@ class TestDay(TestCase):
 			(2023, 3, 24, 3),   # Forefeast of Annunciation; should be 3 OT readings
 			(2023, 3, 25, 2),   # Annunciation; should be 2 NT readings
 			(2023, 4, 14, 2),   # Holy Thursday; should NOT include passion gospels
+			(2071, 3, 26, 3),   # leavetaking of the Annunciation on a non-liturgy day
         ]
 
         for year, month, day, length in data:
