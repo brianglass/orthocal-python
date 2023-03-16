@@ -79,9 +79,12 @@
 				{% endfilter %}
 			</h2>
 
+			<p>
 			{% for verse in reading.pericope.passage %}
-			<p><span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}</p>
+				{% if verse.paragraph_start and not forloop.first %}</p><p>{% endif %}
+				<span class="verse-number">{{ verse.verse }}</span> {{ verse.content }}
 			{% endfor %}
+			</p>
 		</article>
 		{% endfor %}
 	</section>

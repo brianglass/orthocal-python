@@ -85,6 +85,7 @@ class Verse(models.Model):
     chapter = models.IntegerField(db_index=True)
     verse = models.IntegerField(db_index=True)
     content = models.TextField()
+    paragraph_start = models.BooleanField(default=False)
     language = models.CharField(max_length=10)
 
     objects = VerseManager()

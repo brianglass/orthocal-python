@@ -54,14 +54,15 @@ day = conint(ge=1, le=31)
 
 
 class VerseSchema(Schema):
-    book: str = Field(..., description='The book of the Bible. This is abbreviated.')
+    book: str = Field(..., description='The abbreviated book of the Bible.')
     chapter: int
     verse: int
     content: str
+    paragraph_start: bool = Field(..., description='Whether this verse is the start of a paragraph.')
 
 
 class ReadingSchemaLite(Schema):
-    source: str
+    source: str = Field(..., description='Which service the passage is read during (e.g. Vespers).')
     book: str = Field(..., alias='pericope.book', description='The liturgical book the reading comes from (e.g. Apostol).')
     description: str = Field(..., alias='desc')
     display: str = Field(..., alias='pericope.display', description='The scripture reference.')

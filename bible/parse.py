@@ -5,20 +5,23 @@ from xml.dom import pulldom
 
 def parse_usfx(filename, language=None):
     book, chapter, verse = None, None, None
+    paragraph_start = False
     is_valid_content = False
     content = ''
     language_override = bool(language)
 
     def finish_content():
-        nonlocal book, chapter, verse, content, is_valid_content
+        nonlocal book, chapter, verse, content, is_valid_content, paragraph_start
         result = {
             'language': language,
             'book': book,
             'chapter': chapter,
             'verse': verse,
             'content': content,
+            'paragraph_start': paragraph_start,
         }
         is_valid_content = False
+        paragraph_start = False
         content = ''
         return result
 
@@ -57,6 +60,10 @@ def parse_usfx(filename, language=None):
                 is_valid_content = True
             case [pulldom.START_ELEMENT, 've']:
                 yield finish_content()
+
+            # paragraph element
+            case [pulldom.START_ELEMENT, 'p']:
+                paragraph_start = True
 
             # Footnote Element
             case [pulldom.START_ELEMENT, 'f']:

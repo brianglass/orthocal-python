@@ -144,9 +144,6 @@ section.readings {
 	font-size: 1.1em;
     break-inside: avoid;
 }
-.passage p {
-    text-indent: 1em !important;
-}
 .passage p .verse-number {
     vertical-align: super;
     font-size: 0.75em;

@@ -16,6 +16,7 @@ def load_default_scriptures(apps, schema_editor):
 def unload_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
     Verse.objects.filter(language='eng').delete()
+    Verse.objects.filter(language='ro').delete()
 
 class Migration(migrations.Migration):
 
