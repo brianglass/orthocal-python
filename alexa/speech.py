@@ -205,18 +205,9 @@ def reading_speech(reading, end=None):
             f'<break strength="medium" time="750ms"/> {scripture_text}'
     )
 
-def reading_range_speech(reading, start=0, end=None):
+def reading_range_speech(reading, start=None, end=None):
     passage = reading.pericope.get_passage()
-
-    verses = ['<p>', passage[start].content]
-    for verse in passage[start+1:end]:
-        if verse.paragraph_start:
-            verses.append('</p>\n<p>')
-
-        verses.append(verse.content)
-
-    verses.append('</p>')
-    return ' '.join(verses)
+    return '\n'.join(f'<p>{verse.content}</p>' for verse in passage[start:end])
 
 def estimate_group_size(passage):
     """Estimate how many verses need to be in each group."""
