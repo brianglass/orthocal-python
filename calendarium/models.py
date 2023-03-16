@@ -111,6 +111,7 @@ class Pericope(models.Model):
                     chapter=models.Value(1),
                     verse=models.Value(1),
                     language=models.Value('en'),
+                    paragraph_start=models.Value(True),
             )
         else:
             return Verse.objects.lookup_reference(self.sdisplay, language=language)

@@ -3,6 +3,7 @@ from datetime import date
 from django.test import TestCase
 
 from .. import datetools, liturgics
+from bible.models import Verse
 
 
 class TestYear(TestCase):
@@ -289,3 +290,17 @@ class TestDay(TestCase):
             await day.ainitialize()
             with self.subTest(day.gregorian_date):
                 self.assertEqual(day.gospel_pdist, pdist)
+
+    async def test_composite_fiels(self):
+        """When a reading is a Composite, it should have the sames fields as a Verse."""
+
+        year, month, day = 2023, 3, 30
+        day = liturgics.Day(year, month, day)
+        await day.ainitialize()
+        readings = await day.aget_readings()
+        passage = await readings[3].pericope.aget_passage()
+
+        for field in Verse._meta.fields:
+            if field.name != 'id':
+                with self.subTest(field.name):
+                    self.assertTrue(hasattr(passage[0], field.name))
