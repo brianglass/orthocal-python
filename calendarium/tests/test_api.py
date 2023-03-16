@@ -2,6 +2,7 @@ import json
 
 from pathlib import Path
 
+from dateutil.rrule import rrule, DAILY
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -65,3 +66,21 @@ class DayAPITestCase(TestCase):
         actual = response.json()
 
         self.assertEqual(expected, actual)
+
+    def test_errors(self):
+        """We shouldn't have any errors in the API."""
+
+        # This is just a brute force test to make sure we don't have any
+        # errors in the API.
+        start_dt = timezone.datetime(2023, 1, 1)
+        end_dt = timezone.datetime(2029, 12, 31)
+        for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
+            with self.subTest(dt=dt):
+                url = reverse('api:get_calendar_day', kwargs={
+                    'cal': 'gregorian',
+                    'year': dt.year,
+                    'month': dt.month,
+                    'day': dt.day,
+                })
+                response = self.client.get(url, format='json')
+                self.assertEqual(response.status_code, 200)

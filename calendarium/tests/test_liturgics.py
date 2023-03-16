@@ -291,8 +291,8 @@ class TestDay(TestCase):
             with self.subTest(day.gregorian_date):
                 self.assertEqual(day.gospel_pdist, pdist)
 
-    async def test_composite_fiels(self):
-        """When a reading is a Composite, it should have the sames fields as a Verse."""
+    async def test_composite_fields(self):
+        """When a reading is a Composite, it should have the same fields as a Verse."""
 
         year, month, day = 2023, 3, 30
         day = liturgics.Day(year, month, day)
@@ -300,7 +300,7 @@ class TestDay(TestCase):
         readings = await day.aget_readings()
         passage = await readings[3].pericope.aget_passage()
 
-        for field in Verse._meta.fields:
+        for field in Verse._meta.get_fields():
             if field.name != 'id':
                 with self.subTest(field.name):
                     self.assertTrue(hasattr(passage[0], field.name))
