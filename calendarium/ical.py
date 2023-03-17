@@ -80,6 +80,6 @@ async def ical_description(day, url):
 
     # HTML links seem to actually work in Google Calendar, but not ical, so we
     # just leave the link raw.
-    description += f'\nFollow the link for full readings:\n{url}'
+    description += f'\nFollow this link for full readings:\n{url}'
 
     return description
