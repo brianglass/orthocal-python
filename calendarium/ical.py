@@ -37,27 +37,28 @@ async def ical(request, cal):
         day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
         await day.ainitialize()
 
-        uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
         day_path = reverse('readings', kwargs={
             'cal': cal,
             'year': day.year,
             'month': day.month,
             'day': day.day
         })
+        url = request.build_absolute_uri(day_path)
+        uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
 
         event = icalendar.Event()
         event.add('uid', uid)
         event.add('dtstamp', timestamp)
         event.add('dtstart', icalendar.vDate(dt))  # We use vDate to make an all-day event
         event.add('summary', day.summary_title)
-        event.add('description', await ical_description(day))
-        event.add('url', request.build_absolute_uri(day_path))
+        event.add('description', await ical_description(day, url))
+        event.add('url', url)
         event.add('class', 'public')
         calendar.add_component(event)
 
     return HttpResponse(calendar.to_ical(), content_type='text/calendar')
 
-async def ical_description(day):
+async def ical_description(day, url):
     description = ''
 
     if day.fast_exception_desc and day.fast_level:
@@ -76,5 +77,9 @@ async def ical_description(day):
             description += f'{reading.pericope.display} ({reading.source}, {reading.desc})\n'
         else:
             description += f'{reading.pericope.display} ({reading.source})\n'
+
+    # HTML links seem to actually work in Google Calendar, but not ical, so we
+    # just leave the link raw.
+    description += f'\nFollow the link for full readings:\n{url}'
 
     return description

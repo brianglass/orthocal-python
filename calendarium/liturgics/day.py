@@ -417,14 +417,7 @@ class Day:
             raise RuntimeError('get_readings and get_abbreviated_readings must be called before abbreviated_reading_indices')
 
         texts = [r.pericope.display for r in self.readings]
-        try:
-            return [texts.index(r.pericope.display) for r in self.abbreviated_readings]
-        except ValueError:
-            # This means that the aget_abbreviated_readings() is not returning
-            # a subset of the readings. This should never happen, but if it
-            # does, we'll just return the full list of readings.
-            logger.error('Could not find abbreviated reading in full reading list')
-            return list(range(len(self.readings)))
+        return [texts.index(r.pericope.display) for r in self.abbreviated_readings]
 
     @cached_property
     def has_daily_readings(self):
