@@ -39,9 +39,9 @@ async def ical(request, cal):
 
         day_path = reverse('readings', kwargs={
             'cal': cal,
-            'year': day.year,
-            'month': day.month,
-            'day': day.day
+            'year': day.gregorian_date.year,
+            'month': day.gregorian_date.month,
+            'day': day.gregorian_date.day
         })
         url = request.build_absolute_uri(day_path)
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
