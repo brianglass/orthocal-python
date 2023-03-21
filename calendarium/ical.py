@@ -15,9 +15,13 @@ from .datetools import Calendar
 
 
 async def ical(request, cal=Calendar.Gregorian):
+    timestamp = timezone.localtime()
+    calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
+    return HttpResponse(calendar.to_ical(), content_type='text/calendar')
+
+async def generate_ical(timestamp, cal, build_absolute_uri):
     title = cal.title()
     ttl = settings.ORTHOCAL_ICAL_TTL
-    timestamp = timezone.localtime()
 
     calendar = icalendar.Calendar()
     calendar.add('prodid', '-//brianglass//Orthocal//en')
@@ -42,7 +46,7 @@ async def ical(request, cal=Calendar.Gregorian):
             'month': dt.month,
             'day': dt.day
         })
-        url = request.build_absolute_uri(day_path)
+        url = build_absolute_uri(day_path)
         uid = f'{dt.strftime("%Y-%m-%d")}.{title}@orthocal.info'
 
         event = icalendar.Event()
@@ -55,7 +59,7 @@ async def ical(request, cal=Calendar.Gregorian):
         event.add('class', 'public')
         calendar.add_component(event)
 
-    return HttpResponse(calendar.to_ical(), content_type='text/calendar')
+    return calendar
 
 async def ical_description(day, url):
     description = ''
