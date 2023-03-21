@@ -33,7 +33,7 @@ async def ical(request, cal=Calendar.Gregorian):
     end_dt = start_dt + timedelta(days=30 * 7)
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
-        day = liturgics.Day(dt.year, dt.month, dt.day, cal=cal)
+        day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal)
         await day.ainitialize()
 
         day_path = reverse('readings', kwargs={
