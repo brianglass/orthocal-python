@@ -4,7 +4,7 @@ from functools import lru_cache
 from django.utils.functional import cached_property
 
 from .. import datetools
-from ..datetools import Weekday, FloatIndex
+from ..datetools import Calendar, Weekday, FloatIndex
 
 
 @lru_cache
@@ -18,9 +18,9 @@ class Year:
     to the next.
     """
 
-    def __init__(self, year, use_julian=False):
+    def __init__(self, year, calendar: Calendar=Calendar.Gregorian):
         self.year = year
-        self.use_julian = use_julian
+        self.calendar = calendar
         self.pascha = datetools.compute_pascha_jdn(year)
 
         (self.sat_before_elevation,
@@ -246,7 +246,7 @@ class Year:
 
     def date_to_pdist(self, month, day, year):
         dt = date(year, month, day)
-        if self.use_julian:
+        if self.calendar == Calendar.Julian:
             return datetools.julian_to_jdn(dt) - self.pascha
         else:
             return datetools.gregorian_to_jdn(dt) - self.pascha

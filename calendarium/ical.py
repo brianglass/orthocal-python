@@ -11,14 +11,13 @@ from django.urls import reverse
 from django.utils import timezone
 
 from . import liturgics
+from .datetools import Calendar
 
 
-async def ical(request, cal):
+async def ical(request, cal=Calendar.Gregorian):
     title = cal.title()
     ttl = settings.ORTHOCAL_ICAL_TTL
     timestamp = timezone.localtime()
-
-    use_julian = True if cal == 'julian' else False
 
     calendar = icalendar.Calendar()
     calendar.add('prodid', '-//brianglass//Orthocal//en')
@@ -34,7 +33,7 @@ async def ical(request, cal):
     end_dt = start_dt + timedelta(days=30 * 7)
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
-        day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
+        day = liturgics.Day(dt.year, dt.month, dt.day, cal=cal)
         await day.ainitialize()
 
         day_path = reverse('readings', kwargs={

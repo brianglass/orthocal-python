@@ -15,7 +15,7 @@ from ninja.renderers import JSONRenderer
 from pydantic import AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
-from orthocal.converters import CAL_RE
+from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,6 @@ api = API(
 )
 
 
-calname = constr(regex=CAL_RE)
 year = conint(ge=1583, le=4099)
 month = conint(ge=1, le=12)
 day = conint(ge=1, le=31)
@@ -148,14 +147,14 @@ def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
 @api.get('/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
-async def get_calendar_day(request, cal: calname, year: year, month: month, day: day):
+async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
     """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
     will still work, but should be avoided for new code.
     """
 
     try:
-        day = liturgics.Day(year, month, day, use_julian=cal=='julian', language=request.LANGUAGE_CODE)
+        day = liturgics.Day(year, month, day, calendar=cal, language=request.LANGUAGE_CODE)
     except ValueError:
         # The date is out of range or invalid
         raise Http404
@@ -167,7 +166,7 @@ async def get_calendar_day(request, cal: calname, year: year, month: month, day:
     return day
 
 @api.get('/{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
-async def get_calendar_month(request, cal: calname, year: year, month: month) -> list[DaySchemaLite]:
+async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> list[DaySchemaLite]:
     """Get information about all the liturgical days for the given calendar and month.
     This endpoint excludes the readings and stories in order to avoid returning 
     a response that is too large.
@@ -176,7 +175,7 @@ async def get_calendar_month(request, cal: calname, year: year, month: month) ->
     will still work, but should be avoided for new code.
     """
 
-    days = [d async for d in liturgics.amonth_of_days(year, month, use_julian=cal=='julian')]
+    days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal)]
     for day in days:
         await day.aget_readings()
         await day.aget_abbreviated_readings()
@@ -184,7 +183,7 @@ async def get_calendar_month(request, cal: calname, year: year, month: month) ->
     return days
 
 @api.get('/{cal:cal}/', response=DaySchema, summary='Get Today')
-async def get_calendar_default(request, cal: calname):
+async def get_calendar_default(request, cal: Calendar):
     """Get information about the current liturgical day for the given calendar.
     The timezone is Pacific Time. The *cal* path parameter should be
     `gregorian` or `julian`. The legacy `oca` or `rocor` will still work, but
@@ -216,7 +215,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
         raise Http404(url)
 
     kwargs = match.kwargs
-    use_julian = kwargs.get('cal', 'gregorian') == 'julian'
+    calendar = kwargs.get('cal', Calendar.Gregorian)
 
     if 'year' not in kwargs or 'month' not in kwargs:
         now = timezone.localtime()
@@ -224,7 +223,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     else:
         year, month = kwargs['year'], kwargs['month']
 
-    content = await views.render_calendar_html(request, year, month, use_julian=use_julian, full_urls=True)
+    content = await views.render_calendar_html(request, year, month, calendar=calendar, full_urls=True)
     html = render_to_string('oembed_calendar.html', {'content': content})
 
     return {

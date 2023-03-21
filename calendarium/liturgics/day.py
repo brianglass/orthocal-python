@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.utils.functional import cached_property
 
 from .. import datetools, models
-from ..datetools import Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
+from ..datetools import Calendar, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 from commemorations.models import Commemoration
 
 from .year import Year
@@ -24,17 +24,17 @@ class Day:
     of the saints from both the Paschal cycle and the festal cycle.
     """
 
-    def __init__(self, year, month, day, use_julian=False, language='en'):
+    def __init__(self, year, month, day, calendar=Calendar.Gregorian, language='en'):
         self.gregorian_date = date(year, month, day)
 
-        if use_julian:
-            dt = datetools.gregorian_to_julian(year, month, day)
-            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
-            self.jdn = datetools.julian_to_jdn(dt)
-        else:
+        if calendar == Calendar.Gregorian:
             dt = self.gregorian_date
             pdist, pyear = datetools.compute_pascha_distance(dt)
             self.jdn = datetools.gregorian_to_jdn(dt)
+        else:
+            dt = datetools.gregorian_to_julian(year, month, day)
+            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
+            self.jdn = datetools.julian_to_jdn(dt)
 
         self.date = dt
         self.year = dt.year
@@ -42,7 +42,7 @@ class Day:
         self.day = dt.day
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
-        self.pyear = Year(pyear, use_julian)
+        self.pyear = Year(pyear, calendar)
         self.language = language
 
     async def ainitialize(self):

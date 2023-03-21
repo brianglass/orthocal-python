@@ -8,14 +8,15 @@ from django.urls import reverse
 from django.utils import timezone
 
 from . import liturgics
+from .datetools import Calendar
 
 
 class ReadingsFeed(Feed):
     link = '/'
     description_template = 'feed_description.html'
 
-    def get_object(self, request, cal=None):
-        return {'cal': cal or 'gregorian'}
+    def get_object(self, request, cal=Calendar.Gregorian):
+        return {'cal': cal}
 
     def title(self, obj):
         return f'Orthodox Daily Readings ({obj["cal"].title()})'
@@ -24,11 +25,10 @@ class ReadingsFeed(Feed):
         return f'Orthodox scripture readings and stories from the lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
 
     def items(self, obj):
-        use_julian = obj['cal'] == 'julian'
         now = timezone.localtime()
         start_dt = now - timedelta(days=10)
         for dt in rrule(DAILY, dtstart=start_dt, until=now):
-            day = liturgics.Day(dt.year, dt.month, dt.day, use_julian=use_julian)
+            day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'])
             day.initialize()
             yield day
 
@@ -43,7 +43,7 @@ class ReadingsFeed(Feed):
     def item_link(self, day):
         dt = day.gregorian_date
         return reverse('readings', kwargs={
-            'cal': 'gregorian',
+            'cal': day.pyear.calendar,
             'year': dt.year,
             'month': dt.month,
             'day': dt.day

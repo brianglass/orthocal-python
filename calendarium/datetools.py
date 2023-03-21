@@ -1,7 +1,7 @@
 import math
 
 from datetime import date, datetime, timedelta, timezone
-from enum import IntEnum
+from enum import IntEnum, StrEnum
 
 import jdcal
 
@@ -16,6 +16,10 @@ Weekday = IntEnum('Weekday', (
     'Friday',
     'Saturday',
 ), start=0)
+
+class Calendar(StrEnum):
+    Gregorian = 'gregorian'
+    Julian = 'julian'
 
 class FastLevels(IntEnum):
     NoFast         = 0

@@ -1,17 +1,18 @@
 from django.urls.converters import IntConverter
 
+from calendarium.datetools import Calendar
+
 CAL_RE = '(gregorian|julian|oca|rocor)'
 
 class CalendarConverter:
     regex = CAL_RE
 
     def to_python(self, value):
-        if value == 'oca':
-            return 'gregorian'
-        elif value == 'rocor':
-            return 'julian'
-        else:
-            return value
+        if value in ('gregorian', 'oca'):
+            return Calendar.Gregorian
+
+        if value in ('julian', 'rocor'):
+            return Calendar.Julian
 
     def to_url(self, value):
         return value

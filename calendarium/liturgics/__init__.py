@@ -11,7 +11,7 @@ async def amonth_of_days(year, month, **kwargs):
         yield day
         dt += timedelta(days=1)
 
-def month_of_days(year, month, use_julian=False, **kwargs):
+def month_of_days(year, month, **kwargs):
     dt = datetime(year, month, 1)
     while dt.month == month:
         day = Day(dt.year, dt.month, dt.day, **kwargs)

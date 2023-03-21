@@ -10,12 +10,12 @@ class TestYear(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_pascha(self):
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
         self.assertEqual(year.pascha, pascha)
 
     def test_pdists(self):
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
 
         data = [
@@ -41,7 +41,7 @@ class TestYear(TestCase):
 
     def test_lukan_jump(self):
         # TODO: Confirm this is actually working
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
         self.assertEqual(year.lukan_jump, 7) 
 
     def test_daily_readings(self):
@@ -56,21 +56,21 @@ class TestYear(TestCase):
                 self.assertSetEqual(year.no_daily, days)
 
     def test_reserves(self):
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
 
         self.assertEqual(year.extra_sundays, 3)
         expected = 266, 161, 168
         self.assertSequenceEqual(year.reserves, expected)
 
     def test_has_no_paremias(self):
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
         noparemias = -43, -40, -30, -8
         for pdist in noparemias:
             with self.subTest(pdist):
                 self.assertTrue(year.has_no_paremias(pdist))
 
     def test_has_paremias(self):
-        year = liturgics.Year(2018, False)
+        year = liturgics.Year(2018)
         paremias = -44, -41, -31, -9
         for pdist in paremias:
             with self.subTest(pdist):
