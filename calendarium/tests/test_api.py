@@ -67,6 +67,30 @@ class DayAPITestCase(TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_nativity_julian(self):
+        url = reverse('api:get_calendar_day', kwargs={
+            'cal': 'julian',
+            'year': 2023,
+            'month': 1,
+            'day': 7,
+        })
+        response = self.client.get(url, format='json')
+        actual = response.json()
+
+        self.assertIn('Nativity of Christ', actual['feasts'])
+
+    def test_calendar_month_julian(self):
+        url = reverse('api:get_calendar_month', kwargs={
+            'cal': 'julian',
+            'year': 2023,
+            'month': 1,
+        })
+        response = self.client.get(url, format='json')
+        actual = response.json()
+        nativity = actual[6]
+
+        self.assertIn('Nativity of Christ', nativity['feasts'])
+
     def test_errors(self):
         """We shouldn't have any errors in the API."""
 
