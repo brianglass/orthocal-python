@@ -29,6 +29,19 @@ class DayAPITestCase(TestCase):
 
         self.assertEqual(expected, actual)
 
+    def test_get_day_invalid(self):
+        with open(BASE_DIR / 'data/last_bday.json') as f:
+            expected = json.loads(f.read())
+
+        url = reverse('api:get_calendar_day', kwargs={
+            'cal': 'gregorian',
+            'year': 2022,
+            'month': 2,
+            'day': 29,
+        })
+        response = self.client.get(url, format='json')
+        self.assertEqual(404, response.status_code)
+
     def test_get_day_default(self):
         url = reverse('api:get_calendar_default', kwargs={'cal': 'gregorian'})
         response = self.client.get(url, format='json')

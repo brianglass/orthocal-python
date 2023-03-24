@@ -146,9 +146,9 @@ section.readings {
 }
 .passage p .verse-number {
     vertical-align: super;
-    font-size: 0.75em;
-    color: gray;
-    margin-right: 0.2em;
+    font-size: 0.70em;
+    color: #999;
+    margin-right: 1px;
 }
 .day>p {
     text-align: center;

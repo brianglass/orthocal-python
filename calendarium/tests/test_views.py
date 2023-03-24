@@ -33,6 +33,30 @@ class TestReadingsView(TestCase):
         self.assertEqual(response.context['date'], now.date())
         self.assertEqual(response.context['cal'], Calendar.Julian)
 
+    def test_gregorian(self):
+        url = reverse('readings', kwargs={
+            'cal': 'gregorian',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['date'].day, 7)
+        self.assertEqual(response.context['date'].month, 1)
+        self.assertEqual(response.context['cal'], Calendar.Gregorian)
+
+    def test_gregorian_404(self):
+        url = reverse('readings', kwargs={
+            'cal': 'gregorian',
+            'year': 2022,
+            'month': 2,
+            'day': 29,
+        })
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
+
 class TestCalendarView(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
@@ -66,7 +90,7 @@ class TestCalendarView(TestCase):
         request = RequestFactory().get('/')
         html = await render_calendar_html(request, 2022, 1, cal=Calendar.Gregorian)
         self.assertIn(now.strftime('%B'), html)
-        self.assertIn('Circumcision of Our Lord', html)
+        self.assertIn('Synaxis 3 Hierarchs', html)
 
     async def test_render_calendar_html_julian(self):
         now = date(2022, 1, 7)
