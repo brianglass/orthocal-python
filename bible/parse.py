@@ -1,7 +1,8 @@
-import string
+import re
 
 from xml.dom import pulldom
 
+space_re = re.compile(r'\s+')
 
 def parse_usfx(filename, language=None):
     book, chapter, verse = None, None, None
@@ -17,7 +18,7 @@ def parse_usfx(filename, language=None):
             'book': book,
             'chapter': chapter,
             'verse': verse,
-            'content': content,
+            'content': space_re.sub(' ', content.strip()),
             'paragraph_start': paragraph_start,
         }
         is_valid_content = False
@@ -74,8 +75,5 @@ def parse_usfx(filename, language=None):
             # Character content
             case [pulldom.CHARACTERS, _]:
                 if is_valid_content:
-                    if text := node.wholeText.replace('¶','').strip():
-                        if text[0] in string.punctuation or content.endswith('(') or not content:
-                            content += text
-                        else:
-                            content += ' ' + text
+                    if text := node.wholeText.replace('\n',' ').replace('¶',''):
+                        content += text

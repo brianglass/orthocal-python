@@ -148,6 +148,7 @@ section.readings {
     vertical-align: super;
     font-size: 0.75em;
     color: gray;
+    margin-right: 0.2em;
 }
 .day>p {
     text-align: center;
