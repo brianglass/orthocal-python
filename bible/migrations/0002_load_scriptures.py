@@ -7,11 +7,12 @@ from bible.parse import parse_usfx
 def load_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
 
-    for verse in parse_usfx('data/eng-kjv_usfx.xml', language='en'):
-        Verse.objects.create(**verse)
+    # for verse in parse_usfx('data/engDRA_usfx.xml'):
+    for verse in parse_usfx('data/eng-kjv_usfx.xml'):
+        Verse.objects.create(language='en', **verse)
 
-    for verse in parse_usfx('data/ron-rccv.usfx.xml', language='ro'):
-        Verse.objects.create(**verse)
+    for verse in parse_usfx('data/ron-rccv.usfx.xml'):
+        Verse.objects.create(language='ro', **verse)
 
 def unload_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')

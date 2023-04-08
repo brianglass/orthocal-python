@@ -4,40 +4,34 @@ from xml.dom import pulldom
 
 space_re = re.compile(r'\s+', flags=re.DOTALL)
 
-def use_strings(strings):
-    content = ''.join(strings)
-    strings.clear()
-
-    content = space_re.sub(' ', content)
-
-    # Older printings of the KJV started each verse on a new
-    # line and used a paragraph symbol to indicate the
-    # paragraph breaks. The <p> elements don't seem to quite
-    # line up with them. We strip the paragraph symbols since
-    # we are using the <p> elements.
-    content = content.replace('¶','')
-
-    return content.strip()
-
-def parse_usfx(filename, language=None):
+def parse_usfx(filename):
     book, chapter, verse = None, None, None
     paragraph_start = False
     is_valid_content = False
-    language_override = bool(language)
     strings = []
 
     def make_verse():
         nonlocal is_valid_content, paragraph_start
 
+        content = ''.join(strings)
+        content = space_re.sub(' ', content)
+
+        # Older printings of the KJV started each verse on a new
+        # line and used a paragraph symbol to indicate the
+        # paragraph breaks. The <p> elements don't seem to quite
+        # line up with them. We strip the paragraph symbols since
+        # we are using the <p> elements.
+        content = content.replace('¶','').strip()
+
         result = {
-            'language': language,
             'book': book,
             'chapter': chapter,
             'verse': verse,
-            'content': use_strings(strings),
+            'content': content,
             'paragraph_start': paragraph_start,
         }
 
+        strings.clear()
         is_valid_content = False
         paragraph_start = False
 
@@ -45,15 +39,6 @@ def parse_usfx(filename, language=None):
 
     for event, node in pulldom.parse(filename):
         match [event, node.nodeName]:
-            # Language element
-            case [pulldom.START_ELEMENT, 'languageCode']:
-                is_valid_content = True
-            case [pulldom.END_ELEMENT, 'languageCode']:
-                if not language_override:
-                    language = use_strings(strings)
-
-                is_valid_content = False
-
             # Book element
             case [pulldom.START_ELEMENT, 'book']:
                 if is_valid_content:
