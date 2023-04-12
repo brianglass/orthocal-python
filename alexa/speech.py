@@ -38,7 +38,6 @@ ABBREVIATIONS = {
     'st':       'Saint',
     'ss':       'Saints',
     'sts':      'Saints',
-    '~':        'Approximately',
     'ca':       'Circa',
     'transl':   'Translation',
     'trans':    'Translation',

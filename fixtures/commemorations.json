@@ -107,7 +107,7 @@
     "model": "commemorations.commemoration",
     "pk": 9,
     "fields": {
-        "title": "Prophet Malachi (~400 BC)",
+        "title": "Prophet Malachi (ca. 400 BC)",
         "alt_title": "Prophet Malachi",
         "high_rank": false,
         "month": 1,
@@ -133,7 +133,7 @@
     "model": "commemorations.commemoration",
     "pk": 11,
     "fields": {
-        "title": "Our Holy Mother Genevieve of Paris (~502)",
+        "title": "Our Holy Mother Genevieve of Paris (ca. 502)",
         "alt_title": null,
         "high_rank": false,
         "month": 1,
@@ -185,7 +185,7 @@
     "model": "commemorations.commemoration",
     "pk": 15,
     "fields": {
-        "title": "Holy Martyrs Theopemptus and Theonas (~290)",
+        "title": "Holy Martyrs Theopemptus and Theonas (ca. 290)",
         "alt_title": null,
         "high_rank": false,
         "month": 1,
@@ -263,7 +263,7 @@
     "model": "commemorations.commemoration",
     "pk": 21,
     "fields": {
-        "title": "Our Venerable Mother Domnica (Domnina) (~474)",
+        "title": "Our Venerable Mother Domnica (Domnina) (ca. 474)",
         "alt_title": null,
         "high_rank": false,
         "month": 1,
@@ -302,7 +302,7 @@
     "model": "commemorations.commemoration",
     "pk": 24,
     "fields": {
-        "title": "Holy Martyr Polyeuctus (~250)",
+        "title": "Holy Martyr Polyeuctus (ca. 250)",
         "alt_title": "Martyr Polyeuctus of Melitene in Armenia",
         "high_rank": false,
         "month": 1,
@@ -419,7 +419,7 @@
     "model": "commemorations.commemoration",
     "pk": 33,
     "fields": {
-        "title": "Holy Martyr Tatiana (~230)",
+        "title": "Holy Martyr Tatiana (ca. 230)",
         "alt_title": null,
         "high_rank": false,
         "month": 1,
@@ -536,7 +536,7 @@
     "model": "commemorations.commemoration",
     "pk": 42,
     "fields": {
-        "title": "Our Holy Father John Kalyvites (the hut-dweller) (~450)",
+        "title": "Our Holy Father John Kalyvites (the hut-dweller) (ca. 450)",
         "alt_title": "Ven. Paul of Thebes and John Calabytes",
         "high_rank": false,
         "month": 1,
@@ -627,7 +627,7 @@
     "model": "commemorations.commemoration",
     "pk": 49,
     "fields": {
-        "title": "Our Holy Father Macarius (Makarios)the Great (~390)",
+        "title": "Our Holy Father Macarius (Makarios)the Great (ca. 390)",
         "alt_title": "Ven. Macarius the Great",
         "high_rank": true,
         "month": 1,
@@ -705,7 +705,7 @@
     "model": "commemorations.commemoration",
     "pk": 55,
     "fields": {
-        "title": "Holy Martyr Agnes of Rome (~304)",
+        "title": "Holy Martyr Agnes of Rome (ca. 304)",
         "alt_title": null,
         "high_rank": false,
         "month": 1,
@@ -770,7 +770,7 @@
     "model": "commemorations.commemoration",
     "pk": 60,
     "fields": {
-        "title": "Our Holy Mother Xenia of Petersburg, fool for Christ (~1800)",
+        "title": "Our Holy Mother Xenia of Petersburg, fool for Christ (ca. 1800)",
         "alt_title": null,
         "high_rank": true,
         "month": 1,
@@ -1212,7 +1212,7 @@
     "model": "commemorations.commemoration",
     "pk": 94,
     "fields": {
-        "title": "Our Venerable Father Luke the New of Mount Stirion (~950)",
+        "title": "Our Venerable Father Luke the New of Mount Stirion (ca. 950)",
         "alt_title": null,
         "high_rank": false,
         "month": 2,
@@ -1264,7 +1264,7 @@
     "model": "commemorations.commemoration",
     "pk": 98,
     "fields": {
-        "title": "Holy Martyr Nicephorus (~257)",
+        "title": "Holy Martyr Nicephorus (ca. 257)",
         "alt_title": "Martyr Nicephorus of Antioch",
         "high_rank": false,
         "month": 2,
@@ -1277,7 +1277,7 @@
     "model": "commemorations.commemoration",
     "pk": 99,
     "fields": {
-        "title": "Hieromartyr Peter of Damascus, bishop of Damascus (~776)",
+        "title": "Hieromartyr Peter of Damascus, bishop of Damascus (ca. 776)",
         "alt_title": null,
         "high_rank": false,
         "month": 2,
@@ -1485,7 +1485,7 @@
     "model": "commemorations.commemoration",
     "pk": 115,
     "fields": {
-        "title": "Venerable Maron the Hermit of Syria (~423)",
+        "title": "Venerable Maron the Hermit of Syria (ca. 423)",
         "alt_title": null,
         "high_rank": false,
         "month": 2,
@@ -1498,7 +1498,7 @@
     "model": "commemorations.commemoration",
     "pk": 116,
     "fields": {
-        "title": "Holy Apostle Onesimos (~109)",
+        "title": "Holy Apostle Onesimos (ca. 109)",
         "alt_title": "Apostle Onesimus of the Seventy",
         "high_rank": false,
         "month": 2,
@@ -1550,12 +1550,12 @@
     "model": "commemorations.commemoration",
     "pk": 120,
     "fields": {
-        "title": "Great-martyr Theodore the Tyro (~306)",
+        "title": "Great-martyr Theodore the Tyro (ca. 306)",
         "alt_title": "Greatmartyr Theodore Tyro",
         "high_rank": true,
         "month": 2,
         "day": 17,
-        "story": "<p>The Greek <i>Tyron</i> means “conscript.” This holy Martyr of Christ came from Pontus and was a Roman legionary during Maximian’s persecution (~303). Though he had been a Christian since childhood, he kept his faith secret while in the army. While his cohort was stationed near a town called Euchaita, he learned that the people there were being terrorized by a dragon which lived in the neighboring forest. He set off to face the dragon, praying to God that the outcome of the contest would be a sign to him of whether the time had come to offer himself for martyrdom. He found the fire-spitting monster and, arming himself with the sign of the Cross, drove his spear through its head and killed it.</p>\n<p>His success convinced him that, having vanquished this fleshly dragon, he was ready to vanquish the spiritual dragon, the Devil. When the commander of his camp next ordered a sacrifice to the Gods, Theodore boldly refused, saying “I am a Christian!” Further, he encouraged the other Christians in his company to do the same. That night he went to a nearby pagan temple of Rhea, mother of the gods, and burned it down. He was seen by the caretaker of the temple and was brought unresisting to the governor Publius. Theodore was thrown into a solitary dungeon cell; there he refused bread and water, saying that Christ had promised him food from heaven. He spent his time there chanting hymns with the angels, so that the guards were convinced that other Christians had somehow joined him in his cell.</p>\n<p>When all argument, cajolery, bribery and threat had failed to turn the soldier from Christ, the governor resorted to torture, subjecting the Saint to terrible mutilations; but when Theodore endured them calmly and resolutely, the governor began to fear that his example would encourage other Christians, and ordered that he be burned. Taken to the stake, the Martyr walked freely into the flames, where he gave back his soul to God. When his body was ransomed and taken from the ashes by a pious Christian, it was found to be untouched. A church was built in Euchaita in honor of the Martyr; many pilgrims came there for the healing of soul and body.</p>\n<p>In 361, the Emperor Julian the Apostate ordered the Prefect of Constantinople to have all foods in the marketplaces sprinkled with blood of animals sacrificed to the pagan gods during the first week of Lent, so that Christians would be unable to escape contact with idolatry. But St Theodore appeared in a vision to Patriarch Eudoxius (360-364), warned him of the plan and told him to instruct his flock not to buy any food in the marketplace, but to eat <i>kolyva</i> made from boiled wheat grains. So, through the Saint’s intervention, the people were preserved from the stain of idolatry. Ever since, the Church has commemorated the miracle on the first Saturday of Great Lent. Since that time <i>kolyva</i> has come to be offered also in honor of the Saints and in memory of the departed. The whole grain represents the body, sown corruptible, which will be raised incorruptible (2 Cor. 15:37); it is usually sweetened with honey to signify the delights of Paradise.</p>",
+        "story": "<p>The Greek <i>Tyron</i> means “conscript.” This holy Martyr of Christ came from Pontus and was a Roman legionary during Maximian’s persecution (ca. 303). Though he had been a Christian since childhood, he kept his faith secret while in the army. While his cohort was stationed near a town called Euchaita, he learned that the people there were being terrorized by a dragon which lived in the neighboring forest. He set off to face the dragon, praying to God that the outcome of the contest would be a sign to him of whether the time had come to offer himself for martyrdom. He found the fire-spitting monster and, arming himself with the sign of the Cross, drove his spear through its head and killed it.</p>\n<p>His success convinced him that, having vanquished this fleshly dragon, he was ready to vanquish the spiritual dragon, the Devil. When the commander of his camp next ordered a sacrifice to the Gods, Theodore boldly refused, saying “I am a Christian!” Further, he encouraged the other Christians in his company to do the same. That night he went to a nearby pagan temple of Rhea, mother of the gods, and burned it down. He was seen by the caretaker of the temple and was brought unresisting to the governor Publius. Theodore was thrown into a solitary dungeon cell; there he refused bread and water, saying that Christ had promised him food from heaven. He spent his time there chanting hymns with the angels, so that the guards were convinced that other Christians had somehow joined him in his cell.</p>\n<p>When all argument, cajolery, bribery and threat had failed to turn the soldier from Christ, the governor resorted to torture, subjecting the Saint to terrible mutilations; but when Theodore endured them calmly and resolutely, the governor began to fear that his example would encourage other Christians, and ordered that he be burned. Taken to the stake, the Martyr walked freely into the flames, where he gave back his soul to God. When his body was ransomed and taken from the ashes by a pious Christian, it was found to be untouched. A church was built in Euchaita in honor of the Martyr; many pilgrims came there for the healing of soul and body.</p>\n<p>In 361, the Emperor Julian the Apostate ordered the Prefect of Constantinople to have all foods in the marketplaces sprinkled with blood of animals sacrificed to the pagan gods during the first week of Lent, so that Christians would be unable to escape contact with idolatry. But St Theodore appeared in a vision to Patriarch Eudoxius (360-364), warned him of the plan and told him to instruct his flock not to buy any food in the marketplace, but to eat <i>kolyva</i> made from boiled wheat grains. So, through the Saint’s intervention, the people were preserved from the stain of idolatry. Ever since, the Church has commemorated the miracle on the first Saturday of Great Lent. Since that time <i>kolyva</i> has come to be offered also in honor of the Saints and in memory of the departed. The whole grain represents the body, sown corruptible, which will be raised incorruptible (2 Cor. 15:37); it is usually sweetened with honey to signify the delights of Paradise.</p>",
         "ordering": 0
     }
 },
@@ -1602,7 +1602,7 @@
     "model": "commemorations.commemoration",
     "pk": 124,
     "fields": {
-        "title": "St Leo, bishop of Catania in Sicily (~780)",
+        "title": "St Leo, bishop of Catania in Sicily (ca. 780)",
         "alt_title": "St Leo, Bishop of Catania",
         "high_rank": false,
         "month": 2,
@@ -2356,7 +2356,7 @@
     "model": "commemorations.commemoration",
     "pk": 182,
     "fields": {
-        "title": "St Patrick, Enlightener of Ireland (~461)",
+        "title": "St Patrick, Enlightener of Ireland (ca. 461)",
         "alt_title": null,
         "high_rank": false,
         "month": 3,
@@ -2746,7 +2746,7 @@
     "model": "commemorations.commemoration",
     "pk": 212,
     "fields": {
-        "title": "Holy Martyrs Amphianus and Aedesius (~306)",
+        "title": "Holy Martyrs Amphianus and Aedesius (ca. 306)",
         "alt_title": null,
         "high_rank": false,
         "month": 4,
@@ -2824,7 +2824,7 @@
     "model": "commemorations.commemoration",
     "pk": 218,
     "fields": {
-        "title": "Our Holy Father Mark of Trache (~400)",
+        "title": "Our Holy Father Mark of Trache (ca. 400)",
         "alt_title": null,
         "high_rank": false,
         "month": 4,
@@ -2863,7 +2863,7 @@
     "model": "commemorations.commemoration",
     "pk": 221,
     "fields": {
-        "title": "St George the Confessor, bishop of Mitylene (~820)",
+        "title": "St George the Confessor, bishop of Mitylene (ca. 820)",
         "alt_title": null,
         "high_rank": false,
         "month": 4,
@@ -3019,7 +3019,7 @@
     "model": "commemorations.commemoration",
     "pk": 233,
     "fields": {
-        "title": "St Isaac the Syrian, abbot of Spoleto, Italy (~550)",
+        "title": "St Isaac the Syrian, abbot of Spoleto, Italy (ca. 550)",
         "alt_title": null,
         "high_rank": false,
         "month": 4,
@@ -3032,7 +3032,7 @@
     "model": "commemorations.commemoration",
     "pk": 234,
     "fields": {
-        "title": "St Basil the Confessor, bishop of Parium (~760)",
+        "title": "St Basil the Confessor, bishop of Parium (ca. 760)",
         "alt_title": "St Basil the Confessor, Bishop of Parium",
         "high_rank": false,
         "month": 4,
@@ -4059,7 +4059,7 @@
     "model": "commemorations.commemoration",
     "pk": 313,
     "fields": {
-        "title": "St Brendan the Voyager, abbot of Clonfert (~577)",
+        "title": "St Brendan the Voyager, abbot of Clonfert (ca. 577)",
         "alt_title": null,
         "high_rank": false,
         "month": 5,
@@ -4319,7 +4319,7 @@
     "model": "commemorations.commemoration",
     "pk": 333,
     "fields": {
-        "title": "Third Finding of the Precious Head of St John the Baptist (~850)",
+        "title": "Third Finding of the Precious Head of St John the Baptist (ca. 850)",
         "alt_title": "3rd Finding of the Head of St John the Baptist",
         "high_rank": true,
         "month": 5,
@@ -4371,7 +4371,7 @@
     "model": "commemorations.commemoration",
     "pk": 337,
     "fields": {
-        "title": "Saint Augustine of Canterbury, evangelizer of England (~605)",
+        "title": "Saint Augustine of Canterbury, evangelizer of England (ca. 605)",
         "alt_title": null,
         "high_rank": false,
         "month": 5,
@@ -7140,7 +7140,7 @@
     "model": "commemorations.commemoration",
     "pk": 550,
     "fields": {
-        "title": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (~289)",
+        "title": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (ca. 289)",
         "alt_title": "No match found",
         "high_rank": false,
         "month": 8,
@@ -8583,7 +8583,7 @@
     "model": "commemorations.commemoration",
     "pk": 661,
     "fields": {
-        "title": "Our Righteous Mother Euphrosyne (~445)",
+        "title": "Our Righteous Mother Euphrosyne (ca. 445)",
         "alt_title": null,
         "high_rank": true,
         "month": 9,
@@ -9766,7 +9766,7 @@
     "model": "commemorations.commemoration",
     "pk": 752,
     "fields": {
-        "title": "Holy Martyrs Zenobius and his sister Zenobia (~290)",
+        "title": "Holy Martyrs Zenobius and his sister Zenobia (ca. 290)",
         "alt_title": "Hieromartyr Zenobius and His Sister Zenobia",
         "high_rank": false,
         "month": 10,
@@ -9935,7 +9935,7 @@
     "model": "commemorations.commemoration",
     "pk": 765,
     "fields": {
-        "title": "Holy Martyrs Galaction and Episteme (~250)",
+        "title": "Holy Martyrs Galaction and Episteme (ca. 250)",
         "alt_title": "Martyrs Galacteon and Wife Epistemis; Repose St Jonah of Novgorod",
         "high_rank": false,
         "month": 11,
@@ -9974,7 +9974,7 @@
     "model": "commemorations.commemoration",
     "pk": 768,
     "fields": {
-        "title": "Paul the Confessor, Archbishop of Constantinople (~350)",
+        "title": "Paul the Confessor, Archbishop of Constantinople (ca. 350)",
         "alt_title": "St Paul the Confessor of Constantinople",
         "high_rank": false,
         "month": 11,
@@ -10130,7 +10130,7 @@
     "model": "commemorations.commemoration",
     "pk": 780,
     "fields": {
-        "title": "Holy Martyr Menas (~304)",
+        "title": "Holy Martyr Menas (ca. 304)",
         "alt_title": "Martyrs Menas, Victor and Vincent",
         "high_rank": false,
         "month": 11,
@@ -10286,7 +10286,7 @@
     "model": "commemorations.commemoration",
     "pk": 792,
     "fields": {
-        "title": "Our Venerable Father Gregory the Wonderworker, Bishop of Neocaesarea (~275)",
+        "title": "Our Venerable Father Gregory the Wonderworker, Bishop of Neocaesarea (ca. 275)",
         "alt_title": "St Gregory the Wonderworker",
         "high_rank": false,
         "month": 11,
@@ -10559,7 +10559,7 @@
     "model": "commemorations.commemoration",
     "pk": 813,
     "fields": {
-        "title": "Holy Hieromartyr Clement, Bishop of Rome (~100)",
+        "title": "Holy Hieromartyr Clement, Bishop of Rome (ca. 100)",
         "alt_title": null,
         "high_rank": false,
         "month": 11,
@@ -10611,7 +10611,7 @@
     "model": "commemorations.commemoration",
     "pk": 817,
     "fields": {
-        "title": "Great Martyr Mercurius (~259)",
+        "title": "Great Martyr Mercurius (ca. 259)",
         "alt_title": null,
         "high_rank": false,
         "month": 11,
@@ -10637,7 +10637,7 @@
     "model": "commemorations.commemoration",
     "pk": 819,
     "fields": {
-        "title": "Our Holy Father Alypius the Stylite (~607)",
+        "title": "Our Holy Father Alypius the Stylite (ca. 607)",
         "alt_title": "Ven. Alypius the Stylite",
         "high_rank": false,
         "month": 11,
@@ -10650,7 +10650,7 @@
     "model": "commemorations.commemoration",
     "pk": 820,
     "fields": {
-        "title": "St Nikon Metanoite (\"Repent!\") (~1000)",
+        "title": "St Nikon Metanoite (\"Repent!\") (ca. 1000)",
         "alt_title": null,
         "high_rank": false,
         "month": 11,
@@ -10715,7 +10715,7 @@
     "model": "commemorations.commemoration",
     "pk": 825,
     "fields": {
-        "title": "Holy Martyr Paramon and his 370 Companions (~250)",
+        "title": "Holy Martyr Paramon and his 370 Companions (ca. 250)",
         "alt_title": "Martyr Paramon and Companions",
         "high_rank": false,
         "month": 11,
@@ -10949,7 +10949,7 @@
     "model": "commemorations.commemoration",
     "pk": 843,
     "fields": {
-        "title": "St Cosmas the Protos of Mount Athos and his companions (~1274)",
+        "title": "St Cosmas the Protos of Mount Athos and his companions (ca. 1274)",
         "alt_title": null,
         "high_rank": false,
         "month": 12,
@@ -11326,7 +11326,7 @@
     "model": "commemorations.commemoration",
     "pk": 872,
     "fields": {
-        "title": "Holy Prophet Haggai (~520 BC)",
+        "title": "Holy Prophet Haggai (ca. 520 BC)",
         "alt_title": "Prophet Haggai",
         "high_rank": false,
         "month": 12,
@@ -11534,7 +11534,7 @@
     "model": "commemorations.commemoration",
     "pk": 888,
     "fields": {
-        "title": "Our Holy Father Nahum of Ochrid, Wonderworker and Enlightener of the Slavs (~900)",
+        "title": "Our Holy Father Nahum of Ochrid, Wonderworker and Enlightener of the Slavs (ca. 900)",
         "alt_title": null,
         "high_rank": false,
         "month": 12,
@@ -11560,7 +11560,7 @@
     "model": "commemorations.commemoration",
     "pk": 890,
     "fields": {
-        "title": "Holy Virgin and Martyr Eugenia and her companions (~190)",
+        "title": "Holy Virgin and Martyr Eugenia and her companions (ca. 190)",
         "alt_title": null,
         "high_rank": false,
         "month": 12,
@@ -11703,7 +11703,7 @@
     "model": "commemorations.commemoration",
     "pk": 901,
     "fields": {
-        "title": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (~304).",
+        "title": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (ca. 304).",
         "alt_title": null,
         "high_rank": false,
         "month": 12,
@@ -11807,7 +11807,7 @@
     "model": "commemorations.commemoration",
     "pk": 909,
     "fields": {
-        "title": "St Theophylact, Archbishop of Ochrid (~1126)",
+        "title": "St Theophylact, Archbishop of Ochrid (ca. 1126)",
         "alt_title": null,
         "high_rank": false,
         "month": 12,
