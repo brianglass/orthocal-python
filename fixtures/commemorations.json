@@ -3201,13 +3201,13 @@
     "model": "commemorations.commemoration",
     "pk": 247,
     "fields": {
-        "title": "Blessed Matrona (the Blind) of Moscow (1952) (New Calendar commemoration May 2)",
+        "title": "Blessed Matrona (the Blind) of Moscow (1952)",
         "alt_title": null,
         "high_rank": false,
-        "month": 4,
-        "day": 19,
+        "month": 5,
+        "day": 2,
         "story": "<p>She was born in 1881 to a poor family in the village of Sebino-Epifaniskaya (now Kimovski). Though she was born blind — her eyes were without pupils — she showed a gift of spiritual insight from an early age, and by her prayers healed many who came to her.</p>\n<p>At about the age of fourteen she made a pilgrimage to several Russian holy sites. When she came to Kronstadt to receive the blessing of St John (20 Dec.), the holy priest, who had never met her, cried out “Matrona, come here!” and proclaimed “She will be my heir, the eighth pillar of Russia.”</p>\n<p>At the age of seventeen she was stricken with paralysis and was never able to walk again. For the rest of her life she lived in a room filled with icons, where she would sit cross-legged on her bed and receive visitors. She never bemoaned her blindness or paralysis; once she said “A day came when God opened my eyes, and I saw the light of the sun, the stars and all that exists in the world: the rivers, the forests, the sea and the whole creation.”</p>\n<p>In 1925 she settled in Moscow. After the death of her mother in 1945, she moved frequently, living secretly in the homes of the faithful. Despite this, throngs of believers found their way to her for counsel and healing. The Communist authorities, knowing her holy influence, sought many times to arrest her; but she always knew in advance when they were coming, and would be moved to a different secret location. She fasted much, slept rarely, and it is said that her forehead was dented by the countless signs of the Cross that she made.</p>\n<p>Of the persecution of the Church by the Communists, she simply said that this was due to the sins and lack of faith of the Christians, and added, “Difficult times are our lot, but we Christians must choose the Cross. Christ has placed us on His sleigh, and He will take us where He will.”</p>\n<p>Having foreseen the day of her death, she said, “Come close, all of you, and tell me of your troubles as though I were alive! I’ll see you; I’ll hear you, and I’ll come to your aid.” She reposed in peace on April 19, 1952 (May 2 on the new calendar). Many miracles occurred at her tomb. In 1998 her relics were moved to the women’s Monastery of the Protecting Veil of the Mother of God, where thousands of Orthodox Christians come to venerate her and, as she asked, to bring her their problems and concerns as though she were alive on earth.</p>\n<p>She was glorified by the Church of Russia in 1999, for local veneration in the Diocese of Moscow.</p>",
-        "ordering": 2
+        "ordering": 0
     }
 },
 {
@@ -3519,7 +3519,7 @@
         "month": 5,
         "day": 2,
         "story": "<p>Early in the second century a pagan named Catallus bought Hesperus, his wife Zoë, and their sons Cyriac and Theodulus as slaves. All of them were Christians, and would not eat anything that had been sacrificed to idols — they would throw all such food to the dogs and go hungry themselves. When Catallus learned of this, he was enraged and began to torture them cruelly, beginning with the children. When none of them could be moved from his confession of Christ, the entire family was cast into a hot furnace, where they gave up their souls to God. Their bodies remained unburnt.</p>",
-        "ordering": 0
+        "ordering": 1
     }
 },
 {
@@ -3532,7 +3532,7 @@
         "month": 5,
         "day": 2,
         "story": "<p>A son of the Bulgarian Khan Presian, he was instructed in the faith by St Photios, Patriarch of Constantinople. He labored throughout his reign to establish and spread the Christian faith in Bulgaria. When the disciples of Ss Cyril and Methodius were driven from Moravia and came to Bulgaria, he greatly assisted them in their missionary work there. He retired to a monastery, leaving rule of his country in the hands of his son Vladimir. But when he learned that Vladimir was persecuting Christians and trying to re-establish paganism, he left the monastery, took up the sword, overthrew his son, put his younger son Symeon on the throne and, when he was confident that the country was again in Christian hands, returned to the monastery, where he ended his life in peace and piety.</p>",
-        "ordering": 1
+        "ordering": 2
     }
 },
 {
@@ -3545,7 +3545,7 @@
         "month": 5,
         "day": 2,
         "story": "<p>For their lives, see July 24.</p>",
-        "ordering": 2
+        "ordering": 3
     }
 },
 {
@@ -3558,7 +3558,7 @@
         "month": 5,
         "day": 2,
         "story": "<p>His main commemoration is January 18.</p>",
-        "ordering": 3
+        "ordering": 4
     }
 },
 {
