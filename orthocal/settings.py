@@ -189,6 +189,14 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 NINJA_DOCS_VIEW = 'redoc'
 
+if MOESIF_APPLICATION_ID := os.environ.get('MOESIF_APPLICATION_ID'):
+    # Moesif is a third-party service that provides analytics on API usage.
+    MIDDLEWARE.append('moesifdjango.middleware.moesif_middleware',)
+    MOESIF_MIDDLEWARE = {
+        'APPLICATION_ID': os.environ.get('MOESIF_APPLICATION_ID'),
+        'CAPTURE_OUTGOING_REQUESTS': False, # Set to True to also capture outgoing calls to 3rd parties.
+    }
+
 ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 12  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
