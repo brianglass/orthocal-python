@@ -193,8 +193,7 @@ if MOESIF_APPLICATION_ID := os.environ.get('MOESIF_APPLICATION_ID'):
     # Moesif is a third-party service that provides analytics on API usage.
     MIDDLEWARE.append('moesifdjango.middleware.moesif_middleware',)
     MOESIF_MIDDLEWARE = {
-        'APPLICATION_ID': os.environ.get('MOESIF_APPLICATION_ID'),
-        'CAPTURE_OUTGOING_REQUESTS': False, # Set to True to also capture outgoing calls to 3rd parties.
+        'APPLICATION_ID': MOESIF_APPLICATION_ID,
     }
 
 ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
