@@ -223,7 +223,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     else:
         year, month = kwargs['year'], kwargs['month']
 
-    content = await views.render_calendar_html(request, year, month, calendar=calendar, full_urls=True)
+    content = await views.render_calendar_html(request, year, month, cal=calendar, full_urls=True)
     html = render_to_string('oembed_calendar.html', {'content': content})
 
     return {

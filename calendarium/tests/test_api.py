@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from dateutil.rrule import rrule, DAILY
-from django.test import TestCase
+from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
@@ -121,3 +121,21 @@ class DayAPITestCase(TestCase):
                 })
                 response = self.client.get(url, format='json')
                 self.assertEqual(response.status_code, 200)
+
+    def test_oembed_calendar(self):
+        """The oEmbed endpoint shouldn't return an error."""
+
+        # We need this to build an absolute url
+        request = RequestFactory().get('/')
+
+        calendar_url = reverse('calendar', kwargs={
+            'cal': 'gregorian',
+            'year': 2023,
+            'month': 1,
+        })
+        calendar_url = request.build_absolute_uri(calendar_url)
+
+        url = reverse('api:get_calendar_embed')
+
+        response = self.client.get(url, {'url': calendar_url}, format='json')
+        self.assertEqual(response.status_code, 200)
