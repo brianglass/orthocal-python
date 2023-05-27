@@ -123,17 +123,17 @@ class DayAPITestCase(TestCase):
                 self.assertEqual(response.status_code, 200)
 
     def test_oembed_calendar(self):
-        """The oEmbed endpoint shouldn't return an error."""
+        """The oEmbed endpoint should return a response with a status of 200."""
 
         # We need this to build an absolute url
         request = RequestFactory().get('/')
 
-        calendar_url = reverse('calendar', kwargs={
+        calendar_path = reverse('calendar', kwargs={
             'cal': 'gregorian',
             'year': 2023,
             'month': 1,
         })
-        calendar_url = request.build_absolute_uri(calendar_url)
+        calendar_url = request.build_absolute_uri(calendar_path)
 
         url = reverse('api:get_calendar_embed')
 
