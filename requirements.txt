@@ -9,7 +9,7 @@ django-cors-headers==4.0.0
 django-fullurl==1.4
 django-ninja==0.21.0
 django==4.2.1
-icalendar==5.0.5
+icalendar==5.0.6
 jdcal==1.4.1
 # moesifdjango==2.3.1
 newrelic==8.8.0
