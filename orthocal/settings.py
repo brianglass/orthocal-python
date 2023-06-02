@@ -60,7 +60,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'compression_middleware.middleware.CompressionMiddleware',  # Supports brotli and others
+    # 'compression_middleware.middleware.CompressionMiddleware',  # Supports brotli and others
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
