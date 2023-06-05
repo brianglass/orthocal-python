@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
         'TEST': {
             # The default is to use an in-memory DB for tests. We give the test
-            # DB an explicit name so that a file is created. This is so tha twe
+            # DB an explicit name so that a file is created. This is so that we
             # can use the --keepdb option during test runs to avoid having the
             # scriptures ingested each time we run tests.
             'NAME': BASE_DIR / 'test_db.sqlite3',
