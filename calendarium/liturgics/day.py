@@ -16,7 +16,7 @@ from .year import Year
 logger = logging.getLogger(__name__)
 
 
-@lru_cache(maxsize=500)
+@lru_cache(maxsize=1000)
 class Day:
     """Representation of a liturgical day.
 
