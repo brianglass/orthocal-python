@@ -112,13 +112,12 @@ class Day:
         if not self.stories:
             return
 
-        stories = self.stories.copy()
         commemorations = self.titles + self.feasts + self.saints
 
         # Add unmatched stories to the list of commemorations
         self.saints.extend(
             s.title
-            for s in stories
+            for s in self.stories
             if not s.alt_title or not any(s.alt_title in c for c in commemorations)
         )
         
