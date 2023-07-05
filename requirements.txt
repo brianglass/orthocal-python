@@ -8,7 +8,7 @@ django-compression-middleware==0.5.0
 django-cors-headers==4.1.0
 django-fullurl==1.4
 django-ninja==0.22.2
-django==4.2.2
+django==4.2.3
 icalendar==5.0.7
 jdcal==1.4.1
 #moesifdjango==2.3.1
