@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'Twas Brillig and the Slithy Toves')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST')]
 
 # This is because we're sitting behind the Firebase proxy. If this is not run
 # behind a proxy, these should be disabled.
@@ -78,7 +78,6 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
-                'orthocal.context_processors.globals',
             ],
         },
     },
