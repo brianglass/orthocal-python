@@ -51,3 +51,4 @@ also be passed to a container at runtime using the docker -e argument.
 	BASE_URL - the part of the url common to all urls on the site; the default is https://orthocal.info
 	PORT - the port for the web service to listen on; This must be set. There is no default.
 	ALLOWED_HOST - The host name (per [Django docs](https://docs.djangoproject.com/en/4.2/ref/settings/#allowed-hosts)) that this server can serve from.
+	WEB_CONCURRENCY - How many processes to run

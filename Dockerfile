@@ -5,7 +5,7 @@ WORKDIR /orthocal
 # newrelic.ini should be stored in Google Cloud Secret Manager and mounted as a volume.
 ENV NEW_RELIC_CONFIG_FILE=/orthocal-secrets/newrelic.ini
 CMD exec newrelic-admin run-program \
-		 uvicorn --host 0.0.0.0 --port $PORT --workers 2 orthocal.asgi:application
+		 uvicorn --host 0.0.0.0 --port $PORT orthocal.asgi:application
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
