@@ -9,6 +9,7 @@ from django.utils import timezone
 
 from . import liturgics
 from .datetools import Calendar
+#from .websub import Feed
 
 
 class ReadingsFeed(Feed):

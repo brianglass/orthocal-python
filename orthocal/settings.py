@@ -194,6 +194,7 @@ ORTHOCAL_ICAL_TTL = 12  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = 'Cookie', 'Accept-Language'
+ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 
 try:
     from .local_settings import *

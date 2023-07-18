@@ -13,6 +13,7 @@ icalendar==5.0.7
 jdcal==1.4.1
 newrelic==8.8.1
 python-dateutil==2.8.2
+requests==2.31.0
 typogrify==2.0.7
 uvicorn[standard]==0.22.0
 whitenoise==6.5.0
