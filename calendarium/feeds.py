@@ -2,14 +2,14 @@ from datetime import datetime, timedelta
 
 from dateutil.rrule import rrule, DAILY
 from django.conf import settings
-from django.contrib.syndication.views import Feed
+#from django.contrib.syndication.views import Feed
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 
 from . import liturgics
 from .datetools import Calendar
-#from .websub import Feed
+from .websub import Feed
 
 
 class ReadingsFeed(Feed):
