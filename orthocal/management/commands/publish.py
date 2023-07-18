@@ -27,6 +27,4 @@ class Command(BaseCommand):
         })
 
         if not response.ok:
-            logger.error(f'WEBSUB Publish error ({response.status_code}): {response.text}')
-        else:
-            logger.info(f'WEBSUB Publish success ({response.status_code}): {response.text}')
+            raise CommandError(f'WEBSUB Publish error ({response.status_code}): {response.text}')
