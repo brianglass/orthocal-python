@@ -22,8 +22,9 @@ class YearConverter(IntConverter):
     def to_python(self, value):
         year = super().to_python(value)
 
-        if not 1583 <= year <= 4099:
-            raise ValueError('The year is outside a valid range for this application.')
+        # 1583 is OK for Gregorian, but Julian breaks it
+        if not 1584 <= year <= 4099:
+            raise ValueError(f'{year} is outside a valid year range for this application.')
 
         return year
 

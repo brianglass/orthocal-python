@@ -47,6 +47,7 @@ ABBREVIATIONS = {
     'patr':     'Patriarch',
     'abp':      'Archbishop',
     'ch':       'Chapter',
+    'unc':      'Uncovering',
 }
 
 PHONETICS = {

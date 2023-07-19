@@ -104,6 +104,24 @@ class DayAPITestCase(TestCase):
 
         self.assertIn('Nativity of Christ', nativity['feasts'])
 
+    def test_calendar_month_julian_range_error_low(self):
+        url = reverse('api:get_calendar_month', kwargs={
+            'cal': 'julian',
+            'year': 1583,
+            'month': 1,
+        })
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, 404)
+
+    def test_calendar_month_julian_range_error_high(self):
+        url = reverse('api:get_calendar_month', kwargs={
+            'cal': 'julian',
+            'year': 4100,
+            'month': 12,
+        })
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, 404)
+
     def test_errors(self):
         """We shouldn't have any errors in the API."""
 

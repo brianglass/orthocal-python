@@ -111,7 +111,7 @@ def compute_pascha_jdn(year):
 
     # See https://dateutil.readthedocs.io/en/stable/easter.html
     if not 1583 <= year <= 4099:
-        raise ValueError('The year is outside a valid range for this application.')
+        raise ValueError(f'{year} is outside a valid year range for this application.')
 
     dt = easter(year, method=2)
     return gregorian_to_jdn(dt)
