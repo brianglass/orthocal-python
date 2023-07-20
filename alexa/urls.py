@@ -1,5 +1,5 @@
 from django.urls import path
-from django_ask_sdk.skill_adapter import SkillAdapter
+from .skill_adapter import SkillAdapter
 
 from . import skills
 
