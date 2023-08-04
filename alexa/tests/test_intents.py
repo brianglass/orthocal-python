@@ -136,3 +136,18 @@ class IntentTestCase(TestCase):
 
         self.assertIn('The commemoration is for The Meeting', response.response.card.content)
         self.assertTrue(response.response.should_end_session)
+
+    def test_ssml_escaping(self):
+        """SSML should not have illegal characters in it"""
+
+        with open(BASE_DIR / 'data/ssml_escaping_envelope.json') as f:
+            envelope = f.read()
+
+        skill = skills.orthodox_daily_skill
+
+        request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
+        response = skill.invoke(request_envelope=request_envelope, context=None)
+
+        self.assertNotIn(' & ', response.response.output_speech.ssml)
+        self.assertTrue(response.response.should_end_session)
+

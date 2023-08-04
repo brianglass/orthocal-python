@@ -72,6 +72,9 @@ def expand_abbreviations(speech_text):
         else:
             return f'<phoneme alphabet="ipa" ph="{PHONETICS[phonetic.lower()]}">{phonetic}</phoneme>'
 
+    # Escape reserved characters
+    speech_text = re.sub(r'&(?!amp;)', r'and', speech_text)
+
     return abbreviations_re.sub(replace, speech_text)
 
 def day_speech(day):
