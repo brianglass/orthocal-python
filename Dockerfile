@@ -8,7 +8,8 @@ CMD exec newrelic-admin run-program \
 		 uvicorn --host 0.0.0.0 --port $PORT orthocal.asgi:application
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+	pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Precompile to bytecode to reduce warmup time
