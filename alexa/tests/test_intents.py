@@ -150,4 +150,3 @@ class IntentTestCase(TestCase):
 
         self.assertNotIn(' & ', response.response.output_speech.ssml)
         self.assertTrue(response.response.should_end_session)
-

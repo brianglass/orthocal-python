@@ -12,4 +12,5 @@ test:
 	docker run -it -e PORT=8000 -p8000:8000 orthocal ./manage.py test
 
 firebase:
+	firebase use --add orthocal-1d1b9
 	firebase deploy --only hosting
