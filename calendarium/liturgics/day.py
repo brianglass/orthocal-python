@@ -1,7 +1,6 @@
 import logging
 
 from datetime import date, timedelta
-from functools import lru_cache
 
 from asgiref.sync import async_to_sync
 from django.db.models import Q
@@ -16,7 +15,6 @@ from .year import Year
 logger = logging.getLogger(__name__)
 
 
-@lru_cache(maxsize=800)
 class Day:
     """Representation of a liturgical day.
 
