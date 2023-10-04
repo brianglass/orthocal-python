@@ -23,7 +23,7 @@ async def ical(request, cal=Calendar.Gregorian):
     timestamp = timezone.localtime()
     calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
     serialized_calendar = calendar.to_ical()
-    await cache.aset(cal, serialized_calendar, timeout=60*60)
+    await cache.aset(cal, serialized_calendar, timeout=12*60*60)
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
 async def generate_ical(timestamp, cal, build_absolute_uri):
