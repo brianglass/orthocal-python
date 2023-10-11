@@ -62,7 +62,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'compression_middleware.middleware.CompressionMiddleware',  # Supports brotli and others
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -134,6 +133,7 @@ LOGGING = {
         'django.request': {
             'handlers': ['console'],
             'propagate': True,
+            'level': 'DEBUG',
         },
         'alexa': {
             'handlers': ['console'],

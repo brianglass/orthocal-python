@@ -1,3 +1,4 @@
+ASGIMiddlewareStaticFile==0.6.0
 Jinja2==3.1.2               # Typogrify imports this even though we're not using it
 ask_sdk_core==1.19.0
 django-ask-sdk==1.0.0
@@ -13,4 +14,3 @@ python-dateutil==2.8.2
 requests==2.31.0
 typogrify==2.0.7
 uvicorn[standard]==0.23.2
-whitenoise==6.5.0
