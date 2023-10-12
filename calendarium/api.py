@@ -1,3 +1,4 @@
+import functools
 import logging
 
 from datetime import date
@@ -20,6 +21,16 @@ from . import datetools, liturgics, views
 from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
+
+def instrument_endpoint(view):
+    @functools.wraps(view)
+    async def wrapped_view(*args, **kwargs):
+        transaction_name = f"{view.__module__}.{view.__name__}"
+        newrelic.agent.set_transaction_name(transaction_name)
+        return await view(*args, **kwargs)
+
+    return wrapped_view
+
 
 class Renderer(JSONRenderer):
     json_dumps_params = {
@@ -149,7 +160,7 @@ def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
 @api.get('/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
-@newrelic.agent.web_transaction()
+@instrument_endpoint
 async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
     """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
@@ -169,7 +180,7 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
     return day
 
 @api.get('/{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
-@newrelic.agent.web_transaction()
+@instrument_endpoint
 async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> list[DaySchemaLite]:
     """Get information about all the liturgical days for the given calendar and month.
     This endpoint excludes the readings and stories in order to avoid returning 
@@ -187,7 +198,7 @@ async def get_calendar_month(request, cal: Calendar, year: year, month: month) -
     return days
 
 @api.get('/{cal:cal}/', response=DaySchema, summary='Get Today')
-@newrelic.agent.web_transaction()
+@instrument_endpoint
 async def get_calendar_default(request, cal: Calendar):
     """Get information about the current liturgical day for the given calendar.
     The timezone is Pacific Time. The *cal* path parameter should be
@@ -198,7 +209,7 @@ async def get_calendar_default(request, cal: Calendar):
     return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
 
 @api.get('/oembed/calendar/', response=OembedSchema, exclude_none=True)
-@newrelic.agent.web_transaction()
+@instrument_endpoint
 async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxheight: int=2000, format: str='json'):
     """Get an oEmbed response for the given calendar URL. This will return HTML
     code for a full month calendar that can be embedded in a website. The *url* parameter
