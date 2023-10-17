@@ -15,3 +15,4 @@ uvicorn[standard]==0.23.2
 # We can go back to mainline whitenoise once
 # https://github.com/evansd/whitenoise/pull/359 is merged
 whitenoise @ git+https://github.com/Archmonger/whitenoise@asgi-compat
+#whitenoise[brotli]

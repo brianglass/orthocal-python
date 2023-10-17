@@ -61,9 +61,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.cache_control',
@@ -187,6 +187,12 @@ USE_TZ = True
 STATIC_URL = 'media/'
 STATIC_ROOT = BASE_DIR / 'static'
 
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -202,6 +208,8 @@ ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = 'Cookie', 'Accept-Language'
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
+
+WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
 
 try:
     from .local_settings import *
