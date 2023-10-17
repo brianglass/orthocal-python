@@ -4,6 +4,9 @@ docker:
 run:
 	docker run -it -e PORT=8000 -e ALLOWED_HOST='localhost' -p8000:8000 orthocal
 
+uvicorn:
+	uvicorn --reload --host 0.0.0.0 --port 8000 orthocal.asgi:application
+
 deploy:
 	docker tag orthocal:latest gcr.io/orthocal-1d1b9/orthocal:latest
 	docker push gcr.io/orthocal-1d1b9/orthocal:latest
