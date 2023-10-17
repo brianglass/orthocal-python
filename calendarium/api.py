@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 def instrument_endpoint(view):
     @functools.wraps(view)
     async def wrapped_view(*args, **kwargs):
-        transaction_name = f"{view.__module__}.{view.__name__}"
+        transaction_name = f"{view.__module__}:{view.__name__}"
         newrelic.agent.set_transaction_name(transaction_name)
         return await view(*args, **kwargs)
 

@@ -1,3 +1,5 @@
+# This has to be binned to Bullseye until oscrypto is updated
+# See https://github.com/wbond/oscrypto/issues/78
 FROM python:3.11-slim-bullseye
 #FROM python:3.11-slim
 

@@ -57,8 +57,6 @@ class LaunchHandler(AbstractRequestHandler):
         # Make sure we don't have any left over junk from a previous session.
         session.clear()
 
-        logger.debug('Running OrthodoxDailyLaunchHandler.')
-
         today = timezone.localtime()
         day = liturgics.Day(today.year, today.month, today.day)
         day.initialize()
@@ -99,8 +97,6 @@ class DayIntentHandler(AbstractRequestHandler):
         # Make sure we don't have any left over junk from a previous session.
         session.clear()
 
-        logger.debug('Running DayIntentHander.')
-
         if not (day := get_day(handler_input)):
             builder.set_should_end_session(True)
             builder.speak("<p>I didn't understand the date you requested.</p>")
@@ -131,8 +127,6 @@ class CommemorationIntentHandler(AbstractRequestHandler):
 
         # Make sure we don't have any left over junk from a previous session.
         session.clear()
-
-        logger.debug('Running CommemorationIntentHander.')
 
         if not (day := get_day(handler_input)):
             builder.set_should_end_session(True)
@@ -206,8 +200,6 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         # Make sure we don't have any left over junk from a previous session.
         session.clear()
-
-        logger.debug('Running ScripturesIntentHander.')
 
         if not (day := get_day(handler_input)):
             builder.set_should_end_session(True)
@@ -286,8 +278,6 @@ class NextIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         builder = handler_input.response_builder
         session = handler_input.attributes_manager.session_attributes
-
-        logger.debug('Running NextIntentHander.')
 
         if not (current_task := session.get('current_task')):
             try:
