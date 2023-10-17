@@ -12,4 +12,6 @@ python-dateutil==2.8.2
 requests==2.31.0
 typogrify==2.0.7
 uvicorn[standard]==0.23.2
+# We can go back to mainline whitenoise once
+# https://github.com/evansd/whitenoise/pull/359 is merged
 whitenoise @ git+https://github.com/Archmonger/whitenoise@asgi-compat
