@@ -11,11 +11,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import sys
 import zoneinfo
 
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
+
+TESTING = sys.argv[1:2] == ['test']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -208,6 +211,10 @@ ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = 'Cookie', 'Accept-Language'
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
+ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
+
+if TESTING:
+    RATELIMIT_ENABLE = False
 
 WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
 

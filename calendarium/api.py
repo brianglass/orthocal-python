@@ -13,6 +13,8 @@ from django.urls import resolve, reverse
 from django.urls.exceptions import Resolver404
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
+from django_ratelimit.decorators import ratelimit
+from django_ratelimit.exceptions import Ratelimited
 from ninja import Field, NinjaAPI, Schema
 from ninja.renderers import JSONRenderer
 from pydantic import AnyHttpUrl, conint, constr, validator
@@ -21,6 +23,8 @@ from . import datetools, liturgics, views
 from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
+
+BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
 
 def instrument_endpoint(view):
     @functools.wraps(view)
@@ -159,8 +163,17 @@ class OembedSchema(Schema):
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
-@api.get('/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
+@api.exception_handler(Ratelimited)
+def rate_limiter_handler(request, exc):
+    return api.create_response(request, {
+        'error': f'You are allowed a maximum request rate of {BURST_RATE}. '
+                  'Please contact the site administrator if you have any questions.',
+        'url':   f'https://parochianus.blog/contact/',
+    }, status=429)
+
+@api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
+@ratelimit(key='ip', rate=BURST_RATE)
 async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
     """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
@@ -179,8 +192,9 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
 
     return day
 
-@api.get('/{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
+@api.get('{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
 @instrument_endpoint
+@ratelimit(key='ip', rate=BURST_RATE)
 async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> list[DaySchemaLite]:
     """Get information about all the liturgical days for the given calendar and month.
     This endpoint excludes the readings and stories in order to avoid returning 
@@ -197,8 +211,9 @@ async def get_calendar_month(request, cal: Calendar, year: year, month: month) -
 
     return days
 
-@api.get('/{cal:cal}/', response=DaySchema, summary='Get Today')
+@api.get('{cal:cal}/', response=DaySchema, summary='Get Today')
 @instrument_endpoint
+@ratelimit(key='ip', rate=BURST_RATE)
 async def get_calendar_default(request, cal: Calendar):
     """Get information about the current liturgical day for the given calendar.
     The timezone is Pacific Time. The *cal* path parameter should be
@@ -208,7 +223,7 @@ async def get_calendar_default(request, cal: Calendar):
     dt = timezone.localtime()
     return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
 
-@api.get('/oembed/calendar/', response=OembedSchema, exclude_none=True)
+@api.get('oembed/calendar/', response=OembedSchema, exclude_none=True)
 @instrument_endpoint
 async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxheight: int=2000, format: str='json'):
     """Get an oEmbed response for the given calendar URL. This will return HTML

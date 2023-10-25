@@ -6,6 +6,7 @@ run:
 
 uvicorn:
 	uvicorn --reload --host 0.0.0.0 --port 8000 orthocal.asgi:application
+	#uvicorn --workers 3 --host 0.0.0.0 --port 8000 orthocal.asgi:application
 
 deploy:
 	docker tag orthocal:latest gcr.io/orthocal-1d1b9/orthocal:latest
