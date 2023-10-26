@@ -7,7 +7,8 @@ from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
 
 def get_cdn_max_age():
-    # Everything expires at midnight for the CDN.    now = timezone.localtime()
+    # Everything expires at midnight for the CDN.
+    now = timezone.localtime()
     midnight = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
     return int((midnight - now).total_seconds())
 
