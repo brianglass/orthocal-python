@@ -5,7 +5,7 @@ run:
 	docker run -it -e PORT=8000 -e ALLOWED_HOST='localhost' -p8000:8000 orthocal
 
 uvicorn:
-	uvicorn --reload --host 0.0.0.0 --port 8000 orthocal.asgi:application
+	uvicorn --reload --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
 	#uvicorn --workers 3 --host 0.0.0.0 --port 8000 orthocal.asgi:application
 
 deploy:
