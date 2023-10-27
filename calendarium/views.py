@@ -25,7 +25,7 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         request.session['cal'] = new_default
 
     if not cal:
-        cal = request.session.setdefault('cal', 'gregorian')
+        cal = request.session.get('cal', 'gregorian')
 
     cal = cal_converter.to_python(cal)
 
@@ -54,7 +54,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
         request.session['cal'] = new_default
 
     if not cal:
-        cal = request.session.setdefault('cal', 'gregorian')
+        cal = request.session.get('cal', 'gregorian')
 
     cal = cal_converter.to_python(cal)
 
