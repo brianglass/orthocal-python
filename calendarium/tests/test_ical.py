@@ -1,4 +1,5 @@
-from datetime import datetime
+import datetime
+
 from urllib.parse import urljoin, urlparse
 
 import icalendar
@@ -54,7 +55,7 @@ class CalendarTest(TestCase):
         def build_absolute_uri(url):
             return urljoin('http://testserver', url)
 
-        timestamp = datetime(2022, 1, 7, tzinfo=timezone.utc)
+        timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
         cal = await generate_ical(timestamp, Calendar.Gregorian, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt.date() == timestamp.date():
@@ -70,7 +71,7 @@ class CalendarTest(TestCase):
         def build_absolute_uri(url):
             return urljoin('http://testserver', url)
 
-        timestamp = datetime(2022, 1, 7, tzinfo=timezone.utc)
+        timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
         cal = await generate_ical(timestamp, Calendar.Julian, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt.date() == timestamp.date():

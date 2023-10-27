@@ -8,11 +8,11 @@ class CalendarConverter:
     regex = CAL_RE
 
     def to_python(self, value):
-        if value in ('gregorian', 'oca'):
-            return Calendar.Gregorian
-
-        if value in ('julian', 'rocor'):
-            return Calendar.Julian
+        match value:
+            case 'gregorian' | 'oca':
+                return Calendar.Gregorian
+            case 'julian' | 'rocor':
+                return Calendar.Julian
 
     def to_url(self, value):
         return value

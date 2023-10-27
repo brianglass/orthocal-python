@@ -21,10 +21,13 @@ cal_converter = CalendarConverter()
 
 
 async def readings_view(request, cal=None, year=None, month=None, day=None):
+    if new_default := request.GET.get('set_calendar'):
+        request.session['cal'] = new_default
+
     if not cal:
-        converter = CalendarConverter()
-        slug = request.COOKIES.get('__session', 'gregorian')
-        cal = converter.to_python(slug)
+        cal = request.session.setdefault('cal', 'gregorian')
+
+    cal = cal_converter.to_python(cal)
 
     if year and month and day:
         try:
@@ -47,9 +50,13 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     })
 
 async def calendar_view(request, cal=None, year=None, month=None):
+    if new_default := request.GET.get('set_calendar'):
+        request.session['cal'] = new_default
+
     if not cal:
-        slug = request.COOKIES.get('__session', 'gregorian')
-        cal = cal_converter.to_python(slug)
+        cal = request.session.setdefault('cal', 'gregorian')
+
+    cal = cal_converter.to_python(cal)
 
     if not year or not month:
         now = timezone.localtime()
@@ -67,10 +74,8 @@ async def calendar_view(request, cal=None, year=None, month=None):
         'next_month': first_day + relativedelta(months=1),
     })
 
-async def calendar_embed_view(request, cal=None, year=None, month=None):
-    if not cal:
-        slug = request.COOKIES.get('__session', 'gregorian')
-        cal = cal_converter.to_python(slug)
+async def calendar_embed_view(request, cal='gregorian', year=None, month=None):
+    cal = cal_converter.to_python(cal)
 
     if not year or not month:
         now = timezone.localtime()

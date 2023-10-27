@@ -12,10 +12,6 @@ from ..datetools import Calendar
 class TestReadingsView(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    # reset cookies after each test
-    def tearDown(self):
-        self.client.cookies = SimpleCookie()
-
     def test_gregorian_default(self):
         now = timezone.localtime()
         url = reverse('index')
@@ -25,9 +21,17 @@ class TestReadingsView(TestCase):
         self.assertEqual(response.context['cal'], Calendar.Gregorian)
 
     def test_julian_default(self):
+        """Pages should default correct calendar after sending get_calendar param."""
+        url = reverse('readings', kwargs={
+            'cal': 'julian',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+        response = self.client.get(f'{url}?set_calendar=julian')
+
         now = timezone.localtime()
         url = reverse('index')
-        self.client.cookies = SimpleCookie({'__session': 'julian'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['date'], now.date())
@@ -60,10 +64,6 @@ class TestReadingsView(TestCase):
 class TestCalendarView(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    # reset cookies after each test
-    def tearDown(self):
-        self.client.cookies = SimpleCookie()
-
     def test_gregorian_default(self):
         now = timezone.localtime()
         this_month = date(now.year, now.month, 1)
@@ -75,10 +75,18 @@ class TestCalendarView(TestCase):
         self.assertEqual(response.context['day'].pyear.calendar, Calendar.Gregorian)
 
     def test_julian_default(self):
+        """Pages should default correct calendar after sending get_calendar param."""
+        url = reverse('readings', kwargs={
+            'cal': 'julian',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+        response = self.client.get(f'{url}?set_calendar=julian')
+
         now = timezone.localtime()
         this_month = date(now.year, now.month, 1)
         url = reverse('calendar-default')
-        self.client.cookies = SimpleCookie({'__session': 'julian'})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['this_month'], this_month)

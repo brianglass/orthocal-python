@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.cache_control',
@@ -107,6 +108,10 @@ DATABASES = {
         }
     }
 }
+
+# This is the only cookie Firebase allows
+SESSION_COOKIE_NAME = '__session'
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 CACHES = {
     "default": {
@@ -209,7 +214,7 @@ ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
 ORTHOCAL_ICAL_TTL = 24  # hours
 ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
 ORTHOCAL_MAX_AGE = 60 * 60
-ORTHOCAL_VARY_HEADERS = 'Cookie', 'Accept-Language'
+ORTHOCAL_VARY_HEADERS = ['Accept-Language']
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
 

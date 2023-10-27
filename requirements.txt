@@ -4,7 +4,7 @@ django-ask-sdk==1.0.0
 django-cors-headers==4.2.0
 django-fullurl==1.4
 django-ninja==0.22.2
-django==4.2.6
+django==5.0b1
 icalendar==5.0.10
 jdcal==1.4.1
 newrelic==9.1.0
