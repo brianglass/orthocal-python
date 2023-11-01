@@ -106,11 +106,12 @@ DATABASES = {
             # scriptures ingested each time we run tests.
             'NAME': BASE_DIR / 'test_db.sqlite3',
         }
-    }
+    },
 }
 
 # This is the only cookie Firebase allows
 SESSION_COOKIE_NAME = '__session'
+SESSION_COOKIE_AGE = 4 * 7 * 24 * 60 * 60  # 4 weeks
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 CACHES = {

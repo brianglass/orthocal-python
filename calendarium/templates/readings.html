@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load typogrify_tags %}
+{% load fullurl %}
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
@@ -9,6 +10,8 @@
 	{% else %}
 		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date }}.">
 	{% endif %}
+
+	<link rel="canonical" href="{% fullurl "readings" cal=cal year=date.year month=date.month day=date.day %}" />
 {% endblock %}
 
 {% block extra_nav %}
