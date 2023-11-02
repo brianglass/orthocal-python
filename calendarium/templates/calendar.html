@@ -35,9 +35,9 @@
 		for (var i = 0; i < radios.length; i++) {
 			radios[i].addEventListener('change', function() {
 				if (this.value == 'julian') {
-					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}?set_calendar=julian';
+					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}';
 				}else{
-					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}?set_calendar=gregorian';
+					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}';
 				}
 			});
 		}

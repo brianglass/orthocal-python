@@ -21,13 +21,12 @@ cal_converter = CalendarConverter()
 
 
 async def readings_view(request, cal=None, year=None, month=None, day=None):
-    if new_default := request.GET.get('set_calendar'):
-        request.session['cal'] = new_default
-
-    if not cal:
+    if cal:
+        cal = cal_converter.to_python(cal)
+        if cal != request.session.get('cal', 'gregorian'):
+            request.session['cal'] = cal
+    else:
         cal = request.session.get('cal', 'gregorian')
-
-    cal = cal_converter.to_python(cal)
 
     if year and month and day:
         try:
@@ -50,13 +49,12 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     })
 
 async def calendar_view(request, cal=None, year=None, month=None):
-    if new_default := request.GET.get('set_calendar'):
-        request.session['cal'] = new_default
-
-    if not cal:
+    if cal:
+        cal = cal_converter.to_python(cal)
+        if cal != request.session.get('cal', 'gregorian'):
+            request.session['cal'] = cal
+    else:
         cal = request.session.get('cal', 'gregorian')
-
-    cal = cal_converter.to_python(cal)
 
     if not year or not month:
         now = timezone.localtime()
