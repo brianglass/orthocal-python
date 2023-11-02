@@ -21,14 +21,14 @@ class TestReadingsView(TestCase):
         self.assertEqual(response.context['cal'], Calendar.Gregorian)
 
     def test_julian_default(self):
-        """Pages should default correct calendar after sending get_calendar param."""
+        """Pages should default to Julian after visiting a Julian page."""
         url = reverse('readings', kwargs={
             'cal': 'julian',
             'year': 2022,
             'month': 1,
             'day': 7,
         })
-        response = self.client.get(f'{url}?set_calendar=julian')
+        response = self.client.get(url)
 
         now = timezone.localtime()
         url = reverse('index')
@@ -75,14 +75,14 @@ class TestCalendarView(TestCase):
         self.assertEqual(response.context['day'].pyear.calendar, Calendar.Gregorian)
 
     def test_julian_default(self):
-        """Pages should default correct calendar after sending get_calendar param."""
+        """Pages should default to Julian after visiting a Julian page."""
         url = reverse('readings', kwargs={
             'cal': 'julian',
             'year': 2022,
             'month': 1,
             'day': 7,
         })
-        response = self.client.get(f'{url}?set_calendar=julian')
+        response = self.client.get(url)
 
         now = timezone.localtime()
         this_month = date(now.year, now.month, 1)

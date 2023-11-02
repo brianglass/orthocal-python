@@ -25,6 +25,10 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         cal = cal_converter.to_python(cal)
         if cal != request.session.get('cal', 'gregorian'):
             request.session['cal'] = cal
+
+        # Don't send vary on cookie header when we have an explicit cal.
+        # In this case, the session does not actually impact the content.
+        request.session.accessed = False
     else:
         cal = request.session.get('cal', 'gregorian')
 
@@ -53,6 +57,10 @@ async def calendar_view(request, cal=None, year=None, month=None):
         cal = cal_converter.to_python(cal)
         if cal != request.session.get('cal', 'gregorian'):
             request.session['cal'] = cal
+
+        # Don't send vary on cookie header when we have an explicit cal.
+        # In this case, the session does not actually impact the content.
+        request.session.accessed = False
     else:
         cal = request.session.get('cal', 'gregorian')
 
