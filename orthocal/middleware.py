@@ -19,14 +19,14 @@ def cache_control(get_response):
         async def middleware(request):
             cdn_max_age = get_cdn_max_age()
             response = await get_response(request)
-            patch_cache_control(response, public=True, max_age=settings.ORTHOCAL_MAX_AGE, s_maxage=cdn_max_age)
+            patch_cache_control(response, public=True, s_maxage=cdn_max_age)
             patch_vary_headers(response, settings.ORTHOCAL_VARY_HEADERS)
             return response
     else:
         def middleware(request):
             cdn_max_age = get_cdn_max_age()
             response = get_response(request)
-            patch_cache_control(response, public=True, max_age=settings.ORTHOCAL_MAX_AGE, s_maxage=cdn_max_age)
+            patch_cache_control(response, public=True, s_maxage=cdn_max_age)
             patch_vary_headers(response, settings.ORTHOCAL_VARY_HEADERS)
             return response
 

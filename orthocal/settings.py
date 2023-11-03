@@ -37,11 +37,27 @@ DEBUG = False
 if allowed_host := os.environ.get('ALLOWED_HOST'):
     ALLOWED_HOSTS = [allowed_host]
 
+TIME_ZONE = os.environ.get('TZ', 'America/Los_Angeles')
+
 # This is because we're sitting behind the Firebase proxy. If this is not run
 # behind a proxy, these should be disabled.
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
 SECURE_PROXY_SSL_HEADER = 'HTTP_X_FORWARDED_PROTO', 'https'
+
+# Orthocal specific settings
+ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
+ORTHOCAL_ICAL_TTL = 24  # hours
+ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
+ORTHOCAL_MAX_AGE = 60 * 60
+ORTHOCAL_VARY_HEADERS = ['Accept-Language']
+ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
+ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
+
+if TESTING:
+    RATELIMIT_ENABLE = False
+
+WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
 
 # Application definition
 
@@ -65,12 +81,14 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.cache_control',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'orthocal.urls'
@@ -117,8 +135,11 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        'TIMEOUT': ORTHOCAL_MAX_AGE,
     }
 }
+
+CACHE_MIDDLEWARE_SECONDS = ORTHOCAL_MAX_AGE
 
 LOGGING = {
     'version': 1,
@@ -182,8 +203,6 @@ LANGUAGES = (
 )
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = os.environ.get('TZ', 'America/Los_Angeles')
-
 USE_I18N = True
 USE_L10N = True
 
@@ -210,19 +229,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 NINJA_DOCS_VIEW = 'redoc'
-
-ORTHOCAL_ICAL_TZ = zoneinfo.ZoneInfo(TIME_ZONE)
-ORTHOCAL_ICAL_TTL = 24  # hours
-ORTHOCAL_PUBLIC_URL = os.environ.get('BASE_URL', 'https://orthocal.info')
-ORTHOCAL_MAX_AGE = 60 * 60
-ORTHOCAL_VARY_HEADERS = ['Accept-Language']
-ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
-ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
-
-if TESTING:
-    RATELIMIT_ENABLE = False
-
-WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
 
 try:
     from .local_settings import *
