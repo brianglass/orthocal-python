@@ -9,13 +9,13 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils import timezone
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_control
 
 from . import liturgics
 from .datetools import Calendar
 
 
-@cache_page(settings.ORTHOCAL_ICAL_TTL*60*60)
+@cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 async def ical(request, cal=Calendar.Gregorian):
     timestamp = timezone.localtime()
     calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
