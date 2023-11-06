@@ -6,6 +6,7 @@ import icalendar
 
 from dateutil.rrule import rrule, DAILY
 from django.conf import settings
+from django.core.cache import cache
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils import timezone
@@ -17,9 +18,14 @@ from .datetools import Calendar
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 async def ical(request, cal=Calendar.Gregorian):
+     # We cache manually because cache_page doesnt't support async functions
+     if serialized_calendar := await cache.aget(cal):
+         return HttpResponse(serialized_calendar, content_type='text/calendar')
+
     timestamp = timezone.localtime()
     calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
     serialized_calendar = calendar.to_ical()
+    await cache.aset(cal, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
 async def generate_ical(timestamp, cal, build_absolute_uri):
