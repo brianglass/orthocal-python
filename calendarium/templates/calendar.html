@@ -34,10 +34,11 @@
 		var radios = document.getElementsByName('calendar');
 		for (var i = 0; i < radios.length; i++) {
 			radios[i].addEventListener('change', function() {
+				var t = new Date().getTime();
 				if (this.value == 'julian') {
-					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}';
+					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}?t=' + t;
 				}else{
-					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}';
+					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}?t=' + t;
 				}
 			});
 		}
