@@ -1,7 +1,7 @@
 Jinja2==3.1.2               # Typogrify imports this even though we're not using it
 ask_sdk_core==1.19.0
 django-ask-sdk==1.0.0
-django-cors-headers==4.2.0
+django-cors-headers==4.3.0
 django-fullurl==1.4
 django-ninja==0.22.2
 django==5.0b1
@@ -11,7 +11,7 @@ newrelic==9.1.0
 python-dateutil==2.8.2
 requests==2.31.0
 typogrify==2.0.7
-uvicorn[standard]==0.23.2
+uvicorn[standard]==0.24.0.post1
 # We can go back to mainline whitenoise once
 # https://github.com/evansd/whitenoise/pull/359 is merged
 whitenoise @ git+https://github.com/Archmonger/whitenoise@asgi-compat
