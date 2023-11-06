@@ -101,7 +101,7 @@ class Pericope(models.Model):
             return self.passage
 
     def get_passage(self, language='en'):
-        match = re.match('Composite (\d+)', self.display)
+        match = re.match(r'Composite (\d+)', self.display)
         if match:
             return Composite.objects.filter(
                     composite_num=match.group(1)

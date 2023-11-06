@@ -133,10 +133,14 @@ SESSION_COOKIE_AGE = 4 * 7 * 24 * 60 * 60  # 4 weeks
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+    'default': {
+        # We use a file base cache so that uvicorn workers can share the cache.
+        # Note also that Cloud Run's filesystem is an in-memory filesystem, so
+        # should be fast.
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'TIMEOUT': ORTHOCAL_MAX_AGE,
-    }
+        'LOCATION': BASE_DIR / 'default-cache',
+    },
 }
 
 CACHE_MIDDLEWARE_SECONDS = ORTHOCAL_MAX_AGE

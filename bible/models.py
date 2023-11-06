@@ -8,10 +8,10 @@ from django.db.models import Q
 
 from . import books
 
-ref_re   = re.compile('(?:([\w\s]+)\s+)?(\d.*)')
+ref_re   = re.compile(r'(?:([\w\s]+)\s+)?(\d.*)')
 # matches patterns like 26:40-27:2. In this example, group 1 is 26, group 2 is
 # 40, group 3 is 27, and group 4 is 2.
-range_re = re.compile('(\d+)(?:[\.:](\d+))?(?:-(?:(\d+)[\.:])?(\d+))?')
+range_re = re.compile(r'(\d+)(?:[\.:](\d+))?(?:-(?:(\d+)[\.:])?(\d+))?')
 
 
 class ReferenceParseError(Exception):
@@ -23,7 +23,7 @@ class VerseManager(models.Manager):
         conditionals = []
         book = ''
 
-        for passage in re.split('\s*;\s*', reference):
+        for passage in re.split(r'\s*;\s*', reference):
 
             # Parse out the book and verse range
             m = ref_re.match(passage)
@@ -33,7 +33,7 @@ class VerseManager(models.Manager):
 
             # Iterate over the verse ranges
             previous_chapter = ''
-            for verse_range in re.split(',\s*', specification):
+            for verse_range in re.split(r',\s*', specification):
 
                 # Parse out the range of verses
                 m = range_re.match(verse_range)

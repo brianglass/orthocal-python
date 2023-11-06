@@ -8,7 +8,7 @@ from calendarium.datetools import FastLevels
 
 MAX_SPEECH_LENGTH = 8000
 
-ref_re = re.compile('(\d*)\s*([\w\s]+)\s+(\d+)')
+ref_re = re.compile(r'(\d*)\s*([\w\s]+)\s+(\d+)')
 ssml_re = re.compile(r'<(?!p\b)(.*?)>(.*?)</\1>')
 
 

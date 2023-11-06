@@ -14,3 +14,4 @@ orthocal/local_settings.py
 skill-package
 .coverage
 static
+cache
