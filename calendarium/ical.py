@@ -14,17 +14,21 @@ from django.views.decorators.cache import cache_control
 
 from . import liturgics
 from .datetools import Calendar
+from orthocal.converters import CalendarConverter
 
+cal_converter = CalendarConverter()
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 async def ical(request, cal=Calendar.Gregorian):
-    if serialized_calendar := await cache.aget(cal):
-        return HttpResponse(serialized_calendar, content_type='text/calendar')
+    cal = cal_converter.to_python(cal)
+    key = f'ical-feed-{cal}'
 
-    timestamp = timezone.localtime()
-    calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
-    serialized_calendar = calendar.to_ical()
-    await cache.aset(cal, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+    if not (serialized_calendar := await cache.aget(key)):
+        timestamp = timezone.localtime()
+        calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
+        serialized_calendar = calendar.to_ical()
+        await cache.aset(key, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
 async def generate_ical(timestamp, cal, build_absolute_uri):
