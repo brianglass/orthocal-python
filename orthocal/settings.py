@@ -140,6 +140,9 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'TIMEOUT': ORTHOCAL_MAX_AGE,
         'LOCATION': BASE_DIR / 'default-cache',
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+        },
     },
 }
 
