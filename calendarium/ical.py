@@ -1,3 +1,4 @@
+import logging
 import zoneinfo
 
 from datetime import date, datetime, timedelta
@@ -14,13 +15,11 @@ from django.views.decorators.cache import cache_control
 
 from . import liturgics
 from .datetools import Calendar
-from orthocal.converters import CalendarConverter
 
-cal_converter = CalendarConverter()
+logger = logging.getLogger(__name__)
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 async def ical(request, cal=Calendar.Gregorian):
-    cal = cal_converter.to_python(cal)
     key = f'ical-feed-{cal}'
 
     if not (serialized_calendar := await cache.aget(key)):

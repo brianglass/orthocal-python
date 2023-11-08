@@ -12,25 +12,22 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
-from orthocal.converters import CalendarConverter
 from . import liturgics, models
 from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
-cal_converter = CalendarConverter()
 
 
 async def readings_view(request, cal=None, year=None, month=None, day=None):
     if cal:
-        cal = cal_converter.to_python(cal)
-        if cal != request.session.get('cal', 'gregorian'):
+        if cal != request.session.get('cal', Calendar.Gregorian):
             request.session['cal'] = cal
 
         # Don't send vary on cookie header when we have an explicit cal.
         # In this case, the session does not actually impact the content.
         request.session.accessed = False
     else:
-        cal = request.session.get('cal', 'gregorian')
+        cal = request.session.get('cal', Calendar.Gregorian)
 
     if year and month and day:
         try:
@@ -54,15 +51,14 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
 
 async def calendar_view(request, cal=None, year=None, month=None):
     if cal:
-        cal = cal_converter.to_python(cal)
-        if cal != request.session.get('cal', 'gregorian'):
+        if cal != request.session.get('cal', Calendar.Gregorian):
             request.session['cal'] = cal
 
         # Don't send vary on cookie header when we have an explicit cal.
         # In this case, the session does not actually impact the content.
         request.session.accessed = False
     else:
-        cal = request.session.get('cal', 'gregorian')
+        cal = request.session.get('cal', Calendar.Gregorian)
 
     if not year or not month:
         now = timezone.localtime()
@@ -80,9 +76,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
         'next_month': first_day + relativedelta(months=1),
     })
 
-async def calendar_embed_view(request, cal='gregorian', year=None, month=None):
-    cal = cal_converter.to_python(cal)
-
+async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=None):
     if not year or not month:
         now = timezone.localtime()
         year, month = now.year, now.month
