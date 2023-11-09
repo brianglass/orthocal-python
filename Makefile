@@ -2,11 +2,11 @@ docker:
 	docker build -t orthocal .
 
 run:
-	docker run -it -e PORT=8000 -e ALLOWED_HOST='localhost' -p8000:8000 orthocal
+	docker run -it -e PORT=8000 -e ALLOWED_HOST='localhost' -e WEB_CONCURRENCY=2 -p8000:8000 orthocal
 
 uvicorn:
 	uvicorn --reload --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
-	#uvicorn --workers 3 --host 0.0.0.0 --port 8000 orthocal.asgi:application
+	# uvicorn --workers 2 --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
 
 deploy:
 	docker tag orthocal:latest gcr.io/orthocal-1d1b9/orthocal:latest

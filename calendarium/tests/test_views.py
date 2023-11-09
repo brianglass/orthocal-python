@@ -82,7 +82,7 @@ class TestCalendarView(TestCase):
             'month': 1,
             'day': 7,
         })
-        response = self.client.get(url)
+        response = self.client.get(f'{url}?foo')  # We send an argument to bypass caching
 
         now = timezone.localtime()
         this_month = date(now.year, now.month, 1)
