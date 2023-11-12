@@ -45,18 +45,14 @@ def cache_control(get_response):
 def set_request_queueing(request):
     logger.debug(request.headers)
 
-    if transaction := newrelic.agent.current_transaction():
-        logger.debug('Got current Newrelic transaction.')
-    else:
-        logger.debug('No Newrelic transaction available.')
+    transaction = newrelic.agent.current_transaction()
+    x_timer = request.META.get('HTTP_X_TIMER')
 
-    #if x_timer := request.headers.get('X-Timer'):
-    if x_timer := request.META.get('HTTP_X_TIMER'):
+    if x_timer and transaction:
         fields = x_timer.split(',')
         try:
-            request_start = float(fields[0][1:])
-            request.META['HTTP_X_REQUEST_START'] = request_start
-            logger.debug(f'Got request start: {request_start}.')
+            transaction.queue_start = float(fields[0][1:])
+            logger.debug('Setting Newrelic Queue Start to {transaction.queue_start}')
         except ValueError:
             pass
 
