@@ -234,8 +234,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-NINJA_DOCS_VIEW = 'redoc'
-
 try:
     from .local_settings import *
 except ImportError:

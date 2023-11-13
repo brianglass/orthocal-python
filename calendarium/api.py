@@ -13,9 +13,10 @@ from django.urls import resolve, reverse
 from django.urls.exceptions import Resolver404
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
-from ninja import Field, NinjaAPI, Schema
+from ninja import Field, NinjaAPI, Redoc, Schema
 from ninja.renderers import JSONRenderer
-from pydantic import AnyHttpUrl, conint, constr, validator
+from ninja.responses import NinjaJSONEncoder
+from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar
@@ -34,7 +35,16 @@ def instrument_endpoint(view):
     return wrapped_view
 
 
+class Encoder(NinjaJSONEncoder):
+    def default(self, o):
+        if isinstance(o, AnyUrl):
+            return str(o)
+
+        return super().default(o)
+
+
 class Renderer(JSONRenderer):
+    encoder_class = Encoder
     json_dumps_params = {
             'indent': 4,
             'ensure_ascii': False,
@@ -47,6 +57,7 @@ class API(NinjaAPI):
 api = API(
     urls_namespace='api',
     renderer=Renderer(),
+    docs=Redoc(),
     title='Orthocal API',
     version='1.1',
     docs_url='/docs/',
@@ -144,11 +155,11 @@ class OembedSchema(Schema):
     version: str
     title: str = None
     author_name: str = None
-    author_url: str = None
+    author_url: AnyHttpUrl = None
     provider_name: str = None
     provider_url: str = None
     cache_age: int = None
-    thumbnail_url: str = None
+    thumbnail_url: AnyHttpUrl = None
     thumbnail_width: int = None
     thumbnail_height: int = None
     width: int
