@@ -53,6 +53,7 @@ ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = ['Accept-Language']
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
+ORTHOCAL_REVISION = os.environ.get('K_REVISION', 'orthocal-dev')
 
 if TESTING:
     RATELIMIT_ENABLE = False
