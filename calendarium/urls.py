@@ -30,6 +30,5 @@ urlpatterns = [
     path('calendar-embed/<cal:cal>/<year:year>/<month:month>/', views.calendar_embed_view, name='calendar-embed'),
     path('calendar-embed/', views.calendar_embed_view, name='calendar-embed-default'),
     path('calendar/', views.calendar_view, name='calendar-default'),
-    path('lectionary/', views.lectionary, name='lectionary'),
     path('', views.readings_view, name='index'),
 ]

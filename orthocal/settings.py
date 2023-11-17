@@ -73,11 +73,12 @@ INSTALLED_APPS = [
     'ninja',
 
     # internal apps
-    'orthocal',
     'bible',
     'calendarium',
     'alexa',
     'commemorations',
+    # This should be last since apps.OrthocalConfig.ready() enables the startup probe.
+    'orthocal',  
 ]
 
 MIDDLEWARE = [

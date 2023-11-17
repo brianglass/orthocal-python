@@ -1,5 +1,4 @@
 import calendar
-import csv
 import logging
 
 from datetime import date, timedelta
@@ -92,27 +91,6 @@ async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=
         'previous_month': first_day - relativedelta(months=1),
         'next_month': first_day + relativedelta(months=1),
     })
-
-async def lectionary(request):
-    response = HttpResponse(
-        content_type='text/csv',
-        headers={'Content-Disposition': 'attachment; filename="lectionary.csv"'},
-    )
-    sources = models.Reading.objects.filter(pdist__lt=700).values_list('source', flat=True).distinct()
-
-    fieldnames = ['Pascha Distance', 'Day Name'] + [s async for s in sources]
-    writer = csv.DictWriter(response, fieldnames=fieldnames)
-    writer.writeheader()
-
-    queryset = models.Reading.objects.filter(pdist__lt=700).select_related('pericope')
-    async for r in queryset.order_by('pdist', 'ordering'):
-        writer.writerow({
-            'Pascha Distance': r.pdist,
-            'Day Name': r.day_name,
-            r.source: f'{r.pericope.display} ({r.desc})' if r.desc else r.pericope.display,
-        })
-
-    return response
 
 async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, full_urls=False):
     class LiturgicalCalendar(calendar.HTMLCalendar):

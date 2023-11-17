@@ -18,8 +18,7 @@ from django.urls import include, path, register_converter, reverse
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
-from . import converters
-from . import sitemaps
+from . import converters, sitemaps, views
 
 register_converter(converters.CalendarConverter, 'cal')
 register_converter(converters.YearConverter, 'year')
@@ -44,4 +43,5 @@ urlpatterns = [
     path('', include('alexa.urls')),
     path('', include('calendarium.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('startup/', views.startup_probe),
 ]
