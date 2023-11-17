@@ -34,8 +34,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'Twas Brillig and the Slithy Toves')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-if allowed_host := os.environ.get('ALLOWED_HOST'):
-    ALLOWED_HOSTS = [allowed_host]
+if allowed_hosts := os.environ.get('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts.split(',')]
 
 TIME_ZONE = os.environ.get('TZ', 'America/Los_Angeles')
 
