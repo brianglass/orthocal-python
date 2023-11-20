@@ -2199,7 +2199,7 @@
         "service_note": "",
         "saint": "",
         "fast": 1,
-        "fast_exception": 1,
+        "fast_exception": 2,
         "flag": 0
     }
 },
@@ -13808,7 +13808,7 @@
         "service_note": "",
         "saint": "",
         "fast": 0,
-        "fast_exception": 2,
+        "fast_exception": 0,
         "flag": 0
     }
 },
