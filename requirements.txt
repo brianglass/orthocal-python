@@ -7,7 +7,7 @@ django-ninja==1.0rc
 django==5.0b1
 icalendar==5.0.11
 jdcal==1.4.1
-newrelic==9.1.1
+newrelic==9.2.0
 python-dateutil==2.8.2
 requests==2.31.0
 typogrify==2.0.7
