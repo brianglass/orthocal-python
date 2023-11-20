@@ -1,7 +1,7 @@
 Jinja2==3.1.2               # Typogrify imports this even though we're not using it
 ask_sdk_core==1.19.0
 django-ask-sdk==1.0.0
-django-cors-headers==4.3.0
+django-cors-headers==4.3.1
 django-fullurl==1.4
 django-ninja==1.0rc
 django==5.0b1
