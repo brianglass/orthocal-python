@@ -102,7 +102,9 @@ class Pericope(models.Model):
 
     def get_passage(self, language='en'):
         match = re.match(r'Composite (\d+)', self.display)
-        if match:
+
+        # for some reason we are missing composites 17 and 18
+        if match and match.group(1) not in ('17', '18'):
             return Composite.objects.filter(
                     composite_num=match.group(1)
             ).annotate(
