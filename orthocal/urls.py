@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path, register_converter, reverse
-from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
 from . import converters, sitemaps, views
@@ -34,11 +33,11 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('alexa/', TemplateView.as_view(template_name='alexa.html'), name='alexa'),
-    path('api/', TemplateView.as_view(template_name='api.html'), name='api'),
+    path('alexa/', views.alexa, name='alexa'),
+    path('api/', views.api, name='api'),
     path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds')),
-    path('feeds/', TemplateView.as_view(template_name='feeds.html'), name='feeds'),
-    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('feeds/', views.feeds, name='feeds'),
+    path('about/', views.about, name='about'),
     path('api/', include('calendarium.api_urls')),
     path('', include('alexa.urls')),
     path('', include('calendarium.urls')),
