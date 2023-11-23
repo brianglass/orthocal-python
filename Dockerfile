@@ -9,9 +9,6 @@ ENV NEW_RELIC_CONFIG_FILE=/orthocal-secrets/newrelic.ini
 CMD exec newrelic-admin run-program \
 		 uvicorn --lifespan off --host 0.0.0.0 --port $PORT orthocal.asgi:application
 
-# enables pip to install from git repos
-RUN apt-get update && apt-get install -y git
-
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
 	pip install --no-cache-dir -r requirements.txt

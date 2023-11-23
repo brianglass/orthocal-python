@@ -23,10 +23,10 @@ def get_etag(request, *args, **kwargs):
 etag = etag(get_etag)
 
 urlpatterns = [
-    path('readings/<cal:cal>/<year:year>/<month:month>/<day:day>/', etag(views.readings_view), name='readings'),
+    path('readings/<cal:cal>/<year:year>/<month:month>/<day:day>/', views.readings_view, name='readings'),
     # Eventually we can remove this redirect, but we're still getting traffic here from crawlers.
     path('calendar/<cal:cal>/<year:year>/<month:month>/<day:day>/', RedirectView.as_view(permanent=True, pattern_name='readings')),
-    path('calendar/<cal:cal>/<year:year>/<month:month>/', etag(cache(views.calendar_view)), name='calendar'),
+    path('calendar/<cal:cal>/<year:year>/<month:month>/', cache(views.calendar_view), name='calendar'),
     path('calendar-embed/<cal:cal>/<year:year>/<month:month>/', views.calendar_embed_view, name='calendar-embed'),
     path('calendar-embed/', views.calendar_embed_view, name='calendar-embed-default'),
     path('calendar/', views.calendar_view, name='calendar-default'),
