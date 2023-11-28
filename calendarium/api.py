@@ -1,9 +1,6 @@
-import functools
 import logging
 
 from datetime import date
-
-import newrelic.agent
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -20,20 +17,11 @@ from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar
+from orthocal.decorators import instrument_endpoint
 
 logger = logging.getLogger(__name__)
 
 BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
-
-def instrument_endpoint(view):
-    @functools.wraps(view)
-    async def wrapped_view(*args, **kwargs):
-        transaction_name = f"{view.__module__}:{view.__name__}"
-        newrelic.agent.set_transaction_name(transaction_name)
-        return await view(*args, **kwargs)
-
-    return wrapped_view
-
 
 class Encoder(NinjaJSONEncoder):
     def default(self, o):
