@@ -13,5 +13,6 @@ orthocal/local_settings.py
 .ask
 skill-package
 .coverage
+.firebase
 static
-cache
+default-cache

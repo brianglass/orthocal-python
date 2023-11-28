@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 import sys
+import uuid
 import zoneinfo
 
 from pathlib import Path
@@ -53,7 +54,7 @@ ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = ['Accept-Language']
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
-ORTHOCAL_REVISION = os.environ.get('K_REVISION', 'orthocal-dev')
+ORTHOCAL_REVISION = os.environ.get('K_REVISION', str(uuid.uuid4()))
 
 if TESTING:
     RATELIMIT_ENABLE = False

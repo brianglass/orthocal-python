@@ -7,7 +7,6 @@ from bible.parse import parse_usfx
 def load_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
 
-    # for verse in parse_usfx('data/engDRA_usfx.xml'):
     for verse in parse_usfx('data/eng-kjv_usfx.xml'):
         Verse.objects.create(language='en', **verse)
 

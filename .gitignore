@@ -6,5 +6,6 @@ local_settings.py
 .ackrc
 ve
 .coverage
+.firebase
 static
-cache
+default-cache
