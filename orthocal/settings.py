@@ -60,6 +60,7 @@ if TESTING:
     RATELIMIT_ENABLE = False
 
 WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
+GOOGLE_FONTS = ['EB Garamond:ital@0;1']
 
 # Application definition
 
@@ -69,6 +70,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'corsheaders',
+    'django_google_fonts',
     'fullurl',
     'typogrify',
     'ninja',
@@ -223,6 +225,7 @@ USE_TZ = True
 
 STATIC_URL = 'media/'
 STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'fonts']
 
 STORAGES = {
     "staticfiles": {
