@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import etag as etag_decorator
 
+# Helper functions
+
 def get_etag(request, *args, **kwargs):
     hash = hashlib.md5()
 
@@ -32,6 +34,8 @@ def get_date_variable_etag(request, *args, **kwargs):
             hash.update(f'{header}: {value}'.encode('utf8'))
 
     return f'"{hash.hexdigest()}"'
+
+# Decorators
 
 etag = etag_decorator(get_etag)
 etag_date = etag_decorator(get_date_variable_etag)
