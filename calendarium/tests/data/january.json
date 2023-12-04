@@ -129,13 +129,14 @@
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
             "Sunday before Theophany",
-            "Repose of St Seraphim of Sarov"
+            "Forefeast of Theophany"
         ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
         "saints": [
+            "Repose of St Seraphim of Sarov",
             "St Sylvester, Pope of Rome (335)",
             "Venerable Juliana of Lazarevskoye (1604)",
             "Holy New Martyr George the Georgian (1770)"
@@ -223,10 +224,12 @@
         "titles": [
             "Monday of the 29th week after Pentecost"
         ],
-        "summary_title": "Prophet Malachi",
+        "summary_title": "Forefeast of Theophany",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
-        "feasts": null,
+        "feasts": [
+            "Forefeast of Theophany"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
@@ -271,10 +274,12 @@
         "titles": [
             "Tuesday of the 29th week after Pentecost"
         ],
-        "summary_title": "Synaxis of Seventy Apostles",
+        "summary_title": "Forefeast of Theophany",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
-        "feasts": null,
+        "feasts": [
+            "Forefeast of Theophany"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
@@ -1133,10 +1138,12 @@
         "titles": [
             "Friday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Nino of Georgia",
+        "summary_title": "Leavetaking of Theophany",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Leavetaking of Theophany"
+        ],
         "fast_level": 1,
         "fast_level_desc": "Fast",
         "fast_exception": 0,

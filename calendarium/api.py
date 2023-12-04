@@ -1,6 +1,7 @@
 import logging
 
 from datetime import date
+from typing import List
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -85,7 +86,7 @@ class ReadingSchemaLite(Schema):
 
 
 class ReadingSchema(ReadingSchemaLite):
-    passage: list[VerseSchema] = Field(None, alias='pericope.passage')
+    passage: List[VerseSchema] = Field(None, alias='pericope.passage')
 
 
 class StorySchema(Schema):
@@ -103,22 +104,22 @@ class DaySchemaLite(Schema):
     weekday: datetools.Weekday
     tone: conint(ge=0, le=8)
 
-    titles: list[str]
+    titles: List[str]
     summary_title: str = Field(..., description='Chooses the best option from titles, feasts, or saints to provide a succinct title for the day.')
 
     feast_level: conint(ge=-1, le=8) = Field(..., description='Best to use feast_level_description instead.')
     feast_level_description: str = Field(..., alias='feast_level_desc')
-    feasts: list[str]
+    feasts: List[str]
 
     fast_level: datetools.FastLevels
     fast_level_desc: str = Field(..., description='Best combined with fast_exception_desc')
     fast_exception: int
     fast_exception_desc: str
 
-    saints: list[str]
-    service_notes: list[str]
+    saints: List[str]
+    service_notes: List[str]
 
-    abbreviated_reading_indices: list[int] = Field(
+    abbreviated_reading_indices: List[int] = Field(
         ...,
         description=(
             'This list of indices into the list of readings provides an abbreviated '
@@ -126,7 +127,7 @@ class DaySchemaLite(Schema):
             'readings from the liturgy, or, during Lent, three readings from the Old Testament.'
         )
     )
-    readings: list[ReadingSchemaLite]
+    readings: List[ReadingSchemaLite]
 
     @validator('titles', 'feasts', 'saints', 'service_notes')
     def list_or_null(cls, value):
@@ -135,8 +136,8 @@ class DaySchemaLite(Schema):
 
 
 class DaySchema(DaySchemaLite):
-    stories: list[StorySchema]
-    readings: list[ReadingSchema]
+    stories: List[StorySchema]
+    readings: List[ReadingSchema]
 
 
 class OembedSchema(Schema):
@@ -182,11 +183,11 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
 
     return day
 
-@api.get('{cal:cal}/{year:year}/{month:month}/', response=list[DaySchemaLite])
+@api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
 @instrument_endpoint
 @decorate_view(cache)
 @decorate_view(etag)
-async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> list[DaySchemaLite]:
+async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> List[DaySchemaLite]:
     """Get information about all the liturgical days for the given calendar and month.
     This endpoint excludes the readings and stories in order to avoid returning 
     a response that is too large.
