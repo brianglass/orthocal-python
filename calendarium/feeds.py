@@ -15,6 +15,7 @@ from .websub import Feed
 class ReadingsFeed(Feed):
     link = '/'
     description_template = 'feed_description.html'
+    categories = 'orthodox', 'christian', 'religion'
 
     def get_object(self, request, cal=Calendar.Gregorian):
         return {'cal': cal}

@@ -14720,7 +14720,7 @@
         "service_note": "",
         "saint": "",
         "fast": 5,
-        "fast_exception": 2,
+        "fast_exception": 0,
         "flag": 0
     }
 },
