@@ -17,6 +17,6 @@ urlpatterns = [
     path('calendar/<cal:cal>/<year:year>/<month:month>/', cache(etag(views.calendar_view)), name='calendar'),
     path('calendar-embed/<cal:cal>/<year:year>/<month:month>/', views.calendar_embed_view, name='calendar-embed'),
     path('calendar-embed/', views.calendar_embed_view, name='calendar-embed-default'),
-    path('calendar/', etag_date(views.calendar_view), name='calendar-default'),
-    path('', etag_date(views.readings_view), name='index'),
+    path('calendar/', views.calendar_view, name='calendar-default'),
+    path('', views.readings_view, name='index'),
 ]
