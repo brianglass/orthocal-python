@@ -93,7 +93,7 @@ class Day:
         # Bake the mutliple "days" down into a single composite day.
 
         self.titles = [title for d in days if (title := d.full_title)]
-        self.saints = [d.saint for d in days if d.saint]
+        self.saints = [saint.strip() for d in days for saint in d.saint.split(';') if saint]
         self.minimal_saints = [d.saint for d in days if d.saint]
         self.feasts = [d.feast_name for d in days if d.feast_name]
         self.service_notes = [d.service_note for d in days if d.service_note]

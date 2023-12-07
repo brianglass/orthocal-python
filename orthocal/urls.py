@@ -18,7 +18,6 @@ from django.urls import include, path, register_converter, reverse
 from django.views.generic.base import RedirectView
 
 from . import converters, sitemaps, views
-from .decorators import etag
 
 register_converter(converters.CalendarConverter, 'cal')
 register_converter(converters.YearConverter, 'year')
@@ -34,11 +33,11 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('alexa/', etag(views.alexa), name='alexa'),
-    path('api/', etag(views.api), name='api'),
+    path('alexa/', views.alexa, name='alexa'),
+    path('api/', views.api, name='api'),
     path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds')),
-    path('feeds/', etag(views.feeds), name='feeds'),
-    path('about/', etag(views.about), name='about'),
+    path('feeds/', views.feeds, name='feeds'),
+    path('about/', views.about, name='about'),
     path('api/', include('calendarium.api_urls')),
     path('', include('alexa.urls')),
     path('', include('calendarium.urls')),

@@ -851,6 +851,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Martyr Polyeuctus of Melitene in Armenia",
+            "Hieromartyr Philip, Metropolitan of Moscow",
             "Saint Peter II, Bishop of Sebaste (4th c.)",
             "Venerable Eustratius the Wonderworker (9th c.)",
             "Saint Philip, Metropolitan of Moscow (1569)"
@@ -898,7 +899,7 @@
         "titles": [
             "Monday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Gregory of Nyssa",
+        "summary_title": "St Gregory of Nyssa; St Theophan the Recluse",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -908,6 +909,7 @@
         "fast_exception_desc": "",
         "saints": [
             "St Gregory of Nyssa",
+            "St Theophan the Recluse",
             "Our Holy Father Theophan the Recluse (1894)"
         ],
         "service_notes": null,
@@ -1727,7 +1729,7 @@
         "titles": [
             "Monday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Xenia of Rome",
+        "summary_title": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1737,6 +1739,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Ven. Xenia of Rome",
+            "Bl. Xenia of St Petersburg",
             "Our Holy Mother Xenia of Petersburg, fool for Christ (ca. 1800)",
             "Our Holy Father Macedonian (ca. 430)"
         ],

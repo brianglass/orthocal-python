@@ -2,11 +2,11 @@ from django.conf import settings
 from django.urls import path
 from django.views.decorators.cache import cache_page
 
-from .ical import ical
+from orthocal.decorators import cache
+
 from .api import api
 from .feeds import ReadingsFeed
-
-cache = cache_page(settings.ORTHOCAL_MAX_AGE)
+from .ical import ical
 
 urlpatterns = [
     path('', api.urls),

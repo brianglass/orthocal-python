@@ -1,4 +1,5 @@
 import calendar
+import functools
 import logging
 
 from datetime import date, timedelta
@@ -7,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
-from django.shortcuts import render
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils import timezone
 
@@ -16,17 +17,8 @@ from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
 
-
 async def readings_view(request, cal=None, year=None, month=None, day=None):
-    if cal:
-        if cal != request.session.get('cal', Calendar.Gregorian):
-            request.session['cal'] = cal
-
-        # Don't send vary on cookie header when we have an explicit cal.
-        # In this case, the session does not actually impact the content.
-        request.session.accessed = False
-    else:
-        cal = request.session.get('cal', Calendar.Gregorian)
+    cal = remember_cal(request, cal)
 
     if year and month and day:
         try:
@@ -40,7 +32,7 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
 
-    return render(request, 'readings.html', context={
+    return TemplateResponse(request, 'readings.html', context={
             'day': day,
             'date': day.gregorian_date,
             'next_date': day.gregorian_date + timedelta(days=1),
@@ -49,15 +41,7 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     })
 
 async def calendar_view(request, cal=None, year=None, month=None):
-    if cal:
-        if cal != request.session.get('cal', Calendar.Gregorian):
-            request.session['cal'] = cal
-
-        # Don't send vary on cookie header when we have an explicit cal.
-        # In this case, the session does not actually impact the content.
-        request.session.accessed = False
-    else:
-        cal = request.session.get('cal', Calendar.Gregorian)
+    cal = remember_cal(request, cal)
 
     if not year or not month:
         now = timezone.localtime()
@@ -67,7 +51,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
-    return render(request, 'calendar.html', context={
+    return TemplateResponse(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
         'this_month': first_day,
@@ -84,7 +68,7 @@ async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
-    return render(request, 'calendar_embed.html', context={
+    return TemplateResponse(request, 'calendar_embed.html', context={
         'content': content,
         'cal': cal,
         'this_month': first_day,
@@ -115,3 +99,18 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, ful
     content = lcal.formatmonth(year, month)
 
     return content
+
+# Helper functions
+
+def remember_cal(request, cal):
+    if cal:
+        if cal != request.session.get('cal', Calendar.Gregorian):
+            request.session['cal'] = cal
+
+        # Don't send vary on cookie header when we have an explicit cal.
+        # In this case, the session does not actually impact the content.
+        request.session.accessed = False
+    else:
+        cal = request.session.get('cal', Calendar.Gregorian)
+
+    return cal

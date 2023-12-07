@@ -1,8 +1,10 @@
 from django.apps import apps 
 from django.http import JsonResponse
+from django.template.response import TemplateResponse
 from django.views import generic
 
 from .apps import OrthocalConfig
+from .decorators import etag
 
 async def startup_probe(request, *args, **kwargs):
     app_config = apps.get_app_config(OrthocalConfig.name)
@@ -11,12 +13,18 @@ async def startup_probe(request, *args, **kwargs):
     else:
         return JsonResponse({'started': False}, status=500)
 
-# Make an async version of TemplateView
-class TemplateView(generic.TemplateView):
-    async def get(self, *args, **kwargs):
-        return super().get(*args, **kwargs)
+@etag
+async def alexa(request):
+    return TemplateResponse(request, 'alexa.html')
 
-alexa = TemplateView.as_view(template_name='alexa.html')
-api = TemplateView.as_view(template_name='api.html')
-feeds = TemplateView.as_view(template_name='feeds.html')
-about = TemplateView.as_view(template_name='about.html')
+@etag
+async def api(request):
+    return TemplateResponse(request, 'api.html')
+
+@etag
+async def feeds(request):
+    return TemplateResponse(request, 'feeds.html')
+
+@etag
+async def about(request):
+    return TemplateResponse(request, 'about.html')

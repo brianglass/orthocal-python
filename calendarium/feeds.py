@@ -2,20 +2,30 @@ from datetime import datetime, timedelta
 
 from dateutil.rrule import rrule, DAILY
 from django.conf import settings
-#from django.contrib.syndication.views import Feed
+from django.contrib.syndication.views import Feed
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.feedgenerator import Rss201rev2Feed
 
 from . import liturgics
 from .datetools import Calendar
-from .websub import Feed
+
+
+class WSRssFeed(Rss201rev2Feed):
+    def add_root_elements(self, handler):
+        super().add_root_elements(handler)
+        handler.addQuickElement('atom:link', '', {
+            'rel': 'hub',
+            'href': settings.ORTHOCAL_WEBSUB_URL,
+        })
 
 
 class ReadingsFeed(Feed):
+    feed_type = WSRssFeed
     link = '/'
     description_template = 'feed_description.html'
-    categories = 'orthodox', 'christian', 'religion'
+    item_categories = categories = 'orthodox', 'christian', 'religion'
 
     def get_object(self, request, cal=Calendar.Gregorian):
         return {'cal': cal}
@@ -24,7 +34,7 @@ class ReadingsFeed(Feed):
         return f'Orthodox Daily Readings ({obj["cal"].title()})'
 
     def description(self, obj):
-        return f'Orthodox scripture readings and stories from the lives of the saints for every day of the year according to the {obj["cal"].title()} calendar.'
+        return f'Daily readings from scripture and the lives of the saints according to the {obj["cal"].title()} calendar.'
 
     def items(self, obj):
         now = timezone.localtime()
