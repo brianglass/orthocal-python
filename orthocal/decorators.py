@@ -7,6 +7,8 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import etag as etag_decorator
 
+from calendarium.datetools import Calendar
+
 # Helper functions
 
 def get_etag(request, *args, **kwargs):
@@ -28,6 +30,9 @@ def get_date_variable_etag(request, *args, **kwargs):
     hash.update(date.encode('utf8'))
 
     hash.update(settings.ORTHOCAL_REVISION.encode('utf8'))
+
+    cal = request.session.get('cal', Calendar.Gregorian)
+    hash.update(cal.encode('utf8'))
 
     for header in settings.ORTHOCAL_VARY_HEADERS:
         if value := request.headers.get(header):

@@ -1,3 +1,5 @@
+import logging
+
 from django.apps import apps 
 from django.http import JsonResponse
 from django.template.response import TemplateResponse
@@ -5,6 +7,8 @@ from django.views import generic
 
 from .apps import OrthocalConfig
 from .decorators import etag
+
+logger = logging.getLogger(__name__)
 
 async def startup_probe(request, *args, **kwargs):
     app_config = apps.get_app_config(OrthocalConfig.name)

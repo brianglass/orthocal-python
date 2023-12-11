@@ -1,4 +1,8 @@
+import logging
+
 from django.apps import AppConfig
+
+logger = logging.getLogger(__name__)
 
 class OrthocalConfig(AppConfig):
     name = 'orthocal'
@@ -7,3 +11,4 @@ class OrthocalConfig(AppConfig):
 
     def ready(self, *args, **kwargs):
         self.orthocal_started = True
+        logger.info('Orthocal is ready.')

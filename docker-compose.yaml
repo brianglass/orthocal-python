@@ -11,18 +11,18 @@ services:
       - .:/orthocal:consistent
     environment:
       - PORT=8000
-      - ALLOWED_HOSTS=*
+      - ALLOWED_HOSTS=localhost
   web:  # Use to test as it will be deployed in production
     build: .
     ports:
       - "8000:8000"
-    cpu_count: 2
+    cpu_count: 4
     environment:
       - PORT=8000
-      - ALLOWED_HOSTS=*
+      - ALLOWED_HOSTS=localhost
       - NEW_RELIC_CONFIG_FILE=/orthocal-secrets/newrelic.ini
       - NEW_RELIC_ENVIRONMENT=development
-      - WEB_CONCURRENCY=2
+      - WEB_CONCURRENCY=4
     configs:
       - source: newrelic_config
         target: /orthocal-secrets/newrelic.ini
