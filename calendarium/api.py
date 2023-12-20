@@ -164,6 +164,7 @@ def not_implemented_handler(request, exc):
 
 @api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
+@decorate_view(acache)
 @decorate_view(etag)
 async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
     """Get information about the liturgical day for the given calendar and date.
