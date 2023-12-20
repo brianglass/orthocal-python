@@ -7,6 +7,7 @@ from datetime import date, timedelta
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.http import Http404, HttpResponse
+from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import reverse
@@ -51,7 +52,8 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
-    return TemplateResponse(request, 'calendar.html', context={
+    #return TemplateResponse(request, 'calendar.html', context={
+    return render(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
         'this_month': first_day,

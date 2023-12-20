@@ -19,7 +19,7 @@ from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar
-from orthocal.decorators import cache, etag, etag_date, instrument_endpoint
+from orthocal.decorators import acache, etag, etag_date, instrument_endpoint
 
 logger = logging.getLogger(__name__)
 
@@ -185,7 +185,7 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
 
 @api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
 @instrument_endpoint
-@decorate_view(cache)
+@decorate_view(acache)
 @decorate_view(etag)
 async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> List[DaySchemaLite]:
     """Get information about all the liturgical days for the given calendar and month.

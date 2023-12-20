@@ -1,20 +1,20 @@
-import asyncio
 import datetime
 import logging
 
 import newrelic.agent
-from newrelic.api.transaction import current_transaction
 
+from asgiref.sync import iscoroutinefunction, markcoroutinefunction
 from django.conf import settings
 from django.utils import timezone
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
+from newrelic.api.transaction import current_transaction
 
 logger = logging.getLogger(__name__)
 
 @sync_and_async_middleware
 def cache_control(get_response):
-    if asyncio.iscoroutinefunction(get_response):
+    if iscoroutinefunction(get_response):
         async def middleware(request):
             response = await get_response(request)
             patch_headers(response)
@@ -29,7 +29,7 @@ def cache_control(get_response):
 
 @sync_and_async_middleware
 def request_queueing(get_response):
-    if asyncio.iscoroutinefunction(get_response):
+    if iscoroutinefunction(get_response):
         async def middleware(request):
             set_request_queueing(request)
             return await get_response(request)
@@ -60,6 +60,7 @@ def patch_headers(response):
 def set_request_queueing(request):
     """Set Newrelic "request queuing" from Fastly X-Timer header."""
 
+    # See https://developer.fastly.com/reference/http/http-headers/X-Timer/
     x_timer = request.META.get('HTTP_X_TIMER')
     transaction = newrelic.agent.current_transaction()
 
