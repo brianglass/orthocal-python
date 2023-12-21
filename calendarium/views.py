@@ -9,7 +9,6 @@ from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils import timezone
 
@@ -33,7 +32,7 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
 
-    return TemplateResponse(request, 'readings.html', context={
+    return render(request, 'readings.html', context={
             'day': day,
             'date': day.gregorian_date,
             'next_date': day.gregorian_date + timedelta(days=1),
@@ -52,7 +51,6 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
-    #return TemplateResponse(request, 'calendar.html', context={
     return render(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
@@ -70,7 +68,7 @@ async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
-    return TemplateResponse(request, 'calendar_embed.html', context={
+    return render(request, 'calendar_embed.html', context={
         'content': content,
         'cal': cal,
         'this_month': first_day,

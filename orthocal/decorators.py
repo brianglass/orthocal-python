@@ -95,7 +95,9 @@ def acache_page(timeout, cache=None, key_prefix=None):
             if timeout and response.status_code == 200:
                 cache_key = learn_cache_key(request, response, timeout, key_prefix=key_prefix, cache=cache)
                 if hasattr(response, 'render') and callable(response.render):
-                    logger.warning('The acache_page decorator cannot asynchronously cache a TemplateResponse.')
+                    view_name = f'{view.__module__}:{view.__name__}'
+                    logger.warning(f'The acache_page decorator cannot asynchronously '
+                                   f'cache a TemplateResponse for view: {view_name}.')
                     response.add_post_render_callback(lambda r: cache.set(cache_key, r, timeout))
                 else:
                     await cache.aset(cache_key, response, timeout)
