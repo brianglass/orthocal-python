@@ -145,7 +145,7 @@ CACHES = {
         'TIMEOUT': ORTHOCAL_MAX_AGE,
         'LOCATION': BASE_DIR / 'default-cache',
         'OPTIONS': {
-            'MAX_ENTRIES': 1500,
+            'MAX_ENTRIES': 1000,
         },
     },
 }
