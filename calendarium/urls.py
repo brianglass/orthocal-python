@@ -11,7 +11,7 @@ from orthocal.decorators import cache, etag, etag_date, acache
 logger = logging.getLogger(__name__)
 
 urlpatterns = [
-    path('readings/<cal:cal>/<year:year>/<month:month>/<day:day>/', acache(etag(views.readings_view)), name='readings'),
+    path('readings/<cal:cal>/<year:year>/<month:month>/<day:day>/', etag(views.readings_view), name='readings'),
     # Eventually we can remove this redirect, but we're still getting traffic here from crawlers.
     path('calendar/<cal:cal>/<year:year>/<month:month>/<day:day>/', RedirectView.as_view(permanent=True, pattern_name='readings')),
     path('calendar/<cal:cal>/<year:year>/<month:month>/', acache(etag(views.calendar_view)), name='calendar'),
