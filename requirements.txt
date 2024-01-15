@@ -8,7 +8,7 @@ django==5.0
 icalendar==5.0.11
 jdcal==1.4.1
 Jinja2==3.1.2               # Typogrify imports this even though we're not using it
-newrelic==9.3.0
+newrelic==9.5.0
 python-dateutil==2.8.2
 requests==2.31.0
 typogrify==2.0.7
