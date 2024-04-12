@@ -140,6 +140,9 @@ def gregorian_to_julian(year, month, day):
 
     jd = jdcal.gcal2jd(year, month, day)
     year, month, day, _ = jdcal.jd2jcal(*jd)
+
+    # On a year that is a Julian Leap year but not a Gregorian leap year, this
+    # will raise a ValueError. This is a problem, but doesn't occur until 2100.
     return date(year, month, day)
 
 def compute_pascha_distance(dt):

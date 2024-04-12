@@ -1,6 +1,7 @@
 import json
 
 from pathlib import Path
+from unittest import skip
 
 from dateutil.rrule import rrule, DAILY
 from django.test import RequestFactory, TestCase
@@ -112,6 +113,17 @@ class DayAPITestCase(TestCase):
         })
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, 404)
+
+    @skip
+    def test_julian_range_error(self):
+        """A Gregorian leap year is not always a Julian leap year."""
+        url = reverse('api:get_calendar_month', kwargs={
+            'cal': 'julian',
+            'year': 2100,
+            'month': 3,
+        })
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, 200)
 
     def test_calendar_month_julian_range_error_high(self):
         url = reverse('api:get_calendar_month', kwargs={
