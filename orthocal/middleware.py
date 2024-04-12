@@ -45,12 +45,14 @@ def log_language(get_response):
     if iscoroutinefunction(get_response):
         async def middleware(request):
             response = await get_response(request)
-            logger.debug(f"Language: {request.LANGUAGE_CODE}")
+            if hasattr(request, 'LANGUAGE_CODE'):
+                logger.debug(f"Language: {request.LANGUAGE_CODE}")
             return response
     else:
         def middleware(request):
             response = get_response(request)
-            logger.debug(f"Language: {request.LANGUAGE_CODE}")
+            if hasattr(request, 'LANGUAGE_CODE'):
+                logger.debug(f"Language: {request.LANGUAGE_CODE}")
             return response
 
     return middleware
