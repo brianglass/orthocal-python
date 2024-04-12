@@ -40,6 +40,21 @@ def request_queueing(get_response):
 
     return middleware
 
+@sync_and_async_middleware
+def log_language(get_response):
+    if iscoroutinefunction(get_response):
+        async def middleware(request):
+            response = await get_response(request)
+            logger.debug(f"Language: {request.LANGUAGE_CODE}")
+            return response
+    else:
+        def middleware(request):
+            response = get_response(request)
+            logger.debug(f"Language: {request.LANGUAGE_CODE}")
+            return response
+
+    return middleware
+
 # Helper functions
 
 def patch_headers(response):
