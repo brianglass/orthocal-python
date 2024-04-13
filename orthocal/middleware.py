@@ -42,20 +42,19 @@ def request_queueing(get_response):
 
 @sync_and_async_middleware
 def log_language(get_response):
+    def log_language(request):
+        if accept_language := request.META.get('HTTP_ACCEPT_LANGUAGE'):
+            language = accept_language.split(';')[0].split(',')[0]
+            logger.debug(f"Language: {language}")
+
     if iscoroutinefunction(get_response):
         async def middleware(request):
-            response = await get_response(request)
-            if accept_language := request.META.get('HTTP_ACCEPT_LANGUAGE'):
-                language = accept_language.split(';')[0].split(',')[0]
-                logger.debug(f"Language: {language}")
-            return response
+            log_language(request)
+            return await get_response(request)
     else:
         def middleware(request):
-            response = get_response(request)
-            if accept_language := request.META.get('HTTP_ACCEPT_LANGUAGE'):
-                language = accept_language.split(';')[0].split(',')[0]
-                logger.debug(f"Language: {language}")
-            return response
+            log_language(request)
+            return get_response(request)
 
     return middleware
 
