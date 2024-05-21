@@ -146,6 +146,11 @@ section.readings h2 {
     padding-top: 2em;
     widows: 3;
     orphans: 3;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 .passage h2 {
     margin-top: 0;
