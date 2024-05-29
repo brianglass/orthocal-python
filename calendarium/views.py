@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 async def readings_view(request, cal=None, year=None, month=None, day=None):
     cal = remember_cal(request, cal)
+    now = timezone.localtime().date()
 
     if year and month and day:
         try:
@@ -26,25 +27,26 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         except ValueError:
             raise Http404
     else:
-        now = timezone.localtime()
         day = liturgics.Day(now.year, now.month, now.day, calendar=cal, language=request.LANGUAGE_CODE)
 
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
 
     return render(request, 'readings.html', context={
-            'day': day,
-            'date': day.gregorian_date,
-            'next_date': day.gregorian_date + timedelta(days=1),
-            'previous_date': day.gregorian_date - timedelta(days=1),
-            'cal': cal,
+        'day': day,
+        'date': day.gregorian_date,
+        'next_date': day.gregorian_date + timedelta(days=1),
+        'next_nofollow': day.gregorian_date >= now + relativedelta(years=1),
+        'previous_date': day.gregorian_date - timedelta(days=1),
+        'previous_nofollow': day.gregorian_date <= now - relativedelta(years=1),
+        'cal': cal,
     })
 
 async def calendar_view(request, cal=None, year=None, month=None):
     cal = remember_cal(request, cal)
+    now = timezone.localtime().date()
 
     if not year or not month:
-        now = timezone.localtime()
         year, month = now.year, now.month
 
     first_day = date(year, month, 1)
@@ -56,7 +58,9 @@ async def calendar_view(request, cal=None, year=None, month=None):
         'cal': cal,
         'this_month': first_day,
         'previous_month': first_day - relativedelta(months=1),
+        'previous_nofollow': first_day <= now - relativedelta(years=1),
         'next_month': first_day + relativedelta(months=1),
+        'next_nofollow': first_day >= now + relativedelta(months=11),
     })
 
 async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=None):
