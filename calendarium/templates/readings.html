@@ -11,7 +11,7 @@
 		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date }}.">
 	{% endif %}
 
-	<link rel="canonical" href="{% fullurl "readings" cal=cal year=date.year month=date.month day=date.day %}" />
+	<link rel="canonical" href="{% fullurl "readings" cal=cal year=date.year month=date.month day=date.day %}">
 {% endblock %}
 
 {% block extra_nav %}

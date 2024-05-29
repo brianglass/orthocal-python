@@ -11,7 +11,7 @@
 	{% endif %}
 
 	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
-	<link rel="canonical" href="{% fullurl "calendar" cal=cal year=this_month.year month=this_month.month %}" />
+	<link rel="canonical" href="{% fullurl "calendar" cal=cal year=this_month.year month=this_month.month %}">
 {% endblock %}
 
 {% block extra_nav %}
