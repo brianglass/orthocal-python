@@ -12,12 +12,16 @@
 	{% endif %}
 
 	<link rel="canonical" href="{% fullurl "readings" cal=cal year=date.year month=date.month day=date.day %}">
+
+	{% if noindex %}
+		<meta name="robots" content="noindex">
+	{% endif %}
 {% endblock %}
 
 {% block extra_nav %}
-	<a class="cal-nav" href="{% url "readings" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel=nofollow{% endif %}>&larr; Previous Day</a>
+	<a class="cal-nav" href="{% url "readings" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
 	<a class="cal-nav" href="{% url "index" %}">Today</a>
-	<a class="cal-nav" href="{% url "readings" cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel=nofollow{% endif %}>Next Day &rarr;</a>
+	<a class="cal-nav" href="{% url "readings" cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
 
 	<br>
 

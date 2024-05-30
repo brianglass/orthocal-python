@@ -12,11 +12,15 @@
 
 	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
 	<link rel="canonical" href="{% fullurl "calendar" cal=cal year=this_month.year month=this_month.month %}">
+
+	{% if noindex %}
+		<meta name="robots" content="noindex">
+	{% endif %}
 {% endblock %}
 
 {% block extra_nav %}
-	<a class="cal-nav" href="{% url "calendar" cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel=nofollow{% endif %}>&larr; {{ previous_month|date:"F" }}</a>
-	<a class="cal-nav" href="{% url "calendar" cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel=nofollow{% endif %}>{{ next_month|date:"F" }} &rarr;</a>
+	<a class="cal-nav" href="{% url "calendar" cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; {{ previous_month|date:"F" }}</a>
+	<a class="cal-nav" href="{% url "calendar" cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %}>{{ next_month|date:"F" }} &rarr;</a>
 
 	<br>
 

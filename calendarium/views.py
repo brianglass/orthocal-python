@@ -17,6 +17,10 @@ from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
 
+def is_indexable(dt):
+    now = timezone.localtime().date()
+    return abs(dt - now) <= timedelta(days=5*365)
+
 async def readings_view(request, cal=None, year=None, month=None, day=None):
     cal = remember_cal(request, cal)
     now = timezone.localtime().date()
@@ -32,13 +36,17 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
 
+    next_date = day.gregorian_date + timedelta(days=1)
+    previous_date = day.gregorian_date - timedelta(days=1)
+
     return render(request, 'readings.html', context={
         'day': day,
         'date': day.gregorian_date,
-        'next_date': day.gregorian_date + timedelta(days=1),
-        'next_nofollow': day.gregorian_date >= now + relativedelta(years=1),
-        'previous_date': day.gregorian_date - timedelta(days=1),
-        'previous_nofollow': day.gregorian_date <= now - relativedelta(years=1),
+        'noindex': not is_indexable(day.gregorian_date),
+        'next_date': next_date,
+        'next_nofollow': not is_indexable(next_date),
+        'previous_date': previous_date,
+        'previous_nofollow': not is_indexable(previous_date),
         'cal': cal,
     })
 
@@ -53,14 +61,18 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     content = await render_calendar_html(request, year, month, cal=cal)
 
+    previous_month = first_day - relativedelta(months=1)
+    next_month = first_day + relativedelta(months=1)
+
     return render(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
+        'noindex': not is_indexable(first_day),
         'this_month': first_day,
-        'previous_month': first_day - relativedelta(months=1),
-        'previous_nofollow': first_day <= now - relativedelta(years=1),
-        'next_month': first_day + relativedelta(months=1),
-        'next_nofollow': first_day >= now + relativedelta(months=11),
+        'previous_month': previous_month,
+        'previous_nofollow': not is_indexable(previous_month),
+        'next_month': next_month,
+        'next_nofollow': not is_indexable(next_month),
     })
 
 async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=None):
