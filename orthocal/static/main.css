@@ -107,6 +107,13 @@ main#orthocal > header h1 span {
 	font-size: 1.1em;
 }
 
+#content {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
 #content a {
     color: #a00;
     text-decoration: none;

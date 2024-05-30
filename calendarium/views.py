@@ -17,10 +17,6 @@ from .datetools import Calendar
 
 logger = logging.getLogger(__name__)
 
-def is_indexable(dt):
-    now = timezone.localtime().date()
-    return abs(dt - now) <= timedelta(days=5*365)
-
 async def readings_view(request, cal=None, year=None, month=None, day=None):
     cal = remember_cal(request, cal)
     now = timezone.localtime().date()
@@ -130,3 +126,7 @@ def remember_cal(request, cal):
         cal = request.session.get('cal', Calendar.Gregorian)
 
     return cal
+
+def is_indexable(dt):
+    now = timezone.localtime().date()
+    return abs(dt - now) <= timedelta(days=5*365)
