@@ -10,7 +10,7 @@ jdcal==1.4.1
 Jinja2==3.1.4               # Typogrify imports this even though we're not using it
 newrelic==9.9.1
 python-dateutil==2.9.0.post0
-requests==2.32.0
+requests==2.32.3
 typogrify==2.0.7
 uvicorn[standard]==0.30.1
 # We can go back to mainline whitenoise once
