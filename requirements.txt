@@ -1,6 +1,6 @@
 ask_sdk_core==1.19.0
 django-ask-sdk==1.0.0
-django-cors-headers==4.3.1
+django-cors-headers==4.4.0
 django-fullurl==1.4
 django-google-fonts==0.0.3
 django-ninja==1.1.0
