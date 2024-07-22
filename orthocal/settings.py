@@ -86,7 +86,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'orthocal.middleware.request_queueing',
-    'orthocal.middleware.log_language',
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.gzip.GZipMiddleware',
