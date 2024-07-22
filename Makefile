@@ -5,11 +5,11 @@ docker:
 	docker build -t orthocal .
 
 run:
-	docker run -it -e PORT=8000 -e ALLOWED_HOSTS='localhost' -e WEB_CONCURRENCY=2 -p8000:8000 orthocal
+	docker run -it -e PORT=8000 -e ALLOWED_HOSTS='localhost' -e WEB_CONCURRENCY=4 -p8000:8000 orthocal
 
 uvicorn:
 	# newrelic-admin run-program uvicorn --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
-	newrelic-admin run-program uvicorn --reload --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
+	newrelic-admin run-program uvicorn --reload --lifespan off --host 0.0.0.0 --port 8000 -e WEB_CONCURRENCY=4 orthocal.asgi:application
 	# newrelic-admin run-program uvicorn --workers 2 --lifespan off --host 0.0.0.0 --port 8000 orthocal.asgi:application
 
 deploy:

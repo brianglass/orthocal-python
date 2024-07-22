@@ -182,6 +182,11 @@ LOGGING = {
             'propagate': True,
             'level': 'DEBUG',
         },
+        'uvicorn.error': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
         'alexa': {
             'handlers': ['console'],
             'propagate': True,
