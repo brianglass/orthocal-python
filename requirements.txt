@@ -12,7 +12,7 @@ newrelic==9.12.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
 typogrify==2.0.7
-uvicorn[standard]==0.30.1
+uvicorn[standard]==0.30.3
 # We can go back to mainline whitenoise once
 # https://github.com/evansd/whitenoise/pull/359 is merged
 whitenoise[brotli] @ https://github.com/Archmonger/whitenoise/zipball/asgi-compat
