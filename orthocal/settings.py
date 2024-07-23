@@ -160,12 +160,21 @@ LOGGING = {
             'format': '{levelname} {message}',
             'style': '{',
         },
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+            'formatter': 'verbose',
+            'level': 'DEBUG',
         },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
     },
     'loggers': {
         'django': {
