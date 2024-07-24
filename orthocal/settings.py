@@ -56,6 +56,9 @@ ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
 ORTHOCAL_REVISION = os.environ.get('K_REVISION', str(uuid.uuid4()))
 
+IS_GCLOUD = 'K_REVISION' in os.environ
+IS_GCLOUD = True
+
 if TESTING:
     RATELIMIT_ENABLE = False
 
@@ -92,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'google.cloud.logging_v2.handlers.middleware.RequestMiddleware',
     'orthocal.middleware.cache_control',
 ]
 
@@ -152,73 +156,60 @@ CACHES = {
 
 CACHE_MIDDLEWARE_SECONDS = ORTHOCAL_MAX_AGE
 
+HANDLER = 'gcloud' if IS_GCLOUD else 'console'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'root': {
+        'handlers': [HANDLER],
+        'level': 'DEBUG',
+    },
     'formatters': {
         'simple': {
             'format': '{levelname} {message}',
-            'style': '{',
-        },
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
             'style': '{',
         },
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+            'formatter': 'simple',
+            'level': 'DEBUG',
+        },
+        "gcloud": {
+            "class": "google.cloud.logging.handlers.StructuredLogHandler",
             'level': 'DEBUG',
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-    },
     'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'propagate': True,
-        },
         'django.request': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
         'django.middleware.locale.LocaleMiddleware': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
+        },
+        'uvicorn': {
+            'level': 'DEBUG',
+            'handlers': [HANDLER],
         },
         'uvicorn.error': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
+            'handlers': [HANDLER],
         },
         'alexa': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
         'bible': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
         'calendarium': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
         'commemorations': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
         'orthocal': {
-            'handlers': ['console'],
-            'propagate': True,
             'level': 'DEBUG',
         },
     },
