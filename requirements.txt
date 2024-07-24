@@ -13,7 +13,7 @@ newrelic==9.12.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
 typogrify==2.0.7
-uvicorn[standard]==0.30.3  # 0.29.0 doesn't have the new process manager
+uvicorn[standard]==0.29.0  # 0.30.3 new process manager doesn't work with Django
 # We can go back to mainline whitenoise once
 # https://github.com/evansd/whitenoise/pull/359 is merged
 whitenoise[brotli] @ https://github.com/Archmonger/whitenoise/zipball/asgi-compat
