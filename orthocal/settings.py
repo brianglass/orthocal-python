@@ -57,7 +57,6 @@ ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
 ORTHOCAL_REVISION = os.environ.get('K_REVISION', str(uuid.uuid4()))
 
 IS_GCLOUD = 'K_REVISION' in os.environ
-IS_GCLOUD = True
 
 if TESTING:
     RATELIMIT_ENABLE = False
@@ -210,6 +209,9 @@ LOGGING = {
             'level': 'DEBUG',
         },
         'orthocal': {
+            'level': 'DEBUG',
+        },
+        '__main__': {
             'level': 'DEBUG',
         },
     },

@@ -6,12 +6,12 @@ services:
     build: .
     ports:
       - "8000:8000"
-    command: newrelic-admin run-program uvicorn --reload --lifespan off --host 0.0.0.0 orthocal.asgi:application
     volumes:
       - .:/orthocal:consistent
     environment:
       - PORT=8000
       - ALLOWED_HOSTS=localhost
+      - UVICORN_RELOAD=true
   web:  # Use to test as it will be deployed in production
     build: .
     ports:
