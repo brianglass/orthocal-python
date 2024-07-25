@@ -12,6 +12,10 @@ logger = logging.getLogger(__name__)
 
 
 class Process(multiprocess.Process):
+    def __init__(self, config, target, sockets):
+        super().__init__(config, target, sockets)
+        logger.info(f"Started process {self.process.pid}.")
+
     def always_pong(self):
         logger.info(f"always_pong is starting for process {self.process.pid}.")
         super().always_pong()
