@@ -12,6 +12,10 @@ logger = logging.getLogger(__name__)
 
 
 class Process(multiprocess.Process):
+    def always_pong(self):
+        logger.info(f"always_pong is starting for process {self.process.pid}.")
+        super().always_pong()
+
     def is_alive(self, timeout: float = 5) -> bool:
         if not self.process.is_alive():
             logger.error(f"Process {self.process.pid} is not alive.")
