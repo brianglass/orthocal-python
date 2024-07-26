@@ -12,13 +12,19 @@ logger = logging.getLogger(__name__)
 
 
 class Process(multiprocess.Process):
-    def __init__(self, config, target, sockets):
-        super().__init__(config, target, sockets)
+    def start(self):
+        super().start()
         logger.info(f"Started process {self.process.pid}.")
 
     def always_pong(self):
-        logger.info(f"always_pong is starting for process {self.process.pid}.")
+        pid = os.getpid()
+        logger.info(f"always_pong thread is starting for process {pid}.")
         super().always_pong()
+
+    def target(self, *args, **kwargs):
+        pid = os.getpid()
+        logger.info(f"New worker {pid} is starting.")
+        return super().target(*args, **kwargs)
 
     def is_alive(self, timeout: float = 5) -> bool:
         if not self.process.is_alive():
