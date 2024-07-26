@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 
@@ -31,9 +32,13 @@ class Process(multiprocess.Process):
             logger.error(f"Process {self.process.pid} is not alive.")
             return False
 
+        start = datetime.datetime.now()
         ping = self.ping(timeout)
         if not ping:
-            logger.error(f"Failed to ping {self.process.pid}.")
+            end = datetime.datetime.now()
+            seconds = (end - start).total_seconds()
+
+            logger.error(f"Failed to ping {self.process.pid} in {seconds} seconds.")
 
         return ping
 
