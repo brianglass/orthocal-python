@@ -4,7 +4,7 @@ django-cors-headers==4.4.0
 django-fullurl==1.4
 django-google-fonts==0.0.3
 django-ninja==1.2.2
-django==5.0.7
+django==5.1
 google-cloud-logging==3.11.0
 icalendar==5.0.13
 jdcal==1.4.1
@@ -12,12 +12,9 @@ Jinja2==3.1.4               # Typogrify imports this even though we're not using
 newrelic==9.12.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
+servestatic[brotli]==1.0.0
 typogrify==2.0.7
-#uvicorn[standard]==0.29.0  # 0.30.3 new process manager doesn't work with Django
-uvicorn[standard]==0.30.5  # 0.30.3 new process manager doesn't work with Django
-# We can go back to mainline whitenoise once
-# https://github.com/evansd/whitenoise/pull/359 is merged
-whitenoise[brotli] @ https://github.com/Archmonger/whitenoise/zipball/asgi-compat
+uvicorn[standard]==0.30.5
 # oscrypto is a dependency of one of the above packages.
 # We can go back to mainline oscrypto once
 # https://github.com/wbond/oscrypto/issues/78 is fixed

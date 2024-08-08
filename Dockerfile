@@ -1,5 +1,3 @@
-# This has to be pinned to Bullseye until oscrypto is updated
-# See https://github.com/wbond/oscrypto/issues/78
 FROM python:3.12-slim
 
 WORKDIR /orthocal

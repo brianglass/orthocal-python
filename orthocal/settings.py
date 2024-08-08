@@ -61,7 +61,7 @@ IS_GCLOUD = 'K_REVISION' in os.environ
 if TESTING:
     RATELIMIT_ENABLE = False
 
-WHITENOISE_MAX_AGE = ORTHOCAL_MAX_AGE
+SERVESTATIC_MAX_AGE = ORTHOCAL_MAX_AGE
 GOOGLE_FONTS = ['EB Garamond:ital@0;1']
 
 # Application definition
@@ -89,7 +89,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'orthocal.middleware.request_queueing',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'servestatic.middleware.ServeStaticMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -241,7 +241,7 @@ STATICFILES_DIRS = [BASE_DIR / 'fonts']
 
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "servestatic.storage.CompressedStaticFilesStorage",
     },
 }
 

@@ -35,7 +35,7 @@ class Day(models.Model):
         return f'{self.title}: {self.subtitle}' if self.subtitle else self.title
 
     class Meta:
-        index_together = 'month', 'day'
+        indexes = [models.Index(fields=('month', 'day'))]
 
 
 class Reading(models.Model):
@@ -63,7 +63,7 @@ class Reading(models.Model):
     flag = models.SmallIntegerField()
 
     class Meta:
-        index_together = 'month', 'day'
+        indexes = [models.Index(fields=('month', 'day'))]
 
     async def aget_pericope(self):
         # Using self.pericope only works synchronously.
