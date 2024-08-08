@@ -5,7 +5,7 @@ django-fullurl==1.4
 django-google-fonts==0.0.3
 django-ninja==1.2.2
 django==5.0.7
-google-cloud-logging==3.10.0
+google-cloud-logging==3.11.0
 icalendar==5.0.13
 jdcal==1.4.1
 Jinja2==3.1.4               # Typogrify imports this even though we're not using it
