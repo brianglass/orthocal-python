@@ -9,7 +9,7 @@ google-cloud-logging==3.11.0
 icalendar==5.0.13
 jdcal==1.4.1
 Jinja2==3.1.4               # Typogrify imports this even though we're not using it
-newrelic==9.12.0
+newrelic==9.13.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
 servestatic[brotli]==1.0.0
