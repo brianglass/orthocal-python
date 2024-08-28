@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
+from google.cloud.logging_v2.handlers.middleware import RequestMiddleware
 from newrelic.api.transaction import current_transaction
 
 logger = logging.getLogger(__name__)
@@ -55,6 +56,18 @@ def log_language(get_response):
         def middleware(request):
             log_language(request)
             return get_response(request)
+
+    return middleware
+
+@sync_and_async_middleware
+def google_logging_middleware(get_response):
+    if iscoroutinefunction(get_response):
+        async def middleware(request):
+            response = await get_response(request)
+            google_middleware = RequestMiddleware(lambda request: response)
+            return google_middleware(request)
+    else:
+        middleware = RequestMiddleware(get_response)
 
     return middleware
 
