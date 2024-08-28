@@ -32,6 +32,11 @@ class Process(multiprocess.Process):
             logger.error(f"Process {self.process.pid} is not alive.")
             return False
 
+        return True
+
+        # For now we are disabling the ping check because it is not working correctly
+        # See https://github.com/encode/uvicorn/discussions/2399
+
         start = datetime.datetime.now()
         ping = self.ping(timeout)
         if not ping:
