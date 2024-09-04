@@ -94,8 +94,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'google.cloud.logging_v2.handlers.middleware.RequestMiddleware',
-    'orthocal.middleware.google_logging_middleware',
     'orthocal.middleware.cache_control',
 ]
 
