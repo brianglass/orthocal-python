@@ -213,6 +213,9 @@ LOGGING = {
         '__main__': {
             'level': 'DEBUG',
         },
+        'asyncio': {
+            'level': 'WARNING',
+        },
     },
 }
 
