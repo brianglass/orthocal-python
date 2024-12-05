@@ -153,7 +153,7 @@ class Day:
                     case Weekday.Sunday | Weekday.Saturday:
                         self.fast_exception = 2
 
-                # Ease restrictions during the week before Nativity
+                # Disallow fish for the week before Nativity
                 if self.pyear.nativity-6 < self.pdist < self.pyear.nativity-1 and self.fast_exception > 1:
                     self.fast_exception = 1
 

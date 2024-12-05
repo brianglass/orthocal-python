@@ -14530,7 +14530,7 @@
         "service_note": "",
         "saint": "",
         "fast": 5,
-        "fast_exception": 0,
+        "fast_exception": 1,
         "flag": 0
     }
 },

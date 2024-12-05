@@ -5,11 +5,11 @@ django-fullurl==1.4
 django-google-fonts==0.0.3
 django-ninja==1.3.0
 django==5.1.3
-google-cloud-logging==3.11.2
-icalendar==6.0.1
+google-cloud-logging==3.11.3
+icalendar==6.1.0
 jdcal==1.4.1
 Jinja2==3.1.4               # Typogrify imports this even though we're not using it
-newrelic==10.2.0
+newrelic==10.3.1
 python-dateutil==2.9.0.post0
 requests==2.32.3
 servestatic[brotli]==2.1.1

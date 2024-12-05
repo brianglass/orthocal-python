@@ -12,40 +12,11 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+# The multiprocess supervisor does not work correctly in Google Cloud Run.
+# See https://github.com/encode/uvicorn/discussions/2399
 class Process(multiprocess.Process):
-    def start(self):
-        super().start()
-        logger.info(f"Started process {self.process.pid}.")
-
-    def always_pong(self):
-        pid = os.getpid()
-        logger.info(f"always_pong thread is starting for process {pid}.")
-        super().always_pong()
-
-    def target(self, *args, **kwargs):
-        pid = os.getpid()
-        logger.info(f"New worker {pid} is starting.")
-        return super().target(*args, **kwargs)
-
-    def is_alive(self, timeout: float = 5) -> bool:
-        if not self.process.is_alive():
-            logger.error(f"Process {self.process.pid} is not alive.")
-            return False
-
+    def ping(self, *args, **kwargs):
         return True
-
-        # For now we are disabling the ping check because it is not working correctly
-        # See https://github.com/encode/uvicorn/discussions/2399
-
-        start = datetime.datetime.now()
-        ping = self.ping(timeout)
-        if not ping:
-            end = datetime.datetime.now()
-            seconds = (end - start).total_seconds()
-
-            logger.error(f"Failed to ping {self.process.pid} in {seconds} seconds.")
-
-        return ping
 
 
 @patch('uvicorn.supervisors.multiprocess.Process', Process)
