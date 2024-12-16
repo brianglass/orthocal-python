@@ -225,6 +225,7 @@ LOGGING = {
 LANGUAGES = (
     ('en', _('English')),
     ('ro', _('Romanian')),
+    ('sr', _('Serbian')),
 )
 LANGUAGE_CODE = 'en-us'
 

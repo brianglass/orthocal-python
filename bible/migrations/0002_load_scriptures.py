@@ -13,10 +13,14 @@ def load_default_scriptures(apps, schema_editor):
     for verse in parse_usfx('data/ron-rccv.usfx.xml'):
         Verse.objects.create(language='ro', **verse)
 
+    for verse in parse_usfx('data/srp1865_usfx.xml'):
+        Verse.objects.create(language='sr', **verse)
+
 def unload_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
     Verse.objects.filter(language='eng').delete()
     Verse.objects.filter(language='ro').delete()
+    Verse.objects.filter(language='sr').delete()
 
 class Migration(migrations.Migration):
 

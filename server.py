@@ -12,8 +12,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# The multiprocess supervisor does not work correctly in Google Cloud Run.
-# See https://github.com/encode/uvicorn/discussions/2399
+# The ping/pong in the multiprocess supervisor does not work correctly in
+# Google Cloud Run. See https://github.com/encode/uvicorn/discussions/2399
 class Process(multiprocess.Process):
     def ping(self, *args, **kwargs):
         return True
