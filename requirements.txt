@@ -8,7 +8,7 @@ django==5.1.4
 google-cloud-logging==3.11.3
 icalendar==6.1.0
 jdcal==1.4.1
-Jinja2==3.1.4               # Typogrify imports this even though we're not using it
+Jinja2==3.1.5               # Typogrify imports this even though we're not using it
 newrelic==10.4.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
