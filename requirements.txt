@@ -12,7 +12,7 @@ Jinja2==3.1.4               # Typogrify imports this even though we're not using
 newrelic==10.4.0
 python-dateutil==2.9.0.post0
 requests==2.32.3
-servestatic[brotli]==2.1.1
+servestatic[brotli]==3.0.0
 typogrify==2.0.7
 uvicorn[standard]==0.34.0
 # oscrypto is a dependency of one of the above packages.
