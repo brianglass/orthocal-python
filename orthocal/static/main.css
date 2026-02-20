@@ -9,6 +9,7 @@ body {
 }
 h1, h2, h3, h4 {
     text-align: center;
+    text-wrap: balance;
 }
 .rubric {
     color: #a00;
@@ -109,6 +110,7 @@ main#orthocal > header h1 span {
 
 #content {
     text-align: justify;
+    text-wrap: pretty;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -154,6 +156,7 @@ section.readings h2 {
     widows: 3;
     orphans: 3;
     text-align: justify;
+    text-wrap: pretty;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
