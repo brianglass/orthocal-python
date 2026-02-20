@@ -62,7 +62,6 @@ if TESTING:
     RATELIMIT_ENABLE = False
 
 SERVESTATIC_MAX_AGE = ORTHOCAL_MAX_AGE
-GOOGLE_FONTS = ['EB Garamond:ital@0;1']
 
 # Application definition
 
@@ -72,7 +71,6 @@ INSTALLED_APPS = [
 
     # Third party apps
     'corsheaders',
-    'django_google_fonts',
     'fullurl',
     'typogrify',
     'ninja',

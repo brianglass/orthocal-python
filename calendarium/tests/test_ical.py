@@ -59,7 +59,7 @@ class CalendarTest(TestCase):
         cal = await generate_ical(timestamp, Calendar.Gregorian, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt.date() == timestamp.date():
-                summary = event.decoded('summary').decode('utf-8')
+                summary = event.decoded('summary')
                 self.assertEqual(summary, 'Synaxis of St John the Baptist')
                 break
         else:
@@ -75,7 +75,7 @@ class CalendarTest(TestCase):
         cal = await generate_ical(timestamp, Calendar.Julian, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt.date() == timestamp.date():
-                summary = event.decoded('summary').decode('utf-8')
+                summary = event.decoded('summary')
                 self.assertEqual(summary, 'Nativity of Christ')
                 break
         else:

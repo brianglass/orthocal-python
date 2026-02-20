@@ -1,4 +1,4 @@
-{% load google_fonts %}{% load i18n %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
+{% load i18n %}{% get_current_language as LANGUAGE_CODE %}<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
 		{% load static %}
@@ -13,8 +13,10 @@
 		<link rel="stylesheet" media="print" href="{% static "print.css" %}">
 
 		<!-- Load Fonts -->
-		<link rel="preload" href="{% static 'fonts/ebgaramond:ital@0;1.css' %}" as="style">
-		<link rel="stylesheet" href="{% static 'fonts/ebgaramond:ital@0;1.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=fallback" rel="preload" as="style">
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=fallback" rel="stylesheet">
 
 		<!-- Google tag (gtag.js) -->
 		<link rel="preconnect" href="https://www.googletagmanager.com">
