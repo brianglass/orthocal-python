@@ -1,11 +1,15 @@
+import logging
+
 from datetime import date
 from functools import lru_cache
 
 from django.utils.functional import cached_property
+from jdcal import jd2gcal
 
 from .. import datetools
 from ..datetools import Calendar, Weekday, FloatIndex
 
+logger = logging.getLogger(__name__)
 
 @lru_cache
 class Year:
@@ -360,3 +364,25 @@ class Year:
                 floats[self.annunciation]       = FloatIndex.AnnunciationWeekday
 
         return floats
+
+    @cached_property
+    def nativity_fast(self):
+        start, end = date(self.year, 11, 15), date(self.year, 12, 24)
+
+        if self.calendar == Calendar.Julian:
+            start_jdn, end_jdn = datetools.julian_to_jdn(start), datetools.julian_to_jdn(end)
+            start_y, start_m, start_d, _ = jd2gcal(start_jdn, 0)
+            end_y, end_m, end_d, _ = jd2gcal(end_jdn, 0)
+            return date(start_y, start_m, start_d), date(end_y, end_m, end_d)
+        else:
+            return start, end
+
+    @cached_property
+    def apostles_fast(self):
+        # The Apostles fast begins on the Monday following All Saints
+        start, end = jd2gcal(self.pascha + 57, 0), jd2gcal(self.peter_and_paul, 0)
+
+        if self.calendar == Calendar.Julian:
+            return (datetools.gregorian_to_julian(*start), datetools.gregorian_to_julian(*end))
+        else:
+            return (date(*start), date(*end))

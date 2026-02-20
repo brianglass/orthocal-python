@@ -76,6 +76,18 @@ class TestYear(TestCase):
             with self.subTest(pdist):
                 self.assertTrue(year.has_moved_paremias(pdist))
 
+    def test_nativity_fast(self):
+        year = liturgics.Year(2025)
+        start, end = year.nativity_fast
+        self.assertEqual(start, date(2025, 11, 15))
+        self.assertEqual(end, date(2025, 12, 24))
+
+    def test_nativity_fast_julian(self):
+        year = liturgics.Year(2025, calendar=datetools.Calendar.Julian)
+        start, end = year.nativity_fast
+        self.assertEqual(start, date(2025, 11, 28))
+        self.assertEqual(end, date(2026, 1, 6))
+
 
 class TestDay(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
