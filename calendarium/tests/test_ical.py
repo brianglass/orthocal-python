@@ -58,7 +58,7 @@ class CalendarTest(TestCase):
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
         cal = await generate_ical(timestamp, Calendar.Gregorian, build_absolute_uri)
         for event in cal.walk('vevent'):
-            if event['dtstart'].dt.date() == timestamp.date():
+            if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
                 self.assertEqual(summary, 'Synaxis of St John the Baptist')
                 break
@@ -74,9 +74,20 @@ class CalendarTest(TestCase):
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
         cal = await generate_ical(timestamp, Calendar.Julian, build_absolute_uri)
         for event in cal.walk('vevent'):
-            if event['dtstart'].dt.date() == timestamp.date():
+            if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
                 self.assertEqual(summary, 'Nativity of Christ')
                 break
         else:
             self.fail('No event for timestamp found')
+
+    def test_event_all_day(self):
+        """Events should be all-day events."""
+
+        url = reverse('ical', kwargs={'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        for event in cal.walk('vevent'):
+            self.assertFalse(isinstance(event['dtstart'].dt, datetime.datetime))
+            length = event['dtend'].dt - event['dtstart'].dt
+            self.assertEqual(length, datetime.timedelta(days=1))

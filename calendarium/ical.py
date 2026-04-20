@@ -48,6 +48,7 @@ async def generate_ical(timestamp, cal, build_absolute_uri):
     end_dt = start_dt + timedelta(days=30 * 7)
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
+        dt = dt.date()
         day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal)
         await day.ainitialize()
 
@@ -63,7 +64,8 @@ async def generate_ical(timestamp, cal, build_absolute_uri):
         event = icalendar.Event()
         event.add('uid', uid)
         event.add('dtstamp', timestamp)
-        event.add('dtstart', icalendar.vDate(dt))  # We use vDate to make an all-day event
+        event.add('dtstart', dt)
+        event.add('dtend', dt + timedelta(days=1))
         event.add('summary', day.summary_title)
         event.add('description', await ical_description(day, url))
         event.add('url', url)
