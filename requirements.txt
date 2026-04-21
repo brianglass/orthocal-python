@@ -5,7 +5,7 @@ django-fullurl==1.4
 django-ninja==1.5.3
 django==6.0.4
 google-cloud-logging==3.13.0
-icalendar==7.0.1
+icalendar==7.0.3
 jdcal==1.4.1
 Jinja2==3.1.6               # Typogrify imports this even though we're not using it
 newrelic==11.5.0
