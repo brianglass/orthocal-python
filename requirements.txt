@@ -3,7 +3,7 @@ django-ask-sdk==1.0.0
 django-cors-headers==4.9.0
 django-fullurl==1.4
 django-ninja==1.5.3
-django==6.0.2
+django==6.0.4
 google-cloud-logging==3.13.0
 icalendar==7.0.1
 jdcal==1.4.1
