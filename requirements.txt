@@ -13,7 +13,7 @@ python-dateutil==2.9.0.post0
 requests==2.32.5
 servestatic[brotli]==3.1.0
 typogrify==2.1.0
-uvicorn[standard]==0.41.0
+uvicorn[standard]==0.45.0
 # oscrypto is a dependency of one of the above packages.
 # We can go back to mainline oscrypto once
 # https://github.com/wbond/oscrypto/issues/78 is fixed
