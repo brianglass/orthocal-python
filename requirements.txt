@@ -10,7 +10,7 @@ jdcal==1.4.1
 Jinja2==3.1.6               # Typogrify imports this even though we're not using it
 newrelic==12.1.0
 python-dateutil==2.9.0.post0
-requests==2.33.1
+requests==2.34.1
 servestatic[brotli]==4.3.0
 typogrify==2.1.0
 uvicorn[standard]==0.46.0
