@@ -5,15 +5,15 @@ django-fullurl==1.4
 django-ninja==1.6.2
 django==6.0.5
 google-cloud-logging==3.15.0
-icalendar==7.1.0
+icalendar==7.1.2
 jdcal==1.4.1
 Jinja2==3.1.6               # Typogrify imports this even though we're not using it
-newrelic==13.0.0
+newrelic==13.0.1
 python-dateutil==2.9.0.post0
-requests==2.34.1
+requests==2.34.2
 servestatic[brotli]==4.3.0
 typogrify==2.1.0
-uvicorn[standard]==0.46.0
+uvicorn[standard]==0.48.0
 # oscrypto is a dependency of one of the above packages.
 # We can go back to mainline oscrypto once
 # https://github.com/wbond/oscrypto/issues/78 is fixed
