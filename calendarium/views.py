@@ -13,21 +13,22 @@ from django.urls import reverse
 from django.utils import timezone
 
 from . import liturgics, models
-from .datetools import Calendar
+from .datetools import Calendar, Tradition
 
 logger = logging.getLogger(__name__)
 
-async def readings_view(request, cal=None, year=None, month=None, day=None):
+async def readings_view(request, cal=None, tradition=None, year=None, month=None, day=None):
     cal = remember_cal(request, cal)
+    tradition = remember_tradition(request, tradition)
     now = timezone.localtime().date()
 
     if year and month and day:
         try:
-            day = liturgics.Day(year, month, day, calendar=cal, language=request.LANGUAGE_CODE)
+            day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
         except ValueError:
             raise Http404
     else:
-        day = liturgics.Day(now.year, now.month, now.day, calendar=cal, language=request.LANGUAGE_CODE)
+        day = liturgics.Day(now.year, now.month, now.day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
 
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
@@ -44,10 +45,12 @@ async def readings_view(request, cal=None, year=None, month=None, day=None):
         'previous_date': previous_date,
         'previous_nofollow': not is_indexable(previous_date),
         'cal': cal,
+        'tradition': tradition,
     })
 
-async def calendar_view(request, cal=None, year=None, month=None):
+async def calendar_view(request, cal=None, tradition=None, year=None, month=None):
     cal = remember_cal(request, cal)
+    tradition = remember_tradition(request, tradition)
     now = timezone.localtime().date()
 
     if not year or not month:
@@ -55,7 +58,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
 
     first_day = date(year, month, 1)
 
-    content = await render_calendar_html(request, year, month, cal=cal)
+    content = await render_calendar_html(request, year, month, cal=cal, tradition=tradition)
 
     previous_month = first_day - relativedelta(months=1)
     next_month = first_day + relativedelta(months=1)
@@ -63,6 +66,7 @@ async def calendar_view(request, cal=None, year=None, month=None):
     return render(request, 'calendar.html', context={
         'content': content,
         'cal': cal,
+        'tradition': tradition,
         'noindex': not is_indexable(first_day),
         'this_month': first_day,
         'previous_month': previous_month,
@@ -71,24 +75,25 @@ async def calendar_view(request, cal=None, year=None, month=None):
         'next_nofollow': not is_indexable(next_month),
     })
 
-async def calendar_embed_view(request, cal=Calendar.Gregorian, year=None, month=None):
+async def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
     if not year or not month:
         now = timezone.localtime()
         year, month = now.year, now.month
 
     first_day = date(year, month, 1)
 
-    content = await render_calendar_html(request, year, month, cal=cal)
+    content = await render_calendar_html(request, year, month, cal=cal, tradition=tradition)
 
     return render(request, 'calendar_embed.html', context={
         'content': content,
         'cal': cal,
+        'tradition': tradition,
         'this_month': first_day,
         'previous_month': first_day - relativedelta(months=1),
         'next_month': first_day + relativedelta(months=1),
     })
 
-async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, full_urls=False):
+async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tradition=Tradition.Slavic, full_urls=False):
     class LiturgicalCalendar(calendar.HTMLCalendar):
         def formatday(self, day, weekday):
             if not day:
@@ -96,6 +101,7 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, ful
 
             return render_to_string('calendar_day.html', request=request, context={
                 'cal': cal,
+                'tradition': tradition,
                 'day_number': day,
                 'day': days[day-1],  # days is 0-origin and day is 1-origin
                 'cell_class': self.cssclasses[weekday],
@@ -104,7 +110,7 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, ful
 
     days = [
         d async for d in
-        liturgics.amonth_of_days(year, month, calendar=cal)
+        liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)
     ]
 
     lcal = LiturgicalCalendar(firstweekday=6)
@@ -126,6 +132,19 @@ def remember_cal(request, cal):
         cal = request.session.get('cal', Calendar.Gregorian)
 
     return cal
+
+def remember_tradition(request, tradition):
+    if tradition:
+        if tradition != request.session.get('tradition', Tradition.Slavic):
+            request.session['tradition'] = tradition
+
+        # Don't send vary on cookie header when we have an explicit tradition.
+        # In this case, the session does not actually impact the content.
+        request.session.accessed = False
+    else:
+        tradition = request.session.get('tradition', Tradition.Slavic)
+
+    return tradition
 
 def is_indexable(dt):
     now = timezone.localtime().date()

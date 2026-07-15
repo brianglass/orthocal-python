@@ -11,6 +11,8 @@ from .ical import ical
 urlpatterns = [
     path('', api.urls),
     path('<cal:cal>/ical/', ical, name='ical'),
+    path('<tradition:tradition>/<cal:cal>/ical/', ical, name='ical'),
     path('feed/', cache(ReadingsFeed()), name='rss-feed'),
     path('feed/<cal:cal>/', cache(ReadingsFeed()), name='rss-feed-cal'),
+    path('feed/<tradition:tradition>/<cal:cal>/', cache(ReadingsFeed()), name='rss-feed-cal'),
 ]

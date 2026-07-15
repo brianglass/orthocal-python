@@ -61,6 +61,11 @@ class Reading(models.Model):
     pericope = models.ForeignKey('Pericope', on_delete=models.CASCADE)
     ordering = models.SmallIntegerField()
     flag = models.SmallIntegerField()
+    tradition = models.CharField(max_length=16, choices=[
+        ('common', 'Common'),  # shared by all traditions (the default)
+        ('slavic', 'Slavic-specific'),
+        ('greek', 'Greek-specific'),
+    ], default='common')
 
     class Meta:
         indexes = [models.Index(fields=('month', 'day'))]

@@ -2,7 +2,8 @@ from datetime import date
 
 from django.test import TestCase
 
-from .. import datetools, liturgics
+from .. import datetools, liturgics, models
+from ..datetools import Tradition
 from bible.models import Verse
 
 
@@ -10,12 +11,12 @@ class TestYear(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_pascha(self):
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
         self.assertEqual(year.pascha, pascha)
 
     def test_pdists(self):
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
 
         data = [
@@ -41,7 +42,7 @@ class TestYear(TestCase):
 
     def test_lukan_jump(self):
         # TODO: Confirm this is actually working
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
         self.assertEqual(year.lukan_jump, 7) 
 
     def test_daily_readings(self):
@@ -51,42 +52,119 @@ class TestYear(TestCase):
         ]
 
         for year, days in data:
-            year = liturgics.Year(year)
+            year = liturgics.SlavicYear(year)
             with self.subTest(year):
                 self.assertSetEqual(year.no_daily, days)
 
     def test_reserves(self):
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
 
         self.assertEqual(year.extra_sundays, 3)
         expected = 266, 161, 168
         self.assertSequenceEqual(year.reserves, expected)
 
     def test_has_no_paremias(self):
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
         noparemias = -43, -40, -30, -8
         for pdist in noparemias:
             with self.subTest(pdist):
                 self.assertTrue(year.has_no_paremias(pdist))
 
     def test_has_paremias(self):
-        year = liturgics.Year(2018)
+        year = liturgics.SlavicYear(2018)
         paremias = -44, -41, -31, -9
         for pdist in paremias:
             with self.subTest(pdist):
                 self.assertTrue(year.has_moved_paremias(pdist))
 
     def test_nativity_fast(self):
-        year = liturgics.Year(2025)
+        year = liturgics.SlavicYear(2025)
         start, end = year.nativity_fast
         self.assertEqual(start, date(2025, 11, 15))
         self.assertEqual(end, date(2025, 12, 24))
 
     def test_nativity_fast_julian(self):
-        year = liturgics.Year(2025, calendar=datetools.Calendar.Julian)
+        year = liturgics.SlavicYear(2025, calendar=datetools.Calendar.Julian)
         start, end = year.nativity_fast
         self.assertEqual(start, date(2025, 11, 28))
         self.assertEqual(end, date(2026, 1, 6))
+
+
+class TestTraditionOverlay(TestCase):
+    """Tests for the Slavic/Greek tradition axis added on top of the shared
+    Byzantine base -- these cover the overlay mechanism itself (Year class
+    selection, Reading fallback/override), not the specific GreekYear
+    lukan_jump formula, which is still provisional.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_slavic_and_greek_year_are_distinct_subclasses(self):
+        # Note: SlavicYear/GreekYear are decorated with @lru_cache, which
+        # (as with the pre-existing Year class) turns the name into a
+        # cache-wrapper object rather than a real type, so isinstance()
+        # against SlavicYear/GreekYear themselves doesn't work -- compare
+        # via type() instead.
+        slavic = liturgics.SlavicYear(2026)
+        greek = liturgics.GreekYear(2026)
+
+        self.assertIsInstance(slavic, liturgics.ByzantineYear)
+        self.assertIsInstance(greek, liturgics.ByzantineYear)
+        self.assertNotEqual(type(slavic), type(greek))
+
+    def test_byzantine_year_stubs_are_not_implemented(self):
+        base = liturgics.ByzantineYear(2026)
+        for attr in ('lukan_jump', 'lukan_jump_threshold', 'first_sun_luke', 'reserves'):
+            with self.subTest(attr):
+                with self.assertRaises(NotImplementedError):
+                    getattr(base, attr)
+
+    def test_shared_anchors_agree_between_traditions(self):
+        """Fixed-calendar-date anchors should be identical for both traditions."""
+
+        slavic = liturgics.SlavicYear(2026)
+        greek = liturgics.GreekYear(2026)
+
+        for attr in ('elevation', 'nativity', 'theophany', 'annunciation', 'floats'):
+            with self.subTest(attr):
+                self.assertEqual(getattr(slavic, attr), getattr(greek, attr))
+
+    async def test_common_reading_is_shared_by_both_traditions(self):
+        """With no tradition-specific override, both traditions should see the
+        same 'common' Reading row -- this is the day-to-day case today, since
+        no overlay rows exist yet."""
+
+        for tradition in (Tradition.Slavic, Tradition.Greek):
+            with self.subTest(tradition):
+                day = liturgics.Day(2026, 9, 14, tradition=tradition)
+                await day.ainitialize()
+                readings = await day.aget_readings()
+                displays = {r.pericope.sdisplay for r in readings}
+                self.assertIn('John 19.6-11, 13-20, 25-28, 30-35', displays)
+
+    async def test_tradition_specific_row_overrides_common_row(self):
+        """A tradition-tagged row should shadow the 'common' row for the same slot."""
+
+        pericope = await models.Pericope.objects.afirst()
+
+        common = await models.Reading.objects.acreate(
+            month=8, day=29, pdist=0, source='Epistle', desc='__test__',
+            pericope=pericope, ordering=821, flag=0, tradition='common',
+        )
+        greek_override = await models.Reading.objects.acreate(
+            month=8, day=29, pdist=0, source='Epistle', desc='__test__',
+            pericope=pericope, ordering=821, flag=0, tradition='greek',
+        )
+
+        try:
+            rows = liturgics.day._prefer_tradition([common, greek_override], Tradition.Greek)
+            self.assertEqual(rows, [greek_override])
+
+            rows = liturgics.day._prefer_tradition([common, greek_override], Tradition.Slavic)
+            self.assertEqual(rows, [common])
+        finally:
+            await common.adelete()
+            await greek_override.adelete()
 
 
 class TestDay(TestCase):

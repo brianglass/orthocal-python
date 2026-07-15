@@ -8,7 +8,7 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 from django.utils import timezone
 
-from ..datetools import Calendar
+from ..datetools import Calendar, Tradition
 from ..ical import generate_ical
 
 
@@ -56,7 +56,7 @@ class CalendarTest(TestCase):
             return urljoin('http://testserver', url)
 
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
-        cal = await generate_ical(timestamp, Calendar.Gregorian, build_absolute_uri)
+        cal = await generate_ical(timestamp, Calendar.Gregorian, Tradition.Slavic, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
@@ -72,7 +72,7 @@ class CalendarTest(TestCase):
             return urljoin('http://testserver', url)
 
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
-        cal = await generate_ical(timestamp, Calendar.Julian, build_absolute_uri)
+        cal = await generate_ical(timestamp, Calendar.Julian, Tradition.Slavic, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')

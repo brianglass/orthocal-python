@@ -7,12 +7,44 @@ from django.db.models import Q
 from django.utils.functional import cached_property
 
 from .. import datetools, models
-from ..datetools import Calendar, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
+from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 from commemorations.models import Commemoration
 
-from .year import Year
+from .year import SlavicYear, GreekYear
 
 logger = logging.getLogger(__name__)
+
+_YEAR_CLASSES = {
+    Tradition.Slavic: SlavicYear,
+    Tradition.Greek: GreekYear,
+}
+
+
+def _prefer_tradition(rows, tradition):
+    """Resolve a mixed common/tradition-specific row list down to one row per slot.
+
+    Rows tagged for the requested tradition take precedence over the shared
+    'common' row for the same (pdist, month, day, source, ordering, desc)
+    slot; this is symmetric for both traditions -- neither is privileged.
+    """
+
+    kept = []
+    slot_index = {}
+
+    for row in rows:
+        if row.tradition not in (tradition, 'common'):
+            continue
+
+        slot = (row.pdist, row.month, row.day, row.source, row.ordering, row.desc)
+
+        if slot in slot_index:
+            if row.tradition != 'common':
+                kept[slot_index[slot]] = row
+        else:
+            slot_index[slot] = len(kept)
+            kept.append(row)
+
+    return kept
 
 
 class Day:
@@ -22,7 +54,7 @@ class Day:
     of the saints from both the Paschal cycle and the festal cycle.
     """
 
-    def __init__(self, year, month, day, calendar=Calendar.Gregorian, language='en'):
+    def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en'):
         self.gregorian_date = date(year, month, day)
 
         if calendar == Calendar.Gregorian:
@@ -40,7 +72,8 @@ class Day:
         self.day = dt.day
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
-        self.pyear = Year(pyear, calendar)
+        self.tradition = tradition
+        self.pyear = _YEAR_CLASSES[tradition](pyear, calendar)
         self.language = language
 
     async def ainitialize(self):
@@ -314,14 +347,18 @@ class Day:
             subquery &= ~Q(desc='Theotokos')
 
         query |= subquery
+        query &= Q(tradition__in=(self.tradition, 'common'))
 
         # Generate the list of readings
 
         # Do select_related to avoid later synchronous foreign key lookup
         queryset = models.Reading.objects.filter(query).select_related('pericope')
 
+        rows = [reading async for reading in queryset.order_by('ordering')]
+        rows = _prefer_tradition(rows, self.tradition)
+
         self.readings = []
-        async for reading in queryset.order_by('ordering'):
+        for reading in rows:
             if fetch_content:
                 await reading.pericope.aget_passage(language=self.language)
 
@@ -378,10 +415,13 @@ class Day:
         if float_index := self.pyear.floats.get(self.pdist):
             query |= Q(pdist=float_index, source__in=['Epistle', 'Gospel'])
 
+        query &= Q(tradition__in=(self.tradition, 'common'))
+
         # Generate the list of readings.
         # Do select_related to avoid later synchronous foreign key lookup.
         queryset = models.Reading.objects.filter(query).select_related('pericope')
         readings = [reading async for reading in queryset.order_by('ordering')]
+        readings = _prefer_tradition(readings, self.tradition)
 
         # Include only the first Epistle and Gospel if we have them.
         sources = [r.source for r in readings]
@@ -482,7 +522,7 @@ class Day:
             # Some sources say this jump should happen after the 13th week of Luke
             return self.jdn - self.pyear.next_pascha
 
-        if self.pdist > self.pyear.sun_after_elevation:
+        if self.pdist > self.pyear.lukan_jump_threshold:
             return self.pdist + self.pyear.lukan_jump
 
         return self.pdist

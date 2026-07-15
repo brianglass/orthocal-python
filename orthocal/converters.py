@@ -1,6 +1,6 @@
 from django.urls.converters import IntConverter
 
-from calendarium.datetools import Calendar
+from calendarium.datetools import Calendar, Tradition
 
 CAL_RE = '(gregorian|julian|oca|rocor)'
 
@@ -13,6 +13,22 @@ class CalendarConverter:
                 return Calendar.Gregorian
             case 'julian' | 'rocor':
                 return Calendar.Julian
+
+    def to_url(self, value):
+        return value
+
+
+TRADITION_RE = '(slavic|greek|oca|antiochian|goa)'
+
+class TraditionConverter:
+    regex = TRADITION_RE
+
+    def to_python(self, value):
+        match value:
+            case 'slavic' | 'oca':
+                return Tradition.Slavic
+            case 'greek' | 'antiochian' | 'goa':
+                return Tradition.Greek
 
     def to_url(self, value):
         return value

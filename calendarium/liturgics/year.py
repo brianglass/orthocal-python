@@ -11,8 +11,8 @@ from ..datetools import Calendar, Weekday, FloatIndex
 
 logger = logging.getLogger(__name__)
 
-@lru_cache
-class Year:
+
+class ByzantineYear:
     """Representation of a liturgical year.
 
     While the literal Church year begins on September 1, for the purposes of
@@ -20,6 +20,17 @@ class Year:
     the year with Pascha as its locus. For that reason, this Year class
     represents the period from one Zacchaeus Sunday (77 days before Pascha)
     to the next.
+
+    This base class holds everything that is common to both the Slavic and
+    Greek liturgical traditions, both of which descend from the shared
+    Byzantine rite: fixed-calendar-date anchors (Elevation, Nativity,
+    Theophany, Annunciation, etc.), the floating-feast table, fasting
+    periods, and paremia scheduling. `lukan_jump`, `reserves`,
+    `first_sun_luke`, and `extra_sundays` govern how the Matthew-to-Luke
+    Gospel transition after the Elevation of the Cross is handled, which is
+    the one place the two traditions genuinely diverge in mechanism (not
+    just in sparse data), so they are left for subclasses to implement. See
+    `SlavicYear` and `GreekYear`.
     """
 
     def __init__(self, year, calendar: Calendar=Calendar.Gregorian):
@@ -161,25 +172,17 @@ class Year:
     @cached_property
     def lukan_jump(self):
         """The number of days to jump forward in the gospel cycle. Divisible by 7."""
+        raise NotImplementedError('lukan_jump must be implemented by a tradition-specific subclass')
 
-        # The Gospel reading for the Monday of the 18th week after Pentecost,
-        # Luke 3.19-22 (Lukan pericope 10), must be read on the Monday AFTER
-        # the Sunday AFTER the Elevation of the cross.
-        #
-        # This syncs the remainder of the paschal cycle to within 1 week of a
-        # fixed point in the festal cycle, but only for the Gospel.
-        #
-        # See https://www.orthodox.net/ustav/lukan-jump.html
-
-        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
-        mon_after_elevation = self.sun_after_elevation + 1
-        return eighteenth_monday - mon_after_elevation
+    @cached_property
+    def lukan_jump_threshold(self):
+        """The pdist after which the Lukan jump shift applies to the Gospel cycle."""
+        raise NotImplementedError('lukan_jump_threshold must be implemented by a tradition-specific subclass')
 
     @cached_property
     def first_sun_luke(self):
         """The first Sunday of Luke, after the Lukan jump."""
-        # Reading of Luke starts on self.sun_after_elevation + 1, which is a Monday
-        return self.sun_after_elevation + 7
+        raise NotImplementedError('first_sun_luke must be implemented by a tradition-specific subclass')
 
     @cached_property
     def extra_sundays(self):
@@ -190,34 +193,8 @@ class Year:
 
     @cached_property
     def reserves(self):
-        """A list of pascha distances for days with unread Sunday gospels.
-
-        These are saved for use between Theophany and the Triodion. 
-        """
-
-        reserves = []
-
-        # This is the Gospel we read on the first Sunday of Luke. It is
-        # assigned to the eighteenth Sunday after Pentecost. 
-        first_luke = 49 + 7*18
-
-        # The Gospel that is read on the 13th Sunday of Luke.
-        thirteenth_luke = first_luke + 7*13
-        
-        if self.extra_sundays:
-            # These are the Sunday Gospels we skipped between Forefathers
-            # Sunday and Theophany because they were overshadowed by the
-            # readings from the Festal cycle (e.g. Nativity).
-            forefathers = self.forefathers + self.lukan_jump + 7
-            reserves.extend(range(forefathers, thirteenth_luke+1, 7))
-
-            if remainder := self.extra_sundays - len(reserves):
-                # these are the Sunday Gospels we jumped over in the lukan jump.
-                start = first_luke - remainder * 7
-                end = first_luke - 6  # First Monday of Luke
-                reserves.extend(range(start, end, 7))
-
-        return reserves
+        """A list of pascha distances for days with unread Sunday gospels."""
+        raise NotImplementedError('reserves must be implemented by a tradition-specific subclass')
 
     @cached_property
     def paremias(self):
@@ -386,3 +363,110 @@ class Year:
             return (datetools.gregorian_to_julian(*start), datetools.gregorian_to_julian(*end))
         else:
             return (date(*start), date(*end))
+
+
+@lru_cache
+class SlavicYear(ByzantineYear):
+    """The Slavic/Russian tradition's handling of the Matthew-to-Luke Gospel transition.
+
+    The reading for the Monday of the 18th week after Pentecost, Luke
+    3.19-22 (Lukan pericope 10), is read on the Monday after the Sunday
+    after the Elevation of the Cross, regardless of how many weeks of
+    Matthew that leaves unread -- those are simply never read that year.
+    Sunday Gospels that get displaced by the Festal cycle between
+    Forefathers Sunday and Theophany, and any Sundays of Luke skipped by the
+    jump itself, are saved as `reserves` and read on the Sundays between
+    Theophany and the Triodion.
+
+    See https://www.orthodox.net/ustav/lukan-jump.html
+    """
+
+    @cached_property
+    def lukan_jump(self):
+        """The number of days to jump forward in the gospel cycle. Divisible by 7."""
+
+        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
+        mon_after_elevation = self.sun_after_elevation + 1
+        return eighteenth_monday - mon_after_elevation
+
+    @cached_property
+    def lukan_jump_threshold(self):
+        return self.sun_after_elevation
+
+    @cached_property
+    def first_sun_luke(self):
+        """The first Sunday of Luke, after the Lukan jump."""
+        # Reading of Luke starts on self.sun_after_elevation + 1, which is a Monday
+        return self.sun_after_elevation + 7
+
+    @cached_property
+    def reserves(self):
+        """A list of pascha distances for days with unread Sunday gospels.
+
+        These are saved for use between Theophany and the Triodion.
+        """
+
+        reserves = []
+
+        # This is the Gospel we read on the first Sunday of Luke. It is
+        # assigned to the eighteenth Sunday after Pentecost.
+        first_luke = 49 + 7*18
+
+        # The Gospel that is read on the 13th Sunday of Luke.
+        thirteenth_luke = first_luke + 7*13
+
+        if self.extra_sundays:
+            # These are the Sunday Gospels we skipped between Forefathers
+            # Sunday and Theophany because they were overshadowed by the
+            # readings from the Festal cycle (e.g. Nativity).
+            forefathers = self.forefathers + self.lukan_jump + 7
+            reserves.extend(range(forefathers, thirteenth_luke+1, 7))
+
+            if remainder := self.extra_sundays - len(reserves):
+                # these are the Sunday Gospels we jumped over in the lukan jump.
+                start = first_luke - remainder * 7
+                end = first_luke - 6  # First Monday of Luke
+                reserves.extend(range(start, end, 7))
+
+        return reserves
+
+
+@lru_cache
+class GreekYear(ByzantineYear):
+    """The Byzantine-Greek tradition's handling of the Matthew-to-Luke Gospel transition.
+
+    Unlike the Slavic practice, the Greek Gospel cycle switches from Matthew
+    to Luke on a fixed anchor: the Sunday after the Sunday after Elevation
+    (i.e. the 2nd Sunday after Elevation reads the first Sunday-of-Luke
+    Gospel), discarding whatever Matthew content would otherwise have
+    followed rather than saving it for later.
+
+    NOTE: this formula was derived and cross-checked this session against
+    the official 2026 Antiochian Archdiocese lectionary chart
+    (data/antiochian_official_chart_2026.json) at the Sunday level only (two
+    exact matches: 2026-09-27 "1st of Luke" and 2026-10-04 "2nd of Luke").
+    The weekday-level transition point has not been independently verified
+    and should be treated as provisional pending further validation.
+    """
+
+    @cached_property
+    def lukan_jump(self):
+        """The number of days to jump forward in the gospel cycle. Divisible by 7."""
+
+        first_sunday_of_luke = 49 + 7*18  # Pentecost + 18 weeks
+        second_sun_after_elevation = self.sun_after_elevation + 7
+        return first_sunday_of_luke - second_sun_after_elevation
+
+    @cached_property
+    def lukan_jump_threshold(self):
+        return self.sun_after_elevation + 6
+
+    @cached_property
+    def first_sun_luke(self):
+        """The first Sunday of Luke, after the Lukan jump."""
+        return self.sun_after_elevation + 7
+
+    @cached_property
+    def reserves(self):
+        """Discarded rather than saved -- see class docstring."""
+        return []

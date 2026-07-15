@@ -21,6 +21,10 @@ class Calendar(StrEnum):
     Gregorian = 'gregorian'
     Julian = 'julian'
 
+class Tradition(StrEnum):
+    Slavic = 'slavic'
+    Greek = 'greek'
+
 class FastLevels(IntEnum):
     NoFast         = 0
     Fast           = 1
