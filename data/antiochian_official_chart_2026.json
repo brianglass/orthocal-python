@@ -1,0 +1,314 @@
+[
+ {
+  "date": "2026-01-04",
+  "label": "Sunday before Theophany",
+  "epistle": "II Tim. 4:5-8",
+  "gospel": "Mark 1:1-8"
+ },
+ {
+  "date": "2026-01-11",
+  "label": "Theodosius the Cenobiarch; Sunday after Theophany",
+  "epistle": "Heb. 13:7-16",
+  "gospel": "Matthew 4:12-17"
+ },
+ {
+  "date": "2026-01-18",
+  "label": "Athanasius & Cyril; 12th of Luke (Ten Lepers)",
+  "epistle": "Heb. 13:7-16",
+  "gospel": "Luke 17:12-19"
+ },
+ {
+  "date": "2026-01-25",
+  "label": "Gregory the Theologian; 15th of Luke (Zacchaeus)",
+  "epistle": "Heb. 7:26-8:2",
+  "gospel": "Luke 19:1-10"
+ },
+ {
+  "date": "2026-02-01",
+  "label": "Pharisee and Publican",
+  "epistle": "II Tim. 3:10-15",
+  "gospel": "Luke 18:10-14"
+ },
+ {
+  "date": "2026-02-08",
+  "label": "Prodigal Son",
+  "epistle": "I Cor. 6:12-20",
+  "gospel": "Luke 15:11-32"
+ },
+ {
+  "date": "2026-02-15",
+  "label": "Last Judgment (Meat Fare)",
+  "epistle": "I Cor. 8:8-9:2",
+  "gospel": "Matthew 25:31-46"
+ },
+ {
+  "date": "2026-02-22",
+  "label": "Forgiveness (Cheese Fare)",
+  "epistle": "Rom. 13:11-14:4",
+  "gospel": "Matthew 6:14-21"
+ },
+ {
+  "date": "2026-03-01",
+  "label": "1st of Lent (Orthodoxy)",
+  "epistle": "Heb. 11:24-26, 32-40",
+  "gospel": "John 1:43-51"
+ },
+ {
+  "date": "2026-03-08",
+  "label": "2nd of Lent (Gregory Palamas)",
+  "epistle": "Heb. 1:10-2:3",
+  "gospel": "Mark 2:1-12"
+ },
+ {
+  "date": "2026-03-15",
+  "label": "3rd of Lent (Holy Cross)",
+  "epistle": "Heb. 4:14-5:6",
+  "gospel": "Mark 8:34-9:1"
+ },
+ {
+  "date": "2026-03-22",
+  "label": "4th of Lent (John Climacus)",
+  "epistle": "Heb. 6:13-20",
+  "gospel": "Mark 9:17-31"
+ },
+ {
+  "date": "2026-03-29",
+  "label": "5th of Lent (Mary of Egypt)",
+  "epistle": "Heb. 9:11-14",
+  "gospel": "Mark 10:32-45"
+ },
+ {
+  "date": "2026-04-05",
+  "label": "Palm Sunday",
+  "epistle": "Phil. 4:4-9",
+  "gospel": "John 12:1-18"
+ },
+ {
+  "date": "2026-04-12",
+  "label": "GREAT & HOLY PASCHA",
+  "epistle": "Acts 1:1-8",
+  "gospel": "John 1:1-17"
+ },
+ {
+  "date": "2026-04-19",
+  "label": "2nd of Pascha (Thomas)",
+  "epistle": "Acts 5:12-20",
+  "gospel": "John 20:19-31"
+ },
+ {
+  "date": "2026-04-26",
+  "label": "3rd of Pascha (Myrrh-bearers)",
+  "epistle": "Acts 6:1-7",
+  "gospel": "Mark 15:43-16:8"
+ },
+ {
+  "date": "2026-05-03",
+  "label": "4th of Pascha (Paralytic)",
+  "epistle": "Acts 9:32-42",
+  "gospel": "John 5:1-15"
+ },
+ {
+  "date": "2026-05-10",
+  "label": "5th of Pascha (Samaritan Woman)",
+  "epistle": "Acts 11:19-30",
+  "gospel": "John 4:5-42"
+ },
+ {
+  "date": "2026-05-17",
+  "label": "6th of Pascha (Blind Man)",
+  "epistle": "Acts 16:16-34",
+  "gospel": "John 9:1-38"
+ },
+ {
+  "date": "2026-05-24",
+  "label": "Fathers of 1st Ecumenical Council",
+  "epistle": "Acts 20:16-18, 28-36",
+  "gospel": "John 17:1-13"
+ },
+ {
+  "date": "2026-05-31",
+  "label": "Holy Pentecost",
+  "epistle": "Acts 2:1-11",
+  "gospel": "John 7:37-52; 8:12"
+ },
+ {
+  "date": "2026-06-07",
+  "label": "1st after Pentecost; 1st of Matthew (All Saints)",
+  "epistle": "Heb. 11:33-12:2",
+  "gospel": "Matt. 10:32-33, 37-38; 19:27-30"
+ },
+ {
+  "date": "2026-06-14",
+  "label": "All Saints of Antioch; 2nd of Matthew",
+  "epistle": "Acts 11:19-30",
+  "gospel": "Matthew 4:18-23"
+ },
+ {
+  "date": "2026-06-21",
+  "label": "3rd after Pentecost; 3rd of Matthew",
+  "epistle": "Rom. 5:1-10",
+  "gospel": "Matthew 6:22-33"
+ },
+ {
+  "date": "2026-06-28",
+  "label": "4th after Pentecost; 4th of Matthew",
+  "epistle": "Rom. 6:18-23",
+  "gospel": "Matthew 8:5-13"
+ },
+ {
+  "date": "2026-07-05",
+  "label": "Athanasios of Athos; 5th of Matthew",
+  "epistle": "Gal. 5:22-6:2",
+  "gospel": "Matthew 8:28-9:1"
+ },
+ {
+  "date": "2026-07-12",
+  "label": "6th of Pentecost; 6th of Matthew",
+  "epistle": "Rom. 12:6-14",
+  "gospel": "Matthew 9:1-8"
+ },
+ {
+  "date": "2026-07-19",
+  "label": "Fathers of 4th Ecumenical Council",
+  "epistle": "Titus 3:8-15",
+  "gospel": "Matthew 5:14-19"
+ },
+ {
+  "date": "2026-07-26",
+  "label": "Paraskeva of Rome; 8th of Matthew",
+  "epistle": "Gal. 3:23-4:5",
+  "gospel": "Matthew 14:14-22"
+ },
+ {
+  "date": "2026-08-02",
+  "label": "9th after Pentecost; 9th of Matthew",
+  "epistle": "I Cor. 3:9-17",
+  "gospel": "Matthew 14:22-34"
+ },
+ {
+  "date": "2026-08-09",
+  "label": "10th after Pentecost; 10th of Matthew",
+  "epistle": "I Cor. 4:9-16",
+  "gospel": "Matthew 17:14-23"
+ },
+ {
+  "date": "2026-08-16",
+  "label": "11th after Pentecost; 11th of Matthew",
+  "epistle": "I Cor. 9:2-12",
+  "gospel": "Matthew 18:23-35"
+ },
+ {
+  "date": "2026-08-23",
+  "label": "12th after Pentecost; 12th of Matthew",
+  "epistle": "I Cor. 15:1-11",
+  "gospel": "Matthew 19:16-26"
+ },
+ {
+  "date": "2026-08-30",
+  "label": "13th after Pentecost; 13th of Matthew",
+  "epistle": "I Cor. 16:13-24",
+  "gospel": "Matthew 21:33-42"
+ },
+ {
+  "date": "2026-09-06",
+  "label": "14th after Pentecost; 14th of Matthew",
+  "epistle": "II Cor. 1:21-2:4",
+  "gospel": "Matthew 22:2-14"
+ },
+ {
+  "date": "2026-09-13",
+  "label": "Sunday before Elevation of the Holy Cross",
+  "epistle": "Gal. 6:11-18",
+  "gospel": "John 3:13-17"
+ },
+ {
+  "date": "2026-09-20",
+  "label": "Sunday after Elevation of the Holy Cross",
+  "epistle": "Gal. 2:16-20",
+  "gospel": "Mark 8:34-9:1"
+ },
+ {
+  "date": "2026-09-27",
+  "label": "17th after Pentecost; 1st of Luke",
+  "epistle": "II Cor. 6:16-7:1",
+  "gospel": "Luke 5:1-11"
+ },
+ {
+  "date": "2026-10-04",
+  "label": "18th after Pentecost; 2nd of Luke",
+  "epistle": "II Cor. 9:6-11",
+  "gospel": "Luke 6:31-36"
+ },
+ {
+  "date": "2026-10-11",
+  "label": "Fathers of 7th Ecumenical Council; 4th of Luke",
+  "epistle": "Titus 3:8-15",
+  "gospel": "Luke 8:5-15"
+ },
+ {
+  "date": "2026-10-18",
+  "label": "Apostle and Evangelist Luke",
+  "epistle": "Col. 4:5-11, 14-18",
+  "gospel": "Luke 10:16-21"
+ },
+ {
+  "date": "2026-10-25",
+  "label": "21st after Pentecost; 6th of Luke",
+  "epistle": "Gal. 2:16-20",
+  "gospel": "Luke 8:26-39"
+ },
+ {
+  "date": "2026-11-01",
+  "label": "Cosmas and Damian of Asia; 5th of Luke",
+  "epistle": "I Cor. 12:27-13:8",
+  "gospel": "Luke 16:19-31"
+ },
+ {
+  "date": "2026-11-08",
+  "label": "The Archangels; 7th of Luke",
+  "epistle": "Heb. 2:2-10",
+  "gospel": "Luke 8:41-56"
+ },
+ {
+  "date": "2026-11-15",
+  "label": "24th after Pentecost; 8th of Luke",
+  "epistle": "Eph. 2:14-22",
+  "gospel": "Luke 10:25-37"
+ },
+ {
+  "date": "2026-11-22",
+  "label": "25th after Pentecost; 9th of Luke",
+  "epistle": "Eph. 4:1-7",
+  "gospel": "Luke 12:16-21"
+ },
+ {
+  "date": "2026-11-29",
+  "label": "26th after Pentecost; 13th of Luke",
+  "epistle": "Eph. 5:8-19",
+  "gospel": "Luke 18:18-27"
+ },
+ {
+  "date": "2026-12-06",
+  "label": "Nicholas of Myra; 10th of Luke",
+  "epistle": "Heb. 13:17-21",
+  "gospel": "Luke 13:10-17"
+ },
+ {
+  "date": "2026-12-13",
+  "label": "Forefathers (Ancestors) of Christ",
+  "epistle": "Col. 3:4-11",
+  "gospel": "Luke 14:16-24"
+ },
+ {
+  "date": "2026-12-20",
+  "label": "Sunday before the Nativity (Genealogy)",
+  "epistle": "Heb. 11:9-10, 32-40",
+  "gospel": "Matthew 1:1-25"
+ },
+ {
+  "date": "2026-12-27",
+  "label": "Proto-Martyr Stephen; Sunday after the Nativity",
+  "epistle": "Acts 6:8-7:5, 47-60",
+  "gospel": "Matthew 2:13-23"
+ }
+]

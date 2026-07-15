@@ -1,0 +1,331 @@
+[
+ {
+  "section": "PASCHA",
+  "title": "The Life-Giving Spring of the Most Holy Theotokos",
+  "slot1": "",
+  "slot2": "Php 2.5-11",
+  "slot3": "Lk 10.38-42; 11.27, 28"
+ },
+ {
+  "section": "Second Week of Pascha",
+  "title": "Commemoration of the Departed",
+  "slot1": "",
+  "slot2": "1Cor 15.39-57",
+  "slot3": "Jn 5.24-30"
+ },
+ {
+  "section": "(Note: The Advent Cycle occurs from the twentieth Sunday after Pentecost to the twenty-sixth Sunday after Pentecost. Consult your local calendars for the exact date.)",
+  "title": "Sunday of the Holy Ancestors of Christ: Liturgy",
+  "slot1": "",
+  "slot2": "Col 3.4-11",
+  "slot3": "Lk 14.16-24"
+ },
+ {
+  "section": "(Note: The Advent Cycle occurs from the twentieth Sunday after Pentecost to the twenty-sixth Sunday after Pentecost. Consult your local calendars for the exact date.)",
+  "title": "Saturday Before the Nativity",
+  "slot1": "",
+  "slot2": "Gal 3.8-12",
+  "slot3": "Lk 13.18-29"
+ },
+ {
+  "section": "(Note: The Advent Cycle occurs from the twentieth Sunday after Pentecost to the twenty-sixth Sunday after Pentecost. Consult your local calendars for the exact date.)",
+  "title": "Sunday Before Nativity: Sunday of the Holy Fathers: Liturgy",
+  "slot1": "",
+  "slot2": "Heb 11.9-10, 17-23, 32-40",
+  "slot3": "Mt 1.1-25"
+ },
+ {
+  "section": "THEOPHANY",
+  "title": "Saturday before Theophany",
+  "slot1": "",
+  "slot2": "1Tim 3.14-4.5",
+  "slot3": "Mt 3.1-11"
+ },
+ {
+  "section": "THEOPHANY",
+  "title": "Sunday before Theophany",
+  "slot1": "",
+  "slot2": "2Tim 4.5-8",
+  "slot3": "Mk 1.1-8"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Pt 2.21-3.9",
+  "slot3": "Mk 12.13-17"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Pt 3.10-22",
+  "slot3": "Mk 12.18-27"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Pt 4.1-11",
+  "slot3": "Mk 12.28-37"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Pt 4.12-5.5",
+  "slot3": "Mk 12.38-44"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Pt 1.1-10",
+  "slot3": "Mk 13.1-8"
+ },
+ {
+  "section": "(Note: Scripture readings for the Week of the Publican and Pharisee are the same as readings for the Thirty-Third Week After Pentecost)",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "2Tim 2.11-19",
+  "slot3": "Lk 18.2-8"
+ },
+ {
+  "section": "Meat Fare Week",
+  "title": "Commemoration of the Departed",
+  "slot1": "",
+  "slot2": "1Th 4.13-17",
+  "slot3": "Jn 5.24-30"
+ },
+ {
+  "section": "Cheese Fare Week",
+  "title": "Commemoration of All the Holy and Godbearing Fathers Who Shone Forth in the Ascetic Life",
+  "slot1": "",
+  "slot2": "Gal 5.22-6.2",
+  "slot3": "Mt 11.27-30"
+ },
+ {
+  "section": "(Readings are the same as for Dormition: )",
+  "title": "Vespers",
+  "slot1": "Gen 28.10-17; Ezk 43.27-44.4; Pr 9.1-11",
+  "slot2": "",
+  "slot3": ""
+ },
+ {
+  "section": "(Readings are the same as for Dormition: )",
+  "title": "Matins",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Lk 1.39-49, 56"
+ },
+ {
+  "section": "(Readings are the same as for Dormition: )",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Php 2.5-11",
+  "slot3": "Lk 10.38-42; 11.27, 28"
+ },
+ {
+  "section": "(Readings are the same as for Dormition: )",
+  "title": "Saturday Before the Exaltation of the Cross",
+  "slot1": "",
+  "slot2": "1Cor 2.6-9",
+  "slot3": "Mt 10.37-11.1"
+ },
+ {
+  "section": "(Readings are the same as for Dormition: )",
+  "title": "Sunday Before the Exaltation of the Cross",
+  "slot1": "",
+  "slot2": "Gal 6.11-18",
+  "slot3": "Jn 3.13-17"
+ },
+ {
+  "section": "Vespers and Matins, same as Dormition, above",
+  "title": "Vespers",
+  "slot1": "Gen 28.10-17; Ezk 43.27-44.4; Pr 9.1-11",
+  "slot2": "",
+  "slot3": ""
+ },
+ {
+  "section": "Vespers and Matins, same as Dormition, above",
+  "title": "Matins",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Lk 1.39-49, 56"
+ },
+ {
+  "section": "Vespers and Matins, same as Dormition, above",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Heb 9.1-7",
+  "slot3": "Lk 10.38-42; 11.27, 28"
+ },
+ {
+  "section": "The Entry of the Most Holy Theotokos into the Temple (21 November)",
+  "title": "Vespers",
+  "slot1": "Ex 40.1-5, 9, 10, 16, 34, 35; 1Ki 7.51, 8.1, 3-7, 9-11; Ezk 43.27-44.4",
+  "slot2": "",
+  "slot3": ""
+ },
+ {
+  "section": "The Entry of the Most Holy Theotokos into the Temple (21 November)",
+  "title": "Matins",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Lk 1.39-49, 56"
+ },
+ {
+  "section": "The Entry of the Most Holy Theotokos into the Temple (21 November)",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Heb 9.1-7",
+  "slot3": "Lk 10.38-42, 11.27, 28"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Matins",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Lk 1.39-49, 56"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Php 2.5-11 or Heb 9.1-7",
+  "slot3": "Lk 10.38-42; 11.27, 28"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Apostles",
+  "slot1": "",
+  "slot2": "1Cor 4.9-16",
+  "slot3": "Lk 10.1-15 or Lk 10.16-21"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Monks",
+  "slot1": "",
+  "slot2": "Gal 5.22-6.2",
+  "slot3": "Mt 11.27-30 or Lk 6.17-23 (St. Basil 1-14 January) or Mt 7.12-21 (St. Andrew of Crete 4-17 July)"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Nuns",
+  "slot1": "",
+  "slot2": "Gal 3.23-29",
+  "slot3": "Mt 25.1-13 or Lk 7.36-50"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Confessors",
+  "slot1": "",
+  "slot2": "Eph 6.10-17",
+  "slot3": "Lk 12.8-12"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Martyr",
+  "slot1": "",
+  "slot2": "2Tim 2.1-10 or Ac 12.1-11",
+  "slot3": "Lk 12.1-12 or Jn 15.17-16.2"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Martyrs",
+  "slot1": "",
+  "slot2": "Rom 8.28-39",
+  "slot3": "Mt 10.16-22 or Lk 21.12-19"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Hieromartyr",
+  "slot1": "",
+  "slot2": "Heb 13.7-16",
+  "slot3": "Lk 12.32-40"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Hieromarytyrs",
+  "slot1": "",
+  "slot2": "Heb 5.4-10 or Php 3.20-4.3",
+  "slot3": "Lk 6.17-23 or Lk 10.22-24 or Lk 14.25-35"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Monk Martyr",
+  "slot1": "",
+  "slot2": "1Tim 1.8-18",
+  "slot3": "Mk 8.34-9.1"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Monk Martyrs",
+  "slot1": "",
+  "slot2": "Rom 8.28-39",
+  "slot3": "Mt 10.32, 33, 37, 38, 19.27-30 or Lk 12.8-12"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Female Martyrs",
+  "slot1": "",
+  "slot2": "2Cor 6.1-10 or Gal 3.23-29",
+  "slot3": "Mt 15.21-28 or Mk 5.24"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Holy Unmercenary Healers",
+  "slot1": "",
+  "slot2": "1Cor 12.27-13.8",
+  "slot3": "Mt 10.1, 5-8"
+ },
+ {
+  "section": "Most Holy Theotokos",
+  "title": "Prophets",
+  "slot1": "",
+  "slot2": "1Cor 14.20-25; Heb 6.13-20 or Jas 5.10-20",
+  "slot3": "Mt 23.29-39 or Lk 11.47-54"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 16.6-9",
+  "slot3": "Jn 5.17-24"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 15.39-57",
+  "slot3": "Jn 5.24-30"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Cor 5.1-10",
+  "slot3": "Jn 6.35-39"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Cor 15.20-28",
+  "slot3": "Jn 6.40-44"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Cor 15.47-57",
+  "slot3": "Jn 6.48-54"
+ },
+ {
+  "section": "Commemoration of the Departed",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Th 4.13-17",
+  "slot3": "Jn 5.24-30"
+ }
+]

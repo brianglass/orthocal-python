@@ -1,0 +1,3249 @@
+[
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "The Resurrection of Christ, the Passover (Pascha) of the Lord: Easter",
+  "slot1": "",
+  "slot2": "Ac 1.1-8",
+  "slot3": "Jn 1.1-17",
+  "pdist": 0
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Monday",
+  "slot1": "",
+  "slot2": "Ac 1.12-17, 21-26",
+  "slot3": "Jn 1.18-28",
+  "pdist": 1
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Tuesday",
+  "slot1": "",
+  "slot2": "Ac 2.14-21",
+  "slot3": "Lk 24.12-35",
+  "pdist": 2
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Wednesday",
+  "slot1": "",
+  "slot2": "Ac 2.22-36",
+  "slot3": "Jn 1.35-51",
+  "pdist": 3
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Thursday",
+  "slot1": "",
+  "slot2": "Ac 2.38-43",
+  "slot3": "Jn 3.1-15",
+  "pdist": 4
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Friday",
+  "slot1": "",
+  "slot2": "Ac 3.1-8",
+  "slot3": "Jn 2.12-22",
+  "pdist": 5
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Bright Saturday",
+  "slot1": "",
+  "slot2": "Ac 3.11-16",
+  "slot3": "Jn 3.22-33",
+  "pdist": 6
+ },
+ {
+  "source": "book_template",
+  "section": "PASCHA",
+  "title": "Second Sunday of Pascha: Thomas Sunday",
+  "slot1": "",
+  "slot2": "Ac 5.12-20",
+  "slot3": "Jn 20.19-31",
+  "pdist": 7
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 3.19-26",
+  "slot3": "Jn 2.1-11",
+  "pdist": 8
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 4.1-10",
+  "slot3": "Jn 3.16-21",
+  "pdist": 9
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 4.13-22",
+  "slot3": "Jn 5.17-24",
+  "pdist": 10
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Ac 4.23-31",
+  "slot3": "Jn 5.24-30",
+  "pdist": 11
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 5.1-11",
+  "slot3": "Jn 5.30-6.2",
+  "pdist": 12
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 5.21-33",
+  "slot3": "Jn 6.14-27",
+  "pdist": 13
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Pascha",
+  "title": "Third Sunday of Pascha: Sunday of the Myrrhbearing Women and Sunday of Joseph of Arimathea and Nicodemus",
+  "slot1": "",
+  "slot2": "Ac 6.17",
+  "slot3": "Mk 15.43-16.8",
+  "pdist": 14
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 6.8-7.5, 47-60",
+  "slot3": "Jn 4.46-54",
+  "pdist": 15
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 8.5-17",
+  "slot3": "Jn 6.27-33",
+  "pdist": 16
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 8.18-25",
+  "slot3": "Jn 6.35-39",
+  "pdist": 17
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Ac 8.26-39",
+  "slot3": "Jn 6.40-44",
+  "pdist": 18
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 8.40-9.19",
+  "slot3": "Jn 6.48-54",
+  "pdist": 19
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 9.19-31",
+  "slot3": "Jn 15.17-16.2",
+  "pdist": 20
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Pascha",
+  "title": "Fourth Sunday of Pascha: Sunday of the Paralytic",
+  "slot1": "",
+  "slot2": "Ac 9.32-42",
+  "slot3": "Jn 5.1-15",
+  "pdist": 21
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 10.1-16",
+  "slot3": "Jn 6.56-69",
+  "pdist": 22
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 10.21-33",
+  "slot3": "Jn 7.1-13",
+  "pdist": 23
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 14.6-18",
+  "slot3": "Jn 7.14-30",
+  "pdist": 24
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Ac 10.34-43",
+  "slot3": "Jn 8.12-20",
+  "pdist": 25
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 10.44-11.10",
+  "slot3": "Jn 8.21-30",
+  "pdist": 26
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 12.1-11",
+  "slot3": "Jn 8.31-42",
+  "pdist": 27
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Pascha",
+  "title": "Fifth Sunday of Pascha: Sunday of the Samaritan Woman",
+  "slot1": "",
+  "slot2": "Ac 11.19-26, 29-30",
+  "slot3": "Jn 4.5-42",
+  "pdist": 28
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 12.12-17",
+  "slot3": "Jn 8.42-51",
+  "pdist": 29
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 12.25-13.12",
+  "slot3": "Jn 8.51-59",
+  "pdist": 30
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 13.13-24",
+  "slot3": "Jn 6.5-14",
+  "pdist": 31
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Ac 14.20-27",
+  "slot3": "Jn 9.39-10.9",
+  "pdist": 32
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 15.5-34",
+  "slot3": "Jn 10.17-28",
+  "pdist": 33
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 15.35-41",
+  "slot3": "Jn 10.27-38",
+  "pdist": 34
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Pascha",
+  "title": "Sixth Sunday of Pascha: Sunday of the Blind Man",
+  "slot1": "",
+  "slot2": "Ac 16.16-34",
+  "slot3": "Jn 9.1-38",
+  "pdist": 35
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 17.1-15",
+  "slot3": "Jn 11.47-57",
+  "pdist": 36
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 17.19-28",
+  "slot3": "Jn 12.19-36",
+  "pdist": 37
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 18.22-28",
+  "slot3": "Jn 12.36-47",
+  "pdist": 38
+ },
+ {
+  "source": "book_template",
+  "section": "Thursday: The Ascension of Our Lord",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Ac 1.1-12",
+  "slot3": "Lk 24.36-53",
+  "pdist": 39
+ },
+ {
+  "source": "book_template",
+  "section": "Thursday: The Ascension of Our Lord",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 19.1-8",
+  "slot3": "Jn 14.1-11",
+  "pdist": 40
+ },
+ {
+  "source": "book_template",
+  "section": "Thursday: The Ascension of Our Lord",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 20.7-12",
+  "slot3": "Jn 14.10-21",
+  "pdist": 41
+ },
+ {
+  "source": "book_template",
+  "section": "Thursday: The Ascension of Our Lord",
+  "title": "Seventh Sunday of Pascha: Sunday of the Fathers of the First Ecumenical Council",
+  "slot1": "",
+  "slot2": "Ac 20.16-18, 28-36",
+  "slot3": "Jn 17.1-13",
+  "pdist": 42
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Ac 21.8-14",
+  "slot3": "Jn 14.27-15.7",
+  "pdist": 43
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Ac 21.26-32",
+  "slot3": "Jn 16.2-13",
+  "pdist": 44
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Ac 23.1-11",
+  "slot3": "Jn 16.15-23",
+  "pdist": 45
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Ac 25.13-19",
+  "slot3": "Jn 16.23-33",
+  "pdist": 46
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Ac 27.1-44",
+  "slot3": "",
+  "pdist": 47
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week of Pascha",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Ac 28.1-31",
+  "slot3": "Jn 21.15-25",
+  "pdist": 48
+ },
+ {
+  "source": "book_template",
+  "section": "Sunday of Pentecost: Trinity Sunday. Descent of the Holy Spirit on the Disciples",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Ac 2.1-11",
+  "slot3": "Jn 7.37-52; 8.12",
+  "pdist": 49
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Monday: Day of the Holy Spirit",
+  "slot1": "",
+  "slot2": "Eph 5.9-19",
+  "slot3": "Mt 18.10-20",
+  "pdist": 50
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Rom 1.1-7, 13-17",
+  "slot3": "Mt 4.25-5.13",
+  "pdist": 51
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Rom 1.18-27",
+  "slot3": "Mt 5.20-26",
+  "pdist": 52
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Rom 1.28-2.9",
+  "slot3": "Mt 5.27-32",
+  "pdist": 53
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Rom 2.14-29",
+  "slot3": "Mt 5.33-41",
+  "pdist": 54
+ },
+ {
+  "source": "book_template",
+  "section": "First Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 1.7-12",
+  "slot3": "Mt 5.42-48",
+  "pdist": 55
+ },
+ {
+  "source": "book_template",
+  "section": "First Sunday after Pentecost: Sunday of All Saints",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Heb 11.33-12.2",
+  "slot3": "Mt 10.32, 33, 37, 38; 19.27-30",
+  "pdist": 56
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 2.28-3.18",
+  "slot3": "Mt 6.31-34; 7.9-11",
+  "pdist": 57
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Rom 4.4-12",
+  "slot3": "Mt 7.15-21",
+  "pdist": 58
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Rom 4.13-25",
+  "slot3": "Mt 7.21-23",
+  "pdist": 59
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Rom 5.10-16",
+  "slot3": "Mt 8.23-27",
+  "pdist": 60
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Rom 5.17-6.2",
+  "slot3": "Mt 9.14-17",
+  "pdist": 61
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 3.19-26",
+  "slot3": "Mt 7.1-8",
+  "pdist": 62
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week after Pentecost",
+  "title": "Second Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 2.10-16",
+  "slot3": "Mt 4.18-23",
+  "pdist": 63
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 7.1-13",
+  "slot3": "Mt 9.36-10.8",
+  "pdist": 64
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Rom 7.14-8.2",
+  "slot3": "Mt 10.9-15",
+  "pdist": 65
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Rom 8.1-13",
+  "slot3": "Mt 10.16-22",
+  "pdist": 66
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Rom 8.22-27",
+  "slot3": "Mt 10.23-31",
+  "pdist": 67
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Rom 9.6-19",
+  "slot3": "Mt 10.32-36; 11.1",
+  "pdist": 68
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 3.28-4.3",
+  "slot3": "Mt 7.24-8.4",
+  "pdist": 69
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week after Pentecost",
+  "title": "Third Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 5.1-10",
+  "slot3": "Mt 6.22-33",
+  "pdist": 70
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 9.18-33",
+  "slot3": "Mt 11.2-15",
+  "pdist": 71
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Rom 10.11-11.2",
+  "slot3": "Mt 11.16-20",
+  "pdist": 72
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Rom 11.2-12",
+  "slot3": "Mt 11.20-26",
+  "pdist": 73
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Rom 11.13-24",
+  "slot3": "Mt 11.27-30",
+  "pdist": 74
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Rom 11.25-36",
+  "slot3": "Mt 12.1-8",
+  "pdist": 75
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 6.11-17",
+  "slot3": "Mt 8.14-23",
+  "pdist": 76
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week after Pentecost",
+  "title": "Fourth Sunday after Pentecost: Sunday of the Holy Fathers of the First Six Ecumenical Councils (July 13-19) : Liturgy",
+  "slot1": "",
+  "slot2": "Rom 6.18-23",
+  "slot3": "Mt 8.5-13",
+  "pdist": 77
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 12.4, 5, 15-21",
+  "slot3": "Mt 12.9-13",
+  "pdist": 78
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Rom 14.9-18",
+  "slot3": "Mt 12.14-16, 22-30",
+  "pdist": 79
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Rom 15.7-16",
+  "slot3": "Mt 12.38-45",
+  "pdist": 80
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Rom 15.17-29",
+  "slot3": "Mt 12.46-13.3",
+  "pdist": 81
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Rom 16.1-16",
+  "slot3": "Mt 13.4-9",
+  "pdist": 82
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 8.14-21",
+  "slot3": "Mt 9.9-13",
+  "pdist": 83
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week after Pentecost",
+  "title": "Fifth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 10.1-10",
+  "slot3": "Mt 8.28-9.1",
+  "pdist": 84
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Rom 16.17-24",
+  "slot3": "Mt 13.10-23",
+  "pdist": 85
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 1.1-9",
+  "slot3": "Mt 13.24-30",
+  "pdist": 86
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Cor 2.9-3.8",
+  "slot3": "Mt 13.31-36",
+  "pdist": 87
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Cor 3.18-23",
+  "slot3": "Mt 13.36-43",
+  "pdist": 88
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Cor 4.5-8",
+  "slot3": "Mt 13.44-54",
+  "pdist": 89
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 9.1-5",
+  "slot3": "Mt 9.18-26",
+  "pdist": 90
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week after Pentecost",
+  "title": "Sixth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 12.6-14",
+  "slot3": "Mt 9.1-8",
+  "pdist": 91
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Cor 5.9-6.11",
+  "slot3": "Mt 13.54-58",
+  "pdist": 92
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 6.20-7.12",
+  "slot3": "Mt 14.1-13",
+  "pdist": 93
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Cor 7.12-24",
+  "slot3": "Mt 14.35-15.11",
+  "pdist": 94
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Cor 7.24-35",
+  "slot3": "Mt 15.12-21",
+  "pdist": 95
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Cor 7.35-8.7",
+  "slot3": "Mt 15.29-31",
+  "pdist": 96
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 12.1-3",
+  "slot3": "Mt 10.37-11.1",
+  "pdist": 97
+ },
+ {
+  "source": "book_template",
+  "section": "Seventh Week after Pentecost",
+  "title": "Seventh Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 15.1-7",
+  "slot3": "Mt 9.27-35",
+  "pdist": 98
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Cor 9.13-18",
+  "slot3": "Mt 16.1-6",
+  "pdist": 99
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 10.5-12",
+  "slot3": "Mt 16.6-12",
+  "pdist": 100
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Cor 10.12-22",
+  "slot3": "Mt 16.20-24",
+  "pdist": 101
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Cor 10.28-11.7",
+  "slot3": "Mt 16.24-28",
+  "pdist": 102
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Cor 11.8-22",
+  "slot3": "Mt 17.10-18",
+  "pdist": 103
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 13.1-10",
+  "slot3": "Mt 12.30-37",
+  "pdist": 104
+ },
+ {
+  "source": "book_template",
+  "section": "Eighth Week after Pentecost",
+  "title": "Eighth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 1.10-18",
+  "slot3": "Mt 14.14-22",
+  "pdist": 105
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Cor 11.31-12.6",
+  "slot3": "Mt 18.1-11",
+  "pdist": 106
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 12.12-26",
+  "slot3": "Mt 18.18-22; 19.1, 2, 13-15",
+  "pdist": 107
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Cor 13.4-14.5",
+  "slot3": "Mt 20.1-16",
+  "pdist": 108
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Cor 14.6-19",
+  "slot3": "Mt 20.17-28",
+  "pdist": 109
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Cor 14.26-40",
+  "slot3": "Mt 21.12-14, 17-20",
+  "pdist": 110
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 14.6-9",
+  "slot3": "Mt 15.32-39",
+  "pdist": 111
+ },
+ {
+  "source": "book_template",
+  "section": "Ninth Week after Pentecost",
+  "title": "Ninth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 3.9-17",
+  "slot3": "Mt 14.22-34",
+  "pdist": 112
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Cor 15.12-19",
+  "slot3": "Mt 21.18-22",
+  "pdist": 113
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Cor 15.29-38",
+  "slot3": "Mt 21.23-27",
+  "pdist": 114
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Cor 16.4-12",
+  "slot3": "Mt 21.28-32",
+  "pdist": 115
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "2Cor 1.1-7",
+  "slot3": "Mt 21.43-46",
+  "pdist": 116
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Cor 1.12-20",
+  "slot3": "Mt 22.23-33",
+  "pdist": 117
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 15.30-33",
+  "slot3": "Mt 17.24-18.4",
+  "pdist": 118
+ },
+ {
+  "source": "book_template",
+  "section": "Tenth Week after Pentecost",
+  "title": "Tenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 4.9-16",
+  "slot3": "Mt 17.14-23",
+  "pdist": 119
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "2Cor 2.4-15",
+  "slot3": "Mt 23.13-22",
+  "pdist": 120
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "2Cor 2.14-3.3",
+  "slot3": "Mt 23.23-28",
+  "pdist": 121
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Cor 3.4-11",
+  "slot3": "Mt 23.29-39",
+  "pdist": 122
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "2Cor 4.1-6",
+  "slot3": "Mt 24.13-28",
+  "pdist": 123
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Cor 4.13-18",
+  "slot3": "Mt 24.27-33, 42-51",
+  "pdist": 124
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 1.3-9",
+  "slot3": "Mt 19.3-12",
+  "pdist": 125
+ },
+ {
+  "source": "book_template",
+  "section": "Eleventh Week after Pentecost",
+  "title": "Eleventh Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 9.2-12",
+  "slot3": "Mt 18.23-35",
+  "pdist": 126
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "2Cor 5.10-15",
+  "slot3": "Mk 1.9-15",
+  "pdist": 127
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "2Cor 5.15-21",
+  "slot3": "Mk 1.16-22",
+  "pdist": 128
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Cor 6.11-16",
+  "slot3": "Mk 1.23-28",
+  "pdist": 129
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "2Cor 7.1-10",
+  "slot3": "Mk 1.29-35",
+  "pdist": 130
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Cor 7.10-16",
+  "slot3": "Mk 2.18-22",
+  "pdist": 131
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 1.26-29",
+  "slot3": "Mt 20.29-34",
+  "pdist": 132
+ },
+ {
+  "source": "book_template",
+  "section": "Twelfth Week after Pentecost",
+  "title": "Twelfth Sunday after Pentecost: Sunday of the Holy Fathers of the Seventh Ecumenical Council (Oct 11-17) : Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 15.1-11",
+  "slot3": "Mt 19.16-26",
+  "pdist": 133
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "2Cor 8.7-15",
+  "slot3": "Mk 3.6-12",
+  "pdist": 134
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "2Cor 8.16-9.5",
+  "slot3": "Mk 3.13-19",
+  "pdist": 135
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Cor 9.12-10.7",
+  "slot3": "Mk 3.20-27",
+  "pdist": 136
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "2Cor 10.7-18",
+  "slot3": "Mk 3.28-35",
+  "pdist": 137
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Cor 11.5-12",
+  "slot3": "Mk 4.1-9",
+  "pdist": 138
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 2.6-9",
+  "slot3": "Mt 22.15-22",
+  "pdist": 139
+ },
+ {
+  "source": "book_template",
+  "section": "Thirteenth Week after Pentecost",
+  "title": "Thirteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 16.13-24",
+  "slot3": "Mt 21.33-42",
+  "pdist": 140
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "2Cor 12.10-19",
+  "slot3": "Mk 4.10-23",
+  "pdist": 141
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "2Cor 12.20-13.2",
+  "slot3": "Mk 4.24-34",
+  "pdist": 142
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Cor 13.3-13",
+  "slot3": "Mk 4.35-41",
+  "pdist": 143
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Gal 1.1-10, 20-2.5",
+  "slot3": "Mk 5.1-20",
+  "pdist": 144
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Gal 2.6-10",
+  "slot3": "Mk 5.22-24, 35-6.1",
+  "pdist": 145
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 4.1-5",
+  "slot3": "Mt 23.1-12",
+  "pdist": 146
+ },
+ {
+  "source": "book_template",
+  "section": "Fourteenth Week after Pentecost",
+  "title": "Fourteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 1.21-2.4",
+  "slot3": "Mt 22.1-4",
+  "pdist": 147
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Gal 2.11-16",
+  "slot3": "Mk 5.24-34",
+  "pdist": 148
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Gal 2.21-3.7",
+  "slot3": "Mk 6.1-7",
+  "pdist": 149
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Gal 3.15-22",
+  "slot3": "Mk 6.7-13",
+  "pdist": 150
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Gal 3.23-4.5",
+  "slot3": "Mk 6.30-45",
+  "pdist": 151
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Gal 4.8-21",
+  "slot3": "Mk 6.45-53",
+  "pdist": 152
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 4.17-5.5",
+  "slot3": "Mt 24.1-3",
+  "pdist": 153
+ },
+ {
+  "source": "book_template",
+  "section": "Fifteenth Week after Pentecost",
+  "title": "Fifteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 4.6-15",
+  "slot3": "Mt 22.35-46",
+  "pdist": 154
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Gal 4.28-5.10",
+  "slot3": "Mk 6.54-7.8",
+  "pdist": 155
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Gal 5.11-21",
+  "slot3": "Mk 7.5-16",
+  "pdist": 156
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Gal 6.2-10",
+  "slot3": "Mk 7.14-24",
+  "pdist": 157
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Eph 1.1-9",
+  "slot3": "Mk 7.24-30",
+  "pdist": 158
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Eph 1.7-17",
+  "slot3": "Mk 8.1-10",
+  "pdist": 159
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 10.23-28",
+  "slot3": "Mt 24.34-44",
+  "pdist": 160
+ },
+ {
+  "source": "book_template",
+  "section": "Sixteenth Week after Pentecost",
+  "title": "Sixteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 6.1-10",
+  "slot3": "Mt 25.14-30",
+  "pdist": 161
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Eph 1.22-2.3",
+  "slot3": "Mk 10.46-52",
+  "pdist": 162
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Eph 2.19-3.7",
+  "slot3": "Mk 11.11-23",
+  "pdist": 163
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Eph 3.8-21",
+  "slot3": "Mk 11.23-26",
+  "pdist": 164
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Eph 4.14-19",
+  "slot3": "Mk 11.27-33",
+  "pdist": 165
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Eph 4.17-25",
+  "slot3": "Mk 12.1-12",
+  "pdist": 166
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 14.20-25",
+  "slot3": "Mt 25.1-13",
+  "pdist": 167
+ },
+ {
+  "source": "book_template",
+  "section": "Seventeenth Week after Pentecost",
+  "title": "Seventeenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 6.16-7.1",
+  "slot3": "Mt 15.21-28",
+  "pdist": 168
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Eph 4.25-32",
+  "slot3": "Lk 3.19-22",
+  "pdist": 169
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Eph 5.20-26",
+  "slot3": "Lk 3.23-4.1",
+  "pdist": 170
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Eph 5.25-33",
+  "slot3": "Lk 4.1-15",
+  "pdist": 171
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Eph 5.33-6.9",
+  "slot3": "Lk 4.16-22",
+  "pdist": 172
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Eph 6.18-24",
+  "slot3": "Lk 4.22-30",
+  "pdist": 173
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 15.39-45",
+  "slot3": "Lk 4.31-36",
+  "pdist": 174
+ },
+ {
+  "source": "book_template",
+  "section": "Eighteenth Week after Pentecost",
+  "title": "Eighteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 6.16-7.1",
+  "slot3": "Mt 15.21-28",
+  "pdist": 175
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "Php 1.1-7",
+  "slot3": "Lk 4.37-44",
+  "pdist": 176
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Php 1.8-14",
+  "slot3": "Lk 5.12-16",
+  "pdist": 177
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "Php 1.12-20",
+  "slot3": "Lk 5.33-39",
+  "pdist": 178
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Php 1.20-27",
+  "slot3": "Lk 6.12-19",
+  "pdist": 179
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "Php 1.27-2.4",
+  "slot3": "Lk 6.17-23",
+  "pdist": 180
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 15.58-16.3",
+  "slot3": "Lk 5.17-26",
+  "pdist": 181
+ },
+ {
+  "source": "book_template",
+  "section": "Nineteenth Week after Pentecost",
+  "title": "Nineteenth Sunday after Pentecost: Liturgy",
+  "slot1": "",
+  "slot2": "2Cor 11.31-12.9",
+  "slot3": "Lk 6.31-36",
+  "pdist": 182
+ },
+ {
+  "source": "book_template",
+  "section": "HOLY FRIDAY: The Royal Hours",
+  "title": "Vespers",
+  "slot1": "Ex 33.11-23; Job 42.12-16; Isa 52.13-54.1",
+  "slot2": "1Cor 1.18-2.2",
+  "slot3": "Mt 27.1-38; Lk 23.39-43; Mt 27.39-54; Jn 19.31-37; Mt 27.55-61",
+  "pdist": -2
+ },
+ {
+  "source": "book_template",
+  "section": "TRIODION",
+  "title": "Tenth Sunday Before Easter: Sunday of the Publican and Pharisee : Liturgy",
+  "slot1": "",
+  "slot2": "2Tim 3.10-15",
+  "slot3": "Lk 18.10-14",
+  "pdist": -70
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "2Pt 1.20-2.9",
+  "slot3": "Mk 13.9-13",
+  "pdist": -69
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "2Pt 2.9-22",
+  "slot3": "Mk 13.14-23",
+  "pdist": -68
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "2Pt 3.1-18",
+  "slot3": "Mk 13.24-31",
+  "pdist": -67
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Jn 1.8-2.6",
+  "slot3": "Mk 13.31-14.2",
+  "pdist": -66
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "1Jn 2.7-17",
+  "slot3": "Mk 14.3-9",
+  "pdist": -65
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "2Tim 3.1-9",
+  "slot3": "Lk 20.45-21.4",
+  "pdist": -64
+ },
+ {
+  "source": "book_template",
+  "section": "Week of the Prodigal Son",
+  "title": "Sunday of the Prodigal Son : Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 6.12-20",
+  "slot3": "Lk 15.11-32",
+  "pdist": -63
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "1Jn 2.18-3.10",
+  "slot3": "Mk 11.1-11",
+  "pdist": -62
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "1Jn 3.11-20",
+  "slot3": "Mk 14.10-42",
+  "pdist": -61
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Wednesday",
+  "slot1": "",
+  "slot2": "1Jn 3.21-4.6",
+  "slot3": "Mk 14-43-15.1",
+  "pdist": -60
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "1Jn 4.20-5.21",
+  "slot3": "Mk 15.1-15",
+  "pdist": -59
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Friday",
+  "slot1": "",
+  "slot2": "2Jn .1-13",
+  "slot3": "Mk 15.22-25, 33-41",
+  "pdist": -58
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "1Cor 10.23-28",
+  "slot3": "Lk 21.8, 9, 25-27, 33-36",
+  "pdist": -57
+ },
+ {
+  "source": "book_template",
+  "section": "Meat Fare Week",
+  "title": "Meat Fare Sunday : Liturgy",
+  "slot1": "",
+  "slot2": "1Cor 8.8-9.2",
+  "slot3": "Mt 25.31-46",
+  "pdist": -56
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Monday",
+  "slot1": "",
+  "slot2": "3Jn .1-14",
+  "slot3": "Lk 19.29-40; 22.7-39",
+  "pdist": -55
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Tuesday",
+  "slot1": "",
+  "slot2": "Jude .1-10",
+  "slot3": "Lk 22.39-42, 45-23.1",
+  "pdist": -54
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Wednesday",
+  "slot1": "Joel 2.12-16; Joel 3.12-21",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -53
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Thursday",
+  "slot1": "",
+  "slot2": "Jude .11-25",
+  "slot3": "Lk 23.2-34, 44-56",
+  "pdist": -52
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Friday",
+  "slot1": "Zech 8.7-14",
+  "slot2": "Zech 8.19-23",
+  "slot3": "",
+  "pdist": -51
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Rom 14.19-23; 16.25-27",
+  "slot3": "Mt 6.1-13",
+  "pdist": -50
+ },
+ {
+  "source": "book_template",
+  "section": "Cheese Fare Week",
+  "title": "Sunday: Seventh Sunday Before Easter (Also Forgiveness Sunday) : Liturgy",
+  "slot1": "",
+  "slot2": "Rom 13.11-14.4",
+  "slot3": "Mt 6.14-21",
+  "pdist": -49
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 1.1-20; Gen 1.1-13; Pr 1.1-20",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -48
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 1.19-2.3; Gen 1.14-23; Pr 1.20-33",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -47
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 2.3-11; Gen 1.24-2.3; Pr 2.1-22",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -46
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 2.11-22; Gen 2.4-19; Pr 3.1-18",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -45
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 3.1-14; Gen 2.20-3.20; Pr 3.19-34",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -44
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Heb 1.1-12",
+  "slot3": "Mk 2.23-3.5",
+  "pdist": -43
+ },
+ {
+  "source": "book_template",
+  "section": "First Week of Great Lent",
+  "title": "First Sunday of Great Lent: Sunday of Orthodoxy : Liturgy",
+  "slot1": "",
+  "slot2": "Heb 11.24-26, 32-12.2",
+  "slot3": "Jn 1.43-51",
+  "pdist": -42
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 4.2-6, 5.1-7; Gen 3.21-4.7; Pr 3.34-4.22",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -41
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 5.7-16; Gen 4.8-15; Pr 5.1-15",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -40
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 5.16-26; Gen 4.16-26; Pr 5.15-6.3",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -39
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 6.1-12; Gen 5.1-24; Pr 6.3-20",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -38
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 7.1-14; Gen 5.32-6.8; Pr 6.20-7.1",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -37
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Heb 3.12-16",
+  "slot3": "Mk 1.35-44",
+  "pdist": -36
+ },
+ {
+  "source": "book_template",
+  "section": "Second Week of Great Lent",
+  "title": "Second Sunday of Great Lent: Commemoration of St. Gregory Palamas : Liturgy",
+  "slot1": "",
+  "slot2": "Heb 1.10-2.3",
+  "slot3": "Mk 2.1-12",
+  "pdist": -35
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 8.13-9.7; Gen 6.9-22; Pr 8.1-21",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -34
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 9.9-10.4; Gen 7.1-5; Pr 8.32-9.11",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -33
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 10.12-20; Gen 7.6-9; Pr 9.12-18",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -32
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 11.10-12.2; Gen 7.11-8.3; Pr 10.1-22",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -31
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 13.2-13; Gen 8.4-21; Pr 10.31-11.12",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -30
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Heb 10.32-38",
+  "slot3": "Mk 2.14-17",
+  "pdist": -29
+ },
+ {
+  "source": "book_template",
+  "section": "Third Week of Great Lent",
+  "title": "Third Sunday of Great Lent: Adoration of the Holy Cross : Liturgy",
+  "slot1": "",
+  "slot2": "Heb 4.14-5.6",
+  "slot3": "Mk 8.34-9.1",
+  "pdist": -28
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 14.24-32; Gen 8.21-97; Pr 11.19-12.6",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -27
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 25.1-9; Gen 9.8-17; Pr 12.8-22",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -26
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 26.21-27.9; Gen 9.18-10.1; Pr 12.23-13.9",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -25
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 28.14-22; Gen 10.32-11.9; Pr 13.20-14.6",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -24
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 29.13-23; Gen 12.1-7; Pr 14.15-26",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -23
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Heb 6.9-12",
+  "slot3": "Mk 7.31-37",
+  "pdist": -22
+ },
+ {
+  "source": "book_template",
+  "section": "Fourth Week of Great Lent",
+  "title": "Fourth Sunday of Great Lent: Commemoration of Saint John of the Ladder : Liturgy",
+  "slot1": "",
+  "slot2": "Heb 6.13-20",
+  "slot3": "Mk 9.17-31",
+  "pdist": -21
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 37.33-38.6; Gen 13.12-18; Pr 14.27-15.4",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -20
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 40.18-31; Gen 15.1-15; Pr 15.7-19",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -19
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 41.4-14; Gen 17.1-9; Pr 15.20-16.9",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -18
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 42.5-16; Gen 18.20-33; Pr 16.17-17.17",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -17
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 45.11-17; Gen 22.1-18; Pr 17.17-18.5",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -16
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Saturday",
+  "slot1": "",
+  "slot2": "Heb 9.24-28",
+  "slot3": "Mk 8.27-31",
+  "pdist": -15
+ },
+ {
+  "source": "book_template",
+  "section": "Fifth Week of Great Lent",
+  "title": "Fifth Sunday of Great Lent: Commemoration of Saint Mary of Egypt : Liturgy",
+  "slot1": "",
+  "slot2": "Heb 9.11-14",
+  "slot3": "Mk 10.32-45",
+  "pdist": -14
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Monday",
+  "slot1": "Isa 48.17-49.4; Gen 27.1-41; Pr 19.16-25",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -13
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Tuesday",
+  "slot1": "Isa 49.6-10; Gen 31.3-16; Pr 21.3-21",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -12
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Wednesday",
+  "slot1": "Isa 58.1-11; Gen 43.26-31; 45.1-16; Pr 21.23-22.4",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -11
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Thursday",
+  "slot1": "Isa 65.8-16; Gen 46.1-7; Pr 23.15-24.5",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -10
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Friday",
+  "slot1": "Isa 66.10-24; Gen 49.33-50.26; Pr 31.8-31",
+  "slot2": "",
+  "slot3": "",
+  "pdist": -9
+ },
+ {
+  "source": "book_template",
+  "section": "Sixth Week of Great Lent",
+  "title": "Saturday of Saint Lazarus the Righteous",
+  "slot1": "",
+  "slot2": "Heb 12.28-13.8",
+  "slot3": "Jn 11.1-45",
+  "pdist": -8
+ },
+ {
+  "source": "book_template",
+  "section": "The Entry of the Lord into Jerusalem: Palm Sunday",
+  "title": "Liturgy",
+  "slot1": "",
+  "slot2": "Php 4.4-9",
+  "slot3": "Jn 12.1-18",
+  "pdist": -7
+ },
+ {
+  "source": "book_template",
+  "section": "Holy Monday:",
+  "title": "Liturgy of the Presanctified Gifts",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Mt 24.3-35",
+  "pdist": -6
+ },
+ {
+  "source": "book_template",
+  "section": "Holy Tuesday:",
+  "title": "Liturgy of the Presanctified Gifts",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Mt 24.36-26.2",
+  "pdist": -5
+ },
+ {
+  "source": "book_template",
+  "section": "Holy Wednesday:",
+  "title": "Liturgy of the Presanctified Gifts",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "Mt 26.6-16",
+  "pdist": -4
+ },
+ {
+  "source": "book_template",
+  "section": "Holy Thursday:",
+  "title": "Holy Friday (Thursday Evening) The Twelve Passion Gospels",
+  "slot1": "",
+  "slot2": "",
+  "slot3": "1.) Jn 13.31-18.1 2.) Jn 18.1-28 3.) Mt 26.57-75 4.) Jn 18.28-19.16 5.) Mt 27.3-32 6.) Mk 15.16-32 7.) Mt 27.33-54 8.) Lk 23.32-49 9.) Jn 19.25-37 10.) Mk 15.43-47 11.) Jn 19.38-42 12.) Mt 27.62-66",
+  "pdist": -3
+ },
+ {
+  "source": "book_template",
+  "section": "HOLY SATURDAY",
+  "title": "GREAT AND HOLY SATURDAY: Liturgy",
+  "slot1": "",
+  "slot2": "Rom 6.3-11",
+  "slot3": "Mt 28.1-20",
+  "pdist": -1
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 183,
+  "date": "2026-10-12",
+  "title": "MONDAY OF THE 4TH WEEK",
+  "citations": [
+   "Philippians 2:12-15",
+   "Luke 7:36-50"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 184,
+  "date": "2026-10-13",
+  "title": "TUESDAY OF THE 4TH WEEK",
+  "citations": [
+   "Philippians 2:16-23",
+   "Luke 8:1-3"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 185,
+  "date": "2026-10-14",
+  "title": "WEDNESDAY OF THE 4TH WEEK",
+  "citations": [
+   "Philippians 2:24-30",
+   "Luke 8:22-25"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 186,
+  "date": "2026-10-15",
+  "title": "THURSDAY OF THE 4TH WEEK",
+  "citations": [
+   "Philippians 3:1-8",
+   "Luke 9:7-11"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 187,
+  "date": "2026-10-16",
+  "title": "LONGINUS THE CENTURION",
+  "citations": [
+   "Philippians 3:8-19",
+   "Matthew 27:33-54"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 188,
+  "date": "2026-10-17",
+  "title": "SATURDAY OF THE 4TH WEEK",
+  "citations": [
+   "Romans 9:18-33",
+   "Luke 6:1-10"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 189,
+  "date": "2025-10-26",
+  "title": "6TH SUNDAY OF LUKE",
+  "citations": [
+   "2 Timothy 2:1-10",
+   "Luke 8:26-39"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 190,
+  "date": "2026-10-19",
+  "title": "MONDAY OF THE 5TH WEEK",
+  "citations": [
+   "Acts 2:14-21",
+   "Luke 9:18-22"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 191,
+  "date": "2026-10-20",
+  "title": "TUESDAY OF THE 5TH WEEK",
+  "citations": [
+   "2 Timothy 2:1-10",
+   "Luke 9:23-27"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 192,
+  "date": "2026-10-21",
+  "title": "WEDNESDAY OF THE 5TH WEEK",
+  "citations": [
+   "2 Corinthians 9:6-11",
+   "Luke 9:44-50"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 193,
+  "date": "2026-10-22",
+  "title": "THURSDAY OF THE 5TH WEEK",
+  "citations": [
+   "Colossians 1:24-29, 2:1",
+   "Luke 9:49-56"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 194,
+  "date": "2026-10-23",
+  "title": "JAMES (IAKOVOS) THE APOSTLE, BROTHER OF OUR LORD",
+  "citations": [
+   "Galatians 1:11-19",
+   "Matthew 13:54-58"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 195,
+  "date": "2026-10-24",
+  "title": "SATURDAY OF THE 5TH WEEK",
+  "citations": [
+   "2 Corinthians 3:12-18",
+   "Luke 7:1-10"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 196,
+  "date": "2026-10-25",
+  "title": "6TH SUNDAY OF LUKE",
+  "citations": [
+   "Galatians 2:16-20",
+   "Luke 8:26-39"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 197,
+  "date": "2026-10-26",
+  "title": "THE HOLY GREAT MARTYR DEMETRIUS THE MYRRH-STREAMER",
+  "citations": [
+   "2 Timothy 2:1-10",
+   "John 15:17-27; 16:1-2"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 198,
+  "date": "2026-10-27",
+  "title": "TUESDAY OF THE 6TH WEEK",
+  "citations": [
+   "Colossians 2:20-23; 3:1-3",
+   "Luke 11:1-10"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 199,
+  "date": "2026-10-28",
+  "title": "THE HOLY PROTECTION OF THE THEOTOKOS",
+  "citations": [
+   "Hebrews 9:1-7",
+   "Luke 10:38-42, 11:27-28"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 200,
+  "date": "2026-10-29",
+  "title": "THURSDAY OF THE 6TH WEEK",
+  "citations": [
+   "Colossians 4:2-9",
+   "Luke 11:14-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 201,
+  "date": "2026-10-30",
+  "title": "FRIDAY OF THE 6TH WEEK",
+  "citations": [
+   "Colossians 4:10-18",
+   "Luke 11:23-26"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 202,
+  "date": "2026-10-31",
+  "title": "SATURDAY OF THE 6TH WEEK",
+  "citations": [
+   "Romans 16:1-16",
+   "Luke 8:16-21"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 203,
+  "date": "2026-11-01",
+  "title": "5TH SUNDAY OF LUKE",
+  "citations": [
+   "1 Corinthians 12:27-31; 13:1-8",
+   "Luke 16:19-31"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 204,
+  "date": "2026-11-02",
+  "title": "MONDAY OF THE 7TH WEEK",
+  "citations": [
+   "1 Thessalonians 1:1-5",
+   "Luke 11:29-33"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 205,
+  "date": "2026-11-03",
+  "title": "TUESDAY OF THE 7TH WEEK",
+  "citations": [
+   "1 Thessalonians 1:6-10",
+   "Luke 11:34-41"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 206,
+  "date": "2026-11-04",
+  "title": "WEDNESDAY OF THE 7TH WEEK",
+  "citations": [
+   "1 Thessalonians 2:1-8",
+   "Luke 11:42-46"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 207,
+  "date": "2026-11-05",
+  "title": "THURSDAY OF THE 7TH WEEK",
+  "citations": [
+   "1 Thessalonians 2:9-14",
+   "Luke 11:47-54; 12:1"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 208,
+  "date": "2026-11-06",
+  "title": "PAUL THE CONFESSOR, PATRIARCH OF CONSTANTINOPLE",
+  "citations": [
+   "Hebrews 8:1-6",
+   "Luke 12:8-12"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 209,
+  "date": "2026-11-07",
+  "title": "SATURDAY OF THE 7TH WEEK",
+  "citations": [
+   "2 Corinthians 8:1-5",
+   "Luke 9:1-6"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 210,
+  "date": "2026-11-08",
+  "title": "7TH SUNDAY OF LUKE",
+  "citations": [
+   "Hebrews 2:2-10",
+   "Luke 8:41-56"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 211,
+  "date": "2026-11-09",
+  "title": "NEKTARIUS THE WONDERWORKER, METROPOLITAN OF PENTAPOLIS",
+  "citations": [
+   "Ephesians 5:8-19",
+   "Matthew 4:25, 5:1-12"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 212,
+  "date": "2026-11-10",
+  "title": "TUESDAY OF THE 8TH WEEK",
+  "citations": [
+   "1 Corinthians 4:9-16",
+   "Luke 12:42-48"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 213,
+  "date": "2026-11-11",
+  "title": "WEDNESDAY OF THE 8TH WEEK",
+  "citations": [
+   "2 Corinthians 4:6-15",
+   "Luke 12:48-59"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 214,
+  "date": "2026-11-12",
+  "title": "JOHN THE MERCIFUL, PATRIARCH OF ALEXANDRIA",
+  "citations": [
+   "2 Corinthians 9:6-11",
+   "Matthew 5:14-19"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 215,
+  "date": "2026-11-13",
+  "title": "JOHN CHRYSOSTOM, ARCHBISHOP OF CONSTANTINOPLE",
+  "citations": [
+   "Hebrews 7:26-28; 8:1-2",
+   "John 10:9-16"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 216,
+  "date": "2026-11-14",
+  "title": "PHILIP THE APOSTLE",
+  "citations": [
+   "1 Corinthians 4:9-16",
+   "John 1:43-51"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 217,
+  "date": "2026-11-15",
+  "title": "8TH SUNDAY OF LUKE",
+  "citations": [
+   "Ephesians 2:14-22",
+   "Luke 10:25-37"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 218,
+  "date": "2026-11-16",
+  "title": "MATTHEW THE APOSTLE & EVANGELIST",
+  "citations": [
+   "Romans 10:11-21; 11:1-2",
+   "Matthew 9:9-13"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 219,
+  "date": "2026-11-17",
+  "title": "TUESDAY OF THE 9TH WEEK",
+  "citations": [
+   "1 Corinthians 12:7-11",
+   "Luke 14:25-35"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 220,
+  "date": "2026-11-18",
+  "title": "WEDNESDAY OF THE 9TH WEEK",
+  "citations": [
+   "2 Thessalonians 2:1-12",
+   "Luke 15:1-10"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 221,
+  "date": "2026-11-19",
+  "title": "THURSDAY OF THE 9TH WEEK",
+  "citations": [
+   "2 Thessalonians 2:13-17; 3:1-5",
+   "Luke 16:1-9"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 222,
+  "date": "2026-11-20",
+  "title": "FRIDAY OF THE 9TH WEEK",
+  "citations": [
+   "2 Thessalonians 3:6-18",
+   "Luke 16:15-18; 17:1-4"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 223,
+  "date": "2026-11-21",
+  "title": "THE ENTRANCE OF THE THEOTOKOS INTO THE TEMPLE",
+  "citations": [
+   "Hebrews 9:1-7",
+   "Luke 10:38-42, 11:27-28"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 224,
+  "date": "2025-11-30",
+  "title": "ANDREW THE FIRST- CALLED APOSTLE",
+  "citations": [
+   "1 Corinthians 4:9-16",
+   "John 1:35-51"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 225,
+  "date": "2025-12-01",
+  "title": "MONDAY OF THE 11TH WEEK",
+  "citations": [
+   "1 Timothy 1:1-7",
+   "Luke 19:37-44"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 226,
+  "date": "2025-12-02",
+  "title": "TUESDAY OF THE 11TH WEEK",
+  "citations": [
+   "1 Timothy 1:8-14",
+   "Luke 19:45-48"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 227,
+  "date": "2025-12-03",
+  "title": "WEDNESDAY OF THE 11TH WEEK",
+  "citations": [
+   "1 Timothy 1:18-20; 2:8-15",
+   "Luke 20:1-8"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 228,
+  "date": "2025-12-04",
+  "title": "BARBARA THE GREAT MARTYR",
+  "citations": [
+   "Galatians 3:23-29; 4:1-5",
+   "Mark 5:24-34"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 229,
+  "date": "2025-12-05",
+  "title": "SABBAS THE SANCTIFIED",
+  "citations": [
+   "Galatians 5:22-26; 6:1-2",
+   "Matthew 11:27-30"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 230,
+  "date": "2025-12-06",
+  "title": "NICHOLAS THE WONDERWORKER, ARCHBISHOP OF MYRA",
+  "citations": [
+   "Hebrews 13:17-21",
+   "Luke 6:17-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 231,
+  "date": "2025-12-07",
+  "title": "10TH SUNDAY OF LUKE",
+  "citations": [
+   "Ephesians 5:8-19",
+   "Luke 13:10-17"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 232,
+  "date": "2025-12-08",
+  "title": "MONDAY OF THE 12TH WEEK",
+  "citations": [
+   "1 Timothy 5:1-10",
+   "Luke 20:27-44"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 233,
+  "date": "2025-12-09",
+  "title": "THE CONCEPTION BY ST. ANNA OF THE MOST HOLY THEOTOKOS",
+  "citations": [
+   "Galatians 4:22-27",
+   "Luke 8:16-21"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 234,
+  "date": "2025-12-10",
+  "title": "WEDNESDAY OF THE 12TH WEEK",
+  "citations": [
+   "1 Timothy 5:22-25; 6:1-11",
+   "Luke 21:5-8, 10-11, 20-24"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 235,
+  "date": "2025-12-11",
+  "title": "THURSDAY OF THE 12TH WEEK",
+  "citations": [
+   "1 Timothy 6:17-21",
+   "Luke 21:28-33"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 236,
+  "date": "2025-12-12",
+  "title": "SPYRIDON THE WONDERWORKER OF TRYMITHOUS",
+  "citations": [
+   "Ephesians 5:8-19",
+   "John 10:9-16"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 237,
+  "date": "2025-12-13",
+  "title": "SATURDAY OF THE 12TH WEEK",
+  "citations": [
+   "Galatians 5:22-26; 6:1-2",
+   "Luke 13:19-29"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 238,
+  "date": "2025-12-14",
+  "title": "11TH SUNDAY OF LUKE",
+  "citations": [
+   "Colossians 3:4-11",
+   "Luke 14:16-24"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 239,
+  "date": "2025-12-15",
+  "title": "ELEUTHERIOS THE HIEROMARTYR, BISHOP OF ILLYRICUM, AND HIS MOTHER ANTHIA",
+  "citations": [
+   "2 Timothy 1:8-18",
+   "Mark 2:23-28; 3:1-5"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 240,
+  "date": "2025-12-16",
+  "title": "TUESDAY OF THE 13TH WEEK",
+  "citations": [
+   "2 Timothy 3:16-17; 4:1-4",
+   "Mark 8:22-26"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 241,
+  "date": "2025-12-17",
+  "title": "WEDNESDAY OF THE 13TH WEEK",
+  "citations": [
+   "Hebrews 11:33-40; 12:1-2",
+   "Mark 8:30-34"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 242,
+  "date": "2025-12-18",
+  "title": "THURSDAY OF THE 13TH WEEK",
+  "citations": [
+   "Titus 1:5-14",
+   "Mark 9:10-15"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 243,
+  "date": "2025-12-19",
+  "title": "FRIDAY OF THE 13TH WEEK",
+  "citations": [
+   "Titus 1:15-16; 2:1-10",
+   "Mark 9:33-41"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 244,
+  "date": "2025-12-20",
+  "title": "SATURDAY BEFORE NATIVITY",
+  "citations": [
+   "Galatians 3:8-12",
+   "Luke 13:19-29"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 245,
+  "date": "2025-12-21",
+  "title": "SUNDAY BEFORE NATIVITY",
+  "citations": [
+   "Hebrews 11:9-10; 32-40",
+   "Matthew 1:1-25"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 246,
+  "date": "2025-12-22",
+  "title": "MONDAY OF THE 14TH WEEK",
+  "citations": [
+   "Hebrews 3:5-11, 17-19",
+   "Mark 9:42-50; 10:1"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 247,
+  "date": "2025-12-23",
+  "title": "TUESDAY OF THE 14TH WEEK",
+  "citations": [
+   "Hebrews 4:1-13",
+   "Mark 10:2-12"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 248,
+  "date": "2025-12-24",
+  "title": "EVE OF THE NATIVITY OF CHRIST",
+  "citations": [
+   "Hebrews 1:1-12",
+   "Luke 2:1-20"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 249,
+  "date": "2025-12-25",
+  "title": "THE NATIVITY OF OUR LORD AND SAVIOR, JESUS CHRIST",
+  "citations": [
+   "Galatians 4:4-7",
+   "Matthew 2:1-12"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 250,
+  "date": "2025-12-26",
+  "title": "SYNAXIS OF THE HOLY THEOTOKOS",
+  "citations": [
+   "Hebrews 2:11-18",
+   "Matthew 2:13-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 251,
+  "date": "2025-12-27",
+  "title": "SATURDAY AFTER NATIVITY",
+  "citations": [
+   "Acts 6:8-15; 7:1-5, 47-60",
+   "Matthew 12:15-21"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 252,
+  "date": "2025-12-28",
+  "title": "SUNDAY AFTER NATIVITY",
+  "citations": [
+   "Galatians 1:11-19",
+   "Matthew 2:13-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 253,
+  "date": "2025-12-29",
+  "title": "14, 000 INFANTS (HOLY INNOCENTS) SLAIN BY HEROD IN BETHLEHEM",
+  "citations": [
+   "Hebrews 2:11-18",
+   "Matthew 2:13-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 254,
+  "date": "2025-12-30",
+  "title": "TUESDAY OF THE 15TH WEEK",
+  "citations": [
+   "Hebrews 9:8-23",
+   "Mark 11:11-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 255,
+  "date": "2025-12-31",
+  "title": "WEDNESDAY OF THE 15TH WEEK",
+  "citations": [
+   "Hebrews 10:1-18",
+   "Mark 11:22-26"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 256,
+  "date": "2026-01-01",
+  "title": "CIRCUMCISION OF OUR LORD AND SAVIOR JESUS CHRIST",
+  "citations": [
+   "Colossians 2:8-12",
+   "Luke 2:20-21, 40-52"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 257,
+  "date": "2026-01-02",
+  "title": "FOREFEAST OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Hebrews 5:4-10",
+   "John 3:1-15"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 258,
+  "date": "2026-01-03",
+  "title": "SATURDAY BEFORE EPIPHANY",
+  "citations": [
+   "1 Timothy 3:13-16; 4:1-5",
+   "Matthew 3:1-6"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 259,
+  "date": "2026-01-04",
+  "title": "SUNDAY BEFORE EPIPHANY",
+  "citations": [
+   "2 Timothy 4:5-8",
+   "Mark 1:1-8"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 260,
+  "date": "2026-01-05",
+  "title": "EVE OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "1 Corinthians 9:19-27",
+   "Luke 3:1-18"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 261,
+  "date": "2026-01-06",
+  "title": "THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Titus 2:11-14; 3:4-7",
+   "Matthew 3:13-17"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 262,
+  "date": "2026-01-07",
+  "title": "SYNAXIS OF JOHN THE HOLY GLORIOUS PROPHET, BAPTIST, & FORERUNNER",
+  "citations": [
+   "Acts 19:1-8",
+   "John 1:29-34"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 263,
+  "date": "2026-01-08",
+  "title": "AFTERFEAST OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Romans 6:3-11",
+   "John 3:22-33"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 264,
+  "date": "2026-01-09",
+  "title": "AFTERFEAST OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "2 Timothy 2:1-10",
+   "Mark 1:9-15"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 265,
+  "date": "2026-01-10",
+  "title": "SATURDAY AFTER EPIPHANY",
+  "citations": [
+   "Ephesians 6:10-17",
+   "Matthew 4:1-11"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 266,
+  "date": "2026-01-11",
+  "title": "SUNDAY AFTER EPIPHANY",
+  "citations": [
+   "Hebrews 13:7-16",
+   "Matthew 4:12-17"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 267,
+  "date": "2026-01-12",
+  "title": "AFTERFEAST OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Acts 18:22-28",
+   "John 10:39-42"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 268,
+  "date": "2026-01-13",
+  "title": "AFTERFEAST OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Galatians 3:23-29; 4:1-5",
+   "Luke 20:1-8"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 269,
+  "date": "2026-01-14",
+  "title": "LEAVETAKING OF THE THEOPHANY OF OUR LORD AND SAVIOUR JESUS CHRIST",
+  "citations": [
+   "Acts 2:38-43",
+   "Luke 4:1-15"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 270,
+  "date": "2026-01-15",
+  "title": "PAUL OF THEBES",
+  "citations": [
+   "Galatians 5:22-26; 6:1-2",
+   "Luke 12:32-40"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 271,
+  "date": "2026-01-16",
+  "title": "VENERATION OF APOSTLE PETER'S PRECIOUS CHAINS",
+  "citations": [
+   "Acts 12:1-11",
+   "John 21:14-25"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 272,
+  "date": "2026-01-17",
+  "title": "ANTHONY THE GREAT",
+  "citations": [
+   "Hebrews 13:17-21",
+   "Luke 6:17-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 273,
+  "date": "2026-01-18",
+  "title": "12TH SUNDAY OF LUKE",
+  "citations": [
+   "Hebrews 13:7-16",
+   "Luke 17:12-19"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 274,
+  "date": "2026-01-19",
+  "title": "MACARIUS THE GREAT OF EGYPT",
+  "citations": [
+   "Galatians 5:22-26; 6:1-2",
+   "Matthew 22:35-46"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 275,
+  "date": "2026-01-20",
+  "title": "RIGHTEOUS EUTHYMIUS THE GREAT",
+  "citations": [
+   "2 Corinthians 4:6-15",
+   "Luke 6:17-23"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 276,
+  "date": "2026-01-21",
+  "title": "MAXIMUS THE CONFESSOR",
+  "citations": [
+   "Philippians 1:12-20",
+   "Luke 12:8-12"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 277,
+  "date": "2026-01-22",
+  "title": "TIMOTHY THE APOSTLE OF THE 70",
+  "citations": [
+   "2 Timothy 1:3-8",
+   "Matthew 10:32-33; 37-38; 19:27-30"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 278,
+  "date": "2026-01-23",
+  "title": "HIEROMARTYR CLEMENT, BISHOP OF ANCYRA",
+  "citations": [
+   "Philippians 3:20-21; 4:1-3",
+   "Mark 2:23-28; 3:1-5"
+  ]
+ },
+ {
+  "source": "antiochian_2026_harvest",
+  "pdist": 279,
+  "date": "2026-01-24",
+  "title": "XENIA OF ST. PETERSBURG, FOOL-FOR-CHRIST",
+  "citations": [
+   "Galatians 3:23-4:5",
+   "Mark 5:24-34"
+  ]
+ }
+]
