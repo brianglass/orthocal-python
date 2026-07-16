@@ -88,6 +88,25 @@ class Antiochian(requests.Session):
         item_id = anchor_id + (dt - anchor_dt).days
 
         day = self._fetch_item(item_id)
+        actual = date.fromisoformat(day['originalCalendarDate'])
+        if actual != dt:
+            # The anchor (itemId 0 -> "today") can be off by a day depending
+            # on when authenticate() ran relative to the API's own day
+            # rollover. Caught once already: an entire harvest silently
+            # cached every date shifted +1 day. Re-anchor using this
+            # observed (item_id, actual date) pair and retry once rather
+            # than caching mismatched content under the wrong filename.
+            self.id_anchor = actual, item_id
+            anchor_dt, anchor_id = self.id_anchor
+            item_id = anchor_id + (dt - anchor_dt).days
+            day = self._fetch_item(item_id)
+            actual = date.fromisoformat(day['originalCalendarDate'])
+            if actual != dt:
+                raise RuntimeError(
+                    f'Date mismatch fetching {dt}: got itemId {item_id} '
+                    f'-> {actual} even after re-anchoring'
+                )
+
         cache_path.write_text(json.dumps(day, indent=2))
         return day
 
