@@ -93,9 +93,7 @@ class TestYear(TestCase):
 class TestTraditionOverlay(TestCase):
     """Tests for the Slavic/Greek tradition axis added on top of the shared
     Byzantine base -- these cover the overlay mechanism itself (Year class
-    selection, Reading fallback/override), not the specific GreekYear
-    lukan_jump formula, which is still provisional.
-    """
+    selection, Reading fallback/override)."""
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
@@ -165,6 +163,72 @@ class TestTraditionOverlay(TestCase):
         finally:
             await common.adelete()
             await greek_override.adelete()
+
+
+class TestGreekLukanNumbering(TestCase):
+    """GreekYear.lukan_sunday_numbers and theophany_interpolation, checked
+    against every Sunday in the antiochian.org official liturgical charts
+    for 2023, 2024, 2025, and 2026 -- confirmed exact match across all four
+    years, including every reserved-window and Apostle-override case
+    encountered (see GreekYear's class docstring in liturgics/year.py for
+    the source and full derivation)."""
+
+    def test_reserved_window_and_override_numbering(self):
+        # (year, month, day, expected number or None if claimed outright by
+        # an override feast that year)
+        data = [
+            # 2023: no Apostle-override collisions this year -- exercises
+            # the plain reserved-window + sequential-fill path only.
+            (2023, 9, 24, 1), (2023, 10, 1, 2), (2023, 10, 8, 3),
+            (2023, 10, 15, 4), (2023, 10, 22, 6), (2023, 10, 29, 7),
+            (2023, 11, 5, 5), (2023, 11, 12, 8), (2023, 11, 19, 9),
+            (2023, 11, 26, 13), (2023, 12, 3, 14), (2023, 12, 10, 10),
+            (2023, 12, 17, 11),
+            # 2024: also no override collisions.
+            (2024, 9, 22, 1), (2024, 9, 29, 2), (2024, 10, 6, 3),
+            (2024, 10, 13, 4), (2024, 10, 20, 6), (2024, 10, 27, 7),
+            (2024, 11, 3, 5), (2024, 11, 10, 8), (2024, 11, 17, 9),
+            (2024, 11, 24, 13), (2024, 12, 1, 14), (2024, 12, 8, 10),
+            (2024, 12, 15, 11),
+            # 2025: Apostle Matthew (Nov 16) and Apostle Andrew (Nov 30)
+            # each claim a Sunday outright, dropping "8th" and "13th".
+            (2025, 9, 28, 1), (2025, 10, 5, 2), (2025, 10, 12, 4),
+            (2025, 10, 19, 3), (2025, 10, 26, 6), (2025, 11, 2, 5),
+            (2025, 11, 9, 7), (2025, 11, 16, None), (2025, 11, 23, 9),
+            (2025, 11, 30, None), (2025, 12, 7, 10), (2025, 12, 14, 11),
+            # 2026: Apostle and Evangelist Luke (Oct 18) claims a Sunday
+            # outright, dropping "3rd".
+            (2026, 9, 27, 1), (2026, 10, 4, 2), (2026, 10, 11, 4),
+            (2026, 10, 18, None), (2026, 10, 25, 6), (2026, 11, 1, 5),
+            (2026, 11, 8, 7), (2026, 11, 15, 8), (2026, 11, 22, 9),
+            (2026, 11, 29, 13), (2026, 12, 6, 10), (2026, 12, 13, 11),
+        ]
+
+        years = {}
+        for year, month, day, expected in data:
+            if year not in years:
+                years[year] = liturgics.GreekYear(year)
+            pyear = years[year]
+            pdist = pyear.date_to_pdist(month, day, year)
+            with self.subTest((year, month, day)):
+                self.assertEqual(pyear.lukan_sunday_numbers.get(pdist), expected)
+
+    def test_theophany_interpolation(self):
+        # 2025's cycle (Theophany falls Jan 2026): confirmed against the
+        # harvest -- greek_extra_sundays=3 gives 12th of Luke (Jan 18) then
+        # 15th of Luke (Jan 25), with Triodion beginning Feb 1.
+        pyear = liturgics.GreekYear(2025)
+        self.assertEqual(pyear.greek_extra_sundays, 3)
+
+        jan18 = pyear.date_to_pdist(1, 18, 2026)
+        jan25 = pyear.date_to_pdist(1, 25, 2026)
+
+        self.assertEqual(pyear.theophany_interpolation[jan18], (None, 12))
+        self.assertEqual(pyear.theophany_interpolation[jan25], (None, 15))
+        self.assertEqual(
+            pyear.sunday_gospel_override(jan18),
+            liturgics.GreekYear._lukan_sunday_target(12),
+        )
 
 
 class TestDay(TestCase):

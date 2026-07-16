@@ -462,6 +462,18 @@ class Day:
         return self.pyear.has_daily_readings(self.pdist)
 
     @cached_property
+    def _sunday_gospel_override(self):
+        """Cache of pyear.sunday_gospel_override(pdist) for this day.
+
+        Returns None (no override -- use the default computation), False (no
+        daily-cycle Epistle/Gospel at all today -- see GreekYear's class
+        docstring), or a raw pdist to use in place of the default one.
+        """
+        if self.weekday != Weekday.Sunday:
+            return None
+        return self.pyear.sunday_gospel_override(self.pdist)
+
+    @cached_property
     def epistle_pdist(self):
         """Adjusted pdist for the epistle.
 
@@ -473,6 +485,9 @@ class Day:
         """
 
         if not self.has_daily_readings:
+            return None
+
+        if self._sunday_gospel_override is False:
             return None
 
         if self.pdist == 49 + 29*7:  # Pentecost + 29 weeks
@@ -502,14 +517,17 @@ class Day:
         if not self.has_daily_readings:
             return None
 
+        if self._sunday_gospel_override is False:
+            return None
+
+        if self._sunday_gospel_override is not None:
+            return self._sunday_gospel_override
+
         if self.pdist == self.pyear.first_sun_luke + 10*7:
             # On the 11th Sunday of Luke we commemorate the forefathers of the
             # Lord. We read the Gospel that is assigned to Forefathers Sunday
             # from the Paschal cycle. On Forefathers Sunday, we read the Gospel
             # pulled from the Festal cycle for that day (from self.pyear.floats).
-            #
-            # This might not happen in the Greek lectionary. This reading seems
-            # to be included in the reserves for the Greeks.
             return self.pyear.forefathers + self.pyear.lukan_jump
 
         if self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:

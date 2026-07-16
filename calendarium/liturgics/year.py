@@ -196,6 +196,17 @@ class ByzantineYear:
         """A list of pascha distances for days with unread Sunday gospels."""
         raise NotImplementedError('reserves must be implemented by a tradition-specific subclass')
 
+    def sunday_gospel_override(self, pdist):
+        """Override the Gospel pdist for a specific Sunday, or None to use the
+        default gospel_pdist computation. Return False (not None) to mean "no
+        daily-cycle Gospel/Epistle at all today" -- reserved for the rare
+        case where a Sunday's regular content is genuinely never read that
+        year (as opposed to merely coinciding with a floating feast, which is
+        not a case for suppression -- see Day.gospel_pdist).
+
+        The base implementation is a no-op; only GreekYear overrides it."""
+        return None
+
     @cached_property
     def paremias(self):
         """Return a table of paremias that should be moved."""
@@ -435,31 +446,92 @@ class SlavicYear(ByzantineYear):
 class GreekYear(ByzantineYear):
     """The Byzantine-Greek tradition's handling of the Matthew-to-Luke Gospel transition.
 
-    Unlike the Slavic practice, the Greek Gospel cycle switches from Matthew
-    to Luke on a fixed anchor: the Sunday after the Sunday after Elevation
-    (i.e. the 2nd Sunday after Elevation reads the first Sunday-of-Luke
-    Gospel), discarding whatever Matthew content would otherwise have
-    followed rather than saving it for later.
+    The weekday jump itself is identical to SlavicYear -- confirmed
+    empirically (2026-09-21, "Monday of the 1st week [of Luke]", reads Luke
+    3.19-22, matching raw pdist 169 exactly) and stated explicitly in the
+    byzcath.org "Lukan Jump" thread: "the St. Luke period begins on the
+    Monday after the Sunday which follows the Exaltation." The same thread
+    notes the Russian Church reinstated this identical automatic-jump rule
+    (on Professor Uspensky's advice), so the jump itself is not a point of
+    difference between the traditions today.
 
-    NOTE: this formula was derived and cross-checked this session against
-    the official 2026 Antiochian Archdiocese lectionary chart
-    (data/antiochian_official_chart_2026.json) at the Sunday level only (two
-    exact matches: 2026-09-27 "1st of Luke" and 2026-10-04 "2nd of Luke").
-    The weekday-level transition point has not been independently verified
-    and should be treated as provisional pending further validation.
+    What *does* differ is which numbered "Gospel of Luke" each Sunday reads.
+    Naive week-counting from the jump breaks down because a fixed set of
+    calendar-date windows is reserved, by long-standing convention, for
+    specific numbered readings regardless of the naive week count -- and a
+    small set of higher-rank Apostle/Evangelist feasts (Luke, Matthew,
+    Andrew) can claim a Sunday outright, permanently dropping whatever
+    number was due that day with no makeup later. Both tables below are
+    quoted verbatim from the byzcath.org "Lukan Jump" thread (citing "the
+    Ustav list archive") and were cross-validated against every Sunday in
+    the antiochian.org official liturgical charts for 2023, 2024, 2025, and
+    2026 -- 100% match, including every reserved-window and Apostle-override
+    case encountered in those four years.
+
+    See https://www.orthodox.net/ustav/lukan-jump.html
+    and https://www.byzcath.org/forums/ubbthreads.php/topics/133274/lukan-jump
     """
+
+    # "many of the Sunday Gospels between October and December are reserved
+    # for a special date as follows: to be read on the Sunday which falls
+    # between: Oct 11 and 17, the 4th Gospel of St Luke; Oct 30 and Nov 5,
+    # the 5th Gospel of St Luke; Nov 24 and 30, the 13th Gospel of St Luke;
+    # Dec 1 and 3, the 14th Gospel of St Luke; Dec 4 and 10, the 10th Gospel
+    # of St Luke; Dec 11 and 17, the 11th Gospel of St Luke."
+    _LUKAN_RESERVED_WINDOWS = (
+        # (start_month, start_day, end_month, end_day, forced_number)
+        (10, 11, 10, 17, 4),
+        (10, 30, 11, 5, 5),
+        (11, 24, 11, 30, 13),
+        (12, 1, 12, 3, 14),
+        (12, 4, 12, 10, 10),
+        (12, 11, 12, 17, 11),
+    )
+
+    # Higher-rank Apostle/Evangelist feasts that, when they land on a Sunday
+    # in this range, claim it outright -- the Lukan number due that day
+    # (whether from a reserved window or the plain sequence) is consumed but
+    # never displayed, and is not made up on a later Sunday. Confirmed against
+    # all four validation years: 2026 (Luke, Oct 18), 2025 (Matthew, Nov 16;
+    # Andrew, Nov 30). Lower-rank saints landing on these same Sundays (e.g.
+    # Demetrius, Nektarios, Nicholas, Cosmas & Damian) do not have this
+    # effect -- their day simply combines with the numbered Sunday.
+    _LUKAN_OVERRIDE_FEASTS = (
+        (10, 18),  # Apostle and Evangelist Luke
+        (11, 16),  # Apostle Matthew
+        (11, 30),  # Apostle Andrew, the First-Called
+    )
+
+    # "The Gospel series may have no or up to five Sundays between Theophany
+    # and the Triodion as follows: none, Sunday after Theophany on January
+    # 7th; one, Sunday after Theophany; two, Sunday after Theophany, 25th of
+    # Luke; three, Sunday after Theophany, 12th of Luke, 15th of Luke; four,
+    # ...12th of Luke, 15th of Luke, 17th of Matthew; five, ...12th of Luke,
+    # 14th of Luke, 15th of Luke, 17th of Matthew." Keyed here by
+    # greek_extra_sundays (which counts the Sunday after Theophany itself,
+    # unlike this list's entries, which start after it). Confirmed against
+    # 2026 (three: 2026-01-18 "12th Sunday of Luke", 2026-01-25 "15th Sunday
+    # of Luke" -- exact citation match).
+    _THEOPHANY_INTERPOLATION = {
+        0: (),
+        1: (),
+        2: ((None, 25),),
+        3: ((None, 12), (None, 15)),
+        4: ((None, 12), (None, 15), ('matthew', 17)),
+        5: ((None, 12), (None, 14), (None, 15), ('matthew', 17)),
+    }
 
     @cached_property
     def lukan_jump(self):
         """The number of days to jump forward in the gospel cycle. Divisible by 7."""
 
-        first_sunday_of_luke = 49 + 7*18  # Pentecost + 18 weeks
-        second_sun_after_elevation = self.sun_after_elevation + 7
-        return first_sunday_of_luke - second_sun_after_elevation
+        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
+        mon_after_elevation = self.sun_after_elevation + 1
+        return eighteenth_monday - mon_after_elevation
 
     @cached_property
     def lukan_jump_threshold(self):
-        return self.sun_after_elevation + 6
+        return self.sun_after_elevation
 
     @cached_property
     def first_sun_luke(self):
@@ -468,5 +540,95 @@ class GreekYear(ByzantineYear):
 
     @cached_property
     def reserves(self):
-        """Discarded rather than saved -- see class docstring."""
+        """Not used -- see lukan_sunday_numbers and theophany_interpolation."""
         return []
+
+    @staticmethod
+    def _lukan_sunday_target(n):
+        """Raw pdist storing the nth "Gospel of Luke" (1st = Luke 5.1-11 at pdist 175)."""
+        return 168 + 7*n
+
+    @staticmethod
+    def _matthew_sunday_target(n):
+        """Raw pdist storing the nth "Gospel of Matthew" (Sunday-numbered, unshifted)."""
+        return 49 + 7*n
+
+    @cached_property
+    def lukan_sunday_numbers(self):
+        """Map each Sunday's pdist, from first_sun_luke through forefathers,
+        to its assigned "nth Gospel of Luke" number. Sundays fully claimed by
+        an override feast are omitted entirely (see _LUKAN_OVERRIDE_FEASTS)."""
+
+        windows = [
+            (self.date_to_pdist(m1, d1, self.year), self.date_to_pdist(m2, d2, self.year), n)
+            for m1, d1, m2, d2, n in self._LUKAN_RESERVED_WINDOWS
+        ]
+        reserved_numbers = {n for _, _, n in windows}
+        override_pdists = {self.date_to_pdist(m, d, self.year) for m, d in self._LUKAN_OVERRIDE_FEASTS}
+
+        result = {}
+        next_seq = 1
+        pdist = self.first_sun_luke
+        while pdist <= self.forefathers:
+            forced = next((n for start, end, n in windows if start <= pdist <= end), None)
+            if forced is not None:
+                assigned = forced
+            else:
+                while next_seq in reserved_numbers:
+                    next_seq += 1
+                assigned = next_seq
+                next_seq += 1
+
+            if pdist not in override_pdists:
+                result[pdist] = assigned
+
+            pdist += 7
+
+        return result
+
+    @cached_property
+    def triodion_start(self):
+        """pdist of the Sunday of the Publican and Pharisee (Triodion begins)."""
+        return self.next_pascha - self.pascha - 70
+
+    @cached_property
+    def greek_extra_sundays(self):
+        """Number of Sundays needing content between Theophany and Triodion,
+        counting the Sunday after Theophany itself. Unlike SlavicYear's
+        extra_sundays, this counts straight through to the Triodion with no
+        Zacchaeus Sunday buffer -- confirmed empirically: Greek practice
+        does not observe Zacchaeus Sunday as its own occasion (e.g. 2026-01-25,
+        the Sunday immediately before Triodion begins, reads plainly as "15th
+        Sunday of Luke," not "Zacchaeus")."""
+        return (self.triodion_start - self.sun_after_theophany) // 7
+
+    @cached_property
+    def theophany_interpolation(self):
+        """Map the pdist of each interpolated Sunday (after the Sunday after
+        Theophany itself, which needs no override -- see Day.gospel_pdist's
+        has_daily_readings guard) to its (book, n) assignment."""
+
+        entries = self._THEOPHANY_INTERPOLATION.get(self.greek_extra_sundays, ())
+        result = {}
+        pdist = self.sun_after_theophany + 7
+        for book, n in entries:
+            result[pdist] = (book, n)
+            pdist += 7
+        return result
+
+    def sunday_gospel_override(self, pdist):
+        if self.first_sun_luke <= pdist <= self.forefathers:
+            n = self.lukan_sunday_numbers.get(pdist)
+            if n is None:
+                # Claimed outright by a higher-rank Apostle feast; no daily-
+                # cycle Gospel/Epistle today at all -- see class docstring.
+                return False
+            return self._lukan_sunday_target(n)
+
+        if (entry := self.theophany_interpolation.get(pdist)) is not None:
+            book, n = entry
+            if book == 'matthew':
+                return self._matthew_sunday_target(n)
+            return self._lukan_sunday_target(n)
+
+        return None
