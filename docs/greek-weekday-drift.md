@@ -839,3 +839,80 @@ own merits:
   Docker Compose service: **+2 `Pericope`, +28 `Reading`**, `Day`/
   `Composite` untouched. Full 92-test suite passes (0 failures, 1 skipped)
   via `docker compose run --rm tests`.
+
+## Known scope of remaining incorrectness
+
+Quantified precisely rather than left vague, since "how many days will be
+wrong" is the practical question that matters going forward. First,
+directly confirmed the current fallback is genuinely wrong, not just
+unverified: for **2022-01-19** (a confirmed weekday, jump=21), the app
+currently computes `Epistle: Jas 1.1-18` / `Gospel: Mark 8.30-34` for
+Greek — the actual antiochian.org citation for that date is `Gal 5:22-26;
+6:1-2` / `Matthew 21:33-42`, confirmed independently earlier in this
+document. Completely different content, not a near-miss.
+
+**Per-year day count**, computed directly (every weekday between
+Leavetaking of Theophany and that year's Triodion start, minus the 18
+now-implemented fixed Menaion dates, minus Saturdays/Sundays which are
+handled by separate, already-correct mechanisms), for 2018-2037:
+
+| Year | jump | Nativity weekday | free (likely-wrong) days in Jan15-Feb10 | extends past Feb 10? |
+|---|---|---|---|---|
+| 2018 | 7  | Tue | 1 (Jan 24) | yes, to Feb 15 |
+| 2019 | 28 | Wed | 4 (Jan 24, Feb 4/5/7) | no |
+| 2020 | 14 | Fri | 5 (Jan 19/26, Feb 4/5/9) | yes, to Feb 19 |
+| 2021 | 28 | Sat | 6 (Jan 19/24/26, Feb 4/7/9) | no — plus `SatAfterNativityFriday` (Dec 31) |
+| 2022 | 21 | Sun | 3 (Jan 19/24/26) | no |
+| 2023 | 14 | Mon | 6 (Jan 19/24/26, Feb 5/7/9) | yes, to Feb 23 |
+| 2024 | 35 | Wed | 4 (Jan 24, Feb 4/5/7) | no |
+| 2025 | 14 | Thu | 2 (Jan 19/26) | no |
+| 2026 | 7  | Fri | 5 (Jan 19/26, Feb 4/5/9) | yes, to Feb 19 |
+
+(Full 20-year table generated via a direct script walking
+`weekday_from_pdist` over each `GreekYear`'s Leavetaking-to-Triodion span;
+not reproduced here in full — see the git history of this doc's authoring
+session for the exact command if needed.)
+
+**Bottom line**: a typical year has **3 to 7 confirmed-wrong weekdays**,
+concentrated in Jan 19 - Feb 9. Two additional, smaller items apply on top:
+
+- **Jan 3 (Forefeast)**: uncertain in roughly 5 of 7 years (whenever
+  Theophany's weekday doesn't cause it to be absorbed into
+  `SatBeforeTheophany`/`SunBeforeTheophany`) — the 5 independently-sampled
+  years disagreed with no pattern found (see "Leftover floats" above), so
+  this may already be correct by chance, or may not be.
+- **`SatAfterNativityFriday`** (Dec 31): confirmed wrong, but only in
+  Nativity-falls-on-Saturday years (2021, 2027, 2032 in the near term —
+  roughly 1 year in 7).
+
+**Open question, not yet investigated**: in years where `lukan_jump` is
+small (7, or 0 as in 2037), the affected window extends well past Feb 10
+(seen as far as Feb 23 in the sample above). Whether those additional
+February dates are further fixed Menaion saints (most likely, given the
+pattern established for Jan 15 - Feb 10) or more of the same unsolved gap
+has **not been checked** — the Menaion confirmation work this session
+stopped at Feb 10. This should be the first thing tackled if this
+investigation resumes.
+
+Everything outside this narrow window — the entire Sunday-of-Luke cycle,
+the Nativity/Theophany fixed cluster, Forefeast/Afterfeast, Leavetaking,
+and all ordinary weekdays before Nativity and after the window closes — is
+confirmed correct.
+
+### Next step when this resumes: cross-check against goarch.org/chapel
+
+This entire investigation has relied on a single source, antiochian.org.
+GOA (Greek Orthodox Archdiocese of America) and the Antiochian Archdiocese
+are normally in lockstep on the ordinary daily lectionary (that shared
+premise is the basis of this whole `tradition=greek` axis, per the plan's
+Context section), but antiochian.org's own site could simply have a bug or
+idiosyncrasy on these specific unresolved days that a second source would
+immediately reveal. https://www.goarch.org/chapel publishes GOA's own daily
+readings and should be checked against the exact dates identified above
+(Jan 19/24/26, Feb 4/5/7/9, and the Feb 11+ unverified extension in
+low-jump years) before investing in any further reverse-engineering of
+antiochian.org alone. If GOA's citations match antiochian.org's on these
+days, that's useful negative evidence against "antiochian.org bug" and
+strengthens the case that a real, still-undiscovered mechanism exists. If
+they *disagree*, that's a direct, low-effort way to get a second,
+independent data point per problem day — exactly what's been missing.
