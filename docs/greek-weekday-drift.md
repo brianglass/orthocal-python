@@ -351,40 +351,73 @@ the write persists to the host filesystem; verified +5 `Reading`, +1
   reminder not to trust that bulk script's exact citation values without
   spot-checking via direct file reads when something looks anomalous.
 
-**Explicitly NOT implemented, with reasons** (do not attempt without new
-evidence):
+## Leftover floats: final disposition (no further data possible)
 
-- **`SatAfterNativityFriday`** (only occurs when Nativity=Saturday): the
-  one available sample (2021) showed a plain `feastDayTitle` of "FRIDAY OF
-  THE 15TH WEEK" — no special commemoration named at all — and its Gospel
-  citation (`Luke 16:10-15`) matches the *ordinary universal weekday-table*
-  entry for that (week, weekday) slot, not a distinct feast reading. This
-  suggests Greek/Antiochian practice may not observe this "moved" rubric
-  as a distinct feast at all when Nativity falls on Saturday — needs a
-  second Saturday-nativity year with a different jump to investigate
-  further, not a citation fix.
-- **`SunAfterNativityMonday`** (only occurs when Nativity=Sunday): this
-  slot is *structurally guaranteed* to always coincide with Synaxis of the
-  Theotokos (Dec 26) — Nativity=Sunday always makes Dec 26 a Monday, by
-  calendar construction. The one sample's citations exactly match
-  Synaxis's own already-confirmed citations, so no independent read of
-  this float's own identity is possible from harvested data; it may never
-  independently render in practice at all.
-- **`RoyalHoursNativityFriday` / `RoyalHoursTheophanyFriday`**: these are
-  4-part Royal Hours services (1st/3rd/6th/9th Hour, each with its own
-  Epistle/Gospel/Prophecy), not expressible via antiochian.org's simple
-  single `reading1Title`/`reading2Title` fields. The citations gathered
-  for these during this investigation were actually just that calendar
-  date's ordinary continuous-cycle reading, coincidentally present that
-  day — not evidence about the Royal Hours' own liturgical content at all.
-  This float pair cannot be verified with this data source.
-- **`SatBeforeTheophanyJan`** (Saturday-before-Theophany moved to Jan 1,
-  when Nativity=Monday or Tuesday): Jan 1 is always simultaneously
-  Circumcision, a major fixed feast that wins the citation display every
-  time — both available samples' citations were Circumcision's own
-  reading, not this float's. Cannot be independently verified from
-  harvested data; Circumcision's own row is already confirmed correct
-  separately.
+Went back through every item in the "not yet implemented" list above with
+a specific goal: for each one, determine whether *more* harvested data
+could ever resolve it, and get that data if so. Two important discoveries
+about antiochian.org's API along the way:
+
+- **The historical horizon is bounded on both ends.** Forward: dates more
+  than roughly a year out fail (confirmed both with the original 2029-2030
+  test and, this pass, January 2027 — 6 months past the already-working
+  November/December 2026 data). Backward: 2015-2017 and earlier consistently
+  fail; 2018 onward works. So "go further back" or "go further forward" is
+  not unconditionally available — always check reachability before
+  planning a harvest around it.
+- **Isolated single-date gaps exist within the reachable window**, distinct
+  from the horizon boundary. Harvesting Nov 2020-Feb 2021 (Nativity=Friday,
+  jump=14 — otherwise safely reachable) hit exactly one failure, Jan 1, 2021
+  (Circumcision) specifically, with every surrounding date fine. Treat a
+  single-date failure surrounded by successes as a data gap to skip over,
+  not evidence of a horizon boundary.
+
+With that in hand, here's what's resolvable and what isn't:
+
+- **`SunAfterNativityMonday`** and **`SatBeforeTheophanyJan`**: **fully
+  resolved, no code change needed.** Both are *provably, permanently*
+  masked — checked computationally through 2034, every single occurrence
+  of each coincides exactly with a fixed feast (Synaxis of the Theotokos
+  Dec 26, and Circumcision Jan 1, respectively) that always wins the
+  citation display. No harvested data, past or future, could ever observe
+  either float's own identity independently. Their existing inherited
+  citations (matching the standalone `SunAfterNativitiy`/`SatBeforeTheophany`
+  floats, already confirmed correct) are harmless by construction.
+- **`RoyalHoursNativityFriday` / `RoyalHoursTheophanyFriday`**: **out of
+  scope for this data source, permanently.** These are 4-part Royal Hours
+  services (1st/3rd/6th/9th Hour, each with its own Epistle/Gospel/Prophecy)
+  that antiochian.org's simple single `reading1Title`/`reading2Title`
+  fields cannot express at all, regardless of how many years are
+  harvested. Would need a different source entirely (e.g. a printed
+  Antiochian service book) to verify.
+- **`SatAfterNativityFriday`** (only occurs when Nativity=Saturday):
+  **as resolved as it can get with this data source.** Every reachable
+  Nativity=Saturday year (2021, 2027, 2032) shares the same jump (28); the
+  next different-jump occurrences (2004, 2010, 2038+) are all outside the
+  reachable window in either direction. So a second, independent-jump
+  confirmation is provably unobtainable right now. The existing single
+  sample (2021) still has good indirect support though: its citation
+  (`Luke 16:10-15`) exactly matches the independently-confirmed universal
+  continuous-cycle table entry for "week 15 Friday" (confirmed via 2022's
+  Dec 30, an unrelated Nativity-weekday case, reaching that same table
+  position by a completely different route) — strong evidence that Greek
+  simply has no distinct reading here and falls through to the ordinary
+  continuous cycle. Fixing this would mean `GreekYear` overriding `floats`
+  to drop this key for the Saturday-nativity case (a code change, not a
+  data addition) — flagged for a decision, not implemented in this pass.
+- **Jan 3 (Forefeast)**: **exhausted, not just under-sampled.** Jan 3 is
+  only ever "genuine" (not absorbed into `SatBeforeTheophany`/
+  `SunBeforeTheophany`) for 5 of the 7 possible Theophany weekdays — it's
+  *structurally* always claimed when Theophany falls on Tuesday or
+  Wednesday, the same kind of permanent masking as the two floats above.
+  All 5 genuine cases were already sampled before this pass; the 2020
+  addition (Theophany=Wednesday) turned out to be one of the 2
+  permanently-masked cases, confirming there is no 6th sample obtainable
+  in either time direction. The existing 5 samples remain genuinely
+  inconsistent (3 different Epistle citations, 2 different Gospels) with
+  no pattern found relating to window length, weekday, or anything else
+  checked — this needs a different investigative approach entirely (e.g.
+  a printed Typikon/lectionary), not more harvesting.
 
 ## Forefeast/Afterfeast of Theophany: implemented, and simpler than planned
 
@@ -426,9 +459,11 @@ on a Saturday or Sunday that year):
 - **Jan 3 explicitly excluded**: both Epistle and Gospel are genuinely
   inconsistent across years (3 different Epistle citations across 5
   samples, 2 different Gospel citations), with no pattern found relating
-  the differences to window length, weekday, or anything else checked. Do
-  not implement without further investigation — likely needs additional
-  harvested years to even start narrowing down what's going on.
+  the differences to window length, weekday, or anything else checked.
+  **Update**: this has since been confirmed exhausted, not just
+  under-sampled — see "Leftover floats: final disposition" below. All 5
+  possible genuine samples are already in hand; no amount of further
+  harvesting can add a 6th.
 
 All added as new `greek`-tagged `month`/`day` `Reading` rows (`pdist=999`,
 `ordering=821`/`921`, matching the Nicomedia/Innocents pattern), shown
@@ -441,16 +476,20 @@ re-parses cleanly) and the full 92-test suite (0 failures) via Docker.
 
 ## Next steps (in order)
 
-1. The unverifiable Nativity-side floats (`SatAfterNativityFriday`,
-   `SunAfterNativityMonday`, Royal Hours pair, `SatBeforeTheophanyJan`)
-   need either additional harvested years (a different jump value for the
-   same Nativity weekday) or a fundamentally different verification
-   approach (e.g. checking a printed Antiochian service book directly for
-   Royal Hours, since antiochian.org's API cannot express that structure).
-2. Jan 3 (Forefeast, both Epistle and Gospel) needs the same treatment —
-   more years, or a different investigative approach, before it can be
-   implemented.
-3. Re-attack the quantitative trigger (open question, see above) with a
+The leftover-floats investigation is now closed out — see "Leftover
+floats: final disposition" above for the conclusive status of each item
+(2 permanently resolved with no code change, 1 permanently out of scope,
+1 as-resolved-as-possible pending a code-change decision, 1 confirmed
+exhausted). Remaining work:
+
+1. **Decide on the `SatAfterNativityFriday` code change**: have `GreekYear`
+   override `floats` to drop this key for the Nativity=Saturday case, so
+   that date falls through to the ordinary continuous-cycle computation
+   instead of querying the (likely non-existent-for-Greek) float pdist.
+   Backed by strong indirect evidence (see above) but not the full
+   2-independent-year bar used elsewhere, since that bar is provably
+   unreachable with this data source.
+2. Re-attack the quantitative trigger (open question, see above) with a
    narrower, more careful approach: rather than testing whole-formula
    hypotheses against multiple years at once, hand-trace a *single* year
    day-by-day from the jump through Triodion, explicitly labeling every
@@ -458,10 +497,10 @@ re-parses cleanly) and the full 92-test suite (0 failures) via Docker.
    Nativity/Theophany/Circumcision-cluster override, or (c) unrelated
    saint's day (no effect), and see directly, by inspection, exactly which
    days' presence changes the week-count vs. which don't.
-4. Once the trigger rule is fully nailed down and validated against all 7
+3. Once the trigger rule is fully nailed down and validated against all 7
    Nativity-weekday cases, implement it as a new `GreekYear` method,
    structurally parallel to `SlavicYear.reserves`, and wire it into
    `Day.gospel_pdist`/`epistle_pdist` alongside the existing
    `_sunday_gospel_override` hook.
-5. Write the Greek-formula test suite (standing task #11) once the above is
+4. Write the Greek-formula test suite (standing task #11) once the above is
    settled.
