@@ -31449,7 +31449,7 @@
         "pericope": 790,
         "ordering": 821,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -31539,7 +31539,7 @@
         "pericope": 578,
         "ordering": 821,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -40747,6 +40747,426 @@
         "source": "Gospel",
         "desc": "Afterfeast of Theophany",
         "pericope": 304,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1664,
+    "fields": {
+        "month": 1,
+        "day": 15,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "John the Hut-Dweller",
+        "pericope": 647,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1665,
+    "fields": {
+        "month": 1,
+        "day": 15,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "John the Hut-Dweller",
+        "pericope": 272,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1666,
+    "fields": {
+        "month": 1,
+        "day": 16,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Peter's Chains",
+        "pericope": 428,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1667,
+    "fields": {
+        "month": 1,
+        "day": 16,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Peter's Chains",
+        "pericope": 1001,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1668,
+    "fields": {
+        "month": 1,
+        "day": 18,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Athanasius & Cyril",
+        "pericope": 789,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1669,
+    "fields": {
+        "month": 1,
+        "day": 18,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Athanasius & Cyril",
+        "pericope": 12,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1670,
+    "fields": {
+        "month": 1,
+        "day": 20,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Euthymius",
+        "pericope": 606,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1671,
+    "fields": {
+        "month": 1,
+        "day": 21,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Maximus",
+        "pericope": 675,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1672,
+    "fields": {
+        "month": 1,
+        "day": 21,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Maximus",
+        "pericope": 269,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1673,
+    "fields": {
+        "month": 1,
+        "day": 22,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Timothy",
+        "pericope": 1002,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1674,
+    "fields": {
+        "month": 1,
+        "day": 22,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Timothy",
+        "pericope": 41,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1675,
+    "fields": {
+        "month": 1,
+        "day": 23,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Clement",
+        "pericope": 685,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1676,
+    "fields": {
+        "month": 1,
+        "day": 23,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Clement",
+        "pericope": 137,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1677,
+    "fields": {
+        "month": 1,
+        "day": 25,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Gregory",
+        "pericope": 768,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1678,
+    "fields": {
+        "month": 1,
+        "day": 28,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Ephraim",
+        "pericope": 647,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1679,
+    "fields": {
+        "month": 1,
+        "day": 28,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Ephraim",
+        "pericope": 227,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1680,
+    "fields": {
+        "month": 1,
+        "day": 29,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Ignatius' Relics",
+        "pericope": 777,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1681,
+    "fields": {
+        "month": 1,
+        "day": 29,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Ignatius' Relics",
+        "pericope": 168,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1682,
+    "fields": {
+        "month": 1,
+        "day": 31,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cyrus & John",
+        "pericope": 580,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1683,
+    "fields": {
+        "month": 1,
+        "day": 31,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Cyrus & John",
+        "pericope": 36,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1684,
+    "fields": {
+        "month": 2,
+        "day": 1,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Trypho",
+        "pericope": 522,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1685,
+    "fields": {
+        "month": 2,
+        "day": 1,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Trypho",
+        "pericope": 256,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1686,
+    "fields": {
+        "month": 2,
+        "day": 6,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Photius",
+        "pericope": 768,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1687,
+    "fields": {
+        "month": 2,
+        "day": 6,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Photius",
+        "pericope": 358,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1688,
+    "fields": {
+        "month": 2,
+        "day": 8,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Theodore",
+        "pericope": 655,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1689,
+    "fields": {
+        "month": 2,
+        "day": 8,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Theodore",
+        "pericope": 38,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1690,
+    "fields": {
+        "month": 2,
+        "day": 10,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "St. Haralambos",
+        "pericope": 738,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1691,
+    "fields": {
+        "month": 2,
+        "day": 10,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "St. Haralambos",
+        "pericope": 378,
         "ordering": 921,
         "flag": 0,
         "tradition": "greek"
@@ -57748,6 +58168,40 @@
         "prefix": "At that time,",
         "prefixb": "",
         "verses": "John_10039_10042",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1001,
+    "fields": {
+        "pericope": "60grk",
+        "book": "John",
+        "display": "John 21.14-25",
+        "sdisplay": "John 21.14-25",
+        "desc": "Peter's Chains (Greek)",
+        "preverse": "",
+        "prefix": "At that time,",
+        "prefixb": "",
+        "verses": "John_21014_21025",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1002,
+    "fields": {
+        "pericope": "290grk",
+        "book": "Apostol",
+        "display": "2 Timothy 1.3-8",
+        "sdisplay": "2 Tim 1.3-8",
+        "desc": "St. Timothy (Greek)",
+        "preverse": "",
+        "prefix": "Timothy, my son,",
+        "prefixb": "",
+        "verses": "2Tim_1003_1008",
         "suffix": "",
         "flag": 0
     }
