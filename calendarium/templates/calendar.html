@@ -11,7 +11,7 @@
 	{% endif %}
 
 	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
-	<link rel="canonical" href="{% fullurl "calendar" cal=cal year=this_month.year month=this_month.month %}">
+	<link rel="canonical" href="{% fullurl "calendar" tradition=tradition cal=cal year=this_month.year month=this_month.month %}">
 
 	{% if noindex %}
 		<meta name="robots" content="noindex">
@@ -19,13 +19,18 @@
 {% endblock %}
 
 {% block extra_nav %}
-	<a class="cal-nav" href="{% url "calendar" cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; {{ previous_month|date:"F" }}</a>
-	<a class="cal-nav" href="{% url "calendar" cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %}>{{ next_month|date:"F" }} &rarr;</a>
+	<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; {{ previous_month|date:"F" }}</a>
+	<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %}>{{ next_month|date:"F" }} &rarr;</a>
 
 	<br>
 
 	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
 	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+
+	<br>
+
+	<label><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
+	<label><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek</label>
 {% endblock extra_nav %}
 
 {% block main %}
@@ -34,20 +39,31 @@
 
 {% block scripts %}
 <script>
-	function set_calendar(){
+	function navigate(){
+		var cal = document.querySelector('input[name="calendar"]:checked').value;
+		var tradition = document.querySelector('input[name="tradition"]:checked').value;
+		var urls = {
+			'gregorian_slavic': '{% url "calendar" tradition="slavic" cal="gregorian" year=this_month.year month=this_month.month %}',
+			'gregorian_greek': '{% url "calendar" tradition="greek" cal="gregorian" year=this_month.year month=this_month.month %}',
+			'julian_slavic': '{% url "calendar" tradition="slavic" cal="julian" year=this_month.year month=this_month.month %}',
+			'julian_greek': '{% url "calendar" tradition="greek" cal="julian" year=this_month.year month=this_month.month %}'
+		};
+		var t = new Date().getTime();
+		location.href = urls[cal + '_' + tradition] + '?t=' + t;
+	}
+
+	function wire_toggles(){
 		var radios = document.getElementsByName('calendar');
 		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', function() {
-				var t = new Date().getTime();
-				if (this.value == 'julian') {
-					location.href = '{% url "calendar" cal='julian' year=this_month.year month=this_month.month %}?t=' + t;
-				}else{
-					location.href = '{% url "calendar" cal='gregorian' year=this_month.year month=this_month.month %}?t=' + t;
-				}
-			});
+			radios[i].addEventListener('change', navigate);
+		}
+
+		radios = document.getElementsByName('tradition');
+		for (var i = 0; i < radios.length; i++) {
+			radios[i].addEventListener('change', navigate);
 		}
 	}
 
-	document.addEventListener('DOMContentLoaded', set_calendar)
+	document.addEventListener('DOMContentLoaded', wire_toggles)
 </script>
 {% endblock %}

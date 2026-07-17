@@ -11,7 +11,7 @@
 		<meta name="description" content="Feasts, fasts, scripture readings and stories from the lives of the Saints for {{ day.gregorian_date|date }}.">
 	{% endif %}
 
-	<link rel="canonical" href="{% fullurl "readings" cal=cal year=date.year month=date.month day=date.day %}">
+	<link rel="canonical" href="{% fullurl "readings" tradition=tradition cal=cal year=date.year month=date.month day=date.day %}">
 
 	{% if noindex %}
 		<meta name="robots" content="noindex">
@@ -19,14 +19,19 @@
 {% endblock %}
 
 {% block extra_nav %}
-	<a class="cal-nav" href="{% url "readings" cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
+	<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
 	<a class="cal-nav" href="{% url "index" %}">Today</a>
-	<a class="cal-nav" href="{% url "readings" cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
+	<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
 
 	<br>
 
 	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
 	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+
+	<br>
+
+	<label><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
+	<label><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek</label>
 {% endblock %}
 
 {% block main %}
@@ -113,20 +118,31 @@
 
 {% block scripts %}
 <script>
-	function set_calendar(){
+	function navigate(){
+		var cal = document.querySelector('input[name="calendar"]:checked').value;
+		var tradition = document.querySelector('input[name="tradition"]:checked').value;
+		var urls = {
+			'gregorian_slavic': '{% url "readings" tradition="slavic" cal="gregorian" year=date.year month=date.month day=date.day %}',
+			'gregorian_greek': '{% url "readings" tradition="greek" cal="gregorian" year=date.year month=date.month day=date.day %}',
+			'julian_slavic': '{% url "readings" tradition="slavic" cal="julian" year=date.year month=date.month day=date.day %}',
+			'julian_greek': '{% url "readings" tradition="greek" cal="julian" year=date.year month=date.month day=date.day %}'
+		};
+		var t = new Date().getTime();
+		location.href = urls[cal + '_' + tradition] + '?t=' + t;
+	}
+
+	function wire_toggles(){
 		var radios = document.getElementsByName('calendar');
 		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', function() {
-				var t = new Date().getTime();
-				if (this.value == 'julian'){
-					location.href = '{% url "readings" cal='julian' year=date.year month=date.month day=date.day %}?t=' + t;
-				}else{
-					location.href = '{% url "readings" cal='gregorian' year=date.year month=date.month day=date.day %}?t=' + t;
-				}
-			});
+			radios[i].addEventListener('change', navigate);
+		}
+
+		radios = document.getElementsByName('tradition');
+		for (var i = 0; i < radios.length; i++) {
+			radios[i].addEventListener('change', navigate);
 		}
 	}
 
-	document.addEventListener('DOMContentLoaded', set_calendar)
+	document.addEventListener('DOMContentLoaded', wire_toggles)
 </script>
 {% endblock %}
