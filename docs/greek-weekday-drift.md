@@ -391,20 +391,29 @@ With that in hand, here's what's resolvable and what isn't:
   harvested. Would need a different source entirely (e.g. a printed
   Antiochian service book) to verify.
 - **`SatAfterNativityFriday`** (only occurs when Nativity=Saturday):
-  **as resolved as it can get with this data source.** Every reachable
-  Nativity=Saturday year (2021, 2027, 2032) shares the same jump (28); the
-  next different-jump occurrences (2004, 2010, 2038+) are all outside the
-  reachable window in either direction. So a second, independent-jump
-  confirmation is provably unobtainable right now. The existing single
-  sample (2021) still has good indirect support though: its citation
-  (`Luke 16:10-15`) exactly matches the independently-confirmed universal
-  continuous-cycle table entry for "week 15 Friday" (confirmed via 2022's
-  Dec 30, an unrelated Nativity-weekday case, reaching that same table
-  position by a completely different route) — strong evidence that Greek
-  simply has no distinct reading here and falls through to the ordinary
-  continuous cycle. Fixing this would mean `GreekYear` overriding `floats`
-  to drop this key for the Saturday-nativity case (a code change, not a
-  data addition) — flagged for a decision, not implemented in this pass.
+  **attempted a code fix, reverted — turns out to be entangled with the
+  still-open weekday-drift problem (see below), not independently
+  fixable.** Every reachable Nativity=Saturday year (2021, 2027, 2032)
+  shares the same jump (28); the next different-jump occurrences (2004,
+  2010, 2038+) are outside the reachable window in either direction, so a
+  second independent-jump confirmation is provably unobtainable. The one
+  sample (2021, `Luke 16:10-15`) doesn't match the plain continuous-cycle
+  Gospel for that (week, weekday) slot as originally claimed here — that
+  claim was a mistake, based on a mismatched comparison (2022-12-30 is
+  actually `Mark 12:1-12`, not `Luke 16:10-15` — corrected on
+  re-verification). Implemented `GreekYear.floats` dropping this key so
+  the date falls through to the ordinary continuous-cycle formula, then
+  checked the *actual* computed output against antiochian.org's real
+  citation for that date: they don't match (`Mark 12:1-12` computed vs.
+  `Luke 16:10-15` actual). The reason: Dec 31, 2021 is Nativity(Sat)+6 —
+  exactly the Leavetaking-adjacent date, squarely inside the disrupted
+  window where the simple continuous-cycle formula is already known to be
+  unreliable (see "The remaining true unknown" below). Neither the old
+  behavior (inherited Slavic-specific citation) nor the fix produces the
+  right answer; the real fix depends on solving the weekday-drift trigger
+  mechanism first. **Reverted the code change** rather than trade one
+  wrong answer for a different wrong answer. Revisit once the weekday-drift
+  mechanism is solved.
 - **Jan 3 (Forefeast)**: **exhausted, not just under-sampled.** Jan 3 is
   only ever "genuine" (not absorbed into `SatBeforeTheophany`/
   `SunBeforeTheophany`) for 5 of the 7 possible Theophany weekdays — it's
@@ -479,17 +488,10 @@ re-parses cleanly) and the full 92-test suite (0 failures) via Docker.
 The leftover-floats investigation is now closed out — see "Leftover
 floats: final disposition" above for the conclusive status of each item
 (2 permanently resolved with no code change, 1 permanently out of scope,
-1 as-resolved-as-possible pending a code-change decision, 1 confirmed
-exhausted). Remaining work:
+1 confirmed entangled with the still-open weekday-drift problem below and
+not independently fixable, 1 confirmed exhausted). Remaining work:
 
-1. **Decide on the `SatAfterNativityFriday` code change**: have `GreekYear`
-   override `floats` to drop this key for the Nativity=Saturday case, so
-   that date falls through to the ordinary continuous-cycle computation
-   instead of querying the (likely non-existent-for-Greek) float pdist.
-   Backed by strong indirect evidence (see above) but not the full
-   2-independent-year bar used elsewhere, since that bar is provably
-   unreachable with this data source.
-2. Re-attack the quantitative trigger (open question, see above) with a
+1. Re-attack the quantitative trigger (open question, see above) with a
    narrower, more careful approach: rather than testing whole-formula
    hypotheses against multiple years at once, hand-trace a *single* year
    day-by-day from the jump through Triodion, explicitly labeling every
@@ -497,10 +499,12 @@ exhausted). Remaining work:
    Nativity/Theophany/Circumcision-cluster override, or (c) unrelated
    saint's day (no effect), and see directly, by inspection, exactly which
    days' presence changes the week-count vs. which don't.
-3. Once the trigger rule is fully nailed down and validated against all 7
+2. Once the trigger rule is fully nailed down and validated against all 7
    Nativity-weekday cases, implement it as a new `GreekYear` method,
    structurally parallel to `SlavicYear.reserves`, and wire it into
    `Day.gospel_pdist`/`epistle_pdist` alongside the existing
-   `_sunday_gospel_override` hook.
-4. Write the Greek-formula test suite (standing task #11) once the above is
+   `_sunday_gospel_override` hook. This should also resolve
+   `SatAfterNativityFriday` as a side effect, once the disrupted-window
+   content is correctly computed.
+3. Write the Greek-formula test suite (standing task #11) once the above is
    settled.
