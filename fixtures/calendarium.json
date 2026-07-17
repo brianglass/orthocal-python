@@ -38334,7 +38334,7 @@
         "pericope": 780,
         "ordering": 801,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -38769,7 +38769,7 @@
         "pericope": 277,
         "ordering": 2,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -38814,7 +38814,7 @@
         "pericope": 780,
         "ordering": 1,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -38904,7 +38904,7 @@
         "pericope": 727,
         "ordering": 802,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -38919,7 +38919,7 @@
         "pericope": 5,
         "ordering": 902,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -40433,6 +40433,81 @@
         "desc": "Holy Innocents",
         "pericope": 4,
         "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1643,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1012,
+        "source": "Epistle",
+        "desc": "Sunday before Nativity",
+        "pericope": 999,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1644,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1015,
+        "source": "Gospel",
+        "desc": "Saturday before Nativity",
+        "pericope": 996,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1645,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1016,
+        "source": "Epistle",
+        "desc": "Sunday before Nativity",
+        "pericope": 999,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1646,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1017,
+        "source": "Gospel",
+        "desc": "Saturday before Theophany",
+        "pericope": 997,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1647,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1017,
+        "source": "Epistle",
+        "desc": "Saturday before Theophany",
+        "pericope": 998,
+        "ordering": 821,
         "flag": 0,
         "tradition": "greek"
     }
@@ -57399,6 +57474,23 @@
         "prefix": "Timothy, my son,",
         "prefixb": "",
         "verses": "1Tim_3013_4005",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 999,
+    "fields": {
+        "pericope": "328grk",
+        "book": "Apostol",
+        "display": "Hebrews 11.9-10, 32-40",
+        "sdisplay": "Heb 11.9-10, 32-40",
+        "desc": "Sunday before Nativity (Greek)",
+        "preverse": "",
+        "prefix": "Brethren, by faith Abraham",
+        "prefixb": "And",
+        "verses": "Heb_11009_11010|Heb_11032_11040",
         "suffix": "",
         "flag": 0
     }

@@ -297,25 +297,103 @@ and briefly looked like a `_prefer_tradition` dedup bug — it wasn't.
 Watch for this specifically whenever hand-checking a January date against
 a `GreekYear` instance.
 
-**Discovered but NOT yet implemented** — several other `FloatIndex` values
-are used by the `match`-on-Nativity's-weekday cases for years other than
-the ones checked above (e.g. `SatBeforeTheophanyEve`, `SunBeforeTheophanyEve`,
-`SatAfterNativityBeforeTheophany`, `SatBeforeNativityEve`,
-`SunBeforeNativityEve`, `SunAfterNativityMonday`, `SatAfterNativityFriday`,
-`SatBeforeTheophanyJan`, `RoyalHoursNativityFriday`,
-`RoyalHoursTheophanyFriday`, `SunForefathers`). These were spotted with only
-1-2 independent-year confirmations each during this pass (not the 2+
-independent-jump-year bar used for the ones implemented above), and in a
-couple of cases (`SatAfterNativityBeforeTheophany`) the one available
-sample citation didn't even agree between the two years checked — so
-none of these should be touched without further confirmation.
+## Implemented (second pass)
+
+Went back through the remaining `FloatIndex` values with the same 2+
+independent-jump-year bar, this time also checking the **Epistle** side
+(the first pass only checked Gospel citations for most floats — a gap
+found and closed this pass) and accounting for the fact that several of
+these floats already store **two Reading rows per source** in the DB —
+one for each of the two combined observances (e.g. `SatAfterNativity` +
+`SatBeforeTheophany` both landing on the same Saturday). All verified by
+direct raw-file reads, not the bulk per-year dump script (which turned out
+to have a bug — see below), and all baked into `fixtures/calendarium.json`
+(regenerated via `dumpdata` inside the `local` Docker Compose service, so
+the write persists to the host filesystem; verified +5 `Reading`, +1
+`Pericope`, `Day`/`Composite` untouched, fixture re-parses cleanly, full
+92-test suite passes with 0 failures via `docker compose run --rm tests`):
+
+- **`SunBeforeNativity` (pdist 1012), Epistle**: existing `common` row
+  (`Heb 11.9-10, 17-23, 32-40`) retagged `slavic`; new `greek` row added
+  (`Heb 11.9-10, 32-40` — omits the middle clause). Confirmed 5/5
+  independent-jump years via direct file reads. Gospel side (`Matt
+  1.1-25`) already matched, no change.
+- **`SatBeforeNativityEve` (pdist 1015), Gospel**: this combined float (Eve
+  of Nativity falling on the same day as Saturday-before-Nativity, when
+  Nativity=Sunday) already stores two Gospel rows — one for each combined
+  identity. The `SatBeforeNativity`-side row (`Luke 13.18-29`) retagged
+  `slavic`; new `greek` row added reusing the same pericope created for
+  standalone `SatBeforeNativity` (`Luke 13.19-29`). The `EveNativity`-side
+  row (`Luke 2.1-20`) already matched Greek, untouched.
+- **`SunBeforeNativityEve` (pdist 1016), Epistle**: same pattern for the
+  Nativity=Monday combined case — the `SunBeforeNativity`-side row
+  retagged `slavic`, new `greek` row added reusing the same new pericope
+  from the point above.
+- **`SatAfterNativityBeforeTheophany` (pdist 1017), Gospel + Epistle**:
+  the Nativity=Sunday-or-Monday combined float (Saturday-after-Nativity
+  coinciding with Saturday-before-Theophany). Confirmed via direct file
+  reads that this shows **either** parent identity's own citation
+  depending on the year (2022 showed the `SatBeforeTheophany` side, 2023
+  showed the `SatAfterNativity` side) — consistent with it being a true
+  merge of the two, with antiochian.org's single-citation display just
+  picking one. The `SatAfterNativity`-side rows already matched Greek
+  (already-confirmed standalone citation); the `SatBeforeTheophany`-side
+  rows retagged `slavic` and new `greek` rows added reusing the same
+  pericopes created for standalone `SatBeforeTheophany`.
+- **`SatAfterTheophany` Epistle re-examined and confirmed correct as-is**:
+  the bulk per-year dump script had reported a 2024/2025 split
+  (`Eph 6.10-17` vs `Heb 13.7-16`) that looked like a possible variant.
+  Direct file reads showed this was a **bug in that script** (it
+  misattributed `2026-01-10.json`'s citation, actually `Eph 6.10-17`, to
+  something else) — the real data is 4/5 years confirming `Eph 6.10-17`
+  (matching the existing `common` row exactly), with only the genuine
+  2024 sample as a single unexplained outlier. No change made; this is a
+  reminder not to trust that bulk script's exact citation values without
+  spot-checking via direct file reads when something looks anomalous.
+
+**Explicitly NOT implemented, with reasons** (do not attempt without new
+evidence):
+
+- **`SatAfterNativityFriday`** (only occurs when Nativity=Saturday): the
+  one available sample (2021) showed a plain `feastDayTitle` of "FRIDAY OF
+  THE 15TH WEEK" — no special commemoration named at all — and its Gospel
+  citation (`Luke 16:10-15`) matches the *ordinary universal weekday-table*
+  entry for that (week, weekday) slot, not a distinct feast reading. This
+  suggests Greek/Antiochian practice may not observe this "moved" rubric
+  as a distinct feast at all when Nativity falls on Saturday — needs a
+  second Saturday-nativity year with a different jump to investigate
+  further, not a citation fix.
+- **`SunAfterNativityMonday`** (only occurs when Nativity=Sunday): this
+  slot is *structurally guaranteed* to always coincide with Synaxis of the
+  Theotokos (Dec 26) — Nativity=Sunday always makes Dec 26 a Monday, by
+  calendar construction. The one sample's citations exactly match
+  Synaxis's own already-confirmed citations, so no independent read of
+  this float's own identity is possible from harvested data; it may never
+  independently render in practice at all.
+- **`RoyalHoursNativityFriday` / `RoyalHoursTheophanyFriday`**: these are
+  4-part Royal Hours services (1st/3rd/6th/9th Hour, each with its own
+  Epistle/Gospel/Prophecy), not expressible via antiochian.org's simple
+  single `reading1Title`/`reading2Title` fields. The citations gathered
+  for these during this investigation were actually just that calendar
+  date's ordinary continuous-cycle reading, coincidentally present that
+  day — not evidence about the Royal Hours' own liturgical content at all.
+  This float pair cannot be verified with this data source.
+- **`SatBeforeTheophanyJan`** (Saturday-before-Theophany moved to Jan 1,
+  when Nativity=Monday or Tuesday): Jan 1 is always simultaneously
+  Circumcision, a major fixed feast that wins the citation display every
+  time — both available samples' citations were Circumcision's own
+  reading, not this float's. Cannot be independently verified from
+  harvested data; Circumcision's own row is already confirmed correct
+  separately.
 
 ## Next steps (in order)
 
-1. Verify and implement the remaining `FloatIndex` variants listed above,
-   with the same 2+ independent-jump-year confirmation bar used for
-   `SatBeforeNativity`/`SatBeforeTheophany`, being careful about the
-   January year/cycle-mapping gotcha noted above.
+1. The remaining unverifiable floats above (`SatAfterNativityFriday`,
+   `SunAfterNativityMonday`, Royal Hours pair, `SatBeforeTheophanyJan`)
+   need either additional harvested years (a different jump value for the
+   same Nativity weekday) or a fundamentally different verification
+   approach (e.g. checking a printed Antiochian service book directly for
+   Royal Hours, since antiochian.org's API cannot express that structure).
 2. Design and validate the Forefeast/Afterfeast `FloatIndex` extension
    (Theophany's own variable-count cluster), mirroring the existing
    Nativity `match`-on-weekday structure in `floats`.
