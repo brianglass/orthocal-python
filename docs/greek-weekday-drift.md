@@ -386,17 +386,70 @@ evidence):
   harvested data; Circumcision's own row is already confirmed correct
   separately.
 
+## Forefeast/Afterfeast of Theophany: implemented, and simpler than planned
+
+The original plan (see "Next steps" in earlier revisions of this doc) assumed
+this would need a new weekday-`match` `FloatIndex` extension, mirroring how
+`floats` handles Nativity's cluster. **It didn't.** Circumcision (Jan 1),
+Theophany's Eve (Jan 5, always the day before the fixed Jan 6 feast),
+Theophany itself (Jan 6), Synaxis of the Forerunner (Jan 7), and Leavetaking
+(Jan 14) are all **fixed calendar dates** — unlike Nativity's Eve/Sat-before/
+Sun-before, which genuinely move depending on weekday and thus needed
+`floats`'s weekday-`match` machinery. Since every anchor bounding the
+Forefeast (Jan 2-5) and Afterfeast (Jan 8-13) windows is fixed, the ordinary
+days *inside* those windows are ALSO just fixed calendar dates — no new
+`FloatIndex` entries or `match` logic needed at all, just plain `month`/`day`
+`Reading` rows (the same mechanism already used for Nicomedia Martyrs/Holy
+Innocents).
+
+Checked every date in both windows across 6 independent years (2018, 2021,
+2022, 2023, 2024, 2025 — missing only the Nativity=Friday/2026 case, whose
+January cache wasn't harvested), reading only the "genuine" occurrences (a
+few of these dates get absorbed into the existing `SatBeforeTheophany`/
+`SunBeforeTheophany`/`TheophanyEve`/`SatAfterTheophany`/`SunAfterTheophany`
+floats in some years, i.e. when Jan 2/3/4 or Jan 8/9/10/11 happens to land
+on a Saturday or Sunday that year):
+
+- **Jan 2** (Epistle only): `Heb 5:4-10` confirmed 5/5, zero outliers —
+  implemented. Gospel is messier: 4/5 confirm `John 3:1-15`, but the
+  Nativity=Tuesday/2018 sample (the only Theophany=Sunday case in the
+  dataset) shows `Mark 1:1-8` instead. Implemented anyway given the strong
+  majority and a plausible explanation (unique weekday case), but flagged
+  as the one soft spot in this pass.
+- **Jan 4** (both Epistle + Gospel): `1 Cor 4:9-16` / `John 1:18-28`,
+  confirmed 4/4 each, zero outliers. Implemented.
+- **Jan 8, 9, 10, 11, 12, 13** (all both Epistle + Gospel): every single one
+  confirmed 4/5 or 5/5 with **zero outliers** — `Rom 6:3-11`/`John 3:22-33`,
+  `2 Tim 2:1-10`/`Mark 1:9-15`, `Eph 4:7-13`/`Luke 3:19-22`,
+  `Heb 13:7-16`/`Luke 4:1-15`, `Acts 18:22-28`/`John 10:39-42` (new pericope,
+  didn't already exist), `Gal 3:23-4:5`/`Luke 20:1-8`. All implemented.
+- **Jan 3 explicitly excluded**: both Epistle and Gospel are genuinely
+  inconsistent across years (3 different Epistle citations across 5
+  samples, 2 different Gospel citations), with no pattern found relating
+  the differences to window length, weekday, or anything else checked. Do
+  not implement without further investigation — likely needs additional
+  harvested years to even start narrowing down what's going on.
+
+All added as new `greek`-tagged `month`/`day` `Reading` rows (`pdist=999`,
+`ordering=821`/`921`, matching the Nicomedia/Innocents pattern), shown
+*alongside* whatever else applies that date (e.g. a Saturday landing on
+Jan 4 shows both the `SatBeforeTheophany` float's reading and the Jan 4
+Forefeast reading together) — consistent with the established "list every
+applicable reading, don't suppress" precedent. Verified via `dumpdata`
+(+16 `Reading`, +1 `Pericope`, `Day`/`Composite` untouched, fixture
+re-parses cleanly) and the full 92-test suite (0 failures) via Docker.
+
 ## Next steps (in order)
 
-1. The remaining unverifiable floats above (`SatAfterNativityFriday`,
+1. The unverifiable Nativity-side floats (`SatAfterNativityFriday`,
    `SunAfterNativityMonday`, Royal Hours pair, `SatBeforeTheophanyJan`)
    need either additional harvested years (a different jump value for the
    same Nativity weekday) or a fundamentally different verification
    approach (e.g. checking a printed Antiochian service book directly for
    Royal Hours, since antiochian.org's API cannot express that structure).
-2. Design and validate the Forefeast/Afterfeast `FloatIndex` extension
-   (Theophany's own variable-count cluster), mirroring the existing
-   Nativity `match`-on-weekday structure in `floats`.
+2. Jan 3 (Forefeast, both Epistle and Gospel) needs the same treatment —
+   more years, or a different investigative approach, before it can be
+   implemented.
 3. Re-attack the quantitative trigger (open question, see above) with a
    narrower, more careful approach: rather than testing whole-formula
    hypotheses against multiple years at once, hand-trace a *single* year

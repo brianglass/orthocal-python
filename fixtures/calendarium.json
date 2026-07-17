@@ -40513,6 +40513,246 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1648,
+    "fields": {
+        "month": 1,
+        "day": 2,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Forefeast of Theophany",
+        "pericope": 761,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1649,
+    "fields": {
+        "month": 1,
+        "day": 2,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Forefeast of Theophany",
+        "pericope": 328,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1650,
+    "fields": {
+        "month": 1,
+        "day": 4,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Forefeast of Theophany",
+        "pericope": 557,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1651,
+    "fields": {
+        "month": 1,
+        "day": 4,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Forefeast of Theophany",
+        "pericope": 322,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1652,
+    "fields": {
+        "month": 1,
+        "day": 8,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 512,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1653,
+    "fields": {
+        "month": 1,
+        "day": 8,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 331,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1654,
+    "fields": {
+        "month": 1,
+        "day": 9,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 738,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1655,
+    "fields": {
+        "month": 1,
+        "day": 9,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 129,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1656,
+    "fields": {
+        "month": 1,
+        "day": 10,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 661,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1657,
+    "fields": {
+        "month": 1,
+        "day": 10,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 213,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1658,
+    "fields": {
+        "month": 1,
+        "day": 11,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 789,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1659,
+    "fields": {
+        "month": 1,
+        "day": 11,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 215,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1660,
+    "fields": {
+        "month": 1,
+        "day": 12,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 442,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1661,
+    "fields": {
+        "month": 1,
+        "day": 12,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 1000,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1662,
+    "fields": {
+        "month": 1,
+        "day": 13,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1663,
+    "fields": {
+        "month": 1,
+        "day": 13,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Theophany",
+        "pericope": 304,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
@@ -57491,6 +57731,23 @@
         "prefix": "Brethren, by faith Abraham",
         "prefixb": "And",
         "verses": "Heb_11009_11010|Heb_11032_11040",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1000,
+    "fields": {
+        "pericope": "66grk",
+        "book": "John",
+        "display": "John 10.39-42",
+        "sdisplay": "John 10.39-42",
+        "desc": "Afterfeast of Theophany (Greek)",
+        "preverse": "",
+        "prefix": "At that time,",
+        "prefixb": "",
+        "verses": "John_10039_10042",
         "suffix": "",
         "flag": 0
     }
