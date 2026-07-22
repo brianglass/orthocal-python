@@ -25,12 +25,13 @@ class ByzantineYear:
     Greek liturgical traditions, both of which descend from the shared
     Byzantine rite: fixed-calendar-date anchors (Elevation, Nativity,
     Theophany, Annunciation, etc.), the floating-feast table, fasting
-    periods, and paremia scheduling. `lukan_jump`, `reserves`,
-    `first_sun_luke`, and `extra_sundays` govern how the Matthew-to-Luke
-    Gospel transition after the Elevation of the Cross is handled, which is
-    the one place the two traditions genuinely diverge in mechanism (not
-    just in sparse data), so they are left for subclasses to implement. See
-    `SlavicYear` and `GreekYear`.
+    periods, and paremia scheduling. This also includes the Lukan jump
+    itself (`lukan_jump`, `lukan_jump_threshold`, `first_sun_luke`) --
+    confirmed empirically identical between the two traditions (see
+    `GreekYear`'s docstring) and not a point of divergence. What genuinely
+    differs is how each tradition handles the numbered Sunday Gospels
+    displaced by that jump: `reserves` (and `extra_sundays`) is left for
+    subclasses to implement. See `SlavicYear` and `GreekYear`.
     """
 
     def __init__(self, year, calendar: Calendar=Calendar.Gregorian):
@@ -172,17 +173,21 @@ class ByzantineYear:
     @cached_property
     def lukan_jump(self):
         """The number of days to jump forward in the gospel cycle. Divisible by 7."""
-        raise NotImplementedError('lukan_jump must be implemented by a tradition-specific subclass')
+
+        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
+        mon_after_elevation = self.sun_after_elevation + 1
+        return eighteenth_monday - mon_after_elevation
 
     @cached_property
     def lukan_jump_threshold(self):
         """The pdist after which the Lukan jump shift applies to the Gospel cycle."""
-        raise NotImplementedError('lukan_jump_threshold must be implemented by a tradition-specific subclass')
+        return self.sun_after_elevation
 
     @cached_property
     def first_sun_luke(self):
         """The first Sunday of Luke, after the Lukan jump."""
-        raise NotImplementedError('first_sun_luke must be implemented by a tradition-specific subclass')
+        # Reading of Luke starts on self.sun_after_elevation + 1, which is a Monday
+        return self.sun_after_elevation + 7
 
     @cached_property
     def extra_sundays(self):
@@ -393,24 +398,6 @@ class SlavicYear(ByzantineYear):
     """
 
     @cached_property
-    def lukan_jump(self):
-        """The number of days to jump forward in the gospel cycle. Divisible by 7."""
-
-        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
-        mon_after_elevation = self.sun_after_elevation + 1
-        return eighteenth_monday - mon_after_elevation
-
-    @cached_property
-    def lukan_jump_threshold(self):
-        return self.sun_after_elevation
-
-    @cached_property
-    def first_sun_luke(self):
-        """The first Sunday of Luke, after the Lukan jump."""
-        # Reading of Luke starts on self.sun_after_elevation + 1, which is a Monday
-        return self.sun_after_elevation + 7
-
-    @cached_property
     def reserves(self):
         """A list of pascha distances for days with unread Sunday gospels.
 
@@ -549,23 +536,6 @@ class GreekYear(ByzantineYear):
         5: ((None, 12), (None, 15), ('matthew', 16)),
         6: ((None, 12), (None, 14), (None, 15), ('matthew', 16)),
     }
-
-    @cached_property
-    def lukan_jump(self):
-        """The number of days to jump forward in the gospel cycle. Divisible by 7."""
-
-        eighteenth_monday = 49+1 + 7*17  # Pentecost+1 + 17 weeks
-        mon_after_elevation = self.sun_after_elevation + 1
-        return eighteenth_monday - mon_after_elevation
-
-    @cached_property
-    def lukan_jump_threshold(self):
-        return self.sun_after_elevation
-
-    @cached_property
-    def first_sun_luke(self):
-        """The first Sunday of Luke, after the Lukan jump."""
-        return self.sun_after_elevation + 7
 
     @cached_property
     def reserves(self):
