@@ -41173,6 +41173,36 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1692,
+    "fields": {
+        "month": 1,
+        "day": 24,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Xenia of Rome",
+        "pericope": 647,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1693,
+    "fields": {
+        "month": 1,
+        "day": 19,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Macarius the Great",
+        "pericope": 647,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {

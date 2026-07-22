@@ -939,3 +939,53 @@ this pass: `https://www.goarch.org/chapel/lectionary?type=epistle&code=
 217&date=MM/DD/YYYY` for a single date, or
 `https://www.goarch.org/chapel/calendar?month=M&year=YYYY&viewStyle=
 GridView&viewType=ViewReadings` for a whole month at a glance.
+
+## Two of the "confirmed-wrong" days turned out to be missing Menaion data, not the drift mechanism
+
+While manually checking 2025-01-24 against goarch.org (previous section),
+the user noticed the `Gal 5:22-26; 6:1-2` Epistle traces to a specific
+saint — Xenia of Rome, Deaconess, commemorated Jan 24 (this project's own
+`Day` table already lists her: `'Ven. Xenia of Rome; Bl. Xenia of St
+Petersburg'`, feast_level=0) — not a coincidental repeat. This raised the
+hypothesis: are some of the "confirmed-wrong" free-weekday dates actually
+just *missing Menaion data* for a genuine but low-rank saint, rather than
+evidence of the unsolved recovery mechanism?
+
+**Checked directly — the answer is a real split, not uniform:**
+
+- **Jan 19 (Ven. Macarius the Great) and Jan 24 (Xenia of Rome)**: the
+  Epistle is genuinely fixed across every sampled year (`Gal 5:22-26;
+  6:1-2`, 5/5 for both dates) — this really was missing Menaion data, not
+  drift. **Both now added** as `greek`-tagged `Reading` rows (pdist=999,
+  reusing the existing `Gal 5.22-6.2` Pericope, id 647), purely additive
+  (the existing `common` row is untouched and stays correct for Slavic —
+  confirmed against oca.org, which shows a *different* Epistle,
+  `Jas 2:1-13`/`Jas 1:1-18`, for these same dates: this repo's `common`
+  data was built from oca.org, and this incidentally confirms that base
+  data is still accurate).
+- **Jan 26 (Ven. Xenophon and Mary) and Feb 4/7/9**: checked the same way
+  (Epistle citations across every sampled year) — **no fixed pattern at
+  all**. Feb 4 alone showed 5 different, non-repeating Epistle citations
+  across 5 independent years, exactly mirroring the Gospel-side variation
+  already established for these dates. These are *not* missing-data gaps;
+  the "no fixed reading of any kind" pattern is exactly what the unsolved
+  drift mechanism predicts.
+
+**Net effect on the day count above**: Jan 19 and Jan 24 are now correct
+on the **Epistle** side specifically (Gospel on both dates still shows the
+confirmed-wrong drift-mechanism content — that part is untouched and still
+needs the unsolved mechanism to fix). Jan 26 and the Feb dates are
+unaffected by this pass. The 18-date fixed-Menaion-set count from the
+"Known scope" section above doesn't change; Jan 19/24 are best thought of
+as "half fixed" (Epistle solid, Gospel still wrong) rather than moved into
+the fully-resolved column.
+
+Regenerated `fixtures/calendarium.json` (+2 `Reading`, `Pericope`/`Day`/
+`Composite` untouched) and confirmed the full 92-test suite still passes.
+
+This suggests a productive way to whittle down the remaining Feb 11+
+unverified extension (see above) if this resumes: check each date's
+Epistle for a fixed, non-varying pattern first (cheap, using already-
+harvested data) before assuming it's part of the unsolved mechanism —
+some fraction of those days may turn out to be the same kind of simple
+missing-saint gap as Xenia and Macarius.
