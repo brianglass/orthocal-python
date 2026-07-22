@@ -60,6 +60,33 @@ class TestReadingsView(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
+    def test_greek_extra_sundays_overflow_does_not_500(self):
+        """GreekYear.greek_extra_sundays can be 6 or 7 (roughly a quarter of
+        all years -- e.g. the 2020 and 2023 cycles below), but
+        _THEOPHANY_INTERPOLATION only has entries for 0-5. That left
+        sunday_gospel_override returning None for every "extra Sunday" in
+        those years, falling through to a Slavic-only branch in
+        Day.gospel_pdist (self.pyear.reserves[i-1]) that always raises
+        IndexError for Greek, since GreekYear.reserves is hardcoded to [].
+        This produced a 500 on every affected Sunday."""
+
+        dates = [
+            (2021, 1, 24),  # 2020 cycle, greek_extra_sundays=6
+            (2024, 1, 14),  # 2023 cycle, greek_extra_sundays=7
+        ]
+
+        for year, month, day in dates:
+            url = reverse('readings', kwargs={
+                'tradition': 'greek',
+                'cal': 'gregorian',
+                'year': year,
+                'month': month,
+                'day': day,
+            })
+            with self.subTest((year, month, day)):
+                response = self.client.get(url)
+                self.assertEqual(response.status_code, 200)
+
 
 class TestCalendarView(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']

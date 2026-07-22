@@ -531,9 +531,15 @@ class Day:
             return self.pyear.forefathers + self.pyear.lukan_jump
 
         if self.weekday == Weekday.Sunday and self.pdist > self.pyear.sun_after_theophany and self.pyear.extra_sundays > 1:
-            # On Sundays after Theophany, use the Gospels left unread after the Lukan jump
+            # On Sundays after Theophany, use the Gospels left unread after the Lukan jump.
+            # This is a Slavic-specific mechanism (self.pyear.reserves is always empty for
+            # GreekYear, and greek_extra_sundays/theophany_interpolation is its own separate
+            # counterpart -- see sunday_gospel_override above). It's also not guaranteed to
+            # cover every Sunday extra_sundays implies even for Slavic. Degrade to the
+            # fallback below rather than raise IndexError when the index isn't covered.
             i = (self.pdist - self.pyear.sun_after_theophany) // 7
-            return self.pyear.reserves[i-1]
+            if 0 <= i - 1 < len(self.pyear.reserves):
+                return self.pyear.reserves[i-1]
 
         if self.pdist > self.pyear.sat_before_theophany:
             # We jump into the paschal cycle for the upcoming Pascha.
