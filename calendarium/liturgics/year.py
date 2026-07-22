@@ -30,8 +30,10 @@ class ByzantineYear:
     confirmed empirically identical between the two traditions (see
     `GreekYear`'s docstring) and not a point of divergence. What genuinely
     differs is how each tradition handles the numbered Sunday Gospels
-    displaced by that jump: `reserves` (and `extra_sundays`) is left for
-    subclasses to implement. See `SlavicYear` and `GreekYear`.
+    displaced by that jump: `reserves` defaults to empty here (correct for
+    Greek, which has no use for saved/reserved gospels) and is overridden
+    only by `SlavicYear`, which actually saves and replays them. See
+    `SlavicYear` and `GreekYear`.
     """
 
     def __init__(self, year, calendar: Calendar=Calendar.Gregorian):
@@ -198,8 +200,12 @@ class ByzantineYear:
 
     @cached_property
     def reserves(self):
-        """A list of pascha distances for days with unread Sunday gospels."""
-        raise NotImplementedError('reserves must be implemented by a tradition-specific subclass')
+        """A list of pascha distances for days with unread Sunday gospels.
+
+        The base implementation is empty; only SlavicYear overrides it --
+        GreekYear has no use for saved/reserved Sunday gospels (see its
+        class docstring) and doesn't need to know this mechanism exists."""
+        return []
 
     def sunday_gospel_override(self, pdist):
         """Override the Gospel pdist for a specific Sunday, or None to use the
@@ -536,11 +542,6 @@ class GreekYear(ByzantineYear):
         5: ((None, 12), (None, 15), ('matthew', 16)),
         6: ((None, 12), (None, 14), (None, 15), ('matthew', 16)),
     }
-
-    @cached_property
-    def reserves(self):
-        """Not used -- see lukan_sunday_numbers and theophany_interpolation."""
-        return []
 
     @staticmethod
     def _lukan_sunday_target(n):
