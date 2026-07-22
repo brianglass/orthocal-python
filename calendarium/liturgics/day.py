@@ -490,6 +490,15 @@ class Day:
         if self._sunday_gospel_override is False:
             return None
 
+        if self._sunday_gospel_override is not None:
+            # The numbered-Sunday target pdists (e.g. "12th Sunday of Luke")
+            # already have the correct Epistle paired with the Gospel in the
+            # shared common/slavic table -- without this, the Epistle fell
+            # through to the branches below, which are keyed off calendar
+            # pdist rather than the target the Gospel actually resolved to,
+            # producing an unrelated (if plausible-looking) citation.
+            return self._sunday_gospel_override
+
         if self.pdist == 49 + 29*7:  # Pentecost + 29 weeks
             # 29th Sunday after Pentecost
             return self.pyear.forefathers

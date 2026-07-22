@@ -214,21 +214,92 @@ class TestGreekLukanNumbering(TestCase):
                 self.assertEqual(pyear.lukan_sunday_numbers.get(pdist), expected)
 
     def test_theophany_interpolation(self):
-        # 2025's cycle (Theophany falls Jan 2026): confirmed against the
-        # harvest -- greek_extra_sundays=3 gives 12th of Luke (Jan 18) then
-        # 15th of Luke (Jan 25), with Triodion beginning Feb 1.
+        # Each confirmed against real antiochian.org harvest data for the
+        # specific cycle year named -- see docs/greek-weekday-drift.md for
+        # the full derivation. The n=5 case corrects a table entry that had
+        # never been checked against a real n=5 year (it was transcribed
+        # from a source that only covered n<=5 in the abstract); n=6 and
+        # n=7 were previously entirely missing (crashed -- see
+        # TestReadingsView.test_greek_extra_sundays_overflow_does_not_500).
+
+        # 2025 cycle (n=3): 12th of Luke, 15th of Luke.
         pyear = liturgics.GreekYear(2025)
         self.assertEqual(pyear.greek_extra_sundays, 3)
-
         jan18 = pyear.date_to_pdist(1, 18, 2026)
         jan25 = pyear.date_to_pdist(1, 25, 2026)
-
         self.assertEqual(pyear.theophany_interpolation[jan18], (None, 12))
         self.assertEqual(pyear.theophany_interpolation[jan25], (None, 15))
         self.assertEqual(
             pyear.sunday_gospel_override(jan18),
             liturgics.GreekYear._lukan_sunday_target(12),
         )
+
+        # 2018 cycle (n=5): 12th, 15th, 16th of Matthew, 17th of Matthew
+        # (Canaanite Woman) -- NOT 12th, 14th, 15th, 17th as the table
+        # claimed before this pass.
+        pyear = liturgics.GreekYear(2018)
+        self.assertEqual(pyear.greek_extra_sundays, 5)
+        jan20 = pyear.date_to_pdist(1, 20, 2019)
+        jan27 = pyear.date_to_pdist(1, 27, 2019)
+        feb3 = pyear.date_to_pdist(2, 3, 2019)
+        self.assertEqual(pyear.theophany_interpolation[jan20], (None, 12))
+        self.assertEqual(pyear.theophany_interpolation[jan27], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[feb3], ('matthew', 16))
+
+        # 2020 cycle (n=6): 12th, 14th, 15th, 16th of Matthew.
+        pyear = liturgics.GreekYear(2020)
+        self.assertEqual(pyear.greek_extra_sundays, 6)
+        jan17 = pyear.date_to_pdist(1, 17, 2021)
+        jan24 = pyear.date_to_pdist(1, 24, 2021)
+        jan31 = pyear.date_to_pdist(1, 31, 2021)
+        feb7 = pyear.date_to_pdist(2, 7, 2021)
+        self.assertEqual(pyear.theophany_interpolation[jan17], (None, 12))
+        self.assertEqual(pyear.theophany_interpolation[jan24], (None, 14))
+        self.assertEqual(pyear.theophany_interpolation[jan31], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[feb7], ('matthew', 16))
+
+        # 2023 cycle (n=7, and Leavetaking of Theophany -- Jan 14, 2024 --
+        # falls on a Sunday that year): Leavetaking special case, then the
+        # exact same sequence as 2020's n=6 case.
+        pyear = liturgics.GreekYear(2023)
+        self.assertEqual(pyear.greek_extra_sundays, 7)
+        self.assertEqual(
+            datetools.weekday_from_pdist(pyear.theophany + 8),
+            datetools.Weekday.Sunday,
+        )
+        jan14 = pyear.date_to_pdist(1, 14, 2024)
+        jan21 = pyear.date_to_pdist(1, 21, 2024)
+        jan28 = pyear.date_to_pdist(1, 28, 2024)
+        feb4 = pyear.date_to_pdist(2, 4, 2024)
+        feb11 = pyear.date_to_pdist(2, 11, 2024)
+        self.assertEqual(
+            pyear.theophany_interpolation[jan14],
+            ('direct', datetools.FloatIndex.SunAfterTheophany),
+        )
+        self.assertEqual(pyear.theophany_interpolation[jan21], (None, 12))
+        self.assertEqual(pyear.theophany_interpolation[jan28], (None, 14))
+        self.assertEqual(pyear.theophany_interpolation[feb4], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[feb11], ('matthew', 16))
+
+    def test_canaanite_woman_applies(self):
+        # Canaanite Woman (Greek) / Zacchaeus (Slavic) Sunday is the same
+        # fixed, Pascha-anchored occasion (11 weeks before Pascha) in both
+        # traditions, but Greek only actually shows Canaanite Woman content
+        # there once the preceding winter's gap was large enough to exhaust
+        # the plain Luke/Matthew numbering (n>=4) -- confirmed via real
+        # harvest data for both a small (n=3, no override) and large (n=4+,
+        # override) case. This can't be decided from the year whose own
+        # theophany_interpolation computed the assignment -- Day always
+        # resolves the real calendar date via the *following* GreekYear
+        # instance -- see canaanite_woman_applies's docstring for why.
+        self.assertFalse(liturgics.GreekYear(2026).canaanite_woman_applies)  # follows 2025, n=3
+        self.assertTrue(liturgics.GreekYear(2019).canaanite_woman_applies)  # follows 2018, n=5
+        self.assertTrue(liturgics.GreekYear(2021).canaanite_woman_applies)  # follows 2020, n=6
+        self.assertEqual(
+            liturgics.GreekYear(2019).sunday_gospel_override(-77),
+            liturgics.GreekYear._matthew_sunday_target(17),
+        )
+        self.assertIsNone(liturgics.GreekYear(2026).sunday_gospel_override(-77))
 
 
 class TestDay(TestCase):
@@ -444,6 +515,53 @@ class TestDay(TestCase):
             await day.ainitialize()
             with self.subTest(day.gregorian_date):
                 self.assertEqual(day.gospel_pdist, pdist)
+
+    async def test_greek_theophany_interpolation_pdists(self):
+        """End-to-end (Day, not just GreekYear) check that the fixes in
+        test_theophany_interpolation/test_canaanite_woman_applies actually
+        take effect through Day.gospel_pdist/epistle_pdist -- both need to
+        agree, confirming the Epistle-Gospel wiring fix (previously,
+        epistle_pdist never consulted the Sunday-of-Luke/Matthew override
+        at all, and fell through to an unrelated calendar-relative pdist)."""
+
+        luke_12, luke_14, luke_15 = (
+            liturgics.GreekYear._lukan_sunday_target(n) for n in (12, 14, 15)
+        )
+        matt_16, matt_17 = (
+            liturgics.GreekYear._matthew_sunday_target(n) for n in (16, 17)
+        )
+
+        data = [
+            # 2020 cycle (n=6): previously crashed entirely.
+            (2021, 1, 17, luke_12),
+            (2021, 1, 24, luke_14),
+            (2021, 1, 31, luke_15),
+            (2021, 2, 7, matt_16),
+            (2021, 2, 14, matt_17),  # Canaanite Woman -- the boundary case
+            # 2023 cycle (n=7, Leavetaking-on-Sunday): previously crashed.
+            (2024, 1, 14, datetools.FloatIndex.SunAfterTheophany),
+            (2024, 1, 21, luke_12),
+            (2024, 2, 11, matt_16),
+            # 2018 cycle (n=5): the previously-wrong table entry.
+            (2019, 1, 27, luke_15),
+            (2019, 2, 3, matt_16),
+            (2019, 2, 10, matt_17),  # Canaanite Woman
+            # 2025 cycle (n=3): Canaanite Woman does NOT apply here, so
+            # this falls all the way through to the plain calendar pdist
+            # (-77) rather than the numbered target -- confirms the
+            # boundary fix doesn't over-fire for small n. The shared
+            # common/slavic table's own content at -77 happens to be the
+            # same text as "15th Sunday of Luke" (both are Luke 19:1-10,
+            # Zacchaeus), just addressed via a different pdist.
+            (2026, 1, 25, -77),
+        ]
+
+        for y, m, d, expected in data:
+            day = liturgics.Day(y, m, d, tradition=Tradition.Greek)
+            await day.ainitialize()
+            with self.subTest((y, m, d)):
+                self.assertEqual(day.gospel_pdist, expected)
+                self.assertEqual(day.epistle_pdist, expected)
 
     async def test_composite_fields(self):
         """When a reading is a Composite, it should have the same fields as a Verse."""

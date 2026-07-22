@@ -989,3 +989,104 @@ Epistle for a fixed, non-varying pattern first (cheap, using already-
 harvested data) before assuming it's part of the unsolved mechanism —
 some fraction of those days may turn out to be the same kind of simple
 missing-saint gap as Xenia and Macarius.
+
+## Separate, unrelated bug found and fixed: `greek_extra_sundays > 5` crashed
+
+While cross-checking Xenia's Epistle against goarch.org, a genuinely
+different and more serious bug surfaced: `GreekYear.greek_extra_sundays`
+(the count of "extra" Sundays needing content between Theophany and
+Triodion) is 6 or 7 in roughly a quarter of all years (2020, 2023, 2026,
+2031, 2034, 2039, 2042 in the near term), but `_THEOPHANY_INTERPOLATION`
+only had entries for 0-5. When uncovered, `sunday_gospel_override` returned
+`None` for every affected Sunday that year, and `Day.gospel_pdist` fell
+through to a Slavic-only branch (`self.pyear.reserves[i-1]`) that always
+raised `IndexError` for Greek, since `GreekYear.reserves` is hardcoded to
+`[]`. This was a genuine 500 error, not just wrong content — worse than
+anything else catalogued in this document, and unrelated to the
+weekday-drift mechanism above (it's on the Sunday side, not the weekday
+side).
+
+**Test-first, then fixed in three parts:**
+
+1. **Regression test added first** (`TestReadingsView.
+   test_greek_extra_sundays_overflow_does_not_500`), confirmed to fail
+   (raising `IndexError` via the actual HTTP view) against the original
+   code for both known crash magnitudes (2021-01-24, n=6; 2024-01-14,
+   n=7), *then* fixed with a bounds check in `Day.gospel_pdist` so it
+   degrades to the existing generic fallback instead of crashing. This
+   alone doesn't produce correct content — just stops the 500 — see below
+   for the real fix.
+
+2. **`_THEOPHANY_INTERPOLATION` rebuilt from real data.** The byzcath.org
+   source this table was originally transcribed from only ever enumerated
+   cases up to n=5 and was never checked against a real n=5 year. Checking
+   it against 4 independent years (2022=n4, 2018=n5, 2020=n6, 2023=n7)
+   revealed the table's own n=5 entry was wrong (claimed 12th, 14th, 15th,
+   17th-of-Matthew; real 2018 data shows 12th, 15th, **16th**-of-Matthew,
+   17th-of-Matthew) — and confirmed the true sequence builds up in a
+   specific, non-linear insertion order as the gap grows (not "extend the
+   sequence forward"): 3→(12,15); 4→+Canaanite Woman (17th Matthew); 5→+
+   16th Matthew; 6→+14th (inserted between 12th and 15th, not appended).
+   "Canaanite Woman" (Greek) / "Zacchaeus" (Slavic) were confirmed, via
+   Wikipedia's Paschal cycle article, to be the *same* fixed,
+   Pascha-anchored occasion (11 weeks before Pascha) in both traditions —
+   `_matthew_sunday_target(17)` already resolves to the correct text
+   (`Matt 15:21-28`) in the shared table, so no new Pericope was needed.
+   n=7 (2023, where Leavetaking of Theophany also happened to fall on a
+   Sunday that year) showed the exact n=6 sequence with one extra slot
+   prepended for the Leavetaking special case — confirmed to structurally
+   always land on the table's first slot whenever it applies, since both
+   are always exactly one week after `sun_after_theophany`. Implemented as
+   `regular_extra_sundays` (n adjusted for the Leavetaking case) indexing
+   the same table, with the Leavetaking slot prepended when it applies.
+   n=2's entry is unchanged (unverified this pass, not contradicted).
+
+3. **Epistle/Gospel wiring bug, found while implementing the above.**
+   `Day.epistle_pdist` never consulted `_sunday_gospel_override` at all —
+   only `gospel_pdist` did. So on every numbered Sunday-of-Luke/Matthew
+   occasion (all of n=2 through 7), the Epistle fell through to an
+   unrelated calendar-relative formula instead of the target pdist the
+   Gospel correctly resolved to. Confirmed via a live example: 2026-01-18
+   ("12th Sunday of Luke") showed the correct Gospel (`Luke 17:12-19`) but
+   `1 Tim 1:15-17` for the Epistle — actually `Hebrews 13:7-16`, which
+   *is* the correct Epistle when that Sunday coincides with a fixed
+   Menaion saint (Athanasius & Cyril, Jan 18, already correctly
+   implemented this session) — the underlying Sunday-of-Luke Epistle bug
+   was masked on that specific test date by an unrelated fixed-saint
+   override coincidentally being right. Checked whether the shared
+   common/slavic table already has the correct Epistle paired with the
+   Gospel at every target pdist used (12th, 14th, 15th Luke; 16th, 17th
+   Matthew) — it does, confirmed against 5-7 independent years each — so
+   the fix was purely wiring `epistle_pdist` to also consult
+   `_sunday_gospel_override`, no new data needed.
+
+4. **A fourth, subtler bug found while testing #2-3: the Canaanite
+   Woman/Zacchaeus boundary is a distinct `GreekYear` *instance* boundary,
+   not just a table entry.** pdist -77 (Canaanite Woman/Zacchaeus) is,
+   by construction, always exactly `next_pascha - 77` for one `GreekYear`
+   instance *and* exactly `pascha - 77` for the following instance (since
+   `next_pascha` of one year equals `pascha` of the next). `Day` resolves
+   a real calendar date via whichever Pascha is closer — confirmed
+   `Day(2026, 1, 25)` picks `GreekYear(2026)`, not `GreekYear(2025)`, even
+   though the latter is what actually computed the "15th Sunday of Luke"
+   assignment for that date via `theophany_interpolation`. This means the
+   *last* entry in every `_THEOPHANY_INTERPOLATION` sequence (n>=4) was
+   never actually reachable through the mechanism that computed it — Day
+   always lands on the following year's instance and falls through to the
+   shared table's own Zacchaeus content there instead. Fixed with a new
+   `GreekYear.canaanite_woman_applies` property that looks up the
+   *preceding* year's `regular_extra_sundays` (the one whose winter
+   actually leads into this Sunday) to decide whether pdist -77 should
+   show Canaanite Woman (n>=4) or fall through to the shared table's own
+   content unchanged (n<=3) — checked directly in `sunday_gospel_override`
+   rather than through `theophany_interpolation`. Confirmed against both
+   a real small-n case (2026-01-25, n=3, correctly *not* overridden — that
+   test was already passing before this fix only because it happens to
+   also coincide with St. Gregory the Theologian's fixed reading) and
+   multiple real large-n cases (2019-02-10 n=5, 2021-02-14 n=6, both now
+   correctly showing `Matt 15:21-28`/`2 Cor 6:16-18;7:1`).
+
+All four fixes verified end-to-end via `Day` (not just `GreekYear` in
+isolation) against real antiochian.org data across 2018, 2019, 2020, 2021,
+2023, 2024, and 2026. Full test suite: 95/95 passing (was 92 before this
+session; +1 crash-regression test, +2 covering the table/boundary fixes).

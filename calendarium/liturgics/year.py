@@ -502,23 +502,42 @@ class GreekYear(ByzantineYear):
         (11, 30),  # Apostle Andrew, the First-Called
     )
 
-    # "The Gospel series may have no or up to five Sundays between Theophany
-    # and the Triodion as follows: none, Sunday after Theophany on January
-    # 7th; one, Sunday after Theophany; two, Sunday after Theophany, 25th of
-    # Luke; three, Sunday after Theophany, 12th of Luke, 15th of Luke; four,
-    # ...12th of Luke, 15th of Luke, 17th of Matthew; five, ...12th of Luke,
-    # 14th of Luke, 15th of Luke, 17th of Matthew." Keyed here by
-    # greek_extra_sundays (which counts the Sunday after Theophany itself,
-    # unlike this list's entries, which start after it). Confirmed against
-    # 2026 (three: 2026-01-18 "12th Sunday of Luke", 2026-01-25 "15th Sunday
-    # of Luke" -- exact citation match).
+    # The byzcath.org "Lukan Jump" thread (quoted in the original version of
+    # this comment) only enumerated cases up to "five Sundays between
+    # Theophany and the Triodion" and was never checked against a real n=5
+    # year. Rebuilt from scratch against real antiochian.org data across 4
+    # independent years (2022=n4, 2018=n5, 2020=n6, 2023=n7 -- see
+    # docs/greek-weekday-drift.md for the full derivation) -- this revealed
+    # the n=5 entry above was simply wrong (real 2018 data: 12th, 15th,
+    # *16th* of Matthew, 17th of Matthew/"Canaanite Woman" -- not 12th,
+    # 14th, 15th, 17th), and confirmed a clean, monotonic insertion pattern
+    # building up from n=3: each larger n adds exactly one entry, always in
+    # the same relative position, never simply extending forward:
+    #   3: 12th, 15th
+    #   4: 12th, 15th, +Canaanite Woman (17th of Matthew)
+    #   5: 12th, 15th, +16th of Matthew, Canaanite Woman
+    #   6: 12th, +14th, 15th, 16th of Matthew, Canaanite Woman
+    # "Canaanite Woman" (Greek) / "Zacchaeus" (Slavic) is the same fixed,
+    # Pascha-anchored occasion (11th Sunday before Pascha) in both
+    # traditions -- confirmed via Wikipedia's Paschal cycle article -- but
+    # only actually appears in this table once the regular Luke/Matthew
+    # numbering has been exhausted by an unusually long Theophany-Triodion
+    # gap (n>=4); for n=2/3 the position it would occupy is simply filled
+    # by the plain numbered continuation instead.
+    #
+    # n=2's entry (25th of Luke) is unchanged from the original source and
+    # was not re-verified this pass (no n=2 year was reachable).
+    #
+    # n=7 is handled separately -- see theophany_interpolation below --
+    # because of the Leavetaking-of-Theophany-falls-on-Sunday special case.
     _THEOPHANY_INTERPOLATION = {
         0: (),
         1: (),
         2: ((None, 25),),
         3: ((None, 12), (None, 15)),
         4: ((None, 12), (None, 15), ('matthew', 17)),
-        5: ((None, 12), (None, 14), (None, 15), ('matthew', 17)),
+        5: ((None, 12), (None, 15), ('matthew', 16), ('matthew', 17)),
+        6: ((None, 12), (None, 14), (None, 15), ('matthew', 16), ('matthew', 17)),
     }
 
     @cached_property
@@ -596,27 +615,92 @@ class GreekYear(ByzantineYear):
         """Number of Sundays needing content between Theophany and Triodion,
         counting the Sunday after Theophany itself. Unlike SlavicYear's
         extra_sundays, this counts straight through to the Triodion with no
-        Zacchaeus Sunday buffer -- confirmed empirically: Greek practice
-        does not observe Zacchaeus Sunday as its own occasion (e.g. 2026-01-25,
-        the Sunday immediately before Triodion begins, reads plainly as "15th
-        Sunday of Luke," not "Zacchaeus")."""
+        Zacchaeus Sunday buffer -- confirmed empirically: for a small enough
+        gap (regular_extra_sundays <= 3), Greek practice does not observe
+        Zacchaeus/Canaanite Woman Sunday as its own occasion at all (e.g.
+        2026-01-25, the Sunday immediately before Triodion begins that year,
+        reads plainly as "15th Sunday of Luke," not "Canaanite Woman") --
+        see canaanite_woman_applies for the larger-gap case, where it is."""
         return (self.triodion_start - self.sun_after_theophany) // 7
+
+    @cached_property
+    def regular_extra_sundays(self):
+        """greek_extra_sundays, adjusted for the Leavetaking-of-Theophany-
+        falls-on-Sunday special case (see theophany_interpolation) -- the
+        count that actually indexes _THEOPHANY_INTERPOLATION and determines
+        whether canaanite_woman_applies."""
+        n = self.greek_extra_sundays
+        if datetools.weekday_from_pdist(self.theophany + 8) == Weekday.Sunday:
+            n -= 1
+        return n
 
     @cached_property
     def theophany_interpolation(self):
         """Map the pdist of each interpolated Sunday (after the Sunday after
         Theophany itself, which needs no override -- see Day.gospel_pdist's
-        has_daily_readings guard) to its (book, n) assignment."""
+        has_daily_readings guard) to its (book, n) assignment.
 
-        entries = self._THEOPHANY_INTERPOLATION.get(self.greek_extra_sundays, ())
+        Leavetaking of Theophany (theophany+8, always a fixed calendar date)
+        structurally always lands exactly on this table's first slot
+        (sun_after_theophany + 7) whenever it happens to fall on a Sunday,
+        since both are always exactly one week after sun_after_theophany.
+        When that happens, it preempts whatever the plain numbered sequence
+        would otherwise show there, and the *remaining* slots use the same
+        table entry as if greek_extra_sundays were one smaller (that's what
+        regular_extra_sundays computes) -- confirmed against 2023 (n=7,
+        Leavetaking-on-Sunday): the entries after the Leavetaking slot
+        exactly match n=6's full sequence. Not confirmed against any other
+        magnitude (the disambiguating case, 2034, was outside every
+        reachable source's reliable window), but well-motivated by the
+        structure rather than a blind guess.
+
+        Note this table never actually covers the *last* Sunday before
+        Triodion (Zacchaeus/Canaanite Woman) -- see canaanite_woman_applies
+        for why and how that one is handled separately.
+        """
+
+        n = self.regular_extra_sundays
+        leading = ()
+        if n != self.greek_extra_sundays:
+            leading = (('direct', FloatIndex.SunAfterTheophany),)
+
+        entries = leading + self._THEOPHANY_INTERPOLATION.get(n, ())
         result = {}
         pdist = self.sun_after_theophany + 7
-        for book, n in entries:
-            result[pdist] = (book, n)
+        for book, val in entries:
+            result[pdist] = (book, val)
             pdist += 7
         return result
 
+    @cached_property
+    def canaanite_woman_applies(self):
+        """Whether pdist -77 (Zacchaeus/Canaanite Woman Sunday, 11 weeks
+        before Pascha -- confirmed via Wikipedia's Paschal cycle article to
+        be the same fixed, Pascha-anchored occasion in both traditions,
+        just named differently) should show the Greek-specific "Canaanite
+        Woman" content (Matt 15:21-28) instead of falling through to the
+        shared common/slavic table's own Zacchaeus content there.
+
+        This can't be decided from this instance's own
+        theophany_interpolation: Day always resolves a real calendar date
+        at pdist -77 via the *following* GreekYear instance (whichever
+        Pascha is closer -- confirmed via Day(2026,1,25), which picks
+        GreekYear(2026) rather than GreekYear(2025) even though the latter
+        is what actually computed the "15th Sunday of Luke" assignment for
+        that date). So this must be computed by checking the *preceding*
+        year's (whose winter actually leads into this Sunday)
+        regular_extra_sundays instead: whenever that gap was large enough
+        to exhaust the plain Luke/Matthew numbering (n>=4), Canaanite Woman
+        is what actually shows there; for a small gap (n<=3) the shared
+        table's plain Zacchaeus content is correct as-is.
+        """
+        preceding = GreekYear(self.year - 1)
+        return preceding.regular_extra_sundays >= 4
+
     def sunday_gospel_override(self, pdist):
+        if pdist == -77 and self.canaanite_woman_applies:
+            return self._matthew_sunday_target(17)
+
         if self.first_sun_luke <= pdist <= self.forefathers:
             n = self.lukan_sunday_numbers.get(pdist)
             if n is None:
@@ -626,9 +710,11 @@ class GreekYear(ByzantineYear):
             return self._lukan_sunday_target(n)
 
         if (entry := self.theophany_interpolation.get(pdist)) is not None:
-            book, n = entry
+            book, val = entry
             if book == 'matthew':
-                return self._matthew_sunday_target(n)
-            return self._lukan_sunday_target(n)
+                return self._matthew_sunday_target(val)
+            if book == 'direct':
+                return val
+            return self._lukan_sunday_target(val)
 
         return None
