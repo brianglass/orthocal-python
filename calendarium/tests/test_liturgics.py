@@ -110,12 +110,25 @@ class TestTraditionOverlay(TestCase):
         self.assertIsInstance(greek, liturgics.ByzantineYear)
         self.assertNotEqual(type(slavic), type(greek))
 
-    def test_byzantine_year_stubs_are_not_implemented(self):
+    def test_byzantine_year_shares_lukan_jump_and_defaults_reserves_empty(self):
+        """lukan_jump/lukan_jump_threshold/first_sun_luke are confirmed
+        identical between SlavicYear and GreekYear (see GreekYear's class
+        docstring), so they live on ByzantineYear directly rather than being
+        duplicated per subclass. reserves defaults to empty here since only
+        SlavicYear actually uses the reserve/replay mechanism."""
+
         base = liturgics.ByzantineYear(2026)
-        for attr in ('lukan_jump', 'lukan_jump_threshold', 'first_sun_luke', 'reserves'):
+        slavic = liturgics.SlavicYear(2026)
+        greek = liturgics.GreekYear(2026)
+
+        for attr in ('lukan_jump', 'lukan_jump_threshold', 'first_sun_luke'):
             with self.subTest(attr):
-                with self.assertRaises(NotImplementedError):
-                    getattr(base, attr)
+                value = getattr(base, attr)
+                self.assertEqual(value, getattr(slavic, attr))
+                self.assertEqual(value, getattr(greek, attr))
+
+        self.assertEqual(base.reserves, [])
+        self.assertEqual(greek.reserves, [])
 
     def test_shared_anchors_agree_between_traditions(self):
         """Fixed-calendar-date anchors should be identical for both traditions."""
