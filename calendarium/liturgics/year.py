@@ -517,27 +517,37 @@ class GreekYear(ByzantineYear):
     #   4: 12th, 15th, +Canaanite Woman (17th of Matthew)
     #   5: 12th, 15th, +16th of Matthew, Canaanite Woman
     #   6: 12th, +14th, 15th, 16th of Matthew, Canaanite Woman
-    # "Canaanite Woman" (Greek) / "Zacchaeus" (Slavic) is the same fixed,
-    # Pascha-anchored occasion (11th Sunday before Pascha) in both
-    # traditions -- confirmed via Wikipedia's Paschal cycle article -- but
-    # only actually appears in this table once the regular Luke/Matthew
-    # numbering has been exhausted by an unusually long Theophany-Triodion
-    # gap (n>=4); for n=2/3 the position it would occupy is simply filled
-    # by the plain numbered continuation instead.
     #
-    # n=2's entry (25th of Luke) is unchanged from the original source and
-    # was not re-verified this pass (no n=2 year was reachable).
+    # The trailing "Canaanite Woman"/"15th of Luke"/"25th of Luke" entry --
+    # i.e. whatever each row's last element would be -- is *never actually
+    # reachable through this table* and is omitted below. By construction,
+    # the last entry in an n-row sequence always lands exactly at pdist -77
+    # (Zacchaeus/Canaanite Woman Sunday, 11 weeks before Pascha -- the same
+    # fixed, Pascha-anchored occasion in both traditions per Wikipedia's
+    # Paschal cycle article), and Day always resolves a real calendar date
+    # at that exact pdist via the *following* GreekYear instance rather
+    # than this one (confirmed via Day(2018,1,21), a real n=2 year: it
+    # picks GreekYear(2018), landing on pdist -77, not GreekYear(2017)
+    # where this table's n=2 entry would have applied). See
+    # canaanite_woman_applies, which is what actually governs that
+    # position, checked directly in sunday_gospel_override before this
+    # table is ever consulted. This is confirmed correct for every
+    # magnitude tested (n=2 through 7), not just the n>=4 cases where
+    # Canaanite Woman genuinely applies -- for n=2/3 canaanite_woman_applies
+    # is False and the position simply falls through to the shared
+    # common/slavic table's own content there, unaffected by whatever this
+    # table's now-removed trailing entry used to claim.
     #
     # n=7 is handled separately -- see theophany_interpolation below --
     # because of the Leavetaking-of-Theophany-falls-on-Sunday special case.
     _THEOPHANY_INTERPOLATION = {
         0: (),
         1: (),
-        2: ((None, 25),),
-        3: ((None, 12), (None, 15)),
-        4: ((None, 12), (None, 15), ('matthew', 17)),
-        5: ((None, 12), (None, 15), ('matthew', 16), ('matthew', 17)),
-        6: ((None, 12), (None, 14), (None, 15), ('matthew', 16), ('matthew', 17)),
+        2: (),
+        3: ((None, 12),),
+        4: ((None, 12), (None, 15)),
+        5: ((None, 12), (None, 15), ('matthew', 16)),
+        6: ((None, 12), (None, 14), (None, 15), ('matthew', 16)),
     }
 
     @cached_property

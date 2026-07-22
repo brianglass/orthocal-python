@@ -222,13 +222,16 @@ class TestGreekLukanNumbering(TestCase):
         # n=7 were previously entirely missing (crashed -- see
         # TestReadingsView.test_greek_extra_sundays_overflow_does_not_500).
 
-        # 2025 cycle (n=3): 12th of Luke, 15th of Luke.
+        # 2025 cycle (n=3): 12th of Luke. (The following Sunday, Jan 25,
+        # would be "15th of Luke" in the old table, but that's the row's
+        # trailing/last entry -- always unreachable, since it always lands
+        # exactly at pdist -77; see canaanite_woman_applies and the comment
+        # on _THEOPHANY_INTERPOLATION for why it's correctly omitted from
+        # the table entirely rather than tested here.)
         pyear = liturgics.GreekYear(2025)
         self.assertEqual(pyear.greek_extra_sundays, 3)
         jan18 = pyear.date_to_pdist(1, 18, 2026)
-        jan25 = pyear.date_to_pdist(1, 25, 2026)
         self.assertEqual(pyear.theophany_interpolation[jan18], (None, 12))
-        self.assertEqual(pyear.theophany_interpolation[jan25], (None, 15))
         self.assertEqual(
             pyear.sunday_gospel_override(jan18),
             liturgics.GreekYear._lukan_sunday_target(12),
@@ -292,6 +295,7 @@ class TestGreekLukanNumbering(TestCase):
         # theophany_interpolation computed the assignment -- Day always
         # resolves the real calendar date via the *following* GreekYear
         # instance -- see canaanite_woman_applies's docstring for why.
+        self.assertFalse(liturgics.GreekYear(2018).canaanite_woman_applies)  # follows 2017, regular n=2
         self.assertFalse(liturgics.GreekYear(2026).canaanite_woman_applies)  # follows 2025, n=3
         self.assertTrue(liturgics.GreekYear(2019).canaanite_woman_applies)  # follows 2018, n=5
         self.assertTrue(liturgics.GreekYear(2021).canaanite_woman_applies)  # follows 2020, n=6
@@ -554,6 +558,11 @@ class TestDay(TestCase):
             # same text as "15th Sunday of Luke" (both are Luke 19:1-10,
             # Zacchaeus), just addressed via a different pdist.
             (2026, 1, 25, -77),
+            # 2017 cycle (regular_extra_sundays=2, the smallest magnitude
+            # confirmed against real data): also correctly falls through to
+            # -77 rather than the old table's (now-removed) "25th of Luke"
+            # entry, which was never actually reachable either.
+            (2018, 1, 21, -77),
         ]
 
         for y, m, d, expected in data:

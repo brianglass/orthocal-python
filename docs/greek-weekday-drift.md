@@ -1090,3 +1090,43 @@ All four fixes verified end-to-end via `Day` (not just `GreekYear` in
 isolation) against real antiochian.org data across 2018, 2019, 2020, 2021,
 2023, 2024, and 2026. Full test suite: 95/95 passing (was 92 before this
 session; +1 crash-regression test, +2 covering the table/boundary fixes).
+
+### n=2 confirmed, and `_THEOPHANY_INTERPOLATION`'s dead trailing entries removed
+
+The n=2 table entry (`25th of Luke`) was flagged above as unverified this
+pass (no reachable year). Found one: 2017 cycle (Jan-Feb 2018) has
+`regular_extra_sundays=2` (raw `greek_extra_sundays=3`, adjusted down by
+one for the Leavetaking-on-Sunday case, confirmed present that year too).
+Checked directly against real antiochian.org data: Jan 21, 2018 shows
+"15th Sunday of Luke" (`Luke 19:1-10`/`1 Tim 4:9-15`), not "25th" as the
+table claimed.
+
+This looked like the same class of bug as n=5, but turned out not to be a
+bug at all: working the math, the *last* entry in an n-row sequence always
+lands exactly at `sun_after_theophany + 7*n` = `triodion_start - 7` =
+`next_pascha - 77` — i.e. it always coincides exactly with the Canaanite
+Woman/Zacchaeus boundary from the previous section, for *every* n, not
+just n>=4. Confirmed directly: `Day(2018,1,21)` resolves via
+`GreekYear(2018)` (not `2017`, landing on pdist -77 relative to
+`GreekYear(2018).pascha`) and `canaanite_woman_applies` correctly returns
+`False` there (2017's `regular_extra_sundays` is 2, below the n>=4
+threshold), falling through to the shared table's own content — an exact
+match to the real citation. So the table's n=2 entry (and every other
+row's trailing entry) was never actually reachable through
+`theophany_interpolation` at all; it happened to be harmless for n=2/3
+(the boundary fallthrough coincidentally produces correct content anyway)
+and merely redundant for n>=4 (duplicating what `canaanite_woman_applies`
+already computes independently).
+
+**Cleaned up**: removed the trailing entry from every row in
+`_THEOPHANY_INTERPOLATION` (confirmed dead code, not a behavior change —
+`canaanite_woman_applies` already governs that position exclusively).
+Updated the one test that directly asserted a removed dict key, added the
+new n=2 confirmation as its own test case (both at the `GreekYear` level
+and end-to-end through `Day`). Full suite: still 95/95 passing.
+
+**Net result**: the n-value table (now 0-6, each row one entry shorter)
+and `canaanite_woman_applies` together are confirmed correct across every
+reachable magnitude (n=2 through 7) against real data. n≥8 has never been
+observed and remains unverified in principle, but no such year exists in
+the checked 2010-2050 range, so this is not a live gap.
