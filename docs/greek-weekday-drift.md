@@ -3,12 +3,16 @@
 **Status: CLOSED.** The fixed-feast portion of the problem is fully solved
 and implemented (sections 2-3, 7-8 below, plus the 18-saint Jan 15 - Feb 10
 Menaion set added in the final pass). The genuine "free weekday" content in
-that same window — the handful of days per year (2-4) where no fixed saint
-claims the slot and the site would otherwise need to compute an ordinary
-continuous-cycle Gospel/Epistle for Greek specifically — turned out **not
-to be solvable from the sources available to this project**. See "Final
-disposition: the unsolved recovery mechanism" at the end of this document
-for the full account of why, and what was implemented instead.
+that same window — the handful of days per year (0-5, see the corrected
+count in "Known scope of remaining incorrectness" below) where no fixed
+saint claims the slot and the site would otherwise need to compute an
+ordinary continuous-cycle Gospel/Epistle for Greek specifically — turned out
+**not to be solvable from the sources available to this project**. See
+"Final disposition: the unsolved recovery mechanism" at the end of this
+document for the full account of why, and what was implemented instead. The
+window is confirmed fully bounded between the Theophany-afterfeast cluster
+and each year's own Triodion start -- it does not extend further into
+February in low-`lukan_jump` years (see "Feb 11+ question: RESOLVED").
 
 ## Background
 
@@ -856,24 +860,35 @@ Leavetaking of Theophany and that year's Triodion start, minus the 18
 now-implemented fixed Menaion dates, minus Saturdays/Sundays which are
 handled by separate, already-correct mechanisms), for 2018-2037:
 
-| Year | jump | Nativity weekday | free (likely-wrong) days in Jan15-Feb10 | extends past Feb 10? |
+**Correction (Feb 11+ investigation, below):** the original version of this
+table double-counted several dates. Jan 19/24/26 and Feb 4/5/7/9 are fixed
+*calendar* labels carried over from the sample years where each was first
+confirmed wrong on a weekday — but the same calendar date falls on a Sunday
+in other years, where it's governed by the already-fixed Sunday-numbering
+mechanism (`sunday_gospel_override`), not this unsolved weekday mechanism.
+Corrected below (struck entries were miscounted as weekdays):
+
+| Year | jump | Nativity weekday | free (likely-wrong) weekdays in Jan15-Feb10 | extends past Feb 10? |
 |---|---|---|---|---|
-| 2018 | 7  | Tue | 1 (Jan 24) | yes, to Feb 15 |
+| 2018 | 7  | Tue | 1 (Jan 24) | no — see below |
 | 2019 | 28 | Wed | 4 (Jan 24, Feb 4/5/7) | no |
-| 2020 | 14 | Fri | 5 (Jan 19/26, Feb 4/5/9) | yes, to Feb 19 |
-| 2021 | 28 | Sat | 6 (Jan 19/24/26, Feb 4/7/9) | no — plus `SatAfterNativityFriday` (Dec 31) |
+| 2020 | 14 | Fri | 2 (Feb 4/5) — ~~Jan 19/26, Feb 9 are Sundays~~ | no — see below |
+| 2021 | 28 | Sat | 4 (Jan 19/26, Feb 4/9) — ~~Jan 24, Feb 7 are Sundays~~ | no — plus `SatAfterNativityFriday` (Dec 31) |
 | 2022 | 21 | Sun | 3 (Jan 19/24/26) | no |
-| 2023 | 14 | Mon | 6 (Jan 19/24/26, Feb 5/7/9) | yes, to Feb 23 |
-| 2024 | 35 | Wed | 4 (Jan 24, Feb 4/5/7) | no |
-| 2025 | 14 | Thu | 2 (Jan 19/26) | no |
-| 2026 | 7  | Fri | 5 (Jan 19/26, Feb 4/5/9) | yes, to Feb 19 |
+| 2023 | 14 | Mon | 5 (Jan 19/24/26, Feb 7/9) — ~~Feb 5 is a Sunday~~ | no — see below |
+| 2024 | 35 | Wed | 3 (Jan 24, Feb 5/7) — ~~Feb 4 is a Sunday~~ | no |
+| 2025 | 14 | Thu | 0 — ~~Jan 19/26 are both Sundays~~ | no |
+| 2026 | 7  | Fri | 5 (Jan 19/26, Feb 4/5/9) | no — see below |
 
 (Full 20-year table generated via a direct script walking
 `weekday_from_pdist` over each `GreekYear`'s Leavetaking-to-Triodion span;
 not reproduced here in full — see the git history of this doc's authoring
-session for the exact command if needed.)
+session for the exact command if needed. The Sunday miscounts above were
+caught by checking each listed date's real weekday directly against Python's
+stdlib `date.weekday()`, independent of this project's own code.)
 
-**Bottom line**: a typical year has **3 to 7 confirmed-wrong weekdays**,
+**Bottom line**: a typical year has **0 to 5 confirmed-wrong weekdays**
+(previously reported as 3-7, before the Sunday-miscount correction above),
 concentrated in Jan 19 - Feb 9. Two additional, smaller items apply on top:
 
 - **Jan 3 (Forefeast)**: uncertain in roughly 5 of 7 years (whenever
@@ -885,14 +900,29 @@ concentrated in Jan 19 - Feb 9. Two additional, smaller items apply on top:
   Nativity-falls-on-Saturday years (2021, 2027, 2032 in the near term —
   roughly 1 year in 7).
 
-**Open question, not yet investigated**: in years where `lukan_jump` is
-small (7, or 0 as in 2037), the affected window extends well past Feb 10
-(seen as far as Feb 23 in the sample above). Whether those additional
-February dates are further fixed Menaion saints (most likely, given the
-pattern established for Jan 15 - Feb 10) or more of the same unsolved gap
-has **not been checked** — the Menaion confirmation work this session
-stopped at Feb 10. This should be the first thing tackled if this
-investigation resumes.
+**Feb 11+ question: RESOLVED, not a gap.** The "extends past Feb 10"
+years (2018, 2020, 2023, 2026) don't actually extend the unsolved window —
+they just reach **Triodion start** (the Sunday of the Publican and
+Pharisee, always exactly pdist -70) at a later calendar date than usual:
+2018-01-28, 2020-02-09, 2023-02-05, 2026-02-01. Once a date crosses that
+boundary it's inside the ordinary Meatfare/Cheesefare pre-Lenten season,
+which is fixed, Pascha-relative content already shared with `SlavicYear` —
+confirmed by harvesting the actual post-Feb-10 dates for all three low-jump
+years with real gaps (2018, 2020, 2023) and checking for cross-year
+agreement:
+
+- 2018-02-12/13 ("Cheesefare Monday/Tuesday") = 2023-02-20/21 ("Cheesefare
+  Monday/Tuesday"): identical citations both years (`3 John 1:1-15` / `Luke
+  19:29-40; 22:7-39`, and `Jude 1:1-10` / `Luke 22:39-42,45-71; 23:1`).
+- 2020-02-18 ("Meatfare Tuesday") = 2023-02-14 ("Meatfare Tuesday"):
+  identical (`1 John 3:9-22` / `Mark 14:10-42`).
+
+Same pattern as the already-confirmed Nov-Dec continuous cycle (see finding
+\#1 above): a universal, year-independent sequence, just reached at a
+different calendar date depending on that year's Triodion start. Nothing
+new to implement here — the unsolved recovery-mechanism window is fully
+bounded between the Theophany-afterfeast cluster and each year's own
+Triodion start, and nothing beyond that boundary is at risk.
 
 Everything outside this narrow window — the entire Sunday-of-Luke cycle,
 the Nativity/Theophany fixed cluster, Forefeast/Afterfeast, Leavetaking,
