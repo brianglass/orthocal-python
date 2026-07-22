@@ -899,20 +899,43 @@ the Nativity/Theophany fixed cluster, Forefeast/Afterfeast, Leavetaking,
 and all ordinary weekdays before Nativity and after the window closes — is
 confirmed correct.
 
-### Next step when this resumes: cross-check against goarch.org/chapel
+### Cross-check against goarch.org/chapel
 
-This entire investigation has relied on a single source, antiochian.org.
+This entire investigation had relied on a single source, antiochian.org.
 GOA (Greek Orthodox Archdiocese of America) and the Antiochian Archdiocese
 are normally in lockstep on the ordinary daily lectionary (that shared
 premise is the basis of this whole `tradition=greek` axis, per the plan's
-Context section), but antiochian.org's own site could simply have a bug or
-idiosyncrasy on these specific unresolved days that a second source would
-immediately reveal. https://www.goarch.org/chapel publishes GOA's own daily
-readings and should be checked against the exact dates identified above
-(Jan 19/24/26, Feb 4/5/7/9, and the Feb 11+ unverified extension in
-low-jump years) before investing in any further reverse-engineering of
-antiochian.org alone. If GOA's citations match antiochian.org's on these
-days, that's useful negative evidence against "antiochian.org bug" and
-strengthens the case that a real, still-undiscovered mechanism exists. If
-they *disagree*, that's a direct, low-effort way to get a second,
-independent data point per problem day — exactly what's been missing.
+Context section), but antiochian.org's own site could in principle have a
+bug or idiosyncrasy on these specific unresolved days that a second source
+would reveal.
+
+**Attempted programmatically, blocked**: goarch.org sits behind Cloudflare
+bot management that returns HTTP 403 to both `WebFetch` and direct
+`requests`/`curl` calls, even with a fully realistic browser header set
+(UA, `Accept-Language`, `Sec-Fetch-*`, etc.) — confirmed via the
+`Server: cloudflare` response header and garbled response body. This is
+almost certainly TLS-fingerprint-based (JA3/JA4) bot detection, which
+happens before HTTP headers are even read, so no amount of header-spoofing
+from a Python script fixes it; it would need a real browser engine. A
+search-engine snippet initially suggested GOA showed `Romans 12:6-14` for
+the **2025-01-24** Epistle (vs. antiochian.org's `Gal 5:22-26; 6:1-2`) —
+flagged at the time as unreliable, since search-snippet summarization
+conflated results across different lectionary `code=` values.
+
+**Manually confirmed by the user (2026-07-22)**: goarch.org actually shows
+`Galatians 5:22-26; 6:1-2` for 2025-01-24 — **matching antiochian.org
+exactly**, and directly contradicting the unreliable search-snippet result
+(confirming that result was noise, as suspected). This is exactly the
+outcome the "Bottom line" note above anticipated: **GOA agreeing with
+antiochian.org on a known-wrong day is evidence against "antiochian.org
+has a bug"** and strengthens the case that the current app's incorrect
+output on this date (see the confirmed 2022-01-19 before/after example
+above) reflects a real, still-undiscovered liturgical mechanism — not bad
+source data. One date confirmed; checking the remaining identified dates
+(Jan 19/26, Feb 4/5/7/9, and the Feb 11+ unverified extension in low-jump
+years) the same way — manually, in a browser — is the natural next step
+whenever this investigation resumes, using the URL patterns discovered
+this pass: `https://www.goarch.org/chapel/lectionary?type=epistle&code=
+217&date=MM/DD/YYYY` for a single date, or
+`https://www.goarch.org/chapel/calendar?month=M&year=YYYY&viewStyle=
+GridView&viewType=ViewReadings` for a whole month at a glance.
