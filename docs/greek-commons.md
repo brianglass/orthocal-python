@@ -130,7 +130,7 @@ handling:
   permanently-accepted "unsolved recovery mechanism" window from
   `greek-weekday-drift.md`, not a new gap.
 
-## Implemented this pass
+## Implemented, pass 1
 
 13 dates added as `greek`-tagged `Reading` rows (24 Epistle+Gospel pairs +
 1 Epistle-only), each confirmed against 3-8 independent antiochian.org
@@ -155,17 +155,91 @@ equivalent verse-range notation, reused directly:
 | Dec 12 | Spyridon the Wonderworker | Eph 5.8-19 | John 10.9-16 |
 | Dec 15 | Eleutherios the Hieromartyr | 2 Tim 1.8-18 | Mark 2.23-3.5 |
 
+Follow-up in the same pass: 4 more Epistle-only dates that already had 6-7
+years of harvested data but were missed the first time through (Nov 10
+Apostles of the 70, Nov 11 Menas/Victor/Vincent, Nov 17 Gregory the
+Wonderworker, Nov 24 Hieromartyrs Clement & Peter).
+
+## Implemented, pass 2 (harvested 4 more years: 2019, 2021, 2023, 2025)
+
+Harvested `2019/2021/2023/2025` for the ~50 remaining Apr-Oct dates (208
+requests total, respecting the 2s delay), bringing each to 4-5 independent
+years. **37 more dates** confirmed and added (66 Epistle/Gospel rows, 5 new
+Pericopes: `Luke 6.17-19,9.1-2,10.16-21`, `Mark 3.13-21`,
+`Titus 1.1-5,2.15,3.1-2,12-15`, `Galatians 4.22-27`, `Colossians 1.24-2.1`).
+
+One structural correction found during this pass: for several dates, the
+*Gospel* turned out to be the fixed commons and the *Epistle* the one that
+varies year to year — the opposite of what the 2026-only data suggested.
+Always check both independently rather than assuming symmetry:
+
+| Date | Saint | Epistle | Gospel |
+|---|---|---|---|
+| May 2 | Removal of Relics of Athanasius | Heb 13.7-16 | Matt 5.14-19 |
+| Jun 4 | Metrophanes | Heb 7.26-8.2 | John 10.1-9 |
+| Jun 8 | Removal of Relics of Theodore | Eph 2.4-10 | Matt 10.16-22 |
+| Jun 30 | Synaxis of the Twelve Apostles | 1 Cor 4.9-16 | Matt 9.36-10.8 |
+| Jul 1 | Cosmas & Damian (2nd feast) | 1 Cor 12.27-13.8 | Matt 10.1,5-8 |
+| Jul 2 | Deposition of the Robe | Heb 9.1-7 | Luke 1.39-49,56 |
+| Jul 7 | Kyriake | Gal 3.23-4.5 | Mark 5.24-34 |
+| Jul 8 | Procopius | 1 Tim 4.9-15 | Luke 6.17-19,9.1-2,10.16-21 |
+| Jul 11 | Euphemia (1st feast) | 2 Cor 6.1-10 | Luke 7.36-50 |
+| Jul 13 | Synaxis of Archangel Gabriel | *(varies)* | Luke 10.16-21 |
+| Jul 15 | Cyricus & Julitta | 1 Cor 13.11-14.5 | Matt 17.24-18.4 |
+| Jul 17 | Marina | Gal 3.23-4.5 | Mark 5.24-34 |
+| Jul 22 | Mary Magdalene | 1 Cor 9.2-12 | Luke 8.1-3 |
+| Jul 26 | Paraskeve | Gal 3.23-4.5 | Mark 5.24-34 |
+| Aug 1 | Holy Maccabee Children | Heb 11.33-12.2 | Matt 10.16-22 |
+| Aug 7 | Afterfeast of Transfiguration | *(varies)* | Mark 9.2-9 |
+| Aug 21 | Thaddaeus | *(varies)* | Mark 3.13-21 |
+| Aug 25 | Bartholomew relics | Titus 1.1-5,2.15,3.1-2,12-15 | Matt 5.14-19 |
+| Sep 5 | Zacharias | *(varies)* | Matt 23.29-39 |
+| Sep 9 | Joachim & Anna | Gal 4.22-27 | Luke 8.16-21 |
+| Sep 10 | Menodora, Metrodora, Nymphodora | *(varies)* | John 3.16-21 |
+| Sep 11 | Theodora of Alexandria | *(varies)* | John 12.19-36 |
+| Sep 15 | Nikitas | Col 1.24-2.1 | Matt 10.16-22 |
+| Sep 16 | Euphemia (2nd feast) | 2 Cor 6.1-10 | Luke 7.36-50 |
+| Sep 24 | Myrtidiotissa Miracle | 2 Tim 3.10-15 | *(varies)* |
+| Sep 30 | Gregory the Illuminator | 1 Cor 16.13-24 | Matt 24.42-47 |
+| Oct 2 | Cyprian | 1 Tim 1.12-17 | *(varies)* |
+| Oct 3 | Dionysius the Areopagite | Acts 17.16-34 | *(varies)* |
+| Oct 6 | Thomas the Apostle | 1 Cor 4.9-16 | John 20.19-31 |
+| Oct 9 | James, Son of Alphaeus | 1 Cor 4.9-16 | Matt 9.36-10.8 |
+| Oct 16 | Longinus the Centurion | *(varies)* | Matt 27.33-54 |
+| Oct 17 | Prophet Hosea | Rom 9.18-33 | *(varies)* |
+| Oct 19 | Prophet Joel | Acts 2.14-21 | *(varies)* |
+| Oct 20 | Artemius | 2 Tim 2.1-10 | *(varies)* |
+| Oct 21 | Hilarion the Great | 2 Cor 9.6-11 | *(varies)* |
+| Oct 28 | Protection of the Theotokos | Heb 9.1-7 | Luke 10.38-42,11.27-28 |
+| Oct 31 | Apostles Stachys, Amplias, et al | Rom 16.1-16 | *(varies)* |
+
+(Hosea/Joel/Artemius/Hilarion/Cyprian/Dionysius/Stachys-et-al are not named
+in antiochian.org's own `feastDayTitle` most years — always shown as a
+generic "Nth week" label — but our own `Day` table already lists them as
+minor commemorations that day, and the citation content directly confirms
+the match, e.g. Acts 2:14-21 is Peter's Pentecost speech quoting Joel
+2:28-32.)
+
 ## Remaining work
 
-The rest of the 77 (roughly 50 dates, April - October) currently have only
-a single year (2026) of harvested data each — per the "single-year data is
-not reliable" lesson above, **do not implement these from 2026 alone**.
-Next step: harvest 3-4 more independent years for each before treating any
-citation as confirmed. `ingest_antiochian.py`'s `Antiochian` class (see
-this doc's sibling investigation for usage) is the tool; keep respecting
-its default 2s per-request delay.
-
-The Lent/Holy Week season (36 of the 113 full-year mismatches) needs a
-different comparison method entirely (checking OT/Vespers readings against
-this project's own Lenten-daily-readings logic, not Epistle/Gospel citation
-matching) before it's known whether there's a real gap there at all.
+- **Dates in the movable Paschal season** (May-June dates that fall between
+  Pascha and Pentecost in most years — May 7, May 30, Jun 2, Jun 14 were
+  checked and set aside): a fixed month/day comparison doesn't mean much
+  here since the Paschal cycle's calendar position varies by ~5 weeks
+  year to year. Not part of this project — already governed by the
+  existing pdist-anchored Paschal cycle.
+- **A few dates with no resolved pattern yet**: Jul 14, Jul 19, Jul 28,
+  Jul 30, Aug 5, Aug 26, Sep 2 — either inconsistent across the 5 sampled
+  years or showing a citation with no obvious saint attached in our `Day`
+  table. Needs more investigation, possibly more years.
+- **Oct 1 (Ananias the Apostle)**: confirmed citation (`Acts 9:10-19`, the
+  passage about Ananias baptizing Saul) but our `Day` table has **no
+  saint listed for Oct 1 at all** — likely dropped because OCA's data for
+  that date is dominated by the Protection of the Theotokos (which Greek
+  celebrates Oct 28 instead). This needs a `Day`-table fix, not just a
+  `Reading` row — out of scope for a quick fix.
+- **The Lent/Holy Week season** (36 of the original 113 full-year
+  mismatches) needs a different comparison method entirely (checking
+  OT/Vespers readings against this project's own Lenten-daily-readings
+  logic, not Epistle/Gospel citation matching) before it's known whether
+  there's a real gap there at all.

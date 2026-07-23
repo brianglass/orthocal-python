@@ -41638,6 +41638,891 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1723,
+    "fields": {
+        "month": 5,
+        "day": 2,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Removal of Relics of Athanasius",
+        "pericope": 789,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1724,
+    "fields": {
+        "month": 5,
+        "day": 2,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Removal of Relics of Athanasius",
+        "pericope": 12,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1725,
+    "fields": {
+        "month": 6,
+        "day": 4,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Metrophanes",
+        "pericope": 768,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1726,
+    "fields": {
+        "month": 6,
+        "day": 4,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Metrophanes",
+        "pericope": 357,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1727,
+    "fields": {
+        "month": 6,
+        "day": 8,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Removal of Relics of Theodore",
+        "pericope": 655,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1728,
+    "fields": {
+        "month": 6,
+        "day": 8,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Removal of Relics of Theodore",
+        "pericope": 38,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1729,
+    "fields": {
+        "month": 6,
+        "day": 30,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Synaxis of the Twelve Apostles",
+        "pericope": 557,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1730,
+    "fields": {
+        "month": 6,
+        "day": 30,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Synaxis of the Twelve Apostles",
+        "pericope": 35,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1731,
+    "fields": {
+        "month": 7,
+        "day": 1,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cosmas & Damian",
+        "pericope": 580,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1732,
+    "fields": {
+        "month": 7,
+        "day": 1,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Cosmas & Damian",
+        "pericope": 36,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1733,
+    "fields": {
+        "month": 7,
+        "day": 2,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Deposition of the Robe",
+        "pericope": 771,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1734,
+    "fields": {
+        "month": 7,
+        "day": 2,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Deposition of the Robe",
+        "pericope": 206,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1735,
+    "fields": {
+        "month": 7,
+        "day": 7,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Kyriake",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1736,
+    "fields": {
+        "month": 7,
+        "day": 7,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Kyriake",
+        "pericope": 148,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1737,
+    "fields": {
+        "month": 7,
+        "day": 8,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Procopius",
+        "pericope": 729,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1738,
+    "fields": {
+        "month": 7,
+        "day": 8,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Procopius",
+        "pericope": 1004,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1739,
+    "fields": {
+        "month": 7,
+        "day": 11,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Euphemia (July)",
+        "pericope": 611,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1740,
+    "fields": {
+        "month": 7,
+        "day": 11,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Euphemia (July)",
+        "pericope": 236,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1741,
+    "fields": {
+        "month": 7,
+        "day": 13,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Synaxis of Archangel Gabriel",
+        "pericope": 255,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1742,
+    "fields": {
+        "month": 7,
+        "day": 15,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cyricus & Julitta",
+        "pericope": 582,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1743,
+    "fields": {
+        "month": 7,
+        "day": 15,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Cyricus & Julitta",
+        "pericope": 79,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1744,
+    "fields": {
+        "month": 7,
+        "day": 17,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Marina",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1745,
+    "fields": {
+        "month": 7,
+        "day": 17,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Marina",
+        "pericope": 148,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1746,
+    "fields": {
+        "month": 7,
+        "day": 22,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Mary Magdalene",
+        "pericope": 567,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1747,
+    "fields": {
+        "month": 7,
+        "day": 22,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Mary Magdalene",
+        "pericope": 237,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1748,
+    "fields": {
+        "month": 7,
+        "day": 26,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Paraskeve",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1749,
+    "fields": {
+        "month": 7,
+        "day": 26,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Paraskeve",
+        "pericope": 148,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1750,
+    "fields": {
+        "month": 8,
+        "day": 1,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Holy Maccabee Children",
+        "pericope": 783,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1751,
+    "fields": {
+        "month": 8,
+        "day": 1,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Holy Maccabee Children",
+        "pericope": 38,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1752,
+    "fields": {
+        "month": 8,
+        "day": 7,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Transfiguration",
+        "pericope": 165,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1753,
+    "fields": {
+        "month": 8,
+        "day": 21,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Thaddaeus",
+        "pericope": 1005,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1754,
+    "fields": {
+        "month": 8,
+        "day": 25,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Bartholomew relics",
+        "pericope": 1006,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1755,
+    "fields": {
+        "month": 8,
+        "day": 25,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Bartholomew relics",
+        "pericope": 12,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1756,
+    "fields": {
+        "month": 9,
+        "day": 5,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Zacharias",
+        "pericope": 105,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1757,
+    "fields": {
+        "month": 9,
+        "day": 9,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Joachim & Anna",
+        "pericope": 1007,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1758,
+    "fields": {
+        "month": 9,
+        "day": 9,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Joachim & Anna",
+        "pericope": 239,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1759,
+    "fields": {
+        "month": 9,
+        "day": 10,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Menodora, Metrodora, Nymphodora",
+        "pericope": 330,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1760,
+    "fields": {
+        "month": 9,
+        "day": 11,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Theodora of Alexandria",
+        "pericope": 366,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1761,
+    "fields": {
+        "month": 9,
+        "day": 15,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Nikitas",
+        "pericope": 1008,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1762,
+    "fields": {
+        "month": 9,
+        "day": 15,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Nikitas",
+        "pericope": 38,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1763,
+    "fields": {
+        "month": 9,
+        "day": 16,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Euphemia (September)",
+        "pericope": 611,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1764,
+    "fields": {
+        "month": 9,
+        "day": 16,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Euphemia (September)",
+        "pericope": 236,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1765,
+    "fields": {
+        "month": 9,
+        "day": 24,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Myrtidiotissa Miracle",
+        "pericope": 742,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1766,
+    "fields": {
+        "month": 9,
+        "day": 30,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Gregory the Illuminator",
+        "pericope": 595,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1767,
+    "fields": {
+        "month": 9,
+        "day": 30,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Gregory the Illuminator",
+        "pericope": 112,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1768,
+    "fields": {
+        "month": 10,
+        "day": 2,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cyprian",
+        "pericope": 722,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1769,
+    "fields": {
+        "month": 10,
+        "day": 3,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Dionysius the Areopagite",
+        "pericope": 439,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1770,
+    "fields": {
+        "month": 10,
+        "day": 6,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Thomas the Apostle",
+        "pericope": 557,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1771,
+    "fields": {
+        "month": 10,
+        "day": 6,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Thomas the Apostle",
+        "pericope": 393,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1772,
+    "fields": {
+        "month": 10,
+        "day": 9,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "James, Son of Alphaeus",
+        "pericope": 557,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1773,
+    "fields": {
+        "month": 10,
+        "day": 9,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "James, Son of Alphaeus",
+        "pericope": 35,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1774,
+    "fields": {
+        "month": 10,
+        "day": 16,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Longinus the Centurion",
+        "pericope": 123,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1775,
+    "fields": {
+        "month": 10,
+        "day": 17,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Prophet Hosea",
+        "pericope": 525,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1776,
+    "fields": {
+        "month": 10,
+        "day": 19,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Prophet Joel",
+        "pericope": 402,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1777,
+    "fields": {
+        "month": 10,
+        "day": 20,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Artemius",
+        "pericope": 738,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1778,
+    "fields": {
+        "month": 10,
+        "day": 21,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Hilarion the Great",
+        "pericope": 619,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1779,
+    "fields": {
+        "month": 10,
+        "day": 28,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Protection of the Theotokos",
+        "pericope": 771,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1780,
+    "fields": {
+        "month": 10,
+        "day": 28,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Protection of the Theotokos",
+        "pericope": 259,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1781,
+    "fields": {
+        "month": 10,
+        "day": 31,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Apostles Stachys, Amplias, et al",
+        "pericope": 543,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
@@ -58684,6 +59569,91 @@
         "prefix": "Brethren, we have such",
         "prefixb": "",
         "verses": "Heb_8001_8006",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1004,
+    "fields": {
+        "pericope": "300grk",
+        "book": "Luke",
+        "display": "Luke 6.17-19, 9.1-2, 10.16-21",
+        "sdisplay": "Luke 6.17-19, 9.1-2, 10.16-21",
+        "desc": "Procopius (Greek)",
+        "preverse": "",
+        "prefix": "At that time, Jesus came down",
+        "prefixb": "",
+        "verses": "Luke_6017_6019|Luke_9001_9002|Luke_10016_10021",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1005,
+    "fields": {
+        "pericope": "301grk",
+        "book": "Mark",
+        "display": "Mark 3.13-21",
+        "sdisplay": "Mark 3.13-21",
+        "desc": "Thaddaeus (Greek)",
+        "preverse": "",
+        "prefix": "At that time, Jesus went up",
+        "prefixb": "",
+        "verses": "Mark_3013_3021",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1006,
+    "fields": {
+        "pericope": "302grk",
+        "book": "Apostol",
+        "display": "Titus 1.1-5, 2.15, 3.1-2, 12-15",
+        "sdisplay": "Titus 1.1-5, 2.15, 3.1-2, 12-15",
+        "desc": "Bartholomew relics (Greek)",
+        "preverse": "",
+        "prefix": "Titus, my son,",
+        "prefixb": "",
+        "verses": "Titus_1001_1005|Titus_2015_2015|Titus_3001_3002|Titus_3012_3015",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1007,
+    "fields": {
+        "pericope": "303grk",
+        "book": "Apostol",
+        "display": "Galatians 4.22-27",
+        "sdisplay": "Gal 4.22-27",
+        "desc": "Joachim & Anna (Greek)",
+        "preverse": "",
+        "prefix": "Brethren, it is written",
+        "prefixb": "",
+        "verses": "Gal_4022_4027",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1008,
+    "fields": {
+        "pericope": "304grk",
+        "book": "Apostol",
+        "display": "Colossians 1.24-2.1",
+        "sdisplay": "Col 1.24-2.1",
+        "desc": "Nikitas (Greek)",
+        "preverse": "",
+        "prefix": "Brethren, I now rejoice",
+        "prefixb": "",
+        "verses": "Col_1024_2001",
         "suffix": "",
         "flag": 0
     }
