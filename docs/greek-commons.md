@@ -305,8 +305,57 @@ resolved except the Lent/Holy Week season (see below).
   A real gap in the tradition-axis architecture, found via the Oct 1
   Protection bug — worth a dedicated look at how many other fixed dates
   are affected the same way before deciding on a fix.
-- **The Lent/Holy Week season** (36 of the original 113 full-year
-  mismatches) needs a different comparison method entirely (checking
-  OT/Vespers readings against this project's own Lenten-daily-readings
-  logic, not Epistle/Gospel citation matching) before it's known whether
-  there's a real gap there at all.
+## Implemented, pass 5 (Lent/Holy Week)
+
+The 36 "mismatches" from the original full-year audit were almost entirely
+a false-positive artifact of the audit script itself: it assumed
+antiochian.org's `reading1`/`reading2` fields are always Epistle/Gospel,
+but during Lent they're the day's OT Vespers readings (Isaiah/Genesis/
+Proverbs), and during Holy Week they're a mix of Passion Gospels and Hours
+readings — comparing those against our `source='Epistle'`/`'Gospel'` rows
+was comparing unrelated content. Rewrote the audit to pull *all* of a
+`Day`'s readings regardless of source and match by (book, verse), which
+cut the 36 down to **4 genuine mismatches** across the entire 54-day
+window (Feb 18 - Apr 12, 2026) — the ordinary weekday/Vespers OT cycle
+during Lent is already fully correct and shared between traditions
+(confirmed directly, e.g. Clean Monday's `Isaiah 1.1-20`/`Genesis 1.1-13`/
+`Proverbs 1.1-20` already matches exactly for both).
+
+Of the 4:
+
+- **Cheesefare Thursday**: `Luke 23.1-31,33,44-56` (Greek) vs. our
+  existing `Luke 23.2-34,44-56` (Slavic) — confirmed 3/3 independent years
+  (2018, 2023, 2026). A real, if minor, verse-selection difference, not
+  just a boundary variant. Added as a `greek` Gospel override (new
+  Pericope).
+- **Holy Friday**: `1 Cor 5:6-8` (Greek) vs. our existing Vespers Epistle
+  `1 Cor 1.18-2.2` (Slavic) — confirmed 2/2 years (2021, 2026). Added as a
+  `greek` override on the `Vespers`-desc Epistle slot (new Pericope).
+- **Holy Thursday's compound Gospel reading**: our version and
+  antiochian's differ by a few verses within an already-massive 6-part
+  compound citation (`Matt 26:2-20;...` vs `Matt 26:1-20;...`, etc.) —
+  likely citation-notation variance given how close it already is, not
+  investigated further.
+- **5th Saturday of Lent ("Akathist Saturday")**: antiochian shows
+  `Luke 1:39-49,56` (the Magnificat, a natural fit for the Akathist to the
+  Theotokos); we currently show a plain `Mark 8.27-31` with no thematic
+  connection at all, from an existing but apparently-unrelated
+  `'Theotokos'`-desc floating override. Only one year of data (2026) — not
+  implemented yet per the "single-year data is not reliable" lesson.
+  Needs either more years (this is Pascha-relative, so must be matched by
+  occasion/title across years, not calendar date) or the physical book.
+
+## Remaining work
+
+- **Dates in the movable Paschal season** (May-June dates that fall between
+  Pascha and Pentecost in most years — May 7, May 30, Jun 2, Jun 14 were
+  checked and set aside): a fixed month/day comparison doesn't mean much
+  here since the Paschal cycle's calendar position varies by ~5 weeks
+  year to year. Not part of this project — already governed by the
+  existing pdist-anchored Paschal cycle.
+- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
+  A real gap in the tradition-axis architecture, found via the Oct 1
+  Protection bug — worth a dedicated look at how many other fixed dates
+  are affected the same way before deciding on a fix.
+- **5th Saturday of Lent (Akathist Saturday)**: see "pass 5" above — needs
+  more years of data, matched by occasion since it's Pascha-relative.
