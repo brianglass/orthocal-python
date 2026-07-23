@@ -42688,6 +42688,51 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1795,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1038,
+        "source": "Epistle",
+        "desc": "Leavetaking of Theophany",
+        "pericope": 404,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1796,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1038,
+        "source": "Gospel",
+        "desc": "Leavetaking of Theophany",
+        "pericope": 215,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1797,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": -64,
+        "source": "Epistle",
+        "desc": "",
+        "pericope": 733,
+        "ordering": 811,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {

@@ -114,17 +114,16 @@ handling:
   weekday): confirmed fixed at `Acts 2:38-43` / `Luke 4:1-15` (5/8 years;
   the other 3 show different content because Leavetaking landed on a
   different calendar date those years — it's genuinely floating,
-  `theophany + 8`, not month/day-anchored). Needs a `floats`-style fix in
-  `GreekYear` (a new `FloatIndex` entry keyed to `self.theophany + 8`), not
-  a plain Reading row. Not yet implemented.
+  `theophany + 8`, not month/day-anchored). **Now implemented** — see
+  "pass 6" below.
 - **Feb 7 area, "Saturday of the Prodigal Son"**: a genuine Triodion
-  pre-Lenten floating occasion (Pascha-relative), not a fixed saint. Every
-  sampled year shows different content — needs its own Triodion-floats
-  investigation, out of scope here.
+  pre-Lenten floating occasion (Pascha-relative), not a fixed saint.
+  **Now implemented** — see "pass 6" below.
 - **Feb 17, Theodore the Tyro**: has *two* commemorations — a floating
-  "Miracle of the Kolyva" on the 1st Saturday of Great Lent (Pascha-relative,
-  not handled here), and a fixed calendar date (Feb 17, his martyrdom) which
-  **is** now implemented as a plain month/day row (3/3 years confirmed).
+  "Miracle of the Kolyva" on the 1st Saturday of Great Lent (Pascha-relative;
+  checked in "pass 6" below and found to be **already correct** — no gap),
+  and a fixed calendar date (Feb 17, his martyrdom) which was already
+  implemented as a plain month/day row (3/3 years confirmed, "pass 1").
 - **Dec 17, Dec 30-31**: no consistent pattern across any sampled years for
   these specific calendar dates — these fall inside the already-documented,
   permanently-accepted "unsolved recovery mechanism" window from
@@ -293,18 +292,6 @@ rendered output before committing, not just trusting the write succeeded.
 With this, all 77 dates from the original full-year audit are now
 resolved except the Lent/Holy Week season (see below).
 
-## Remaining work
-
-- **Dates in the movable Paschal season** (May-June dates that fall between
-  Pascha and Pentecost in most years — May 7, May 30, Jun 2, Jun 14 were
-  checked and set aside): a fixed month/day comparison doesn't mean much
-  here since the Paschal cycle's calendar position varies by ~5 weeks
-  year to year. Not part of this project — already governed by the
-  existing pdist-anchored Paschal cycle.
-- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
-  A real gap in the tradition-axis architecture, found via the Oct 1
-  Protection bug — worth a dedicated look at how many other fixed dates
-  are affected the same way before deciding on a fix.
 ## Implemented, pass 5 (Lent/Holy Week)
 
 The 36 "mismatches" from the original full-year audit were almost entirely
@@ -359,3 +346,55 @@ Of the 4:
   are affected the same way before deciding on a fix.
 - **5th Saturday of Lent (Akathist Saturday)**: see "pass 5" above — needs
   more years of data, matched by occasion since it's Pascha-relative.
+
+## Implemented, pass 6 (floating occasions)
+
+The three floating occasions flagged throughout this doc, resolved:
+
+- **Leavetaking of Theophany, ordinary weekday** (`theophany + 8`, when not
+  Saturday/Sunday — those are already covered by the existing
+  `SatAfterTheophany`/`SunAfterTheophany` floats): confirmed
+  `Acts 2:38-43` / `Luke 4:1-15` for Greek across 5 independent years
+  (2019, 2021, 2022, 2025, 2026 cycles); Slavic reads the ordinary
+  continuous cycle here with no override, already correct. Added a new
+  `FloatIndex.LeavetakingTheophanyWeekday`, computed unconditionally in the
+  shared `ByzantineYear.floats` (harmless for Slavic since no rows exist at
+  that pdist for that tradition — only `GreekYear` needs the actual
+  Reading rows). Tested in `test_liturgics.py`
+  (`test_leavetaking_theophany_weekday_float`,
+  `test_leavetaking_theophany_weekday_reading`).
+- **Theodore the Tyro's Kolyva miracle, 1st Saturday of Great Lent**:
+  checked against real data (`2 Tim 2:1-10` / `Mark 2:23-28,3:1-5`) and
+  found this **already matches our existing shared `common` table exactly**
+  — no gap, nothing to implement. (This pdist already carries an
+  unrelated-looking `desc='1st Saturday of Lent'` tag that turned out to be
+  exactly the right content all along.)
+- **Prodigal Son Saturday** (a Triodion pre-Lenten floating Saturday):
+  Gospel already matched (`Luke 20:46-47;21:1-4`); Epistle needed fixing.
+  Harvested enough years to get 6 usable samples (one excluded — displaced
+  by Blaise's fixed Feb 11 that particular year) — `1 Timothy 6:11-16` wins
+  4/6, `Philemon 1:1-25` appears in the other 2 (2019, 2024 cycles, likely
+  a stale/superseded citation, same pattern as the Aug 26 Adrian & Natalia
+  case in "pass 4"). Added `1 Tim 6:11-16` as a `greek` Epistle override.
+
+**Wiring note**: like the `FathersSix` override in "pass 4", this required
+matching the existing `common` row's exact `ordering` value, not the
+`821`/`921` convention — checked and got right this time before committing.
+
+## Remaining work
+
+- **Dates in the movable Paschal season** (May-June dates that fall between
+  Pascha and Pentecost in most years — May 7, May 30, Jun 2, Jun 14 were
+  checked and set aside): a fixed month/day comparison doesn't mean much
+  here since the Paschal cycle's calendar position varies by ~5 weeks
+  year to year. Not part of this project — already governed by the
+  existing pdist-anchored Paschal cycle.
+- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
+  A real gap in the tradition-axis architecture, found via the Oct 1
+  Protection bug — worth a dedicated look at how many other fixed dates
+  are affected the same way before deciding on a fix.
+- **5th Saturday of Lent (Akathist Saturday)**: see "pass 5" above — needs
+  more years of data, matched by occasion since it's Pascha-relative.
+- **Holy Thursday's compound Gospel reading**: see "pass 5" above — minor
+  verse-boundary variance in an already-massive compound citation, likely
+  not worth chasing further.

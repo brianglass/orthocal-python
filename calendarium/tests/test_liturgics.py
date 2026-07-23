@@ -318,6 +318,29 @@ class TestGreekLukanNumbering(TestCase):
         )
         self.assertIsNone(liturgics.GreekYear(2026).sunday_gospel_override(-77))
 
+    def test_leavetaking_theophany_weekday_float(self):
+        """Leavetaking of Theophany (theophany+8) has a fixed Greek-specific
+        reading (Acts 2:38-43 / Luke 4:1-15, confirmed against 5 independent
+        years) when it falls on an ordinary weekday. When it falls on
+        Saturday or Sunday it's already covered by SatAfterTheophany/
+        SunAfterTheophany instead -- the float should not double up."""
+
+        # 2026: Jan 14 is a Wednesday -- ordinary weekday case.
+        weekday_year = liturgics.GreekYear(2025)
+        leavetaking = weekday_year.theophany + 8
+        self.assertEqual(
+            weekday_year.floats.get(leavetaking),
+            datetools.FloatIndex.LeavetakingTheophanyWeekday,
+        )
+
+        # 2023 cycle: Leavetaking falls on a Sunday that year (Jan 14, 2024)
+        # -- already handled via theophany_interpolation's 'direct' case,
+        # so the weekday float must not also claim that pdist.
+        sunday_year = liturgics.GreekYear(2023)
+        leavetaking_sunday = sunday_year.theophany + 8
+        self.assertEqual(datetools.weekday_from_pdist(leavetaking_sunday), datetools.Weekday.Sunday)
+        self.assertNotIn(leavetaking_sunday, sunday_year.floats)
+
 
 class TestDay(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
@@ -584,6 +607,31 @@ class TestDay(TestCase):
             with self.subTest((y, m, d)):
                 self.assertEqual(day.gospel_pdist, expected)
                 self.assertEqual(day.epistle_pdist, expected)
+
+    async def test_leavetaking_theophany_weekday_reading(self):
+        """End-to-end: Leavetaking of Theophany on an ordinary weekday shows
+        the Greek-specific Acts 2:38-43 / Luke 4:1-15 reading additively
+        alongside the ordinary continuous-cycle content, while Slavic shows
+        only the ordinary content -- confirmed against 5 independent years
+        (2019, 2021, 2022, 2025, 2026 cycles)."""
+
+        dates = [(2019, 1, 14), (2021, 1, 14), (2022, 1, 14), (2025, 1, 14), (2026, 1, 14)]
+        for y, m, d in dates:
+            greek = liturgics.Day(y, m, d, tradition=Tradition.Greek)
+            slavic = liturgics.Day(y, m, d, tradition=Tradition.Slavic)
+            await greek.ainitialize()
+            await slavic.ainitialize()
+            greek_readings = await greek.aget_readings()
+            slavic_readings = await slavic.aget_readings()
+
+            greek_displays = {(r.source, r.pericope.display) for r in greek_readings}
+            slavic_displays = {(r.source, r.pericope.display) for r in slavic_readings}
+
+            with self.subTest((y, m, d)):
+                self.assertIn(('Epistle', 'Acts 2.38-43'), greek_displays)
+                self.assertIn(('Gospel', 'Luke 4.1-15'), greek_displays)
+                self.assertNotIn(('Epistle', 'Acts 2.38-43'), slavic_displays)
+                self.assertNotIn(('Gospel', 'Luke 4.1-15'), slavic_displays)
 
     async def test_ordinary_sunday_of_luke_epistle_does_not_follow_gospel(self):
         """On the *ordinary* (non-interpolated) numbered Sundays of Luke,

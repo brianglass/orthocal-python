@@ -278,6 +278,20 @@ class ByzantineYear:
                 self.new_martyrs_russia:        FloatIndex.NewMartyrsRussia,
         }
 
+        leavetaking_theophany = self.theophany + 8
+        if datetools.weekday_from_pdist(leavetaking_theophany) not in (Weekday.Saturday, Weekday.Sunday):
+            # Leavetaking of Theophany always falls exactly 8 days after
+            # Theophany. When it lands on Saturday or Sunday it's already
+            # covered by SatAfterTheophany/SunAfterTheophany above (those
+            # are computed from the actual surrounding weekend, not a fixed
+            # +8 offset, so they can coincide with this day in some years).
+            # Confirmed common/slavic reads the ordinary continuous cycle
+            # here with no override; only GreekYear has a fixed reading for
+            # this slot (Reading rows tagged 'greek', see docs/greek-
+            # commons.md) -- adding it here unconditionally is harmless for
+            # Slavic since no rows exist at this pdist for that tradition.
+            floats[leavetaking_theophany] = FloatIndex.LeavetakingTheophanyWeekday
+
         if self.sat_before_elevation == self.nativity_theotokos:
             # If the Saturday before the Elevation falls on the Nativity of the
             # Theotokos, we move its readings to the eve of the Elevation.

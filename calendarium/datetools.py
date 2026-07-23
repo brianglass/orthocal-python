@@ -108,6 +108,7 @@ class FloatIndex(IntEnum):
     AnnunciationMon                 = 1035   # Annunciation on Monday
     AnnunciationParemEve            = 1036   # Annunciation Paremias on Eve
     AnnunciationWeekday             = 1037   # Annunciation on Tuesday-Friday
+    LeavetakingTheophanyWeekday     = 1038   # Leavetaking of Theophany (theophany+8) on an ordinary weekday
 
 
 def compute_pascha_jdn(year):
