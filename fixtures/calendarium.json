@@ -41578,6 +41578,66 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1719,
+    "fields": {
+        "month": 11,
+        "day": 10,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Apostles of the 70",
+        "pericope": 557,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1720,
+    "fields": {
+        "month": 11,
+        "day": 11,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Menas, Victor & Vincent",
+        "pericope": 606,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1721,
+    "fields": {
+        "month": 11,
+        "day": 17,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Gregory the Wonderworker",
+        "pericope": 578,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1722,
+    "fields": {
+        "month": 11,
+        "day": 24,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Hieromartyrs Clement & Peter",
+        "pericope": 685,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
