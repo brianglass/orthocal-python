@@ -13483,7 +13483,7 @@
         "feast_level": 6,
         "service": 0,
         "service_note": "",
-        "saint": "",
+        "saint": "Holy Apostle Ananias of the Seventy",
         "fast": 0,
         "fast_exception": 2,
         "flag": 0
@@ -36024,7 +36024,7 @@
         "pericope": 771,
         "ordering": 821,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -36039,7 +36039,7 @@
         "pericope": 259,
         "ordering": 921,
         "flag": 0,
-        "tradition": "common"
+        "tradition": "slavic"
     }
 },
 {
@@ -42517,6 +42517,66 @@
         "source": "Epistle",
         "desc": "Apostles Stachys, Amplias, et al",
         "pericope": 543,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1782,
+    "fields": {
+        "month": 7,
+        "day": 14,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Apostle Aquila of the 70",
+        "pericope": 543,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1783,
+    "fields": {
+        "month": 7,
+        "day": 28,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Apostles Prochorus, Nicanor, Timon, Parmenas",
+        "pericope": 414,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1784,
+    "fields": {
+        "month": 7,
+        "day": 30,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Apostles Silas & Silvanus",
+        "pericope": 436,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1785,
+    "fields": {
+        "month": 10,
+        "day": 1,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Ananias of the Seventy",
+        "pericope": 1009,
         "ordering": 821,
         "flag": 0,
         "tradition": "greek"
@@ -59654,6 +59714,23 @@
         "prefix": "Brethren, I now rejoice",
         "prefixb": "",
         "verses": "Col_1024_2001",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1009,
+    "fields": {
+        "pericope": "305grk",
+        "book": "Apostol",
+        "display": "Acts 9.10-19",
+        "sdisplay": "Acts 9.10-19",
+        "desc": "Ananias of the Seventy (Greek)",
+        "preverse": "",
+        "prefix": "In those days, there was",
+        "prefixb": "",
+        "verses": "Acts_9010_9019",
         "suffix": "",
         "flag": 0
     }

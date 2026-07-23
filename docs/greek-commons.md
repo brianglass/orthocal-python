@@ -220,6 +220,53 @@ minor commemorations that day, and the citation content directly confirms
 the match, e.g. Acts 2:14-21 is Peter's Pentecost speech quoting Joel
 2:28-32.)
 
+## Implemented, pass 3 (stragglers)
+
+Resolved 4 more of the previously-unresolved dates by recognizing they're
+all "Apostles of the Seventy" whose names are directly confirmed by their
+citation's content (e.g. Silas & Silvanus are literally named in Acts
+15:40, their own Epistle):
+
+| Date | Saint | Epistle |
+|---|---|---|
+| Jul 14 | Apostle Aquila of the 70 | Rom 16.1-16 |
+| Jul 28 | Apostles Prochorus, Nicanor, Timon, Parmenas | Acts 6.1-7 |
+| Jul 30 | Apostles Silas & Silvanus | Acts 15.35-41 |
+
+**Oct 1, Ananias of the Seventy**: fixed properly this time — added
+`Acts 9.10-19` (new Pericope) as a `greek` Epistle row, *and* added Ananias
+to the `Day` table's `saint` field for Oct 1 (previously empty), since he's
+a universal Orthodox commemoration missing from our OCA-derived data
+entirely, not a Greek-specific one. Both traditions now list him.
+
+**Bug found and fixed while checking this**: Greek was incorrectly showing
+Slavic's Oct 1 Protection-of-the-Theotokos Epistle/Gospel (`Heb 9.1-7` /
+`Luke 10.38-42,11.27-28`), since those rows were tagged `common` and Greek
+falls back to `common` when no override exists — but Greek celebrates
+Protection on Oct 28 instead (already correctly implemented), and doesn't
+observe it on Oct 1 at all. Retagged both rows `slavic`-only.
+
+**Deeper issue found, not fixed**: `Day.feast_name`/`feast_level` are not
+tradition-tagged at all (unlike `Reading`), so Greek's `Day(2026,10,1)`
+still reports `feasts == ['Protection (Pokrov)...']` and `feast_level == 6`
+even after the Reading fix above — the site's overall feast/title display
+for Greek on Oct 1 is still wrong, just the actual Epistle/Gospel content
+isn't anymore. Fixing this properly means adding a tradition axis to the
+`Day` model itself, contradicting the original tradition-axis plan's
+assumption that "no confirmed differences exist in the `Day` model." Given
+this is exactly the kind of case, there may be other Greek/Slavic
+fixed-feast-date mismatches lurking the same way. Not investigated further
+this pass — flagging for a future, dedicated look.
+
+**7 dates set aside, no resolved pattern**: Jul 19 (turned out to be a
+*different* floating Sunday — "Fathers of the 4th Ecumenical Council" —
+that doesn't match our existing `fathers_six` float's citation; a
+floating-occasion issue, out of scope for this pass), Aug 5, Aug 26 (a
+genuine 2/3-year split with no clear majority — `Heb 6.9-12` in
+2019/2021 vs `Heb 10.32-38` in 2023/2025/2026, unresolved), Sep 2 — no
+clean saint match found in `Day` for these three, needs more years or the
+physical book.
+
 ## Remaining work
 
 - **Dates in the movable Paschal season** (May-June dates that fall between
@@ -228,16 +275,17 @@ the match, e.g. Acts 2:14-21 is Peter's Pentecost speech quoting Joel
   here since the Paschal cycle's calendar position varies by ~5 weeks
   year to year. Not part of this project — already governed by the
   existing pdist-anchored Paschal cycle.
-- **A few dates with no resolved pattern yet**: Jul 14, Jul 19, Jul 28,
-  Jul 30, Aug 5, Aug 26, Sep 2 — either inconsistent across the 5 sampled
-  years or showing a citation with no obvious saint attached in our `Day`
-  table. Needs more investigation, possibly more years.
-- **Oct 1 (Ananias the Apostle)**: confirmed citation (`Acts 9:10-19`, the
-  passage about Ananias baptizing Saul) but our `Day` table has **no
-  saint listed for Oct 1 at all** — likely dropped because OCA's data for
-  that date is dominated by the Protection of the Theotokos (which Greek
-  celebrates Oct 28 instead). This needs a `Day`-table fix, not just a
-  `Reading` row — out of scope for a quick fix.
+- **Aug 5, Aug 26, Sep 2**: see "pass 3" above — no resolved pattern yet.
+- **Jul 19 / "Sunday of the Fathers of the 4th Ecumenical Council"**: a
+  floating Sunday (Pascha-relative, near mid-July) whose citation doesn't
+  match what `GreekYear`'s existing `fathers_six` float produces. Needs
+  investigation alongside the other floating-occasion fixes already
+  flagged in `greek-weekday-drift.md` (Leavetaking-on-weekday, Theodore
+  Tyro's Kolyva Saturday, Prodigal Son Saturday).
+- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
+  A real gap in the tradition-axis architecture, found via the Oct 1
+  Protection bug — worth a dedicated look at how many other fixed dates
+  are affected the same way before deciding on a fix.
 - **The Lent/Holy Week season** (36 of the original 113 full-year
   mismatches) needs a different comparison method entirely (checking
   OT/Vespers readings against this project's own Lenten-daily-readings
