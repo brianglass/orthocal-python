@@ -585,6 +585,39 @@ class TestDay(TestCase):
                 self.assertEqual(day.gospel_pdist, expected)
                 self.assertEqual(day.epistle_pdist, expected)
 
+    async def test_ordinary_sunday_of_luke_epistle_does_not_follow_gospel(self):
+        """On the *ordinary* (non-interpolated) numbered Sundays of Luke,
+        the Epistle keeps following its own ordinary continuous-cycle
+        position -- unlike the Canaanite Woman/post-Theophany-interpolation
+        cases covered by test_greek_theophany_interpolation_pdists above,
+        where Epistle and Gospel genuinely share the same numbered target.
+
+        Confirmed against real antiochian.org data across independent
+        years: the same numbered Sunday (e.g. "1st Sunday of Luke") shows a
+        *different* Epistle in different years, which rules out a fixed
+        Gospel-paired target -- it's always exactly the plain, unadjusted
+        calendar pdist's own Epistle instead (matching SlavicYear's own
+        Epistle for that date exactly, since neither traditions' Epistle
+        is affected by the Lukan jump here)."""
+
+        data = [
+            # (year, month, day, expected epistle_pdist == plain calendar pdist)
+            (2022, 9, 25, 154),   # 1st Sunday of Luke
+            (2022, 10, 2, 161),   # 2nd Sunday of Luke
+            (2026, 9, 27, 168),   # 1st Sunday of Luke
+            (2026, 10, 4, 175),   # 2nd Sunday of Luke
+        ]
+
+        for y, m, d, plain_pdist in data:
+            greek = liturgics.Day(y, m, d, tradition=Tradition.Greek)
+            slavic = liturgics.Day(y, m, d, tradition=Tradition.Slavic)
+            await greek.ainitialize()
+            await slavic.ainitialize()
+            with self.subTest((y, m, d)):
+                self.assertEqual(greek.epistle_pdist, plain_pdist)
+                self.assertNotEqual(greek.epistle_pdist, greek.gospel_pdist)
+                self.assertEqual(greek.epistle_pdist, slavic.epistle_pdist)
+
     async def test_composite_fields(self):
         """When a reading is a Composite, it should have the same fields as a Verse."""
 

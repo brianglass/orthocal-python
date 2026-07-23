@@ -218,6 +218,12 @@ class ByzantineYear:
         The base implementation is a no-op; only GreekYear overrides it."""
         return None
 
+    def sunday_epistle_override(self, pdist):
+        """Like sunday_gospel_override, but for the Epistle -- these do not
+        always coincide for GreekYear (see its override for why). The base
+        implementation is a no-op; only GreekYear overrides it."""
+        return None
+
     @cached_property
     def paremias(self):
         """Return a table of paremias that should be moved."""
@@ -699,3 +705,31 @@ class GreekYear(ByzantineYear):
             return self._lukan_sunday_target(val)
 
         return None
+
+    def sunday_epistle_override(self, pdist):
+        """Like sunday_gospel_override, but for the Epistle -- these do NOT
+        always coincide. Confirmed against real antiochian.org data across
+        multiple independent years: on the *ordinary* numbered Sundays of
+        Luke (first_sun_luke..forefathers, the natural Oct-Dec progression),
+        the Epistle keeps following its own ordinary continuous-cycle
+        position -- only the Gospel is subject to the numbered-Sunday
+        scheme there (e.g. 1st Sunday of Luke reads whatever Epistle the
+        plain pdist gives, `2 Cor 4:6-15` in 2022 vs `2 Cor 6:16-7:1` in
+        2026 -- never the same target both years, so it can't be paired to
+        the Gospel's number). The Canaanite Woman (-77) and post-Theophany
+        interpolation cases DO pair the Epistle with the same numbered
+        target as the Gospel -- confirmed separately for each (4/5 years
+        for Canaanite Woman; 2022-2025 for the interpolation window's own
+        numbered targets, modulo a higher-rank saint occasionally
+        displacing the whole Sunday, which this project already shows
+        additively elsewhere rather than suppressing -- see the class
+        docstring's `_LUKAN_OVERRIDE_FEASTS` note and existing site
+        precedent for combined readings)."""
+
+        if self.first_sun_luke <= pdist <= self.forefathers:
+            n = self.lukan_sunday_numbers.get(pdist)
+            # Still suppressed outright when an Apostle feast claims the day;
+            # otherwise no override -- fall through to the plain pdist.
+            return False if n is None else None
+
+        return self.sunday_gospel_override(pdist)

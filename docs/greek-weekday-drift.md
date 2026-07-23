@@ -1090,6 +1090,39 @@ side).
    the fix was purely wiring `epistle_pdist` to also consult
    `_sunday_gospel_override`, no new data needed.
 
+   **Correction (found later, via a user-reported live discrepancy on
+   2026-09-27): this fix over-applied.** The verification above only ever
+   checked *post-Theophany interpolation* dates (all in the Jan-Feb
+   window). It was never checked against the *ordinary* Oct-Dec numbered
+   Sundays of Luke (`lukan_sunday_numbers`'s natural, non-interpolated
+   progression) — and there, pairing the Epistle to the Gospel's number
+   is wrong. Confirmed with clean, unambiguous cross-year evidence: the
+   real antiochian.org Epistle for "1st Sunday of Luke" is `2 Cor 4:6-15`
+   in 2022 but `2 Cor 6:16-7:1` in 2026 — different citations for the
+   *same* numbered Sunday in different years, which rules out a fixed
+   Gospel-paired target. In both years it's exactly the plain, unadjusted
+   calendar pdist's own Epistle instead — identical to what `SlavicYear`
+   already shows for the same date (same underlying `common` row, since
+   Slavic's Epistle is never affected by the Lukan jump either). Same
+   result for "2nd Sunday of Luke" (`2 Cor 6:1-10` in 2022, `2 Cor 9:6-11`
+   in 2026, both matching the plain pdist). The Canaanite Woman and
+   post-Theophany-interpolation cases *do* still pair Epistle to Gospel
+   (re-confirmed: Canaanite Woman's Epistle, `2 Cor 6:16-18;7:1`, matches
+   the paired target in 4 of 5 harvested years).
+
+   **Fixed** by splitting the override into two methods:
+   `GreekYear.sunday_gospel_override` (unchanged, still used for
+   `gospel_pdist`) and a new `GreekYear.sunday_epistle_override`, which
+   skips the override specifically in the ordinary
+   `first_sun_luke..forefathers` range (falling back to the plain pdist
+   there, matching `SlavicYear`), while still applying it for the
+   Canaanite Woman and interpolation cases, and still suppressing
+   outright when an Apostle feast claims the Sunday. `Day` now has a
+   separate `_sunday_epistle_override` cached property feeding
+   `epistle_pdist`, parallel to `_sunday_gospel_override`. See
+   `TestDay.test_ordinary_sunday_of_luke_epistle_does_not_follow_gospel`
+   in `test_liturgics.py`.
+
 4. **A fourth, subtler bug found while testing #2-3: the Canaanite
    Woman/Zacchaeus boundary is a distinct `GreekYear` *instance* boundary,
    not just a table entry.** pdist -77 (Canaanite Woman/Zacchaeus) is,

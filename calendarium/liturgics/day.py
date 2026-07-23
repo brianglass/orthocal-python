@@ -474,6 +474,20 @@ class Day:
         return self.pyear.sunday_gospel_override(self.pdist)
 
     @cached_property
+    def _sunday_epistle_override(self):
+        """Like _sunday_gospel_override, but for the Epistle -- these do NOT
+        always coincide for GreekYear. Confirmed against real antiochian.org
+        data: on the ordinary numbered Sundays of Luke the Epistle keeps
+        following its own ordinary continuous-cycle position (matching
+        SlavicYear's behavior exactly), while the Canaanite Woman and
+        post-Theophany-interpolation Sundays DO pair the Epistle with the
+        same numbered target as the Gospel. See GreekYear.sunday_epistle_override.
+        """
+        if self.weekday != Weekday.Sunday:
+            return None
+        return self.pyear.sunday_epistle_override(self.pdist)
+
+    @cached_property
     def epistle_pdist(self):
         """Adjusted pdist for the epistle.
 
@@ -487,17 +501,19 @@ class Day:
         if not self.has_daily_readings:
             return None
 
-        if self._sunday_gospel_override is False:
+        if self._sunday_epistle_override is False:
             return None
 
-        if self._sunday_gospel_override is not None:
+        if self._sunday_epistle_override is not None:
             # The numbered-Sunday target pdists (e.g. "12th Sunday of Luke")
             # already have the correct Epistle paired with the Gospel in the
             # shared common/slavic table -- without this, the Epistle fell
             # through to the branches below, which are keyed off calendar
             # pdist rather than the target the Gospel actually resolved to,
-            # producing an unrelated (if plausible-looking) citation.
-            return self._sunday_gospel_override
+            # producing an unrelated (if plausible-looking) citation. This
+            # only applies to the Canaanite Woman/interpolation cases now --
+            # see _sunday_epistle_override.
+            return self._sunday_epistle_override
 
         if self.pdist == 49 + 29*7:  # Pentecost + 29 weeks
             # 29th Sunday after Pentecost
