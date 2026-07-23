@@ -41203,6 +41203,381 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1694,
+    "fields": {
+        "month": 2,
+        "day": 3,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Afterfeast of Presentation",
+        "pericope": 773,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1695,
+    "fields": {
+        "month": 2,
+        "day": 3,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Afterfeast of Presentation",
+        "pericope": 211,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1696,
+    "fields": {
+        "month": 2,
+        "day": 11,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Blaise",
+        "pericope": 760,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1697,
+    "fields": {
+        "month": 2,
+        "day": 11,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Blaise",
+        "pericope": 36,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1698,
+    "fields": {
+        "month": 2,
+        "day": 17,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Theodore Tyro",
+        "pericope": 738,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1699,
+    "fields": {
+        "month": 2,
+        "day": 17,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Theodore Tyro",
+        "pericope": 308,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1700,
+    "fields": {
+        "month": 9,
+        "day": 29,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cyriacos",
+        "pericope": 647,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1701,
+    "fields": {
+        "month": 11,
+        "day": 1,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Cosmas & Damian",
+        "pericope": 580,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1702,
+    "fields": {
+        "month": 11,
+        "day": 1,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Cosmas & Damian",
+        "pericope": 36,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1703,
+    "fields": {
+        "month": 11,
+        "day": 6,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Paul the Confessor",
+        "pericope": 1003,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1704,
+    "fields": {
+        "month": 11,
+        "day": 6,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Paul the Confessor",
+        "pericope": 269,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1705,
+    "fields": {
+        "month": 11,
+        "day": 9,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Nektarius",
+        "pericope": 666,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1706,
+    "fields": {
+        "month": 11,
+        "day": 9,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Nektarius",
+        "pericope": 11,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1707,
+    "fields": {
+        "month": 11,
+        "day": 12,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "John the Merciful",
+        "pericope": 619,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1708,
+    "fields": {
+        "month": 11,
+        "day": 12,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "John the Merciful",
+        "pericope": 12,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1709,
+    "fields": {
+        "month": 11,
+        "day": 16,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Matthew the Apostle",
+        "pericope": 527,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1710,
+    "fields": {
+        "month": 11,
+        "day": 16,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Matthew the Apostle",
+        "pericope": 31,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1711,
+    "fields": {
+        "month": 11,
+        "day": 25,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Catherine",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1712,
+    "fields": {
+        "month": 11,
+        "day": 25,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Catherine",
+        "pericope": 148,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1713,
+    "fields": {
+        "month": 12,
+        "day": 4,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Barbara",
+        "pericope": 639,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1714,
+    "fields": {
+        "month": 12,
+        "day": 4,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Barbara",
+        "pericope": 148,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1715,
+    "fields": {
+        "month": 12,
+        "day": 12,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Spyridon",
+        "pericope": 666,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1716,
+    "fields": {
+        "month": 12,
+        "day": 12,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Spyridon",
+        "pericope": 358,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1717,
+    "fields": {
+        "month": 12,
+        "day": 15,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Eleutherios",
+        "pericope": 737,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1718,
+    "fields": {
+        "month": 12,
+        "day": 15,
+        "pdist": 999,
+        "source": "Gospel",
+        "desc": "Eleutherios",
+        "pericope": 137,
+        "ordering": 921,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
@@ -58232,6 +58607,23 @@
         "prefix": "Timothy, my son,",
         "prefixb": "",
         "verses": "2Tim_1003_1008",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1003,
+    "fields": {
+        "pericope": "291grk",
+        "book": "Apostol",
+        "display": "Hebrews 8.1-6",
+        "sdisplay": "Heb 8.1-6",
+        "desc": "Paul the Confessor (Greek)",
+        "preverse": "",
+        "prefix": "Brethren, we have such",
+        "prefixb": "",
+        "verses": "Heb_8001_8006",
         "suffix": "",
         "flag": 0
     }
