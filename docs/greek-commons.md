@@ -258,14 +258,40 @@ this is exactly the kind of case, there may be other Greek/Slavic
 fixed-feast-date mismatches lurking the same way. Not investigated further
 this pass — flagging for a future, dedicated look.
 
-**7 dates set aside, no resolved pattern**: Jul 19 (turned out to be a
-*different* floating Sunday — "Fathers of the 4th Ecumenical Council" —
-that doesn't match our existing `fathers_six` float's citation; a
-floating-occasion issue, out of scope for this pass), Aug 5, Aug 26 (a
-genuine 2/3-year split with no clear majority — `Heb 6.9-12` in
-2019/2021 vs `Heb 10.32-38` in 2023/2025/2026, unresolved), Sep 2 — no
-clean saint match found in `Day` for these three, needs more years or the
-physical book.
+## Implemented, pass 4 (final stragglers)
+
+All 4 remaining dates from pass 3 resolved:
+
+- **Aug 5, Martyr Eusignius**: `1 Pet 1.1-25,2.1-10` — 5/5 clean, just
+  didn't have an obvious thematic fit so it was set aside for a second
+  look; the consistency alone was already sufficient evidence.
+- **Sep 2, Anthony & Theodosius of Kiev Caves**: `Rom 8.28-39` — 4/5 clean
+  (2019 differs), same story.
+- **Aug 26, Martyrs Adrian & Natalia**: harvested 4 more years (2018, 2020,
+  2022, 2024) to break the 2/3 tie found in pass 3. Result: `Heb 10.32-38`
+  in every year from 2022 onward (5/8 total, with a clear cutover point) —
+  `Heb 6.9-12` (2019-2021) looks like an older citation antiochian.org
+  itself corrected around 2022. Implemented `Heb 10.32-38`.
+- **Jul 19, "Sunday of the Fathers of the 4th Ecumenical Council"**: turned
+  out *not* to be a separate floating occasion at all — it's the exact
+  same Sunday our existing `fathers_six` float already computes correctly
+  (nearest Sunday to July 16), just with the wrong citation tagged
+  `common`. Harvested all 8 available years landing on this Sunday
+  (2018-2024, 2026) — every single one shows `Titus 3:8-15` / `Matt
+  5:14-19` for Greek, vs. our `common` table's `Heb 13:7-16` / `John
+  17:1-13` (which stays correct for Slavic). Added as a `greek` override
+  at `FloatIndex.FathersSix`.
+
+**Wiring lesson**: float-pdist overrides (like `FathersSix` above) must
+reuse the *exact same* `ordering` value as the `common` row they're meant
+to replace, not the `821`/`921` convention used for the plain month/day
+saint-day rows elsewhere in this doc — `_prefer_tradition`'s slot key is
+`(pdist, month, day, source, ordering, desc)`, so a mismatched ordering
+creates a duplicate instead of an override. Caught by checking the actual
+rendered output before committing, not just trusting the write succeeded.
+
+With this, all 77 dates from the original full-year audit are now
+resolved except the Lent/Holy Week season (see below).
 
 ## Remaining work
 
@@ -275,13 +301,6 @@ physical book.
   here since the Paschal cycle's calendar position varies by ~5 weeks
   year to year. Not part of this project — already governed by the
   existing pdist-anchored Paschal cycle.
-- **Aug 5, Aug 26, Sep 2**: see "pass 3" above — no resolved pattern yet.
-- **Jul 19 / "Sunday of the Fathers of the 4th Ecumenical Council"**: a
-  floating Sunday (Pascha-relative, near mid-July) whose citation doesn't
-  match what `GreekYear`'s existing `fathers_six` float produces. Needs
-  investigation alongside the other floating-occasion fixes already
-  flagged in `greek-weekday-drift.md` (Leavetaking-on-weekday, Theodore
-  Tyro's Kolyva Saturday, Prodigal Son Saturday).
 - **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
   A real gap in the tradition-axis architecture, found via the Oct 1
   Protection bug — worth a dedicated look at how many other fixed dates

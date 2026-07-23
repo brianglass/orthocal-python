@@ -42583,6 +42583,81 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1786,
+    "fields": {
+        "month": 8,
+        "day": 5,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Martyr Eusignius",
+        "pericope": 1010,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1787,
+    "fields": {
+        "month": 9,
+        "day": 2,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Anthony & Theodosius of Kiev Caves",
+        "pericope": 522,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1788,
+    "fields": {
+        "month": 8,
+        "day": 26,
+        "pdist": 999,
+        "source": "Epistle",
+        "desc": "Adrian & Natalia",
+        "pericope": 777,
+        "ordering": 821,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1791,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1001,
+        "source": "Epistle",
+        "desc": "Fathers",
+        "pericope": 750,
+        "ordering": 812,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.reading",
+    "pk": 1792,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": 1001,
+        "source": "Gospel",
+        "desc": "Fathers",
+        "pericope": 12,
+        "ordering": 912,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
@@ -59731,6 +59806,23 @@
         "prefix": "In those days, there was",
         "prefixb": "",
         "verses": "Acts_9010_9019",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1010,
+    "fields": {
+        "pericope": "306grk",
+        "book": "Apostol",
+        "display": "1 Peter 1.1-25, 2.1-10",
+        "sdisplay": "1 Pet 1.1-25, 2.1-10",
+        "desc": "Eusignius (Greek)",
+        "preverse": "",
+        "prefix": "Beloved,",
+        "prefixb": "",
+        "verses": "1Peter_1001_1025|1Peter_2001_2010",
         "suffix": "",
         "flag": 0
     }
