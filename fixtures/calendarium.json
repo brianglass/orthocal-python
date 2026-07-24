@@ -43720,6 +43720,21 @@
     }
 },
 {
+    "model": "calendarium.reading",
+    "pk": 1799,
+    "fields": {
+        "month": 0,
+        "day": 0,
+        "pdist": -3,
+        "source": "Gospel",
+        "desc": "Composite",
+        "pericope": 1013,
+        "ordering": 911,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
     "model": "calendarium.pericope",
     "pk": 1,
     "fields": {
@@ -60919,6 +60934,23 @@
         "prefix": "Brethren, your glorying",
         "prefixb": "",
         "verses": "1Cor_5006_5008",
+        "suffix": "",
+        "flag": 0
+    }
+},
+{
+    "model": "calendarium.pericope",
+    "pk": 1013,
+    "fields": {
+        "pericope": "107grk",
+        "book": "Matthew",
+        "display": "Matthew 26:1-20; John 13:3-17; Matt 26:21-39; Luke 22:43-44; Matt 26:40-27:2",
+        "sdisplay": "Matt 26:1-20; John 13:3-17; Matt 26:21-39; Luke 22:43-44; Matt 26:40-27:2",
+        "desc": "Great Thursday (Greek)",
+        "preverse": "",
+        "prefix": "At that time, when Jesus had finished all these sayings,",
+        "prefixb": "",
+        "verses": "Matt_26001_26020|John_13003_13017|Matt_26021_26039|Luke_22043_22044|Matt_26040_27002",
         "suffix": "",
         "flag": 0
     }

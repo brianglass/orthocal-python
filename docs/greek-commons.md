@@ -321,8 +321,8 @@ Of the 4:
 - **Holy Thursday's compound Gospel reading**: our version and
   antiochian's differ by a few verses within an already-massive 6-part
   compound citation (`Matt 26:2-20;...` vs `Matt 26:1-20;...`, etc.) —
-  likely citation-notation variance given how close it already is, not
-  investigated further.
+  turned out to be genuine, not just notation variance; see "pass 10"
+  below.
 - **5th Saturday of Lent ("Akathist Saturday")**: antiochian shows
   `Luke 1:39-49,56` (the Magnificat, a natural fit for the Akathist to the
   Theotokos); we currently show a plain `Mark 8.27-31` with no thematic
@@ -493,5 +493,19 @@ fine for Greek without a separate tradition split.
   Slavic-centric source and no Greek-centric equivalent is available, so
   there's no data to build a tradition split from yet. Revisit only if
   such a source turns up.
-- **Holy Thursday's compound Gospel reading**: minor verse-boundary
-  variance, likely not worth chasing further.
+
+## Implemented, pass 10 (Holy Thursday's compound Gospel)
+
+Turned out not to be benign notation variance after all — two genuine,
+confirmed single-verse differences within the 5-part compound reading,
+confirmed 2/2 years (2019, 2026):
+
+- `Matt 26:2-20` (Slavic) vs `Matt 26:1-20` (Greek) — Greek includes the
+  transitional verse 1 ("when Jesus had finished all these sayings...").
+- `Luke 22:43-45` (Slavic) vs `Luke 22:43-44` (Greek) — Slavic includes
+  verse 45 ("when he rose up from prayer... found them sleeping"), Greek
+  stops at 44 (the "sweat as great drops of blood" verse).
+
+The other 3 segments of the compound (`John 13:3-17`, `Matt 26:21-39`,
+`Matt 26:40-27:2`) already matched exactly. Added a `greek`-tagged
+Pericope with the corrected boundaries and wired it in as an override.
