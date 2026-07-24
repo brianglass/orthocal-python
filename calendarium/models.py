@@ -21,7 +21,7 @@ class Day(models.Model):
     feast_level = models.SmallIntegerField()
     service = models.SmallIntegerField()
     service_note = models.CharField(max_length=64)
-    saint = models.CharField(max_length=128)
+    saints = models.JSONField(default=list)
     fast = models.SmallIntegerField()
     fast_exception = models.SmallIntegerField()
     flag = models.SmallIntegerField()
