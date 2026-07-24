@@ -185,6 +185,11 @@ label {
 label input[type="radio"] {
     accent-color: #888;
 }
+.beta-note {
+    font-size: 0.75em;
+    font-style: italic;
+    color: #888;
+}
 .service-notes ul, .commemorations ul, .feasts ul {
     text-align: center;
     margin: 0;
