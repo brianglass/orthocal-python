@@ -15,7 +15,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -34,7 +35,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -53,7 +55,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -72,7 +75,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -91,7 +95,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -110,7 +115,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -129,7 +135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -148,7 +155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -167,7 +175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -186,7 +195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -205,7 +215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -224,7 +235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -243,7 +255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -262,7 +275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -281,7 +295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -300,7 +315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -319,7 +335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -338,7 +355,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -357,7 +375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -376,7 +395,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -395,7 +415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -414,7 +435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -433,7 +455,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -452,7 +475,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -471,7 +495,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -490,7 +515,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -509,7 +535,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -528,7 +555,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -547,7 +575,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 7,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -566,7 +595,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -585,7 +615,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -604,7 +635,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -623,7 +655,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -642,7 +675,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -661,7 +695,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -680,7 +715,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -699,7 +735,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -718,7 +755,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -737,7 +775,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -756,7 +795,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -775,7 +815,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -794,7 +835,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -813,7 +855,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -832,7 +875,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -851,7 +895,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -870,7 +915,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -889,7 +935,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -908,7 +955,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -927,7 +975,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -946,7 +995,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -965,7 +1015,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -984,7 +1035,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1003,7 +1055,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1022,7 +1075,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1041,7 +1095,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1060,7 +1115,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1079,7 +1135,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1098,7 +1155,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1117,7 +1175,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1136,7 +1195,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1155,7 +1215,8 @@
         "saint": "Presanctified Liturgy",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1174,7 +1235,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1193,7 +1255,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1212,7 +1275,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1231,7 +1295,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1250,7 +1315,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1269,7 +1335,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1288,7 +1355,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1307,7 +1375,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1326,7 +1395,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 6,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1345,7 +1415,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 4,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1364,7 +1435,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1383,7 +1455,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1402,7 +1475,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 10,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1421,7 +1495,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1440,7 +1515,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 9,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1459,7 +1535,8 @@
         "saint": "",
         "fast": 2,
         "fast_exception": 5,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1478,7 +1555,8 @@
         "saint": "Beginning of the Pentecostarion",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1497,7 +1575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1516,7 +1595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1535,7 +1615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1554,7 +1635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1573,7 +1655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1592,7 +1675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1611,7 +1695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1630,7 +1715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1649,7 +1735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1668,7 +1755,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1687,7 +1775,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1706,7 +1795,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1725,7 +1815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1744,7 +1835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1763,7 +1855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1782,7 +1875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1801,7 +1895,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1820,7 +1915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1839,7 +1935,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1858,7 +1955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1877,7 +1975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1896,7 +1995,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1915,7 +2015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1934,7 +2035,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1953,7 +2055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1972,7 +2075,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -1991,7 +2095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2010,7 +2115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2029,7 +2135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2048,7 +2155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2067,7 +2175,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2086,7 +2195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2105,7 +2215,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2124,7 +2235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2143,7 +2255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2162,7 +2275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2181,7 +2295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2200,7 +2315,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2219,7 +2335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2238,7 +2355,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2257,7 +2375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2276,7 +2395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2295,7 +2415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2314,7 +2435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2333,7 +2455,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2352,7 +2475,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2371,7 +2495,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2390,7 +2515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2409,7 +2535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2428,7 +2555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2447,7 +2575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2466,7 +2595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2485,7 +2615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2504,7 +2635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2523,7 +2655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2542,7 +2675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2561,7 +2695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2580,7 +2715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2599,7 +2735,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2618,7 +2755,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2637,7 +2775,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2656,7 +2795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2675,7 +2815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2694,7 +2835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2713,7 +2855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2732,7 +2875,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2751,7 +2895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2770,7 +2915,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2789,7 +2935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2808,7 +2955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2827,7 +2975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2846,7 +2995,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2865,7 +3015,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2884,7 +3035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2903,7 +3055,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2922,7 +3075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2941,7 +3095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2960,7 +3115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2979,7 +3135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -2998,7 +3155,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3017,7 +3175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3036,7 +3195,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3055,7 +3215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3074,7 +3235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3093,7 +3255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3112,7 +3275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3131,7 +3295,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3150,7 +3315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3169,7 +3335,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3188,7 +3355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3207,7 +3375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3226,7 +3395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3245,7 +3415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3264,7 +3435,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3283,7 +3455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3302,7 +3475,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3321,7 +3495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3340,7 +3515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3359,7 +3535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3378,7 +3555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3397,7 +3575,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3416,7 +3595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3435,7 +3615,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3454,7 +3635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3473,7 +3655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3492,7 +3675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3511,7 +3695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3530,7 +3715,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3549,7 +3735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3568,7 +3755,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3587,7 +3775,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3606,7 +3795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3625,7 +3815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3644,7 +3835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3663,7 +3855,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3682,7 +3875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3701,7 +3895,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3720,7 +3915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3739,7 +3935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3758,7 +3955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3777,7 +3975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3796,7 +3995,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3815,7 +4015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3834,7 +4035,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3853,7 +4055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3872,7 +4075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3891,7 +4095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3910,7 +4115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3929,7 +4135,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3948,7 +4155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3967,7 +4175,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -3986,7 +4195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4005,7 +4215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4024,7 +4235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4043,7 +4255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4062,7 +4275,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4081,7 +4295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4100,7 +4315,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4119,7 +4335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4138,7 +4355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4157,7 +4375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4176,7 +4395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4195,7 +4415,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4214,7 +4435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4233,7 +4455,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4252,7 +4475,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4271,7 +4495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4290,7 +4515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4309,7 +4535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4328,7 +4555,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4347,7 +4575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4366,7 +4595,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4385,7 +4615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4404,7 +4635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4423,7 +4655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4442,7 +4675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4461,7 +4695,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4480,7 +4715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4499,7 +4735,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4518,7 +4755,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4537,7 +4775,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4556,7 +4795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4575,7 +4815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4594,7 +4835,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4613,7 +4855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4632,7 +4875,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4651,7 +4895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4670,7 +4915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4689,7 +4935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4708,7 +4955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4727,7 +4975,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4746,7 +4995,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4765,7 +5015,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4784,7 +5035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4803,7 +5055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4822,7 +5075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4841,7 +5095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4860,7 +5115,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4879,7 +5135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4898,7 +5155,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4917,7 +5175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4936,7 +5195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4955,7 +5215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4974,7 +5235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -4993,7 +5255,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5012,7 +5275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5031,7 +5295,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5050,7 +5315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5069,7 +5335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5088,7 +5355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5107,7 +5375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5126,7 +5395,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5145,7 +5415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5164,7 +5435,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5183,7 +5455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5202,7 +5475,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5221,7 +5495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5240,7 +5515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5259,7 +5535,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5278,7 +5555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5297,7 +5575,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5316,7 +5595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5335,7 +5615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5354,7 +5635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5373,7 +5655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5392,7 +5675,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5411,7 +5695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5430,7 +5715,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5449,7 +5735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5468,7 +5755,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5487,7 +5775,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5506,7 +5795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5525,7 +5815,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5544,7 +5835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5563,7 +5855,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5582,7 +5875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5601,7 +5895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5620,7 +5915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5639,7 +5935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5658,7 +5955,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5677,7 +5975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5696,7 +5995,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5715,7 +6015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5734,7 +6035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5753,7 +6055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5772,7 +6075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5791,7 +6095,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5810,7 +6115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5829,7 +6135,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5848,7 +6155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5867,7 +6175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5886,7 +6195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5905,7 +6215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5924,7 +6235,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5943,7 +6255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5962,7 +6275,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -5981,7 +6295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6000,7 +6315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6019,7 +6335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6038,7 +6355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6057,7 +6375,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6076,7 +6395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6095,7 +6415,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6114,7 +6435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6133,7 +6455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6152,7 +6475,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6171,7 +6495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6190,7 +6515,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6209,7 +6535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6228,7 +6555,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6247,7 +6575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6266,7 +6595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6285,7 +6615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6304,7 +6635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6323,7 +6655,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6342,7 +6675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6361,7 +6695,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6380,7 +6715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6399,7 +6735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6418,7 +6755,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6437,7 +6775,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6456,7 +6795,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6475,7 +6815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6494,7 +6835,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6513,7 +6855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6532,7 +6875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6551,7 +6895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6570,7 +6915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6589,7 +6935,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6608,7 +6955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6627,7 +6975,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6646,7 +6995,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6665,7 +7015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6684,7 +7035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6703,7 +7055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6722,7 +7075,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6741,7 +7095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6760,7 +7115,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6779,7 +7135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6798,7 +7155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6817,7 +7175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6836,7 +7195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6855,7 +7215,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6874,7 +7235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6893,7 +7255,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6912,7 +7275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6931,7 +7295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6950,7 +7315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6969,7 +7335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -6988,7 +7355,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7007,7 +7375,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7026,7 +7395,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7045,7 +7415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7064,7 +7435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7083,7 +7455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7102,7 +7475,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7121,7 +7495,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7140,7 +7515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7159,7 +7535,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7178,7 +7555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7197,7 +7575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7216,7 +7595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7235,7 +7615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7254,7 +7635,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7273,7 +7655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7292,7 +7675,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7311,7 +7695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7330,7 +7715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7349,7 +7735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7368,7 +7755,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7387,7 +7775,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7406,7 +7795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7425,7 +7815,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7444,7 +7835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7463,7 +7855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7482,7 +7875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7501,7 +7895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7520,7 +7915,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7539,7 +7935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7558,7 +7955,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7577,7 +7975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7596,7 +7995,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7615,7 +8015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7634,7 +8035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7653,7 +8055,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7672,7 +8075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7691,7 +8095,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7710,7 +8115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7729,7 +8135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7748,7 +8155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7767,7 +8175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7786,7 +8195,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7805,7 +8215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7824,7 +8235,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7843,7 +8255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7862,7 +8275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7881,7 +8295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7900,7 +8315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7919,7 +8335,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7938,7 +8355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7957,7 +8375,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7976,7 +8395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -7995,7 +8415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8014,7 +8435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8033,7 +8455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8052,7 +8475,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8071,7 +8495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8090,7 +8515,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8109,7 +8535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8128,7 +8555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8147,7 +8575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8166,7 +8595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8185,7 +8615,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8204,7 +8635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8223,7 +8655,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8242,7 +8675,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8261,7 +8695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8280,7 +8715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8299,7 +8735,8 @@
         "saint": "Repose of St Seraphim of Sarov",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8318,7 +8755,8 @@
         "saint": "Prophet Malachi",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8337,7 +8775,8 @@
         "saint": "Synaxis of Seventy Apostles",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8356,7 +8795,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 9,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8375,7 +8815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8394,7 +8835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8413,7 +8855,8 @@
         "saint": "Ven. George the Chozebite",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8432,7 +8875,8 @@
         "saint": "Martyr Polyeuctus of Melitene in Armenia; Hieromartyr Philip, Metropolitan of Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8451,7 +8895,8 @@
         "saint": "St Gregory of Nyssa; St Theophan the Recluse",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8470,7 +8915,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8489,7 +8935,8 @@
         "saint": "St Sava, Archbishop of Serbia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8508,7 +8955,8 @@
         "saint": "Martyrs Hermylus and Stratonicus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8527,7 +8975,8 @@
         "saint": "St Nino of Georgia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8546,7 +8995,8 @@
         "saint": "Ven. Paul of Thebes and John Calabytes",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8565,7 +9015,8 @@
         "saint": "Veneration of Chains of Apostle Peter",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8584,7 +9035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8603,7 +9055,8 @@
         "saint": "Ss Athanasius the Great and Cyril of Alexandria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8622,7 +9075,8 @@
         "saint": "Ven. Macarius the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8641,7 +9095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8660,7 +9115,8 @@
         "saint": "Ven. Maximus the Confessor",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8679,7 +9135,8 @@
         "saint": "Apostle Timothy of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8698,7 +9155,8 @@
         "saint": "Hieromartyr Clement and Martyr Agathangel",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8717,7 +9175,8 @@
         "saint": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8736,7 +9195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8755,7 +9215,8 @@
         "saint": "Ven. Xenophon and Mary",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8774,7 +9235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8793,7 +9255,8 @@
         "saint": "Ven. Ephrem the Syrian",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8812,7 +9275,8 @@
         "saint": "Trans. Rel. Ignatius the Godbearer",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8831,7 +9295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8850,7 +9315,8 @@
         "saint": "Unmercenaries Cyrus and John",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8869,7 +9335,8 @@
         "saint": "Martyr Tryphon",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8888,7 +9355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8907,7 +9375,8 @@
         "saint": "Righteous Simeon the Godbearer and Anna the Prophetess",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8926,7 +9395,8 @@
         "saint": "Ven. Isidore of Pelusium",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8945,7 +9415,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -8964,7 +9435,8 @@
         "saint": "St Bucolus, Bishop of Smyrna",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -8983,7 +9455,8 @@
         "saint": "St Parthenius, Bishop of Lampsacus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9002,7 +9475,8 @@
         "saint": "Greatmartyr Theodore Stratelates",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9021,7 +9495,8 @@
         "saint": "Martyr Nicephorus of Antioch; Relics of St Innocent of Irkutsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9040,7 +9515,8 @@
         "saint": "Hieromartyr Haralambos",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9059,7 +9535,8 @@
         "saint": "Hieromartyr Blaise of Sebaste; Ven. Dimitry of Priluk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9078,7 +9555,8 @@
         "saint": "St Meletius, Archbishop of Antioch; St Aleksy, Metr. of All Russia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9097,7 +9575,8 @@
         "saint": "Ven. Martinian of Caesarea",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9116,7 +9595,8 @@
         "saint": "St Cyril, Teacher of the Slavs",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9135,7 +9615,8 @@
         "saint": "Apostle Onesimus of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9154,7 +9635,8 @@
         "saint": "Martyr Pamphylius and His Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9173,7 +9655,8 @@
         "saint": "Greatmartyr Theodore Tyro; Hieromartyr Germogen, Patriarch of Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9192,7 +9675,8 @@
         "saint": "St Leo the Great, Pope of Rome",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9211,7 +9695,8 @@
         "saint": "Apostles of the Seventy Archippus and Philemon",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9230,7 +9715,8 @@
         "saint": "St Leo, Bishop of Catania",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9249,7 +9735,8 @@
         "saint": "Ven. Timothy of Symbola",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9268,7 +9755,8 @@
         "saint": "Unc. Rel. Holy Martyrs at Gate of Eugenius",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9287,7 +9775,8 @@
         "saint": "Hieromartyr Polycarp, Bishop of Smyrna",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9306,7 +9795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9325,7 +9815,8 @@
         "saint": "St Tarasius, Abp. of Constantinople",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9344,7 +9835,8 @@
         "saint": "St Porphyrius, Bishop of Gaza",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9363,7 +9855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9382,7 +9875,8 @@
         "saint": "Ven. Basil the Confessor",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9401,7 +9895,8 @@
         "saint": "Ven. John Cassian",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9420,7 +9915,8 @@
         "saint": "Martyr Eudoxia of Heliopolis",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9439,7 +9935,8 @@
         "saint": "Hieromartyr Theodotus, Bishop of Cyrenia; St Arseny, Bishop of Tver",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9458,7 +9955,8 @@
         "saint": "Martyrs Eutropius, Cleonicus and Basiliscus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9477,7 +9975,8 @@
         "saint": "Ven. Gerasimus of the Jordan; Rt. Blv. Prince Daniel of Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9496,7 +9995,8 @@
         "saint": "Martyr Conon of Isauria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9515,7 +10015,8 @@
         "saint": "Forty-two Martyrs of Ammoria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9534,7 +10035,8 @@
         "saint": "Seven Hieromartyrs of Cherson",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9553,7 +10055,8 @@
         "saint": "St Theophylactus, Bishop of Nicomedia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9572,7 +10075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9591,7 +10095,8 @@
         "saint": "Martyr Quadratus and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9610,7 +10115,8 @@
         "saint": "St. Sophronius, Patriarch of Jerusalem; St Euthymius, Bishop of Novgorod",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9629,7 +10135,8 @@
         "saint": "Ven. Theophanes the Confessor",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9648,7 +10155,8 @@
         "saint": "Trans. Rel. Nicephorus, Patr. Constantinopole",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9667,7 +10175,8 @@
         "saint": "Ven. Benedict of Nursia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9686,7 +10195,8 @@
         "saint": "Martyr Agapius and Seven with Him",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9705,7 +10215,8 @@
         "saint": "Martyr Sabinas of Egypt",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9724,7 +10235,8 @@
         "saint": "Ven. Alexius the Man of God; Ven. Makary of Kalyazinsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9743,7 +10255,8 @@
         "saint": "St Cyril, Archbishop of Jerusalem; Rep. St Nikolaj of Zhicha",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9762,7 +10275,8 @@
         "saint": "Martyrs Chrysanthius and Daria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9781,7 +10295,8 @@
         "saint": "Holy Fathers Slain at St Sabbas Monastery",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9800,7 +10315,8 @@
         "saint": "St James the Confessor of Catania",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9819,7 +10335,8 @@
         "saint": "Hieromartyr Basil of Ancyra",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9838,7 +10355,8 @@
         "saint": "Martyr Nikon and 199 Disciples",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9857,7 +10375,8 @@
         "saint": "Ven. Zachariah the Recluse",
         "fast": 0,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9876,7 +10395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 4,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9895,7 +10415,8 @@
         "saint": "Leavetaking of Annunciation; Synaxis of Archangel Gabriel",
         "fast": 0,
         "fast_exception": 3,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9914,7 +10435,8 @@
         "saint": "Martyr Matrona of Thessalonica",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9933,7 +10455,8 @@
         "saint": "Ven. Hilarion the New",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9952,7 +10475,8 @@
         "saint": "Hieromartyr Mark, Bishop of Anthusa",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9971,7 +10495,8 @@
         "saint": "Ven. John Climacus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -9990,7 +10515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10009,7 +10535,8 @@
         "saint": "Ven. Euthymius of Suzdal",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10028,7 +10555,8 @@
         "saint": "Ven. Titus the Wonderworker",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10047,7 +10575,8 @@
         "saint": "Ven. Nicetas the Confessor",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10066,7 +10595,8 @@
         "saint": "Ven. Joseph the Hymnographer",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10085,7 +10615,8 @@
         "saint": "Martyrs Agathopedes, Theodulus and Their Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10104,7 +10635,8 @@
         "saint": "St Methodius, Enilightener of the Slavs",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10123,7 +10655,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10142,7 +10675,8 @@
         "saint": "Apostles of the Seventy Herodion, Agabus, Asyncritus, Rufuf, Phlegon, Hermes",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10161,7 +10695,8 @@
         "saint": "Martyr Eupsychius of Caesarea in Cappadocia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10180,7 +10715,8 @@
         "saint": "Martyrs Terence, Pompeius, Africanus and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10199,7 +10735,8 @@
         "saint": "Hieromartyr Antipas, Bishop of Pergamum",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10218,7 +10755,8 @@
         "saint": "St Basil the Confessor, Bishop of Parium",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10237,7 +10775,8 @@
         "saint": "Hieromartyr Artemon, Presbyter of Laodicea",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10256,7 +10795,8 @@
         "saint": "St Martin the Confessor, Pope of Rome",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10275,7 +10815,8 @@
         "saint": "Apostles of the Seventy Aristarchus, Pudens and Trophimus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10294,7 +10835,8 @@
         "saint": "Virgin Martyrs Agape, Irene and Chionia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10313,7 +10855,8 @@
         "saint": "Ven. Zosima of Solovetsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10332,7 +10875,8 @@
         "saint": "Ven. John, Disciple of Gregory Decapolites",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10351,7 +10895,8 @@
         "saint": "Ven. John of Ancient Caves in Palestine",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10370,7 +10915,8 @@
         "saint": "Ven. Theodore Trichinas",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10389,7 +10935,8 @@
         "saint": "Hieromartyr Januarius and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10408,7 +10955,8 @@
         "saint": "St Theodore the Sykeote",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10427,7 +10975,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10446,7 +10995,8 @@
         "saint": "Martyr Sabbas Stratelates",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10465,7 +11015,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10484,7 +11035,8 @@
         "saint": "St Stephen, Bishop of Perm",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10503,7 +11055,8 @@
         "saint": "Hieromartyr Simeon, Kinsman of the Lord",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10522,7 +11075,8 @@
         "saint": "Apostles Jason and Sosipater of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10541,7 +11095,8 @@
         "saint": "Nine Martyrs at Cyzicus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10560,7 +11115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10579,7 +11135,8 @@
         "saint": "Prophet Jeremiah; Ven. Paphnutius of Borovsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10598,7 +11155,8 @@
         "saint": "St Athanasius the Great, Patr. of Alexandria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10617,7 +11175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10636,7 +11195,8 @@
         "saint": "Virgin Martyr Pelagia of Tarsus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10655,7 +11215,8 @@
         "saint": "Great Martyr Irene of Thessalonica",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10674,7 +11235,8 @@
         "saint": "Righteous Job the Longsuffering",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10693,7 +11255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -10712,7 +11275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10731,7 +11295,8 @@
         "saint": "Prophet Isaiah; Trans. Rel. St Nicholas the Wonderworker",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10750,7 +11315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10769,7 +11335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10788,7 +11355,8 @@
         "saint": "St Epiphanius, Bishop of Cyprus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10807,7 +11375,8 @@
         "saint": "Virgin Martyr Glyceria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10826,7 +11395,8 @@
         "saint": "Ven. Isidore, Fool-for-Christ of Rostov",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10845,7 +11415,8 @@
         "saint": "Ven. Pachomius the Great; Slain Crown Prince Dimitry of Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10864,7 +11435,8 @@
         "saint": "Ven. Theodore the Sanctified; Trans. Rel. Ephraim, Abbot of Perekop",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10883,7 +11455,8 @@
         "saint": "Apostle Andronicus of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10902,7 +11475,8 @@
         "saint": "Martyr Theodotus of Ancyra",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10921,7 +11495,8 @@
         "saint": "Hieromartyr Patrick, Bishop of Prussa",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10940,7 +11515,8 @@
         "saint": "Unc. Rel. St Aleksy, Metropolitan of Kiev",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10959,7 +11535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10978,7 +11555,8 @@
         "saint": "Martyr Basiliscus, Bishop of Comana",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -10997,7 +11575,8 @@
         "saint": "St Michael the Confessor; Unc. Rel. St Leonty, Bishop of Rostov",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11016,7 +11595,8 @@
         "saint": "Ven. Simeon the Stylite; Ven. Nikita the Stylite",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11035,7 +11615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11054,7 +11635,8 @@
         "saint": "Apostles Carpus and Alphaeus of the Seventy; Greatmartyr George the New at Sofia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11073,7 +11655,8 @@
         "saint": "Hieromartyr Therapon; Trans. Rel. Ven. Nilus of Stolbensk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11092,7 +11675,8 @@
         "saint": "St Nicetas, Bishop of Chalcedon; St Ignaty, Bishop of Rostov",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11111,7 +11695,8 @@
         "saint": "Virgin Martyr Theodosia of Tyre; Rep. Bl. John of Ustiug",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11130,7 +11715,8 @@
         "saint": "Ven. Isaac, Founder of Dalmatian Monastery",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11149,7 +11735,8 @@
         "saint": "Apostle Hermes of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11168,7 +11755,8 @@
         "saint": "Martyr Justin the Philosopher",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11187,7 +11775,8 @@
         "saint": "St Nicephorus the Confessor",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11206,7 +11795,8 @@
         "saint": "Martyr Lucillian and His Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11225,7 +11815,8 @@
         "saint": "St Metrophanes, First Patriarch of Constantinople",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11244,7 +11835,8 @@
         "saint": "Hieromartyr Dorotheus, Bishop of Tyre",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11263,7 +11855,8 @@
         "saint": "Ven. Bessarion the Wonderworker of Egypt",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11282,7 +11875,8 @@
         "saint": "Hieromartyr Theodotus, Bishop of Ancyra",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11301,7 +11895,8 @@
         "saint": "Trans. Rel. Theodore Stratelates",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11320,7 +11915,8 @@
         "saint": "St Cyril of Alexandria; Ven. Kirill of Belozersk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11339,7 +11935,8 @@
         "saint": "Hieromartyr Timothy, Bishop of Prussa; St John Maximovitch, Metropolitan of Tobolsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11358,7 +11955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11377,7 +11975,8 @@
         "saint": "Ven. Onuphrius the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11396,7 +11995,8 @@
         "saint": "Martyr Aquilina of Byblos",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11415,7 +12015,8 @@
         "saint": "Prophet Elisha",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11434,7 +12035,8 @@
         "saint": "Prophet Amos; St Jonah, Metr. of Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11453,7 +12055,8 @@
         "saint": "St Tycho, Bishop of Amathus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11472,7 +12075,8 @@
         "saint": "Martyrs Manuel, Sabel, Ismael of Persia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11491,7 +12095,8 @@
         "saint": "Martyr Leontius and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11510,7 +12115,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11529,7 +12135,8 @@
         "saint": "Hieromartyr Methodius, Bishop of Patar",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11548,7 +12155,8 @@
         "saint": "Martyr Julian of Tarsus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11567,7 +12175,8 @@
         "saint": "Hieromartyr Eusebius, Bishop of Samosata",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11586,7 +12195,8 @@
         "saint": "Martyr Agrippina of Rome",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11605,7 +12215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11624,7 +12235,8 @@
         "saint": "Virgin Martyr Febronia; Peter and Fevronia of Murom",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11643,7 +12255,8 @@
         "saint": "Ven. David of Thessalonica; Tikhvin Icon",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11662,7 +12275,8 @@
         "saint": "Ven. Sampson the Hospitable of Constantinople",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11681,7 +12295,8 @@
         "saint": "Trans. Rel. Ven. Cyrus and John",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11700,7 +12315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11719,7 +12335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11738,7 +12355,8 @@
         "saint": "Unmercenary Wonderworkers Cosmas and Damian",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11757,7 +12375,8 @@
         "saint": "Robe of the Theotokos at Blachernae",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11776,7 +12395,8 @@
         "saint": "Martyr Hyacinth; Trans. Rel. Philip, Metr. Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11795,7 +12415,8 @@
         "saint": "St Andrew of Crete",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11814,7 +12435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -11833,7 +12455,8 @@
         "saint": "Ven. Sisoes the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11852,7 +12475,8 @@
         "saint": "Ven. Thomas of Mt Maleon",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11871,7 +12495,8 @@
         "saint": "Greatmartyr Procopius of Caesarea",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11890,7 +12515,8 @@
         "saint": "Hieromartyr Pancratius, Bishop of Taormina",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11909,7 +12535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11928,7 +12555,8 @@
         "saint": "Greatmartyr Euphemia; Blessed Princess Olga",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11947,7 +12575,8 @@
         "saint": "Martyrs Proclus and Hilary of Ancyra",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11966,7 +12595,8 @@
         "saint": "Synaxis of Archangel Gabriel",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -11985,7 +12615,8 @@
         "saint": "Apostle Aquila of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12004,7 +12635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12023,7 +12655,8 @@
         "saint": "Hieromartyr Athenogenes, Bishop of Heracleopolis",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12042,7 +12675,8 @@
         "saint": "Greatmartyr Marina",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12061,7 +12695,8 @@
         "saint": "Martyr Emilian of Silistria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12080,7 +12715,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12099,7 +12735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12118,7 +12755,8 @@
         "saint": "Prophet Ezekiel",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12137,7 +12775,8 @@
         "saint": "Holy Myrrhbearer Mary Magdalene, Equal-to-the-Apostles",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12156,7 +12795,8 @@
         "saint": "Martys Trophimus, Theophilus and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12175,7 +12815,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12194,7 +12835,8 @@
         "saint": "Dormition Righteous Anna, Mother of Theotokos",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12213,7 +12855,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12232,7 +12875,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12251,7 +12895,8 @@
         "saint": "Apostles of 70 Prochorus, Nicanor, Timon, Parmenas",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12270,7 +12915,8 @@
         "saint": "Martyr Callinicus of Gangra",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12289,7 +12935,8 @@
         "saint": "Apostles Silas and Silvanus of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12308,7 +12955,8 @@
         "saint": "Righteous Joseph of Arimathea",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12327,7 +12975,8 @@
         "saint": "Begin Dormition Fast",
         "fast": 4,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12346,7 +12995,8 @@
         "saint": "Trans. Rel. Protomartyr Stephen; Bl. Vasily, Fool-for-Christ",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12365,7 +13015,8 @@
         "saint": "Ven. Isaac, Dalmatius, Faustus; Ven. Anthony the Roman of Novgorod",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12384,7 +13035,8 @@
         "saint": "Seven Sleepers of Ephesus",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12403,7 +13055,8 @@
         "saint": "Martyr Eusignius of Antioch",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12422,7 +13075,8 @@
         "saint": "",
         "fast": 4,
         "fast_exception": 4,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12441,7 +13095,8 @@
         "saint": "Martyr Dometius of Persia",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12460,7 +13115,8 @@
         "saint": "St Emilian the Confessor",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12479,7 +13135,8 @@
         "saint": "",
         "fast": 4,
         "fast_exception": 4,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -12498,7 +13155,8 @@
         "saint": "Holy Martyr and Archdeacon Lawrence of Rome",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12517,7 +13175,8 @@
         "saint": "Holy Martyr and Archdeacon Euplus of Catania",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12536,7 +13195,8 @@
         "saint": "Martyrs Anicletus and Photius of Nicomedia",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12555,7 +13215,8 @@
         "saint": "",
         "fast": 4,
         "fast_exception": 4,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12574,7 +13235,8 @@
         "saint": "Prophet Micah",
         "fast": 4,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12593,7 +13255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12612,7 +13275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12631,7 +13295,8 @@
         "saint": "Martyr Myron, Presbyter of Cyzicus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12650,7 +13315,8 @@
         "saint": "Martyrs Florus and Laurus of Illyria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12669,7 +13335,8 @@
         "saint": "Martyr Andrew Stratelates and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12688,7 +13355,8 @@
         "saint": "Prophet Samuel",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12707,7 +13375,8 @@
         "saint": "Apostle Thaddeus of the Seventy; Avram, Archimandrite of Smolensk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12726,7 +13395,8 @@
         "saint": "Martyr Agathonicus and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12745,7 +13415,8 @@
         "saint": "Martyr Lupus, Slave of St Demetrius",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12764,7 +13435,8 @@
         "saint": "Hieromartyr Eutichius; Trans. Rel. Peter, Metr. Kiev",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12783,7 +13455,8 @@
         "saint": "Relics of Apostle Bartholomew",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12802,7 +13475,8 @@
         "saint": "Martyrs Adrian and Natalia; Vladimir Icon",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12821,7 +13495,8 @@
         "saint": "Ven. Poemen the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12840,7 +13515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12859,7 +13535,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 8,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12878,7 +13555,8 @@
         "saint": "Ss Alexander, John, Paul, Pats. Constantinople; Trans. Rel. St Alexander Nevsky",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12897,7 +13575,8 @@
         "saint": "Sash of the Theotokos",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12916,7 +13595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12935,7 +13615,8 @@
         "saint": "Ven. Anthony and Theodosius of Kiev Caves",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12954,7 +13635,8 @@
         "saint": "Hieromartyr Anthimus, Bishop of Nicomedia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12973,7 +13655,8 @@
         "saint": "Hieromartyr Babylas, Bishop of Antioch",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -12992,7 +13675,8 @@
         "saint": "Prophet Zachariah",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13011,7 +13695,8 @@
         "saint": "Miracle of Archangel Michael at Colossae",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13030,7 +13715,8 @@
         "saint": "Martyr Sozon of Cilicia; St John, Archbishop of Novgorod",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13049,7 +13735,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13068,7 +13755,8 @@
         "saint": "Righteous Joachim and Anna; Ven. Joseph of Volotsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13087,7 +13775,8 @@
         "saint": "Martyrs Menodora, Metrodora, Nymphodora",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13106,7 +13795,8 @@
         "saint": "Ven. Theodora of Alexandria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13125,7 +13815,8 @@
         "saint": "Hieromartyr Autonomus, Bishop in Italy",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13144,7 +13835,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13163,7 +13855,8 @@
         "saint": "",
         "fast": 1,
         "fast_exception": 8,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13182,7 +13875,8 @@
         "saint": "Greatmartyr Nicetas the Goth",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13201,7 +13895,8 @@
         "saint": "Greatmartyr Euphemia the All-Praised",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13220,7 +13915,8 @@
         "saint": "Martyr Sophia and Daughters Faith, Hope, and Love",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13239,7 +13935,8 @@
         "saint": "St Eumenes, Bishop of Gortyna",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13258,7 +13955,8 @@
         "saint": "Martyrs Trophimus, Sabbatius, Dorymedon; Ss David and Constantine of Yaroslavl",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13277,7 +13975,8 @@
         "saint": "Greatmartyr Eustathius and Martyr Theopistes; Martyrs Michael and Theodore of Chernigov",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13296,7 +13995,8 @@
         "saint": "Apostle Quadratus of the Seventy; Unc. Rel. St Dimitry, Metr. Rostov",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13315,7 +14015,8 @@
         "saint": "Hieromartyr Phocas, Bishop of Sinope",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13334,7 +14035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13353,7 +14055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13372,7 +14075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13391,7 +14095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13410,7 +14115,8 @@
         "saint": "Martyr Callistratus and Companions; Ven. Sabbatius of Solovetsk",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13429,7 +14135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13448,7 +14155,8 @@
         "saint": "Ven. Cyriacos, Hermit of Palestine",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13467,7 +14175,8 @@
         "saint": "Hieromartyr Gregory of Armenia; Ven. Gregory of Vologda",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13486,7 +14195,8 @@
         "saint": "Holy Apostle Ananias of the Seventy",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -13505,7 +14215,8 @@
         "saint": "Hieromartyr Cyprian, Martyrs Justina and Theoctistus; Bl. Andrew, Fool-for-Christ",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13524,7 +14235,8 @@
         "saint": "Hieromartyr Dionysius the Areopagite",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13543,7 +14255,8 @@
         "saint": "Hieromartyr Hierotheus, Bishop of Athens; Unc. Rel. Gurias of Kazan and Varsanuphy of Tver",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13562,7 +14275,8 @@
         "saint": "Ss Peter, Aleksy, Jonah, Philip, Germogen, Metrs. Moscow",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13581,7 +14295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13600,7 +14315,8 @@
         "saint": "Martyrs Sergius and Bacchus in Syria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13619,7 +14335,8 @@
         "saint": "Ven. Pelagia the Penitent",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13638,7 +14355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13657,7 +14375,8 @@
         "saint": "Martyrs Eulampius and Eulampia at Nicomedia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13676,7 +14395,8 @@
         "saint": "Apostle Philip of the Seventy",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13695,7 +14415,8 @@
         "saint": "Martyrs Probus, Tarachus and Andronicus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13714,7 +14435,8 @@
         "saint": "Martyr Carpus and Companions at Pergamus",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13733,7 +14455,8 @@
         "saint": "Ven. Parasceva of Serbia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13752,7 +14475,8 @@
         "saint": "Ven. Euthymius the New of Thessalonica",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13771,7 +14495,8 @@
         "saint": "Martyr Longinus the Centurion",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13790,7 +14515,8 @@
         "saint": "Prophet Hosea",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13809,7 +14535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13828,7 +14555,8 @@
         "saint": "Prophet Joel; Relics Ven. John of Rila",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13847,7 +14575,8 @@
         "saint": "Greatmartyr Artemius at Antioch",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13866,7 +14595,8 @@
         "saint": "Ven. Hilarion the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13885,7 +14615,8 @@
         "saint": "St Abercius, Equal-to-the-Apostles",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13904,7 +14635,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13923,7 +14655,8 @@
         "saint": "Martyr Arethas and Companions",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13942,7 +14675,8 @@
         "saint": "Martyrs Marcian and Martyrius the Notaries",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13961,7 +14695,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13980,7 +14715,8 @@
         "saint": "Martyr Nestor of Thessalonica",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -13999,7 +14735,8 @@
         "saint": "Martyrs Terence, Neonila and Children; St Arsenius of Serbia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14018,7 +14755,8 @@
         "saint": "Martyr Anastasia the Roman",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14037,7 +14775,8 @@
         "saint": "Hieromartyr Zenobius and His Sister Zenobia",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14056,7 +14795,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -14075,7 +14815,8 @@
         "saint": "Unmercenaries and Wonderworkers Cosmas and Damian",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14094,7 +14835,8 @@
         "saint": "Martyr Acindynus of Persia and Others",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14113,7 +14855,8 @@
         "saint": "Martyrs Acepsimus, Joseph, Aithalas",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14132,7 +14875,8 @@
         "saint": "Ven. Joannicus the Great",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14151,7 +14895,8 @@
         "saint": "Martyrs Galacteon and Wife Epistemis; Repose St Jonah of Novgorod",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14170,7 +14915,8 @@
         "saint": "St Paul the Confessor of Constantinople",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14189,7 +14935,8 @@
         "saint": "Holy 33 Martyrs of Melitene",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14208,7 +14955,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14227,7 +14975,8 @@
         "saint": "Martyrs Onesiphorus and Porphyrius",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14246,7 +14995,8 @@
         "saint": "Apostles of the 70 Erastus, Olympas, Herodion, Sosipater, Quartus, Tertius",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14265,7 +15015,8 @@
         "saint": "Martyrs Menas, Victor and Vincent",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14284,7 +15035,8 @@
         "saint": "St John the Merciful, Patriarch of Alexandria",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14303,7 +15055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14322,7 +15075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14341,7 +15095,8 @@
         "saint": "Begin Nativity Fast",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14360,7 +15115,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14379,7 +15135,8 @@
         "saint": "St Gregory the Wonderworker; Ven. Nikon of Radonezh",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14398,7 +15155,8 @@
         "saint": "Martyrs Platon and Roman",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14417,7 +15175,8 @@
         "saint": "Prophet Obadiah; Ven. Barlaam and Joasaph",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14436,7 +15195,8 @@
         "saint": "Ven. Gregory Decapolites",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14455,7 +15215,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14474,7 +15235,8 @@
         "saint": "Apostles of the 70 Philemon, Archippus, Apphia; St Michael, Prince of Tver",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14493,7 +15255,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
@@ -14512,7 +15275,8 @@
         "saint": "Greatmartyr Catherine of Alexandria",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14531,7 +15295,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 1,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14550,7 +15315,8 @@
         "saint": "Ven. Alypius the Stylite",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14569,7 +15335,8 @@
         "saint": "Greatmartyr Jacob of Persia",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14588,7 +15355,8 @@
         "saint": "Monk Martyr and Confessor Stephen the New",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14607,7 +15375,8 @@
         "saint": "Martyr Paramon and Companions",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14626,7 +15395,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14645,7 +15415,8 @@
         "saint": "Prophet Nahum",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14664,7 +15435,8 @@
         "saint": "Prophet Habbakuk",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14683,7 +15455,8 @@
         "saint": "Prophet Zephaniah; Ven. Savva of Zvenigorod",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14702,7 +15475,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14721,7 +15495,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14740,7 +15515,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14759,7 +15535,8 @@
         "saint": "St Ambrose, Bishop of Milan; Ven. Nilus of Stolobensk",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14778,7 +15555,8 @@
         "saint": "Ven. Patapius of Thebes",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14797,7 +15575,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14816,7 +15595,8 @@
         "saint": "Martyrs Menas, Hermogenes, Eugraphus",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14835,7 +15615,8 @@
         "saint": "Ven. Daniel the Stylite",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14854,7 +15635,8 @@
         "saint": "St Spyridon the Wonderworker",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14873,7 +15655,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 2,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14892,7 +15675,8 @@
         "saint": "Martyrs Thyrsus, Leucis, Callinicus",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14911,7 +15695,8 @@
         "saint": "Hieromartyr Eleutherius of Illyria; St Stephen of Surozh",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14930,7 +15715,8 @@
         "saint": "Prophet Haggai",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14949,7 +15735,8 @@
         "saint": "Holy Prophet Daniel and Three Holy Youths",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14968,7 +15755,8 @@
         "saint": "Martyr Sebastian and Companions at Rome",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -14987,7 +15775,8 @@
         "saint": "Martyr Boniface and Righteous Aglaida",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15006,7 +15795,8 @@
         "saint": "Forefeast of Nativity; Hieromartyr Ignatius the Godbearer",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15025,7 +15815,8 @@
         "saint": "Virgin Martyr Juliana and Companions",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15044,7 +15835,8 @@
         "saint": "Greatmartyr Anastasia and Companions",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15063,7 +15855,8 @@
         "saint": "Holy Ten Martyrs of Crete",
         "fast": 5,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15082,7 +15875,8 @@
         "saint": "",
         "fast": 5,
         "fast_exception": 9,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15101,7 +15895,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15120,7 +15915,8 @@
         "saint": "Hieromartyr Euthymius of Sardis",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15139,7 +15935,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15158,7 +15955,8 @@
         "saint": "20,000 Martyrs of Nicomedia",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15177,7 +15975,8 @@
         "saint": "Holy Innocents Slain by Herod",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15196,7 +15995,8 @@
         "saint": "Virgin Martyr Anysia at Thessalonica",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15215,7 +16015,8 @@
         "saint": "Ven. Melania the Younger of Rome",
         "fast": 0,
         "fast_exception": 11,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15234,7 +16035,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15253,7 +16055,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15272,7 +16075,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15291,7 +16095,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15310,7 +16115,8 @@
         "saint": "Saturday before Elevation is read on this day",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15329,7 +16135,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15348,7 +16155,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15367,7 +16175,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15386,7 +16195,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15405,7 +16215,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15424,7 +16235,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15443,7 +16255,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15462,7 +16275,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15481,7 +16295,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15500,7 +16315,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15519,7 +16335,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15538,7 +16355,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15557,7 +16375,8 @@
         "saint": "Saturday after Nativity is read on this day",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15576,7 +16395,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15595,7 +16415,8 @@
         "saint": "Sunday after Nativity is read on this day",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15614,7 +16435,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15633,7 +16455,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15652,7 +16475,8 @@
         "saint": "Sunday before Theophany is read on this day",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15671,7 +16495,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15690,7 +16515,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15709,7 +16535,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15728,7 +16555,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15747,7 +16575,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15766,7 +16595,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15785,7 +16615,8 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
     }
 },
 {
@@ -15804,7 +16635,148 @@
         "saint": "",
         "fast": 0,
         "fast_exception": 0,
-        "flag": 0
+        "flag": 0,
+        "tradition": "common"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 833,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 1,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "Holy Apostle Ananias of the Seventy",
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 834,
+    "fields": {
+        "pdist": 999,
+        "month": 2,
+        "day": 5,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 835,
+    "fields": {
+        "pdist": 999,
+        "month": 5,
+        "day": 7,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 836,
+    "fields": {
+        "pdist": 999,
+        "month": 7,
+        "day": 5,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 837,
+    "fields": {
+        "pdist": 999,
+        "month": 8,
+        "day": 9,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 4,
+        "fast_exception": 4,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 838,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 31,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 839,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 23,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saint": "",
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
     }
 },
 {

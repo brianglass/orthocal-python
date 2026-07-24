@@ -26,6 +26,11 @@ class Day(models.Model):
     fast = models.SmallIntegerField()
     fast_exception = models.SmallIntegerField()
     flag = models.SmallIntegerField()
+    tradition = models.CharField(max_length=16, choices=[
+        ('common', 'Common'),  # shared by all traditions (the default)
+        ('slavic', 'Slavic-specific'),
+        ('greek', 'Greek-specific'),
+    ], default='common')
 
     def __str__(self):
         return self.full_title

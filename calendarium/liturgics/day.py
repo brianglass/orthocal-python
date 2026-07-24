@@ -47,6 +47,29 @@ def _prefer_tradition(rows, tradition):
     return kept
 
 
+def _prefer_tradition_days(rows, tradition):
+    """Like _prefer_tradition, but for Day rows, which have no
+    source/ordering/desc -- the slot is just (pdist, month, day)."""
+
+    kept = []
+    slot_index = {}
+
+    for row in rows:
+        if row.tradition not in (tradition, 'common'):
+            continue
+
+        slot = (row.pdist, row.month, row.day)
+
+        if slot in slot_index:
+            if row.tradition != 'common':
+                kept[slot_index[slot]] = row
+        else:
+            slot_index[slot] = len(kept)
+            kept.append(row)
+
+    return kept
+
+
 class Day:
     """Representation of a liturgical day.
 
@@ -119,9 +142,11 @@ class Day:
 
         # Select items from the Festal cycle
         q |= Q(month=self.month, day=self.day)
+        q &= Q(tradition__in=(self.tradition, 'common'))
 
         # Fetch the items from the database
         days = [d async for d in models.Day.objects.filter(q)]
+        days = _prefer_tradition_days(days, self.tradition)
 
         # Bake the mutliple "days" down into a single composite day.
 

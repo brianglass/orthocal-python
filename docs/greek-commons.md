@@ -332,21 +332,6 @@ Of the 4:
   Needs either more years (this is Pascha-relative, so must be matched by
   occasion/title across years, not calendar date) or the physical book.
 
-## Remaining work
-
-- **Dates in the movable Paschal season** (May-June dates that fall between
-  Pascha and Pentecost in most years — May 7, May 30, Jun 2, Jun 14 were
-  checked and set aside): a fixed month/day comparison doesn't mean much
-  here since the Paschal cycle's calendar position varies by ~5 weeks
-  year to year. Not part of this project — already governed by the
-  existing pdist-anchored Paschal cycle.
-- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
-  A real gap in the tradition-axis architecture, found via the Oct 1
-  Protection bug — worth a dedicated look at how many other fixed dates
-  are affected the same way before deciding on a fix.
-- **5th Saturday of Lent (Akathist Saturday)**: see "pass 5" above — needs
-  more years of data, matched by occasion since it's Pascha-relative.
-
 ## Implemented, pass 6 (floating occasions)
 
 The three floating occasions flagged throughout this doc, resolved:
@@ -381,6 +366,58 @@ The three floating occasions flagged throughout this doc, resolved:
 matching the existing `common` row's exact `ordering` value, not the
 `821`/`921` convention — checked and got right this time before committing.
 
+## Implemented, pass 7 (Day.tradition axis)
+
+Added a `tradition` field to the `Day` model, mirroring `Reading`'s
+pattern exactly: `choices=('common', 'slavic', 'greek')`, default
+`'common'`, migration retags all 832 existing rows `'common'`. Added
+`_prefer_tradition_days` (like `_prefer_tradition` but slotted on
+`(pdist, month, day)` since `Day` has no source/ordering/desc) and wired
+it into `Day._collect_commemorations`'s query, exactly like `Reading`
+already does.
+
+**Scope-finding pass**: compared every `Day` row with a non-empty
+`feast_name` (155 rows) against the full 2026 antiochian.org harvest —
+not just `feastDayTitle` (too noisy: many false positives from a saint
+simply not being *primary* that specific year, e.g. Sunday collisions),
+but the full `feastDayDescription` text, to properly distinguish "Greek
+doesn't observe this at all" from "Greek observes it, just didn't
+headline it in 2026." That check confirmed your prediction — found 7
+genuine cases (not just the 1 that started this):
+
+| Date | Feast (Slavic-only) | Confirmed via |
+|---|---|---|
+| Oct 1 | Protection of the Theotokos | The original bug (Greek: Oct 28 instead) |
+| Feb 5 | Repose of St. Theodosius of Chernigov | Absent from full description |
+| May 7 | St. Alexis Toth | Absent from full description |
+| Jul 5 | Uncovering of Relics, Sergius of Radonezh & Athanasius of Athos | Absent from full description |
+| Aug 9 | Ven. Herman of Alaska (this date only — his Dec 13 commemoration *is* shared) | Absent from full description |
+| Oct 31 | Hieromartyr John Kochurov | Absent from full description |
+| Nov 23 | Right-Believing Great Prince Alexander Nevsky | Absent from full description |
+
+All 7: retagged the existing row `'slavic'`, added a `'greek'` counterpart
+with `feast_name=''`/`feast_level=0` (so Greek's fasting-exception logic,
+which keys off `feast_level`, no longer gets an unearned relief from a
+feast Greek doesn't observe) and an empty `saint` field (except Oct 1,
+which keeps Ananias — see below). `fast`/`fast_exception` copied as-is
+from the Slavic row, since those reflect the calendar season, not the
+specific saint.
+
+**Note on Oct 1 specifically**: the `saint` field already had "Holy
+Apostle Ananias of the Seventy" added directly to the shared row earlier
+this session, before this `tradition` axis existed. Kept him on *both* the
+new `slavic` and `greek` rows — he's a genuine shared commemoration; only
+`feast_name` (Protection) needed the split.
+
+**Found but not fixed — a second, smaller leak**: `_add_supplemental_commemorations`
+(the separate `Commemoration`/abbamoses.com stories table) is *also* not
+tradition-tagged, and it fills gaps opportunistically — once Greek's
+`feast_name` for Oct 1 went empty, `_add_supplemental_commemorations`
+started pulling in the "Protection" story from that table as a
+supplemental saint entry, since it's no longer redundant with an
+existing title. Same issue for Alexis Toth on May 7. Not fixed this pass;
+same category of problem as `Day.feast_name`, on a different table.
+
 ## Remaining work
 
 - **Dates in the movable Paschal season** (May-June dates that fall between
@@ -389,12 +426,18 @@ matching the existing `common` row's exact `ordering` value, not the
   here since the Paschal cycle's calendar position varies by ~5 weeks
   year to year. Not part of this project — already governed by the
   existing pdist-anchored Paschal cycle.
-- **`Day.feast_name`/`feast_level` tradition-tagging**: see "pass 3" above.
-  A real gap in the tradition-axis architecture, found via the Oct 1
-  Protection bug — worth a dedicated look at how many other fixed dates
-  are affected the same way before deciding on a fix.
-- **5th Saturday of Lent (Akathist Saturday)**: see "pass 5" above — needs
-  more years of data, matched by occasion since it's Pascha-relative.
-- **Holy Thursday's compound Gospel reading**: see "pass 5" above — minor
-  verse-boundary variance in an already-massive compound citation, likely
-  not worth chasing further.
+- **The ~90 other `feast_name` dates never checked this pass**: this
+  scope-finding pass only fully verified 7 of the ~90 non-Pascha-relative
+  `feast_name` dates found. The rest are unclassified — some are
+  certainly false positives (same feast, different name across
+  traditions, e.g. "Holy Apostle Jude" / "Thaddeus" on Jun 19, or "Holy
+  Apostle John the Theologian" / "Synaxis of the Holy Manna" on May 8 —
+  both look like naming variants for the same occasion, not real gaps),
+  but a full pass needs the same "check the full description, not just
+  the title" method used for the 7 above before trusting any conclusion.
+- **`Commemoration`/abbamoses.com tradition-tagging**: see "pass 7" above
+  — same category of gap as `Day.feast_name`, not yet fixed.
+- **5th Saturday of Lent (Akathist Saturday)**: still needs more years of
+  data (Pascha-relative, matched by occasion not calendar date).
+- **Holy Thursday's compound Gospel reading**: minor verse-boundary
+  variance, likely not worth chasing further.

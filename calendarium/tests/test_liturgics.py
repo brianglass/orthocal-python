@@ -177,6 +177,33 @@ class TestTraditionOverlay(TestCase):
             await common.adelete()
             await greek_override.adelete()
 
+    async def test_day_feast_name_is_tradition_specific(self):
+        """Day.feast_name/feast_level (unlike Reading) had no tradition axis
+        at all until this was found via a real bug: Greek was showing
+        Slavic's Oct 1 Protection-of-the-Theotokos feast/fasting rank even
+        after the Reading-level content was fixed, since Greek observes
+        Protection on Oct 28 instead. Confirmed via antiochian.org's full
+        day description (not just the primary title, to rule out
+        Sunday-collision false positives) that Slavic-specific fixed feasts
+        like this are genuinely absent from Greek's Menaion, not just
+        under a different label."""
+
+        slavic = liturgics.Day(2026, 10, 1, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 10, 1, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        self.assertIn('Protection (Pokrov) of the Most-Holy Theotokos', slavic.feasts)
+        self.assertEqual(slavic.feast_level, 6)
+
+        self.assertNotIn('Protection (Pokrov) of the Most-Holy Theotokos', greek.feasts)
+        self.assertEqual(greek.feast_level, 0)
+
+        # Ananias is a genuine Greek commemoration this project's OCA-derived
+        # data was simply missing -- both traditions should show him.
+        self.assertIn('Holy Apostle Ananias of the Seventy', slavic.saints)
+        self.assertIn('Holy Apostle Ananias of the Seventy', greek.saints)
+
 
 class TestGreekLukanNumbering(TestCase):
     """GreekYear.lukan_sunday_numbers and theophany_interpolation, checked
