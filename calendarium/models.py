@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from bible.models import Verse
-from .datetools import get_day_name
 
 # pdist is the distance between the given day and Pascha for the current calendar year
 # pdist values >= 1000 are for floats and are programmatically mapped
@@ -78,10 +77,6 @@ class Reading(models.Model):
     async def aget_pericope(self):
         # Using self.pericope only works synchronously.
         return await Pericope.objects.aget(id=self.pericope_id)
-
-    @cached_property
-    def day_name(self):
-        return get_day_name(self.pdist)
 
 
 class Pericope(models.Model):
