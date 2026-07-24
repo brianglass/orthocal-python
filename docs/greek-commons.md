@@ -509,3 +509,36 @@ confirmed 2/2 years (2019, 2026):
 The other 3 segments of the compound (`John 13:3-17`, `Matt 26:21-39`,
 `Matt 26:40-27:2`) already matched exactly. Added a `greek`-tagged
 Pericope with the corrected boundaries and wired it in as an override.
+
+## Pass 11 (missing co-commemorated saints, distinct from the Reading-content gap)
+
+Discovered via a user-reported case: Oct 2's `Commemoration` table lists
+Hieromartyr Cyprian and Virgin-Martyr Justina but not Theophilus the
+Confessor, whom antiochian.org names in the same short `feastDayDescription`
+every one of the 6 years harvested for that date. This is a *different*
+category of gap than everything above: Oct 2's Epistle/Gospel already
+matched antiochian.org exactly (`1 Timothy 1:12-17` / `Luke 6:17-23`), so it
+was never flagged by the citation-comparison audit that produced the 113/77
+number at the top of this doc — Theophilus shares the day's existing
+readings, he's just missing from the displayed saint list entirely (not in
+`Day.saint`, not in `Commemoration`).
+
+Ran a systematic version of this check across all 366 days (script not
+committed, output is): compare every comma-separated name in antiochian.org's
+`feastDayDescription` against everything in `Day.saint`/`feast_name`/`title`
+and `Commemoration.title`/`alt_title`. Restricted to short-description days
+(<=4 segments) to exclude long full-menaion-style listings (e.g. Jan 1's 9
+names) that were never meant to be individually surfaced. Result: **78 dates
+flagged, 122 individual missing-name segments**, tallied by date in
+`data/greek_missing_commemorations.json` (with per-name multi-year
+confirmation counts — 60 already confirmed across >=2 harvested years, the
+rest have only 1 year harvested so far and need more before trusting them,
+per the single-year-is-not-reliable rule above). Two categories were
+detected and excluded from that count as already-understood, not new gaps:
+the Sunday-of-Luke/Matthew title-wording difference (see the "Day titles"
+discussion — deliberately left as-is), and movable-feast/forefeast/apodosis
+alt-naming (e.g. "Sunday of Orthodoxy" for what we title "First Sunday of
+Lent") which is presumed to be wording variance, not individually verified.
+
+Not yet incorporated — this pass is scoping only. `data/greek_missing_commemorations.json`
+is the artifact to work from if/when this gets picked up.
