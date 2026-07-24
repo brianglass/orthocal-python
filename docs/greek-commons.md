@@ -415,8 +415,33 @@ tradition-tagged, and it fills gaps opportunistically — once Greek's
 `feast_name` for Oct 1 went empty, `_add_supplemental_commemorations`
 started pulling in the "Protection" story from that table as a
 supplemental saint entry, since it's no longer redundant with an
-existing title. Same issue for Alexis Toth on May 7. Not fixed this pass;
-same category of problem as `Day.feast_name`, on a different table.
+existing title. Same issue for Alexis Toth on May 7. **Decision: leave
+this as-is, deliberately** — abbamoses.com is a Slavic-centric source and
+no Greek-centric equivalent exists to build a tradition split from.
+Revisit only if such a source turns up.
+
+## Implemented, pass 8 (full audit of the remaining ~90 dates)
+
+Checked all 83 remaining non-Pascha-relative `feast_name` dates against
+antiochian.org's full `feastDayDescription` (fuzzy word-match on
+significant name terms, not just an exact `feastDayTitle` check, to catch
+naming variants — e.g. the matcher initially needed to recognize
+"Symeon" vs. "Simeon" as the same saint). **Result: zero further gaps.**
+Only one flagged for a closer look, and it resolved to a false positive:
+
+- **Nov 25, "Leavetaking of the Entry"**: antiochian's primary title that
+  year is "Catherine the Great Martyr" (she outranks it), but the
+  description explicitly lists "Apodosis of the Presentation of the
+  Theotokos into the Temple" — `Apodosis` is simply the Greek term for
+  `Leavetaking`. Same occasion, both traditions observe it.
+
+In hindsight this makes sense: the remaining 83 are overwhelmingly the
+Twelve Great Feasts and major universal commemorations (Theophany,
+Annunciation, Transfiguration, Dormition, Nativity, Elevation, the
+Apostles) — never plausible candidates for a tradition split to begin
+with. The genuine gaps were exactly where expected: the 7
+American/Russian-specific saints already fixed in "pass 7". The
+`Day.feast_name`/`feast_level` audit is now complete.
 
 ## Remaining work
 
@@ -426,17 +451,12 @@ same category of problem as `Day.feast_name`, on a different table.
   here since the Paschal cycle's calendar position varies by ~5 weeks
   year to year. Not part of this project — already governed by the
   existing pdist-anchored Paschal cycle.
-- **The ~90 other `feast_name` dates never checked this pass**: this
-  scope-finding pass only fully verified 7 of the ~90 non-Pascha-relative
-  `feast_name` dates found. The rest are unclassified — some are
-  certainly false positives (same feast, different name across
-  traditions, e.g. "Holy Apostle Jude" / "Thaddeus" on Jun 19, or "Holy
-  Apostle John the Theologian" / "Synaxis of the Holy Manna" on May 8 —
-  both look like naming variants for the same occasion, not real gaps),
-  but a full pass needs the same "check the full description, not just
-  the title" method used for the 7 above before trusting any conclusion.
-- **`Commemoration`/abbamoses.com tradition-tagging**: see "pass 7" above
-  — same category of gap as `Day.feast_name`, not yet fixed.
+- **`Commemoration`/abbamoses.com tradition-tagging**: see "pass 7" above.
+  Same category of gap as `Day.feast_name`, but left as a deliberate,
+  accepted assumption rather than something to fix — abbamoses.com is a
+  Slavic-centric source and no Greek-centric equivalent is available, so
+  there's no data to build a tradition split from yet. Revisit only if
+  such a source turns up.
 - **5th Saturday of Lent (Akathist Saturday)**: still needs more years of
   data (Pascha-relative, matched by occasion not calendar date).
 - **Holy Thursday's compound Gospel reading**: minor verse-boundary
