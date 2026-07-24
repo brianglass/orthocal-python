@@ -443,6 +443,42 @@ with. The genuine gaps were exactly where expected: the 7
 American/Russian-specific saints already fixed in "pass 7". The
 `Day.feast_name`/`feast_level` audit is now complete.
 
+## Implemented, pass 9 (Akathist Saturday + a Reading-level leak from pass 7)
+
+**5th Saturday of Lent (Akathist Saturday)**: harvested all 8 available
+years (2019-2026). Rock solid — every single year shows `Heb 9:1-7` /
+`Luke 1:39-49,56`. The Epistle already matched our existing
+`'Theotokos'`-desc row exactly (shared, no change needed); only the
+Gospel needed a `greek` override (`Luke 10.38-42,11.27-28` → `Luke
+1.39-49,56`, reusing an existing Pericope).
+
+**A more significant leak found while double-checking the 7
+`Day`-tradition dates from pass 7, per the user's prompt to verify the
+Archimandrite Ephrem-sourced composite readings**: those 22
+`Composite`-backed Pericopes turned out to all be OT Vespers readings
+(not Gospel — a small misremember), and checking them surfaced something
+more important than the composites themselves. The Oct 1 `Day.feast_name`
+fix in pass 7 only addressed the feast title/fasting rank — it didn't
+touch the actual `Reading` rows. All 7 confirmed-Slavic-only dates still
+had their saint-specific Epistle/Gospel/Vespers/Matins-Gospel content
+tagged `'common'`, meaning **Greek was still displaying the wrong
+saint's actual scripture readings**, not just the wrong title. Retagged
+all 35 affected rows across the 7 dates to `'slavic'`. Confirmed Greek
+now correctly falls through to the ordinary continuous-cycle content
+instead (matching real antiochian.org data for these dates) rather than
+showing nothing — the month/day fixed-commons query and the pdist-based
+ordinary-cycle query are independent, so removing the wrong commons
+doesn't remove the correct fallback.
+
+This included the one genuine hit among the Ephrem composites: the
+`Composite 2` Vespers reading tagged `'Sergius'` for Jul 5 was tied to
+the same confirmed-absent "translation of relics" occasion and needed
+the same retag. The rest of the Ephrem composites are tied to dates
+already confirmed shared (Great Feasts, universal commemorations) via
+the pass-8 audit, consistent with the user's expectation that a
+Greek/Ecumenical-Patriarchate-aligned translator's work would already be
+fine for Greek without a separate tradition split.
+
 ## Remaining work
 
 - **Dates in the movable Paschal season** (May-June dates that fall between
@@ -457,7 +493,5 @@ American/Russian-specific saints already fixed in "pass 7". The
   Slavic-centric source and no Greek-centric equivalent is available, so
   there's no data to build a tradition split from yet. Revisit only if
   such a source turns up.
-- **5th Saturday of Lent (Akathist Saturday)**: still needs more years of
-  data (Pascha-relative, matched by occasion not calendar date).
 - **Holy Thursday's compound Gospel reading**: minor verse-boundary
   variance, likely not worth chasing further.
