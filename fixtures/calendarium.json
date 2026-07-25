@@ -15861,9 +15861,7 @@
         "feast_level": 2,
         "service": 0,
         "service_note": "",
-        "saints": [
-            "Greatmartyr Catherine of Alexandria"
-        ],
+        "saints": [],
         "fast": 5,
         "fast_exception": 0,
         "flag": 0,
@@ -17996,6 +17994,73 @@
         ],
         "fast": 5,
         "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 865,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 24,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Greatmartyr Catherine of Alexandria"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 866,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 24,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Clement, Pope of Rome",
+            "Peter, Archbishop of Alexandria"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 867,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 25,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Leavetaking of the Entry",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Greatmartyr Catherine of Alexandria"
+        ],
+        "fast": 5,
+        "fast_exception": 1,
         "flag": 0,
         "tradition": "greek"
     }
