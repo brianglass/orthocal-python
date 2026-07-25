@@ -9017,7 +9017,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Ven. Paul of Thebes and John Calabytes"
+            "Ven. Paul of Thebes and John Calabytes",
+            "Ven. Pansophius of Alexandria, the Martyr"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -9124,7 +9125,9 @@
         "feast_level": 5,
         "service": 0,
         "service_note": "",
-        "saints": [],
+        "saints": [
+            "Zacharias the New Martyr of Patra"
+        ],
         "fast": 0,
         "fast_exception": 2,
         "flag": 0,
@@ -9254,7 +9257,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Ven. Xenophon and Mary"
+            "Ven. Xenophon and Mary",
+            "St Simeon the Elder of Mount Sinai"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -9318,7 +9322,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Trans. Rel. Ignatius the Godbearer"
+            "Trans. Rel. Ignatius the Godbearer",
+            "St Laurence, Recluse of the Kiev Caves"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -9577,7 +9582,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Haralambos"
+            "Hieromartyr Haralambos",
+            "Martyrs Porphyrius and Baptus"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -9844,7 +9850,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Unc. Rel. Holy Martyrs at Gate of Eugenius"
+            "Unc. Rel. Holy Martyrs at Gate of Eugenius",
+            "Ven. Thalassius and Baradates, Hermits of Syria"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -10698,7 +10705,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Ven. Euthymius of Suzdal"
+            "Ven. Euthymius of Suzdal",
+            "Martyrs Gerontius and Basilides"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -12836,7 +12844,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Greatmartyr Procopius of Caesarea"
+            "Greatmartyr Procopius of Caesarea",
+            "Ven. Theophilus the Myrrhgusher of Macedonia"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -13137,7 +13146,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Holy Myrrhbearer Mary Magdalene, Equal-to-the-Apostles"
+            "Holy Myrrhbearer Mary Magdalene, Equal-to-the-Apostles",
+            "Martyr Markella of Chios"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -14719,7 +14729,9 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Dionysius the Areopagite"
+            "Hieromartyr Dionysius the Areopagite",
+            "Martyrs Rusticus the Presbyter and Eleutherius the Deacon",
+            "St John the Chozebite, Bishop of Caesarea"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15024,7 +15036,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Prophet Hosea"
+            "Prophet Hosea",
+            "Monastic Martyr Andrew of Crete"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15089,7 +15102,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Greatmartyr Artemius at Antioch"
+            "Greatmartyr Artemius at Antioch",
+            "Ven. Matrona of Chios"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15348,7 +15362,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Unmercenaries and Wonderworkers Cosmas and Damian"
+            "Unmercenaries and Wonderworkers Cosmas and Damian",
+            "St Theodota, Mother of Cosmas and Damian"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15459,7 +15474,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "St Paul the Confessor of Constantinople"
+            "St Paul the Confessor of Constantinople",
+            "Ven. Luke of Sicily (Taormina)"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15932,7 +15948,9 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Monk Martyr and Confessor Stephen the New"
+            "Monk Martyr and Confessor Stephen the New",
+            "Martyr Irenarchus and Seven Women Martyrs at Sebaste",
+            "Martyr Timothy and his Companions at Tiberiopolis"
         ],
         "fast": 5,
         "fast_exception": 0,
@@ -16296,7 +16314,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Eleutherius of Illyria",
+            "Hieromartyr Eleutherius of Illyria and his mother, Martyr Evanthia",
             "St Stephen of Surozh"
         ],
         "fast": 5,
@@ -17416,6 +17434,566 @@
         "service": 0,
         "service_note": "",
         "saints": [],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 840,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 6,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Theophany of Our Lord and Savior Jesus Christ",
+        "feast_level": 8,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Theophan the Recluse"
+        ],
+        "fast": 0,
+        "fast_exception": 11,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 841,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 17,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Ven. Godbearing Anthony the Great",
+        "feast_level": 5,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "George the New Martyr of Ioannina"
+        ],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 842,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 18,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Ss Athanasius the Great and Cyril of Alexandria",
+            "Zenia the Martyr"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 843,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 20,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Ven. Euthymius the Great",
+        "feast_level": 5,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Zacharias the New Martyr of Patra",
+            "John the Hieromartyr"
+        ],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 844,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 22,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Apostle Timothy of the Seventy",
+            "Joseph the Sanctified"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 845,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 23,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Clement and Martyr Agathangel",
+            "Righteous Father Dionysius of Olympus"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 846,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 27,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Transl. Relics of St John Chrysostom",
+        "feast_level": 4,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Peter the Righteous of Egypt",
+            "Demetrios the New Martyr of Constantinople"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 847,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 29,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Trans. Rel. Ignatius the Godbearer",
+            "St Laurence, Recluse of the Kiev Caves",
+            "Gildas the Wise"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 848,
+    "fields": {
+        "pdist": 999,
+        "month": 2,
+        "day": 2,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Meeting of Christ in the Temple",
+        "feast_level": 8,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Gabriel the New Martyr of Constantinople",
+            "Jordan the New Martyr",
+            "Agathadoros the Martyr of Cappadocia"
+        ],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 849,
+    "fields": {
+        "pdist": 999,
+        "month": 2,
+        "day": 10,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Haralambos",
+            "Martyrs Porphyrius and Baptus",
+            "Anastasios, Patriarch of Jerusalem"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 850,
+    "fields": {
+        "pdist": 999,
+        "month": 2,
+        "day": 22,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Unc. Rel. Holy Martyrs at Gate of Eugenius",
+            "Ven. Thalassius and Baradates, Hermits of Syria",
+            "Anthousa the Martyr & her 12 Servants"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 851,
+    "fields": {
+        "pdist": 999,
+        "month": 6,
+        "day": 30,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Synaxis of the Twelve Apostles",
+        "feast_level": 4,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Michael the New Martyr of Athens"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 852,
+    "fields": {
+        "pdist": 999,
+        "month": 8,
+        "day": 26,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 4,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Martyrs Adrian and Natalia",
+            "Vladimir Icon",
+            "Our Righteous Father Joseph"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 853,
+    "fields": {
+        "pdist": 999,
+        "month": 9,
+        "day": 30,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 3,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Gregory of Armenia",
+            "Ven. Gregory of Vologda",
+            "Mardonios and Stratonikos the Martyrs"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 854,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 2,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Cyprian, Martyrs Justina and Theoctistus",
+            "Bl. Andrew, Fool-for-Christ",
+            "Theophilus the Confessor"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 855,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 6,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "St Innocent, Metr. of Moscow / Holy Apostle Thomas",
+        "feast_level": 5,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Eroteis the Martyr of Cappadocia",
+            "Makarios the Righteous of Chios"
+        ],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 856,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 20,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Greatmartyr Artemius at Antioch",
+            "Ven. Matrona of Chios",
+            "Andronicus the Righteous Martyr"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 857,
+    "fields": {
+        "pdist": 999,
+        "month": 10,
+        "day": 26,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Greatmartyr Demetrius",
+        "feast_level": 4,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Eata of Hexham"
+        ],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 858,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 1,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Unmercenaries and Wonderworkers Cosmas and Damian",
+            "St Theodota, Mother of Cosmas and Damian",
+            "David the Righteous of Evia"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 859,
+    "fields": {
+        "pdist": 999,
+        "month": 11,
+        "day": 17,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 3,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "St Gregory the Wonderworker",
+            "Ven. Nikon of Radonezh",
+            "Gennadios I and Maximus, Patriarchs of Constantinople"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 860,
+    "fields": {
+        "pdist": 999,
+        "month": 12,
+        "day": 5,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Ven. Sabbas the Sanctified",
+        "feast_level": 4,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Holy Martyr Diogenes",
+            "Nektarios the Bulgarian"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 861,
+    "fields": {
+        "pdist": 999,
+        "month": 12,
+        "day": 12,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "St Spyridon the Wonderworker",
+            "Holy New Martyr Peter the Aleut",
+            "John (or Joachim), Bishop of Zichni"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 862,
+    "fields": {
+        "pdist": 999,
+        "month": 12,
+        "day": 15,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 2,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Hieromartyr Eleutherius of Illyria and his mother, Martyr Evanthia",
+            "St Stephen of Surozh",
+            "The Martyr Susannah the Deaconess"
+        ],
+        "fast": 5,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 863,
+    "fields": {
+        "pdist": 999,
+        "month": 12,
+        "day": 18,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Martyr Sebastian and Companions at Rome",
+            "St Michael Syngellos the Confessor"
+        ],
         "fast": 5,
         "fast_exception": 0,
         "flag": 0,
