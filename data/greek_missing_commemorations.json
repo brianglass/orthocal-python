@@ -233,34 +233,6 @@
       }
     ]
   },
-  "01-24": {
-    "description": "Xenia of St. Petersburg, Fool-for-Christ; Xenia, Deaconess of Rome; Vavylas the Holy Martyr; Philo the Wonderworker, Bishop of Karpasia in Cyprus",
-    "source_year": 2026,
-    "missing": [
-      {
-        "segment": "Bishop of Karpasia in Cyprus",
-        "category": "candidate_saint",
-        "years_confirmed": [
-          2019,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025,
-          2026
-        ],
-        "years_available": [
-          2019,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025,
-          2026
-        ]
-      }
-    ]
-  },
   "01-26": {
     "description": "Xenophon & his Companions, Symeon the Elder of Mount Sinai",
     "source_year": 2026,
@@ -461,34 +433,6 @@
       },
       {
         "segment": "Agathadoros the Martyr of Cappadocia",
-        "category": "candidate_saint",
-        "years_confirmed": [
-          2019,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025,
-          2026
-        ],
-        "years_available": [
-          2019,
-          2021,
-          2022,
-          2023,
-          2024,
-          2025,
-          2026
-        ]
-      }
-    ]
-  },
-  "02-06": {
-    "description": "The Martyr and Healer Julian (Ilyan) of Homs; After-feast of the Presentation of Our Lord and Savior in the Temple; Photius the Great, Patriarch of Constantinople; Bucolus, Bishop of Smyrna; Barsanuphius the Great and John of Gaza",
-    "source_year": 2026,
-    "missing": [
-      {
-        "segment": "The Martyr and Healer Julian (Ilyan) of Homs; After-feast of the Presentation of Our Lord and Savior in the Temple; Photius the Great",
         "category": "candidate_saint",
         "years_confirmed": [
           2019,
