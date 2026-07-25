@@ -40,6 +40,26 @@ class TestYear(TestCase):
                 expected = datetools.gregorian_to_jdn(dt) - pascha
                 self.assertEqual(actual, expected)
 
+    def test_raphael_brooklyn_first_saturday_of_november(self):
+        """St. Raphael of Brooklyn -- Greek-only, see docs/greek-fasting.md.
+        Confirmed via the Antiochian Archdiocese's own typikon (an editor's
+        note citing their observance directly) that he's kept on the first
+        Saturday of November, not Feb 27 (his OCA/Slavic date). Checked
+        across years where Nov 1 falls on each different weekday, so the
+        "roll forward to Saturday" arithmetic is exercised in full."""
+
+        for year, expected in (
+            (2025, date(2025, 11, 1)),   # Nov 1 is itself a Saturday
+            (2026, date(2026, 11, 7)),   # Nov 1 is a Sunday
+            (2024, date(2024, 11, 2)),   # Nov 1 is a Friday
+        ):
+            with self.subTest(year):
+                py = liturgics.GreekYear(year)
+                pdist = py.raphael_brooklyn
+                actual = datetools.gregorian_to_jdn(expected) - py.pascha
+                self.assertEqual(pdist, actual)
+                self.assertEqual(py.floats.get(pdist), datetools.FloatIndex.RaphaelBrooklyn)
+
     def test_lukan_jump(self):
         # TODO: Confirm this is actually working
         year = liturgics.SlavicYear(2018)
@@ -203,6 +223,33 @@ class TestTraditionOverlay(TestCase):
         # data was simply missing -- both traditions should show him.
         self.assertIn('Holy Apostle Ananias of the Seventy', slavic.saints)
         self.assertIn('Holy Apostle Ananias of the Seventy', greek.saints)
+
+    async def test_raphael_brooklyn_differing_commemoration_date(self):
+        """St. Raphael of Brooklyn -- founding bishop of Antiochian
+        Orthodoxy in America -- is kept on Feb 27 (his repose date) by
+        Slavic/OCA practice, but on the first Saturday of November by the
+        Antiochian Archdiocese itself (confirmed via their own typikon).
+        Same shape as the Catherine of Alexandria/Theophan the Recluse
+        fixes: a genuine differing-date case, implemented via the
+        pdist-anchored RaphaelBrooklyn float rather than a fixed month/day,
+        since "first Saturday of November" moves every year."""
+
+        slavic_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Slavic)
+        greek_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Greek)
+        await slavic_feb27.ainitialize()
+        await greek_feb27.ainitialize()
+
+        self.assertIn('St Raphael Bishop of Brooklyn', slavic_feb27.feasts)
+        self.assertNotIn('St Raphael Bishop of Brooklyn', greek_feb27.feasts)
+
+        # Nov 1, 2025 is itself a Saturday.
+        slavic_nov1 = liturgics.Day(2025, 11, 1, tradition=Tradition.Slavic)
+        greek_nov1 = liturgics.Day(2025, 11, 1, tradition=Tradition.Greek)
+        await slavic_nov1.ainitialize()
+        await greek_nov1.ainitialize()
+
+        self.assertNotIn('St Raphael Bishop of Brooklyn', slavic_nov1.feasts)
+        self.assertIn('St Raphael Bishop of Brooklyn', greek_nov1.feasts)
 
 
 class TestGreekFasting(TestCase):

@@ -9906,26 +9906,6 @@
 },
 {
     "model": "calendarium.day",
-    "pk": 493,
-    "fields": {
-        "pdist": 999,
-        "month": 2,
-        "day": 27,
-        "title": "",
-        "subtitle": "",
-        "feast_name": "St Raphael Bishop of Brooklyn",
-        "feast_level": 5,
-        "service": 0,
-        "service_note": "",
-        "saints": [],
-        "fast": 0,
-        "fast_exception": 2,
-        "flag": 0,
-        "tradition": "common"
-    }
-},
-{
-    "model": "calendarium.day",
     "pk": 494,
     "fields": {
         "pdist": 999,
@@ -18145,6 +18125,46 @@
         "saints": [],
         "fast": 2,
         "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 875,
+    "fields": {
+        "pdist": 999,
+        "month": 2,
+        "day": 27,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "St Raphael Bishop of Brooklyn",
+        "feast_level": 5,
+        "service": 0,
+        "service_note": "",
+        "saints": [],
+        "fast": 0,
+        "fast_exception": 2,
+        "flag": 0,
+        "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 876,
+    "fields": {
+        "pdist": 1039,
+        "month": 0,
+        "day": 0,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "St Raphael Bishop of Brooklyn",
+        "feast_level": 5,
+        "service": 0,
+        "service_note": "",
+        "saints": [],
+        "fast": 0,
+        "fast_exception": 2,
         "flag": 0,
         "tradition": "greek"
     }

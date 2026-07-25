@@ -157,6 +157,17 @@ class ByzantineYear:
         return pdist + 7 - datetools.weekday_from_pdist(pdist)
 
     @cached_property
+    def raphael_brooklyn(self):
+        # St. Raphael of Brooklyn (Antiochian Archdiocese of North America)
+        # is kept on the first Saturday of November -- Greek-only, see
+        # docs/greek-fasting.md. Computed here on the shared base since it's
+        # harmless for Slavic (no Day rows exist at this float for that
+        # tradition), matching the LeavetakingTheophanyWeekday precedent.
+        pdist = self.date_to_pdist(11, 1, self.year)
+        weekday = datetools.weekday_from_pdist(pdist)
+        return pdist + (Weekday.Saturday - weekday) % 7
+
+    @cached_property
     def forefathers(self):
         # Forefathers Sunday is the week before the week of Nativity
         weekday = datetools.weekday_from_pdist(self.nativity)
@@ -269,6 +280,7 @@ class ByzantineYear:
                 self.fathers_seven:             FloatIndex.FathersSeventh,
                 self.demetrius_saturday:        FloatIndex.DemetriusSaturday,
                 self.synaxis_unmercenaries:     FloatIndex.SynaxisUnmercenaries,
+                self.raphael_brooklyn:          FloatIndex.RaphaelBrooklyn,
                 self.sun_before_elevation:      FloatIndex.SunBeforeElevation,
                 self.sat_after_elevation:       FloatIndex.SatAfterElevation,
                 self.sun_after_elevation:       FloatIndex.SunAfterElevation,

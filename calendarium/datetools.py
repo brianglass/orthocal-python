@@ -109,6 +109,7 @@ class FloatIndex(IntEnum):
     AnnunciationParemEve            = 1036   # Annunciation Paremias on Eve
     AnnunciationWeekday             = 1037   # Annunciation on Tuesday-Friday
     LeavetakingTheophanyWeekday     = 1038   # Leavetaking of Theophany (theophany+8) on an ordinary weekday
+    RaphaelBrooklyn                 = 1039   # First Saturday of November -- Greek-only, see docs/greek-fasting.md
 
 
 def compute_pascha_jdn(year):

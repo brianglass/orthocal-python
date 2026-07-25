@@ -16,6 +16,17 @@ something this app's data model tracks at all (it only models aggregate
 levels like "Wine and Oil are Allowed," not ingredient-level detail) --
 explicitly out of scope per Brian.
 
+**Primary source**: Brian has a full Antiochian Archdiocese typikon at
+`~/Documents/Orthodox Studies/54-typikon-full.pdf` (583 pages) -- genuinely
+authoritative (footnote 344 explicitly cites "The Clergy Guide of the
+Self-Ruled Antiochian Orthodox Christian Archdiocese of North America").
+Converted to text via `pdftotext -layout` for grepping when the empirical
+antiochian.org method below doesn't fully resolve something. It's primarily
+a service-order/rubrics reference (hymns, readings, structure), not a
+dedicated fasting-rules chapter, so don't expect a clean day-by-day table --
+search for specific terms (a saint's name, "Great Canon," "Wednesdays and
+Fridays," etc.) rather than a single section.
+
 ## Findings, by fast
 
 ### Nativity Fast (Nov 15 - Dec 24) -- genuine, confirmed structural difference
@@ -108,6 +119,34 @@ Wednesday of Lent," since those move every year):
 The three confirmed items were implemented as a genuine `Day`-row data split
 (not a code change) -- see Implementation below.
 
+**Follow-up corroboration from the typikon PDF** (see Background above):
+
+- Its official "Wednesdays and Fridays when exceptions to the fast are
+  permitted" chapter (citing the Antiochian Archdiocese's own Clergy Guide)
+  grants the *fish* exception only to Annunciation, Palm Sunday, and
+  Transfiguration -- nothing for the Forefeast of the Annunciation, Synaxis
+  of Gabriel, or any minor saint. A stricter tier than wine+oil, but
+  consistent with (not contradicting) the empirical Mar 24 finding.
+- Zero mentions of "Innocent" or "Tikhon" across all 583 pages -- about as
+  strong a confirmation as available that they're absent from Greek
+  practice entirely.
+- No mention anywhere of the Great Canon or Akathist granting any food
+  exception, despite extensive discussion of those services' own structure --
+  further corroborates the empirical "fully strict" fifth-week finding.
+- A footnote confirms Feb 24 and Mar 9 both get their own liturgical
+  treatment (specifically which day gets the Presanctified Liturgy's
+  stichera) when they fall in Lent -- supports treating Mar 9 as
+  confirmed-shared and Feb 24 as likely following suit, though this is
+  about a different question (service structure, not wine+oil) so isn't a
+  direct proof.
+- **New, unrelated finding**: an editor's note states the Antiochian
+  Archdiocese keeps St. Raphael of Brooklyn -- their own founding bishop in
+  America -- on the first Saturday of November, not Feb 27 (his OCA/Slavic
+  date). A genuine differing-commemoration-date case, same shape as
+  Catherine of Alexandria/Theophan the Recluse in `docs/greek-commons.md`
+  pass 12. Fixed here rather than there since it surfaced during this
+  investigation -- see Implementation below.
+
 ## Implementation
 
 `calendarium/liturgics/day.py`'s `Day` class was split, mirroring the
@@ -151,6 +190,23 @@ carried the wine+oil `fast_exception` OCA's rule grants) was retagged
 represented elsewhere in this data, e.g. Monday/Tuesday of the fifth week).
 Tested in
 `TestGreekFasting.test_lenten_wine_oil_exceptions_greek_stricter_than_slavic`.
+
+**St. Raphael of Brooklyn** (Feb 27 Slavic vs. first Saturday of November
+Greek) needed a new mechanism, since "first Saturday of a fixed calendar
+month" isn't Pascha-relative like the existing floating occasions
+(Demetrius Saturday, Synaxis of the Unmercenaries, etc. -- those are all
+"nearest Saturday/Sunday to a fixed date"). Added `ByzantineYear.
+raphael_brooklyn` alongside those (same file, same pattern: `date_to_pdist`
++ roll forward to the target weekday) and a new `FloatIndex.RaphaelBrooklyn
+= 1039`, included unconditionally in the shared `floats` dict -- harmless
+for Slavic since no Day rows exist at that pdist for that tradition,
+matching the `LeavetakingTheophanyWeekday` precedent. Feb 27's `common` row
+retagged `slavic`; a new `greek` row added at `pdist=FloatIndex.
+RaphaelBrooklyn, month=0, day=0`. Tested in
+`TestYear.test_raphael_brooklyn_first_saturday_of_november` (pdist
+arithmetic, three different Nov-1 weekdays) and
+`TestTraditionOverlay.test_raphael_brooklyn_differing_commemoration_date`
+(end-to-end Day).
 
 ## Remaining / not investigated
 
