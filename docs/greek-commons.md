@@ -593,8 +593,41 @@ Orthodox, willing to commemorate saints from other traditions." Only a
 *confirmed, differing commemoration date* for the same saint between
 Slavic and Greek practice is worth fixing. This ends pass 12's original
 direction (auditing `common` data for anything Greek doesn't also have) --
-that's out of scope now. What's left, if picked up: checking `common`-tagged
-saints against Greek sources specifically for date *conflicts* (same saint,
-different day), grounded in the harvested antiochian_raw data itself (does
-this saint's name appear on a *different* (month, day) elsewhere in the
-year's harvest, not just absent on this one), not web search synthesis.
+that's out of scope now.
+
+**Method**: for every `common`-tagged individual saint name, check whether
+it's absent from antiochian.org's description on our date but present
+(strong word-overlap, distinctive proper names only -- common titles,
+place names, and generic first names like Euthymius/Constantine/Demetrius
+produce heavy false-positive noise and were filtered out) on a *different*
+date elsewhere in the full year's harvest (script not committed). Confirmed
+via this method and multi-year antiochian data plus an OCA cross-check:
+
+- **Catherine of Alexandria**: Slavic (OCA) Nov 24, Greek (antiochian, 7/7
+  years) Nov 25 -- fixed. The Reading content had already been split
+  correctly earlier this session (a greek Epistle/Gospel override already
+  sat on Nov 25), but `Day.saints` display never followed -- her name was
+  still in the `common` Nov 24 row. New `slavic` row for Nov 24 (Catherine),
+  new `greek` row for Nov 24 (Clement & Peter, matching the existing greek
+  Reading content there), new `greek` row for Nov 25 (adds Catherine to the
+  shared Leavetaking-of-Presentation base).
+
+**Not yet resolved, candidates from the same audit pass, need individual
+verification before acting** (OCA cross-check + multi-year antiochian
+confirmation, same standard as above): Theophan the Recluse (our common
+data: Jan 10; antiochian, already independently confirmed 7/7 years: Jan 6
+-- but OCA's Jan 10 entry itself says "born January 10, 1815," suggesting
+Jan 10 might be a birth-date confusion in our own data rather than a real
+tradition difference, needs checking); Innocent of Irkutsk ("Relics" Feb 9
+in our data vs. antiochian's Nov 26 -- plausibly a legitimate second
+"translation of relics" date rather than a conflict); Joseph the
+Hymnographer (Apr 4 vs. antiochian's Apr 3, single day, possibly just an
+OCA/antiochian dating quirk); Aristarchus/Pudens/Trophimus and Jason/
+Sosipater (both off by exactly one day between our data and antiochian --
+same pattern, needs checking whether it's a real conflict or a reckoning
+quirk); Theodotus of Ancyra (May 18 vs. a Jun 7 antiochian mention that
+might just be a movable-Sunday-collision artifact, single year only so
+far); Hermogenes/Germogen of Moscow (our data groups him into an Oct 5
+synaxis of Moscow Patriarchs; antiochian's Feb 17 might be his individual
+martyrdom-day commemoration -- plausibly two legitimate non-conflicting
+observances, not a real conflict).
