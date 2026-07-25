@@ -14706,7 +14706,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Cyprian, Martyrs Justina and Theoctistus"
+            "Hieromartyr Cyprian, Martyrs Justina and Theoctistus",
+            "Bl. Andrew, Fool-for-Christ"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -17779,6 +17780,7 @@
         "service_note": "",
         "saints": [
             "Hieromartyr Cyprian, Martyrs Justina and Theoctistus",
+            "Bl. Andrew, Fool-for-Christ",
             "Theophilus the Confessor"
         ],
         "fast": 0,
@@ -17996,29 +17998,6 @@
         "fast_exception": 0,
         "flag": 0,
         "tradition": "greek"
-    }
-},
-{
-    "model": "calendarium.day",
-    "pk": 864,
-    "fields": {
-        "pdist": 999,
-        "month": 10,
-        "day": 2,
-        "title": "",
-        "subtitle": "",
-        "feast_name": "",
-        "feast_level": 2,
-        "service": 0,
-        "service_note": "",
-        "saints": [
-            "Hieromartyr Cyprian, Martyrs Justina and Theoctistus",
-            "Bl. Andrew, Fool-for-Christ"
-        ],
-        "fast": 0,
-        "fast_exception": 0,
-        "flag": 0,
-        "tradition": "slavic"
     }
 },
 {
