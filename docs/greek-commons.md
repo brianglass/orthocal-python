@@ -567,3 +567,32 @@ ambiguous Auxentius/Tiberiopolis grouping).
 single-year-only entries (need more harvesting before trusting, per the
 lesson above) plus the already-understood movable-feast/Luke-Matthew wording
 cases, set aside separately.
+
+## Pass 12 (the reverse direction: existing common data that's actually wrong for Greek)
+
+User-reported, Oct 2: two names sitting in the pre-existing `common`
+Calendarium data for that date turned out not to belong there for Greek --
+`Bl. Andrew, Fool-for-Christ` (Slavic commemorates him Oct 2, Greek
+commemorates him **May 28**, a different date entirely -- confirmed via web
+search) and `St Cassian the Greek, Wonderworker of Uglich` ("the Greek" is
+his ethnic origin, not his liturgical tradition -- he's a Russian local
+saint, same pattern as Theodosius of Chernigov/Alexis Toth/etc. from the
+`Day.tradition` work, but surfaces via the tradition-blind `Commemoration`
+table rather than `Day.saint`).
+
+This is a *different* audit direction than everything above -- pass 1-11 all
+checked "what's in antiochian.org that's missing from us." Nothing has ever
+checked "what's in our existing `common` data that's actually wrong for
+Greek." Fixed Andrew for Oct 2 specifically (new `slavic` row, removed from
+`common` and `greek`) -- this corrects the calendar-view summary/title,
+though he still surfaces on Greek's full readings page via the
+`Commemoration` dedup fallback (same deferred tradition-blind limitation as
+Cassian, not a new issue). Cassian himself: no fix possible without
+revisiting the deferred `Commemoration` tradition-tagging decision.
+
+**Not yet scoped**: whether other `common`-tagged saints elsewhere in the
+calendar have this same problem (Slavic-only saint incorrectly shared, or a
+saint whose Greek commemoration falls on a different date entirely). Unlike
+the pass-1-11 audits, there's no antiochian.org checklist to diff against
+for this direction -- it would mean spot-checking existing `common` entries
+against Greek sources rather than looking for gaps.
