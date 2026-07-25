@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from .day import Day
+from .day import Day, SlavicDay, GreekDay
 from .year import ByzantineYear, SlavicYear, GreekYear
 
 async def amonth_of_days(year, month, **kwargs):

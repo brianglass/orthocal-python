@@ -75,7 +75,19 @@ class Day:
 
     This class is a composite of feasts, fasts, scripture readings, and lives
     of the saints from both the Paschal cycle and the festal cycle.
+
+    Constructing `Day(..., tradition=...)` actually returns a `SlavicDay` or
+    `GreekDay` instance (see `__new__` below) -- the two traditions' fasting
+    rules diverge enough (see docs/greek-fasting.md) that each owns its own
+    concrete `_apply_fasting_adjustments`, mirroring the `SlavicYear`/
+    `GreekYear` split in `year.py`. Everything else about a liturgical day is
+    shared and lives here in the base class.
     """
+
+    def __new__(cls, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en'):
+        if cls is Day:
+            cls = _DAY_CLASSES[tradition]
+        return super().__new__(cls)
 
     def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en'):
         self.gregorian_date = date(year, month, day)
@@ -178,46 +190,8 @@ class Day:
         )
         
     def _apply_fasting_adjustments(self):
-        # Adjust for fast free days
-        if self.fast_exception == 11:
-            self.fast_level = FastLevels.NoFast
-            return
-
-        # Are we in the Apostles fast? This can't be gleaned from the database
-        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
-        # but the beginning of this fast is defined by the Paschal cycle.
-        if 56 < self.pdist < self.pyear.peter_and_paul:
-            self.fast_level = FastLevels.ApostlesFast
-            if self.pdist == 57:
-                self.service_notes.append("Beginning of Apostles' Fast")
-
-        match self.fast_level:
-            case FastLevels.LentenFast:
-                # Remove fish for minor feast days in Lent
-                if self.fast_exception == 2:
-                    self.fast_exception -= 1
-            case FastLevels.DormitionFast:
-                # Allow wine and oil on weekends during the Dormition fast
-                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
-                    self.fast_exception += 1
-            case FastLevels.ApostlesFast | FastLevels.NativityFast:
-                match self.weekday:
-                    case Weekday.Tuesday | Weekday.Thursday:
-                        if self.fast_exception == 0:
-                            self.fast_exception += 1
-                    case Weekday.Wednesday | Weekday.Friday:
-                        if self.feast_level < 4 and self.fast_exception > 1:
-                            self.fast_exception = 1
-                    case Weekday.Sunday | Weekday.Saturday:
-                        self.fast_exception = 2
-
-                # Disallow fish for the week before Nativity
-                if self.pyear.nativity-6 < self.pdist < self.pyear.nativity-1 and self.fast_exception > 1:
-                    self.fast_exception = 1
-
-        # The days before Nativity and Theophany are wine and oil days
-        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
-            self.fast_exception = 1
+        """Tradition-specific -- see SlavicDay/GreekDay."""
+        raise NotImplementedError
 
     @cached_property
     def fast_level_desc(self):
@@ -600,3 +574,126 @@ class Day:
             return self.pdist + self.pyear.lukan_jump
 
         return self.pdist
+
+
+class SlavicDay(Day):
+    def _apply_fasting_adjustments(self):
+        # Adjust for fast free days
+        if self.fast_exception == 11:
+            self.fast_level = FastLevels.NoFast
+            return
+
+        # Are we in the Apostles fast? This can't be gleaned from the database
+        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
+        # but the beginning of this fast is defined by the Paschal cycle.
+        if 56 < self.pdist < self.pyear.peter_and_paul:
+            self.fast_level = FastLevels.ApostlesFast
+            if self.pdist == 57:
+                self.service_notes.append("Beginning of Apostles' Fast")
+
+        match self.fast_level:
+            case FastLevels.LentenFast:
+                # Remove fish for minor feast days in Lent
+                if self.fast_exception == 2:
+                    self.fast_exception -= 1
+            case FastLevels.DormitionFast:
+                # Allow wine and oil on weekends during the Dormition fast
+                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
+                    self.fast_exception += 1
+            case FastLevels.ApostlesFast | FastLevels.NativityFast:
+                match self.weekday:
+                    case Weekday.Tuesday | Weekday.Thursday:
+                        if self.fast_exception == 0:
+                            self.fast_exception += 1
+                    case Weekday.Wednesday | Weekday.Friday:
+                        if self.feast_level < 4 and self.fast_exception > 1:
+                            self.fast_exception = 1
+                    case Weekday.Sunday | Weekday.Saturday:
+                        self.fast_exception = 2
+
+                # Disallow fish for the week before Nativity
+                if self.pyear.nativity-6 < self.pdist < self.pyear.nativity-1 and self.fast_exception > 1:
+                    self.fast_exception = 1
+
+        # The days before Nativity and Theophany are wine and oil days
+        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
+            self.fast_exception = 1
+
+
+class GreekDay(Day):
+    def _apply_fasting_adjustments(self):
+        """Confirmed via docs/greek-fasting.md: the Apostles Fast, Lenten
+        Fast, and Dormition Fast all follow the identical weekly pattern as
+        Slavic practice. Only the Nativity Fast differs -- Greek practice
+        treats every day but Wednesday/Friday as a fish day for the first
+        four weeks (Nov 15 - Dec 12), then tightens for the final 12 days
+        (Dec 13 - 24) more than Slavic practice does: no fish at all, and
+        only Saturday/Sunday keep any wine-and-oil allowance (Monday/
+        Tuesday/Thursday drop to the same strictness as Wednesday/Friday,
+        rather than just losing fish the way Slavic's ~5-day-shorter
+        stricter period does)."""
+
+        # Adjust for fast free days
+        if self.fast_exception == 11:
+            self.fast_level = FastLevels.NoFast
+            return
+
+        # Are we in the Apostles fast? This can't be gleaned from the database
+        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
+        # but the beginning of this fast is defined by the Paschal cycle.
+        if 56 < self.pdist < self.pyear.peter_and_paul:
+            self.fast_level = FastLevels.ApostlesFast
+            if self.pdist == 57:
+                self.service_notes.append("Beginning of Apostles' Fast")
+
+        match self.fast_level:
+            case FastLevels.LentenFast:
+                # Remove fish for minor feast days in Lent
+                if self.fast_exception == 2:
+                    self.fast_exception -= 1
+            case FastLevels.DormitionFast:
+                # Allow wine and oil on weekends during the Dormition fast
+                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
+                    self.fast_exception += 1
+            case FastLevels.ApostlesFast:
+                match self.weekday:
+                    case Weekday.Tuesday | Weekday.Thursday:
+                        if self.fast_exception == 0:
+                            self.fast_exception += 1
+                    case Weekday.Wednesday | Weekday.Friday:
+                        if self.feast_level < 4 and self.fast_exception > 1:
+                            self.fast_exception = 1
+                    case Weekday.Sunday | Weekday.Saturday:
+                        self.fast_exception = 2
+            case FastLevels.NativityFast:
+                stricter_period = self.pdist >= self.pyear.nativity - 12
+
+                match self.weekday:
+                    case Weekday.Wednesday | Weekday.Friday:
+                        if self.feast_level < 4 and self.fast_exception > 1:
+                            self.fast_exception = 1
+                    case Weekday.Sunday | Weekday.Saturday:
+                        if stricter_period:
+                            # Force wine-and-oil, but never loosen a
+                            # deliberately stricter override (7+, e.g. the
+                            # "Strict Fast" baseline on Nativity Eve itself).
+                            if self.fast_exception == 0 or 1 < self.fast_exception <= 6:
+                                self.fast_exception = 1
+                        else:
+                            self.fast_exception = 2
+                    case _:  # Monday, Tuesday, Thursday
+                        if stricter_period:
+                            if self.feast_level < 4 and 1 < self.fast_exception <= 6:
+                                self.fast_exception = 1
+                        else:
+                            self.fast_exception = 2
+
+        # The days before Nativity and Theophany are wine and oil days
+        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
+            self.fast_exception = 1
+
+
+_DAY_CLASSES = {
+    Tradition.Slavic: SlavicDay,
+    Tradition.Greek: GreekDay,
+}

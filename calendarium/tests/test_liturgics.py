@@ -205,6 +205,113 @@ class TestTraditionOverlay(TestCase):
         self.assertIn('Holy Apostle Ananias of the Seventy', greek.saints)
 
 
+class TestGreekFasting(TestCase):
+    """Day was split into SlavicDay/GreekDay (each with its own
+    _apply_fasting_adjustments) after confirming, via multiple independent
+    Antiochian parish sources, that the Nativity Fast's weekly pattern
+    genuinely differs from Slavic/OCA practice -- see docs/greek-fasting.md.
+    Great Lent, the Apostles' Fast, and the Dormition Fast were all checked
+    against dedicated Antiochian sources too and found to be identical to
+    Slavic practice, so SlavicDay and GreekDay only diverge for the
+    Nativity Fast."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def test_day_dispatches_to_tradition_specific_subclass(self):
+        slavic = liturgics.Day(2026, 11, 20, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 11, 20, tradition=Tradition.Greek)
+
+        self.assertIsInstance(slavic, liturgics.Day)
+        self.assertIsInstance(greek, liturgics.Day)
+        self.assertIsInstance(slavic, liturgics.SlavicDay)
+        self.assertIsInstance(greek, liturgics.GreekDay)
+        self.assertNotIsInstance(slavic, liturgics.GreekDay)
+
+    async def test_nativity_fast_phase_one_monday_differs(self):
+        """Nov 23, 2026 is an ordinary Monday in the Nativity Fast's first
+        phase (Nov 15 - Dec 12), with no overriding feast. Slavic groups
+        Monday with Wednesday/Friday (strict); Greek treats every day but
+        Wednesday/Friday as a fish day during this phase."""
+
+        slavic = liturgics.Day(2026, 11, 23, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 11, 23, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        self.assertEqual(slavic.fast_exception_desc, '')
+        self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
+
+    async def test_nativity_fast_phase_two_starts_a_week_earlier_for_greek(self):
+        """Dec 15, 2026 is an ordinary Tuesday. Slavic's stricter period
+        doesn't start until ~Dec 20, so it still gets the ordinary
+        Tuesday/Thursday wine-and-oil allowance; Greek's stricter period
+        starts Dec 13, a full week earlier, and drops Monday/Tuesday/
+        Thursday to full strictness (not just losing fish)."""
+
+        slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
+        self.assertEqual(greek.fast_exception_desc, '')
+
+    async def test_nativity_fast_phase_two_weekend_loses_fish_earlier_for_greek(self):
+        """Dec 13, 2026 is a Sunday -- the first day of Greek's stricter
+        period, but still well inside Slavic's ordinary-weekend-gets-fish
+        window (Slavic's stricter period doesn't start until ~Dec 20)."""
+
+        slavic = liturgics.Day(2026, 12, 13, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 12, 13, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        self.assertEqual(slavic.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
+        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+
+    async def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
+        """Regression test for a bug caught during implementation: Dec 24,
+        2026 is a Thursday with a deliberately strict baseline
+        (fast_exception index 9, "Strict Fast" -- distinct from the
+        generic index-0 strict day). GreekDay's stricter-period logic caps
+        lenient baselines (indices 2-6) down to wine-and-oil on Monday/
+        Tuesday/Thursday, but must never loosen an already-stricter
+        baseline like this one -- confirmed identical to Slavic across
+        2023 (Sunday), 2026 (Thursday), and 2027 (Friday), which exercise
+        three different weekday branches of the fasting logic."""
+
+        for year in (2023, 2026, 2027):
+            with self.subTest(year):
+                slavic = liturgics.Day(year, 12, 24, tradition=Tradition.Slavic)
+                greek = liturgics.Day(year, 12, 24, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+    async def test_lent_apostles_dormition_fasts_are_identical_between_traditions(self):
+        """Unlike the Nativity Fast, Great Lent, the Apostles' Fast, and the
+        Dormition Fast were all confirmed (via dedicated Antiochian sources)
+        to follow the same weekly pattern as Slavic practice -- this is a
+        regression guard against that accidentally changing."""
+
+        dates = (
+            [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
+            + [date(2026, 6, d) for d in range(9, 15)]      # Apostles' Fast
+            + [date(2026, 8, d) for d in range(1, 15)]      # Dormition Fast
+        )
+
+        for d in dates:
+            with self.subTest(d):
+                slavic = liturgics.Day(d.year, d.month, d.day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(d.year, d.month, d.day, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
+                self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+
 class TestGreekLukanNumbering(TestCase):
     """GreekYear.lukan_sunday_numbers and theophany_interpolation, checked
     against every Sunday in the antiochian.org official liturgical charts
