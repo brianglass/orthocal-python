@@ -572,27 +572,29 @@ cases, set aside separately.
 
 User-reported, Oct 2: two names sitting in the pre-existing `common`
 Calendarium data for that date turned out not to belong there for Greek --
-`Bl. Andrew, Fool-for-Christ` (Slavic commemorates him Oct 2, Greek
-commemorates him **May 28**, a different date entirely -- confirmed via web
-search) and `St Cassian the Greek, Wonderworker of Uglich` ("the Greek" is
-his ethnic origin, not his liturgical tradition -- he's a Russian local
-saint, same pattern as Theodosius of Chernigov/Alexis Toth/etc. from the
-`Day.tradition` work, but surfaces via the tradition-blind `Commemoration`
-table rather than `Day.saint`).
+`Bl. Andrew, Fool-for-Christ` and `St Cassian the Greek, Wonderworker of
+Uglich` (the latter: "the Greek" is his ethnic origin, not his liturgical
+tradition -- he's a Russian local saint, same pattern as Theodosius of
+Chernigov/Alexis Toth/etc. from the `Day.tradition` work, surfacing via the
+tradition-blind `Commemoration` table rather than `Day.saint`).
 
-This is a *different* audit direction than everything above -- pass 1-11 all
-checked "what's in antiochian.org that's missing from us." Nothing has ever
-checked "what's in our existing `common` data that's actually wrong for
-Greek." Fixed Andrew for Oct 2 specifically (new `slavic` row, removed from
-`common` and `greek`) -- this corrects the calendar-view summary/title,
-though he still surfaces on Greek's full readings page via the
-`Commemoration` dedup fallback (same deferred tradition-blind limitation as
-Cassian, not a new issue). Cassian himself: no fix possible without
-revisiting the deferred `Commemoration` tradition-tagging decision.
+Initially split Andrew into a `slavic`-only row based on a claim that Greek
+tradition commemorates him May 28 instead -- **this was wrong and reverted**.
+That claim came from an AI web-search summary that, on direct inspection,
+wasn't actually supported by either source it cited (OrthodoxWiki,
+Wikipedia), and antiochian.org's own harvested data for May 28 doesn't
+mention him either. Lesson: a search-tool's synthesized summary is not
+itself a citation -- verify against the actual source text, same standard
+already held for antiochian.org citations all along.
 
-**Not yet scoped**: whether other `common`-tagged saints elsewhere in the
-calendar have this same problem (Slavic-only saint incorrectly shared, or a
-saint whose Greek commemoration falls on a different date entirely). Unlike
-the pass-1-11 audits, there's no antiochian.org checklist to diff against
-for this direction -- it would mean spot-checking existing `common` entries
-against Greek sources rather than looking for gaps.
+**Scope narrowed (2026-07-25, Brian's call)**: saints appearing in one
+tradition's data but not the other's are fine and expected -- "we're all
+Orthodox, willing to commemorate saints from other traditions." Only a
+*confirmed, differing commemoration date* for the same saint between
+Slavic and Greek practice is worth fixing. This ends pass 12's original
+direction (auditing `common` data for anything Greek doesn't also have) --
+that's out of scope now. What's left, if picked up: checking `common`-tagged
+saints against Greek sources specifically for date *conflicts* (same saint,
+different day), grounded in the harvested antiochian_raw data itself (does
+this saint's name appear on a *different* (month, day) elsewhere in the
+year's harvest, not just absent on this one), not web search synthesis.
