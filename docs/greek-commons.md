@@ -612,22 +612,32 @@ via this method and multi-year antiochian data plus an OCA cross-check:
   Reading content there), new `greek` row for Nov 25 (adds Catherine to the
   shared Leavetaking-of-Presentation base).
 
-**Not yet resolved, candidates from the same audit pass, need individual
-verification before acting** (OCA cross-check + multi-year antiochian
-confirmation, same standard as above): Theophan the Recluse (our common
-data: Jan 10; antiochian, already independently confirmed 7/7 years: Jan 6
--- but OCA's Jan 10 entry itself says "born January 10, 1815," suggesting
-Jan 10 might be a birth-date confusion in our own data rather than a real
-tradition difference, needs checking); Innocent of Irkutsk ("Relics" Feb 9
-in our data vs. antiochian's Nov 26 -- plausibly a legitimate second
-"translation of relics" date rather than a conflict); Joseph the
-Hymnographer (Apr 4 vs. antiochian's Apr 3, single day, possibly just an
-OCA/antiochian dating quirk); Aristarchus/Pudens/Trophimus and Jason/
-Sosipater (both off by exactly one day between our data and antiochian --
-same pattern, needs checking whether it's a real conflict or a reckoning
-quirk); Theodotus of Ancyra (May 18 vs. a Jun 7 antiochian mention that
-might just be a movable-Sunday-collision artifact, single year only so
-far); Hermogenes/Germogen of Moscow (our data groups him into an Oct 5
-synaxis of Moscow Patriarchs; antiochian's Feb 17 might be his individual
-martyrdom-day commemoration -- plausibly two legitimate non-conflicting
-observances, not a real conflict).
+**Shortlist resolved (2026-07-25)**:
+
+- **Theophan the Recluse**: **confirmed and fixed**. 7/7 antiochian years
+  consistently Jan 6 only, OCA consistently Jan 10 only (his Jan 10 entry
+  mentions his birth date incidentally, not a source of confusion -- OCA
+  genuinely commemorates him there). Jan 10's common row was shared with
+  St Gregory of Nyssa (confirmed on both traditions' Jan 10), leaking
+  Theophan to Greek too. New `slavic` row keeps both names; `common`
+  trimmed to just Gregory of Nyssa.
+- **Innocent of Irkutsk**: not a conflict. OCA confirms *both* days as
+  legitimate -- Nov 26 (repose, matches antiochian) and Feb 9 (a separate
+  "uncovering of relics" observance OCA has but antiochian doesn't). An
+  extra Slavic-only observance, not a differing date for the same single
+  commemoration -- out of scope per the narrowed policy above.
+- **Joseph the Hymnographer, Aristarchus/Pudens/Trophimus, Jason/
+  Sosipater, Theodotus of Ancyra**: all either single-harvested-year
+  signals landing in the movable Paschal/Triodion season (where a fixed
+  month/day comparison is already documented as unreliable -- see
+  "Remaining work" above) or, for Joseph specifically, contradicted by
+  OCA (which matches our existing Apr 4 data exactly, making the lone
+  2026 antiochian Apr 3 mention look like a Lenten-season artifact rather
+  than a real pattern). No fix; would need many more harvested years to
+  reconsider.
+- **Hermogenes/Germogen of Moscow**: not a conflict. Antiochian's own
+  Oct 5 harvest also lists him within the Moscow Metropolitans synaxis --
+  Greek tradition (per antiochian itself) recognizes both his individual
+  day (Feb 17) and the group day (Oct 5), same as it would need to for
+  Slavic. Just a completeness gap in our own data, not a date conflict --
+  out of scope today.
