@@ -207,13 +207,16 @@ class TestTraditionOverlay(TestCase):
 
 class TestGreekFasting(TestCase):
     """Day was split into SlavicDay/GreekDay (each with its own
-    _apply_fasting_adjustments) after confirming, via multiple independent
-    Antiochian parish sources, that the Nativity Fast's weekly pattern
-    genuinely differs from Slavic/OCA practice -- see docs/greek-fasting.md.
-    Great Lent, the Apostles' Fast, and the Dormition Fast were all checked
-    against dedicated Antiochian sources too and found to be identical to
-    Slavic practice, so SlavicDay and GreekDay only diverge for the
-    Nativity Fast."""
+    _apply_fasting_adjustments) after confirming the Nativity Fast's weekly
+    pattern genuinely differs from Slavic/OCA practice -- see
+    docs/greek-fasting.md. Holy Week, the Apostles' Fast, and the Dormition
+    Fast were all checked and found identical to Slavic practice. Great
+    Lent's ordinary weekday pattern is also identical, but three specific
+    named wine-and-oil exceptions in OCA's rule (Forefeast of the
+    Annunciation, and the fifth week's Wednesday/Friday vigil exceptions)
+    were empirically confirmed absent from Antiochian practice -- unlike
+    the Nativity Fast, that difference is a Day-row data split, not a code
+    difference in _apply_fasting_adjustments."""
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
@@ -289,11 +292,13 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_lent_apostles_dormition_fasts_are_identical_between_traditions(self):
-        """Unlike the Nativity Fast, Great Lent, the Apostles' Fast, and the
-        Dormition Fast were all confirmed (via dedicated Antiochian sources)
-        to follow the same weekly pattern as Slavic practice -- this is a
-        regression guard against that accidentally changing."""
+    async def test_holy_week_apostles_dormition_fasts_are_identical_between_traditions(self):
+        """Holy Week, the Apostles' Fast, and the Dormition Fast were all
+        confirmed (via dedicated Antiochian sources) to follow the same
+        weekly pattern as Slavic practice -- this is a regression guard
+        against that accidentally changing. Ordinary weeks of Great Lent
+        are NOT covered here -- see the wine-and-oil exception tests below
+        for three confirmed exceptions that do differ."""
 
         dates = (
             [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
@@ -310,6 +315,32 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+    async def test_lenten_wine_oil_exceptions_greek_stricter_than_slavic(self):
+        """OCA's published Lenten rule grants a wine-and-oil exception on
+        three specific occasions when they fall on an ordinary weekday: the
+        Forefeast of the Annunciation (Mar 24), and Wednesday/Friday of the
+        fifth week (the Great Canon and Akathist Hymn vigils,
+        respectively). Confirmed empirically against antiochian.org's own
+        fastDesignation field (not just parish paraphrases) across 4-5
+        independent years each: Antiochian/Greek practice does NOT grant
+        this exception for any of the three -- they stay fully strict. This
+        is a genuine Day-row split (Mar 24 is a fixed month/day date; the
+        fifth-week Wednesday/Friday are pdist-anchored, pdist -18 and -16),
+        not a code-level difference -- unlike the Nativity Fast, this one
+        needed a data change. See docs/greek-fasting.md."""
+
+        # 2025: Pascha Apr 20, so Mar 24 and the fifth week (Mar 31 - Apr 6)
+        # both land on ordinary Lenten weekdays with no overriding feast.
+        for dt in (date(2025, 3, 24), date(2025, 4, 2), date(2025, 4, 4)):
+            with self.subTest(dt):
+                slavic = liturgics.Day(dt.year, dt.month, dt.day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
+                self.assertEqual(greek.fast_exception_desc, '')
 
 
 class TestGreekLukanNumbering(TestCase):

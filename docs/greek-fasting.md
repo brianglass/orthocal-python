@@ -59,17 +59,54 @@ wine+oil, Transfiguration (Aug 6) gets fish. Confirmed our existing data
 already grants the Transfiguration exception correctly and identically for
 both traditions (`Day.fast_exception=4` on that date, tagged `common`).
 
-### Great Lent / Holy Week -- no structural difference found
+### Great Lent / Holy Week -- ordinary weekdays identical, three named exceptions differ
 
-Repeated searches across several Antiochian sources kept returning the same
-weekly structure already in our code: weekdays strict/xerophagy, weekends
-wine+oil, fish on Annunciation and Palm Sunday. The differences that did
-surface were the food-category nuances noted above (out of scope), plus what
-looks like a pre-existing data completeness gap independent of tradition
-(a couple of well-known Lenten wine+oil feast-day exceptions -- Feb 24,
-Mar 9 -- appear to be missing their `fast_exception` override in our
-existing Slavic-modeled data). Not investigated further; unrelated to the
-Greek/Slavic question.
+Repeated web searches across several Antiochian sources kept returning the
+same weekly structure already in our code (weekdays strict/xerophagy,
+weekends wine+oil, fish on Annunciation and Palm Sunday) plus the same list
+of named weekday feasts OCA's page grants a wine-and-oil exception to (Feb 24,
+Mar 9, Mar 24, Mar 26, the fifth week's Wed/Thu Great Canon vigil, Friday's
+Akathist vigil). **This turned out to be a methodology trap**: one of the
+"Greek Orthodox Church" sources that matched OCA's full list verbatim was
+explicitly attributed on its own page to "These Truths We Hold" -- a
+St. Tikhon's Seminary (OCA) publication being reused as boilerplate by a
+GOARCH-affiliated parish, not an independent Antiochian source at all. Brian
+caught this and asked for an empirical check instead of more web research.
+
+**Empirical method**: `data/antiochian_raw/*.json` (harvested via
+`ingest_antiochian.py`'s `Antiochian` client) has a `fastDesignation` field --
+Antiochian's own official per-day fasting designation, not a paraphrase.
+`parse_fast_designation`/`DietaryAllowance` in that script already give it a
+clean, monotonic vocabulary. Checked every OCA-rule-#3/#4 date across 4-5
+independently-harvested years each (using `SlavicYear(year).pascha` to
+compute the real calendar date of pdist-anchored occasions like "5th
+Wednesday of Lent," since those move every year):
+
+- **Confirmed genuinely stricter in Antiochian practice** (fully strict on
+  an ordinary Lenten weekday in every valid-Lent-year sample):
+  - Mar 24 (Forefeast of the Annunciation) -- 4/4 years (2020, 2022, 2025, 2026).
+  - Fifth week Wednesday (OCA's "Great Canon" exception) -- 4/4 years (2020, 2022, 2024, 2025).
+  - Fifth week Friday (OCA's "Akathist Hymn" exception) -- 5/5 years (2020, 2022, 2024, 2025, 2026).
+- **Confirmed shared/universal** (wine+oil granted, matching OCA): Mar 9
+  (40 Martyrs of Sebaste) -- 2/2 valid years; Apr 25 (Apostle Mark) -- 1/1
+  valid year (Pascha timing meant most sampled years fell outside Lent
+  entirely for this one, so treat as suggestive rather than fully confirmed).
+- **Genuinely mixed, no rule found**: fifth week Thursday itself (the actual
+  Great Canon day) -- strict in 2020/2024, wine+oil in 2022/2025, no
+  discernible pattern; Mar 26 (Synaxis of the Archangel Gabriel) -- wine+oil
+  in 3/4 years but the title didn't actually credit Gabriel in two of those,
+  strict in the one year (2026) the title did name him specifically. Left
+  unresolved -- not confident enough either way to act on.
+- **Never appears in Antiochian's own titles at all**, across every
+  valid-Lent-year sample, consistent with being Slavic/American-specific
+  (though Pascha timing meant none of the sampled years put these dates
+  inside actual Lent, so this is suggestive rather than a clean
+  strict-vs-exception test): Feb 27 (Raphael of Brooklyn -- notably, despite
+  being the founding figure of Antiochian Orthodoxy in America), Mar 31
+  (Innocent of Alaska), Apr 7 (Tikhon of Moscow).
+
+The three confirmed items were implemented as a genuine `Day`-row data split
+(not a code change) -- see Implementation below.
 
 ## Implementation
 
@@ -103,11 +140,37 @@ and now identical to Slavic's output across 2023 (Sunday), 2026 (Thursday),
 and 2027 (Friday) Dec 24s -- three different weekday branches of the logic.
 Tested in `TestGreekFasting.test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period`.
 
+**Great Lent's three confirmed exceptions** (Mar 24, and the pdist-anchored
+fifth-week Wednesday/Friday, pdist -18 and -16) were implemented as a data
+split rather than a code change, since `SlavicDay`/`GreekDay`'s Lenten-fast
+case is identical for both traditions -- the divergence lives entirely in
+the `Day.fast_exception` baseline. Each date's single `common` row (which
+carried the wine+oil `fast_exception` OCA's rule grants) was retagged
+`slavic` and deleted the `common` copy, then a new `greek` row was added with
+`fast_exception=0` (matching how ordinary strict Lenten weekdays are already
+represented elsewhere in this data, e.g. Monday/Tuesday of the fifth week).
+Tested in
+`TestGreekFasting.test_lenten_wine_oil_exceptions_greek_stricter_than_slavic`.
+
 ## Remaining / not investigated
 
-- The possible Feb 24 / Mar 9 Lenten wine+oil data gap noted above -- appears
-  unrelated to Greek/Slavic tradition, not picked up here.
-- No data changes ended up being needed for this project, despite the
-  original expectation -- everything found was expressible as weekday-based
-  code logic (`GreekDay._apply_fasting_adjustments`), not per-date
-  `fast`/`fast_exception` baseline changes.
+- **Feb 24** (First/Second Finding of the Head of John the Baptist): never
+  landed inside actual Great Lent in any of the 4 years sampled (Pascha
+  timing kept it in the pre-Lenten Cheesefare/Meatfare season every time) --
+  no valid empirical test yet, positive or negative. Our own `common`
+  baseline also shows no override here (`fast_exception=0`), which may be a
+  pre-existing Slavic-side gap independent of the Greek question -- not
+  picked up here.
+- **Fifth week Thursday** (the actual Great Canon day) and **Mar 26**
+  (Synaxis of the Archangel Gabriel): genuinely mixed empirical results (see
+  above), not confident enough to act on either way.
+- **Feb 27 / Mar 31 / Apr 7** (Raphael of Brooklyn / Innocent of Alaska /
+  Tikhon of Moscow): never named in Antiochian's titles across the sampled
+  years, but never landed on a clean ordinary-weekday-in-Lent test either --
+  suggestive of being Slavic/American-specific, not confirmed by a direct
+  strict-vs-exception comparison.
+- Contrary to the original expectation that this whole project might be
+  pure code logic: the Nativity Fast difference was code-only, but Great
+  Lent's three confirmed exceptions needed an actual `Day`-row data split
+  instead (see Implementation above) -- both kinds of change turned out to
+  be needed, just for different fasts.

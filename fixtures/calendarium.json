@@ -1181,26 +1181,6 @@
 },
 {
     "model": "calendarium.day",
-    "pk": 60,
-    "fields": {
-        "pdist": -18,
-        "month": 0,
-        "day": 0,
-        "title": "Wednesday of the Fifth Week of Lent",
-        "subtitle": "",
-        "feast_name": "",
-        "feast_level": 1,
-        "service": 0,
-        "service_note": "Presanctified Liturgy",
-        "saints": [],
-        "fast": 2,
-        "fast_exception": 3,
-        "flag": 0,
-        "tradition": "common"
-    }
-},
-{
-    "model": "calendarium.day",
     "pk": 61,
     "fields": {
         "pdist": -17,
@@ -1215,26 +1195,6 @@
         "saints": [
             "Presanctified Liturgy"
         ],
-        "fast": 2,
-        "fast_exception": 3,
-        "flag": 0,
-        "tradition": "common"
-    }
-},
-{
-    "model": "calendarium.day",
-    "pk": 62,
-    "fields": {
-        "pdist": -16,
-        "month": 0,
-        "day": 0,
-        "title": "Friday of the Fifth Week of Lent",
-        "subtitle": "",
-        "feast_name": "",
-        "feast_level": 1,
-        "service": 0,
-        "service_note": "Presanctified Liturgy",
-        "saints": [],
         "fast": 2,
         "fast_exception": 3,
         "flag": 0,
@@ -10519,28 +10479,6 @@
 },
 {
     "model": "calendarium.day",
-    "pk": 519,
-    "fields": {
-        "pdist": 999,
-        "month": 3,
-        "day": 24,
-        "title": "",
-        "subtitle": "",
-        "feast_name": "Forefeast of Annunciation",
-        "feast_level": 0,
-        "service": 0,
-        "service_note": "",
-        "saints": [
-            "Ven. Zachariah the Recluse"
-        ],
-        "fast": 0,
-        "fast_exception": 3,
-        "flag": 0,
-        "tradition": "common"
-    }
-},
-{
-    "model": "calendarium.day",
     "pk": 520,
     "fields": {
         "pdist": 999,
@@ -18085,6 +18023,130 @@
         "fast_exception": 0,
         "flag": 0,
         "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 869,
+    "fields": {
+        "pdist": 999,
+        "month": 3,
+        "day": 24,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Forefeast of Annunciation",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Ven. Zachariah the Recluse"
+        ],
+        "fast": 0,
+        "fast_exception": 3,
+        "flag": 0,
+        "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 870,
+    "fields": {
+        "pdist": 999,
+        "month": 3,
+        "day": 24,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "Forefeast of Annunciation",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "Ven. Zachariah the Recluse"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 871,
+    "fields": {
+        "pdist": -18,
+        "month": 0,
+        "day": 0,
+        "title": "Wednesday of the Fifth Week of Lent",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 1,
+        "service": 0,
+        "service_note": "Presanctified Liturgy",
+        "saints": [],
+        "fast": 2,
+        "fast_exception": 3,
+        "flag": 0,
+        "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 872,
+    "fields": {
+        "pdist": -18,
+        "month": 0,
+        "day": 0,
+        "title": "Wednesday of the Fifth Week of Lent",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 1,
+        "service": 0,
+        "service_note": "Presanctified Liturgy",
+        "saints": [],
+        "fast": 2,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 873,
+    "fields": {
+        "pdist": -16,
+        "month": 0,
+        "day": 0,
+        "title": "Friday of the Fifth Week of Lent",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 1,
+        "service": 0,
+        "service_note": "Presanctified Liturgy",
+        "saints": [],
+        "fast": 2,
+        "fast_exception": 3,
+        "flag": 0,
+        "tradition": "slavic"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 874,
+    "fields": {
+        "pdist": -16,
+        "month": 0,
+        "day": 0,
+        "title": "Friday of the Fifth Week of Lent",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 1,
+        "service": 0,
+        "service_note": "Presanctified Liturgy",
+        "saints": [],
+        "fast": 2,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "greek"
     }
 },
 {
