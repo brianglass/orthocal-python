@@ -540,5 +540,30 @@ discussion — deliberately left as-is), and movable-feast/forefeast/apodosis
 alt-naming (e.g. "Sunday of Orthodoxy" for what we title "First Sunday of
 Lent") which is presumed to be wording variance, not individually verified.
 
-Not yet incorporated — this pass is scoping only. `data/greek_missing_commemorations.json`
-is the artifact to work from if/when this gets picked up.
+**Update**: incorporated. Along the way, `Day.saint` (a semicolon-delimited
+CharField) was changed to `Day.saints` (a JSONField list) — every consumer
+was already reading the parsed Python list off `liturgics.Day`, not the raw
+model field, so this was a low-risk, well-contained schema change (see
+migrations 0006/0007). This removed the escaping concern that would
+otherwise complicate appending names to a tradition override row.
+
+Before writing anything, each of the 34 multi-year-confirmed dates was
+cross-checked against OCA's own calendar (oca.org/saints/lives), rather than
+defaulting everything to `tradition='greek'`. This mattered: most of the 34
+turned out to be **common** gaps, not Greek-specific ones (e.g. Theophan the
+Recluse, Pansophius of Alexandria, Simeon the Elder of Sinai — all also on
+OCA's calendar, sometimes under different spelling, just missing from our
+data for both traditions). Only the dates OCA genuinely doesn't list (mostly
+Ottoman-era Greek "New Martyr" figures and a couple of Western-rite
+additions like Gildas the Wise, Eata of Hexham) got a new `tradition='greek'`
+row. 16 dates got a common-row addition, 24 got a new greek row (some dates
+needed both — an OCA-confirmed common addition plus a genuinely Greek-only
+extra on top). A few flagged segments were skipped as false positives from
+spelling variants already covered (Eleutherios/Eleutherius on Dec 15,
+Eumenius/Eumenes on Sep 18) or left for individual follow-up (Nov 28's
+ambiguous Auxentius/Tiberiopolis grouping).
+
+`data/greek_missing_commemorations.json` now reflects the remaining backlog:
+single-year-only entries (need more harvesting before trusting, per the
+lesson above) plus the already-understood movable-feast/Luke-Matthew wording
+cases, set aside separately.
