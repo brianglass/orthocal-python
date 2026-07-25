@@ -8908,8 +8908,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "St Gregory of Nyssa",
-            "St Theophan the Recluse"
+            "St Gregory of Nyssa"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -18063,6 +18062,29 @@
         "fast_exception": 1,
         "flag": 0,
         "tradition": "greek"
+    }
+},
+{
+    "model": "calendarium.day",
+    "pk": 868,
+    "fields": {
+        "pdist": 999,
+        "month": 1,
+        "day": 10,
+        "title": "",
+        "subtitle": "",
+        "feast_name": "",
+        "feast_level": 0,
+        "service": 0,
+        "service_note": "",
+        "saints": [
+            "St Gregory of Nyssa",
+            "St Theophan the Recluse"
+        ],
+        "fast": 0,
+        "fast_exception": 0,
+        "flag": 0,
+        "tradition": "slavic"
     }
 },
 {
