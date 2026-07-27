@@ -12421,7 +12421,8 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Eusebius, Bishop of Samosata"
+            "Hieromartyr Eusebius, Bishop of Samosata",
+            "Martyrs Zeno and Zenas of Philadelphia"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -12553,7 +12554,9 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Trans. Rel. Ven. Cyrus and John"
+            "Trans. Rel. Ven. Cyrus and John",
+            "St. Paul the Physician, of Corinth",
+            "Sergius and Herman, Wonderworkers of Valaam"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -14351,7 +14354,7 @@
         "service_note": "",
         "saints": [
             "Martyrs Trophimus, Sabbatius, Dorymedon",
-            "Ss David and Constantine of Yaroslavl"
+            "Rt. Blv. Theodore, Prince of Smolensk, and his sons Ss David and Constantine of Yaroslavl"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15201,7 +15204,8 @@
         "service_note": "",
         "saints": [
             "Martyrs Terence, Neonila and Children",
-            "St Arsenius of Serbia"
+            "St Arsenius of Serbia",
+            "Rep. Ven. Job of Pochaev"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15401,7 +15405,8 @@
         "service_note": "",
         "saints": [
             "St Paul the Confessor of Constantinople",
-            "Ven. Luke of Sicily (Taormina)"
+            "Ven. Luke of Sicily (Taormina)",
+            "Rep. St Herman, Archbishop of Kazan"
         ],
         "fast": 0,
         "fast_exception": 0,
