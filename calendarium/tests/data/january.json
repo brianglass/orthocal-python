@@ -840,8 +840,8 @@
             "29th Sunday after Pentecost"
         ],
         "summary_title": "29th Sunday after Pentecost",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
             "Sunday after Theophany"
         ],
@@ -900,8 +900,8 @@
             "Monday of the 30th week after Pentecost"
         ],
         "summary_title": "St Gregory of Nyssa; St Theophan the Recluse",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
         "fast_level": 0,
         "fast_level_desc": "No Fast",
@@ -1676,8 +1676,8 @@
             "31st Sunday after Pentecost"
         ],
         "summary_title": "31st Sunday after Pentecost",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 5,
+        "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
         "feasts": [
             "New Martyrs and Confessors of Russia"
         ],
@@ -1732,8 +1732,8 @@
             "Monday of the 32nd week after Pentecost"
         ],
         "summary_title": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
         "fast_level": 0,
         "fast_level_desc": "No Fast",

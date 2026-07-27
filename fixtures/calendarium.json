@@ -8841,7 +8841,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -9169,7 +9169,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -9428,7 +9428,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "Repose St Theodosius of Chernigov",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [],
@@ -9514,7 +9514,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "Leavetaking of Meeting",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -9694,7 +9694,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 2,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -10025,7 +10025,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -10334,7 +10334,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -10558,7 +10558,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Mark, Bishop of Anthusa"
+            "Hieromartyr Mark, Bishop of Arethusa"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -10603,7 +10603,7 @@
         "service_note": "",
         "saints": [],
         "fast": 0,
-        "fast_exception": 0,
+        "fast_exception": 1,
         "flag": 0,
         "tradition": "common"
     }
@@ -10622,6 +10622,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
+            "Ven. Mary of Egypt",
             "Ven. Euthymius of Suzdal",
             "Martyrs Gerontius and Basilides"
         ],
@@ -10733,7 +10734,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "St Methodius, Enilightener of the Slavs"
+            "St Methodius, Enlightener of the Slavs"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -10973,6 +10974,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
+            "Hieromartyr Simeon of Persia",
             "Ven. Zosima of Solovetsk"
         ],
         "fast": 0,
@@ -11167,6 +11169,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
+            "Hieromartyr Basil of Amasea",
             "St Stephen, Bishop of Perm"
         ],
         "fast": 0,
@@ -11553,6 +11556,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
+            "Martyr Isidore of Chios",
             "Ven. Isidore, Fool-for-Christ of Rostov"
         ],
         "fast": 0,
@@ -11661,11 +11665,12 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 3,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Patrick, Bishop of Prusa"
+            "Hieromartyr Patrick, Bishop of Prusa",
+            "Rt. Blv. Dimitry Donskoy"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -11687,6 +11692,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
+            "Martyr Thalelaeus of Cilicia",
             "Unc. Rel. St Aleksy, Metropolitan of Kiev"
         ],
         "fast": 0,
@@ -11813,7 +11819,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -12148,7 +12154,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -12280,11 +12286,12 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
-            "St Tycho, Bishop of Amathus"
+            "St Tycho, Bishop of Amathus",
+            "Ven. Tikhon of Kaluga"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -12626,7 +12633,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 2,
+        "feast_level": 3,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -12698,7 +12705,7 @@
         "service_note": "",
         "saints": [],
         "fast": 0,
-        "fast_exception": 0,
+        "fast_exception": 2,
         "flag": 0,
         "tradition": "slavic"
     }
@@ -12757,7 +12764,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -13151,7 +13158,7 @@
         "service_note": "",
         "saints": [],
         "fast": 0,
-        "fast_exception": 0,
+        "fast_exception": 2,
         "flag": 0,
         "tradition": "common"
     }
@@ -13363,7 +13370,7 @@
         "day": 5,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Forefeast of Transfiguration",
         "feast_level": 2,
         "service": 0,
         "service_note": "",
@@ -13535,7 +13542,7 @@
         "day": 13,
         "title": "",
         "subtitle": "",
-        "feast_name": "St Tikhon of Zadonsk",
+        "feast_name": "Leavetaking of Transfiguration; St Tikhon of Zadonsk",
         "feast_level": 4,
         "service": 0,
         "service_note": "",
@@ -13555,7 +13562,7 @@
         "day": 14,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Forefeast of Dormition",
         "feast_level": 2,
         "service": 0,
         "service_note": "",
@@ -13750,7 +13757,7 @@
         "day": 23,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Leavetaking of Dormition",
         "feast_level": 0,
         "service": 0,
         "service_note": "",
@@ -13777,7 +13784,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Hieromartyr Eutichius",
+            "Hieromartyr Eutychius",
             "Trans. Rel. Peter, Metr. Kiev"
         ],
         "fast": 0,
@@ -13926,7 +13933,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 3,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -14038,7 +14045,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Prophet Zachariah"
+            "Prophet Zachariah and Elizabeth"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -14077,7 +14084,7 @@
         "day": 7,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Forefeast of Nativity",
         "feast_level": 3,
         "service": 0,
         "service_note": "",
@@ -14166,11 +14173,12 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
-            "Ven. Theodora of Alexandria"
+            "Ven. Theodora of Alexandria",
+            "Trans. Rel. Ven. Sergius and Herman"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -14383,7 +14391,7 @@
         "day": 21,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Leavetaking Exaltation",
         "feast_level": 4,
         "service": 0,
         "service_note": "",
@@ -14407,7 +14415,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -15211,11 +15219,12 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 3,
         "service": 0,
         "service_note": "",
         "saints": [
-            "Martyr Anastasia the Roman"
+            "Martyr Anastasia the Roman",
+            "Ven. Avram of Rostov"
         ],
         "fast": 0,
         "fast_exception": 0,
@@ -15689,7 +15698,7 @@
         "day": 20,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Forefeast of Entry",
         "feast_level": 0,
         "service": 0,
         "service_note": "",
@@ -15837,7 +15846,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -15951,7 +15960,7 @@
         "service": 0,
         "service_note": "",
         "saints": [
-            "Prophet Habbakuk"
+            "Prophet Habakkuk"
         ],
         "fast": 5,
         "fast_exception": 0,
@@ -16572,7 +16581,7 @@
         "day": 31,
         "title": "",
         "subtitle": "",
-        "feast_name": "",
+        "feast_name": "Leavetaking of the Nativity",
         "feast_level": 0,
         "service": 0,
         "service_note": "",
@@ -17203,7 +17212,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "New Martyrs and Confessors of Russia",
-        "feast_level": 0,
+        "feast_level": 5,
         "service": 0,
         "service_note": "",
         "saints": [],
@@ -17992,7 +18001,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "",
-        "feast_level": 0,
+        "feast_level": 4,
         "service": 0,
         "service_note": "",
         "saints": [
@@ -18015,7 +18024,7 @@
         "title": "",
         "subtitle": "",
         "feast_name": "Forefeast of Annunciation",
-        "feast_level": 0,
+        "feast_level": 2,
         "service": 0,
         "service_note": "",
         "saints": [
