@@ -25,6 +25,11 @@ class Tradition(StrEnum):
     Slavic = 'slavic'
     Greek = 'greek'
 
+def cal_session_key(tradition):
+    """The calendar preference is remembered per-tradition, since Greek is
+    always Gregorian and shouldn't clobber a Slavic Julian/Gregorian choice."""
+    return f'cal_{tradition}'
+
 class FastLevels(IntEnum):
     NoFast         = 0
     Fast           = 1

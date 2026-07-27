@@ -13,13 +13,13 @@ from django.urls import reverse
 from django.utils import timezone
 
 from . import liturgics, models
-from .datetools import Calendar, Tradition
+from .datetools import Calendar, Tradition, cal_session_key
 
 logger = logging.getLogger(__name__)
 
 async def readings_view(request, cal=None, tradition=None, year=None, month=None, day=None):
-    cal = remember_cal(request, cal)
     tradition = remember_tradition(request, tradition)
+    cal = remember_cal(request, cal, tradition)
     now = timezone.localtime().date()
 
     if year and month and day:
@@ -46,11 +46,12 @@ async def readings_view(request, cal=None, tradition=None, year=None, month=None
         'previous_nofollow': not is_indexable(previous_date),
         'cal': cal,
         'tradition': tradition,
+        'remembered_slavic_cal': remembered_slavic_cal(request, cal, tradition),
     })
 
 async def calendar_view(request, cal=None, tradition=None, year=None, month=None):
-    cal = remember_cal(request, cal)
     tradition = remember_tradition(request, tradition)
+    cal = remember_cal(request, cal, tradition)
     now = timezone.localtime().date()
 
     if not year or not month:
@@ -73,6 +74,7 @@ async def calendar_view(request, cal=None, tradition=None, year=None, month=None
         'previous_nofollow': not is_indexable(previous_month),
         'next_month': next_month,
         'next_nofollow': not is_indexable(next_month),
+        'remembered_slavic_cal': remembered_slavic_cal(request, cal, tradition),
     })
 
 async def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
@@ -120,16 +122,28 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tra
 
 # Helper functions
 
-def remember_cal(request, cal):
+def remembered_slavic_cal(request, cal, tradition):
+    """The calendar preference the user last chose while viewing the Slavic
+    tradition -- used so switching Greek -> Slavic restores it, rather than
+    always landing back on Gregorian (which is forced while tradition is
+    Greek). Reuses `cal` directly when already on Slavic, to avoid an extra
+    session read (and the resulting Vary: Cookie) on the common path."""
+    if tradition == Tradition.Slavic:
+        return cal
+    return request.session.get(cal_session_key(Tradition.Slavic), Calendar.Gregorian)
+
+def remember_cal(request, cal, tradition):
+    session_key = cal_session_key(tradition)
+
     if cal:
-        if cal != request.session.get('cal', Calendar.Gregorian):
-            request.session['cal'] = cal
+        if cal != request.session.get(session_key, Calendar.Gregorian):
+            request.session[session_key] = cal
 
         # Don't send vary on cookie header when we have an explicit cal.
         # In this case, the session does not actually impact the content.
         request.session.accessed = False
     else:
-        cal = request.session.get('cal', Calendar.Gregorian)
+        cal = request.session.get(session_key, Calendar.Gregorian)
 
     return cal
 
