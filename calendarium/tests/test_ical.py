@@ -27,6 +27,38 @@ class CalendarTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_ical_greek(self):
+        """Greek tradition ical endpoint should return 200."""
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_ical_greek_urls(self):
+        """urls should point to Greek tradition readings."""
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        for event in cal.walk('vevent'):
+            parts = urlparse(event['url'])
+            match = resolve(parts.path)
+            self.assertEqual(match.kwargs['tradition'], Tradition.Greek)
+
+    def test_ical_slavic_name_unchanged(self):
+        """Slavic calendar name/uid must keep their original format, since
+        existing subscribers' calendar apps use the uid to track events."""
+        url = reverse('ical', kwargs={'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        self.assertEqual(str(cal.get('name')), 'Orthodox Feasts and Fasts (Gregorian)')
+        for event in cal.walk('vevent'):
+            self.assertNotIn('Slavic', str(event.get('uid')))
+
+    def test_ical_greek_name_distinguishes_tradition(self):
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        self.assertIn('Greek', str(cal.get('name')))
+
     def test_ical_urls(self):
         """urls should point to Gregorian readings."""
 

@@ -31,10 +31,11 @@ class ReadingsFeed(Feed):
         return {'cal': cal, 'tradition': tradition}
 
     def title(self, obj):
-        return f'Orthodox Daily Readings ({obj["cal"].title()})'
+        return f'Orthodox Daily Readings ({obj["tradition"].title()}, {obj["cal"].title()})'
 
     def description(self, obj):
-        return f'Daily readings from scripture and the lives of the saints according to the {obj["cal"].title()} calendar.'
+        return (f'Daily readings from scripture and the lives of the saints according to the '
+                f'{obj["tradition"].title()} tradition, {obj["cal"].title()} calendar.')
 
     def items(self, obj):
         now = timezone.localtime()

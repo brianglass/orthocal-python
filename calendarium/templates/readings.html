@@ -29,10 +29,10 @@
 	<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek</label>
 	<span class="beta-note">(beta)</span>
 
-	<div class="calendar-toggle" data-remembered-slavic-cal="{{ remembered_slavic_cal }}" {% if tradition == "greek" %}style="display:none"{% endif %}>
-		<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" or tradition == "greek" %}checked=""{% endif %}>Gregorian</label>
-		<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" and tradition != "greek" %}checked=""{% endif %}>Julian</label>
-	</div>
+	<br>
+
+	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
+	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
 {% endblock %}
 
 {% block main %}
@@ -119,34 +119,7 @@
 
 {% block scripts %}
 <script>
-	function updateCalendarAvailability(){
-		var calendarToggle = document.querySelector('.calendar-toggle');
-		var julianRadio = document.querySelector('input[name="calendar"][value="julian"]');
-		var gregorianRadio = document.querySelector('input[name="calendar"][value="gregorian"]');
-		var tradition = document.querySelector('input[name="tradition"]:checked').value;
-		if (tradition === 'greek') {
-			calendarToggle.style.display = 'none';
-			if (julianRadio.checked) {
-				julianRadio.checked = false;
-				gregorianRadio.checked = true;
-			}
-		} else {
-			calendarToggle.style.display = '';
-		}
-	}
-
-	function restoreRememberedCalendar(){
-		var calendarToggle = document.querySelector('.calendar-toggle');
-		var julianRadio = document.querySelector('input[name="calendar"][value="julian"]');
-		var gregorianRadio = document.querySelector('input[name="calendar"][value="gregorian"]');
-		if (calendarToggle.dataset.rememberedSlavicCal === 'julian') {
-			julianRadio.checked = true;
-			gregorianRadio.checked = false;
-		}
-	}
-
 	function navigate(){
-		updateCalendarAvailability();
 		var cal = document.querySelector('input[name="calendar"]:checked').value;
 		var tradition = document.querySelector('input[name="tradition"]:checked').value;
 		var urls = {
@@ -159,11 +132,6 @@
 		location.href = urls[cal + '_' + tradition] + '?t=' + t;
 	}
 
-	function tradition_changed(){
-		restoreRememberedCalendar();
-		navigate();
-	}
-
 	function wire_toggles(){
 		var radios = document.getElementsByName('calendar');
 		for (var i = 0; i < radios.length; i++) {
@@ -172,10 +140,8 @@
 
 		radios = document.getElementsByName('tradition');
 		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', tradition_changed);
+			radios[i].addEventListener('change', navigate);
 		}
-
-		updateCalendarAvailability();
 	}
 
 	document.addEventListener('DOMContentLoaded', wire_toggles)

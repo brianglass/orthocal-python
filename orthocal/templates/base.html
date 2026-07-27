@@ -34,6 +34,8 @@
 		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings" href="{% url "rss-feed" %}">
 		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings (Julian)" href="{% url "rss-feed-cal" cal="julian" %}">
 		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings (Gregorian)" href="{% url "rss-feed-cal" cal="gregorian" %}">
+		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings (Greek, Julian)" href="{% url "rss-feed-cal" tradition="greek" cal="julian" %}">
+		<link rel="alternate" type="application/rss+xml" title="Orthodox Daily Readings (Greek, Gregorian)" href="{% url "rss-feed-cal" tradition="greek" cal="gregorian" %}">
 
         <!-- Favicon -->
 		<link rel="apple-touch-icon" sizes="180x180" href="{% static "apple-touch-icon.png" %}">

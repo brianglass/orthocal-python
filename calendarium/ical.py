@@ -31,7 +31,10 @@ async def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
 async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
-    title = cal.title()
+    # Slavic keeps its original title/uid format unchanged, since existing
+    # subscribers' calendar apps use the uid to track/dedupe events -- only
+    # the newer, non-default traditions get a distinguishing prefix.
+    title = cal.title() if tradition == Tradition.Slavic else f'{tradition.title()} {cal.title()}'
     ttl = settings.ORTHOCAL_ICAL_TTL
 
     calendar = icalendar.Calendar()

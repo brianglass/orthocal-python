@@ -46,7 +46,6 @@ async def readings_view(request, cal=None, tradition=None, year=None, month=None
         'previous_nofollow': not is_indexable(previous_date),
         'cal': cal,
         'tradition': tradition,
-        'remembered_slavic_cal': remembered_slavic_cal(request, cal, tradition),
     })
 
 async def calendar_view(request, cal=None, tradition=None, year=None, month=None):
@@ -74,7 +73,6 @@ async def calendar_view(request, cal=None, tradition=None, year=None, month=None
         'previous_nofollow': not is_indexable(previous_month),
         'next_month': next_month,
         'next_nofollow': not is_indexable(next_month),
-        'remembered_slavic_cal': remembered_slavic_cal(request, cal, tradition),
     })
 
 async def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
@@ -121,16 +119,6 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tra
     return content
 
 # Helper functions
-
-def remembered_slavic_cal(request, cal, tradition):
-    """The calendar preference the user last chose while viewing the Slavic
-    tradition -- used so switching Greek -> Slavic restores it, rather than
-    always landing back on Gregorian (which is forced while tradition is
-    Greek). Reuses `cal` directly when already on Slavic, to avoid an extra
-    session read (and the resulting Vary: Cookie) on the common path."""
-    if tradition == Tradition.Slavic:
-        return cal
-    return request.session.get(cal_session_key(Tradition.Slavic), Calendar.Gregorian)
 
 def remember_cal(request, cal, tradition):
     session_key = cal_session_key(tradition)
