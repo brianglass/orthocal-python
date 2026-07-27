@@ -20,6 +20,7 @@ from django.views.generic.base import RedirectView
 from . import converters, sitemaps, views
 
 register_converter(converters.CalendarConverter, 'cal')
+register_converter(converters.TraditionConverter, 'tradition')
 register_converter(converters.YearConverter, 'year')
 register_converter(converters.MonthConverter, 'month')
 register_converter(converters.DayConverter, 'day')

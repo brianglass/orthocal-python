@@ -18,7 +18,7 @@ from ninja.responses import NinjaJSONEncoder
 from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
-from .datetools import Calendar
+from .datetools import Calendar, Tradition
 from orthocal.decorators import etag, etag_date, instrument_endpoint
 
 logger = logging.getLogger(__name__)
@@ -162,17 +162,9 @@ class OembedSchema(Schema):
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
-@api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
-@instrument_endpoint
-@decorate_view(etag)
-async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
-    """Get information about the liturgical day for the given calendar and date.
-    The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
-    will still work, but should be avoided for new code.
-    """
-
+async def _get_calendar_day(request, cal, tradition, year, month, day):
     try:
-        day = liturgics.Day(year, month, day, calendar=cal, language=request.LANGUAGE_CODE)
+        day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
     except ValueError:
         # The date is out of range or invalid
         raise Http404
@@ -183,24 +175,66 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
 
     return day
 
-@api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
+@api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
 @decorate_view(etag)
-async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> List[DaySchemaLite]:
-    """Get information about all the liturgical days for the given calendar and month.
-    This endpoint excludes the readings and stories in order to avoid returning 
-    a response that is too large.
-
+async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
+    """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
-    will still work, but should be avoided for new code.
+    will still work, but should be avoided for new code. This serves the Slavic/OCA
+    tradition; see the `{tradition}/{cal}/...` routes below for the Greek tradition.
     """
 
-    days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal)]
+    return await _get_calendar_day(request, cal, Tradition.Slavic, year, month, day)
+
+@api.get('{tradition:tradition}/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
+@instrument_endpoint
+@decorate_view(etag)
+async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calendar, year: year, month: month, day: day):
+    """Get information about the liturgical day for the given tradition, calendar, and date.
+    The *tradition* path parameter should be `slavic` or `greek`. The legacy `oca`,
+    `antiochian`, and `goa` will still work, but should be avoided for new code.
+    The *cal* path parameter should be `gregorian` or `julian`.
+    """
+
+    return await _get_calendar_day(request, cal, tradition, year, month, day)
+
+async def _get_calendar_month(request, cal, tradition, year, month) -> List[DaySchemaLite]:
+    days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)]
     for day in days:
         await day.aget_readings()
         await day.aget_abbreviated_readings()
 
     return days
+
+@api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
+@instrument_endpoint
+@decorate_view(etag)
+async def get_calendar_month(request, cal: Calendar, year: year, month: month) -> List[DaySchemaLite]:
+    """Get information about all the liturgical days for the given calendar and month.
+    This endpoint excludes the readings and stories in order to avoid returning
+    a response that is too large.
+
+    The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
+    will still work, but should be avoided for new code. This serves the Slavic/OCA
+    tradition; see the `{tradition}/{cal}/...` routes below for the Greek tradition.
+    """
+
+    return await _get_calendar_month(request, cal, Tradition.Slavic, year, month)
+
+@api.get('{tradition:tradition}/{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
+@instrument_endpoint
+@decorate_view(etag)
+async def get_calendar_month_tradition(request, tradition: Tradition, cal: Calendar, year: year, month: month) -> List[DaySchemaLite]:
+    """Get information about all the liturgical days for the given tradition, calendar, and month.
+    This endpoint excludes the readings and stories in order to avoid returning
+    a response that is too large.
+
+    The *tradition* path parameter should be `slavic` or `greek`. The *cal* path
+    parameter should be `gregorian` or `julian`.
+    """
+
+    return await _get_calendar_month(request, cal, tradition, year, month)
 
 @api.get('{cal:cal}/', response=DaySchema, summary='Get Today')
 @instrument_endpoint
@@ -209,10 +243,22 @@ async def get_calendar_default(request, cal: Calendar):
     """Get information about the current liturgical day for the given calendar.
     The timezone is Pacific Time. The *cal* path parameter should be
     `gregorian` or `julian`. The legacy `oca` or `rocor` will still work, but
-    should be avoided for new code.
+    should be avoided for new code. This serves the Slavic/OCA tradition; see
+    the `{tradition}/{cal}/` route below for the Greek tradition.
     """
     dt = timezone.localtime()
-    return await get_calendar_day(request, cal, dt.year, dt.month, dt.day)
+    return await _get_calendar_day(request, cal, Tradition.Slavic, dt.year, dt.month, dt.day)
+
+@api.get('{tradition:tradition}/{cal:cal}/', response=DaySchema, summary='Get Today (by tradition)')
+@instrument_endpoint
+@decorate_view(etag_date)
+async def get_calendar_default_tradition(request, tradition: Tradition, cal: Calendar):
+    """Get information about the current liturgical day for the given tradition and calendar.
+    The timezone is Pacific Time. The *tradition* path parameter should be
+    `slavic` or `greek`. The *cal* path parameter should be `gregorian` or `julian`.
+    """
+    dt = timezone.localtime()
+    return await _get_calendar_day(request, cal, tradition, dt.year, dt.month, dt.day)
 
 @api.get('oembed/calendar/', response=OembedSchema, exclude_none=True)
 @instrument_endpoint
@@ -239,6 +285,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
 
     kwargs = match.kwargs
     calendar = kwargs.get('cal', Calendar.Gregorian)
+    tradition = kwargs.get('tradition', Tradition.Slavic)
 
     if 'year' not in kwargs or 'month' not in kwargs:
         now = timezone.localtime()
@@ -246,7 +293,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     else:
         year, month = kwargs['year'], kwargs['month']
 
-    content = await views.render_calendar_html(request, year, month, cal=calendar, full_urls=True)
+    content = await views.render_calendar_html(request, year, month, cal=calendar, tradition=tradition, full_urls=True)
     html = render_to_string('oembed_calendar.html', {'content': content})
 
     return {

@@ -11,14 +11,31 @@
 	<p>Orthocal.info is an Eastern Orthodox calendar service providing
 	commemorations, fasting, scripture
 	readings and other information for each day of the liturgical year.
-	The readings follow the Slavic calendar. Fasting indications follow 
-	the <a href="https://www.oca.org/liturgics/outlines/fasting-fast-free-seasons-of-the-church">Fasting &amp; Fast-Free Seasons of the Church</a>
-	provided by the Orthodox Church in America (OCA). The primary purpose of
-	this service is to provide convenient access to daily devotional material
-	for lay persons and not to be an authoritative or comprehensive guide to
-	the feasts and fasts of the Church. The service supports this goal by
-	providing tools for mobile developers and parish webmasters, an Alexa
-	skill, multiple types of feeds, and a web interface.
+	</p>
+
+	<p>Two liturgical traditions are supported. <strong>Slavic</strong> reflects
+    the practice of <a href="https://www.oca.org">the Orthodox Church in America (OCA)</a> and 
+    <a href="https://www.synod.com/synod/indexeng.htm#gsc.tab=0">the Russian Orthodox Church Outside of Russia (ROCOR).</a> 
+    <strong>Greek</strong> reflects the practice of <a href="https://antiochian.org">the Antiochian Archdiocese</a>
+    and the <a href="https://goarch.org">Greek Orthodox Archdiocese of America (GOARCH)</a>; this option is
+    still in beta while its data continues to be verified. Either tradition can
+    be viewed on the (New) Gregorian or (Old) Julian calendar.
+	</p>
+
+	<p>Fasting indications for the Slavic tradition follow the OCA's
+	<a href="https://www.oca.org/liturgics/outlines/fasting-fast-free-seasons-of-the-church">Fasting &amp; Fast-Free Seasons of the Church</a>.
+	The Greek tradition observes the same fasting seasons but with a few
+	differences, the most notable being a more lenient first phase of the
+	Nativity Fast and a handful of additional wine-and-oil allowances during
+	Great Lent.
+    </p>
+
+    <p>The primary purpose of this service is to provide convenient
+	access to daily devotional material for lay persons and not to be an
+	authoritative or comprehensive guide to the feasts and fasts of the
+	Church. The service supports this goal by providing tools for mobile
+	developers and parish webmasters, an Alexa skill, multiple types of
+	feeds, and a web interface.
 	</p>
 
 	<h2>Contact the Author</h2>
@@ -43,11 +60,14 @@
 	since the author finds that much easier to maintain. The site is deployed on
 	<a href="https://cloud.google.com/run">Google Cloud Run</a> and
 	<a href="https://firebase.google.com/">Firebase</a>.
-	The algorithm and calendar data used in this service are based on the
+	The algorithm and calendar data for the Slavic tradition are based on the
 	algorithm and data developed by Paul Kachur for his
-	<a href="https://github.com/paulkachur/orthodox_calendar">orthodox_calendar</a> project. 
+	<a href="https://github.com/paulkachur/orthodox_calendar">orthodox_calendar</a> project.
 	The lives of the saints are taken by permission from John Brady's
-	Abbamoses.com.</p>
+	Abbamoses.com. Calendar data for the Greek tradition was compiled from the
+	Antiochian Archdiocese's website (<a href="https://www.antiochian.org">antiochian.org</a>)
+	and cross-checked against the Greek Orthodox Archdiocese of America
+	(<a href="https://www.goarch.org">goarch.org</a>).</p>
 
 	<h2>Scriptures</h2>
 	<p>Because this is open-source and free, the service must use a

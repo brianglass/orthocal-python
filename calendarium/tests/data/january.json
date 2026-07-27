@@ -840,8 +840,8 @@
             "29th Sunday after Pentecost"
         ],
         "summary_title": "29th Sunday after Pentecost",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": [
             "Sunday after Theophany"
         ],
@@ -900,8 +900,8 @@
             "Monday of the 30th week after Pentecost"
         ],
         "summary_title": "St Gregory of Nyssa; St Theophan the Recluse",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
         "fast_level": 0,
         "fast_level_desc": "No Fast",
@@ -1190,7 +1190,7 @@
         "titles": [
             "Saturday of the 30th week after Pentecost"
         ],
-        "summary_title": "Ven. Paul of Thebes and John Calabytes",
+        "summary_title": "Ven. Paul of Thebes and John Calabytes; Ven. Pansophius of Alexandria, the Martyr",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1200,6 +1200,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Ven. Paul of Thebes and John Calabytes",
+            "Ven. Pansophius of Alexandria, the Martyr",
             "Saint Ita of Kileedy, Ireland (570)"
         ],
         "service_notes": null,
@@ -1492,6 +1493,7 @@
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
         "saints": [
+            "Zacharias the New Martyr of Patra",
             "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st – 2nd c.)",
             "Saint Peter the Tax Collector (6th c.)"
         ],
@@ -1674,8 +1676,8 @@
             "31st Sunday after Pentecost"
         ],
         "summary_title": "31st Sunday after Pentecost",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 5,
+        "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
         "feasts": [
             "New Martyrs and Confessors of Russia"
         ],
@@ -1730,8 +1732,8 @@
             "Monday of the 32nd week after Pentecost"
         ],
         "summary_title": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg",
-        "feast_level": 0,
-        "feast_level_description": "Liturgy",
+        "feast_level": 4,
+        "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
         "fast_level": 0,
         "fast_level_desc": "No Fast",
@@ -1872,7 +1874,7 @@
         "titles": [
             "Wednesday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Xenophon and Mary",
+        "summary_title": "Ven. Xenophon and Mary; St Simeon the Elder of Mount Sinai",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1882,6 +1884,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Ven. Xenophon and Mary",
+            "St Simeon the Elder of Mount Sinai",
             "St Ammonas of Egypt, disciple of St Anthony the Great (350)",
             "Our Holy Mother Paula of Rome (404)"
         ],
@@ -2061,7 +2064,7 @@
         "titles": [
             "Saturday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Trans. Rel. Ignatius the Godbearer",
+        "summary_title": "Trans. Rel. Ignatius the Godbearer; St Laurence, Recluse of the Kiev Caves",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2071,6 +2074,7 @@
         "fast_exception_desc": "",
         "saints": [
             "Trans. Rel. Ignatius the Godbearer",
+            "St Laurence, Recluse of the Kiev Caves",
             "St Andrei Rublev, iconographer (1430)",
             "Our Holy Father Aphrahat the Persian (4th c.)",
             "Repose of Blessed Father Dimitrios Gagastathis (1975)"

@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.feedgenerator import Rss201rev2Feed
 
 from . import liturgics
-from .datetools import Calendar
+from .datetools import Calendar, Tradition
 
 
 class WSRssFeed(Rss201rev2Feed):
@@ -27,20 +27,21 @@ class ReadingsFeed(Feed):
     description_template = 'feed_description.html'
     item_categories = categories = 'orthodox', 'christian', 'religion'
 
-    def get_object(self, request, cal=Calendar.Gregorian):
-        return {'cal': cal}
+    def get_object(self, request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
+        return {'cal': cal, 'tradition': tradition}
 
     def title(self, obj):
-        return f'Orthodox Daily Readings ({obj["cal"].title()})'
+        return f'Orthodox Daily Readings ({obj["tradition"].title()}, {obj["cal"].title()})'
 
     def description(self, obj):
-        return f'Daily readings from scripture and the lives of the saints according to the {obj["cal"].title()} calendar.'
+        return (f'Daily readings from scripture and the lives of the saints according to the '
+                f'{obj["tradition"].title()} tradition, {obj["cal"].title()} calendar.')
 
     def items(self, obj):
         now = timezone.localtime()
         start_dt = now - timedelta(days=10)
         for dt in rrule(DAILY, dtstart=start_dt, until=now):
-            day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'])
+            day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'], tradition=obj['tradition'])
             day.initialize()
             yield day
 
@@ -56,6 +57,7 @@ class ReadingsFeed(Feed):
         dt = day.gregorian_date
         return reverse('readings', kwargs={
             'cal': day.pyear.calendar,
+            'tradition': day.tradition,
             'year': dt.year,
             'month': dt.month,
             'day': dt.day

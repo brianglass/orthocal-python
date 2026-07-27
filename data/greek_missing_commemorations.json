@@ -1,0 +1,2530 @@
+{
+  "01-06": {
+    "description": "The Theophany of Our Lord and Saviour Jesus Christ, Theophan the Recluse",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Theophan the Recluse",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-15": {
+    "description": "Paul of Thebes, John the Hut-Dweller, Pansophios the Martyr of Alexandria",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Pansophios the Martyr of Alexandria",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-17": {
+    "description": "Anthony the Great, Anthony the New of Veria, George the New Martyr of Ioannina, Theodosius the Emperor",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "George the New Martyr of Ioannina",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-18": {
+    "description": "12th Sunday of Luke, Athanasios and Cyril, Patriarchs of Alexandria, Zenia the Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "12th Sunday of Luke",
+        "category": "luke_matthew_numbering",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Zenia the Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-20": {
+    "description": "Righteous Euthymius the Great, John the Hieromartyr, Zacharias the New Martyr of Patra",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "John the Hieromartyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Zacharias the New Martyr of Patra",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-22": {
+    "description": "Timothy the Apostle of the 70, The Righteous Martyr Anastasius of Persia, Joseph the Sanctified",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Joseph the Sanctified",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-23": {
+    "description": "Hieromartyr Clement, Bishop of Ancyra, Agathangelus the Martyr, Righteous Father Dionysius of Olympus",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Righteous Father Dionysius of Olympus",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-26": {
+    "description": "Xenophon & his Companions, Symeon the Elder of Mount Sinai",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Symeon the Elder of Mount Sinai",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-27": {
+    "description": "Removal of the Relics of John Chrysostom, Archbishop of Constantinople, Peter the Righteous of Egypt, Demetrios the New Martyr of Constantinople",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Archbishop of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Peter the Righteous of Egypt",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Demetrios the New Martyr of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "01-29": {
+    "description": "Removal of the Relics of Ignatius the God-bearer, Ignatius and Nicandrus of Sinai, Laurence the Recluse of the Kiev Caves, Gildas the Wise",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Laurence the Recluse of the Kiev Caves",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Gildas the Wise",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "02-02": {
+    "description": "The Presentation of Our Lord and Savior in the Temple, Gabriel the New Martyr of Constantinople, Jordan the New Martyr, Agathadoros the Martyr of Cappadocia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Gabriel the New Martyr of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Jordan the New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Agathadoros the Martyr of Cappadocia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "02-10": {
+    "description": "Hieromartyr Haralambos, Anastasios, Patriarch of Jerusalem, Porphyrios & Baptos the Monk-martyrs",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Anastasios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Patriarch of Jerusalem",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Porphyrios & Baptos the Monk-martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "02-22": {
+    "description": "Forgiveness Sunday, The Finding of the Precious Relics of the Holy Martyrs in the Quarter of Eugenius, Our Righteous Fathers Thalassius and Baradatus, Anthousa the Martyr & her 12 Servants",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Forgiveness Sunday",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2023,
+          2026
+        ]
+      },
+      {
+        "segment": "Our Righteous Fathers Thalassius and Baradatus",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2023,
+          2026
+        ],
+        "years_available": [
+          2023,
+          2026
+        ]
+      },
+      {
+        "segment": "Anthousa the Martyr & her 12 Servants",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2023,
+          2026
+        ],
+        "years_available": [
+          2023,
+          2026
+        ]
+      }
+    ]
+  },
+  "03-01": {
+    "description": "Sunday of Orthodoxy, The Holy Righteous Martyr Eudocia the Samaritan, Andonina the New Martyr, David the Archbishop",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sunday of Orthodoxy",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Andonina the New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "David the Archbishop",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-06": {
+    "description": "42 Martyrs of Amorion in Phrygia, Finding the Precious Cross by St. Helen, Hesychios the Wonderworker",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "42 Martyrs of Amorion in Phrygia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Finding the Precious Cross by St. Helen",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Hesychios the Wonderworker",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-09": {
+    "description": "The Holy Forty Martyrs of Sebastia, Caesarios the Righteous",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Caesarios the Righteous",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-10": {
+    "description": "Quadratus the Martyr & his Companions, Anastasia of Alexandria, Michael Mauroudes the New-Martyr ",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Michael Mauroudes the New-Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-14": {
+    "description": "Third Saturday of Lent, Benedict the Righteous of Nursia, Euschemon the Confessor, Bishop of Lampasakos",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Third Saturday of Lent",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Euschemon the Confessor",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Lampasakos",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-19": {
+    "description": "The Holy Martyrs Chrysanthus and Daria, Demetrios the New Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Demetrios the New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-22": {
+    "description": "Sunday of St. John Climacus, Basil the Holy Martyr of Ancyra, Kalliniki & Vassilisa the Martyrs, Euthemios the New Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sunday of St. John Climacus",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Kalliniki & Vassilisa the Martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Euthemios the New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-23": {
+    "description": "The Holy Righteous Martyr Nikon and His 199 Disciples, Anatolios & Protoleon the Martyrs converted by the martyrdom of St. George, Luke the New Martyr of Mytilene",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Anatolios & Protoleon the Martyrs converted by the martyrdom of St. George",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Luke the New Martyr of Mytilene",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-26": {
+    "description": "Synaxis in honor of the Archangel Gabriel, 26 Martyrs in Crimea, Irenaeus the Hieromartyr of Hungary",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "26 Martyrs in Crimea",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Irenaeus the Hieromartyr of Hungary",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-27": {
+    "description": "Martyr Matrona of Thessalonica, Paul, Bishop of Corinth",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Paul",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Corinth",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "03-28": {
+    "description": "5th Saturday of Lent: The Akathist Hymn, Hilarion the New, Herodion the Apostle of the 70, Stephen the Wonderworker",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "5th Saturday of Lent: The Akathist Hymn",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Herodion the Apostle of the 70",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Stephen the Wonderworker",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "04-01": {
+    "description": "Mary of Egypt, Euthemios of Suzdal, Gerontios & Vasilides the Martyrs",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Gerontios & Vasilides the Martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2023,
+          2026
+        ],
+        "years_available": [
+          2023,
+          2026
+        ]
+      }
+    ]
+  },
+  "04-02": {
+    "description": "Titus the Wonderworker, Theodora the Virgin-martyr of Palestine, Amphianos & Aedesios the Martyrs of Lycia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Theodora the Virgin-martyr of Palestine",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Amphianos & Aedesios the Martyrs of Lycia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "04-03": {
+    "description": "Nicetas, Abbot of the Monastery of Medicium, Joseph the Hymnographer, Theodosia and Irene the Martyrs",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Abbot of the Monastery of Medicium",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Theodosia and Irene the Martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "04-26": {
+    "description": "Sunday of the Myrrh-Bearing Women, Basil the Holy Martyr Bishop of Amasea, Glaphyra the Righteous, Justa the Nun",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sunday of the Myrrh-Bearing Women",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Justa the Nun",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "04-27": {
+    "description": "3rd Monday after Pascha, The Holy Hieromartyr Symeon, Kinsman of the Lord, Eulogios the Innkeeper of Constantinople",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "3rd Monday after Pascha",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Eulogios the Innkeeper of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "04-28": {
+    "description": "3rd Tuesday after Pascha, The Holy Nine Martyrs of Cyzicus, John the Martyr of Romania, Memnon the Wonderworker",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "3rd Tuesday after Pascha",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "John the Martyr of Romania",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Memnon the Wonderworker",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "05-06": {
+    "description": "4th Wednesday after Pascha - Mid-Pentecost, Job the Prophet, Our Holy Father Seraphim the Struggler of Mt. Domvu, Sophia of Kleisoura",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "4th Wednesday after Pascha - Mid-Pentecost",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Our Holy Father Seraphim the Struggler of Mt. Domvu",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "05-10": {
+    "description": "Sunday of the Samaritan Woman, Simon the Zealot & Apostle, Laurence of Egypt, Isodora of Egypt",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sunday of the Samaritan Woman",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "05-21": {
+    "description": "Holy Ascension, Constantine and Helen, Equal-to-the Apostles, Pachomios the Righteous New Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Holy Ascension",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Pachomios the Righteous New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "05-27": {
+    "description": "The Holy Hieromartyr Helladius, John the Russian of Evia, Theodora the Virgin-martyr & Didymos the Martyr, Venerable Bede",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "The Holy Hieromartyr Helladius",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-01": {
+    "description": "Monday of the Holy Spirit, Justin the Philosopher and Martyr and his Companions, Pyrros the Hieromartyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Monday of the Holy Spirit",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Pyrros the Hieromartyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-11": {
+    "description": "Bartholomew the Holy Apostle, Barnabas the Holy Apostle, Revelation of the Hymn Axion Estin to a monk on Mt. Athos by the Archangel Gabriel, Luke of Simferopol",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Luke of Simferopol",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-12": {
+    "description": "Onuphrius of Egypt, Peter the Athonite, Holy Martyr Antonine, John the Soldier of Egypt",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Holy Martyr Antonine",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "John the Soldier of Egypt",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-16": {
+    "description": "Tychon the Wonderworker, 40 Martyrs of Rome, Mark the Just of Apollonia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "40 Martyrs of Rome",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Mark the Just of Apollonia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-19": {
+    "description": "Thaddeus (Jude) the Apostle & Brother of Our Lord, Holy Martyr Zosima, Our Righteous Father Zenonus, Paisius the Great of Egypt",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Holy Martyr Zosima",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Our Righteous Father Zenonus",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-27": {
+    "description": "Samson the Hospitable, Joanna the Myrrhbearer, Anektos the Martyr, Luke the Hermit",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Anektos the Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Luke the Hermit",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "06-30": {
+    "description": "Synaxis of the Twelve Holy Apostles, Michael the New Martyr of Athens",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Michael the New Martyr of Athens",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "07-08": {
+    "description": "The Holy Great Martyr Procopius, Theophilos the Myrrhbearer of Pantokrator Monastery, Appearance of the Icon of the Most Holy Theotokos of Kazan",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Theophilos the Myrrhbearer of Pantokrator Monastery",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "07-21": {
+    "description": "John and Symeon the Fool for Christ, Parthenios, Bishop of Arta",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Parthenios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Arta",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "07-22": {
+    "description": "Mary Magdalene, the Holy Myrrh-bearer and Equal to the Apostles, Markella, the Virgin-martyr of Chios",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Markella",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "the Virgin-martyr of Chios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "07-31": {
+    "description": "Forefeast of the Precious Cross, Dionysios the Righteous Martyr of Vatopaidi, Joseph the Righteous of Arimathea, Eudocimus the Righteous of Cappadocia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Dionysios the Righteous Martyr of Vatopaidi",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "08-26": {
+    "description": "The Holy Martyrs Adrian and Natalie, Our Righteous Father Joseph, Icon of the Mother of God of Vladimir",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Our Righteous Father Joseph",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "08-29": {
+    "description": "Beheading of the Holy and Glorious Prophet, Forerunner and Baptist John, Theodora of Thessaloniki, Anastasios the New Martyr of Bulgaria",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Anastasios the New Martyr of Bulgaria",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-06": {
+    "description": "14th Sunday of Matthew, The Commemoration of the Miracle Wrought by Archangel Michael in Colossae (Chonae), Holy Martyr Calodote",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "14th Sunday of Matthew",
+        "category": "luke_matthew_numbering",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Holy Martyr Calodote",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-08": {
+    "description": "The Nativity of Our Most Holy Lady the Theotokos and Ever-Virgin Mary, Sophronios, Bishop of Iberia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sophronios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Iberia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-14": {
+    "description": "The Elevation of the Venerable and Life-Giving Cross, Commemoration of the 6th Ecumenical Council",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Commemoration of the 6th Ecumenical Council",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-18": {
+    "description": "Eumenius the Wonderworker, Bishop of Gortynia, Ariadne the Martyr, Afterfeast of the Holy Cross",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Eumenius the Wonderworker",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2022,
+          2026
+        ],
+        "years_available": [
+          2022,
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Gortynia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2022,
+          2026
+        ],
+        "years_available": [
+          2022,
+          2026
+        ]
+      },
+      {
+        "segment": "Afterfeast of the Holy Cross",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2022,
+          2026
+        ],
+        "years_available": [
+          2022,
+          2026
+        ]
+      }
+    ]
+  },
+  "09-23": {
+    "description": "The Conception of St. John the Baptist, Xanthippe & Polyxene the Righteous, John the New Martyr of Epiros, Nicholas the New Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Xanthippe & Polyxene the Righteous",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Nicholas the New Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-26": {
+    "description": "The Falling Asleep of St. John the Evangelist and Theologian, Removal of the Honorable Head of Apostle Andrew the First-Called",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Removal of the Honorable Head of Apostle Andrew the First-Called",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "09-30": {
+    "description": "Gregory the Illuminator, Bishop of Armenia, Mardonios & Stratonikos the Martyrs",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Mardonios & Stratonikos the Martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-02": {
+    "description": "The Holy Hieromartyr Cyprian and the Virgin Martyr Justina, Theophilus the Confessor",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Theophilus the Confessor",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2022,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-03": {
+    "description": "Dionysios the Areopagite, Rusticus and Eleutherios the Martyrs, John the Chozebite, Bishop of Caesaria",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Rusticus and Eleutherios the Martyrs",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Caesaria",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-06": {
+    "description": "The Holy and Glorious Apostle Thomas, Eroteis the Martyr of Cappadocia, Makarios the Righteous of Chios",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Eroteis the Martyr of Cappadocia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Makarios the Righteous of Chios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-15": {
+    "description": "Lucian the Martyr of Antioch, Savinos the Bishop of Catania, Barsus the Confessor, Euthymios the New",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Savinos the Bishop of Catania",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Barsus the Confessor",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Euthymios the New",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "10-17": {
+    "description": "Hosea the Prophet, Holy Martyrs Cosmas and Damian of Arabia, Andrew the Righteous Monk-martyr of Crete, Removal and Placing of the Sacred Relics of the Holy and Righteous Lazarus",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Andrew the Righteous Monk-martyr of Crete",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Removal and Placing of the Sacred Relics of the Holy and Righteous Lazarus",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-18": {
+    "description": "Luke the Evangelist, Marinos the Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Marinos the Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "10-20": {
+    "description": "Artemius the Great Martyr of Antioch, Matrona the Righteous of Chios, Gerasimus of Cephalonia, Andronicus the Righteous Martyr",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Matrona the Righteous of Chios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Andronicus the Righteous Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2019,
+          2021,
+          2023,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "10-22": {
+    "description": "Averkios, Equal-to-the-Apostles and Wonderworker, Bishop of Hierapolis, Seven Holy Martyred Youths of Ephesus",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Averkios",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "10-23": {
+    "description": "James (Iakovos) the Apostle, brother of Our Lord, Our Righteous Father Ignatius, Patriarch of Constantinople",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Our Righteous Father Ignatius",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Patriarch of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "10-24": {
+    "description": "Arethas the Great Martyr and His Fellow Martyrs, Sebastiane the Martyr, Maglorious of Sark",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Sebastiane the Martyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      },
+      {
+        "segment": "Maglorious of Sark",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2026
+        ],
+        "years_available": [
+          2026
+        ]
+      }
+    ]
+  },
+  "10-26": {
+    "description": "The Holy Great Martyr Demetrius the Myrrh-streamer, Commemoration of the Great Earthquake in Constantinople (740), Eata of Hexham",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Commemoration of the Great Earthquake in Constantinople (740)",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Eata of Hexham",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-01": {
+    "description": "5th Sunday of Luke, Cosmas and Damian the Holy Unmercenaries of Asia, and their mother Theodota, David the Righteous of Evia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "5th Sunday of Luke",
+        "category": "luke_matthew_numbering",
+        "years_confirmed": [
+          2020,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      },
+      {
+        "segment": "and their mother Theodota",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      },
+      {
+        "segment": "David the Righteous of Evia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-06": {
+    "description": "Paul the Confessor, Patriarch of Constantinople, Luke the Monk of Taormina",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Luke the Monk of Taormina",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-17": {
+    "description": "Gregory the Wonderworker & Bishop of Neo-Caesarea, Gennadios I and Maximus, Patriarchs of Constantinople, Righteous Mother Hilda of Whitby",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Gennadios I and Maximus",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      },
+      {
+        "segment": "Patriarchs of Constantinople",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-20": {
+    "description": "The Forefeast of the Presentation of the Theotokos into the Temple, Gregory the Righteous of Decapolis, Proclus, Archbishop of Constantinople",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "The Forefeast of the Presentation of the Theotokos into the Temple",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-25": {
+    "description": "Catherine the Great Martyr of Alexandria, Apodosis of the Presentation of the Theotokos into the Temple, Mercurius the Great Martyr of Caesarea in Cappadocia",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Apodosis of the Presentation of the Theotokos into the Temple",
+        "category": "movable_feast_or_event",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "11-28": {
+    "description": "Stephen the New, Irenarchos & his Companion Martyrs at Sebaste, Auxentius, 16 Martyrs of Tiberioupolis",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Irenarchos & his Companion Martyrs at Sebaste",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      },
+      {
+        "segment": "Auxentius",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      },
+      {
+        "segment": "16 Martyrs of Tiberioupolis",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2026
+        ]
+      }
+    ]
+  },
+  "12-05": {
+    "description": "Sabbas the Sanctified, Holy Martyr Diogenes, Philotheos the Righteous of Mount Athos, Nektarios the Bulgarian ",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Holy Martyr Diogenes",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Nektarios the Bulgarian",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "12-06": {
+    "description": "10th Sunday of Luke, Nicholas the Wonderworker, Archbishop of Myra, Nicholas the New Martyr of Asia Minor",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "10th Sunday of Luke",
+        "category": "luke_matthew_numbering",
+        "years_confirmed": [
+          2020,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "12-12": {
+    "description": "Spyridon the Wonderworker of Trymithous, Holy New Martyr Peter the Aleut, John (or Joachim), Bishop of Zichni",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Holy New Martyr Peter the Aleut",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "John (or Joachim)",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Zichni",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "12-15": {
+    "description": "Eleutherios the Hieromartyr, Bishop of Illyricum, and his mother Anthia, The Martyr Susannah the Deaconess",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Eleutherios the Hieromartyr",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "Bishop of Illyricum",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "and his mother Anthia",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      },
+      {
+        "segment": "The Martyr Susannah the Deaconess",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  },
+  "12-18": {
+    "description": "Sebastian the Martyr & his Companions, Our Righteous Father Michael Syngellon the Confessor",
+    "source_year": 2026,
+    "missing": [
+      {
+        "segment": "Our Righteous Father Michael Syngellon the Confessor",
+        "category": "candidate_saint",
+        "years_confirmed": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ],
+        "years_available": [
+          2018,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024,
+          2025,
+          2026
+        ]
+      }
+    ]
+  }
+}

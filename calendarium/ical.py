@@ -14,24 +14,27 @@ from django.utils import timezone
 from django.views.decorators.cache import cache_control
 
 from . import liturgics
-from .datetools import Calendar
+from .datetools import Calendar, Tradition
 
 logger = logging.getLogger(__name__)
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
-async def ical(request, cal=Calendar.Gregorian):
-    key = f'ical-feed-{cal}'
+async def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
+    key = f'ical-feed-{tradition}-{cal}'
 
     if not (serialized_calendar := await cache.aget(key)):
         timestamp = timezone.localtime()
-        calendar = await generate_ical(timestamp, cal, request.build_absolute_uri)
+        calendar = await generate_ical(timestamp, cal, tradition, request.build_absolute_uri)
         serialized_calendar = calendar.to_ical()
         await cache.aset(key, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
 
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
-async def generate_ical(timestamp, cal, build_absolute_uri):
-    title = cal.title()
+async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
+    # Slavic keeps its original title/uid format unchanged, since existing
+    # subscribers' calendar apps use the uid to track/dedupe events -- only
+    # the newer, non-default traditions get a distinguishing prefix.
+    title = cal.title() if tradition == Tradition.Slavic else f'{tradition.title()} {cal.title()}'
     ttl = settings.ORTHOCAL_ICAL_TTL
 
     calendar = icalendar.Calendar()
@@ -49,11 +52,12 @@ async def generate_ical(timestamp, cal, build_absolute_uri):
 
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
         dt = dt.date()
-        day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal)
+        day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal, tradition=tradition)
         await day.ainitialize()
 
         day_path = reverse('readings', kwargs={
             'cal': cal,
+            'tradition': tradition,
             'year': dt.year,
             'month': dt.month,
             'day': dt.day

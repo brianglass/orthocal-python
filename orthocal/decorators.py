@@ -10,7 +10,7 @@ from django.utils.cache import get_cache_key, has_vary_header, learn_cache_key, 
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import etag as etag_decorator
 
-from calendarium.datetools import Calendar
+from calendarium.datetools import Calendar, Tradition, cal_session_key
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,10 @@ def get_date_variable_etag(request, *args, **kwargs):
 
     hash.update(settings.ORTHOCAL_REVISION.encode('utf8'))
 
-    cal = request.session.get('cal', Calendar.Gregorian)
+    tradition = request.session.get('tradition', Tradition.Slavic)
+    hash.update(tradition.encode('utf8'))
+
+    cal = request.session.get(cal_session_key(tradition), Calendar.Gregorian)
     hash.update(cal.encode('utf8'))
 
     for header in settings.ORTHOCAL_VARY_HEADERS:

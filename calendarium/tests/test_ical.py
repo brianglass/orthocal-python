@@ -8,7 +8,7 @@ from django.test import TestCase
 from django.urls import resolve, reverse
 from django.utils import timezone
 
-from ..datetools import Calendar
+from ..datetools import Calendar, Tradition
 from ..ical import generate_ical
 
 
@@ -26,6 +26,38 @@ class CalendarTest(TestCase):
         url = reverse('ical', kwargs={'cal': Calendar.Julian})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_ical_greek(self):
+        """Greek tradition ical endpoint should return 200."""
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_ical_greek_urls(self):
+        """urls should point to Greek tradition readings."""
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        for event in cal.walk('vevent'):
+            parts = urlparse(event['url'])
+            match = resolve(parts.path)
+            self.assertEqual(match.kwargs['tradition'], Tradition.Greek)
+
+    def test_ical_slavic_name_unchanged(self):
+        """Slavic calendar name/uid must keep their original format, since
+        existing subscribers' calendar apps use the uid to track events."""
+        url = reverse('ical', kwargs={'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        self.assertEqual(str(cal.get('name')), 'Orthodox Feasts and Fasts (Gregorian)')
+        for event in cal.walk('vevent'):
+            self.assertNotIn('Slavic', str(event.get('uid')))
+
+    def test_ical_greek_name_distinguishes_tradition(self):
+        url = reverse('ical', kwargs={'tradition': Tradition.Greek, 'cal': Calendar.Gregorian})
+        response = self.client.get(url)
+        cal = icalendar.Calendar.from_ical(response.content)
+        self.assertIn('Greek', str(cal.get('name')))
 
     def test_ical_urls(self):
         """urls should point to Gregorian readings."""
@@ -56,7 +88,7 @@ class CalendarTest(TestCase):
             return urljoin('http://testserver', url)
 
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
-        cal = await generate_ical(timestamp, Calendar.Gregorian, build_absolute_uri)
+        cal = await generate_ical(timestamp, Calendar.Gregorian, Tradition.Slavic, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
@@ -72,7 +104,7 @@ class CalendarTest(TestCase):
             return urljoin('http://testserver', url)
 
         timestamp = datetime.datetime(2022, 1, 7, tzinfo=datetime.timezone.utc)
-        cal = await generate_ical(timestamp, Calendar.Julian, build_absolute_uri)
+        cal = await generate_ical(timestamp, Calendar.Julian, Tradition.Slavic, build_absolute_uri)
         for event in cal.walk('vevent'):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')

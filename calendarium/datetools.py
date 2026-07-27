@@ -21,6 +21,15 @@ class Calendar(StrEnum):
     Gregorian = 'gregorian'
     Julian = 'julian'
 
+class Tradition(StrEnum):
+    Slavic = 'slavic'
+    Greek = 'greek'
+
+def cal_session_key(tradition):
+    """The calendar preference is remembered per-tradition, since Greek is
+    always Gregorian and shouldn't clobber a Slavic Julian/Gregorian choice."""
+    return f'cal_{tradition}'
+
 class FastLevels(IntEnum):
     NoFast         = 0
     Fast           = 1
@@ -104,6 +113,8 @@ class FloatIndex(IntEnum):
     AnnunciationMon                 = 1035   # Annunciation on Monday
     AnnunciationParemEve            = 1036   # Annunciation Paremias on Eve
     AnnunciationWeekday             = 1037   # Annunciation on Tuesday-Friday
+    LeavetakingTheophanyWeekday     = 1038   # Leavetaking of Theophany (theophany+8) on an ordinary weekday
+    RaphaelBrooklyn                 = 1039   # First Saturday of November -- Greek-only, see docs/greek-fasting.md
 
 
 def compute_pascha_jdn(year):
@@ -193,23 +204,3 @@ def gregorian_to_jdn(dt):
     jd = jdcal.gcal2jd(dt.year, dt.month, dt.day)
     jdn = math.ceil(sum(jd))
     return jdn
-
-# Function to generate an ordinal number from an integer
-def ordinal(n):
-    # This was written by Github Copilot. I have no idea how it works.
-    return "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
-
-def get_day_name(pdist):
-    weekday = weekday_from_pdist(pdist)
-    if pdist > 50:
-        # Generate the text "<weekday> of the <nth> week after Pentecost"
-        nth = ordinal(abs(pdist-50) // 7 + 1)
-        return f'{weekday.name} of the {nth} week after Pentecost'
-    elif pdist > 0:
-        nth = ordinal(abs(pdist) // 7 + 1)
-        return f'{weekday.name} of the {nth} week of Pascha'
-    elif pdist == 0:
-        return 'Great and Holy Pascha'
-    elif pdist < 0:
-        nth = ordinal(abs(pdist) // 7 + 1)
-        return f'{weekday.name} of the {nth} week before Pascha'
