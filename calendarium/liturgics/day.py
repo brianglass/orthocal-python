@@ -8,7 +8,7 @@ from django.utils.functional import cached_property
 
 from .. import datetools, models
 from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
-from commemorations.models import Commemoration
+from commemorations.models import DayCommemoration
 
 from .year import SlavicYear, GreekYear
 
@@ -158,37 +158,53 @@ class Day:
 
         # Fetch the items from the database
         days = [d async for d in models.Day.objects.filter(q)]
-        days = _prefer_tradition_days(days, self.tradition)
+        self.days = _prefer_tradition_days(days, self.tradition)
 
         # Bake the mutliple "days" down into a single composite day.
 
-        self.titles = [title for d in days if (title := d.full_title)]
-        self.saints = [saint for d in days for saint in d.saints]
-        self.minimal_saints = ['; '.join(d.saints) for d in days if d.saints]
-        self.feasts = [d.feast_name for d in days if d.feast_name]
-        self.service_notes = [d.service_note for d in days if d.service_note]
+        self.titles = [title for d in self.days if (title := d.full_title)]
+        self.feasts = [d.feast_name for d in self.days if d.feast_name]
+        self.service_notes = [d.service_note for d in self.days if d.service_note]
 
-        self.feast_level = max(d.feast_level for d in days)
-        self.fast_level = max(d.fast for d in days)
-        self.fast_exception = max(d.fast_exception for d in days)
+        self.feast_level = max(d.feast_level for d in self.days)
+        self.fast_level = max(d.fast for d in self.days)
+        self.fast_exception = max(d.fast_exception for d in self.days)
 
     async def _add_supplemental_commemorations(self):
-        """Add additional commemorations and stories from Abbamoses.com."""
+        """Fetch saints and their stories from the Saint/DayCommemoration
+        relational model (day_native entries mirror the position they'd
+        have had in the old Day.saints list; additive entries are
+        commemorations that only ever existed as an abbamoses story with no
+        terse Day-side counterpart)."""
 
-        self.stories = [s async for s in Commemoration.objects.filter(month=self.month, day=self.day)]
+        day_ids = [d.id for d in self.days]
+        commemorations = [
+            dc async for dc in
+            DayCommemoration.objects.filter(day_id__in=day_ids)
+            .select_related('saint').order_by('day_id', 'ordering')
+        ]
 
-        if not self.stories:
-            return
+        day_native_by_day = {}
+        additive = []
+        for dc in commemorations:
+            if dc.day_native and dc.ordering >= 0:
+                day_native_by_day.setdefault(dc.day_id, []).append(dc.saint)
+            elif not dc.day_native:
+                additive.append(dc)
+            # else: day_native with ordering < 0 -- matched to feast_name,
+            # already represented via self.feasts; story-only, excluded here.
 
-        commemorations = self.titles + self.feasts + self.saints
+        self.saints = []
+        self.minimal_saints = []
+        for d in self.days:
+            names = [s.name for s in day_native_by_day.get(d.id, [])]
+            self.saints.extend(names)
+            if names:
+                self.minimal_saints.append('; '.join(names))
 
-        # Add unmatched stories to the list of commemorations
-        self.saints.extend(
-            s.title
-            for s in self.stories
-            if not s.alt_title or not any(s.alt_title in c for c in commemorations)
-        )
-        
+        self.saints.extend(dc.saint.name for dc in additive)
+        self.stories = [dc.saint for dc in commemorations if dc.saint.story]
+
     def _apply_fasting_adjustments(self):
         """Tradition-specific -- see SlavicDay/GreekDay."""
         raise NotImplementedError

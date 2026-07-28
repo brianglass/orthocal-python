@@ -229,7 +229,82 @@ collision survived the population as-is -- "St Emilia (375), mother of
 Sts Macrina, Basil the Great and Gregory of Nyssa..." links to both 1/1
 and 5/8. Unclear yet whether this is a genuine abbamoses-source duplicate
 (the same entry appearing under two headings) or something else. Low
-priority, worth a quick look before Stage 3.
+priority.
+
+## Stage 3: rewire `_collect_commemorations`
+
+Done. `calendarium/liturgics/day.py` no longer reads `Day.saints` or queries
+`Commemoration` directly -- `self.saints`/`self.minimal_saints`/`self.stories`
+are now built entirely from `Saint`/`DayCommemoration`. `Day.saints` (the
+JSONField) is left in the model/DB for now as a safety net, unused by any
+code -- removing it is a separate, final cleanup once this has run in
+production for a while.
+
+**A full re-population was needed, not just a query rewrite**, once it
+became clear `DayCommemoration` (populated *from* `Commemoration` in Stage
+2) wasn't a strict superset of `Day.saints`: 154 `Day.saints` entries (91
+`common` + 4 `slavic` + 59 `greek`) had no `DayCommemoration` counterpart at
+all. The 59 `greek` ones are structural and expected -- `Commemoration`/
+abbamoses is entirely Slavic-sourced, so Greek-tagged rows were never going
+to match a story. The 95 `common`/`slavic` ones were genuine gaps. Brian
+chose full replacement (option 1 of 2 offered) over a narrower rewire that
+would have left `Day.saints` as an ongoing second source of truth.
+
+Rebuilt the population as two ordered passes plus a schema addition
+(`DayCommemoration.day_native`, `BooleanField`) rather than overloading
+`ordering` with dual meaning:
+
+- **Pass 1 (day-native)**: iterate `Day.saints` directly (already-correct
+  text, per all of this session's fixes) for every `Day` row across all
+  three traditions. For each name, search that date's `Commemoration` rows
+  for a matching story via fuzzy word-overlap -- checking *both* the
+  title and, critically, the row's pre-existing (Stage-2-verified)
+  `alt_title`, since a fresh title-only match kept falling just short of
+  threshold on real matches that differ only by epithet (e.g. "Theodosius
+  the Cenobiarch" vs. Day's "Theodosius the Great") -- alt_title reuse
+  recovered 87 of these. `ordering` = the name's list position, so display
+  order exactly matches the old `Day.saints`-based behavior.
+- **Pass 1b (feast_name matches)**: some terse text lives in `Day.feast_name`
+  instead of `.saints` entirely (e.g. Jan 1 "Circumcision of Our Lord; St
+  Basil the Great", or Alexis Toth's whole entry) -- these are already
+  shown via `self.feasts`, so mirror the old alt_title-containment
+  behavior: consume the story (so it doesn't *also* show up as a
+  standalone additive duplicate) but exclude it from the saints name-list
+  via an `ordering=-1` sentinel, which `day.py` explicitly skips when
+  building the name list.
+- **Pass 2 (additive)**: whatever `Commemoration` rows remain unconsumed
+  get their own `Saint` entity, linked to that date's default `Day` row,
+  `day_native=False`.
+
+**A real, pre-existing bug in the old code was caught and *not* preserved,
+after review**: the old `_add_supplemental_commemorations` only
+deduplicated a story against the terse list when the row already had an
+`alt_title` (i.e., a subset a 2018-era GPT-3.5 pass happened to match) --
+anything without one got appended unconditionally, even when it duplicated
+an existing name under fuller phrasing (e.g. Jan 9 showed both "Hieromartyr
+Philip, Metropolitan of Moscow" *and* "Saint Philip, Metropolitan of Moscow
+(1569)" as separate entries). The new code catches these correctly. Updated
+the two affected golden test fixtures (`last_bday.json`, `january.json`)
+to reflect the corrected (deduplicated) output after manually verifying
+each diff was a legitimate improvement, not a content loss.
+
+**Known, accepted residual**: fuzzy word-overlap matching can't catch
+same-person duplicates that differ only by transliteration rather than
+epithet or spelling (no shared tokens at all) -- found 5 across the whole
+year via a full-year duplicate scan: John Calabytes/Kalyvites (1/15),
+Meletius/Meletios (2/12), Sophronius/Sophronios (3/11), Zachariah/Zacharias
+(3/24), Herman/Germanus of Kazan (11/6). All other pairs the scan flagged
+turned out to be genuinely different saints who share a name element (e.g.
+two distinct St. Peters of Damascus, centuries apart) -- correctly left
+alone. A small transliteration-synonym list would close these; not chased
+now, scope already large enough.
+
+114/114 tests pass. All 6 real production consumers of `.saints`/`.stories`
+(`alexa/speech.py`, `calendarium/ical.py`, and the 5 templates) verified
+rendering correctly with no code changes needed -- `Saint.title` is a
+property alias for `.name` specifically so `day.stories` items keep
+answering to `.title`/`.story` exactly like the old `Commemoration` objects
+did.
 
 Next up: Stage 3 (rewire `_collect_commemorations`), or the cross-date
 matching pass for same-saint-different-occasion pairs (Sergius of
