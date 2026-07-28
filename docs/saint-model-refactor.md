@@ -158,9 +158,9 @@ than guessed.
    before anything commits -- not a bulk auto-import.
 3. Rewire `_collect_commemorations` to build `self.saints` from the new
    relational structure. Bounded per the consumer count above.
-4. Fast-follow: recover `daSlevel` rank data during the same matching pass;
-   derive the `high_rank` cutoff empirically against the dagger-sourced
-   boolean.
+4. Fast-follow: recover `daSlevel` rank data during the same matching pass.
+   (Done -- the planned `high_rank` derivation from `rank` didn't hold up
+   empirically; kept as two independent fields instead, see below.)
 5. Only then, fix issue #146 -- `new_style` becomes a one-line check on the
    through-table row instead of pattern-matching annotation text.
 
@@ -317,6 +317,39 @@ needed -- left unmerged.
 For each of the 4 genuine merges: the additive entry's story moved onto
 the day-native `Saint` (which had none), then the additive `Saint`/
 `DayCommemoration` was deleted. 114/114 tests still pass.
+
+## Fast-follow: `daSlevel` rank recovery
+
+Done, with one revised conclusion. Parsed Paul Kachur's `days.sql` again
+(117 rows with `daSlevel > 0`, distribution `{2: 52, 3: 40, 4: 25}` as
+found earlier this session) and fuzzy-matched each against the current
+`Saint`/`DayCommemoration` data the same way as the rest of this refactor
+(title + `alt_title`, score >= 0.4). All 117 source rows matched with zero
+misses, setting `rank` on 181 `DayCommemoration` rows (some source rows
+list multiple co-commemorated saints).
+
+**The planned `high_rank = rank >= N` computed property doesn't hold up**,
+and after checking rather than assuming, that's not because the rank scale
+runs the opposite direction from expected (Brian's hypothesis, worth
+checking but not what's happening here) -- `lib/core.REFERENCE.txt`
+explicitly documents `daSlevel` as sharing `daFlevel`'s scale (increasing
+= more liturgically elaborate), and real examples support that direction:
+`slevel=4` includes some of the most major saints in the calendar
+(Seraphim of Sarov, Cyril "Teacher of the Slavs", Nino of Georgia), while
+`slevel=2` has real weight too (Athanasius the Great, Macarius the Great) --
+not a clean "4 important, 2 minor" split either direction.
+
+Cross-tabulating rank against `Commemoration.high_rank` (the dagger-sourced
+boolean) shows no usable correlation at all: rank=2 is 31% `high_rank=True`,
+rank=3 is 33%, rank=4 (nominally the *most* liturgically elaborate) is only
+19% -- flat-to-inverted, not a threshold waiting to be found. Best
+explanation: `daSlevel` reflects the typikon's own service-structure symbol
+(black squiggle/red squiggle/red cross -- how many hymns get added that
+day), a narrow, mechanical distinction, while `high_rank` is very likely
+abbamoses's own editorial judgment about which stories merited a fuller
+flag -- two legitimately different axes, not one measuring the other
+imperfectly. Decided (with Brian, 2026-07-28): keep `rank` and `high_rank`
+as independent fields; no computed-property derivation.
 
 114/114 tests pass. All 6 real production consumers of `.saints`/`.stories`
 (`alexa/speech.py`, `calendarium/ical.py`, and the 5 templates) verified
