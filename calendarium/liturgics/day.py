@@ -108,6 +108,7 @@ class Day:
         self.pdist = pdist
         self.weekday = datetools.weekday_from_pdist(pdist)
         self.tradition = tradition
+        self.calendar = calendar
         self.pyear = _YEAR_CLASSES[tradition](pyear, calendar)
         self.language = language
 
@@ -175,20 +176,66 @@ class Day:
         relational model (day_native entries mirror the position they'd
         have had in the old Day.saints list; additive entries are
         commemorations that only ever existed as an abbamoses story with no
-        terse Day-side counterpart)."""
+        terse Day-side counterpart).
+
+        new_style commemorations (see docs/saint-model-refactor.md, issue
+        #146) are modern events recorded against the civil/Gregorian date --
+        both Old- and New-Calendar jurisdictions observe them on the same
+        real day, unlike the traditional Menaion whose OS dates are
+        genuinely offset in Julian mode. In Julian mode self.month/self.day
+        are the Julian-shifted label, not the civil date, so these
+        commemorations are excluded from whichever shifted day they happen
+        to be attached to and re-fetched keyed on self.gregorian_date
+        instead. In Gregorian mode self.month/self.day already equal the
+        civil date, so no special-casing is needed.
+
+        DayCommemoration.tradition (Stage 6) is a sparse, additive overlay
+        at the individual-commemoration level, mirroring Reading's
+        common/tradition-specific pattern -- a tradition-specific
+        commemoration supplements the day's common ones rather than
+        replacing them, which is why the query below filters by tradition
+        directly instead of relying on _prefer_tradition_days (that
+        function still governs which whole calendarium.Day row wins when
+        the day-level facts themselves genuinely diverge, which is now the
+        rarer case)."""
 
         day_ids = [d.id for d in self.days]
-        commemorations = [
-            dc async for dc in
-            DayCommemoration.objects.filter(day_id__in=day_ids)
-            .select_related('saint').order_by('day_id', 'ordering')
-        ]
+        query = DayCommemoration.objects.filter(day_id__in=day_ids, tradition__in=(self.tradition, 'common'))
+        if self.calendar == Calendar.Julian:
+            query = query.exclude(new_style=True)
+        commemorations = [dc async for dc in query.order_by('day_id', 'ordering')]
+
+        if self.calendar == Calendar.Julian:
+            civil_days = [
+                d async for d in models.Day.objects.filter(
+                    month=self.gregorian_date.month, day=self.gregorian_date.day,
+                    tradition__in=(self.tradition, 'common'),
+                )
+            ]
+            civil_days = _prefer_tradition_days(civil_days, self.tradition)
+            civil_day_ids = [d.id for d in civil_days]
+            new_style_commemorations = [
+                dc async for dc in
+                DayCommemoration.objects.filter(
+                    day_id__in=civil_day_ids, new_style=True, tradition__in=(self.tradition, 'common'),
+                )
+                .order_by('ordering')
+            ] if civil_day_ids else []
+            commemorations = commemorations + new_style_commemorations
+        else:
+            new_style_commemorations = []
 
         day_native_by_day = {}
         additive = []
         for dc in commemorations:
-            if dc.day_native and dc.ordering >= 0:
-                day_native_by_day.setdefault(dc.day_id, []).append(dc.saint)
+            if self.calendar == Calendar.Julian and dc.new_style:
+                # Re-fetched above keyed on the civil date -- always additive
+                # here regardless of its original day_native/ordering, since
+                # those describe its position on its *native* shifted day,
+                # not this civil-anchored view.
+                additive.append(dc)
+            elif dc.day_native and dc.ordering >= 0:
+                day_native_by_day.setdefault(dc.day_id, []).append(dc)
             elif not dc.day_native:
                 additive.append(dc)
             # else: day_native with ordering < 0 -- matched to feast_name,
@@ -197,13 +244,13 @@ class Day:
         self.saints = []
         self.minimal_saints = []
         for d in self.days:
-            names = [s.name for s in day_native_by_day.get(d.id, [])]
-            self.saints.extend(names)
-            if names:
-                self.minimal_saints.append('; '.join(names))
+            titles = [dc.title for dc in day_native_by_day.get(d.id, [])]
+            self.saints.extend(titles)
+            if titles:
+                self.minimal_saints.append('; '.join(titles))
 
-        self.saints.extend(dc.saint.name for dc in additive)
-        self.stories = [dc.saint for dc in commemorations if dc.saint.story]
+        self.saints.extend(dc.title for dc in additive)
+        self.stories = [dc for dc in commemorations if dc.story]
 
     def _apply_fasting_adjustments(self):
         """Tradition-specific -- see SlavicDay/GreekDay."""

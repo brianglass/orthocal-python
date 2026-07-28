@@ -362,3 +362,393 @@ Next up: Stage 3 (rewire `_collect_commemorations`), or the cross-date
 matching pass for same-saint-different-occasion pairs (Sergius of
 Radonezh's July 5 translation-of-relics vs. September 25 repose was
 noticed in passing as another real example, alongside Herman's).
+
+## Stage 4: title/identity separation, then cross-date consolidation (2026-07-28)
+
+**Problem surfaced in design discussion, before touching code**: `Saint.name`
+was doing double duty as both the person's stable identity (used by
+`get_or_create_saint` to decide "is this the same person") and the
+occasion-specific display text. Since occasion wording genuinely varies
+(repose vs. glorification vs. translation-of-relics), the same person kept
+fragmenting into multiple disconnected `Saint` rows -- confirmed for Herman
+of Alaska (3 rows for 3 different people, one of them a compound string
+covering 3 people at once) and Sergius/Herman of Valaam (2 rows for one
+joint identity). A related design conversation (should occasion-specific
+narrative live on `Saint` or `DayCommemoration`?) concluded that ALL story
+content should move to `DayCommemoration` -- `Saint.story` was eliminated
+entirely rather than kept as a fallback, since in practice occasion-specific
+narratives never turned out to share a reusable "canonical bio" the
+fallback would have served.
+
+**Schema change**: `Saint` reduced to `name` (terse identity) + `full_name`
+(nullable, fuller descriptive form for an eventual saint detail page --
+discussed and explicitly deferred as a follow-on, along with a possible
+`Saint.dates` free-text field for birth/death, once there's a real page to
+build). `DayCommemoration` gained real `title` and `story` fields
+(occasion-specific); the old `Saint.title` alias property is gone since
+callers now get real fields directly off `DayCommemoration`. Migration
+0009/0010 (Django wanted to remove `Saint.story` and add the new fields in
+one migration -- split by hand into add-then-backfill-then-remove so the
+data had somewhere to land before the source column disappeared).
+
+**`full_name` backfill**: surveyed `Commemoration.title` for occasion-verb
+prefixes ("Repose of", "Translation of the relics of", etc.) that needed
+stripping into `full_name` vs. the original wording staying on
+`DayCommemoration.title`. Scope was much smaller than the fragmentation
+problem suggested: only 36/900 titles actually had a genuine occasion
+prefix to strip; 854 were already identity-level text (honorific + name +
+epithet, often a parenthetical date) with nothing to strip, so they copied
+straight across. A first attempt also stripped a bare leading "The " --
+wrong, since that also matches one-off feast titles ("The Circumcision of
+Our Lord...") that have no separate identity to split out; removed that
+rule and kept only prefixes naming a specific kind of occurrence.
+
+**Herman of Alaska consolidation** -- the motivating case, now fixed:
+- The Dec 12 entry turned out to be a pure cross-reference stub in
+  abbamoses's own text ("He is also commemorated tomorrow, December 13. See
+  his life there.") -- confirmed against OCA (no Herman entry at all on
+  Dec 12) and deleted rather than kept as a competing occasion.
+- The Dec 13 "compound" entry (one `Saint.name` covering Herman, Juvenaly,
+  and Peter the Aleut) turned out to be a real joint commemoration in the
+  source ("The Synaxis of St Herman and the American Protomartyrs"), not
+  pure scraper garbling -- but still needed splitting, because Herman alone
+  has a second, separate occasion (the Aug 9 Glorification) that the other
+  two don't share. Split into 3: Herman keeps the Dec 13 row and absorbs
+  the Aug 9 Glorification (previously a disconnected `Saint`); Juvenaly
+  gets his own new additive row; Peter the Aleut's new row was pointed at
+  the *same* `Saint` as the pre-existing Greek-tradition Dec 12 entry
+  (`Holy New Martyr Peter the Aleut`) rather than creating a 4th
+  disconnected row -- a genuine cross-tradition identity link, exactly what
+  this model exists to capture.
+- Sergius and Herman of Valaam's two occasions (June 28 repose, Sept 11
+  translation of relics) merged onto the one `Saint` that already modeled
+  them as a joint identity -- no split needed here, since both occurrences
+  were of the *same* pair, unlike the Kiev Caves case below.
+
+**Full cross-date duplicate survey**: reused the Jaccard token-overlap
+approach across all ~1000 `Saint` rows (not scoped to one person), which
+surfaced 287 candidate pairs at score >= 0.4. This is a fundamentally
+noisier search than the earlier single-day transliteration scan --
+comparing across the whole year means generic liturgical vocabulary
+("Theotokos", "Ever-Virgin Mary", "Fool-for-Christ", "Pope of Rome",
+"Wonderworker") produces heavy false-positive overlap between genuinely
+different feasts/people (different Theotokos feasts, three distinct
+historical Cosmas-and-Damian pairs, different Popes of Rome, different
+Ecumenical Councils, three different Matronas, many different Johns/
+Alexanders/Josephs on first-name overlap alone). After filtering out
+conflicting parenthetical years and same-day pairs, manually reviewing all
+255 remaining candidates found the single strongest signal was the
+source's own explicit cross-reference text ("His main commemoration is
+October 19", "For his life see September 25", "also commemorated August 4,
+see that date") -- every pair carrying that signal was a confirmed genuine
+match. **25 pairs merged** on this basis (Theophan the Recluse, Innocent of
+Irkutsk, Joseph the Hymnographer, Martin the Confessor, Aristarchus/Pudens/
+Trophimus, Prophet Ezekiel, Alexander Nevsky, John the Theologian, Sergius
+of Radonezh, John of Kronstadt, Vitalis, Cyprian of Carthage, Greatmartyr
+Euphemia, Seven Sleepers/Youths of Ephesus, Philip Metropolitan of Moscow,
+Ignatius the Godbearer, Theodore Stratelates, Athanasius the Great, John
+Mavropos, Jonah Metropolitan of Moscow, St Sava of Serbia (3-way), Boris
+and Gleb, Job of Pochaev (3-way)).
+
+**Two more joint-vs-solo splits**, same shape as Herman: "Ven. Anthony and
+Theodosius of Kiev Caves" (Sept 2, no story of its own) split so Anthony's
+existing solo identity (July 10) and Theodosius's existing translation-of-
+relics identity (Aug 14) each get their own additive link to that day
+rather than being merged into one one conflated identity; "Ven. Isaac,
+Dalmatus, Faustus" (Aug 3) split so Isaac's portion links to his existing
+solo identity (May 30, explicit "also commemorated May 30, see his life
+there" in the source text) while the renamed `Saint` keeps Dalmatus and
+Faustus, who have no separate entry elsewhere.
+
+**A third joint-vs-solo split, caught by Brian reviewing the fixture after
+the fact**: the Athanasius the Great merge above was wrong. At merge time
+the reasoning was "Cyril has no separate occurrence to reconcile with, so
+the conflated identity is harmless" -- but that reasoning addressed the
+wrong problem. The May 2 occurrence ("His main commemoration is January
+18") is Athanasius's *alone*; Cyril is never commemorated May 2 at all, so
+pointing that occurrence at a `Saint` whose name is "Ss Athanasius the
+Great **and Cyril** of Alexandria" is simply incorrect, independent of
+whether Cyril has anywhere else to anchor to -- exactly the same failure
+mode as Anthony/Theodosius and Isaac/Dalmatus/Faustus, just not recognized
+as such the first time. Split out a solo Athanasius `Saint`, repointed the
+May 2 `DayCommemoration` to it, left the two Jan 18 (common + greek) rows
+on the joint "Athanasius and Cyril" `Saint`. **Lesson**: "no separate
+occurrence to reconcile with" is not a valid reason to leave a joint
+identity attached to a solo occasion -- check whether the *other* person in
+the joint pair is actually commemorated on that specific day, not just
+whether they have some other row to fall back on.
+
+**The other ~230 candidates were reviewed and deliberately NOT merged** --
+worth recording why, since the failure mode is specific: Jaccard score on
+short token sets (after stopword removal) is unreliable at the low end.
+"John the Hieromartyr" reduces to the single token `{john}` after stopword
+stripping, which trivially scores 0.5 against *any* other entry containing
+"John" plus one more word -- this pattern (single- or two-token identities)
+accounts for the bulk of the 255 and is nearly all noise, not a matching
+problem to solve better. Concrete confirmed-different examples worth
+remembering if this survey is ever rerun: three distinct historical
+Cosmas-and-Damian pairs (Rome/Arabia/Asia Minor, on three different dates);
+"Bl. Andrew, Fool-for-Christ" (Constantinople, 911) vs. "Blessed Andrew of
+Totma" (1637) -- different people, ~700 years apart; three different
+Maximos saints (the Confessor, the Greek, Kavsokalybites); three different
+Matronas (Moscow-blind 1952, Perga/Constantinople 492, Chios); different
+Popes of Rome and different Ecumenical Councils matched only on
+"Pope"/"Rome" or "Ecumenical Council" tokens. `Saint.name`/`.full_name`
+sharing an epithet or office is not evidence of shared identity without a
+corroborating explicit source signal or a genuinely matching biography.
+
+135 total `Saint` rows removed across this stage (25 simple merges + the
+Herman/Sergius-Herman/2-split cleanups); 114/114 tests still pass
+unchanged, fixture regenerated.
+
+**Deliberately deferred, decided in conversation, not yet built**:
+`Saint.dates` (birth/death display text) and the saint detail page itself
+(one page per `Saint`, listing every `DayCommemoration` chronologically,
+linked from saint names on the daily readings page) -- both explicitly
+scoped as a future follow-on rather than part of this stage. The saint
+page is *why* this consolidation pass mattered beyond data hygiene: without
+it, the same person would render as 2-3 disconnected pages.
+
+## Stage 5: the actual #146 fix (2026-07-28)
+
+**Root cause, precisely**: `Day.__init__` computes `self.month`/`self.day`
+by reinterpreting the requested civil (Gregorian) date under the Julian
+calendar's own numbering (`datetools.gregorian_to_julian`) when in Julian
+mode. For traditional Menaion content this is correct -- Old Calendar
+believers observe a fixed feast on its own Julian-labeled day, which
+genuinely falls on a different civil day than the Gregorian date requested.
+But `new_style` commemorations are modern historical events (a repose, a
+1970 canonization) that both Old- and New-Calendar jurisdictions observe on
+the same real civil day -- there's no Julian-label shift to apply, because
+the event never had a Menaion slot to begin with.
+
+**Fix, in `_add_supplemental_commemorations`** (`calendarium/liturgics/day.py`):
+`Day.__init__` now stores `self.calendar`. In Julian mode, `new_style=True`
+`DayCommemoration` rows are excluded from whichever Julian-shifted `Day`
+they happen to be additively attached to, and a second, narrow query
+re-fetches `Day` rows keyed on `self.gregorian_date.month`/`.day` (the true
+civil date, always available since it's computed unconditionally in
+`__init__`) to pull in just their `new_style=True` commemorations, appended
+into the additive bucket regardless of their original `day_native`/
+`ordering`. In Gregorian mode `self.month`/`self.day` already equal the
+civil date, so nothing changes -- confirmed by leaving the Gregorian-mode
+branch of the loop untouched.
+
+**Why exclusion (not just addition) was necessary**: every one of the 21
+confirmed `new_style` rows turned out to be an *additive* commemoration
+attached to a `Day` row that also carries ordinary, unrelated Menaion
+content for that Julian-labeled slot (checked all 19 systematically before
+writing the fix, not assumed) -- e.g. Gerontissa Gavrilia's row also
+natively lists "Ven. Hilarion the New". Without exclusion, the bug would
+simply move: whichever *other* civil day's Julian-shifted label happens to
+land on that same month/day would incorrectly show the modern saint
+alongside that day's real native content.
+
+**Confirmed scope -- 21 `DayCommemoration` rows flagged `new_style=True`**:
+19 found via the `"(...OC)"` annotation already present in `Commemoration.title`
+(itself confirming these are all 20th-century figures whose repose year is
+explicitly OS-annotated: Gerontissa Gavrilia, John Maximovich, Silouan of Mt
+Athos, Lazarus (Moore), Nikolai (Velimirovic), Seraphim of Vyritsa, Paisios
+of the Holy Mountain, Maxim (Sandovich), Jonah of Manchuria, Savvas the New
+of Kalymnos, Alexis Toth, Sophrony of Essex, Photios Kontoglou, Georges
+Florovsky, Seraphim (Rose) of Platina, Justin (Popovic), Porphyrios of
+Kavsokalyvia, Gorazd of Slovakia, Joseph the Hesychast), plus the 2 found
+earlier with no textual tell (Herman of Alaska's Aug 9 Glorification,
+Matrona of Moscow's May 2 repose). Matching each `Commemoration` row to its
+`Saint`/`DayCommemoration` needed care: several stories were the same
+`'<p></p>'` empty placeholder (Georges Florovsky's row matched 8 different
+`DayCommemoration` rows via story-equality before resolving it by name
+instead) -- a repeat of the same false-collision pattern from the Stage 4
+`full_name` backfill.
+
+**A genuinely separate bug found and fixed along the way**: Justin
+(Popovic)'s row had `day_native=True, ordering=-1` -- Stage 3's fuzzy
+matching had mismatched his commemoration to *Tikhon's* `feast_name` text
+on the same shared `Day` row (April 7), silently suppressing his name from
+the terse list on the (wrong) assumption he was already represented via
+`self.feasts`. Corrected to `day_native=False, ordering=0` so he displays
+via the normal additive path. Unrelated to #146 itself, just adjacent data
+surfaced by the same investigation.
+
+**Tests**: 5 new (`test_liturgics.py::TestDay`) covering the civil-date
+match, the negative case (the shifted-label date must NOT show it),
+Gregorian-mode being unaffected, and both Matrona and Toth. 119/119 tests
+pass; fixture regenerated.
+
+**Deliberately still open, not part of this fix**: John Kochurov (Oct 31)
+and Raphael of Brooklyn (Feb 27) remain genuinely ambiguous NS/OS cases --
+neither OCA's pages nor era-based reasoning resolved them cleanly during
+the original investigation, and nothing in this stage changed that.
+
+This closes the core refactor plan. Remaining follow-on work (explicitly
+deferred, not urgent): the saint detail page, `Saint.dates`, and eventually
+removing the now-fully-unused `Day.saints` JSONField once this has run in
+production a while.
+
+## Stage 6: DayCommemoration.tradition -- fixing a real duplication antipattern (2026-07-28)
+
+**Found while reviewing the fixture after Stage 5**: Brian noticed two
+`DayCommemoration` rows for "Ss Athanasius the Great and Cyril of
+Alexandria" with byte-identical `title`/`story`, one on the `common` Jan 18
+`Day` row and one on the `greek` Jan 18 `Day` row. Investigating turned up
+something bigger than a one-off duplicate: **26 saints** had this exact
+pattern (a saint listed identically in both the `common` and `greek`
+`Day.saints` JSON for the same date), because the Greek-tradition harvest
+(a separate, earlier project) populated a full parallel `Day` row per date
+rather than a sparse overlay the way `Reading` was designed -- confirmed
+this wasn't the wholesale "hundreds of duplicate rows" problem it first
+looked like: only 37 `greek`-tagged `Day` rows exist total, and every one
+of them diverges from its `common` counterpart in *something* -- but for
+29 of the 37, the *only* field that differs is `saints`, meaning the
+separate `Day` row exists solely to carry a handful of Greek-specific
+additions, at the cost of re-declaring (and thus double-storing) whatever
+shared saints happen to also be commemorated that day in both traditions.
+
+**Root architectural cause**: `_prefer_tradition_days` treats a
+tradition-specific `Day` row as a *complete replacement* for that
+(month, day) slot, not a merge -- correct for `Reading`, where each row is
+independent and genuinely either shared or overridden at the individual-
+citation level, but wrong for `Day`, where feast_level/fast/service_note
+*and* the saints list all live on one row together. A date where only the
+saints list differs still needs its own full row under this model, forcing
+either full duplication (the bug) or losing the shared saints entirely if
+the greek row had been trimmed to just its additions.
+
+**Fix**: added `DayCommemoration.tradition` (same three-value common/
+slavic/greek field as `Day`/`Reading`, migration 0011), making the
+overlay/fallback pattern operate at the *individual commemoration* level
+instead of the whole `Day` row -- mirroring `Reading`'s design exactly,
+just one level down. `_add_supplemental_commemorations` now filters
+`DayCommemoration` by `tradition__in=(self.tradition, 'common')` directly,
+rather than relying solely on which `Day` row `_prefer_tradition_days`
+picked. `_prefer_tradition_days` still exists and still governs day-level
+facts (feast_level, fast, etc.) for the cases where those genuinely
+diverge -- it's just no longer doing double duty for saints too.
+
+**Data migration** (one-off script, not a Django migration): for each of
+the 29 `greek` `Day` rows that diverge from `common` *only* in `saints`,
+walked its `DayCommemoration` rows -- if the same `Saint` already has a
+commemoration on the `common` row (a shared saint, duplicate content),
+deleted the `greek`-attached copy after asserting the content actually
+matched; if not (a genuine Greek-only addition, e.g. "Zenia the Martyr" on
+Jan 18), repointed it onto the `common` `Day` row and tagged it
+`tradition='greek'`. Deleted the 29 now-empty `greek` `Day` rows once done.
+Result: 26 deduped/deleted, 33 genuine additions relocated, 26 `Day` rows
+removed. The remaining 11 `greek`-tagged `Day` rows are either genuinely
+greek-only dates with no `common` counterpart at all (8), or floating
+(pdist-keyed, `month=0`/`day=0`) rows that diverge in more than just
+`saints` and were correctly left untouched (3).
+
+**A latent bug caught before it did damage**: the first version of the
+migration script built a `{(month, day): day_row}` dict keyed only on
+month/day to find each `common` counterpart -- but floating `Day` rows
+(Paschal-cycle content, keyed by `pdist` instead of a real calendar date)
+all share `month=0, day=0`, so that dict silently collapsed dozens of
+distinct floating rows down to whichever was inserted last. Checked for
+real damage before trusting the result: none occurred, because the
+mismatched comparisons this caused all happened to show differences
+beyond just `saints` (comparing unrelated floating content against each
+other), so they were safely skipped rather than wrongly merged -- verified
+directly (no floating rows deleted, no `DayCommemoration` incorrectly
+pointed at a `month=0`/`day=0` row) rather than assumed safe. Worth
+remembering if any further `Day`-level data work reuses this kind of
+month/day keying: floating rows need `pdist` in the key, not just
+month/day.
+
+**Verification**: `Day(2026, 1, 18, tradition=Slavic)` now shows only
+"Ss Athanasius the Great and Cyril of Alexandria"; `Day(2026, 1, 18,
+tradition=Greek)` shows that plus "Zenia the Martyr" -- additive, not
+replaced. New test
+`test_tradition_specific_commemoration_is_additive_not_a_replacement`.
+120/120 tests pass on a from-scratch test database (rebuilt the test image
+and dropped `--keepdb` to confirm the regenerated fixtures are what's
+actually being tested, not a stale cached test DB).
+
+## Stage 7: retire `Commemoration`, migrate `high_rank`, more joint-vs-solo splits (2026-07-28)
+
+**Retiring the source table.** `Commemoration` had zero remaining code
+references (not queried anywhere, not registered in Django admin) since
+Stage 3's rewire -- confirmed by grep before touching anything. The one
+open item was `high_rank` (abbamoses's editorial "story-worthy" flag),
+which had never been migrated onto the new model and had no consumer at
+all. Brian chose to migrate it rather than drop it or leave the table as
+a dead safety net. Added `DayCommemoration.high_rank` (migration 0012),
+backfilled from all 129 `Commemoration` rows with `high_rank=True` using
+the same story-equality-first/title-fuzzy-fallback approach used
+throughout this project -- 128 matched cleanly, the 1 miss was
+`Commemoration` id 860 (the Dec 12 Herman-of-Alaska stub already deleted
+in Stage 5 as a confirmed duplicate/pointer, so correctly has nothing left
+to match). Then deleted the `Commemoration` model entirely (migration
+0013). `rank` and `high_rank` remain two independent fields per the
+Fast-follow section's finding -- this migration doesn't change that,
+just gives `high_rank` a home on the model that's actually used.
+
+**A new, more general "event vs. person" pattern, found by Brian reviewing
+the fixture**: `Saint` rows that are really commemorations of a *relic or
+event* associated with an existing saint, not a distinct identity --
+"Veneration of Chains of Apostle Peter" (Jan 16) was sitting as its own
+disconnected `Saint` with no link to any Peter identity at all. Same root
+cause as the Athanasius/Cyril and Anthony/Theodosius splits: the *only*
+existing Peter-related identity was the joint "Holy, Glorious and
+All-praised Leaders of the Apostles, Peter and Paul" (June 29) -- but the
+Chains veneration is only about Peter, so linking it to the joint pair
+would incorrectly implicate Paul. No solo "Apostle Peter" `Saint` existed
+to link to, so one was created and the Chains veneration repointed onto
+it. A broader pattern search (`Veneration of`, `Placing of`, `Appearance
+of`, `Confession of`, `Miracle of`, `Icon of` as leading title patterns)
+found one more of the same shape: "Miracle of Archangel Michael at
+Colossae" (Sept 6), whose only existing Michael identity was the joint
+"Synaxis of the Chief Captains... Michael and Gabriel" (Nov 8) -- same
+fix, new solo "Archangel Michael" `Saint` created and repointed.
+
+**Found and deliberately NOT fixed, flagged as a different/bigger
+question**: "Robe of the Theotokos at Blachernae," "Sash of the
+Theotokos," and "The Placing of the Precious Robe of the Lord in Moscow"
+(Christ's robe) look superficially like the same pattern, but aren't --
+unlike Peter and Michael, there is no existing solo "Theotokos" or
+"Christ" `Saint` identity anywhere in this data to link them to. Every
+other Marian/Christological feast (Nativity, Dormition, Annunciation,
+Theophany, Transfiguration, etc.) is already modeled as its own
+independent entry, never folded into one trackable person. Creating a
+"solo Theotokos"/"solo Christ" identity to absorb these would be a new
+modeling decision with much bigger scope (a dozen-plus feasts would be
+candidates), not a mechanical application of the Peter/Michael precedent
+-- left alone pending an explicit decision if Brian wants to pursue it.
+
+120/120 tests still pass; fixtures regenerated.
+
+## Stage 8: nullable saint, and a real Theotokos identity (2026-07-28)
+
+**`DayCommemoration.saint` made nullable** (migration 0014) so a
+commemoration of a relic/icon/event with no appropriate person to attach
+to doesn't have to invent one. Since Stage 6's rewire, `day.py` never reads
+`dc.saint` at display time -- only `dc.title`/`dc.story` -- so this needed
+no changes to `_add_supplemental_commemorations` at all; verified live
+(`Day(2026, 7, 2)` still renders "Robe of the Theotokos at Blachernae"
+correctly with `saint=None`).
+
+Then Brian refined the Theotokos/Christ distinction from Stage 7: the
+Theotokos genuinely is a canonized saint, so a solo `Saint` row for her is
+appropriate; Christ is not "a saint" in that category, so his robe stays
+`saint=None`. Created a `Saint` for "The Theotokos" and linked "Robe of
+the Theotokos at Blachernae" and "Sash of the Theotokos" to it, leaving
+"The Placing of the Precious Robe of the Lord in Moscow" unlinked.
+
+Brian then asked for the obvious next step: her own major feasts should
+tie to that same identity too. Surveyed every `Saint`/title mentioning
+"Theotokos"/"Mother of God" before touching anything, to get the set right
+rather than guess -- found 7 clear cases (the Annunciation, Dormition,
+Nativity of the Theotokos, Protection, Entry into the Temple, Conception,
+and the Dec 26 Synaxis), all now linked to the same `Saint`. Two things
+found in the same survey were deliberately excluded rather than assumed:
+"Dormition Righteous Anna, Mother of Theotokos" (7/25) is about Anna, the
+Theotokos's own mother -- a different person, correctly kept separate --
+and four icon-appearance commemorations (Kazan, Tikhvin, Vladimir icons,
+and the Synaxis of the "Of the Three Hands" icon) were flagged but not
+linked, since an icon's own history feels like a different kind of
+occasion than her biographical feasts and wasn't what was actually asked
+for -- a decision for Brian if he wants to extend this further.
+
+The Theotokos `Saint` now anchors 9 occurrences across the year (7
+biographical feasts + Robe + Sash). 120/120 tests pass on a from-scratch
+database each time; fixtures regenerated.

@@ -891,3 +891,63 @@ class TestDay(TestCase):
             if field.name != 'id':
                 with self.subTest(field.name):
                     self.assertTrue(hasattr(passage[0], field.name))
+
+    async def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
+        """Issue #146: modern (new_style) commemorations are recorded
+        against the civil/Gregorian date and observed there by both Old-
+        and New-Calendar jurisdictions alike -- unlike the traditional
+        Menaion, whose dates genuinely shift in Julian mode. St Herman of
+        Alaska's 1970 Glorification is stored at civil Aug 9; a Julian-mode
+        request for that same civil day should surface it."""
+
+        day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_new_style_commemoration_not_shown_on_shifted_julian_label_date(self):
+        """The flip side of the above: whichever civil day's Julian-shifted
+        label happens to land on 8/9 must NOT show Herman's Glorification --
+        that would be the original #146 bug (a modern commemoration bleeding
+        onto an unrelated, Julian-recomputed day)."""
+
+        day = liturgics.Day(2026, 8, 22, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertEqual((day.month, day.day), (8, 9))
+        self.assertFalse(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_new_style_commemoration_unaffected_in_gregorian_mode(self):
+        """In Gregorian mode self.month/self.day already equal the civil
+        date, so new_style commemorations should behave exactly as any
+        other -- no exclusion, no re-fetch."""
+
+        day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Gregorian)
+        await day.ainitialize()
+        self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_matrona_of_moscow_new_style_civil_date(self):
+        day = liturgics.Day(2026, 5, 2, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertTrue(any('Matrona' in s for s in day.saints))
+
+    async def test_alexis_toth_new_style_civil_date(self):
+        day = liturgics.Day(2026, 5, 7, calendar=datetools.Calendar.Julian, tradition=Tradition.Slavic)
+        await day.ainitialize()
+        self.assertTrue(any('Alexis Toth' in s for s in day.saints))
+
+    async def test_tradition_specific_commemoration_is_additive_not_a_replacement(self):
+        """DayCommemoration.tradition (Stage 6) supplements a day's common
+        commemorations rather than replacing the whole day -- Jan 18 lists
+        Athanasius/Cyril for everyone, plus Zenia the Martyr only for the
+        Greek tradition, on top of the same shared Athanasius/Cyril entry
+        (not instead of it)."""
+
+        slavic = liturgics.Day(2026, 1, 18, tradition=Tradition.Slavic)
+        await slavic.ainitialize()
+        greek = liturgics.Day(2026, 1, 18, tradition=Tradition.Greek)
+        await greek.ainitialize()
+
+        self.assertTrue(any('Athanasius' in s for s in slavic.saints))
+        self.assertFalse(any('Zenia' in s for s in slavic.saints))
+
+        self.assertTrue(any('Athanasius' in s for s in greek.saints))
+        self.assertTrue(any('Zenia' in s for s in greek.saints))
