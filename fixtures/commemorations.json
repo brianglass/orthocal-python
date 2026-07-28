@@ -11815,5 +11815,18 @@
         "story": "<p>He was born on the island of Euripos and, after being educated in Constantinople, became one of the clergy of the Great Church there. He was consecrated a bishop and sent, against his will, to Ochrid, where he shepherded the Church in Bulgaria for twenty-five years. An inspired theologian and orator, he has left many homilies and, most important, a commentary on the whole New Testament, which has been has been treasured by Orthodox Christians ever since. In his last years he moved to Thessalonica, where he reposed in peace.</p>",
         "ordering": 3
     }
+},
+{
+    "model": "commemorations.commemoration",
+    "pk": 910,
+    "fields": {
+        "title": "Blessed Matrona (the Blind) of Moscow (1952) (New Calendar commemoration May 2)",
+        "alt_title": null,
+        "high_rank": false,
+        "month": 4,
+        "day": 19,
+        "story": "<p>She was born in 1881 to a poor family in the village of Sebino-Epifaniskaya (now Kimovski). Though she was born blind — her eyes were without pupils — she showed a gift of spiritual insight from an early age, and by her prayers healed many who came to her.</p>\n<p>At about the age of fourteen she made a pilgrimage to several Russian holy sites. When she came to Kronstadt to receive the blessing of St John (20 Dec.), the holy priest, who had never met her, cried out “Matrona, come here!” and proclaimed “She will be my heir, the eighth pillar of Russia.”</p>\n<p>At the age of seventeen she was stricken with paralysis and was never able to walk again. For the rest of her life she lived in a room filled with icons, where she would sit cross-legged on her bed and receive visitors. She never bemoaned her blindness or paralysis; once she said “A day came when God opened my eyes, and I saw the light of the sun, the stars and all that exists in the world: the rivers, the forests, the sea and the whole creation.”</p>\n<p>In 1925 she settled in Moscow. After the death of her mother in 1945, she moved frequently, living secretly in the homes of the faithful. Despite this, throngs of believers found their way to her for counsel and healing. The Communist authorities, knowing her holy influence, sought many times to arrest her; but she always knew in advance when they were coming, and would be moved to a different secret location. She fasted much, slept rarely, and it is said that her forehead was dented by the countless signs of the Cross that she made.</p>\n<p>Of the persecution of the Church by the Communists, she simply said that this was due to the sins and lack of faith of the Christians, and added, “Difficult times are our lot, but we Christians must choose the Cross. Christ has placed us on His sleigh, and He will take us where He will.”</p>\n<p>Having foreseen the day of her death, she said, “Come close, all of you, and tell me of your troubles as though I were alive! I’ll see you; I’ll hear you, and I’ll come to your aid.” She reposed in peace on April 19, 1952 (May 2 on the new calendar). Many miracles occurred at her tomb. In 1998 her relics were moved to the women’s Monastery of the Protecting Veil of the Mother of God, where thousands of Orthodox Christians come to venerate her and, as she asked, to bring her their problems and concerns as though she were alive on earth.</p>\n<p>She was glorified by the Church of Russia in 1999, for local veneration in the Diocese of Moscow.</p>",
+        "ordering": 2
+    }
 }
 ]
