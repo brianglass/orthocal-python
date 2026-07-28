@@ -288,16 +288,35 @@ the two affected golden test fixtures (`last_bday.json`, `january.json`)
 to reflect the corrected (deduplicated) output after manually verifying
 each diff was a legitimate improvement, not a content loss.
 
-**Known, accepted residual**: fuzzy word-overlap matching can't catch
-same-person duplicates that differ only by transliteration rather than
-epithet or spelling (no shared tokens at all) -- found 5 across the whole
-year via a full-year duplicate scan: John Calabytes/Kalyvites (1/15),
-Meletius/Meletios (2/12), Sophronius/Sophronios (3/11), Zachariah/Zacharias
-(3/24), Herman/Germanus of Kazan (11/6). All other pairs the scan flagged
-turned out to be genuinely different saints who share a name element (e.g.
-two distinct St. Peters of Damascus, centuries apart) -- correctly left
-alone. A small transliteration-synonym list would close these; not chased
-now, scope already large enough.
+**Transliteration-variant duplicates, reviewed and mostly fixed** (a
+full-year duplicate scan initially found 5; fuzzy word-overlap matching
+can't catch same-person duplicates that differ only by transliteration,
+with zero shared tokens). All other pairs the scan flagged turned out to
+be genuinely different saints sharing a name element (e.g. two distinct
+St. Peters of Damascus, centuries apart) -- correctly left alone.
+
+Merged 4 of the 5 into their day-native `Saint` after individually
+verifying identity (not just name resemblance) -- Meletius/Meletios
+(Archbishop of Antioch), Sophronius/Sophronios (Patriarch of Jerusalem),
+Zachariah/Zacharias the Recluse, and Herman/Germanus of Kazan. The last one
+Brian specifically questioned ("Are you sure St. Herman is the same as St.
+Germanus?") -- verified via the story's own content (successor to St.
+Gurias, first Archbishop of Kazan; killed by Ivan the Terrible, 1568) cross-
+checked independently against OCA (same Gurias connection, same see, same
+era) before merging. "Herman" is the common Slavic/OCA rendering of the
+Greek Γερμανός (Germanos); "Germanus" is abbamoses's Latinized form of the
+same name -- same pattern as the other three pairs. A defensive assert
+(`day_native.story` must be empty before merging) caught a real mistake in
+the initial pairing: John Calabytes/Kalyvites (1/15) is *not* a duplicate
+at all -- the day-native entry's story is about Paul of Thebes only and
+never mentions John; John's own biography (a Constantinople senator's son)
+lives entirely in the other entry. These are two different people
+co-commemorated the same day under one compound title, both stories
+needed -- left unmerged.
+
+For each of the 4 genuine merges: the additive entry's story moved onto
+the day-native `Saint` (which had none), then the additive `Saint`/
+`DayCommemoration` was deleted. 114/114 tests still pass.
 
 114/114 tests pass. All 6 real production consumers of `.saints`/`.stories`
 (`alexa/speech.py`, `calendarium/ical.py`, and the 5 templates) verified

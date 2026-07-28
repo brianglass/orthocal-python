@@ -428,7 +428,7 @@
     "pk": 5164,
     "fields": {
         "name": "St Meletius, Archbishop of Antioch",
-        "story": null
+        "story": "<p>Our holy father Meletios, an Armenian by birth, became archbishop of Antioch at the height of the Arian controversy. Though he was appointed by influential Arians who thought that he shared their views, as soon as he was raised to the throne he began to preach the consubstantiality of the Son with the Father. “At this, the archdeacon, an Arian, put his hand over the bishop’s mouth; Meletios then extended three fingers towards the people, closed them, and extended one only, showing by signs the equality and unity of the Trinity. The embarrassed archdeacon then seized his hand, but released his mouth, and Meletios spoke out even more forcibly in defense of the Council of Nicea” (<i>Great Horologion</i>). It was St Meletios who ordained St John Chrysostom reader and deacon in Antioch. He presided at the Second Ecumenical Council in 381. At his repose, St Gregory of Nyssa gave his funeral oration, lamenting: “Our Elijah has been caught up, and no Elisha is left behind in his place.”</p>"
     }
 },
 {
@@ -676,7 +676,7 @@
     "pk": 5195,
     "fields": {
         "name": "St. Sophronius, Patriarch of Jerusalem",
-        "story": null
+        "story": "<p>He was born in Damascus to an eminent family, and was well educated in his youth. Discontented with the wisdom of the world, he entered monastic life in the monastery of St Theodosius, where he became the lifelong friend and disciple of John Moschos. Together they visited the monasteries and hermitages of Egypt; they later wrote down their discoveries among the holy monks in the classic <i>Spiritual Meadow.</i> After the death of his teacher, St Sophronius traveled to Jerusalem, which had just been liberated from the Persians. He was there to see the Precious Cross returned from Persia by the Emperor Heraclius, who carried it into Jerusalem on his back. A few years later, in 634, St Sophronius was elected Patriarch of Jerusalem, where he served his flock wisely for three years and three months. He was zealous in the defense of Orthodoxy against the Monothelite heresy: He convoked a Council in Jerusalem which condemned it before it was condemned at the Sixth Ecumenical Council. The holy Patriarch even traveled to Constantinople to rebuke the Patriarch Sergius and Emperor Heraclius, who had embraced the Monothelite error.</p>\n<p>The years of peace were few for the Holy Land; for just as the Persian Empire was decisively defeated by Heraclius, the followers of Islam erupted out of Arabia, conquering most of North Africa and the Middle East in a few years. The Saint was so grieved by the capture of Jerusalem in 637 by the Caliph Omar that begged God to take him, so that he might not live to see the desecration of the holy places. His prayer was granted, and he reposed in peace less than a year later.</p>\n<p>St Sophronios is the author of the <i>Life of Saint Mary of Egypt</i>, appointed to be read in the churches during every Great Lent. He also wrote the service of the Great Blessing of the Waters. Some have attributed the Vesperal hymn “Gladsome Light” to him, but we know that it dates from before the time of St Basil the Great, who mentions it in his writings. It seems though, that St Sophronios supplemented the hymn, and that its present form is due to him.</p>"
     }
 },
 {
@@ -2764,7 +2764,7 @@
     "pk": 5456,
     "fields": {
         "name": "Rep. St Herman, Archbishop of Kazan",
-        "story": null
+        "story": "<p>He was born in Tver to a princely family. Drawn to a life of holiness from his earliest childhood, he became a monk at the age of twenty-five, at the Monastery of St Joseph of Volokolamsk. In time he became Archimandrite of the Monastery of the Dormition at Staritsk; but after a few years he returned to Volokolamsk to live in solitude. When his teacher St Gurias (October 4), first Archbishop of Kazan, reposed, Germanus succeeded him as Archbishop, but continued to live as ascetically as when he was a hermit. He was offered the office of Metropolitan of Moscow, but refused. As a faithful shepherd of his church, he fearlessly confronted Tsar Ivan the Terrible for his many and various cruelties; for this he was killed in 1568 by the Tsar’s assassins.</p>\n<p><i>Note: Recently, a bizarre movement has arisen among some nationalist sectarians in Russia to canonize Ivan the Terrible. Among the many obvious reasons against such an action (which has been firmly rejected by the Patriarch of Moscow), we could list the Tsar’s murder of some of the Church’s own Saints, Germanus among them.</i></p>"
     }
 },
 {
@@ -3228,7 +3228,7 @@
     "pk": 5514,
     "fields": {
         "name": "Ven. Zachariah the Recluse",
-        "story": null
+        "story": "<p>His father, Carion the Egyptian, forsook his family to become a monk, taking Zacharias with him. Though very young, Zacharias manifested gifts of grace rarely seen among the elders of Sketis. Abba Moses once asked him, ‘What does it mean to be a monk?’, to which Zacharias replied by taking off his hat and treading it underfoot, saying ‘If a man be not so broken, he cannot be a monk.’ After shining as a great light among the holy monks of Scetis, he reposed at a young age.</p>"
     }
 },
 {
@@ -4281,14 +4281,6 @@
 },
 {
     "model": "commemorations.saint",
-    "pk": 5646,
-    "fields": {
-        "name": "St Meletios, archbishop of Antioch (381)",
-        "story": "<p>Our holy father Meletios, an Armenian by birth, became archbishop of Antioch at the height of the Arian controversy. Though he was appointed by influential Arians who thought that he shared their views, as soon as he was raised to the throne he began to preach the consubstantiality of the Son with the Father. “At this, the archdeacon, an Arian, put his hand over the bishop’s mouth; Meletios then extended three fingers towards the people, closed them, and extended one only, showing by signs the equality and unity of the Trinity. The embarrassed archdeacon then seized his hand, but released his mouth, and Meletios spoke out even more forcibly in defense of the Council of Nicea” (<i>Great Horologion</i>). It was St Meletios who ordained St John Chrysostom reader and deacon in Antioch. He presided at the Second Ecumenical Council in 381. At his repose, St Gregory of Nyssa gave his funeral oration, lamenting: “Our Elijah has been caught up, and no Elisha is left behind in his place.”</p>"
-    }
-},
-{
-    "model": "commemorations.saint",
     "pk": 5647,
     "fields": {
         "name": "Holy Apostles and Martyrs Priscilla and Aquila",
@@ -4525,14 +4517,6 @@
     "fields": {
         "name": "Our Holy Mother Anastasia (563)",
         "story": "<p>She was a noble lady at the Imperial court under the Emperor Justinian and his wife Theodora. But when she was widowed she left Constantinople and all her privileges behind and fled to the Egyptian desert. There Abba Daniel tonsured her and, at her request, presented her to the brethren as the eunuch Anastasius, so that she might avoid discovery by imperial investigators. She closed herself in a small cell, where she spent twenty-eight years in prayer and askesis. Shortly before her death, her elder Daniel saw her face shining like the sun.</p>"
-    }
-},
-{
-    "model": "commemorations.saint",
-    "pk": 5677,
-    "fields": {
-        "name": "St Sophronios, patriarch of Jerusalem (638)",
-        "story": "<p>He was born in Damascus to an eminent family, and was well educated in his youth. Discontented with the wisdom of the world, he entered monastic life in the monastery of St Theodosius, where he became the lifelong friend and disciple of John Moschos. Together they visited the monasteries and hermitages of Egypt; they later wrote down their discoveries among the holy monks in the classic <i>Spiritual Meadow.</i> After the death of his teacher, St Sophronius traveled to Jerusalem, which had just been liberated from the Persians. He was there to see the Precious Cross returned from Persia by the Emperor Heraclius, who carried it into Jerusalem on his back. A few years later, in 634, St Sophronius was elected Patriarch of Jerusalem, where he served his flock wisely for three years and three months. He was zealous in the defense of Orthodoxy against the Monothelite heresy: He convoked a Council in Jerusalem which condemned it before it was condemned at the Sixth Ecumenical Council. The holy Patriarch even traveled to Constantinople to rebuke the Patriarch Sergius and Emperor Heraclius, who had embraced the Monothelite error.</p>\n<p>The years of peace were few for the Holy Land; for just as the Persian Empire was decisively defeated by Heraclius, the followers of Islam erupted out of Arabia, conquering most of North Africa and the Middle East in a few years. The Saint was so grieved by the capture of Jerusalem in 637 by the Caliph Omar that begged God to take him, so that he might not live to see the desecration of the holy places. His prayer was granted, and he reposed in peace less than a year later.</p>\n<p>St Sophronios is the author of the <i>Life of Saint Mary of Egypt</i>, appointed to be read in the churches during every Great Lent. He also wrote the service of the Great Blessing of the Waters. Some have attributed the Vesperal hymn “Gladsome Light” to him, but we know that it dates from before the time of St Basil the Great, who mentions it in his writings. It seems though, that St Sophronios supplemented the hymn, and that its present form is due to him.</p>"
     }
 },
 {
@@ -7233,14 +7217,6 @@
 },
 {
     "model": "commemorations.saint",
-    "pk": 6015,
-    "fields": {
-        "name": "Saint Germanus, Archbishop of Kazan (1568)",
-        "story": "<p>He was born in Tver to a princely family. Drawn to a life of holiness from his earliest childhood, he became a monk at the age of twenty-five, at the Monastery of St Joseph of Volokolamsk. In time he became Archimandrite of the Monastery of the Dormition at Staritsk; but after a few years he returned to Volokolamsk to live in solitude. When his teacher St Gurias (October 4), first Archbishop of Kazan, reposed, Germanus succeeded him as Archbishop, but continued to live as ascetically as when he was a hermit. He was offered the office of Metropolitan of Moscow, but refused. As a faithful shepherd of his church, he fearlessly confronted Tsar Ivan the Terrible for his many and various cruelties; for this he was killed in 1568 by the Tsar’s assassins.</p>\n<p><i>Note: Recently, a bizarre movement has arisen among some nationalist sectarians in Russia to canonize Ivan the Terrible. Among the many obvious reasons against such an action (which has been firmly rejected by the Patriarch of Moscow), we could list the Tsar’s murder of some of the Church’s own Saints, Germanus among them.</i></p>"
-    }
-},
-{
-    "model": "commemorations.saint",
     "pk": 6016,
     "fields": {
         "name": "Saint Willibrord, first Bishop of Utrecht and Apostle of Holland (739)",
@@ -7933,14 +7909,6 @@
     "fields": {
         "name": "Peter of Damascus, Hesychast (12th c.)",
         "story": "<p>Little is known of him except by his writings in the <i>Philokalia</i> . Saint Nikodemos, compiler of the <i>Philokalia</i>, writes that his work is ‘a recapitulation of holy watchfulness… a circle within a circle, a concentrated <i>Philokalia</i> within the more extended<i>Philokalia</i>.’</p>"
-    }
-},
-{
-    "model": "commemorations.saint",
-    "pk": 6103,
-    "fields": {
-        "name": "Saint Zacharias the Recluse of Egypt (4th c.)",
-        "story": "<p>His father, Carion the Egyptian, forsook his family to become a monk, taking Zacharias with him. Though very young, Zacharias manifested gifts of grace rarely seen among the elders of Sketis. Abba Moses once asked him, ‘What does it mean to be a monk?’, to which Zacharias replied by taking off his hat and treading it underfoot, saying ‘If a man be not so broken, he cannot be a monk.’ After shining as a great light among the holy monks of Scetis, he reposed at a young age.</p>"
     }
 },
 {
@@ -14937,18 +14905,6 @@
 },
 {
     "model": "commemorations.daycommemoration",
-    "pk": 5775,
-    "fields": {
-        "day": 478,
-        "saint": 5646,
-        "rank": 0,
-        "new_style": false,
-        "day_native": false,
-        "ordering": 0
-    }
-},
-{
-    "model": "commemorations.daycommemoration",
     "pk": 5776,
     "fields": {
         "day": 479,
@@ -15305,18 +15261,6 @@
         "new_style": false,
         "day_native": false,
         "ordering": 1
-    }
-},
-{
-    "model": "commemorations.daycommemoration",
-    "pk": 5806,
-    "fields": {
-        "day": 506,
-        "saint": 5677,
-        "rank": 0,
-        "new_style": false,
-        "day_native": false,
-        "ordering": 0
     }
 },
 {
@@ -19377,18 +19321,6 @@
 },
 {
     "model": "commemorations.daycommemoration",
-    "pk": 6145,
-    "fields": {
-        "day": 746,
-        "saint": 6015,
-        "rank": 0,
-        "new_style": false,
-        "day_native": false,
-        "ordering": 1
-    }
-},
-{
-    "model": "commemorations.daycommemoration",
     "pk": 6146,
     "fields": {
         "day": 747,
@@ -20429,18 +20361,6 @@
         "new_style": false,
         "day_native": false,
         "ordering": 3
-    }
-},
-{
-    "model": "commemorations.daycommemoration",
-    "pk": 6233,
-    "fields": {
-        "day": 869,
-        "saint": 6103,
-        "rank": 0,
-        "new_style": false,
-        "day_native": false,
-        "ordering": 1
     }
 },
 {
