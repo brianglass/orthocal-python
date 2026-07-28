@@ -22,6 +22,7 @@ class Day(models.Model):
     service = models.SmallIntegerField()
     service_note = models.CharField(max_length=64)
     saints = models.JSONField(default=list)
+    story = models.TextField(null=True, blank=True)  # feast-level narrative, non-saint content
     fast = models.SmallIntegerField()
     fast_exception = models.SmallIntegerField()
     flag = models.SmallIntegerField()
