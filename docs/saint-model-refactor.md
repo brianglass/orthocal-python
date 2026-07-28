@@ -166,6 +166,72 @@ than guessed.
 
 ## Status
 
-Design agreed (2026-07-28). Not yet started. Isolated on branch
-`saint-model-refactor` until thoroughly tested -- not to be merged to `main`
-until each stage above is complete and verified.
+Design agreed (2026-07-28). Isolated on branch `saint-model-refactor` until
+thoroughly tested -- not to be merged to `main` until each stage above is
+complete and verified.
+
+**Stage 1 done** -- `Saint`/`DayCommemoration` schema added (additive only,
+`Commemoration` untouched), plus `Day.story`. 114/114 tests pass.
+
+Along the way, ran a completeness audit of the current `Commemoration` data
+against the original abbamoses.com scrape (`~/src/abbamoses/stories.json`):
+of 930 entries, only 18 had no reasonable match against current data, and
+only one of those had real story content (the rest were bare Forefeast/
+Leavetaking labels already covered elsewhere under different wording).
+Added that one (Blessed Matrona of Moscow) -- then found and corrected a
+mistake in that same add, see Stage 2 below.
+
+**Stage 2 done** -- populated `Saint`/`DayCommemoration` from the existing
+`Commemoration` data (900 dated rows -> 900 `DayCommemoration` rows across
+897 `Saint` rows; 371 matched existing `Day.saints`/`feast_name` text, 529
+additive). Manually reviewed all 23 flagged `alt_title` mismatches and all
+30 newly-found same-date candidates individually rather than trusting score
+thresholds -- found the existing `alt_title` data has real problems (not
+just Brian's suspicion, confirmed): 3 rows had the literal string `"No
+match"`/`"No match found"` saved as if it were a real value (one of which
+actually had a real match available), 3 were correct matches gone stale
+from this session's own earlier spelling fixes (Anthusa->Arethusa,
+Prussa->Prusa x2, Habbakuk->Habakkuk), 3 were correct matches with an
+unrelated second Day entry wrongly concatenated onto them, and 3 were
+genuine wrong-entity matches (Atticus of Constantinople matched to an
+unrelated movable-feast label; Lucian of Antioch matched to an unrelated
+council reference; "Eutyches (1st c.)" conflated with the unrelated
+"Eutychius" patriarch) -- all cleared to additive.
+
+**Two data errors caught and fixed during Stage 2's population**, both
+confirmed via OCA and ROCOR (holytrinityorthodox.com) before touching
+anything:
+
+- Blessed Matrona of Moscow, added in Stage 1 at April 19, turned out to be
+  a duplicate on the wrong day -- deleted. Both OCA and ROCOR anchor her to
+  civil May 2 only; ROCOR's own Julian-native calendar page confirms "May
+  2, 2024 (April 19, O.S.)" is one real day, and neither source lists her
+  on civil April 19. She's now a third confirmed instance (with Alexis Toth
+  and Herman's glorification) of a modern commemoration needing
+  `new_style=True` treatment rather than the ordinary OS-reinterpretation
+  every traditional Menaion entry gets -- interesting that this one was
+  found from the opposite direction (an OS-labeled "April 19" that turned
+  out to need civil anchoring, rather than an NS-labeled date needing it).
+- The "canonization (1970) of St Herman of Alaska" Commemoration row was
+  dated July 27 in the source data -- OCA's July 27 page shows four
+  entirely unrelated saints. Repointed to August 9 (his confirmed
+  Glorification date, matching the existing `Day` row).
+
+**Deliberately not populated in this pass**: 9 `Commemoration` rows with
+`day=None` (Sunday of the Holy Fathers of the Seven/Seventh Ecumenical
+Councils, Sunday before/after Nativity, Sunday of the Holy Forefathers,
+plus a few Feb/March entries of unclear date) -- these need `pdist`-based
+linking to a floating `Day` row, not fixed month/day matching. Flagged as a
+follow-up, not blocking.
+
+**Also noticed, not yet investigated**: one organic cross-date name
+collision survived the population as-is -- "St Emilia (375), mother of
+Sts Macrina, Basil the Great and Gregory of Nyssa..." links to both 1/1
+and 5/8. Unclear yet whether this is a genuine abbamoses-source duplicate
+(the same entry appearing under two headings) or something else. Low
+priority, worth a quick look before Stage 3.
+
+Next up: Stage 3 (rewire `_collect_commemorations`), or the cross-date
+matching pass for same-saint-different-occasion pairs (Sergius of
+Radonezh's July 5 translation-of-relics vs. September 25 repose was
+noticed in passing as another real example, alongside Herman's).
