@@ -752,3 +752,190 @@ for -- a decision for Brian if he wants to extend this further.
 The Theotokos `Saint` now anchors 9 occurrences across the year (7
 biographical feasts + Robe + Sash). 120/120 tests pass on a from-scratch
 database each time; fixtures regenerated.
+
+## Stage 9: full-year local-vs-production comparison, and the 6-date Greek gap (2026-07-29)
+
+**Comprehensive comparison** (Brian's explicit request, since production can
+handle the load): 365 days x 3 configs (Slavic/Gregorian, Slavic/Julian,
+Greek/Gregorian) = 1095 date-configs, ~2200 requests, comparing saints,
+feasts, titles, fast/feast level, and readings. Zero diffs outside
+`saints` -- strong confirmation nothing else was disturbed. 197
+saints-list diffs, all of which resolved to either the known alt_title
+dedup bug (149, all on production, already fixed here), genuine additions
+from this refactor (34), or two known-good fixes landing on the same date
+(5 "mixed" cases).
+
+**Two real bugs found and fixed by this comparison**:
+- `summary_title` returned `None` (and crashed the API's Pydantic
+  validation with a 500) for the one date in the entire year where a
+  composite `Day` has zero titles/feasts/saints at all (Greek/Gregorian,
+  Feb 5 -- a pre-existing content gap in the Greek-tradition dataset,
+  unrelated to this refactor). Fixed with a `''` fallback.
+- The Stage 4 Anthony/Theodosius split reused the same title text for both
+  new rows, showing "Ven. Anthony and Theodosius of Kiev Caves" twice in
+  the terse list on Sept 2. Gave Anthony's row its own title.
+
+**The 6-date Greek gap, investigated in depth**: 6 dates (Feb 27, May 7,
+Jul 5, Aug 9, Oct 31, Nov 23) had their only commemorations tagged
+`tradition='slavic'` at the `calendarium.Day` level (not `'common'`),
+with an empty parallel `greek` row taking precedence -- meaning Greek
+users saw nothing at all, not even genuinely shared content. Checked the
+project's own prior Antiochian harvest (`data/antiochian_fixed_saints.json`)
+rather than guessing, and found the truth splits three ways per date:
+saints genuinely shared by both traditions (should be visible to Greek but
+weren't), saints confirmed Slavic-only (Alexis Toth and Alexander Nevsky
+are both confirmed absent from the Antiochian calendar entirely -- an
+OCA-specific and a distinctly Russian saint respectively), and saints
+genuinely Greek-only that this system has never had source content for
+(explicitly out of scope per Brian -- "don't create content for saints we
+don't already have content for").
+
+**Fixed 5 of 6 dates** using the correct architecture -- retag the whole
+`Day` row from `slavic` to `common` (making it visible to both traditions'
+queries) and tag the genuinely-Slavic-only `DayCommemoration` rows
+`tradition='slavic'` individually (so they're excluded from Greek's
+DayCommemoration-level filter while the row itself stays visible for the
+shared content) -- plus deleted the now-redundant empty `greek` placeholder
+rows that were causing the original invisibility. May 7 (Sergius'
+translation of relics + Athanasius of Mt Athos), Aug 9 (Matthias, Anthony,
+Herman's Glorification), Oct 31 (the Apostles-of-the-70 group, Nicholas of
+Chios), Nov 23 (Amphilochius of Iconium) now correctly show shared content
+to Greek while Slavic-only content (Toth, Elizabeth Romanov, Nevsky,
+Columban, etc.) stays hidden from Greek.
+
+**A genuine mid-course correction, caught by the existing test suite**:
+first tried a parallel-Day-row approach (create a *new* `common` row,
+move the shared commemorations onto it, leave the `slavic` row's leftovers
+in place) -- this is wrong, because `_prefer_tradition_days` treats a
+tradition-specific row as a full replacement for a slot, not a merge, so
+Slavic requests would have picked the still-present `slavic` row over the
+new `common` one and silently lost the content just moved off it. Caught
+by testing directly rather than assuming, reverted, and redone with the
+whole-row-retag approach instead (the same lesson Stage 6 already
+established, just rediscovered the hard way for Day-row-level tagging
+instead of DayCommemoration-level).
+
+**Feb 27 (Raphael of Brooklyn) was retagged and then fully reverted** --
+`test_raphael_brooklyn_differing_commemoration_date` (a pre-existing test
+from the Greek-tradition-axis project) caught that Raphael is *not*
+observed by Greek tradition on this civil date at all -- confirmed via
+Antiochian's own typikon, he's kept on the moveable first-Saturday-of-
+November instead (`FloatIndex.RaphaelBrooklyn`). The
+`antiochian_fixed_saints.json` harvest entry for Feb 27 mentioning Raphael
+was misleading (likely a cross-reference on antiochian.org's page, not his
+actual commemoration) -- a reminder that a name appearing under a given
+date key in that harvest isn't proof of the correct date without
+cross-checking, the same lesson as `ref-goarch-chapel`. Since `Day.
+feast_name` has no per-tradition granularity, and it must show for Slavic
+(where Raphael belongs) but never for Greek on this exact date, the whole
+row couldn't be split to also share Procopius (the other saint on that
+date) without leaking Raphael's feast_name to Greek too -- reverted Feb 27
+entirely rather than force it.
+
+**Residual, deliberately unresolved**: `Day.feast_name` has no
+per-tradition granularity at all (unlike `DayCommemoration.tradition`), so
+retagging May 7/Oct 31/Nov 23's rows to `common` means Greek users now see
+the feast_name text for Toth/Kochurov/Nevsky (all confirmed Slavic-only)
+even though the underlying `DayCommemoration` rows are correctly hidden
+from them. Three options were surfaced and none picked yet: accept the
+minor leak, move those three saints off their feast_name-based headline
+treatment onto plain list entries (a Slavic-side display downgrade), or
+build real per-tradition granularity for `Day.feast_name` itself (the same
+idea as Stage 6's fix, one level up -- a bigger schema change).
+
+New tests: `test_greek_gap_dates_share_confirmed_common_saints`,
+`test_alexis_toth_and_nevsky_remain_slavic_only`,
+`test_raphael_brooklyn_full_year_check_unaffected`. 123/123 tests pass;
+fixtures regenerated.
+
+## Stage 10: decouple DayCommemoration visibility from Day-row winner selection (2026-07-29)
+
+**The Stage 9 fix was itself wrong, caught before it shipped.** Retagging
+whole `Day` rows from `slavic` to `common` fixed saint visibility but
+conflated it with an unrelated concern: `feast_level`/`fast`/
+`fast_exception`/`feast_name` are legitimately whole-day, per-tradition
+facts (`_prefer_tradition_days`'s "one row wins the whole slot" semantics
+are *correct* for these), while which *saints* are visible is genuinely
+additive/mergeable (`DayCommemoration.tradition`, Stage 6). Retagging the
+whole row smuggled Slavic's elevated feast/fast levels onto Greek's view
+of the same day. Caught by directly re-checking production immediately
+after the fix (not assuming it was fine) -- production confirmed
+`feast_level=0` for Greek on all 5 retagged dates while local now showed
+Slavic's elevated values. Reverted fully (Day rows back to their original
+tags, empty greek placeholders recreated with their exact original
+fast/fast_exception values re-verified against production) before
+redesigning.
+
+**The actual fix**: decouple *where* `_add_supplemental_commemorations`
+looks for `DayCommemoration` rows from *where* `_collect_commemorations`
+gets its feast-level facts. `_collect_commemorations` now fetches every
+`Day` row matching the slot regardless of tradition tag
+(`self._commemoration_day_ids`, unfiltered), but still computes `self.days`
+(feast_level/fast/fast_exception/feast_name/titles/service_notes) exactly
+as before -- tradition-filtered, single-winner via
+`_prefer_tradition_days`, zero behavior change for those fields.
+`_add_supplemental_commemorations` now queries `DayCommemoration` across
+the full `_commemoration_day_ids` set, filtered purely by
+`DayCommemoration.tradition` -- meaning a saint attached to a `slavic`-
+tagged `Day` row can now be shared to Greek via its own tradition tag,
+without Greek also inheriting that row's day-level facts. No Day-row
+retagging, no new rows, no data movement -- purely a query change, plus
+tagging the same 9 confirmed-shared `DayCommemoration` rows from Stage 9
+(this time correctly, with zero collateral risk to feast/fast facts).
+
+**This also cleanly recovered Feb 27** (Raphael of Brooklyn), which Stage
+9 had to fully abandon: Procopius is now shared (tagged `common`) while
+Raphael, Titus, and Leander stay `slavic`-tagged -- Raphael's feast_name
+exclusion from Greek is completely untouched by any of this, since
+feast_name still comes solely from `_prefer_tradition_days`'s Day-row
+selection, which never changed.
+
+**A second, subtler gap found while re-verifying**: `day_native=True,
+ordering=-1` (feast_name-matched) commemorations were previously excluded
+from `self.saints` on the assumption "it's already shown via
+`self.feasts`" -- true when the commemoration's own `Day` row is the one
+whose facts are winning, false when it's shared to a tradition where a
+*different* row won (Sergius of Radonezh's translation + Athanasius of Mt
+Athos, both feast_name-matched on the `slavic` row for July 5, were
+becoming invisible to Greek via *any* channel, since Greek's own winning
+row -- the empty placeholder -- has no feast_name of its own to surface
+them through). Fixed by checking whether the commemoration's `day_id` is
+actually in the winning `self.days` set before excluding it; if not, it
+falls back to the plain (`self.saints`) path instead of being silently
+dropped.
+
+**A third, unrelated duplicate bug surfaced by the broader query, found
+by an existing exact-fixture-comparison test (`test_list_days`) rather
+than assumed clean**: 3 saints (Gregory of Nyssa, Ananias of the Seventy,
+Zachariah the Recluse) had genuine pre-existing duplicate
+`DayCommemoration` rows across two different `Day` rows for the *same*
+civil date -- previously silently hidden because the old narrow query
+(`day_id__in=[d.id for d in self.days]`) only ever reached one of the two
+rows per request. Ananias's case was actually a *deliberate*, tested
+duplicate from before `DayCommemoration.tradition` existed (both
+traditions needed to see him, so he was duplicated onto both a `slavic`-
+and `greek`-tagged row rather than shared via a single `common`-tagged
+row) -- confirmed this still works correctly with a single row once
+`DayCommemoration.tradition` handles the sharing instead. All 3 de-duped
+(content verified identical before deleting either side, per the
+established pattern); this Stage 6 blind spot only ever checked greek-vs-
+common duplication, never slavic-vs-common, which is exactly why these
+three survived undetected until this broader query surfaced them.
+
+Verified directly against production one more time across every affected
+date (the 6 gap dates plus the 3 newly-deduped ones): zero field-level
+diffs anywhere (feast_level/fast/fast_exception match exactly), and every
+remaining saints-list difference traces to an already-understood pattern
+(production running behind this codebase's already-tested fixes like
+Raphael's differing-date handling, or the long-documented alt_title dedup
+bug) -- nothing unexplained. 122/122 tests pass; fixtures regenerated.
+
+**How to apply**: the general lesson from Stages 9-10, worth remembering
+for any future tradition-overlay work -- Day-row-level facts (feast_level/
+fast/fast_exception/feast_name) and DayCommemoration-level facts (which
+saints are visible) are two genuinely independent axes with different
+merge semantics (whole-row-replace vs. additive-overlay), and fixing one
+by manipulating the other's mechanism (retagging a whole Day row to move
+a saint) will eventually smuggle the wrong semantics onto the wrong axis.
+Keep them decoupled, the way `_commemoration_day_ids` vs. `self.days` now
+does.

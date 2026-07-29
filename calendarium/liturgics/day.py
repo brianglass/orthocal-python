@@ -143,8 +143,26 @@ class Day:
         if self.titles:
             return '; '.join(self.titles)
 
+        return ''
+
     async def _collect_commemorations(self):
-        """Fetch the feasts, fasts, and saints and bake them into a composite day."""
+        """Fetch the feasts, fasts, and saints and bake them into a composite day.
+
+        Fetches every Day row matching this slot regardless of tradition
+        tag, not just the ones tagged for self.tradition/common -- feast-
+        level facts (feast_level/fast/fast_exception/feast_name/titles/
+        service_notes) still come only from whichever single row wins via
+        _prefer_tradition_days (a tradition-specific row is a genuine
+        whole-day replacement for those facts, e.g. Greek observing a
+        lower/zero feast_level on a day Slavic elevates). But the full,
+        untradition-filtered id list is also kept (self._commemoration_day_ids)
+        for _add_supplemental_commemorations, since a saint can be shared
+        across traditions via its own DayCommemoration.tradition tag even
+        when it happens to be attached to a Day row tagged for a different
+        tradition than the one requesting it -- see
+        docs/saint-model-refactor.md, Stage 9, for why conflating these two
+        concerns (retagging the whole Day row to share saints) caused a
+        real fasting-rule regression."""
 
         # Select items from the Paschal cycle
         q = Q(pdist=self.pdist)
@@ -155,13 +173,18 @@ class Day:
 
         # Select items from the Festal cycle
         q |= Q(month=self.month, day=self.day)
-        q &= Q(tradition__in=(self.tradition, 'common'))
 
-        # Fetch the items from the database
-        days = [d async for d in models.Day.objects.filter(q)]
-        self.days = _prefer_tradition_days(days, self.tradition)
+        # Fetch every candidate Day row for this slot, regardless of tradition.
+        all_days = [d async for d in models.Day.objects.filter(q)]
+        self._commemoration_day_ids = [d.id for d in all_days]
 
-        # Bake the mutliple "days" down into a single composite day.
+        # Bake the multiple "days" down into a single composite day for
+        # feast-level facts only -- this part keeps the original
+        # tradition-filtered, single-winner selection.
+        self.days = _prefer_tradition_days(
+            [d for d in all_days if d.tradition in (self.tradition, 'common')],
+            self.tradition,
+        )
 
         self.titles = [title for d in self.days if (title := d.full_title)]
         self.feasts = [d.feast_name for d in self.days if d.feast_name]
@@ -194,13 +217,19 @@ class Day:
         common/tradition-specific pattern -- a tradition-specific
         commemoration supplements the day's common ones rather than
         replacing them, which is why the query below filters by tradition
-        directly instead of relying on _prefer_tradition_days (that
-        function still governs which whole calendarium.Day row wins when
-        the day-level facts themselves genuinely diverge, which is now the
-        rarer case)."""
+        directly rather than scoping to self.days (the
+        _prefer_tradition_days-selected winner). self._commemoration_day_ids
+        (Stage 9) deliberately includes every Day row matching this slot
+        regardless of tradition tag, so a saint can be shared via its own
+        DayCommemoration.tradition even when attached to a Day row tagged
+        for a different tradition than the one requesting it -- this is
+        what lets Herman's Glorification (attached to a slavic-tagged Aug 9
+        row) show for Greek too, without Greek also inheriting Slavic's
+        elevated feast_level/fast for that day."""
 
-        day_ids = [d.id for d in self.days]
-        query = DayCommemoration.objects.filter(day_id__in=day_ids, tradition__in=(self.tradition, 'common'))
+        query = DayCommemoration.objects.filter(
+            day_id__in=self._commemoration_day_ids, tradition__in=(self.tradition, 'common'),
+        )
         if self.calendar == Calendar.Julian:
             query = query.exclude(new_style=True)
         commemorations = [dc async for dc in query.order_by('day_id', 'ordering')]
@@ -209,10 +238,8 @@ class Day:
             civil_days = [
                 d async for d in models.Day.objects.filter(
                     month=self.gregorian_date.month, day=self.gregorian_date.day,
-                    tradition__in=(self.tradition, 'common'),
                 )
             ]
-            civil_days = _prefer_tradition_days(civil_days, self.tradition)
             civil_day_ids = [d.id for d in civil_days]
             new_style_commemorations = [
                 dc async for dc in
@@ -225,6 +252,7 @@ class Day:
         else:
             new_style_commemorations = []
 
+        winning_day_ids = {d.id for d in self.days}
         day_native_by_day = {}
         additive = []
         for dc in commemorations:
@@ -238,13 +266,30 @@ class Day:
                 day_native_by_day.setdefault(dc.day_id, []).append(dc)
             elif not dc.day_native:
                 additive.append(dc)
-            # else: day_native with ordering < 0 -- matched to feast_name,
-            # already represented via self.feasts; story-only, excluded here.
+            elif dc.day_id not in winning_day_ids:
+                # day_native with ordering < 0 (feast_name-matched), but its
+                # own Day row lost _prefer_tradition_days's preference for
+                # this request -- e.g. a saint shared via
+                # DayCommemoration.tradition='common' whose day_native
+                # entry lives on a different tradition's Day row than the
+                # one whose feast_name is actually being shown. Its
+                # feast_name isn't surfacing via self.feasts at all in that
+                # case, so fall back to showing it plainly rather than
+                # silently dropping it.
+                additive.append(dc)
+            # else: day_native with ordering < 0, and its own Day row is the
+            # one whose feast_name is being shown -- already represented via
+            # self.feasts; story-only, excluded here.
 
         self.saints = []
         self.minimal_saints = []
-        for d in self.days:
-            titles = [dc.title for dc in day_native_by_day.get(d.id, [])]
+        for dcs in day_native_by_day.values():
+            # Grouped by whichever Day row the entries originally came from
+            # (dc.day_id may not be in self.days -- see the class docstring
+            # on _add_supplemental_commemorations), not by self.days, since a
+            # shared saint can be attached to a Day row that lost the
+            # feast-level-facts preference for this tradition.
+            titles = [dc.title for dc in dcs]
             self.saints.extend(titles)
             if titles:
                 self.minimal_saints.append('; '.join(titles))

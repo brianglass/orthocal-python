@@ -7953,22 +7953,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 5217,
-  "fields": {
-    "day": 868,
-    "saint": 5118,
-    "title": "St Gregory of Nyssa",
-    "story": "<p>“Saint Gregory, the younger brother of Basil the Great, illustrious in speech and a zealot for the Orthodox faith, was born in 331. His brother Basil was encouraged by their elder sister Macrina to prefer the service of God to a secular career (see July 19); Saint Gregory was moved in a similar way by his godly mother Emily, who, when Gregory was still a young man, implored him to attend a service in honour of the holy Forty Martyrs at her retreat at Annesi on the River Iris. Saint Gregory came at his mother’s bidding, but being wearied with the journey, and feeling little zeal, he fell asleep during the service. The Forty Martyrs then appeared to him in a dream, threatening him and reproaching him for his slothfulness. After this he repented and became very diligent in the service of God. He became bishop in 372, and because of his Orthodoxy he was exiled in 374 by Valens, who was on one mind with the Arians. After Valens’ death in 378 he was recalled to his throne by the Emperor Gratian. He attended the Local Council of Antioch, which sent him to visit the churches of Arabia and Palestine, which had been defiled and ravaged by Arianism. He attended the Second Ecumenical Council, which was assembled in Constantinople in 381. Having lived some sixty years and left behind many remarkable writings, he reposed about the year 395. The acts of the Seventh Ecumenical Council call him “Father of Fathers.” (<i>Great Horologion</i>)</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 5218,
   "fields": {
     "day": 868,
@@ -12593,22 +12577,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 5521,
-  "fields": {
-    "day": 833,
-    "saint": 5406,
-    "title": "Holy Apostle Ananias of the Seventy",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 5522,
   "fields": {
     "day": 711,
@@ -14353,22 +14321,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 5643,
-  "fields": {
-    "day": 870,
-    "saint": 5514,
-    "title": "Ven. Zachariah the Recluse",
-    "story": "<p>His father, Carion the Egyptian, forsook his family to become a monk, taking Zacharias with him. Though very young, Zacharias manifested gifts of grace rarely seen among the elders of Sketis. Abba Moses once asked him, ‘What does it mean to be a monk?’, to which Zacharias replied by taking off his hat and treading it underfoot, saying ‘If a man be not so broken, he cannot be a monk.’ After shining as a great light among the holy monks of Scetis, he reposed at a young age.</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 5644,
   "fields": {
     "day": 436,
@@ -14700,7 +14652,7 @@
     "new_style": true,
     "day_native": true,
     "ordering": -1,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -15468,7 +15420,7 @@
     "new_style": false,
     "day_native": true,
     "ordering": -1,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -15628,7 +15580,7 @@
     "new_style": false,
     "day_native": true,
     "ordering": -1,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -16764,7 +16716,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 2,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -16780,7 +16732,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 3,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -18028,7 +17980,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 1,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -18060,7 +18012,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 4,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -19420,7 +19372,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 2,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -19436,7 +19388,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 3,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -22700,7 +22652,7 @@
     "new_style": false,
     "day_native": false,
     "ordering": 2,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -24165,7 +24117,7 @@
   "fields": {
     "day": 681,
     "saint": 5548,
-    "title": "Ven. Anthony and Theodosius of Kiev Caves",
+    "title": "Ven. Anthony of the Kiev Caves",
     "story": null,
     "rank": 0,
     "high_rank": false,

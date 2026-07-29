@@ -951,3 +951,74 @@ class TestDay(TestCase):
 
         self.assertTrue(any('Athanasius' in s for s in greek.saints))
         self.assertTrue(any('Zenia' in s for s in greek.saints))
+
+    async def test_greek_gap_dates_share_confirmed_common_saints(self):
+        """Stage 9: 6 dates had their only commemorations attached to a Day
+        row tagged tradition='slavic' (with an empty parallel greek Day row
+        winning _prefer_tradition_days), so Greek users saw nothing at all,
+        not even genuinely shared content. Fixed by decoupling
+        DayCommemoration lookup from _prefer_tradition_days's single-winner
+        Day row (see _add_supplemental_commemorations) and tagging
+        individual DayCommemoration rows tradition='slavic' for saints
+        confirmed absent from data/antiochian_fixed_saints.json (the
+        project's own Antiochian harvest) -- Toth and Nevsky in particular.
+        feast_level/fast/fast_exception are untouched by any of this, since
+        they still come solely from _prefer_tradition_days's Day-row
+        selection -- verified directly against production (all field-level
+        values match exactly; the only saints-list difference from
+        production is the intentional Herman's-Glorification addition,
+        the #146 fix)."""
+
+        cases = [
+            (2, 27, ['Procopius'], ['Raphael', 'Titus', 'Leander']),
+            (5, 7, ['Apparition', 'Acacius'], ['Toth', 'Georgia', 'Lydia']),
+            (8, 9, ['Matthias', 'Anthony', 'Herman of Alaska'], []),
+            (10, 31, ['Stachys', 'Nicholas of Chios'], []),
+            (11, 23, ['Amphilocus'], ['Nevsky', 'Columban']),
+        ]
+        for m, d, shared, slavic_only in cases:
+            greek = liturgics.Day(2026, m, d, tradition=Tradition.Greek)
+            await greek.ainitialize()
+            with self.subTest((m, d)):
+                for fragment in shared:
+                    self.assertTrue(
+                        any(fragment in s for s in greek.saints),
+                        f'{fragment!r} missing from greek {m}/{d}: {greek.saints}',
+                    )
+                for fragment in slavic_only:
+                    self.assertFalse(
+                        any(fragment in s for s in greek.saints),
+                        f'{fragment!r} unexpectedly leaked to greek {m}/{d}: {greek.saints}',
+                    )
+
+        # July 5 -- Sergius/Athanasius are feast_name-matched (day_native,
+        # ordering=-1) on the *slavic* Day row, which loses Greek's
+        # feast-level-facts preference to the empty greek placeholder --
+        # so their feast_name never surfaces via greek.feasts at all, and
+        # they fall back to showing plainly via greek.saints instead (see
+        # the winning_day_ids check in _add_supplemental_commemorations).
+        slavic_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Slavic)
+        await slavic_jul5.ainitialize()
+        self.assertIn('Unc. Rel. Ven. Sergius of Radonezh; Ven. Athanasius of Athos', slavic_jul5.feasts)
+        self.assertFalse(any('Sergius of Radonezh' in s for s in slavic_jul5.saints))
+        self.assertFalse(any('Athanasius of Mt Athos' in s for s in slavic_jul5.saints))
+
+        greek_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Greek)
+        await greek_jul5.ainitialize()
+        self.assertEqual(greek_jul5.feasts, [])
+        self.assertTrue(any('Sergius of Radonezh' in s for s in greek_jul5.saints))
+        self.assertTrue(any('Athanasius of Mt Athos' in s for s in greek_jul5.saints))
+
+    async def test_raphael_brooklyn_full_year_check_unaffected(self):
+        """Feb 27's feast_name (Raphael-specific) must still never leak to
+        Greek even though Procopius, the other saint on that date, is now
+        correctly shared (see test_greek_gap_dates_share_confirmed_common_saints)
+        -- Raphael needs full exclusion from Greek even at the feast_name
+        level (he's on a moveable date instead, see
+        test_raphael_brooklyn_differing_commemoration_date). feast_name is
+        untouched by DayCommemoration.tradition, since it still comes
+        solely from _prefer_tradition_days's Day-row selection."""
+
+        greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
+        await greek.ainitialize()
+        self.assertNotIn('St Raphael Bishop of Brooklyn', greek.feasts)
