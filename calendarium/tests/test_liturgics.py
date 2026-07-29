@@ -891,3 +891,134 @@ class TestDay(TestCase):
             if field.name != 'id':
                 with self.subTest(field.name):
                     self.assertTrue(hasattr(passage[0], field.name))
+
+    async def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
+        """Issue #146: modern (new_style) commemorations are recorded
+        against the civil/Gregorian date and observed there by both Old-
+        and New-Calendar jurisdictions alike -- unlike the traditional
+        Menaion, whose dates genuinely shift in Julian mode. St Herman of
+        Alaska's 1970 Glorification is stored at civil Aug 9; a Julian-mode
+        request for that same civil day should surface it."""
+
+        day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_new_style_commemoration_not_shown_on_shifted_julian_label_date(self):
+        """The flip side of the above: whichever civil day's Julian-shifted
+        label happens to land on 8/9 must NOT show Herman's Glorification --
+        that would be the original #146 bug (a modern commemoration bleeding
+        onto an unrelated, Julian-recomputed day)."""
+
+        day = liturgics.Day(2026, 8, 22, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertEqual((day.month, day.day), (8, 9))
+        self.assertFalse(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_new_style_commemoration_unaffected_in_gregorian_mode(self):
+        """In Gregorian mode self.month/self.day already equal the civil
+        date, so new_style commemorations should behave exactly as any
+        other -- no exclusion, no re-fetch."""
+
+        day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Gregorian)
+        await day.ainitialize()
+        self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
+
+    async def test_matrona_of_moscow_new_style_civil_date(self):
+        day = liturgics.Day(2026, 5, 2, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertTrue(any('Matrona' in s for s in day.saints))
+
+    async def test_alexis_toth_new_style_civil_date(self):
+        day = liturgics.Day(2026, 5, 7, calendar=datetools.Calendar.Julian, tradition=Tradition.Slavic)
+        await day.ainitialize()
+        self.assertTrue(any('Alexis Toth' in s for s in day.saints))
+
+    async def test_tradition_specific_commemoration_is_additive_not_a_replacement(self):
+        """DayCommemoration.tradition (Stage 6) supplements a day's common
+        commemorations rather than replacing the whole day -- Jan 18 lists
+        Athanasius/Cyril for everyone, plus Zenia the Martyr only for the
+        Greek tradition, on top of the same shared Athanasius/Cyril entry
+        (not instead of it)."""
+
+        slavic = liturgics.Day(2026, 1, 18, tradition=Tradition.Slavic)
+        await slavic.ainitialize()
+        greek = liturgics.Day(2026, 1, 18, tradition=Tradition.Greek)
+        await greek.ainitialize()
+
+        self.assertTrue(any('Athanasius' in s for s in slavic.saints))
+        self.assertFalse(any('Zenia' in s for s in slavic.saints))
+
+        self.assertTrue(any('Athanasius' in s for s in greek.saints))
+        self.assertTrue(any('Zenia' in s for s in greek.saints))
+
+    async def test_greek_gap_dates_share_confirmed_common_saints(self):
+        """Stage 9: 6 dates had their only commemorations attached to a Day
+        row tagged tradition='slavic' (with an empty parallel greek Day row
+        winning _prefer_tradition_days), so Greek users saw nothing at all,
+        not even genuinely shared content. Fixed by decoupling
+        DayCommemoration lookup from _prefer_tradition_days's single-winner
+        Day row (see _add_supplemental_commemorations) and tagging
+        individual DayCommemoration rows tradition='slavic' for saints
+        confirmed absent from data/antiochian_fixed_saints.json (the
+        project's own Antiochian harvest) -- Toth and Nevsky in particular.
+        feast_level/fast/fast_exception are untouched by any of this, since
+        they still come solely from _prefer_tradition_days's Day-row
+        selection -- verified directly against production (all field-level
+        values match exactly; the only saints-list difference from
+        production is the intentional Herman's-Glorification addition,
+        the #146 fix)."""
+
+        cases = [
+            (2, 27, ['Procopius'], ['Raphael', 'Titus', 'Leander']),
+            (5, 7, ['Apparition', 'Acacius'], ['Toth', 'Georgia', 'Lydia']),
+            (8, 9, ['Matthias', 'Anthony', 'Herman of Alaska'], []),
+            (10, 31, ['Stachys', 'Nicholas of Chios'], []),
+            (11, 23, ['Amphilocus'], ['Nevsky', 'Columban']),
+        ]
+        for m, d, shared, slavic_only in cases:
+            greek = liturgics.Day(2026, m, d, tradition=Tradition.Greek)
+            await greek.ainitialize()
+            with self.subTest((m, d)):
+                for fragment in shared:
+                    self.assertTrue(
+                        any(fragment in s for s in greek.saints),
+                        f'{fragment!r} missing from greek {m}/{d}: {greek.saints}',
+                    )
+                for fragment in slavic_only:
+                    self.assertFalse(
+                        any(fragment in s for s in greek.saints),
+                        f'{fragment!r} unexpectedly leaked to greek {m}/{d}: {greek.saints}',
+                    )
+
+        # July 5 -- Sergius/Athanasius are feast_name-matched (day_native,
+        # ordering=-1) on the *slavic* Day row, which loses Greek's
+        # feast-level-facts preference to the empty greek placeholder --
+        # so their feast_name never surfaces via greek.feasts at all, and
+        # they fall back to showing plainly via greek.saints instead (see
+        # the winning_day_ids check in _add_supplemental_commemorations).
+        slavic_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Slavic)
+        await slavic_jul5.ainitialize()
+        self.assertIn('Unc. Rel. Ven. Sergius of Radonezh; Ven. Athanasius of Athos', slavic_jul5.feasts)
+        self.assertFalse(any('Sergius of Radonezh' in s for s in slavic_jul5.saints))
+        self.assertFalse(any('Athanasius of Mt Athos' in s for s in slavic_jul5.saints))
+
+        greek_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Greek)
+        await greek_jul5.ainitialize()
+        self.assertEqual(greek_jul5.feasts, [])
+        self.assertTrue(any('Sergius of Radonezh' in s for s in greek_jul5.saints))
+        self.assertTrue(any('Athanasius of Mt Athos' in s for s in greek_jul5.saints))
+
+    async def test_raphael_brooklyn_full_year_check_unaffected(self):
+        """Feb 27's feast_name (Raphael-specific) must still never leak to
+        Greek even though Procopius, the other saint on that date, is now
+        correctly shared (see test_greek_gap_dates_share_confirmed_common_saints)
+        -- Raphael needs full exclusion from Greek even at the feast_name
+        level (he's on a moveable date instead, see
+        test_raphael_brooklyn_differing_commemoration_date). feast_name is
+        untouched by DayCommemoration.tradition, since it still comes
+        solely from _prefer_tradition_days's Day-row selection."""
+
+        greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
+        await greek.ainitialize()
+        self.assertNotIn('St Raphael Bishop of Brooklyn', greek.feasts)
