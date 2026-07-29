@@ -59,7 +59,10 @@ convention their listed date uses. Flagged, not yet resolved.
 Also found, unrelated to the calendar bug but from the same investigation:
 **St. Luke of Simferopol is entirely absent** from both `Day` and
 `Commemoration` (confirmed via OCA he belongs on June 11) -- a missing-data
-gap, not a date-logic bug.
+gap, not a date-logic bug. **Closed 2026-07-29**: added as a `Saint` +
+additive `DayCommemoration` on June 11 (`tradition='common'`), title
+matching OCA's own ("St Luke, Archbishop of Simferopol"). Deliberately no
+`story` -- not worth sourcing/writing one for this pass.
 
 ## Why a per-row FK/flag isn't the full answer
 

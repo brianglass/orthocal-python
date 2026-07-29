@@ -7824,6 +7824,14 @@
   }
 },
 {
+  "model": "commemorations.saint",
+  "pk": 6134,
+  "fields": {
+    "name": "St Luke, Archbishop of Simferopol",
+    "full_name": "St Luke (Voino-Yasenetsky), Archbishop of Simferopol and Crimea (1961)"
+  }
+},
+{
   "model": "commemorations.daycommemoration",
   "pk": 5209,
   "fields": {
@@ -24236,6 +24244,22 @@
     "new_style": false,
     "day_native": true,
     "ordering": 0,
+    "tradition": "common"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 6269,
+  "fields": {
+    "day": 598,
+    "saint": 6134,
+    "title": "St Luke, Archbishop of Simferopol",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": false,
+    "ordering": 2,
     "tradition": "common"
   }
 }
