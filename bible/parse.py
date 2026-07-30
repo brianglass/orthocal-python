@@ -8,6 +8,7 @@ def parse_usfx(filename):
     book, chapter, verse = None, None, None
     paragraph_start = False
     is_valid_content = False
+    was_valid_content = False
     strings = []
 
     def make_verse():
@@ -59,6 +60,12 @@ def parse_usfx(filename):
                     yield make_verse()
 
                 verse = node.getAttribute('id')
+                if verse and '-' in verse:
+                    # A verse bridge (e.g. "1-2"), where the source merges
+                    # two verses into one printed unit -- store it under the
+                    # first number rather than failing to parse an int; the
+                    # combined text is already all in this one entry.
+                    verse = verse.split('-')[0]
                 is_valid_content = True
             case [pulldom.START_ELEMENT, 've']:
                 yield make_verse()
@@ -69,9 +76,13 @@ def parse_usfx(filename):
 
             # Footnote Element
             case [pulldom.START_ELEMENT, 'f']:
+                was_valid_content = is_valid_content
                 is_valid_content = False
             case [pulldom.END_ELEMENT, 'f']:
-                is_valid_content = True
+                # Restore whatever was in effect before the footnote rather
+                # than assuming True -- footnotes can appear in content (like
+                # Psalm title <d> blocks) that isn't part of a verse.
+                is_valid_content = was_valid_content
 
             # Character content
             case [pulldom.CHARACTERS, _]:

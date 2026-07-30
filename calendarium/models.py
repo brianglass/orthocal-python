@@ -117,6 +117,7 @@ class Pericope(models.Model):
                     chapter=models.Value(1),
                     verse=models.Value(1),
                     language=models.Value('en'),
+                    translation=models.Value('kjv'),
                     paragraph_start=models.Value(True),
             )
         else:

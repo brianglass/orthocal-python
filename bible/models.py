@@ -18,8 +18,21 @@ class ReferenceParseError(Exception):
     pass
 
 
+# The translation used when a caller doesn't specify one -- keeps every
+# existing call site (which predates the translation field) resolving to
+# exactly the same rows as before, per language.
+DEFAULT_TRANSLATIONS = {
+    'en': 'kjv',
+    'ro': 'rccv',
+    'sr': 'srp1865',
+}
+
+
 class VerseManager(models.Manager):
-    def lookup_reference(self, reference, language='en'):
+    def lookup_reference(self, reference, language='en', translation=None):
+        if translation is None:
+            translation = DEFAULT_TRANSLATIONS[language]
+
         conditionals = []
         book = ''
 
@@ -77,7 +90,7 @@ class VerseManager(models.Manager):
 
         # Run the query
         expression = functools.reduce(operator.or_, conditionals)
-        return self.filter(language=language).filter(expression)
+        return self.filter(language=language, translation=translation).filter(expression)
 
 
 class Verse(models.Model):
@@ -87,11 +100,12 @@ class Verse(models.Model):
     content = models.TextField()
     paragraph_start = models.BooleanField(default=False)
     language = models.CharField(max_length=10)
+    translation = models.CharField(max_length=20, default='kjv')
 
     objects = VerseManager()
 
     class Meta:
-        unique_together = 'book', 'chapter', 'verse', 'language'
+        unique_together = 'book', 'chapter', 'verse', 'language', 'translation'
 
     def __str__(self):
         blurb = textwrap.shorten(self.content, width=20, placeholder='...')
