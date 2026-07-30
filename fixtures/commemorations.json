@@ -8065,14 +8065,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6170,
-  "fields": {
-    "name": "Eustratios the Wonderworker",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6171,
   "fields": {
     "name": "Dometian, Bishop of Melitene",
@@ -8532,14 +8524,6 @@
   "pk": 6240,
   "fields": {
     "name": "Teilo, Bishop of Llandaff",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6241,
-  "fields": {
-    "name": "Porphyrios & Baptos the Monk-martyrs",
     "full_name": null
   }
 },
@@ -9089,14 +9073,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6320,
-  "fields": {
-    "name": "Caesarios the Righteous",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6323,
   "fields": {
     "name": "Michael Mauroudes the New-Martyr",
@@ -9108,14 +9084,6 @@
   "pk": 6324,
   "fields": {
     "name": "Theodora the Righteous",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6325,
-  "fields": {
-    "name": "Pionios the Presbyter",
     "full_name": null
   }
 },
@@ -9433,25 +9401,9 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6367,
-  "fields": {
-    "name": "Gerontios & Vasilides the Martyrs",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6368,
   "fields": {
     "name": "Theodora the Virgin-martyr of Palestine",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6369,
-  "fields": {
-    "name": "Amphianos & Aedesios the Martyrs of Lycia",
     "full_name": null
   }
 },
@@ -9521,14 +9473,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6380,
-  "fields": {
-    "name": "Agathopodes and Theodulos the Martyrs",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6381,
   "fields": {
     "name": "George the new Martyr",
@@ -9556,14 +9500,6 @@
   "pk": 6384,
   "fields": {
     "name": "Platonis the Nun of Nisibis",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6385,
-  "fields": {
-    "name": "Calliopus and Akylina the Martyrs",
     "full_name": null
   }
 },
@@ -9865,14 +9801,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6427,
-  "fields": {
-    "name": "Zacchaeus the Apostle of Caesaria",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6428,
   "fields": {
     "name": "Gregory & Anastasios, Patriarchs of Antioch",
@@ -10092,14 +10020,6 @@
   "pk": 6459,
   "fields": {
     "name": "Asaph, Bishop of Wales",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6460,
-  "fields": {
-    "name": "Hesperos & Zoe the Righteous",
     "full_name": null
   }
 },
@@ -10497,14 +10417,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6516,
-  "fields": {
-    "name": "The Holy Martyr Thalleleus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6517,
   "fields": {
     "name": "Lydia of Philippi, Equal to the Apostles",
@@ -10532,14 +10444,6 @@
   "pk": 6520,
   "fields": {
     "name": "John, Joseph, and Nikitas the Monks of Chios",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6521,
-  "fields": {
-    "name": "Pachomios the Righteous New Martyr",
     "full_name": null
   }
 },
@@ -10580,14 +10484,6 @@
   "pk": 6526,
   "fields": {
     "name": "Aldhelm, Bishop of Sherborne",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6527,
-  "fields": {
-    "name": "Alexandros the New Martyr of Thessaloniki",
     "full_name": null
   }
 },
@@ -10921,14 +10817,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6582,
-  "fields": {
-    "name": "Tychon the Wonderworker",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6583,
   "fields": {
     "name": "40 Martyrs of Rome",
@@ -10980,14 +10868,6 @@
   "pk": 6590,
   "fields": {
     "name": "Our Righteous Father Zenonus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6591,
-  "fields": {
-    "name": "Methodios the Martyr, Bishop of Olympus",
     "full_name": null
   }
 },
@@ -11052,14 +10932,6 @@
   "pk": 6600,
   "fields": {
     "name": "Etheldreda the Queen",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6601,
-  "fields": {
-    "name": "Elizabeth, Mother of the Forerunner",
     "full_name": null
   }
 },
@@ -11257,14 +11129,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6635,
-  "fields": {
-    "name": "Theophilos the Myrrhbearer of Pantokrator Monastery",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6636,
   "fields": {
     "name": "Dionysios the Orator",
@@ -11329,14 +11193,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6647,
-  "fields": {
-    "name": "Nicodemos the New Martyr of Mt. Athos",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6648,
   "fields": {
     "name": "Our Holy Father Michael of Maleinus",
@@ -11348,14 +11204,6 @@
   "pk": 6649,
   "fields": {
     "name": "Gerasimos of Byzantium and Akakios the young ascetic",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6650,
-  "fields": {
-    "name": "Paisios the Athonite",
     "full_name": null
   }
 },
@@ -11388,14 +11236,6 @@
   "pk": 6654,
   "fields": {
     "name": "Serapion the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6657,
-  "fields": {
-    "name": "Nicodemus the Righteous of Mount Athos",
     "full_name": null
   }
 },
@@ -11556,14 +11396,6 @@
   "pk": 6678,
   "fields": {
     "name": "Pelagia the Righteous of Tinos",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6679,
-  "fields": {
-    "name": "Trophimos & Theophilios and the 13 others martyred in Lycia",
     "full_name": null
   }
 },
@@ -11953,14 +11785,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6738,
-  "fields": {
-    "name": "Maximus the Confessor",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6739,
   "fields": {
     "name": "Our Righteous Fathers Sergius, Stephanus, Castor and Palamonus",
@@ -12193,14 +12017,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6770,
-  "fields": {
-    "name": "The Holy Apostle Thaddaeus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6771,
   "fields": {
     "name": "Athanasios Patelaros, Patriarch of Constantinople",
@@ -12316,14 +12132,6 @@
   "pk": 6791,
   "fields": {
     "name": "Anthousa the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6792,
-  "fields": {
-    "name": "Poimen of Palestine",
     "full_name": null
   }
 },
@@ -12473,14 +12281,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6813,
-  "fields": {
-    "name": "Mammas the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6814,
   "fields": {
     "name": "Cosmas the Hermit",
@@ -12577,14 +12377,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6831,
-  "fields": {
-    "name": "Euodos and Onesiphoros, Apostles of the 70",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6832,
   "fields": {
     "name": "Sophronios, Bishop of Iberia",
@@ -12620,14 +12412,6 @@
   "pk": 6837,
   "fields": {
     "name": "Deinol the First Bishop of Bangor",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6838,
-  "fields": {
-    "name": "Autonomos the Martyr",
     "full_name": null
   }
 },
@@ -12921,14 +12705,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6883,
-  "fields": {
-    "name": "Akylina the New Martyr of Thessaloniki",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6884,
   "fields": {
     "name": "Gideon the Righteous",
@@ -13012,14 +12788,6 @@
   "pk": 6898,
   "fields": {
     "name": "Eudokimos the Unknown of Mount Athos",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6901,
-  "fields": {
-    "name": "Polychronios the Martyr",
     "full_name": null
   }
 },
@@ -13217,14 +12985,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6932,
-  "fields": {
-    "name": "Euthymios the New",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6933,
   "fields": {
     "name": "The Two Soldiers martyred with Saint Longinus",
@@ -13236,14 +12996,6 @@
   "pk": 6936,
   "fields": {
     "name": "Marinos the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6938,
-  "fields": {
-    "name": "Varys the Martyr",
     "full_name": null
   }
 },
@@ -13337,14 +13089,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6955,
-  "fields": {
-    "name": "Holy Martyrs Terrence and Eunice",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6956,
   "fields": {
     "name": "Our Righteous Father Steven the Sabbaite",
@@ -13380,14 +13124,6 @@
   "pk": 6962,
   "fields": {
     "name": "Martyr Epimachus of Alexandria, Egypt",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6964,
-  "fields": {
-    "name": "The Holy Martyrs Acindynos, Pegasios, Aphthonios, Elpidophoros, and Anempodistos",
     "full_name": null
   }
 },
@@ -13577,22 +13313,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6999,
-  "fields": {
-    "name": "Martyr Romanos the Deacon",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7000,
-  "fields": {
-    "name": "Anastasios the New Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 7002,
   "fields": {
     "name": "Martyr Heliodorus",
@@ -13737,14 +13457,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 7026,
-  "fields": {
-    "name": "16 Martyrs of Tiberioupolis",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 7027,
   "fields": {
     "name": "Paramonus, Philumenus, and their 370 Companion Martyrs in Bithynia",
@@ -13772,14 +13484,6 @@
   "pk": 7030,
   "fields": {
     "name": "Phaedrus the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7031,
-  "fields": {
-    "name": "Froumentios, Archbishop of Abyssina",
     "full_name": null
   }
 },
@@ -13977,14 +13681,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 7062,
-  "fields": {
-    "name": "Eleutherios the Hieromartyr, Bishop of Illyricum, and his mother Anthia",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 7064,
   "fields": {
     "name": "Modestos, Archbishop of Jerusalem",
@@ -14033,14 +13729,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 7073,
-  "fields": {
-    "name": "Aglaia the Righteous of Rome",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 7074,
   "fields": {
     "name": "Our Righteous Father Philogonius, Bishop of Antioch",
@@ -14084,14 +13772,6 @@
   "pk": 7081,
   "fields": {
     "name": "Rememberance of the Founding of the Holy and Great Church of Christ, Hagia Sophia in Constantinople",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7082,
-  "fields": {
-    "name": "Naoum the Illuminator of The Bulgarians",
     "full_name": null
   }
 },
@@ -31073,22 +30753,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6306,
-  "fields": {
-    "day": 444,
-    "saint": 6170,
-    "title": "Eustratios the Wonderworker",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6307,
   "fields": {
     "day": 445,
@@ -32012,22 +31676,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6377,
-  "fields": {
-    "day": 476,
-    "saint": 6241,
-    "title": "Porphyrios & Baptos the Monk-martyrs",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
     "tradition": "greek"
   }
 },
@@ -33121,22 +32769,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6456,
-  "fields": {
-    "day": 504,
-    "saint": 6320,
-    "title": "Caesarios the Righteous",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6459,
   "fields": {
     "day": 505,
@@ -33164,22 +32796,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6461,
-  "fields": {
-    "day": 506,
-    "saint": 6325,
-    "title": "Pionios the Presbyter",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
     "tradition": "greek"
   }
 },
@@ -33809,22 +33425,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6503,
-  "fields": {
-    "day": 527,
-    "saint": 6367,
-    "title": "Gerontios & Vasilides the Martyrs",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6504,
   "fields": {
     "day": 528,
@@ -33836,22 +33436,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6505,
-  "fields": {
-    "day": 528,
-    "saint": 6369,
-    "title": "Amphianos & Aedesios the Martyrs of Lycia",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
     "tradition": "greek"
   }
 },
@@ -33985,22 +33569,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6516,
-  "fields": {
-    "day": 531,
-    "saint": 6380,
-    "title": "Agathopodes and Theodulos the Martyrs",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6517,
   "fields": {
     "day": 531,
@@ -34060,22 +33628,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6521,
-  "fields": {
-    "day": 533,
-    "saint": 6385,
-    "title": "Calliopus and Akylina the Martyrs",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
     "tradition": "greek"
   }
 },
@@ -34673,22 +34225,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6563,
-  "fields": {
-    "day": 546,
-    "saint": 6427,
-    "title": "Zacchaeus the Apostle of Caesaria",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6564,
   "fields": {
     "day": 546,
@@ -35132,22 +34668,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6596,
-  "fields": {
-    "day": 558,
-    "saint": 6460,
-    "title": "Hesperos & Zoe the Righteous",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
     "tradition": "greek"
   }
 },
@@ -35937,22 +35457,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6652,
-  "fields": {
-    "day": 576,
-    "saint": 6516,
-    "title": "The Holy Martyr Thalleleus",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6653,
   "fields": {
     "day": 576,
@@ -36012,22 +35516,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6657,
-  "fields": {
-    "day": 577,
-    "saint": 6521,
-    "title": "Pachomios the Righteous New Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
     "tradition": "greek"
   }
 },
@@ -36102,22 +35590,6 @@
     "day": 581,
     "saint": 6526,
     "title": "Aldhelm, Bishop of Sherborne",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6663,
-  "fields": {
-    "day": 582,
-    "saint": 6527,
-    "title": "Alexandros the New Martyr of Thessaloniki",
     "story": null,
     "rank": 0,
     "high_rank": false,
@@ -36785,22 +36257,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6718,
-  "fields": {
-    "day": 603,
-    "saint": 6582,
-    "title": "Tychon the Wonderworker",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6719,
   "fields": {
     "day": 603,
@@ -36902,22 +36358,6 @@
     "day": 606,
     "saint": 6590,
     "title": "Our Righteous Father Zenonus",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6727,
-  "fields": {
-    "day": 607,
-    "saint": 6591,
-    "title": "Methodios the Martyr, Bishop of Olympus",
     "story": null,
     "rank": 0,
     "high_rank": false,
@@ -37052,22 +36492,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6737,
-  "fields": {
-    "day": 611,
-    "saint": 6601,
-    "title": "Elizabeth, Mother of the Forerunner",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
     "tradition": "greek"
   }
 },
@@ -37457,22 +36881,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6771,
-  "fields": {
-    "day": 625,
-    "saint": 6635,
-    "title": "Theophilos the Myrrhbearer of Pantokrator Monastery",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6772,
   "fields": {
     "day": 626,
@@ -37601,22 +37009,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6783,
-  "fields": {
-    "day": 628,
-    "saint": 6647,
-    "title": "Nicodemos the New Martyr of Mt. Athos",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 7,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6784,
   "fields": {
     "day": 629,
@@ -37644,22 +37036,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6786,
-  "fields": {
-    "day": 629,
-    "saint": 6650,
-    "title": "Paisios the Athonite",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
     "tradition": "greek"
   }
 },
@@ -37724,22 +37100,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6793,
-  "fields": {
-    "day": 631,
-    "saint": 6657,
-    "title": "Nicodemus the Righteous of Mount Athos",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
     "tradition": "greek"
   }
 },
@@ -38060,22 +37420,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6815,
-  "fields": {
-    "day": 640,
-    "saint": 6679,
-    "title": "Trophimos & Theophilios and the 13 others martyred in Lycia",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
     "tradition": "greek"
   }
 },
@@ -38849,22 +38193,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6874,
-  "fields": {
-    "day": 661,
-    "saint": 6738,
-    "title": "Maximus the Confessor",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6875,
   "fields": {
     "day": 661,
@@ -39329,22 +38657,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6906,
-  "fields": {
-    "day": 669,
-    "saint": 6770,
-    "title": "The Holy Apostle Thaddaeus",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6907,
   "fields": {
     "day": 669,
@@ -39580,22 +38892,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6928,
-  "fields": {
-    "day": 675,
-    "saint": 6792,
-    "title": "Poimen of Palestine",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
     "tradition": "greek"
   }
 },
@@ -39889,22 +39185,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6949,
-  "fields": {
-    "day": 681,
-    "saint": 6813,
-    "title": "Mammas the Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6950,
   "fields": {
     "day": 681,
@@ -40097,22 +39377,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6967,
-  "fields": {
-    "day": 686,
-    "saint": 6831,
-    "title": "Euodos and Onesiphoros, Apostles of the 70",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 9,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6968,
   "fields": {
     "day": 687,
@@ -40188,22 +39452,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6974,
-  "fields": {
-    "day": 691,
-    "saint": 6838,
-    "title": "Autonomos the Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
     "tradition": "greek"
   }
 },
@@ -40785,22 +40033,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7019,
-  "fields": {
-    "day": 706,
-    "saint": 6883,
-    "title": "Akylina the New Martyr of Thessaloniki",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7020,
   "fields": {
     "day": 706,
@@ -40966,22 +40198,6 @@
     "day": 714,
     "saint": 6898,
     "title": "Eudokimos the Unknown of Mount Athos",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7037,
-  "fields": {
-    "day": 716,
-    "saint": 6901,
-    "title": "Polychronios the Martyr",
     "story": null,
     "rank": 0,
     "high_rank": false,
@@ -41377,22 +40593,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7068,
-  "fields": {
-    "day": 724,
-    "saint": 6932,
-    "title": "Euthymios the New",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7069,
   "fields": {
     "day": 725,
@@ -41420,22 +40620,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 1,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7074,
-  "fields": {
-    "day": 728,
-    "saint": 6938,
-    "title": "Varys the Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
     "tradition": "greek"
   }
 },
@@ -41617,22 +40801,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7091,
-  "fields": {
-    "day": 737,
-    "saint": 6955,
-    "title": "Holy Martyrs Terrence and Eunice",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7092,
   "fields": {
     "day": 737,
@@ -41708,22 +40876,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7100,
-  "fields": {
-    "day": 742,
-    "saint": 6964,
-    "title": "The Holy Martyrs Acindynos, Pegasios, Aphthonios, Elpidophoros, and Anempodistos",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 0,
     "tradition": "greek"
   }
 },
@@ -42097,38 +41249,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7135,
-  "fields": {
-    "day": 758,
-    "saint": 6999,
-    "title": "Martyr Romanos the Deacon",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7136,
-  "fields": {
-    "day": 758,
-    "saint": 7000,
-    "title": "Anastasios the New Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7138,
   "fields": {
     "day": 759,
@@ -42417,22 +41537,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7162,
-  "fields": {
-    "day": 768,
-    "saint": 7026,
-    "title": "16 Martyrs of Tiberioupolis",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7163,
   "fields": {
     "day": 769,
@@ -42492,22 +41596,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7167,
-  "fields": {
-    "day": 770,
-    "saint": 7031,
-    "title": "Froumentios, Archbishop of Abyssina",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
     "tradition": "greek"
   }
 },
@@ -42897,22 +41985,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7198,
-  "fields": {
-    "day": 785,
-    "saint": 7062,
-    "title": "Eleutherios the Hieromartyr, Bishop of Illyricum, and his mother Anthia",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7200,
   "fields": {
     "day": 786,
@@ -43009,22 +42081,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7209,
-  "fields": {
-    "day": 789,
-    "saint": 7073,
-    "title": "Aglaia the Righteous of Rome",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7210,
   "fields": {
     "day": 790,
@@ -43116,22 +42172,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 3,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7218,
-  "fields": {
-    "day": 793,
-    "saint": 7082,
-    "title": "Naoum the Illuminator of The Bulgarians",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
     "tradition": "greek"
   }
 },
