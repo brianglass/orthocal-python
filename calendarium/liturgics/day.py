@@ -47,6 +47,18 @@ def _prefer_tradition(rows, tradition):
     return kept
 
 
+def _speech_worthy(dc):
+    """Should the Alexa skill (alexa/speech.py) say this commemoration's name?
+
+    Excludes only the story-less tradition='greek' overlay -- the bulk
+    antiochian.org-harvested commemorations added without a story (see
+    docs/saint-model-refactor.md). Everything else speaks regardless of
+    whether it has a story, matching this project's behavior before that
+    overlay existed."""
+
+    return bool(dc.story) or dc.tradition != 'greek'
+
+
 def _prefer_tradition_days(rows, tradition):
     """Like _prefer_tradition, but for Day rows, which have no
     source/ordering/desc -- the slot is just (pdist, month, day)."""
@@ -282,6 +294,7 @@ class Day:
             # self.feasts; story-only, excluded here.
 
         self.saints = []
+        self.spoken_saints = []
         self.minimal_saints = []
         for dcs in day_native_by_day.values():
             # Grouped by whichever Day row the entries originally came from
@@ -291,10 +304,28 @@ class Day:
             # feast-level-facts preference for this tradition.
             titles = [dc.title for dc in dcs]
             self.saints.extend(titles)
+            self.spoken_saints.extend(dc.title for dc in dcs if _speech_worthy(dc))
             if titles:
                 self.minimal_saints.append('; '.join(titles))
 
         self.saints.extend(dc.title for dc in additive)
+        self.spoken_saints.extend(dc.title for dc in additive if _speech_worthy(dc))
+
+        # spoken_saints excludes only the story-less tradition='greek' overlay
+        # (the bulk antiochian.org-harvested commemorations, see
+        # docs/saint-model-refactor.md) -- those would otherwise bloat the
+        # Alexa skill's spoken commemorations sentence (see alexa/speech.py).
+        # Everything that predates that overlay speaks exactly as it always
+        # has, story or not -- a plain "has story" filter would also have
+        # silently dropped pre-existing, story-less but clearly important
+        # commemorations (e.g. St Sava of Serbia, Peter and Fevronia of
+        # Murom) whenever some other minor commemoration on the same day
+        # happened to have a story. Fall back to the full list when nothing
+        # on a given day is speech-worthy, so an ordinary day never goes
+        # silent.
+        if not self.spoken_saints:
+            self.spoken_saints = list(self.saints)
+
         self.stories = [dc for dc in commemorations if dc.story]
 
     def _apply_fasting_adjustments(self):

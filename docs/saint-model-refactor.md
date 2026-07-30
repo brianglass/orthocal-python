@@ -942,3 +942,127 @@ by manipulating the other's mechanism (retagging a whole Day row to move
 a saint) will eventually smuggle the wrong semantics onto the wrong axis.
 Keep them decoupled, the way `_commemoration_day_ids` vs. `self.days` now
 does.
+
+## Stage 11: full Greek-tradition harvest expansion, four-pass dedup, Alexa speech gating (2026-07-29 -- 2026-07-30)
+
+**Background**: Stage 9 only spot-fixed 6 dates where Greek tradition had
+*no* commemorations at all. A much larger, already-documented backlog sat
+unaddressed in `data/greek_missing_commemorations.json` (78 dates, ~122
+candidates) -- itself an undercount, since it excluded any date whose
+antiochian.org description had more than 4 comma-separated entries on the
+theory that long lists are "full-menaion listings of minor saints never
+meant to be individually surfaced." Checking July 29 by hand (Brian's own
+antiochian.org lookup) disproved that theory -- a 7-entry day still
+contained a non-obscure saint (Olaf of Norway) we were missing entirely.
+
+**Multi-year re-confirmation**: of 366 calendar dates, 199 already had 2+
+years of cached `antiochian_raw/*.json` harvest data; the remaining 167
+needed a second year fetched (2025, plus 2024-02-29 for the one leap-day
+case) via the existing rate-limited `Antiochian` client
+(`ingest_antiochian.py`), respecting its 5s delay. Re-running the
+missing-commemoration matcher against all 366 dates (no length cutoff)
+found two matcher bugs that had been silently producing false positives
+*and* false negatives: the stopword list dropped "great" (so "Basil the
+Great" lost its strongest signal against "Our Father among the Saints
+Basil the Great"), and `difflib.SequenceMatcher`'s `autojunk` heuristic
+silently corrupted matches on the long (>200 char) raw year-description
+strings, occasionally returning an empty match for an exact substring.
+Fixed both (word-token sequences, `autojunk=False`); rebuilt the
+confirmed-missing list -- 960 entries confirmed present across 2+
+harvested years, each added as a new `Saint` + `DayCommemoration`
+(`tradition='greek'`, `day_native=True`, no story, matching the existing
+33-entry batch's pattern), verbatim as antiochian.org names them rather
+than synthesizing honorifics -- writing bios for saints with no existing
+source text was explicitly out of scope, same as Stage 9.
+
+**Alexa speech gating**: reading all ~960 new terse names aloud on top of
+the existing list would bloat the Alexa skill's spoken commemorations
+sentence (`alexa/speech.py`), which had no length control at all before
+this (unlike the reading-passage logic's `MAX_SPEECH_LENGTH` grouping). A
+plain "only speak commemorations that have a story" filter was tried
+first and rejected -- it also silently drops pre-existing, story-less but
+clearly important commemorations (St Sava of Serbia, Peter and Fevronia
+of Murom) whenever some other minor commemoration on the same day
+happens to have a story, which is a real regression from what Alexa said
+before this stage. The actual rule (`_speech_worthy` in
+`calendarium/liturgics/day.py`, exposed as `Day.spoken_saints`): exclude a
+commemoration from speech only when it is *both* `tradition='greek'` and
+story-less. Everything that predates this harvest -- including
+`tradition='common'`/`'slavic'` content that happens to lack a story --
+speaks exactly as it always has.
+
+**Two data-quality bugs found while validating Alexa's output, unrelated
+to the harvest itself**: a duplicate Prophet Habakkuk (two `Saint` rows,
+two spellings, same day -- merged into the story-bearing entry); and St
+Catherine of Alexandria / Great Martyr Mercurius, both of which turn out
+to have genuinely different commemoration dates in Slavic vs. Greek
+tradition (Nov 24 vs. Nov 25, confirmed against oca.org, Holy
+Trinity/ROCOR, antiochian.org, and goarch.org -- two independent sources
+per tradition) rather than being the same date miscategorized. Both had
+been sitting under a single `common`-tagged `DayCommemoration`, leaking
+into the wrong tradition's view; retagged to `slavic`/`greek` per saint
+per date, adding the missing Slavic-side Mercurius occurrence (reusing
+the existing story, since the narrative itself isn't date-specific).
+
+**Dedup, in four escalating passes -- each one caught a class of miss the
+previous pass structurally could not**:
+
+1. *Exact word-token matching* (shared non-generic word between a new
+   entry's title and an existing title/story) -- 165 duplicates. Includes
+   the day_native, feast_name-matched exclusion case from Stage 10 logic
+   working correctly for the new content too.
+2. *Fuzzy edit-distance matching* (>=0.8 `SequenceMatcher` ratio between
+   tokens with no exact overlap) -- 40 more, catching transliteration
+   variants exact matching can't see at all (Nicodemos/Nikodemos,
+   Porphyrios/Porphyrius, Theophilos/Theophilus).
+3. *Manual review of a random 40-entry sample* (~5%), reading each day's
+   full existing list by hand rather than string-matching -- 6 more,
+   including one genuine architecture bug: a new entry anchored Bishop
+   Raphael Hawaweeny of Brooklyn to a fixed Nov 7, when Stage 9 already
+   established (with its own test,
+   `test_raphael_brooklyn_differing_commemoration_date`) that he's
+   observed on a *moveable* date for Greek tradition (first Saturday of
+   November) -- the new entry was both a duplicate and wrong on the
+   calendar. Also found two duplicates *within* the new batch itself (the
+   same person added twice from different antiochian.org source years --
+   Jerome/Hieronymus, Agirus/Cornatus), a category neither prior pass
+   checked, since both only ever compared new entries against
+   pre-existing content, never against each other. A 17.5% hit rate on
+   a random sample this late in the process was the signal that
+   sampling wasn't going to be enough.
+4. *Full manual review of all 315 affected dates*, day by day, reading
+   each day's complete commemoration list (pre-existing content, the
+   original 33-entry batch, and the 960-entry batch together) -- 56 more.
+   Surfaced categories with no string-similarity signal at all: cross-
+   date duplicates on *non-adjacent* dates (Gregory, Bishop of
+   Assa/Assos added three separate times -- June 10, July 10, and Nov 10;
+   Theonas of Thessalonica/Thessolonica added on March 24, April 4, *and*
+   April 10), a martyr group split into fragments across two adjacent
+   dates (Aug 12's "Sergios, Stephen and Kastor" plus a separate
+   "Palamon" entry vs. Aug 13's single combined entry naming all four),
+   Old Calendar/New Calendar date-conversion mismatches (Joseph the
+   Hesychast added on Aug 16 when the pre-existing entry already
+   correctly places him on Aug 28, noting "August 15 OC"), and two
+   mistakes in the *original* 33-entry batch from Stage 9 -- predating
+   this stage entirely -- that had simply never been checked this
+   thoroughly against their own dates: Eumenius/Eumenes, Bishop of
+   Gortyna/Gortynia (Sept 18), and Peter the Aleut (added Dec 12,
+   duplicating a pre-existing, story-bearing entry on Dec 13).
+
+**267 of the original 960 candidates removed (~28%)** across the four
+passes. 120/120 tests pass after every commit in this stage; fixtures
+regenerated each time.
+
+**How to apply**: harvested-name matching against an existing corpus is
+inherently a recall/precision tradeoff, and no single technique closes
+it -- exact matching misses spelling variants, fuzzy matching misses
+same-day misses hiding behind low token overlap (and produces its own
+noise on generic words), and both are structurally blind to cross-date
+duplication, since the date itself is part of what differs between two
+copies of the same fact. Manual review closes gaps the automated passes
+can't reach, but is still sampling-shaped in how confidence grows: each
+larger, more careful pass found a *new category* of miss the previous
+one couldn't have caught by definition, not just more instances of
+already-known categories, which is the real argument for reviewing
+everything rather than a sample -- a sample only tells you about the
+categories you already know to look for.

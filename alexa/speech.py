@@ -111,12 +111,12 @@ def day_speech(day):
 
     # Commemorations
 
-    if len(day.saints) > 1:
-        text = f'The commemorations are for {human_join(day.saints)}.'
+    if len(day.spoken_saints) > 1:
+        text = f'The commemorations are for {human_join(day.spoken_saints)}.'
         speech_text += f'<p>{text}</p>'
         card_text += f'{text}\n\n'
-    elif len(day.saints) == 1:
-        text = f'The commemoration is for {day.saints[0]}.'
+    elif len(day.spoken_saints) == 1:
+        text = f'The commemoration is for {day.spoken_saints[0]}.'
         speech_text += f'<p>{text}</p>'
         card_text += f'{text}\n\n'
 
