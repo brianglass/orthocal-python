@@ -1,0 +1,1621 @@
+Confirmed-missing Greek/Antiochian commemorations (960 total)
+Cross-checked against our DB (word-level longest-distinctive-phrase match) and confirmed across >=2 harvested antiochian.org years.
+Revision 2: fixed a matcher bug where the first pass (character-level bag-of-words / LCS) produced false positives (e.g. St Basil the Great on Jan 1 wrongly flagged as missing) and false negatives (difflib autojunk corrupting long-string matches).
+
+January 1
+  - Peter the New Martyr of the Peloponnesos  (6 yrs: [2019, 2022, 2023, 2024, 2025, 2026])
+  - Theodotos the Martyr  (6 yrs: [2019, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Theodosios of Triglia  (6 yrs: [2019, 2022, 2023, 2024, 2025, 2026])
+  - Telemachos the Martyr  (6 yrs: [2019, 2022, 2023, 2024, 2025, 2026])
+  - Fulgentius, Bishop of Ruspe  (6 yrs: [2019, 2022, 2023, 2024, 2025, 2026])
+
+January 2
+  - Cosmas, Archbishop of Constantinople  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Juliana the Righteous  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theagenes the Hieromartyr, Bishop of Parios  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theodota, the Mother of the Holy Anargyroi  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Mark the Deaf  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Basil the Martyr of Ankyra  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theopistos the Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nilos the Sanctified  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Sylvester of the Kiev Caves  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 3
+  - Malachi the Prophet  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Peter of Atroas  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Akakios the Wonderworker  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Thomais of Lesbos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 4
+  - Our Righteous Father Theoctistus, Abbot of Cucomo in Sicily  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nikephoros the Leper  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Zosimos the Monk and Athanasios the Notary  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Apollinaria the Senator  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Martyrs Chrysanthos and Euphemia  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Euthymios the Younger  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - New Martyr Onuphrios  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Euthymios of Vatopedi  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous John Scholarios  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Eustathios Archbishop of Serbia  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 5
+  - Righteous Syncletike of Alexandria  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Gregory of Akrita  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Apollinaria of Egypt  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 8
+  - George of Hozeva  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Gregory of the Kiev Caves  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Emilianos the Confessor, Bishop of Cyzikos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Pega the Virgin, Hermitess of Peakirk  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 9
+  - Eustratios the Wonderworker  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 10
+  - Dometian, Bishop of Melitene  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Markianos, Priest and Oikonomos of the Great Church  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 11
+  - Nikephoros the New Martyr of Crete  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Vitalis of Gaza  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 12
+  - Tatiana the Martyr of Rome  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Basil and John the Hieromartyrs  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Martyr Mertios  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Euthasia the Virgin-Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Peter of Absalom  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 13
+  - Synaxis of the Most Holy Theotokos - Mediatress  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Maximos the Righteous of Kapsokalyvia, Mount Athos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Kentigern, Bishop of Glasgow  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 14
+  - Plato the Hieromartyr, Bishop of Tallini and all Estonia, and the Priest Martyrs Michael and Nicholas  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Agnes the Virgin-martyr  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 15
+  - Pansophios the Martyr of Alexandria  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 16
+  - Righteous Hierodeacon Makarios of Kalogeras  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Romilo the Monk of Mount Athos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nicholas the New-Martyr of Mytilene  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Peusippos, Elasippos, and Mesippos the siblings, and their grandmother Neonilla  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 19
+  - Makarios of Alexandria  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Makarios, Hierodeacon of Kalogera, Patmos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Arsenius of Corfu  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Removal of the Honorable Relics of Saint Gregory the Theologian  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Branwallader, Bishop of Jersey  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 21
+  - Neophytos the Martyr of Nicaea  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 22
+  - Timothy the Apostle of the 70  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 23
+  - Agathangelus the Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 24
+  - Vavylas the Holy Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Philo the Wonderworker, Bishop of Karpasia in Cyprus  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 26
+  - Xenophon & his Companions  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 28
+  - James the Righteous  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Palladios the Hermit of Antioch  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theodosius of Totma  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Grace the Martyr  (8 yrs: [2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 29
+  - Ignatius and Nicandrus of Sinai  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 30
+  - Hippolytos, Pope of Rome  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Athanasia the Martyr & her 3 daughters  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+January 31
+  - Cyrus & John the Unmercenaries  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Holy Women Martyrs Theodote, Theoktiste and Eudoxia  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Righteous Father Arsenius of Parus  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Elias Ardounis the New Righteous-Martyr of Mount Athos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Aed from Ferns  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 1
+  - Perpetua & her Companions  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Holy Father Basil, Archbishop of Thessalonica  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Anastasios the New Martyr of Navplion  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - The Four Martyrs Andrianus, Polyeuktos, Plato and George who contested in Megara  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Timothy the Confessor  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Bridget of Ireland  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 3
+  - The Synaxis of the Holy and Righteous Symeon the God-Receiver and the Holy Prophetess Anna  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Stamatios, John, & Nicholas, New Martyrs of Spetses  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Synaxis of the Most Holy Theotokos  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Ansgar of Hamburg-Bremen  (5 yrs: [2022, 2023, 2024, 2025, 2026])
+
+February 4
+  - Nicholas the Confessor  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Hieromartyr Abramius  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - John the Righteous, Bishop of Irinopolis  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theodosios the Righteous  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Joseph the New Martyr of Aleppo  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 5
+  - Agatha the Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Antonios the New Martyr of Athens  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theodosios of Antioch  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 6
+  - The Martyr and Healer Julian (Ilyan) of Homs  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 7
+  - George the New Martyr of Crete  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theopemptos the Martyr & his Companions  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - The Synaxis of the New Martyrs of Russia  (5 yrs: [2022, 2023, 2024, 2025, 2026])
+  - Richard, King of Wessex  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 8
+  - Theodore the Commander & Great Martyr  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nicephoros & Stephanos the Martyrs  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Cuthman of Steyning  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 9
+  - Markellos, Philagrios, & Pankratios the Hieromartyrs  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Teilo, Bishop of Llandaff  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 10
+  - Porphyrios & Baptos the Monk-martyrs  (7 yrs: [2019, 2021, 2022, 2023, 2024, 2025, 2026])
+
+February 11
+  - Blaise the Hieromartyr of Sebastia  (5 yrs: [2018, 2020, 2023, 2024, 2026])
+  - Finding of the relics of Zachariah the Prophet, Father of the Holy Forerunner  (5 yrs: [2018, 2020, 2023, 2024, 2026])
+  - George the Serbian  (5 yrs: [2018, 2020, 2023, 2024, 2026])
+
+February 12
+  - Antonius, Archbishop of Constantinople  (4 yrs: [2018, 2020, 2023, 2026])
+  - Meletios of Ypseni  (4 yrs: [2018, 2020, 2023, 2026])
+  - Christos the New Martyr  (4 yrs: [2018, 2020, 2023, 2026])
+
+February 13
+  - Apostles Aquila and Priscilla  (2 yrs: [2023, 2026])
+  - Eulogios, Patriarch of Alexandria  (4 yrs: [2018, 2020, 2023, 2026])
+
+February 14
+  - Nicholas the New Martyr of Corinth  (5 yrs: [2018, 2020, 2021, 2023, 2026])
+  - Abraham, Bishop of Carrhes in Mesopotamia  (5 yrs: [2018, 2020, 2021, 2023, 2026])
+
+February 15
+  - Onesimus the Apostle of the 70  (5 yrs: [2018, 2020, 2023, 2025, 2026])
+  - Onesimos, Patriarch of Constantinople  (5 yrs: [2018, 2020, 2023, 2025, 2026])
+  - Eusebius the Righteous of Syria  (5 yrs: [2018, 2020, 2023, 2025, 2026])
+  - Major the Martyr  (3 yrs: [2023, 2025, 2026])
+
+February 16
+  - Flavianos, Patriarch of Constantinople  (3 yrs: [2020, 2023, 2026])
+  - Romanos the Younger  (3 yrs: [2020, 2023, 2026])
+
+February 17
+  - Theodore the Tyro, Great Martyr  (3 yrs: [2020, 2023, 2026])
+  - Mariamne, Sister of Apostle Philip, and Equal to the Apostles  (3 yrs: [2020, 2023, 2026])
+  - Righteous Auxentius  (3 yrs: [2020, 2023, 2026])
+  - The Pious Rulers Marcian and Pulcheria  (3 yrs: [2020, 2023, 2026])
+  - Theodore the New Martyr of Byzantium  (3 yrs: [2020, 2023, 2026])
+
+February 18
+  - Agapetus the Confessor, Bishop of Sinai  (4 yrs: [2020, 2023, 2024, 2026])
+  - Flavian the Confessor, Patriarch of Constantinople  (4 yrs: [2020, 2023, 2024, 2026])
+
+February 19
+  - Niketas the Younger  (4 yrs: [2020, 2022, 2023, 2026])
+
+February 20
+  - Agathus, Pope of Rome  (2 yrs: [2023, 2026])
+  - Sadok the Bishop and the 128 other Martyrs of Persia  (2 yrs: [2023, 2026])
+
+February 21
+  - Timothy the Righteous  (3 yrs: [2021, 2023, 2026])
+
+February 22
+  - The Finding of the Precious Relics of the Holy Martyrs in the Quarter of Eugenius  (2 yrs: [2023, 2026])
+
+February 23
+  - Proterios, Archbishop of Alexandria  (3 yrs: [2019, 2023, 2026])
+  - Gorgonia the Righteous, sister of Gregory the Theologian  (3 yrs: [2019, 2023, 2026])
+  - Damian the New Martyr of Mount Athos  (3 yrs: [2019, 2023, 2026])
+  - Boswell, Abbot of Melrose Abbey  (3 yrs: [2019, 2023, 2026])
+
+February 24
+  - Romanos, Prince of Uglich  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Boswell, Abbot of Melrose Abbey  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Cumine the White, Abbot of Iona  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+February 25
+  - Reginos, Bishop of Skopelos  (2 yrs: [2024, 2026])
+  - Holy Martyr Alexander of Thrace  (2 yrs: [2024, 2026])
+  - Markellos, Bishop of Apamea  (2 yrs: [2024, 2026])
+
+February 26
+  - Holy Martyr Theocletus  (2 yrs: [2025, 2026])
+  - John Claphas the new Martyr  (2 yrs: [2025, 2026])
+
+February 27
+  - Ephraim of Katounakia  (3 yrs: [2024, 2025, 2026])
+  - Stephen the Monk  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Gelasios the Actor and Martyr of Heliopolis  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Nesios the Martyr  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+February 28
+  - Righteous John Cassian the Confessor  (2 yrs: [2025, 2026])
+  - Jonah the Righteous Martyr of Lerios  (2 yrs: [2025, 2026])
+  - Kyranna the New Martyr of Thessaloniki  (2 yrs: [2025, 2026])
+
+March 1
+  - The Holy Righteous Martyr Eudocia the Samaritan  (2 yrs: [2025, 2026])
+  - Andonina the New Martyr  (2 yrs: [2025, 2026])
+  - David the Archbishop  (2 yrs: [2025, 2026])
+
+March 2
+  - Hesychius the Martyr  (2 yrs: [2024, 2026])
+  - Our Holy Father Nicholas Planas  (2 yrs: [2024, 2026])
+  - Joachim of Vatopedi who was given the name Papoulakis  (2 yrs: [2024, 2026])
+  - Andronikos & Athanasia the Martyrs  (2 yrs: [2024, 2026])
+  - Euthalia the Virgin-Martyr of Sicily  (2 yrs: [2024, 2026])
+  - Chad, Bishop of Lichfield  (2 yrs: [2024, 2026])
+
+March 3
+  - Theodoretos the Holy Martyr of Antioch  (2 yrs: [2025, 2026])
+  - Nonnita, mother of Saint David  (2 yrs: [2025, 2026])
+
+March 4
+  - Gerasimus the Righteous of Jordan  (2 yrs: [2025, 2026])
+  - Paul & his sister Juliana and their Companions  (2 yrs: [2025, 2026])
+  - Gregory, Bishop of Constance  (2 yrs: [2025, 2026])
+
+March 5
+  - Conon the Gardener  (2 yrs: [2025, 2026])
+  - Parthenios the New Martyr who contested in Didymoteichos  (2 yrs: [2025, 2026])
+  - John the Bulgarian  (2 yrs: [2025, 2026])
+  - George the New-Martyr of Rapsani  (2 yrs: [2025, 2026])
+  - Eulogios the Martyr  (2 yrs: [2025, 2026])
+  - Eulabios the Martyr  (2 yrs: [2025, 2026])
+  - Conon the Isaurian  (2 yrs: [2025, 2026])
+  - Archelaos the Martyr of Egypt  (2 yrs: [2025, 2026])
+
+March 6
+  - 42 Martyrs of Amorion in Phrygia  (2 yrs: [2025, 2026])
+  - Finding the Precious Cross by St. Helen  (2 yrs: [2025, 2026])
+  - Hesychios the Wonderworker  (2 yrs: [2025, 2026])
+
+March 7
+  - Lavrentios of Megara, the Righteous  (2 yrs: [2025, 2026])
+  - Paul the Simple  (2 yrs: [2025, 2026])
+
+March 8
+  - Hermas the Apostle of the 70  (2 yrs: [2025, 2026])
+  - Dometios the Righteous  (2 yrs: [2025, 2026])
+  - Paul the Confessor  (2 yrs: [2025, 2026])
+  - Felix of Burgundy, Enlightener of East Anglia  (2 yrs: [2025, 2026])
+
+March 9
+  - Caesarios the Righteous  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+March 10
+  - Quadratus the Martyr & his Companions  (2 yrs: [2025, 2026])
+  - Anastasia of Alexandria  (2 yrs: [2025, 2026])
+  - Michael Mauroudes the New-Martyr  (2 yrs: [2025, 2026])
+
+March 11
+  - Theodora the Righteous  (2 yrs: [2025, 2026])
+  - Pionios the Presbyter  (2 yrs: [2025, 2026])
+  - George the New Wonderworker of Constantinople  (2 yrs: [2025, 2026])
+  - Trophimos and Thallos the Martyrs  (2 yrs: [2025, 2026])
+
+March 12
+  - Phineas, grandson of Prophet Aaron  (2 yrs: [2025, 2026])
+  - Paul Aurelian, Bishop of Brittany  (2 yrs: [2025, 2026])
+
+March 13
+  - Removal of the relics of Nicephorus, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Pouplios the Martyr, Bishop of Athens  (2 yrs: [2025, 2026])
+  - Christina the Martyr of Persia  (2 yrs: [2025, 2026])
+  - Gerald, Bishop of Mayo  (2 yrs: [2025, 2026])
+
+March 14
+  - Euschemon the Confessor, Bishop of Lampasakos  (2 yrs: [2025, 2026])
+
+March 15
+  - Agapius the Martyr & His Companions  (2 yrs: [2025, 2026])
+  - Manuel the New Martyr of Crete  (2 yrs: [2025, 2026])
+  - Holy Apostle Aristobulos of the Seventy, Bishop of Britain  (2 yrs: [2025, 2026])
+
+March 16
+  - Aristovoulos, Apostle of the 70  (2 yrs: [2025, 2026])
+  - Julian the Martyr  (2 yrs: [2025, 2026])
+  - Romanos the Hieromartyr of Parium  (2 yrs: [2025, 2026])
+
+March 17
+  - Paul the Righteous Martyr  (2 yrs: [2025, 2026])
+  - Marinos the Martyr  (2 yrs: [2025, 2026])
+  - Theocteristos the Confessor  (2 yrs: [2025, 2026])
+
+March 18
+  - Trophimos & Eukarpion, Monk-martyrs of Nicomedea  (2 yrs: [2025, 2026])
+  - Edward the Martyr, King of England  (2 yrs: [2025, 2026])
+
+March 19
+  - Demetrios the New Martyr  (2 yrs: [2025, 2026])
+
+March 20
+  - Myron the New Martyr of Crete  (2 yrs: [2025, 2026])
+
+March 21
+  - Thomas I, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Philemon and Domninos  (2 yrs: [2025, 2026])
+
+March 22
+  - Kalliniki & Vassilisa the Martyrs  (2 yrs: [2025, 2026])
+  - Euthemios the New Martyr  (2 yrs: [2025, 2026])
+
+March 23
+  - Anatolios & Protoleon the Martyrs converted by the martyrdom of St. George  (2 yrs: [2025, 2026])
+  - Luke the New Martyr of Mytilene  (2 yrs: [2025, 2026])
+
+March 24
+  - Righteous Artemon, Bishop of Seleucia  (4 yrs: [2022, 2024, 2025, 2026])
+  - Our Holy Father Theonas, Archbishop of Thessolonica  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+March 26
+  - 26 Martyrs in Crimea  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Irenaeus the Hieromartyr of Hungary  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+March 27
+  - Paul, Bishop of Corinth  (2 yrs: [2025, 2026])
+
+March 28
+  - Herodion the Apostle of the 70  (2 yrs: [2025, 2026])
+  - Stephen the Wonderworker  (2 yrs: [2025, 2026])
+
+March 29
+  - The Holy Martyrs Jonas and Barachesius  (2 yrs: [2025, 2026])
+  - Eustathios the Confessor, Bishop of Bithynia  (2 yrs: [2025, 2026])
+
+March 30
+  - Sosthenes, Apollos, Cephas, Caesar, & Epaphroditos, the Apostles of the 70  (2 yrs: [2025, 2026])
+  - Zacharias the New Martyr  (2 yrs: [2025, 2026])
+
+March 31
+  - Theophilos the Martyr and those with him  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Akakios the Confessor  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+April 1
+  - Gerontios & Vasilides the Martyrs  (3 yrs: [2020, 2023, 2026])
+
+April 2
+  - Theodora the Virgin-martyr of Palestine  (3 yrs: [2020, 2025, 2026])
+  - Amphianos & Aedesios the Martyrs of Lycia  (3 yrs: [2020, 2025, 2026])
+
+April 3
+  - Nicetas, Abbot of the Monastery of Medicium  (3 yrs: [2020, 2025, 2026])
+  - Theodosia and Irene the Martyrs  (3 yrs: [2020, 2025, 2026])
+
+April 4
+  - George the Righteous of Maleon  (3 yrs: [2020, 2025, 2026])
+  - Righteous Plato the Studite  (3 yrs: [2020, 2025, 2026])
+  - Theonas, Archbishop of Thessaloniki, Founder and Renovator of the Sacred Monastery of Saint Anastasia of Pharmakolytria, Halkidiki  (3 yrs: [2020, 2025, 2026])
+  - Nicetas the Hieromartyr, Struggler of Serrai (1808)  (3 yrs: [2020, 2025, 2026])
+  - Theodoulos and Agathopous of Thessaloniki  (3 yrs: [2020, 2025, 2026])
+  - Righteous Zosimas  (3 yrs: [2020, 2025, 2026])
+
+April 5
+  - Monk-Martyrs Claudius, Diodore, Victor, Victorinus, Pappias, Nicephorus, and Serapion  (2 yrs: [2025, 2026])
+  - Theodora the Righteous of Thessaloniki  (2 yrs: [2025, 2026])
+  - Agathopodes and Theodulos the Martyrs  (2 yrs: [2025, 2026])
+  - George the new Martyr  (2 yrs: [2025, 2026])
+
+April 6
+  - 120 Martyrs of Persia  (2 yrs: [2022, 2026])
+  - Gregory of Sinai  (2 yrs: [2022, 2026])
+  - Platonis the Nun of Nisibis  (2 yrs: [2022, 2026])
+
+April 7
+  - Calliopus and Akylina the Martyrs  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - George, Bishop of Mytilene  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+  - Gerasimos the God-Bearer of Byzantium  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+April 8
+  - The Holy New Martyr John the Ship-Builder who was martyred in Kos  (2 yrs: [2022, 2026])
+  - Rufus the Obedient of the Kiev Caves  (2 yrs: [2022, 2026])
+
+April 9
+  - Raphael, Nicholas, Irene, & Olympias of Mytilene  (2 yrs: [2022, 2026])
+  - Vadim the Righteous of Persia  (2 yrs: [2022, 2026])
+
+April 10
+  - Terence and his Companions beheaded at Carthage  (2 yrs: [2025, 2026])
+  - 150 and more Righteous Martyr Fathers of the Sacred Monastery of Pantocrator Daou Pentelis  (2 yrs: [2025, 2026])
+  - Holy Father Theonas, Archbishop of Thessolonica  (2 yrs: [2025, 2026])
+  - Miltiades, Pope of Rome  (2 yrs: [2025, 2026])
+
+April 11
+  - Pharmuthios the Anchorite  (2 yrs: [2025, 2026])
+  - Guthlac the Hermit of Crowland  (2 yrs: [2025, 2026])
+
+April 12
+  - Sergius II, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Anthousa the Righteous of Constantinople  (2 yrs: [2025, 2026])
+  - Akakios of Kavsokalyvia  (2 yrs: [2025, 2026])
+
+April 13
+  - Theodosios the Martyr  (2 yrs: [2019, 2026])
+  - Zoilos the Martyr  (2 yrs: [2019, 2026])
+
+April 14
+  - Thomais the Martyr of Alexandria  (2 yrs: [2025, 2026])
+  - Demetrios the New-Martyr of Arcadia  (2 yrs: [2025, 2026])
+
+April 15
+  - Crescens the Martyr  (2 yrs: [2025, 2026])
+  - Leonidas, Bishop of Athens  (2 yrs: [2025, 2026])
+  - Michael the New Martyr of Smyrna  (2 yrs: [2025, 2026])
+  - The 9 Monk-martyrs of Corinth  (2 yrs: [2025, 2026])
+  - Padarn, Bishop and Founder of Llandabarn Fawr  (2 yrs: [2025, 2026])
+
+April 16
+  - Agape, Chionia, and Irene, the Holy Martyrs  (2 yrs: [2025, 2026])
+  - Righteous Amphilochios of Patmos  (2 yrs: [2025, 2026])
+  - Leonidas and Charissa  (2 yrs: [2025, 2026])
+  - Nike, Galene, Kallida, Nounenchia, Vasilissa, and Theodora the Martyrs  (2 yrs: [2025, 2026])
+
+April 17
+  - Symeon the Holy Martyr, Bishop of Persepolis, and those with him  (3 yrs: [2021, 2024, 2026])
+  - Makarios, Bishop of Corinth  (3 yrs: [2021, 2024, 2026])
+  - Agapetos of Rome  (3 yrs: [2021, 2024, 2026])
+  - Hadrian the New-Martyr  (3 yrs: [2021, 2024, 2026])
+  - Donnan, Abbot of Eigg, and the Monk-Martyrs with him  (3 yrs: [2021, 2024, 2026])
+
+April 18
+  - Euthemios the Enlightener of Karelia  (2 yrs: [2024, 2026])
+  - Cosmas, Bishop of Calcydon  (2 yrs: [2024, 2026])
+  - Athanasia the Wonderworker of Aegina  (2 yrs: [2024, 2026])
+
+April 19
+  - The Holy Hieromartyr Paphnutius  (2 yrs: [2024, 2026])
+  - Tryphon, Patriarch of Constantinople  (2 yrs: [2024, 2026])
+  - George the Confessor  (2 yrs: [2024, 2026])
+  - Aelphege the Hieromartyr of Canterbury  (2 yrs: [2024, 2026])
+
+April 20
+  - Theodore the Trichinas  (2 yrs: [2024, 2026])
+  - Zacchaeus the Apostle of Caesaria  (2 yrs: [2024, 2026])
+  - Gregory & Anastasios, Patriarchs of Antioch  (2 yrs: [2024, 2026])
+  - Athanasios, Founder of the Monastery of Meteora  (2 yrs: [2024, 2026])
+
+April 21
+  - Our Holy Father Maximian, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Theodore the Holy Martyr & his mother Philippa of Perge  (2 yrs: [2025, 2026])
+  - Alexandra the Martyr  (2 yrs: [2025, 2026])
+  - Anastasios the Monk of Sinai  (2 yrs: [2025, 2026])
+  - Beuno, Abbot of Clynnog  (2 yrs: [2025, 2026])
+
+April 22
+  - Theodore of Sykeon  (2 yrs: [2025, 2026])
+  - Nathaniel, Luke, & Clemente the Apostles  (2 yrs: [2025, 2026])
+  - Gregory Gravanos of Nisyros  (2 yrs: [2025, 2026])
+  - Nearchos the Martyr  (2 yrs: [2025, 2026])
+
+April 23
+  - George the Great Martyr and Triumphant  (5 yrs: [2020, 2022, 2024, 2025, 2026])
+
+April 24
+  - Elizabeth the Wonderworker  (2 yrs: [2025, 2026])
+  - Savvas the General of Rome  (2 yrs: [2025, 2026])
+  - Nicholas the New-Martyr of Magnesia  (2 yrs: [2025, 2026])
+  - Mellitus, Archbishop of Canterbury  (2 yrs: [2025, 2026])
+
+April 26
+  - Glaphyra the Righteous  (2 yrs: [2025, 2026])
+  - Justa the Nun  (2 yrs: [2025, 2026])
+
+April 27
+  - Eulogios the Innkeeper of Constantinople  (2 yrs: [2025, 2026])
+
+April 28
+  - John the Martyr of Romania  (2 yrs: [2025, 2026])
+  - Memnon the Wonderworker  (2 yrs: [2025, 2026])
+
+April 29
+  - Jason and Sosipater the Apostles of the 70 and their Companions  (2 yrs: [2025, 2026])
+  - Holy Martyr Cercyra  (2 yrs: [2025, 2026])
+  - Our Holy Father John of Kaloktenos, Metropolitan of Thebes  (2 yrs: [2025, 2026])
+  - Nektarios the New Martyr of Optina  (2 yrs: [2025, 2026])
+
+April 30
+  - Argyra the New Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Clement the Hymnographer  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Erconwald, Bishop of London  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+May 1
+  - Jeremias the Prophet  (2 yrs: [2025, 2026])
+  - New Martyr Maria of Fourna, Mirabella in Crete  (2 yrs: [2025, 2026])
+  - Nikiforos the Monk of Chios  (2 yrs: [2025, 2026])
+  - Asaph, Bishop of Wales  (2 yrs: [2025, 2026])
+
+May 2
+  - Hesperos & Zoe the Righteous  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Jordan the Wonderworker  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+May 3
+  - Peter the Wonderworker  (2 yrs: [2025, 2026])
+  - Theophan, Bishop of Peritheorion  (2 yrs: [2025, 2026])
+  - Xenia of Kalamata the Great Martyr  (2 yrs: [2025, 2026])
+  - Ahmet the Calligrapher & Martyr  (2 yrs: [2025, 2026])
+  - Oikoumenios the Wonderworker, Bishop of Trikka  (2 yrs: [2025, 2026])
+
+May 4
+  - Hilary the Wonderworker  (2 yrs: [2025, 2026])
+  - Euthemios, Bishop of Madytos  (2 yrs: [2025, 2026])
+  - Athanasios, Bishop of Corinth  (2 yrs: [2025, 2026])
+
+May 5
+  - Irene the Great Martyr  (2 yrs: [2025, 2026])
+  - Neophytos, Gaius, & Caianus the Monk-martyrs  (2 yrs: [2025, 2026])
+  - The Righteous Martyr Ephraim the Younger  (2 yrs: [2025, 2026])
+  - Euthymios the Wonderworker, Bishop of Madytos  (2 yrs: [2025, 2026])
+  - Ephraim the Neomartyr  (2 yrs: [2025, 2026])
+
+May 6
+  - Our Holy Father Seraphim the Struggler of Mt. Domvu  (2 yrs: [2025, 2026])
+  - Sophia of Kleisoura  (2 yrs: [2025, 2026])
+
+May 7
+  - Cyril, Archbishop of Jerusalem  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Repose of St. Nilus, abbot of Sora  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Pachomios the New Martyr of Patmos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+May 9
+  - The Holy Prophet Esaias (Isaiah)  (2 yrs: [2025, 2026])
+  - Christopher the Martyr of Lycea  (2 yrs: [2025, 2026])
+  - Elder Hieronymos of Simonopetra  (2 yrs: [2025, 2026])
+  - Monk-martyr Nicholas who lived in Vuneni, of Larissa in Thessaly  (2 yrs: [2025, 2026])
+  - Epimachos the New Martyr of Alexandria  (2 yrs: [2025, 2026])
+  - The New Martyrs of Novo Selo, Bulgaria  (2 yrs: [2025, 2026])
+
+May 11
+  - Renewal of Constantinople  (2 yrs: [2025, 2026])
+  - Methodius & Cyril, Equal-to-the Apostles Illuminators of the Slavs  (2 yrs: [2025, 2026])
+  - Theopemptos the Martyr & his Companions  (2 yrs: [2025, 2026])
+  - Dioscoros the New Martyr  (2 yrs: [2025, 2026])
+  - Argyrios the New-Martyr of Epanomi  (2 yrs: [2025, 2026])
+
+May 12
+  - Removal of the Sacred Relics of Saint Joachim "Papoulakis" of Vatopaidi  (2 yrs: [2025, 2026])
+  - Theodorus the Righteous of Cythera  (2 yrs: [2025, 2026])
+
+May 13
+  - Sergios the Confessor  (2 yrs: [2025, 2026])
+  - Alexandros the Martyr  (2 yrs: [2025, 2026])
+  - Pausikakos, Bishop of Synnada  (2 yrs: [2025, 2026])
+
+May 14
+  - Holy Hieromartyr Therapontus  (2 yrs: [2025, 2026])
+  - Holy New Martyrs Mark and John  (2 yrs: [2025, 2026])
+  - Leontius, Patriarch of Jerusalem  (2 yrs: [2025, 2026])
+
+May 15
+  - Placing of the Honorable Head of the Apostle Titus  (2 yrs: [2025, 2026])
+  - Barbaros the Myrrhbearer of Kerkyra  (2 yrs: [2025, 2026])
+  - Andrew the Hermit & Wonderworker  (2 yrs: [2025, 2026])
+
+May 16
+  - Holy Martyr Peter of Blachernae  (2 yrs: [2025, 2026])
+  - New Martyr Nicholas of Metsovos (1617)  (2 yrs: [2025, 2026])
+  - Alexandros, Archbishop of Jerusalem  (2 yrs: [2025, 2026])
+
+May 17
+  - The Holy Apostles Andronicus and Junia  (2 yrs: [2025, 2026])
+  - Theophanes and Nectarios, Builders of the Holy Monastery of Varlaam of Meteora  (2 yrs: [2025, 2026])
+  - Nicholas the Younger who was martyred in Metsovo, Epirus  (2 yrs: [2025, 2026])
+  - Theodotos the Martyr of Ancyra & the 7 Virgin-martyrs  (2 yrs: [2025, 2026])
+  - Athanasios, Archbishop of Christianopolis  (2 yrs: [2025, 2026])
+  - The New Martyrs of Batak, Bulgaria  (2 yrs: [2025, 2026])
+
+May 18
+  - Stephen I, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Julian the Martyr  (2 yrs: [2025, 2026])
+  - Euphrasia the Martyr of Nicea  (2 yrs: [2025, 2026])
+
+May 19
+  - Our Righteous Father Memnonus the Wonderworker  (2 yrs: [2025, 2026])
+  - Theotima & Kyriake the Martyrs  (2 yrs: [2025, 2026])
+
+May 20
+  - The Holy Martyr Thalleleus  (2 yrs: [2025, 2026])
+  - Lydia of Philippi, Equal to the Apostles  (2 yrs: [2025, 2026])
+  - Mark the Hermit  (2 yrs: [2025, 2026])
+  - Father Alexis, Metropolitan of Moscow  (2 yrs: [2025, 2026])
+  - John, Joseph, and Nikitas the Monks of Chios  (2 yrs: [2025, 2026])
+
+May 21
+  - Pachomios the Righteous New Martyr  (2 yrs: [2025, 2026])
+
+May 22
+  - Holy New Martyrs Demetrius and Paul of Tripoli  (2 yrs: [2025, 2026])
+  - John-Vladimir, Ruler of Serbia  (2 yrs: [2025, 2026])
+
+May 24
+  - Meletios the Commander & his Companion Martyrs  (2 yrs: [2025, 2026])
+  - Gregory, Archbishop of Novgorod  (2 yrs: [2025, 2026])
+
+May 25
+  - Aldhelm, Bishop of Sherborne  (2 yrs: [2025, 2026])
+
+May 26
+  - Alexandros the New Martyr of Thessaloniki  (2 yrs: [2025, 2026])
+
+May 27
+  - The Holy Hieromartyr Helladius  (2 yrs: [2025, 2026])
+  - Theodora the Virgin-martyr & Didymos the Martyr  (2 yrs: [2025, 2026])
+
+May 28
+  - Hieromartyr Eutychius, Bishop of Melitene  (2 yrs: [2025, 2026])
+  - Helikonis the Martyr  (2 yrs: [2025, 2026])
+  - Heladios the Hieromartyr of the East  (2 yrs: [2025, 2026])
+  - Zacharias the New Martyr  (2 yrs: [2025, 2026])
+
+May 29
+  - Theodosia the Virgin-Martyr of Tyre  (2 yrs: [2025, 2026])
+  - Seven New Martyrs of Kastoria  (2 yrs: [2025, 2026])
+  - Andrew the New Martyr of Argentes  (2 yrs: [2025, 2026])
+
+May 30
+  - Isaacius, Abbot of the Monastery of Dalmatus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Barlaam the Monk of Caesarea  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Natalios the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+May 31
+  - Hermias the Martyr at Comana  (2 yrs: [2025, 2026])
+  - Eustathios, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Eusebius and Haralambos the Monk-martyrs  (2 yrs: [2025, 2026])
+
+June 1
+  - Pyrros the Hieromartyr  (2 yrs: [2025, 2026])
+
+June 2
+  - Demetrios the New Martyr of Philadelphia  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Constantine the New Martyr of the Hagarenes  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+June 3
+  - Lucillian of Byzantium  (2 yrs: [2025, 2026])
+  - 4 martyred Youths and Paula the Virgin  (2 yrs: [2025, 2026])
+  - Athanasios the Wonderworker  (2 yrs: [2025, 2026])
+  - Kevin, Abbot of Glendalough  (2 yrs: [2025, 2026])
+
+June 4
+  - Sophia of Thrace, The Mother of Orphans  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Petroc, Abbot of Padstow  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+June 5
+  - Holy Martyrs Nicandrus, Gorgus and Apollonus and those with them  (2 yrs: [2025, 2026])
+  - Christophoros & Konon the Martyrs of Rome  (2 yrs: [2025, 2026])
+
+June 6
+  - 5 Virgins of Caesarea: Martha, Mary, Cyris, Valeria & Marcia  (2 yrs: [2025, 2026])
+
+June 7
+  - Our Righteous Father Panagis (Paisios) Basias  (2 yrs: [2025, 2026])
+  - Tarasios & John the Martyrs  (2 yrs: [2025, 2026])
+  - Sebastian the Wonderworker  (2 yrs: [2025, 2026])
+  - Zenais the Martyr  (2 yrs: [2025, 2026])
+
+June 8
+  - Removal of the Relics of Theodore the Commander  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Kalliope the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Anastasios the New Martyr of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Theophanes the New Martyr of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+June 9
+  - 3 Virgin-martyrs of Chios  (2 yrs: [2025, 2026])
+  - 5 Nuns beheaded in Persia: Thecla, Mariamne, Martha, Mary, & Enmatha  (2 yrs: [2025, 2026])
+
+June 10
+  - Theophanes & Pansemne of Antioch  (2 yrs: [2025, 2026])
+  - Our Holy Father Gregory, Bishop of Assos  (2 yrs: [2025, 2026])
+  - The Holy Martyrs of China  (2 yrs: [2025, 2026])
+
+June 11
+  - Bartholomew the Holy Apostle  (2 yrs: [2025, 2026])
+  - Barnabas the Holy Apostle  (2 yrs: [2025, 2026])
+
+June 12
+  - Onuphrius of Egypt  (2 yrs: [2025, 2026])
+  - Peter the Athonite  (2 yrs: [2025, 2026])
+  - Holy Martyr Antonine  (2 yrs: [2025, 2026])
+  - John the Soldier of Egypt  (2 yrs: [2025, 2026])
+
+June 13
+  - Aquilina the Martyr of Syria  (2 yrs: [2024, 2026])
+  - Triphyllos the Bishop of Nicosia  (2 yrs: [2024, 2026])
+
+June 14
+  - Holy Prophet Elisseus (Elisha)  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+June 15
+  - Amos the Prophet  (2 yrs: [2025, 2026])
+  - Our Righteous Father Hieronymus  (2 yrs: [2025, 2026])
+  - Jerome the Righteous  (2 yrs: [2025, 2026])
+  - Achikos, Stephanas, & Fortuanatos the Apostles  (2 yrs: [2025, 2026])
+  - Father among the Saints Jonas, Metropolitan of Kiev  (2 yrs: [2025, 2026])
+
+June 16
+  - Tychon the Wonderworker  (2 yrs: [2025, 2026])
+  - 40 Martyrs of Rome  (2 yrs: [2025, 2026])
+  - Mark the Just of Apollonia  (2 yrs: [2025, 2026])
+
+June 17
+  - Isaurus the Holy Martyr & his Companions of Athens  (2 yrs: [2025, 2026])
+
+June 18
+  - Leontius, Hypatius, & Theodulus the Martyrs of Syria  (2 yrs: [2025, 2026])
+  - Leontios the Myrrh-Streamer of Argos  (2 yrs: [2025, 2026])
+  - Aitherios the Martyr of Nicomedia  (2 yrs: [2025, 2026])
+
+June 19
+  - Holy Martyr Zosima  (2 yrs: [2025, 2026])
+  - Our Righteous Father Zenonus  (2 yrs: [2025, 2026])
+
+June 20
+  - Methodios the Martyr, Bishop of Olympus  (2 yrs: [2025, 2026])
+  - Nicholas Cabasilas of Thessaloniki  (2 yrs: [2025, 2026])
+
+June 21
+  - Terentios, Bishop of Iconium  (2 yrs: [2025, 2026])
+  - Nikitas the New Martyr of Nisyros  (2 yrs: [2025, 2026])
+
+June 22
+  - Anastasia the Serbian  (2 yrs: [2025, 2026])
+  - Alban the Protomartyr of Britain  (2 yrs: [2025, 2026])
+
+June 23
+  - Holy Martyrs Aristocleus the Priest, Demetrius the Deacon and Athanasius the Reader  (2 yrs: [2025, 2026])
+  - The Holy New Bishop Martyrs Gerasimus of Crete, Neophytos of Knossos, Joachim of Cherronisos, Hierotheos of Lampi, Zachariah of Sitia, Joachim of Petra, Gerasimos of Rethymno, Kallinikos of Kydonia, Melchizedek of Kissamos, Kallinikos of Diopolos, and those Martyred with them (1821-1822)  (2 yrs: [2025, 2026])
+  - Mark, Bishop of Ephesus  (2 yrs: [2025, 2026])
+  - Etheldreda the Queen  (2 yrs: [2025, 2026])
+
+June 24
+  - Elizabeth, Mother of the Forerunner  (2 yrs: [2025, 2026])
+  - Athanasios Parios  (2 yrs: [2025, 2026])
+  - Panagiotis the New Martyr  (2 yrs: [2025, 2026])
+
+June 25
+  - Methodius of Nevritos  (2 yrs: [2025, 2026])
+  - Prokopios the New Martyr  (2 yrs: [2025, 2026])
+  - Dionysius & Dometios the Righteous of Mount Athos  (2 yrs: [2025, 2026])
+  - Orentios, Pharmakios, Eros, Phirmos, Phirminos, Kyriakos, and Longinos the Martyrs and Brothers  (2 yrs: [2025, 2026])
+
+June 26
+  - David the Righteous of Thessalonika  (2 yrs: [2025, 2026])
+  - Appearance of the Icon of Our Most Holy Lady the Theotokos of Tikhvin  (2 yrs: [2025, 2026])
+
+June 27
+  - Anektos the Martyr  (2 yrs: [2025, 2026])
+  - Luke the Hermit  (2 yrs: [2025, 2026])
+
+June 28
+  - Sergios the Magister  (2 yrs: [2025, 2026])
+  - Pappias the Martyr  (2 yrs: [2025, 2026])
+
+July 1
+  - Cosmas & Damian the Holy Unmercenaries  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Constantine the New Martyr of Cyprus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Aaron and Julius the Martyrs of Caerelon  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Germanus, Bishop of the Isle of Man  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 2
+  - Synaxis of the Most Holy Theotokos of the Orphan  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 3
+  - Hyacinth the Martyr of Caesarea & Theodotos and Theodota the Martyrs  (2 yrs: [2025, 2026])
+  - Gerasimos the Holy Martyr of Karenesi  (2 yrs: [2025, 2026])
+  - Translation of the Holy Relics of our Father Among the Saints Philip, Metropolitan of Moscow  (2 yrs: [2025, 2026])
+
+July 4
+  - Asclepias the Wonderworker  (2 yrs: [2025, 2026])
+  - Michael Choniates, Metropolitan of Athens  (2 yrs: [2025, 2026])
+
+July 5
+  - Righteous Father Lampadus the Wonderworker  (2 yrs: [2025, 2026])
+  - Kyprianos the New Martyr of Koutloumousiou Monastery  (2 yrs: [2025, 2026])
+
+July 6
+  - Holy Apostles Archippus, Philemon and Onesimus  (2 yrs: [2025, 2026])
+  - Loukia the Virgin-martyr  (2 yrs: [2025, 2026])
+  - Rixios and the 24 Companion Martyrs  (2 yrs: [2025, 2026])
+  - Juliana the Virgin-martyr  (2 yrs: [2025, 2026])
+
+July 7
+  - Kyriake the Great Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Thomas the Righteous of Malea  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Akakios of Sinai  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Willibald, Bishop of Eichstatt  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 8
+  - The Holy Great Martyr Procopius  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Theophilos the Myrrhbearer of Pantokrator Monastery  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 9
+  - Dionysios the Orator  (2 yrs: [2025, 2026])
+  - Metrophanes of Mount Athos  (2 yrs: [2025, 2026])
+  - Methodios the Hieromartyr, Bishop of Lampis  (2 yrs: [2025, 2026])
+  - Patermuthius the Monk  (2 yrs: [2025, 2026])
+  - Euthymios of Karelia  (2 yrs: [2025, 2026])
+  - Michael Paknanas the Gardener  (2 yrs: [2025, 2026])
+
+July 10
+  - Our Holy Father Gregory, Bishop of Assa  (2 yrs: [2025, 2026])
+  - Hieromartyr Joseph of Damascus & His Companions  (2 yrs: [2025, 2026])
+
+July 11
+  - Euphemia the Great Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - The All-Praised Olga, Equal-to-the-Apostles, Princess of Kiev  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Nektarios the New Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Nicodemos the New Martyr of Mt. Athos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 12
+  - Our Holy Father Michael of Maleinus  (2 yrs: [2025, 2026])
+  - Gerasimos of Byzantium and Akakios the young ascetic  (2 yrs: [2025, 2026])
+  - Paisios the Athonite  (2 yrs: [2025, 2026])
+  - Andre the Commander & his Companion Martyrs  (2 yrs: [2025, 2026])
+
+July 13
+  - Stephen of Mar Sabbas Monastery  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Marcian the Martyr of Iconium  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Serapion the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 14
+  - Aquila the Apostle among the 70  (6 yrs: [2019, 2021, 2023, 2024, 2025, 2026])
+  - Our Holy Father Joseph the Confessor, Archbishop of Thessalonica  (6 yrs: [2019, 2021, 2023, 2024, 2025, 2026])
+  - Nicodemus the Righteous of Mount Athos  (6 yrs: [2019, 2021, 2023, 2024, 2025, 2026])
+  - Peter the New Hieromartyr and the four New Martyrs of Melissourgeio Kissamos  (6 yrs: [2019, 2021, 2023, 2024, 2025, 2026])
+  - Justus the Martyr  (6 yrs: [2019, 2021, 2023, 2024, 2025, 2026])
+
+July 15
+  - The Finding of the Head of St. Matrona of Chios  (6 yrs: [2018, 2019, 2021, 2023, 2025, 2026])
+  - Donald and his Nine Daughters  (6 yrs: [2018, 2019, 2021, 2023, 2025, 2026])
+  - Swithun, Bishop of Winchester  (6 yrs: [2018, 2019, 2021, 2023, 2025, 2026])
+
+July 16
+  - Julia the Virgin-martyr of Carthage  (2 yrs: [2023, 2026])
+  - 1,015 Martyrs in Pisidia  (2 yrs: [2023, 2026])
+  - Helier the Hermit, Martyr of Jersey  (2 yrs: [2023, 2026])
+
+July 17
+  - The Holy Great Martyr Marina (Margaret)  (6 yrs: [2019, 2021, 2022, 2023, 2025, 2026])
+  - Veronika & Speratos the Martyrs  (6 yrs: [2019, 2021, 2022, 2023, 2025, 2026])
+  - Holy Royal Martyrs of Russia  (4 yrs: [2022, 2023, 2025, 2026])
+  - Kenelm, Prince of Mercia  (6 yrs: [2019, 2021, 2022, 2023, 2025, 2026])
+
+July 18
+  - Holy Martyrs Paul, Thea and Valentine  (2 yrs: [2021, 2026])
+  - Stephen, Archbishop of Constantinople  (2 yrs: [2021, 2026])
+  - Our Holy Father John, Archbishop of Constantinople  (2 yrs: [2021, 2026])
+  - Theneva of Glasgow  (2 yrs: [2021, 2026])
+
+July 19
+  - Dius, Abbot of Antioch  (6 yrs: [2019, 2020, 2021, 2023, 2025, 2026])
+  - Saint Theodore, Bishop of Edessa  (6 yrs: [2019, 2020, 2021, 2023, 2025, 2026])
+
+July 21
+  - Parthenios, Bishop of Arta  (2 yrs: [2025, 2026])
+
+July 23
+  - Phocas the Holy Martyr, Bishop of Sinope  (2 yrs: [2025, 2026])
+  - Pelagia the Righteous of Tinos  (2 yrs: [2025, 2026])
+  - Trophimos & Theophilios and the 13 others martyred in Lycia  (2 yrs: [2025, 2026])
+  - St. Anna of Levkadio  (2 yrs: [2025, 2026])
+  - The Icons of the Most Holy Theotokos of Pochaev, Icon of the Mother of God  (2 yrs: [2025, 2026])
+
+July 24
+  - Athenagorus the Apologist  (2 yrs: [2025, 2026])
+  - Kapiton, Himenaos and Hermogenes, the Martyrs  (2 yrs: [2025, 2026])
+  - Theophilos the New Martyr of Zakynthos  (2 yrs: [2025, 2026])
+
+July 25
+  - Eupraxia & Julia the Righteous of Tabenna  (2 yrs: [2025, 2026])
+  - Gregory Kallidis, Metropolitan of Heraclea  (2 yrs: [2025, 2026])
+
+July 26
+  - Paraskeve the Righteous Martyr of Rome  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Prisca the Righteous Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Moses the Hungarian  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 27
+  - Panteleimon the Great Martyr & Healer  (2 yrs: [2025, 2026])
+  - Nicholas of Novgorod the fool-for-Christ  (2 yrs: [2025, 2026])
+  - Anthousa the Righteous Confessor  (2 yrs: [2025, 2026])
+  - 853 Martyrs of Thrace who were drowned  (2 yrs: [2025, 2026])
+  - Manuel the Righteous  (2 yrs: [2025, 2026])
+
+July 28
+  - Our Righteous Father Paul of Xeropotamou  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 29
+  - Theodota the Martyr and her Children  (2 yrs: [2025, 2026])
+  - Constantine III, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Pious King Theodosius the New  (2 yrs: [2025, 2026])
+  - Holy Virgin Martyr Theodota  (2 yrs: [2025, 2026])
+  - Seraphima the Virgin-martyr of Antioch  (2 yrs: [2025, 2026])
+  - Olaf of Norway  (2 yrs: [2025, 2026])
+
+July 30
+  - Silas, Silvan, Crescens, Epenetus and Andronicus the Apostles of the 70  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Julitta of Caesaria  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+July 31
+  - Dionysios the Righteous Martyr of Vatopaidi  (2 yrs: [2025, 2026])
+
+August 1
+  - Timothy the Wonderworker, Archbishop of Priconissus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Elesa the Righteous-Martyr of Kythira  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+August 2
+  - Translation of the Relics of Stephen the Protomartyr  (2 yrs: [2025, 2026])
+  - Holy Glorious New Martyr Theodore of Dardanelles  (2 yrs: [2025, 2026])
+  - Phocas the Martyr  (2 yrs: [2025, 2026])
+  - Plegmund, Archbishop of Canterbury  (2 yrs: [2025, 2026])
+
+August 3
+  - Isaacius, Dalmatus, & Faustus, Ascetics of the Dalmation Monastery  (2 yrs: [2025, 2026])
+  - Salome the Holy Myrrhbearer  (2 yrs: [2025, 2026])
+  - Theoctistus the Wonderworker  (2 yrs: [2025, 2026])
+
+August 5
+  - Our Righteous Father Eugene of Aitola  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Euthymios, Patriarch of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Christos the New Martyr of Prevezis  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Oswald the Martyr, King of Northumbria  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+August 7
+  - Sixtus of Athens, Bishop of Rome  (2 yrs: [2025, 2026])
+  - Our Holy Father Nicanorus the Wonderworker  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Theodosius the New  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Joseph Gerontogiannis of Lithines Sitia  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Sozon of Nicomedea  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - The Holy Ten Thousand Ascetics of Thebes  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Narcissus the Hieromartyr of Jerusalem  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+August 8
+  - Holy New Martyrs Triantaphillus of Zagoras and Anastasius of Thessolonica  (2 yrs: [2025, 2026])
+  - Kallinikos, Metropolitan of Edessa and Pella  (2 yrs: [2025, 2026])
+  - Anastatios the Martyr from Bulgaria  (2 yrs: [2025, 2026])
+
+August 9
+  - Constantine, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Euthymios the Hieromartyr, Metropolitan of Rhodes  (2 yrs: [2025, 2026])
+  - Anthony the Martyr of Alexandria  (2 yrs: [2025, 2026])
+
+August 10
+  - Laurence the Holy Martyr & Archdeacon of Rome  (2 yrs: [2025, 2026])
+
+August 11
+  - Euplus the Holy Martyr & Archdeacon of Catania  (2 yrs: [2025, 2026])
+  - Commemoration of St. Spyridon's Miracle in Corfu against the Turkish invasion of 1716  (2 yrs: [2025, 2026])
+  - Blane, Bishop of Bute  (2 yrs: [2025, 2026])
+
+August 12
+  - Sergios, Stephen and Kastor  (2 yrs: [2025, 2026])
+  - Palamon, Elder of Saint Pachomius the Great  (2 yrs: [2025, 2026])
+  - Soldier-martyrs of Crete  (2 yrs: [2025, 2026])
+
+August 13
+  - Maximus the Confessor  (2 yrs: [2025, 2026])
+  - Our Righteous Fathers Sergius, Stephanus, Castor and Palamonus  (2 yrs: [2025, 2026])
+  - Dorotheus, Abba of Gaza  (2 yrs: [2025, 2026])
+
+August 14
+  - The Holy Prophet Michaias (Micah)  (2 yrs: [2025, 2026])
+  - Holy New Martyr Symeon of Trapezoundos (1653)  (2 yrs: [2025, 2026])
+
+August 16
+  - Timothy of Euripus, founder of the Monastery of Pentele  (2 yrs: [2025, 2026])
+  - Holy Monk Penteles  (2 yrs: [2025, 2026])
+  - Gerasimus of Cephalonia  (2 yrs: [2025, 2026])
+  - The Six Martyrs Dorotheos, Sarantis, Jacob, Seraphim, Demetrios and Basil who contested in Megara  (2 yrs: [2025, 2026])
+  - Joseph the Hesychast  (2 yrs: [2025, 2026])
+  - Nicodemus the New Martyr of Meteora  (2 yrs: [2025, 2026])
+  - Manuel and John the New Martyrs  (2 yrs: [2025, 2026])
+  - Stamatios the Martyr  (2 yrs: [2025, 2026])
+  - Apostolos the New-Martyr  (2 yrs: [2025, 2026])
+
+August 17
+  - Straton, Philip, Eutychian, & Cyprian the Martyrs of Nicomedea  (2 yrs: [2025, 2026])
+  - Demetrios the New, Righteous-Martyr of Samaria  (2 yrs: [2025, 2026])
+  - Eutychios, Eutychianos and Kassiani the siblings  (2 yrs: [2025, 2026])
+  - Paul, Juliana, and those martyred with them (the executioners)  (2 yrs: [2025, 2026])
+
+August 18
+  - Leontus the martyr  (2 yrs: [2025, 2026])
+  - Hermos the Martyr  (2 yrs: [2025, 2026])
+  - John & George, Patriarchs of Constantinople  (2 yrs: [2025, 2026])
+  - Relics of Arsenios the Righteous of Paros  (2 yrs: [2025, 2026])
+  - Constantine the New Martyr of Capua  (2 yrs: [2025, 2026])
+  - Matthew the New Martyr of Gerakari  (2 yrs: [2025, 2026])
+
+August 19
+  - Holy Martyrs Timothy, Agapius and Thecla  (2 yrs: [2025, 2026])
+  - Theophanes the New Wonderworker of Macedonia  (2 yrs: [2025, 2026])
+  - Eutychianos and Strategios the Martyrs  (2 yrs: [2025, 2026])
+
+August 20
+  - Samuel the Prophet  (2 yrs: [2025, 2026])
+  - Holy Martyr Luke of Bouleutos  (2 yrs: [2025, 2026])
+  - Stephen, First King of Hungary  (2 yrs: [2025, 2026])
+  - Hierotheos, Bishop of Hungary  (2 yrs: [2025, 2026])
+  - Oswin the Martyr, King of Deira  (2 yrs: [2025, 2026])
+
+August 21
+  - The Holy Apostle Thaddaeus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Athanasios Patelaros, Patriarch of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+August 22
+  - Holy Martyr Anthuse  (2 yrs: [2025, 2026])
+  - Athanasios the Hieromartyr & Bishop of Tarsus  (2 yrs: [2025, 2026])
+  - New Martyrs Manuel and John  (2 yrs: [2025, 2026])
+  - The Synaxis of the Icon of the Mother of God of Prusa  (2 yrs: [2025, 2026])
+
+August 23
+  - Lupus the Martyr  (2 yrs: [2025, 2026])
+  - Our Righteous Father Nicholas of Sikelion  (2 yrs: [2025, 2026])
+  - Our Holy Father Kallinikos, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+  - Haralambos of Kalyviani  (2 yrs: [2025, 2026])
+  - 38 Martyrs of Thrace  (2 yrs: [2025, 2026])
+
+August 24
+  - Eutyches the Hieromartyr & Disciple of St. John the Theologian  (2 yrs: [2025, 2026])
+  - The Translation of the Relics of Dionysios of Zakynthos, Bishop of Aegina  (2 yrs: [2025, 2026])
+  - The Translation of the Holy Relics of Saint Peter, Metropolitan of Moscow  (2 yrs: [2025, 2026])
+
+August 25
+  - Return of the Body of Bartholomew the Glorious Apostle  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Titus the Apostle of the 70  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - John the Cappadocian, Epiphanius and Menas, Patriarchs of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Holy Father John of Karpathos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Ebba, First Abbess of Coldingham  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+August 26
+  - Icon of the Mother of God of Vladimir  (9 yrs: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+August 27
+  - Pimen the Great  (2 yrs: [2025, 2026])
+  - Anthousa the Martyr  (2 yrs: [2025, 2026])
+  - Poimen of Palestine  (2 yrs: [2025, 2026])
+  - Hosisos the Confessor  (2 yrs: [2025, 2026])
+  - Liverios, Pope of Rome  (2 yrs: [2025, 2026])
+
+August 28
+  - Moses the Black of Scete  (2 yrs: [2025, 2026])
+  - Diomedes & Laurence the Martyrs  (2 yrs: [2025, 2026])
+  - 33 Martyrs of Nicomedea  (2 yrs: [2025, 2026])
+  - Synaxis of the Kiev Cave Fathers  (2 yrs: [2025, 2026])
+
+August 29
+  - Anastasios the New Martyr of Bulgaria  (2 yrs: [2025, 2026])
+
+August 30
+  - Phantinos the Righteous of Calabria  (2 yrs: [2025, 2026])
+  - 16 Monk-martyrs of Thebes  (2 yrs: [2025, 2026])
+  - 6 Martyrs of Melitene  (2 yrs: [2025, 2026])
+  - The Holy New Martyrs of Serbia  (2 yrs: [2025, 2026])
+  - Fiacre the Hermit of Meaux  (2 yrs: [2025, 2026])
+
+August 31
+  - Eanswythe, Abbess of Folkestone  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Cuthburga the Queen, Abbess of Wimborne  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 1
+  - Synaxis of the Recovery of the Icon of the Most Holy Theotokos of Miasenae  (2 yrs: [2025, 2026])
+  - The 40 Holy Ascetic Virgin Martyrs of Thrace and their Teacher Ammon the Deacon  (2 yrs: [2025, 2026])
+  - Holy Martyrs Calliste and Siblings: Euodus and Hermogenes  (2 yrs: [2025, 2026])
+  - Righteous Meletius, The Struggler of the Muioupolis Mountain  (2 yrs: [2025, 2026])
+  - Jesus (Joshua) of Navi  (2 yrs: [2025, 2026])
+  - Nicholas of Kourtaliotis  (2 yrs: [2025, 2026])
+
+September 2
+  - Mammas the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Cosmas the Hermit  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Ammon & Aeithalas the Martyrs of Thrace  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 3
+  - Holy Father Theoctistus and his fellow struggler Euthymius the Great  (2 yrs: [2025, 2026])
+  - Polydorus the Martyr of New Ephesus  (2 yrs: [2025, 2026])
+  - Translation of the relics of St. Nectarius the Wonderworker, Bishop of Pentopolis  (2 yrs: [2025, 2026])
+  - Chariton the Martyr  (2 yrs: [2025, 2026])
+  - Phoebe the Deaconess  (2 yrs: [2025, 2026])
+
+September 4
+  - Babylas the Holy Martyr  (2 yrs: [2025, 2026])
+  - Moses the Prophet & Godseer  (2 yrs: [2025, 2026])
+  - Our Righteous Father Anthimus of Coroucle in Cephallenia  (2 yrs: [2025, 2026])
+
+September 5
+  - Holy Prophet Zacharias, Father of the Venerable Forerunner  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Elizabeth, Mother of the Forerunner  (3 yrs: [2023, 2025, 2026])
+  - Urban, Theodore, & Medimnos the Hieromartyrs and the 77 Companions at Nicomedea  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 6
+  - Holy Martyr Calodote  (2 yrs: [2025, 2026])
+
+September 7
+  - Sozon the Martyr  (2 yrs: [2025, 2026])
+  - John and Sergios, Bishops of Lerna  (2 yrs: [2025, 2026])
+  - Daniel Katounakiotis of Smyrna  (2 yrs: [2025, 2026])
+  - Euodos and Onesiphoros, Apostles of the 70  (2 yrs: [2025, 2026])
+
+September 8
+  - Sophronios, Bishop of Iberia  (2 yrs: [2025, 2026])
+
+September 9
+  - Severian the Martyr of Sebastia  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Theophanes the Confessor  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 10
+  - Poulcheria the Empress  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 11
+  - Demetrios & Evanthea the Martyrs & their son Demetrianos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Deinol the First Bishop of Bangor  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 12
+  - Autonomos the Martyr  (2 yrs: [2025, 2026])
+  - Hieromartyr Cornatus, Bishop of Iconium  (2 yrs: [2025, 2026])
+  - Agirus, the Hieromartyr of Cornoutus, Bishop of Iconium  (2 yrs: [2025, 2026])
+  - Daniel of Thassos  (2 yrs: [2025, 2026])
+  - Julian the Martyr  (2 yrs: [2025, 2026])
+  - Theodore the Hieromartyr of Alexandria  (2 yrs: [2025, 2026])
+
+September 13
+  - Aristides the Philosopher  (2 yrs: [2025, 2026])
+  - Hierotheos the Righteous of Iveron Monastery, Mount Athos  (2 yrs: [2025, 2026])
+
+September 14
+  - Commemoration of the 6th Ecumenical Council  (2 yrs: [2025, 2026])
+
+September 15
+  - Nikitas the Great Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Philotheos the Righteous  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Bessarion of Larissa  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Righteous Father Symeon, Archbishop of Thessolonica  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - John the New Martyr of Sfakion, Crete  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Porphyrios the Actor  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 16
+  - Sebastiana, Disciple of St. Paul the Apostle  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Melitina the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Edith the Nun of Wilton Abbey  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 17
+  - Herakleides & Myron, Bishops of Cyprus  (2 yrs: [2025, 2026])
+
+September 18
+  - Eumenius the Wonderworker, Bishop of Gortynia  (2 yrs: [2022, 2026])
+  - Ariadne the Martyr  (2 yrs: [2022, 2026])
+
+September 19
+  - Plato the new Hieromartyr of Patmos  (2 yrs: [2025, 2026])
+  - Theodore of Tarsus, Archbishop of Canterbury  (2 yrs: [2025, 2026])
+
+September 20
+  - Eustathius the Great Martyr, his wife and two children  (2 yrs: [2025, 2026])
+  - Our Righteous Father Eustathius, Archbishop of Thessolonica  (2 yrs: [2025, 2026])
+  - John the Foreigner  (2 yrs: [2025, 2026])
+  - Hilarion the New Martyr of Crete  (2 yrs: [2025, 2026])
+
+September 21
+  - Quadratus the Apostle  (2 yrs: [2025, 2026])
+  - Jonah the Prophet  (2 yrs: [2025, 2026])
+  - Isaakios & Meletios, Bishops of Cyprus  (2 yrs: [2025, 2026])
+
+September 22
+  - Phocas the Gardener  (2 yrs: [2025, 2026])
+
+September 23
+  - Xanthippe & Polyxene the Righteous  (2 yrs: [2025, 2026])
+  - Nicholas the New Martyr  (2 yrs: [2025, 2026])
+
+September 24
+  - The Commemoration of the Miracle of the Theotokos Myrtidiotissis in Kythyra  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Silouan of Athos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Stephen the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - The Most Holy Theotokos of Palianis  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Coprios the Righteous  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+September 25
+  - Euphrosyne of Alexandria  (2 yrs: [2022, 2026])
+  - Paphnoutios the Martyr & his 546 Companions in Egypt  (2 yrs: [2022, 2026])
+  - Synaxis of the Most Holy Theotokos of Evangelistria  (2 yrs: [2022, 2026])
+  - Finbar the Confessor, First Bishop of Cork  (2 yrs: [2022, 2026])
+
+September 26
+  - Removal of the Honorable Head of Apostle Andrew the First-Called  (2 yrs: [2025, 2026])
+
+September 27
+  - Callistratus the Martyr & his 49 Companions  (2 yrs: [2025, 2026])
+  - Mark, Aristarchos, and Zenon, Apostles of the 70  (2 yrs: [2025, 2026])
+  - Akylina the New Martyr of Thessaloniki  (2 yrs: [2025, 2026])
+  - Gideon the Righteous  (2 yrs: [2025, 2026])
+
+September 28
+  - Our Righteous Father Alkeisonus, Metropolitan of Nicopolis; Old Epirus  (2 yrs: [2025, 2026])
+  - Baruch the Prophet  (2 yrs: [2025, 2026])
+  - Neophytos & Auxentios the Martyrs of Cyprus  (2 yrs: [2025, 2026])
+
+September 29
+  - Martyr Petronius  (6 yrs: [2018, 2020, 2022, 2023, 2024, 2026])
+  - Malachi the New Righteous Martyr of Lindos  (6 yrs: [2018, 2020, 2022, 2023, 2024, 2026])
+  - Theophanes the Merciful of Gaza  (6 yrs: [2018, 2020, 2022, 2023, 2024, 2026])
+  - Dionysios I, Patriarch of Constantinople  (6 yrs: [2018, 2020, 2022, 2023, 2024, 2026])
+
+October 1
+  - Ananias, Apostle of the 70  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - John Koukouzelis the Psalti  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 3
+  - Rusticus and Eleutherios the Martyrs  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 4
+  - Domnina the Martyr and her daughters  (2 yrs: [2025, 2026])
+  - John the Hermit  (2 yrs: [2025, 2026])
+
+October 5
+  - Charitina the Martyr  (2 yrs: [2025, 2026])
+  - Eudokimos the Unknown of Mount Athos  (2 yrs: [2025, 2026])
+  - Peter, Alexis, Jonah, Hermogenes & Tikhon, Metropolitans of Moscow  (2 yrs: [2025, 2026])
+
+October 7
+  - Sergius & Bacchus the Great Martyrs of Syria  (2 yrs: [2025, 2026])
+  - Polychronios the Martyr  (2 yrs: [2025, 2026])
+  - Julian the Presbyter & Caesarius the Deacon  (2 yrs: [2025, 2026])
+  - Jonah of Manchuria  (2 yrs: [2025, 2026])
+
+October 8
+  - Phillip, Bishop of Gortyna  (2 yrs: [2025, 2026])
+  - Taisia the Harlot of Egypt  (2 yrs: [2025, 2026])
+
+October 9
+  - Andronicus & his wife Athanasia of Egypt  (6 yrs: [2019, 2021, 2022, 2023, 2025, 2026])
+  - Poplia the Confessor of Antioch  (6 yrs: [2019, 2021, 2022, 2023, 2025, 2026])
+
+October 10
+  - Eulampius & Eulampia the Martyrs  (2 yrs: [2025, 2026])
+  - Our Righteous Father Theophilus the Confessor  (2 yrs: [2025, 2026])
+  - Pinytos, Bishop of Knossos  (2 yrs: [2025, 2026])
+  - The 200 Monk-martyrs of Nicomedia  (2 yrs: [2025, 2026])
+  - Vassianos the Righteous of Constantinople  (2 yrs: [2025, 2026])
+  - The 14 Holy Elders of Optina Monastery  (2 yrs: [2025, 2026])
+  - Paulinus, Archbishop of York  (2 yrs: [2025, 2026])
+
+October 11
+  - Philip the Apostle of the 70, one of the 7 Deacons  (2 yrs: [2025, 2026])
+  - Holy Martyrs Zenais and Philonilla  (2 yrs: [2025, 2026])
+  - Ethelburga, Abbess of Barking  (2 yrs: [2025, 2026])
+  - Our righteous Father Kenneth, Founder of the Monastery of Aghaboe in Ireland  (2 yrs: [2025, 2026])
+
+October 12
+  - Probus, Andronicus, & Tarachus, Martyrs of Tarsus  (2 yrs: [2025, 2026])
+  - Cosmas the Hymnographer, Bishop of Maiuma  (2 yrs: [2025, 2026])
+  - Domnina the Martyr  (2 yrs: [2025, 2026])
+  - Wilfrid of York  (2 yrs: [2025, 2026])
+
+October 13
+  - Carpus, Papylus, Agathodorus, & Agathonica, the Martyrs of Pergamus  (2 yrs: [2025, 2026])
+  - Benjamin the Deacon  (2 yrs: [2025, 2026])
+  - Chryssi the New Martyr of Greece  (2 yrs: [2025, 2026])
+  - Meletios of Pegas, Patriarch of Alexandria  (2 yrs: [2025, 2026])
+  - Florentios the Martyr of Thessaloniki  (2 yrs: [2025, 2026])
+  - Hieromartyr Jacob of Hamatoura  (2 yrs: [2025, 2026])
+
+October 14
+  - Praised Ignatius, Archbishop of Methymna  (2 yrs: [2025, 2026])
+
+October 15
+  - Savinos the Bishop of Catania  (2 yrs: [2025, 2026])
+  - Barsus the Confessor  (2 yrs: [2025, 2026])
+  - Euthymios the New  (2 yrs: [2025, 2026])
+
+October 16
+  - The Two Soldiers martyred with Saint Longinus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 17
+  - Hosea the Prophet  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 18
+  - Luke the Evangelist  (2 yrs: [2025, 2026])
+  - Marinos the Martyr  (2 yrs: [2025, 2026])
+
+October 19
+  - Joel the Prophet  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Varys the Martyr  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Felix the Hieromartyr & Eusebius the Deacon  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 20
+  - Artemius the Great Martyr of Antioch  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 21
+  - Our Righteous Father Christodoulus, the Wonderworker of Patmos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Martyrs Theodote and Socrates  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - John the New Martyr of Peleponnesos  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Righteous Philotheus  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 23
+  - Our Righteous Father Ignatius, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+
+October 24
+  - Arethas the Great Martyr and His Fellow Martyrs  (2 yrs: [2025, 2026])
+  - Sebastiane the Martyr  (2 yrs: [2025, 2026])
+  - Maglorious of Sark  (2 yrs: [2025, 2026])
+
+October 25
+  - Tabitha, who was raised from the dead by Peter the Apostle  (2 yrs: [2025, 2026])
+  - Chrysaphios (or Chrysaphos) the Martyr  (2 yrs: [2025, 2026])
+  - Martyr Chrysanthe  (2 yrs: [2025, 2026])
+
+October 27
+  - Nestor the Martyr of Thessaloniki  (2 yrs: [2025, 2026])
+  - Kyriakos, Patriarch of Constantinople  (2 yrs: [2025, 2026])
+
+October 28
+  - The Holy Protection of the Theotokos  (4 yrs: [2019, 2021, 2023, 2026])
+  - Holy Martyrs Terrence and Eunice  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Our Righteous Father Steven the Sabbaite  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Arsenios and Athanasios of Androusa in Messenia, Patriarchs of Constantinople  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Angelis, Manuel, George, & Nicholas, New Martyrs of Crete  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Rostislav, the Great Illumined Duke of Moravia  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+October 30
+  - Cleopas and Artemas of the 70 Apostles  (2 yrs: [2025, 2026])
+
+October 31
+  - Stachys, Andrew, Amplias, Apelles, Urban, Aristobulus & Narcissus of the 70  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Martyr Epimachus of Alexandria, Egypt  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+  - Nicholas the New Martyr of Chios  (5 yrs: [2019, 2021, 2023, 2025, 2026])
+
+November 2
+  - The Holy Martyrs Acindynos, Pegasios, Aphthonios, Elpidophoros, and Anempodistos  (6 yrs: [2020, 2021, 2022, 2023, 2024, 2026])
+  - Domnina, Domna, & Kyriaki, the Martyrs  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 3
+  - Acepsimas the Bishop, Joseph the Presbyter, & Aeithalas the Deacon, Martyrs of Persia  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Dedication of the Temple of the Holy Great Martyr George in Lydda  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - George of Neapolis the New Martyr  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Holy Father and New Hieromartyr Gregory of Neapolis  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Theodore the Confessor, Bishop of Ancyra  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 4
+  - Joannicius the Great  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - The Holy Hieromartyrs Nicander, Bishop of Myra, and Hermias the Presbyter  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Porphyrios the Mime  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Emperor John Batatze the Merciful  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - George Karslidis of Pontos  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 5
+  - Galaktion & his wife Episteme, the Martyrs of Emesa  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Hermas, Patrobos, Gaios, Linos, & Philologos, Apostles of the 70  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 6
+  - Luke the Monk of Taormina  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 7
+  - Bishop Raphael Hawaweeny of Brooklyn  (2 yrs: [2020, 2026])
+  - Lazarus the Wonderworker  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Martyr Athenodorus  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Alexander the Martyr of Thessaloniki  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 9
+  - Matrona, Abbess of Constantinople  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Theoktisti of the Isle of Lesbos  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Symeon the Translator  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 10
+  - Erastus, Olympas, Rodion, Sosipater, Quartus, and Tertios, Apostles of the 70  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Our Holy Father Gregory, Bishop of Assa  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 11
+  - Menas of Egypt  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Martyr Vincent  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 12
+  - Leondos Styppi, Patriarch of Constantinople  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 13
+  - Damaskinos the New Martyr of Mount Athos  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 14
+  - Philip the Apostle  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Holy Great New Martyr Constantine of Hydra  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 15
+  - Guria, Shamuna, and Habib, Martyrs and Confessors of Edessa  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Thomas II the New, Archbishop of Constantinople  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 16
+  - Matthew the Apostle & Evangelist  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 18
+  - Plato the Great Martyr of Ancyra  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Zaccheus the Deacon  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Martyr Romanos the Deacon  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Anastasios the New Martyr  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 19
+  - Obadiah the Prophet  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Martyr Heliodorus  (4 yrs: [2022, 2023, 2024, 2026])
+  - Anthimos, Thallalaeos, Christopher, Euphemia & her children, the Martyrs  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 20
+  - Gregory the Righteous of Decapolis  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 22
+  - Archippus the Apostle, Philemon the Apostle & his wife, Apphia  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Onesimos the Disciple of Paul  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Holy Martyr Cecilia and those with her  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Kallistos Xanthopoulos, Patriarch of Constantinople  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Anthimos, President of Crete  (6 yrs: [2018, 2021, 2022, 2023, 2024, 2026])
+  - Righteous Jacob of Evia  (4 yrs: [2022, 2023, 2024, 2026])
+
+November 23
+  - Gregory, Bishop of Agrigentum  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Dionysios, Patriarch of Constantinople  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Ischyrion, Bishop of Egypt  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Sisinios the Confessor  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 24
+  - Hermogenes, the Martyr  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Philoumenos and Christopher the Martyrs  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 25
+  - Mercurius the Great Martyr of Caesarea in Cappadocia  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 26
+  - Nikon Metanoeite  (4 yrs: [2022, 2023, 2024, 2026])
+  - Stylianos the Monk of Paphlagonia  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Akakios of Sinai who is mentioned in The Ladder  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - George the New Martyr of Chios  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 27
+  - Nathaniel of Nitria & Pinouphrios of Egypt, the Righteous  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Gregory of Sinai and his disciple Gerasimos  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Arsenios of Rhaxos  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - James the Wonderworker, Bishop of Rostov  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 28
+  - 16 Martyrs of Tiberioupolis  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 29
+  - Paramonus, Philumenus, and their 370 Companion Martyrs in Bithynia  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Our Righteous Father Nicholas, Archbishop of Thessolonica  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Hieromartyr Dionysios, Bishop of Corinth  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+  - Phaedrus the Martyr  (7 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2026])
+
+November 30
+  - Froumentios, Archbishop of Abyssina  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Alexander the Wonderworker, Archbishop of Mithymna  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 1
+  - Nahum the Prophet  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Ananias the Persian  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Holy Father Theocletus the Wonderworker, Archbishop of Lacedaemonia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Holy Fathers Ananius and Solochon, Archbishops of Ephesus  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 2
+  - Habakkuk the Prophet  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Righteous Father Cyril of Phileus  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Joannicos the Monk of Devich  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theophilos the Hermit  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 3
+  - The Holy Prophet Sophonias (Zephaniah)  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Holy Martyrs Agapius and Seleucius  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Theodore, Archbishop of Alexandria  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Angelis the New Martyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Karpos the Hieromartyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 4
+  - Barbara the Great Martyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - New Hieromartyr Seraphim, Bishop of the Phanar in Greece  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Juliana the Martyr of Heliopolis  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 7
+  - Athenodoros the Martyr of Mesopotamia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Father Gerasimus, Ascetic of Euboia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 8
+  - Sosthenes, Apollo, Cephas, Tychikos, Epaphroditos, Caesar, & Onesiphoros, Apostles of the 70  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 9
+  - Hannah the Righteous, mother of Samuel the Prophet  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Narses the Martyr of Persia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - The Consecration of the Church of the Resurrection (Holy Sepulchre) in the Holy City of Jerusalem  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 10
+  - Thomas the Righteous of Bithynia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 11
+  - Martyrs Acepsius and Aeithalas  (5 yrs: [2022, 2023, 2024, 2025, 2026])
+  - Holy Martyrs Miracus and Barsabas  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Leontios the Righteous of Monemvasia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - The Glorious King Nikephoros Phokas  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 13
+  - Lucia the Virgin-martyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Gabriel the Hieromartyr, Archbishop of Serbia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 15
+  - Eleutherios the Hieromartyr, Bishop of Illyricum, and his mother Anthia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 16
+  - The Holy Prophet Aggaeus (Haggai)  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Modestos, Archbishop of Jerusalem  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Righteous Mother Blessed Empress Theophania  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nicholas Chrysoberges, Patriarch of Constantinople  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Memnonus, Archbishop of Ephesus  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 17
+  - Dionysius of Zakynthos  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 18
+  - Sebastian the Martyr & his Companions  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Righteous Father Michael Syngellon the Confessor  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 19
+  - Martyrs Boniface, Probus, Ares, Timothy, Polyeuktos, Eutychios and Thessaloniki  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Our Righteous Father Gregentius, Bishop of Ethiopia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Aglaia the Righteous of Rome  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 20
+  - Our Righteous Father Philogonius, Bishop of Antioch  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - John the New Martyr of Thassos  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 21
+  - Juliana of Nicomedia & her 630 Companion Martyrs  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Themistocles the Martyr of Myra  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 22
+  - Anastasia the Great Martyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Chrysogonos, Theodota, Evodias, & Eutychianus, the Martyrs  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - The opening of the gates of the Great Church of God  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 23
+  - Rememberance of the Founding of the Holy and Great Church of Christ, Hagia Sophia in Constantinople  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Naoum the Illuminator of The Bulgarians  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Nicholas & John the New Martyrs  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 24
+  - Eugenia the Righteous Nun-martyr of Rome and those with her  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 26
+  - Constantius the Holy Martyr  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Barlaam the Righteous of Valaam  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 27
+  - Theodore, Patriarch of Constantinople  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 28
+  - Holy Martyr Glycerus  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 29
+  - Our Righteous Father Thaddeus the Confessor  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - George, Bishop of Nicomedia, Poet of Asmatikons, Kanons, and Troparia  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+
+December 30
+  - Anysia the Virgin-martyr of Thessaloniki  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Gideon the New Martyr of Mount Athos  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Holy Martyr Philetaerus  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
+  - Righteous Father Leondus the Archimandrite  (8 yrs: [2018, 2020, 2021, 2022, 2023, 2024, 2025, 2026])
