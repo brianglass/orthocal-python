@@ -8233,14 +8233,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6197,
-  "fields": {
-    "name": "Agathangelus the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6198,
   "fields": {
     "name": "Vavylas the Holy Martyr",
@@ -8372,14 +8364,6 @@
   "pk": 6217,
   "fields": {
     "name": "Timothy the Confessor",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6218,
-  "fields": {
-    "name": "Bridget of Ireland",
     "full_name": null
   }
 },
@@ -9889,14 +9873,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6441,
-  "fields": {
-    "name": "Savvas the General of Rome",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6442,
   "fields": {
     "name": "Nicholas the New-Martyr of Magnesia",
@@ -10788,14 +10764,6 @@
   "pk": 6578,
   "fields": {
     "name": "Our Righteous Father Hieronymus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6579,
-  "fields": {
-    "name": "Jerome the Righteous",
     "full_name": null
   }
 },
@@ -12425,14 +12393,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6840,
-  "fields": {
-    "name": "Agirus, the Hieromartyr of Cornoutus, Bishop of Iconium",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6841,
   "fields": {
     "name": "Daniel of Thassos",
@@ -13209,14 +13169,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6979,
-  "fields": {
-    "name": "Bishop Raphael Hawaweeny of Brooklyn",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6980,
   "fields": {
     "name": "Lazarus the Wonderworker",
@@ -13700,14 +13652,6 @@
   "pk": 7067,
   "fields": {
     "name": "Memnonus, Archbishop of Ephesus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7070,
-  "fields": {
-    "name": "Our Righteous Father Michael Syngellon the Confessor",
     "full_name": null
   }
 },
@@ -31089,22 +31033,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6333,
-  "fields": {
-    "day": 458,
-    "saint": 6197,
-    "title": "Agathangelus the Martyr",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6334,
   "fields": {
     "day": 459,
@@ -31372,22 +31300,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 8,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6354,
-  "fields": {
-    "day": 467,
-    "saint": 6218,
-    "title": "Bridget of Ireland",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 9,
     "tradition": "greek"
   }
 },
@@ -34401,22 +34313,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6577,
-  "fields": {
-    "day": 550,
-    "saint": 6441,
-    "title": "Savvas the General of Rome",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 1,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6578,
   "fields": {
     "day": 550,
@@ -36204,22 +36100,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6715,
-  "fields": {
-    "day": 602,
-    "saint": 6579,
-    "title": "Jerome the Righteous",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 6,
     "tradition": "greek"
   }
 },
@@ -39473,22 +39353,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6976,
-  "fields": {
-    "day": 691,
-    "saint": 6840,
-    "title": "Agirus, the Hieromartyr of Cornoutus, Bishop of Iconium",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 5,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6977,
   "fields": {
     "day": 691,
@@ -41041,22 +40905,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7115,
-  "fields": {
-    "day": 747,
-    "saint": 6979,
-    "title": "Bishop Raphael Hawaweeny of Brooklyn",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 2,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7116,
   "fields": {
     "day": 747,
@@ -42028,22 +41876,6 @@
     "new_style": false,
     "day_native": true,
     "ordering": 6,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 7206,
-  "fields": {
-    "day": 788,
-    "saint": 7070,
-    "title": "Our Righteous Father Michael Syngellon the Confessor",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 3,
     "tradition": "greek"
   }
 },
