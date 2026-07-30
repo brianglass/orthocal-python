@@ -72,8 +72,8 @@
 		<section class="commemorations">
 			<h2>Commemorations</h2>
 			<ul>
-				{% for saint in day.saints %}
-				<li>{{ saint|widont }}</li>
+				{% for saint, story_id in day.saint_links %}
+				<li>{% if story_id %}<a href="#commemoration-{{ story_id }}">{{ saint|widont }}</a>{% else %}{{ saint|widont }}{% endif %}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -107,7 +107,7 @@
 		<h1>Commemorations</h1>
 
 			{% for reading in day.stories %}
-			<article class="passage">
+			<article class="passage" id="commemoration-{{ reading.id }}">
 				<h2>{{ reading.title|widont }}</h2>
 
 				{{ reading.story|safe }}

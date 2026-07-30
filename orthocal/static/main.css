@@ -253,6 +253,13 @@ table.month tr:first-child th {
     color: black;
 	padding: 0.5em;
 }
+.commemorations li a {
+	color: inherit;
+	text-decoration: none;
+}
+.commemorations li a:hover {
+	text-decoration: underline;
+}
 
 p.feast {
 	font-weight: bold;

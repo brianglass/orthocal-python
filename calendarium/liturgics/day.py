@@ -294,6 +294,11 @@ class Day:
             # self.feasts; story-only, excluded here.
 
         self.saints = []
+        # Parallel to self.saints, but pairs each title with the story's id
+        # (or None) so the readings template can link a commemoration to its
+        # full story further down the page, without changing self.saints
+        # itself -- it's consumed as plain strings elsewhere (ical.py, RSS).
+        self.saint_links = []
         self.spoken_saints = []
         self.minimal_saints = []
         for dcs in day_native_by_day.values():
@@ -304,11 +309,13 @@ class Day:
             # feast-level-facts preference for this tradition.
             titles = [dc.title for dc in dcs]
             self.saints.extend(titles)
+            self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in dcs)
             self.spoken_saints.extend(dc.title for dc in dcs if _speech_worthy(dc))
             if titles:
                 self.minimal_saints.append('; '.join(titles))
 
         self.saints.extend(dc.title for dc in additive)
+        self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in additive)
         self.spoken_saints.extend(dc.title for dc in additive if _speech_worthy(dc))
 
         # spoken_saints excludes only the story-less tradition='greek' overlay
