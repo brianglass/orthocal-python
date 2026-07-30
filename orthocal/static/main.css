@@ -195,6 +195,7 @@ label input[type="radio"] {
     margin: 0;
     padding: 0;
 	list-style-type: none;
+	text-wrap: balance;
 }
 .service-notes h2, .feasts h2, .commemorations h2 {
     margin-bottom: 0em;
