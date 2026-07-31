@@ -140,6 +140,26 @@ section.readings h2 {
 	text-indent: 0 !important;
     color: #a00;
 }
+.translation-picker {
+	text-align: center;
+	text-indent: 0 !important;
+	font-size: 0.75em;
+	color: #888;
+	margin-top: -0.5em;
+}
+.translation-picker select {
+	font-family: inherit;
+	font-size: 1em;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 1px 4px;
+	cursor: pointer;
+}
+.translation-picker select:hover {
+	border-color: #888;
+}
 .day {
     margin-top: 1em;
     padding-top: 1.5em;

@@ -45,7 +45,7 @@ def translation_session_key(language):
 # too, instead of always showing "(KJV)" regardless of language.
 TRANSLATION_LABELS = {
     'kjv': 'King James Version',
-    'lxx2012-web': 'LXX2012 (Old Testament) + WEB (New Testament)',
+    'lxx2012-web': 'LXX2012 & WEB',
     'rccv': 'Romanian Corrected Cornilescu Version',
     'srp1865': 'Serbian (Karadžić/Daničić, 1865)',
 }

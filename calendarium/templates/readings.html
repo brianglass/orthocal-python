@@ -33,18 +33,6 @@
 
 	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
 	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
-
-	{% if day.language == "en" %}
-	<br>
-
-	<label for="translation-select">Translation
-		<select name="translation" id="translation-select">
-			{% for value, label in translation_choices %}
-			<option value="{{ value }}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
-			{% endfor %}
-		</select>
-	</label>
-	{% endif %}
 {% endblock %}
 
 {% block main %}
@@ -94,6 +82,18 @@
 
 	<section class="readings">
 		<h1>Scripture Readings&nbsp;({{ translation_label }})</h1>
+
+		{% if day.language == "en" %}
+		<p class="translation-picker">
+			<label for="translation-select">Translation:
+				<select name="translation" id="translation-select">
+					{% for value, label in translation_choices %}
+					<option value="{{ value }}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
+					{% endfor %}
+				</select>
+			</label>
+		</p>
+		{% endif %}
 
 		{% for reading in day.readings %}
 		<article class="passage">
