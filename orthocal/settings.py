@@ -91,6 +91,7 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'orthocal.middleware.log_language',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.cache_control',
 ]
