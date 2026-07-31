@@ -209,6 +209,19 @@ label input[type="radio"] {
     font-style: italic;
     color: #888;
 }
+.new-badge {
+	display: inline-block;
+	font-size: 0.65em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #fff;
+	background-color: #a00;
+	border-radius: 3px;
+	padding: 1px 5px;
+	margin-left: 2px;
+	vertical-align: middle;
+}
 .service-notes ul, .commemorations ul, .feasts ul {
     text-align: center;
     margin: 0;

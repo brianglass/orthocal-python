@@ -90,6 +90,7 @@
 		{% if day.language == "en" %}
 		<p class="translation-picker">
 			<label for="translation-select">Translation:
+				<span class="new-badge">New</span>
 				<select name="translation" id="translation-select">
 					{% for value, label in translation_choices %}
 					<option value="{{ value }}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
