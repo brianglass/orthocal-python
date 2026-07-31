@@ -81,7 +81,11 @@
 	</header>
 
 	<section class="readings">
+		{% if day.language == "en" %}
+		<h1>Scripture Readings</h1>
+		{% else %}
 		<h1>Scripture Readings&nbsp;({{ translation_label }})</h1>
+		{% endif %}
 
 		{% if day.language == "en" %}
 		<p class="translation-picker">

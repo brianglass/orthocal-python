@@ -143,18 +143,17 @@ section.readings h2 {
 .translation-picker {
 	text-align: center;
 	text-indent: 0 !important;
-	font-size: 0.75em;
-	color: #888;
-	margin-top: -0.5em;
+	font-size: 0.9em;
+	color: #555;
 }
 .translation-picker select {
 	font-family: inherit;
-	font-size: 1em;
-	color: #555;
+	font-size: 1.1em;
+	color: #333;
 	background-color: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #bbb;
 	border-radius: 3px;
-	padding: 1px 4px;
+	padding: 2px 6px;
 	cursor: pointer;
 }
 .translation-picker select:hover {
