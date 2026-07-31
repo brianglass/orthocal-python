@@ -6,7 +6,7 @@ from django.utils import timezone
 from http.cookies import SimpleCookie
 
 from ..views import render_calendar_html
-from ..datetools import Calendar
+from ..datetools import Calendar, Translation
 
 
 class TestReadingsView(TestCase):
@@ -59,6 +59,41 @@ class TestReadingsView(TestCase):
         })
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
+
+    def test_translation_default(self):
+        """Pages should default to lxx2012-web after visiting an lxx2012-web page."""
+        url = reverse('readings', kwargs={
+            'tradition': 'slavic',
+            'cal': 'gregorian',
+            'translation': 'lxx2012-web',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['translation'], Translation.LXX2012WEB)
+
+        url = reverse('index')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['translation'], Translation.LXX2012WEB)
+
+    def test_translation_dropdown_shown_for_english_only(self):
+        """The translation dropdown only makes sense for English -- Romanian
+        and Serbian each still have exactly one translation."""
+        url = reverse('readings', kwargs={
+            'cal': 'gregorian',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+
+        response = self.client.get(url)
+        self.assertContains(response, 'id="translation-select"')
+
+        response = self.client.get(url, headers={'Accept-Language': 'ro'})
+        self.assertNotContains(response, 'id="translation-select"')
 
     def test_greek_extra_sundays_overflow_does_not_500(self):
         """GreekYear.greek_extra_sundays can be 6 or 7 (roughly a quarter of

@@ -140,6 +140,31 @@ section.readings h2 {
 	text-indent: 0 !important;
     color: #a00;
 }
+.translation-picker {
+	text-align: center;
+	text-indent: 0 !important;
+	font-size: 0.9em;
+	color: #555;
+}
+.translation-picker label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+.translation-picker select {
+	font-family: inherit;
+	font-size: 1.1em;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	padding: 2px 6px;
+	cursor: pointer;
+	vertical-align: middle;
+}
+.translation-picker select:hover {
+	border-color: #888;
+}
 .day {
     margin-top: 1em;
     padding-top: 1.5em;
@@ -182,13 +207,26 @@ section.readings h2 {
 label {
     font-size: 0.75em;
 }
+.tradition-label-with-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+}
 label input[type="radio"] {
     accent-color: #888;
 }
-.beta-note {
-    font-size: 0.75em;
-    font-style: italic;
-    color: #888;
+.status-badge {
+	display: inline-block;
+	font-size: 0.65em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #fff;
+	background-color: #a00;
+	border-radius: 3px;
+	padding: 1px 5px;
+	margin-left: 2px;
+	vertical-align: middle;
 }
 .service-notes ul, .commemorations ul, .feasts ul {
     text-align: center;

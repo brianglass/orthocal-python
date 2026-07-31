@@ -18,7 +18,7 @@ from ninja.responses import NinjaJSONEncoder
 from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
-from .datetools import Calendar, Tradition
+from .datetools import Calendar, Tradition, Translation
 from orthocal.decorators import etag, etag_date, instrument_endpoint
 
 logger = logging.getLogger(__name__)
@@ -162,9 +162,9 @@ class OembedSchema(Schema):
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
-async def _get_calendar_day(request, cal, tradition, year, month, day):
+async def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
     try:
-        day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
+        day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
     except ValueError:
         # The date is out of range or invalid
         raise Http404
@@ -178,26 +178,32 @@ async def _get_calendar_day(request, cal, tradition, year, month, day):
 @api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
 @decorate_view(etag)
-async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day):
+async def get_calendar_day(request, cal: Calendar, year: year, month: month, day: day, translation: Translation = None):
     """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
     will still work, but should be avoided for new code. This serves the Slavic/OCA
     tradition; see the `{tradition}/{cal}/...` routes below for the Greek tradition.
+    The optional *translation* query parameter selects the Bible translation
+    (`kjv` or `lxx2012-web`); it only affects English content and defaults to
+    `kjv` when omitted.
     """
 
-    return await _get_calendar_day(request, cal, Tradition.Slavic, year, month, day)
+    return await _get_calendar_day(request, cal, Tradition.Slavic, year, month, day, translation)
 
 @api.get('{tradition:tradition}/{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
 @decorate_view(etag)
-async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calendar, year: year, month: month, day: day):
+async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calendar, year: year, month: month, day: day, translation: Translation = None):
     """Get information about the liturgical day for the given tradition, calendar, and date.
     The *tradition* path parameter should be `slavic` or `greek`. The legacy `oca`,
     `antiochian`, and `goa` will still work, but should be avoided for new code.
     The *cal* path parameter should be `gregorian` or `julian`.
+    The optional *translation* query parameter selects the Bible translation
+    (`kjv` or `lxx2012-web`); it only affects English content and defaults to
+    `kjv` when omitted.
     """
 
-    return await _get_calendar_day(request, cal, tradition, year, month, day)
+    return await _get_calendar_day(request, cal, tradition, year, month, day, translation)
 
 async def _get_calendar_month(request, cal, tradition, year, month) -> List[DaySchemaLite]:
     days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)]
@@ -239,26 +245,32 @@ async def get_calendar_month_tradition(request, tradition: Tradition, cal: Calen
 @api.get('{cal:cal}/', response=DaySchema, summary='Get Today')
 @instrument_endpoint
 @decorate_view(etag_date)
-async def get_calendar_default(request, cal: Calendar):
+async def get_calendar_default(request, cal: Calendar, translation: Translation = None):
     """Get information about the current liturgical day for the given calendar.
     The timezone is Pacific Time. The *cal* path parameter should be
     `gregorian` or `julian`. The legacy `oca` or `rocor` will still work, but
     should be avoided for new code. This serves the Slavic/OCA tradition; see
     the `{tradition}/{cal}/` route below for the Greek tradition.
+    The optional *translation* query parameter selects the Bible translation
+    (`kjv` or `lxx2012-web`); it only affects English content and defaults to
+    `kjv` when omitted.
     """
     dt = timezone.localtime()
-    return await _get_calendar_day(request, cal, Tradition.Slavic, dt.year, dt.month, dt.day)
+    return await _get_calendar_day(request, cal, Tradition.Slavic, dt.year, dt.month, dt.day, translation)
 
 @api.get('{tradition:tradition}/{cal:cal}/', response=DaySchema, summary='Get Today (by tradition)')
 @instrument_endpoint
 @decorate_view(etag_date)
-async def get_calendar_default_tradition(request, tradition: Tradition, cal: Calendar):
+async def get_calendar_default_tradition(request, tradition: Tradition, cal: Calendar, translation: Translation = None):
     """Get information about the current liturgical day for the given tradition and calendar.
     The timezone is Pacific Time. The *tradition* path parameter should be
     `slavic` or `greek`. The *cal* path parameter should be `gregorian` or `julian`.
+    The optional *translation* query parameter selects the Bible translation
+    (`kjv` or `lxx2012-web`); it only affects English content and defaults to
+    `kjv` when omitted.
     """
     dt = timezone.localtime()
-    return await _get_calendar_day(request, cal, tradition, dt.year, dt.month, dt.day)
+    return await _get_calendar_day(request, cal, tradition, dt.year, dt.month, dt.day, translation)
 
 @api.get('oembed/calendar/', response=OembedSchema, exclude_none=True)
 @instrument_endpoint

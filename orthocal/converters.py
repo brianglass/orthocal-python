@@ -1,6 +1,6 @@
 from django.urls.converters import IntConverter
 
-from calendarium.datetools import Calendar, Tradition
+from calendarium.datetools import Calendar, Tradition, Translation
 
 CAL_RE = '(gregorian|julian|oca|rocor)'
 
@@ -29,6 +29,18 @@ class TraditionConverter:
                 return Tradition.Slavic
             case 'greek' | 'antiochian' | 'goa':
                 return Tradition.Greek
+
+    def to_url(self, value):
+        return value
+
+
+TRANSLATION_RE = '(kjv|lxx2012-web)'
+
+class TranslationConverter:
+    regex = TRANSLATION_RE
+
+    def to_python(self, value):
+        return Translation(value)
 
     def to_url(self, value):
         return value

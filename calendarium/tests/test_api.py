@@ -43,6 +43,26 @@ class DayAPITestCase(TestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(404, response.status_code)
 
+    def test_get_day_translation(self):
+        """The optional translation query parameter should change passage
+        content without needing a new route, defaulting to KJV when absent."""
+        url = reverse('api:get_calendar_day', kwargs={
+            'cal': 'gregorian',
+            'year': 2022,
+            'month': 1,
+            'day': 7,
+        })
+
+        kjv_response = self.client.get(url, format='json')
+        lxx_response = self.client.get(url, {'translation': 'lxx2012-web'}, format='json')
+
+        kjv_gospel = kjv_response.json()['readings'][2]
+        lxx_gospel = lxx_response.json()['readings'][2]
+
+        self.assertEqual(kjv_gospel['display'], 'John 1.29-34')
+        self.assertEqual(lxx_gospel['display'], 'John 1.29-34')
+        self.assertNotEqual(kjv_gospel['passage'][0]['content'], lxx_gospel['passage'][0]['content'])
+
     def test_get_day_default(self):
         url = reverse('api:get_calendar_default', kwargs={'cal': 'gregorian'})
         response = self.client.get(url, format='json')
