@@ -33,6 +33,18 @@
 
 	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
 	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+
+	{% if day.language == "en" %}
+	<br>
+
+	<label for="translation-select">Translation
+		<select name="translation" id="translation-select">
+			{% for value, label in translation_choices %}
+			<option value="{{ value }}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
+			{% endfor %}
+		</select>
+	</label>
+	{% endif %}
 {% endblock %}
 
 {% block main %}
@@ -81,7 +93,7 @@
 	</header>
 
 	<section class="readings">
-		<h1>Scripture Readings&nbsp;(KJV)</h1>
+		<h1>Scripture Readings&nbsp;({{ translation_label }})</h1>
 
 		{% for reading in day.readings %}
 		<article class="passage">
@@ -122,14 +134,19 @@
 	function navigate(){
 		var cal = document.querySelector('input[name="calendar"]:checked').value;
 		var tradition = document.querySelector('input[name="tradition"]:checked').value;
-		var urls = {
-			'gregorian_slavic': '{% url "readings" tradition="slavic" cal="gregorian" year=date.year month=date.month day=date.day %}',
-			'gregorian_greek': '{% url "readings" tradition="greek" cal="gregorian" year=date.year month=date.month day=date.day %}',
-			'julian_slavic': '{% url "readings" tradition="slavic" cal="julian" year=date.year month=date.month day=date.day %}',
-			'julian_greek': '{% url "readings" tradition="greek" cal="julian" year=date.year month=date.month day=date.day %}'
-		};
-		var t = new Date().getTime();
-		location.href = urls[cal + '_' + tradition] + '?t=' + t;
+		var translationSelect = document.getElementById('translation-select');
+		var translation = translationSelect ? translationSelect.value : 'kjv';
+
+		// Reverse with real placeholder values (each a distinct, one-off path
+		// segment) and substitute them client-side, since the number of
+		// translations can grow and a per-combination URL map (as used above
+		// for cal/tradition) doesn't scale as well as a single template does.
+		var url = '{% url "readings" tradition="slavic" cal="gregorian" translation="kjv" year=date.year month=date.month day=date.day %}'
+			.replace('slavic', tradition)
+			.replace('gregorian', cal)
+			.replace('kjv', translation);
+
+		location.href = url + '?t=' + new Date().getTime();
 	}
 
 	function wire_toggles(){
@@ -141,6 +158,11 @@
 		radios = document.getElementsByName('tradition');
 		for (var i = 0; i < radios.length; i++) {
 			radios[i].addEventListener('change', navigate);
+		}
+
+		var translationSelect = document.getElementById('translation-select');
+		if (translationSelect) {
+			translationSelect.addEventListener('change', navigate);
 		}
 	}
 

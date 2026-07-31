@@ -99,20 +99,22 @@ class Pericope(models.Model):
     def __str__(self):
         return self.display
 
-    async def aget_passage(self, language='en'):
+    async def aget_passage(self, language='en', translation=None):
         try:
             return self.passage
         except AttributeError:
-            self.passage = [verse async for verse in self.get_passage(language=language)]
+            self.passage = [verse async for verse in self.get_passage(language=language, translation=translation)]
             return self.passage
 
-    def get_passage(self, language='en'):
+    def get_passage(self, language='en', translation=None):
         match = re.match(r'Composite (\d+)', self.display)
         if match:
             return Composite.objects.filter(
                     composite_num=match.group(1)
             ).annotate(
-                    # Make the composite look like a Verse instance.
+                    # Make the composite look like a Verse instance. Composite
+                    # readings only have one hardcoded (KJV-sourced) content
+                    # column, regardless of the requested translation.
                     book=models.Value(''),
                     chapter=models.Value(1),
                     verse=models.Value(1),
@@ -121,7 +123,7 @@ class Pericope(models.Model):
                     paragraph_start=models.Value(True),
             )
         else:
-            return Verse.objects.lookup_reference(self.sdisplay, language=language)
+            return Verse.objects.lookup_reference(self.sdisplay, language=language, translation=translation)
 
 
 class Composite(models.Model):

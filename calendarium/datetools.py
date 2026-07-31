@@ -30,6 +30,26 @@ def cal_session_key(tradition):
     always Gregorian and shouldn't clobber a Slavic Julian/Gregorian choice."""
     return f'cal_{tradition}'
 
+class Translation(StrEnum):
+    KJV = 'kjv'
+    LXX2012WEB = 'lxx2012-web'
+
+def translation_session_key(language):
+    """Mirrors cal_session_key(tradition): translation choice is remembered
+    per-language, since it's only meaningful for English today."""
+    return f'translation_{language}'
+
+# Display labels for every translation code that can appear in Verse rows,
+# not just the ones selectable via the dropdown -- rccv/srp1865 are included
+# so the "Scripture Readings (...)" heading is accurate for Romanian/Serbian
+# too, instead of always showing "(KJV)" regardless of language.
+TRANSLATION_LABELS = {
+    'kjv': 'King James Version',
+    'lxx2012-web': 'LXX2012 (Old Testament) + WEB (New Testament)',
+    'rccv': 'Romanian Corrected Cornilescu Version',
+    'srp1865': 'Serbian (Karadžić/Daničić, 1865)',
+}
+
 class FastLevels(IntEnum):
     NoFast         = 0
     Fast           = 1

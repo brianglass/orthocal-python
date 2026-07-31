@@ -3,7 +3,7 @@ from datetime import date
 from django.test import TestCase
 
 from .. import datetools, liturgics, models
-from ..datetools import Tradition
+from ..datetools import Tradition, Translation
 from bible.models import Verse
 
 
@@ -891,6 +891,46 @@ class TestDay(TestCase):
             if field.name != 'id':
                 with self.subTest(field.name):
                     self.assertTrue(hasattr(passage[0], field.name))
+
+    async def test_translation_selection(self):
+        """Passing translation=Translation.LXX2012WEB should change the
+        wording of both Old and New Testament passages, while the default
+        (translation=None) should keep resolving to KJV, unchanged."""
+
+        # A Lenten weekday with a plain (non-Composite) Old Testament reading.
+        # fetch_content=True is required -- it's what actually threads
+        # Day.translation through to the passage fetch; calling
+        # pericope.aget_passage() directly afterwards would bypass that and
+        # re-resolve the default translation instead.
+        kjv_day = liturgics.Day(2023, 3, 30)
+        await kjv_day.ainitialize()
+        kjv_readings = await kjv_day.aget_readings(fetch_content=True)
+        self.assertEqual(kjv_readings[1].pericope.sdisplay, 'Gen 18.20-33')
+        kjv_genesis = kjv_readings[1].pericope.passage
+
+        lxx_day = liturgics.Day(2023, 3, 30, translation=Translation.LXX2012WEB)
+        await lxx_day.ainitialize()
+        lxx_readings = await lxx_day.aget_readings(fetch_content=True)
+        lxx_genesis = lxx_readings[1].pericope.passage
+
+        self.assertNotEqual(kjv_genesis[0].content, lxx_genesis[0].content)
+        self.assertEqual(kjv_genesis[0].translation, 'kjv')
+        self.assertEqual(lxx_genesis[0].translation, 'lxx2012-web')
+
+        # A day with a plain Gospel reading, to confirm the New Testament
+        # half (WEB) is threaded through too, not just the Old Testament half.
+        kjv_day = liturgics.Day(2022, 1, 7)
+        await kjv_day.ainitialize()
+        kjv_readings = await kjv_day.aget_readings(fetch_content=True)
+        self.assertEqual(kjv_readings[2].pericope.sdisplay, 'John 1.29-34')
+        kjv_gospel = kjv_readings[2].pericope.passage
+
+        web_day = liturgics.Day(2022, 1, 7, translation=Translation.LXX2012WEB)
+        await web_day.ainitialize()
+        web_readings = await web_day.aget_readings(fetch_content=True)
+        web_gospel = web_readings[2].pericope.passage
+
+        self.assertNotEqual(kjv_gospel[0].content, web_gospel[0].content)
 
     async def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
         """Issue #146: modern (new_style) commemorations are recorded

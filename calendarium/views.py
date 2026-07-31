@@ -12,23 +12,26 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 
+from bible.models import DEFAULT_TRANSLATIONS
+
 from . import liturgics, models
-from .datetools import Calendar, Tradition, cal_session_key
+from .datetools import Calendar, Tradition, Translation, TRANSLATION_LABELS, cal_session_key, translation_session_key
 
 logger = logging.getLogger(__name__)
 
-async def readings_view(request, cal=None, tradition=None, year=None, month=None, day=None):
+async def readings_view(request, cal=None, tradition=None, translation=None, year=None, month=None, day=None):
     tradition = remember_tradition(request, tradition)
     cal = remember_cal(request, cal, tradition)
+    translation = remember_translation(request, translation, request.LANGUAGE_CODE)
     now = timezone.localtime().date()
 
     if year and month and day:
         try:
-            day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
+            day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
         except ValueError:
             raise Http404
     else:
-        day = liturgics.Day(now.year, now.month, now.day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE)
+        day = liturgics.Day(now.year, now.month, now.day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
 
     await day.ainitialize()
     await day.aget_readings(fetch_content=True)
@@ -46,6 +49,12 @@ async def readings_view(request, cal=None, tradition=None, year=None, month=None
         'previous_nofollow': not is_indexable(previous_date),
         'cal': cal,
         'tradition': tradition,
+        'translation': translation,
+        'translation_label': TRANSLATION_LABELS[translation or DEFAULT_TRANSLATIONS[request.LANGUAGE_CODE]],
+        # Only the selectable (English) translations, not every code that can
+        # appear in Verse rows -- ro/sr each have one fixed translation with
+        # no dropdown, so rccv/srp1865 aren't offered as choices here.
+        'translation_choices': [(t.value, TRANSLATION_LABELS[t.value]) for t in Translation],
     })
 
 async def calendar_view(request, cal=None, tradition=None, year=None, month=None):
@@ -147,6 +156,26 @@ def remember_tradition(request, tradition):
         tradition = request.session.get('tradition', Tradition.Slavic)
 
     return tradition
+
+def remember_translation(request, translation, language):
+    if language != 'en':
+        # No user-facing choice yet for ro/sr -- let Day/lookup_reference
+        # resolve the per-language default regardless of session/URL state.
+        return None
+
+    session_key = translation_session_key(language)
+
+    if translation:
+        if translation != request.session.get(session_key, Translation.KJV):
+            request.session[session_key] = translation
+
+        # Don't send vary on cookie header when we have an explicit translation.
+        # In this case, the session does not actually impact the content.
+        request.session.accessed = False
+    else:
+        translation = request.session.get(session_key, Translation.KJV)
+
+    return translation
 
 def is_indexable(dt):
     now = timezone.localtime().date()

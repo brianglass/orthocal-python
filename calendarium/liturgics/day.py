@@ -96,12 +96,12 @@ class Day:
     shared and lives here in the base class.
     """
 
-    def __new__(cls, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en'):
+    def __new__(cls, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en', translation=None):
         if cls is Day:
             cls = _DAY_CLASSES[tradition]
         return super().__new__(cls)
 
-    def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en'):
+    def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en', translation=None):
         self.gregorian_date = date(year, month, day)
 
         if calendar == Calendar.Gregorian:
@@ -123,6 +123,7 @@ class Day:
         self.calendar = calendar
         self.pyear = _YEAR_CLASSES[tradition](pyear, calendar)
         self.language = language
+        self.translation = translation
 
     async def ainitialize(self):
         """Do the expensive stuff here to keep it out of the constructor."""
@@ -440,7 +441,7 @@ class Day:
         if hasattr(self, 'readings'):
             if fetch_content:
                 for reading in self.readings:
-                    await reading.pericope.aget_passage(language=self.language)
+                    await reading.pericope.aget_passage(language=self.language, translation=self.translation)
 
             return self.readings
 
@@ -505,7 +506,7 @@ class Day:
         self.readings = []
         for reading in rows:
             if fetch_content:
-                await reading.pericope.aget_passage(language=self.language)
+                await reading.pericope.aget_passage(language=self.language, translation=self.translation)
 
             if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
                 # Place Lenten Matins Gospel at the top
@@ -524,7 +525,7 @@ class Day:
         if hasattr(self, 'abbreviated_readings'):
             if fetch_content:
                 for reading in self.abbreviated_readings:
-                    await reading.pericope.aget_passage(language=self.language)
+                    await reading.pericope.aget_passage(language=self.language, translation=self.translation)
 
             return self.abbreviated_readings
 
@@ -586,7 +587,7 @@ class Day:
 
         if fetch_content:
             for reading in readings:
-                await reading.pericope.aget_passage(language=self.language)
+                await reading.pericope.aget_passage(language=self.language, translation=self.translation)
 
         self.abbreviated_readings = readings
         return readings
