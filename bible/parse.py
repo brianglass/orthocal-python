@@ -74,14 +74,19 @@ def parse_usfx(filename):
             case [pulldom.START_ELEMENT, 'p']:
                 paragraph_start = True
 
-            # Footnote Element
-            case [pulldom.START_ELEMENT, 'f']:
+            # Footnote and cross-reference elements -- <x> (cross-reference,
+            # e.g. WEB's "11:33 Daniel 6:22-23" pointing back to an OT
+            # parallel) is structurally the same kind of aside as <f>
+            # (footnote), so it needs the same is_valid_content suppression;
+            # without it, the reference text gets appended straight into the
+            # verse content.
+            case [pulldom.START_ELEMENT, 'f' | 'x']:
                 was_valid_content = is_valid_content
                 is_valid_content = False
-            case [pulldom.END_ELEMENT, 'f']:
-                # Restore whatever was in effect before the footnote rather
-                # than assuming True -- footnotes can appear in content (like
-                # Psalm title <d> blocks) that isn't part of a verse.
+            case [pulldom.END_ELEMENT, 'f' | 'x']:
+                # Restore whatever was in effect before the aside rather than
+                # assuming True -- these can appear in content (like Psalm
+                # title <d> blocks) that isn't part of a verse.
                 is_valid_content = was_valid_content
 
             # Character content
