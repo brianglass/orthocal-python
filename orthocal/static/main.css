@@ -146,6 +146,11 @@ section.readings h2 {
 	font-size: 0.9em;
 	color: #555;
 }
+.translation-picker label {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
 .translation-picker select {
 	font-family: inherit;
 	font-size: 1.1em;
@@ -155,6 +160,7 @@ section.readings h2 {
 	border-radius: 3px;
 	padding: 2px 6px;
 	cursor: pointer;
+	vertical-align: middle;
 }
 .translation-picker select:hover {
 	border-color: #888;
@@ -201,15 +207,15 @@ section.readings h2 {
 label {
     font-size: 0.75em;
 }
+.tradition-label-with-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+}
 label input[type="radio"] {
     accent-color: #888;
 }
-.beta-note {
-    font-size: 0.75em;
-    font-style: italic;
-    color: #888;
-}
-.new-badge {
+.status-badge {
 	display: inline-block;
 	font-size: 0.65em;
 	font-weight: bold;
