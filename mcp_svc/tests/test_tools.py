@@ -24,7 +24,7 @@ class GetDayTestCase(TestCase):
             await get_day(2026, 2, 30)
 
     async def test_translation_changes_passage_content(self):
-        kjv_result = await get_day(2022, 1, 7)
+        kjv_result = await get_day(2022, 1, 7, translation='kjv')
         lxx_result = await get_day(2022, 1, 7, translation='lxx2012-web')
 
         kjv_gospel = kjv_result['readings'][2]
@@ -33,6 +33,15 @@ class GetDayTestCase(TestCase):
         self.assertEqual(kjv_gospel['display'], 'John 1.29-34')
         self.assertEqual(lxx_gospel['display'], 'John 1.29-34')
         self.assertNotEqual(kjv_gospel['passage'][0]['content'], lxx_gospel['passage'][0]['content'])
+
+    async def test_default_translation_is_lxx2012_web(self):
+        default_result = await get_day(2022, 1, 7)
+        lxx_result = await get_day(2022, 1, 7, translation='lxx2012-web')
+
+        self.assertEqual(
+            default_result['readings'][2]['passage'][0]['content'],
+            lxx_result['readings'][2]['passage'][0]['content'],
+        )
 
 
 class SearchSaintsTestCase(TestCase):

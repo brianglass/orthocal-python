@@ -22,21 +22,35 @@
 	<ul>
 		<li><strong>Look up a day.</strong> Feasts, fasting rules, scripture
 		readings, and the lives of the saints for any date, in either the
-		Slavic (OCA/ROCOR) or Greek (Antiochian/GOARCH) tradition, on the
-		Gregorian or Julian calendar, with the readings in either the King
-		James Version or the more modern LXX2012+WEB pairing.</li>
+		Slavic (OCA/ROCOR) or Greek (Antiochian/GOA) tradition, on the
+		Gregorian or Julian calendar, with the readings in the modern
+		LXX2012+WEB pairing by default, or the King James Version on
+		request.</li>
 		<li><strong>Search for a saint.</strong> Find which day(s) a saint
 		is commemorated on by name.</li>
 	</ul>
 
 	<h2>Connecting</h2>
 
-	<p>The server speaks MCP over Streamable HTTP at:</p>
+    <p>The server speaks MCP over Streamable HTTP at 
+    <a href="https://orthocal.info/mcp">https://orthocal.info/mcp</a>.
+	No account or API key is needed — Orthocal's data is fully public.</p>
 
-	<p><code>https://orthocal.info/mcp</code></p>
+	<h3>Claude Desktop</h3>
 
-	<p>If you use <a href="https://claude.com/product/claude-code">Claude Code</a>,
-	you can add it with:</p>
+	<p>Open Claude Desktop, go to <strong>Settings &rarr; Connectors</strong>,
+	click <strong>Add custom connector</strong>, and paste in the URL above.
+	No further configuration is needed.</p>
+
+	<h3>ChatGPT</h3>
+
+	<p>In ChatGPT on the web, go to <strong>Settings &rarr; Apps &rarr;
+	Advanced settings</strong> and turn on <strong>Developer mode</strong>
+	(requires a Plus, Pro, Business, Enterprise, or Edu plan). Then go to
+	<strong>Settings &rarr; Connectors</strong>, click <strong>Create</strong>,
+	and enter the URL above.</p>
+
+	<h3>Claude Code</h3>
 
 	<pre><code>claude mcp add --transport http orthocal https://orthocal.info/mcp</code></pre>
 

@@ -15,17 +15,17 @@ async def get_day(
     day: int,
     calendar: Calendar = Calendar.Gregorian,
     tradition: Tradition = Tradition.Slavic,
-    translation: Translation | None = None,
+    translation: Translation = Translation.LXX2012WEB,
 ) -> dict:
     """Look up feasts, fasting rules, scripture readings, and lives of the
     saints for a single day in the Eastern Orthodox liturgical calendar.
 
     calendar selects Gregorian (New) or Julian (Old) reckoning. tradition
     selects Slavic (OCA/ROCOR) or Greek (Antiochian/GOARCH) practice.
-    translation selects the Bible translation for English readings -- kjv
-    (the default, King James Version) or lxx2012-web (a modern-English
-    pairing of the Brenton Septuagint and the World English Bible); it has
-    no effect on non-English content.
+    translation selects the Bible translation for English readings --
+    lxx2012-web (the default, a modern-English pairing of the Brenton
+    Septuagint and the World English Bible) or kjv (King James Version);
+    it has no effect on non-English content.
     """
 
     try:
