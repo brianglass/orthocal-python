@@ -97,6 +97,12 @@ All verified via `liturgics.Day(...)` spot checks (each merged date now shows ex
 
 (See also "Also noted, not acted on" under Pass 1 for the Cyril of Alexandria asymmetry, which isn't a duplicate but is worth Brian's attention separately)
 
+## Correction (caught by Brian in PR review)
+
+Three of the day-native-vs-additive merges (Basil of Amasea, Mark of Arethusa, Epiphanius of Cyprus) copied the additive entry's `full_name` verbatim, which conflated the solo saint's identity with a co-commemorated companion (Righteous Virgin Glaphyra; Cyril the Deacon; Germanos, Archbishop of Constantinople respectively) -- `full_name` is meant to be a solo identity descriptor, per Stage 4's own design. Fixed by trimming each `full_name` to describe only the one saint, preserving era/office context; the companion's name stays in the `story` prose, where mentioning them is legitimate narrative content, just not identity. The Nicomedia martyrs merge (5510) was *not* a case of this bug -- it's a genuine collective identity (the Saint row represents the whole group of 20,000, matching precedent like "Holy Forefathers Abraham, Isaac, and Jacob"), so its full_name correctly still describes the group. Andrew Stratelates' full_name mentioning "2,593 soldiers" was left as-is -- an anonymous mass under his command, not another named individual, and consistent with the pre-existing (not something this pass introduced) `name` field already reading "and Companions."
+
+127/127 tests pass after the fix; fixture re-diffed to confirm only these 3 `full_name` fields changed.
+
 ## Status
 
-Stopped here per explicit direction (spot-check + targeted scan rather than a full literal 366-date read) after 9 confirmed merges across 5 independent techniques, with strong convergent evidence the easily-findable duplicates are now cleared. Branch `saint-dedup-2026-08`, not yet committed or merged.
+Stopped here per explicit direction (spot-check + targeted scan rather than a full literal 366-date read) after 9 confirmed merges across 5 independent techniques, with strong convergent evidence the easily-findable duplicates are now cleared. Branch `saint-dedup-2026-08`, PR #157 open.

@@ -796,7 +796,7 @@
   "pk": 5215,
   "fields": {
     "name": "Hieromartyr Mark, Bishop of Arethusa",
-    "full_name": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian"
+    "full_name": "Our Righteous Father Mark the Confessor, Bishop of Arethusa, martyred during the reign of Julian"
   }
 },
 {
@@ -988,7 +988,7 @@
   "pk": 5242,
   "fields": {
     "name": "Hieromartyr Basil of Amasea",
-    "full_name": "Hieromartyr Basil, bishop of Amasia and Righteous Virgin Glaphyra (322)"
+    "full_name": "Hieromartyr Basil, Bishop of Amasia (322)"
   }
 },
 {
@@ -1084,7 +1084,7 @@
   "pk": 5255,
   "fields": {
     "name": "St Epiphanius, Bishop of Cyprus",
-    "full_name": "Our Fathers among the Saints Epiphanios, bishop of Cyprus (403) and Germanos, Archbishop of Constantinople (740)"
+    "full_name": "Our Father among the Saints Epiphanios, Bishop of Cyprus (403)"
   }
 },
 {
