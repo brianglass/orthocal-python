@@ -30,7 +30,11 @@ def main():
         app='orthocal.asgi:application',
         host='0.0.0.0',
         port=port,
-        lifespan='off',
+        # The composed application in orthocal/asgi.py now includes the MCP
+        # server, which needs the lifespan protocol to start/stop its
+        # session manager's background task group; Django's own ASGI app
+        # still ignores lifespan, so this doesn't affect it.
+        lifespan='on',
         log_level='debug',
         reload=reload,
     )

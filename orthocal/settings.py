@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'calendarium',
     'alexa',
     'commemorations',
+    'mcp_svc',
     # This should be last since apps.OrthocalConfig.ready() enables the startup probe.
     'orthocal',  
 ]
