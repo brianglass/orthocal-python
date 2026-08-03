@@ -1,0 +1,46 @@
+{% extends "content_base.html" %}
+
+{% block title %}AI Assistant (MCP Server) for the Orthodox Calendar{% endblock %}
+
+{% block head %}
+	<meta name="description" content="Orthocal.info provides an MCP server so AI assistants like Claude can look up feasts, fasts, scripture readings, and lives of the saints directly.">
+{% endblock %}
+
+{% block content %}
+	<h2>AI Assistant</h2>
+	<p>Orthocal.info provides a server implementing the
+	<a href="https://modelcontextprotocol.io/">Model Context Protocol (MCP)</a>,
+	an open standard that lets AI assistants call an application's tools
+	directly instead of guessing at what's on the page. Connect an
+	MCP-aware assistant (Claude, or any other MCP client) to Orthocal, and
+	you can just ask it things like “what are today's Orthodox readings?”
+	or “when is St Seraphim of Sarov commemorated?” and it will look up
+	the real data rather than making something up.</p>
+
+	<p>The server is new and still growing; today it exposes two tools:</p>
+
+	<ul>
+		<li><strong>Look up a day.</strong> Feasts, fasting rules, scripture
+		readings, and the lives of the saints for any date, in either the
+		Slavic (OCA/ROCOR) or Greek (Antiochian/GOARCH) tradition, on the
+		Gregorian or Julian calendar, with the readings in either the King
+		James Version or the more modern LXX2012+WEB pairing.</li>
+		<li><strong>Search for a saint.</strong> Find which day(s) a saint
+		is commemorated on by name.</li>
+	</ul>
+
+	<h2>Connecting</h2>
+
+	<p>The server speaks MCP over Streamable HTTP at:</p>
+
+	<p><code>https://orthocal.info/mcp</code></p>
+
+	<p>If you use <a href="https://claude.com/product/claude-code">Claude Code</a>,
+	you can add it with:</p>
+
+	<pre><code>claude mcp add --transport http orthocal https://orthocal.info/mcp</code></pre>
+
+	<p>Other MCP-compatible clients generally have a similar way to add a
+	remote server by URL — consult your client's documentation for the
+	exact steps.</p>
+{% endblock %}

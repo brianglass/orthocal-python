@@ -1,0 +1,19 @@
+# Orthocal.info
+
+> Eastern Orthodox liturgical calendar service: daily scripture readings, fasting rules, feasts, and lives of the saints, for both the Slavic (OCA/ROCOR) and Greek (Antiochian/GOARCH) traditions, on the Gregorian or Julian calendar.
+
+## For AI assistants and agents
+
+- [AI Assistant](/ai-assistant/): connect an MCP client to `/mcp` (Streamable HTTP) for two tools -- look up a day's feasts/fasting/readings/saints, and search for a saint by name.
+- [MCP Server Card](/.well-known/mcp/server-cards.json): machine-readable server metadata.
+
+## For developers
+
+- [API Documentation](/api/): REST API for calendar days and months, with code examples.
+- [Alexa Skill](/alexa/): the Orthodox Daily Alexa skill.
+
+## General
+
+- [Daily Readings](/): today's feasts, fasting rules, scripture readings, and commemorations.
+- [Calendar](/calendar/): browse any month.
+- [About](/about/): project background, data sources, and licensing.
