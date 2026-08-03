@@ -796,7 +796,7 @@
   "pk": 5215,
   "fields": {
     "name": "Hieromartyr Mark, Bishop of Arethusa",
-    "full_name": null
+    "full_name": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian"
   }
 },
 {
@@ -988,7 +988,7 @@
   "pk": 5242,
   "fields": {
     "name": "Hieromartyr Basil of Amasea",
-    "full_name": null
+    "full_name": "Hieromartyr Basil, bishop of Amasia and Righteous Virgin Glaphyra (322)"
   }
 },
 {
@@ -1084,7 +1084,7 @@
   "pk": 5255,
   "fields": {
     "name": "St Epiphanius, Bishop of Cyprus",
-    "full_name": null
+    "full_name": "Our Fathers among the Saints Epiphanios, bishop of Cyprus (403) and Germanos, Archbishop of Constantinople (740)"
   }
 },
 {
@@ -1876,7 +1876,7 @@
   "pk": 5360,
   "fields": {
     "name": "Martyr Andrew Stratelates and Companions",
-    "full_name": null
+    "full_name": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (ca. 289)"
   }
 },
 {
@@ -3012,7 +3012,7 @@
   "pk": 5510,
   "fields": {
     "name": "20,000 Martyrs of Nicomedia",
-    "full_name": null
+    "full_name": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (ca. 304)."
   }
 },
 {
@@ -3301,14 +3301,6 @@
   "fields": {
     "name": "Holy Equal-to-the-Apostles Great Prince Vladimir (in holy baptism Basil), enlightener of the Russian Land (1051)",
     "full_name": "Holy Equal-to-the-Apostles Great Prince Vladimir (in holy baptism Basil), enlightener of the Russian Land (1051)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5550,
-  "fields": {
-    "name": "Uncovering of the relics (1903) of St Seraphim of Sarov",
-    "full_name": "St Seraphim of Sarov"
   }
 },
 {
@@ -4273,14 +4265,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5681,
-  "fields": {
-    "name": "Repose of St Symeon the New Theologian (1021)",
-    "full_name": "St Symeon the New Theologian (1021)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5682,
   "fields": {
     "name": "St Theognostus, Metropolitan of Kiev (1353)",
@@ -4381,14 +4365,6 @@
   "fields": {
     "name": "Repose of Gerontissa Gavrilia (1992) (March 15 OC)",
     "full_name": "Gerontissa Gavrilia (1992) (March 15 OC)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5695,
-  "fields": {
-    "name": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian",
-    "full_name": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian"
   }
 },
 {
@@ -4649,14 +4625,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5730,
-  "fields": {
-    "name": "Hieromartyr Basil, bishop of Amasia and Righteous Virgin Glaphyra (322)",
-    "full_name": "Hieromartyr Basil, bishop of Amasia and Righteous Virgin Glaphyra (322)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5731,
   "fields": {
     "name": "Our Holy Father Stephen, Abbot of the Kiev Caves and Bishop of Vladimir (1094)",
@@ -4829,14 +4797,6 @@
   "fields": {
     "name": "Holy Hieromartyr Mocius (288? 295?)",
     "full_name": "Holy Hieromartyr Mocius (288? 295?)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5754,
-  "fields": {
-    "name": "Our Fathers among the Saints Epiphanios, bishop of Cyprus (403) and Germanos, Archbishop of Constantinople (740)",
-    "full_name": "Our Fathers among the Saints Epiphanios, bishop of Cyprus (403) and Germanos, Archbishop of Constantinople (740)"
   }
 },
 {
@@ -5853,14 +5813,6 @@
   "fields": {
     "name": "Our Holy Father John, Abbot of Rila (946)",
     "full_name": "Our Holy Father John, Abbot of Rila (946)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5885,
-  "fields": {
-    "name": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (ca. 289)",
-    "full_name": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (ca. 289)"
   }
 },
 {
@@ -7449,14 +7401,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6088,
-  "fields": {
-    "name": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (ca. 304).",
-    "full_name": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (ca. 304)."
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6089,
   "fields": {
     "name": "Our Holy Father Simon the Outpourer of Myrrh, Founder of Simonopetra Monastery, Mt Athos (1287)",
@@ -8852,14 +8796,6 @@
   "pk": 6297,
   "fields": {
     "name": "Chad, Bishop of Lichfield",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6298,
-  "fields": {
-    "name": "Theodoretos the Holy Martyr of Antioch",
     "full_name": null
   }
 },
@@ -15022,7 +14958,7 @@
     "day": 524,
     "saint": 5215,
     "title": "Hieromartyr Mark, Bishop of Arethusa",
-    "story": null,
+    "story": "<p>“<i>Saint Mark</i> was Bishop of Arethusa in Syria. In the days of Saint Constantine the Great, Saint Mark, moved with divine zeal, destroyed a temple of the idols and raised up a church in its stead. When Julian the Apostate reigned, in 361, as the pagans were now able to avenge the destruction of their temple, Saint Mark, giving way to wrath, hid himself; but when he saw that others were being taken on his account, he gave himself up. Having no regard to his old age, they stripped him and beat his whole body, cast him into filthy sewers, and pulling him out, had children prick him with their iron writing-pens. Then they put him into a basket, smeared him with honey and a kind of relish of pickled fish, and hung him up under the burning sun to be devoured by bees and wasps. But because he bore this so nobly, his enemies repented, and unloosed him.</p>\n<p>“<i>Saint Cyril</i> was a deacon from Heliopolis in Phoenecia. During the reign of the Emperor Constantius, son of Saint Constantine, he had also broken the idols in pieces. When Julian came to power, Saint Cyril was seized by the idolators and his belly was ripped open. The other holy Martyrs celebrated today, martyred in Gaza and Ascalon during the reign of Julian, were men of priestly rank and consecrated virgins; they were disemboweled, filled with barley, and set before swine to be eaten. The account of all the above Saints is given in Book III, ch. 3, of Theodoret of Cyrrhus’ <i>Ecclesiastical History.</i> (<i>Great Horologion</i>)</p>",
     "rank": 0,
     "high_rank": false,
     "new_style": false,
@@ -15454,7 +15390,7 @@
     "day": 552,
     "saint": 5242,
     "title": "Hieromartyr Basil of Amasea",
-    "story": null,
+    "story": "<p>Licinius was co-emperor with Constantine the Great. At his accession, he had agreed to tolerate Christianity in his territories, but soon turned to persecuting the Christians, and to a variety of carnal sins. He conceived a passion for Glaphyra, a Christian virgin handmaid of the Empress Constantia. When Glaphyra told Constantia of this, the Empress sent her away to Amasia in the East for her protection. There she was received and protected by Bishop Basil of that city. Licinius learned where Glaphyra was hiding and ordered that both she and the bishop be brought to him as prisoners. The soldiers who came for her found that she had already died, so they returned with only Bishop Basil, who was subjected to cruel tortures, then beheaded. His body was cast into the sea, but, with the help of an angel of God, his people found his body, retrieved it from the sea, and returned it to Amasia.</p>\n<p>The <i>Prologue</i> adds, “The Emperor Constantine raised an army against Licinius, overcame him, arrested him and sent him into exile in Gaul, where he ended his God-hating days.”</p>",
     "rank": 3,
     "high_rank": false,
     "new_style": false,
@@ -15662,7 +15598,7 @@
     "day": 568,
     "saint": 5255,
     "title": "St Epiphanius, Bishop of Cyprus",
-    "story": null,
+    "story": "<p><i>Saint Epiphanios</i> was born a Jew in Palestine, but he and his sister came to faith in Christ and were baptized together. Epiphanios gave all his possessions to the poor and became a monk. He knew St Hilarion the great (October 31), and traveled among the monks of Egypt to learn their ways and wisdom. The fame of his virtue spread so widely that several attempts were made to make him bishop, first in Egypt, then in Cyprus. Whenever Epiphanios heard of these plans, he fled the area. He was finally made bishop by means of a storm: told to go to Cyprus, he took ship instead for Gaza, but a contrary wind blew his ship directly to Cyprus, where “Epiphanios fell into the hands of bishops who had come together to elect a successor to the newly-departed Bishop of Constantia, and the venerable Epiphanios was at last constrained to be consecrated, about the year 367.” (<i>Great Horologion</i>). He guarded his flock faithfully for the remainder of his life, working many miracles, defending the Church against the Arian heresy, and composing several books, of which the best-loved is the <i>Panarion</i> (from the Latin for ‘bread-box’), an exposition of the Faith and an examination of eighty heresies. He was sometimes called the ‘Five-tongued’ because he was fluent in Hebrew, Egyptian, Syriac, Greek, and Latin.</p>\n<p><i>Saint Germanos</i> was the son of a prominent family, in Constantinople. He became Metropolitan of Cyzicus, then was elevated to the throne at Constantinople in 715. It was he who baptized the infant Constantine, who for his whole life was nicknamed “Copronymos” because he defecated in the baptismal font (though he was neither the first nor the last infant to do so). At this incident, Patriarch Germanos is said to have prophesied that the child would one day bring some foul heresy upon the Church, which he did, becoming a notorious iconoclast as emperor. Germanos openly opposed the decree of the Emperor Leo the Isaurian which began the persecution of the holy icons. For this he was deposed and driven into exile in 730. He lived the rest of his life in peace. Saint Germanos is the composer of many of the Church’s hymns, notably those for the Feast of the Meeting in the Temple.</p>\n<p>These two Saints are always commemorated together.</p>",
     "rank": 0,
     "high_rank": false,
     "new_style": false,
@@ -17358,7 +17294,7 @@
     "day": 667,
     "saint": 5360,
     "title": "Martyr Andrew Stratelates and Companions",
-    "story": null,
+    "story": "<p>“He was an officer, a tribune, in the Roman army in the time of the Emperor Maximian. A Syrian by birth, he served in his native land. When the Persians attacked the imperial Roman army, this Andrew was entrusted with the command in the battle against the enemy — whence his title: commander, <i>strateletes</i>. A secret Christian, although as yet unbaptised, Andrew commended himself to the living God, and, taking only the cream of the army, went to war. Before the battle, he told his soldiers that, if they all called upon the aid of the one, true God, Christ the Lord, their enemies would become as dust scattered before them. All the soldiers, fired with enthusiasm by Andrew and his faith, invoked Christ’s aid and attacked. The Persian army was utterly routed. When the victorious Andrew returned to Antioch, some jealous men denounced him as a Christian and the imperial governor summoned him for trial. Andrew openly proclaimed his steadfast faith in Christ. After harsh torture, the governor threw Andrew into prison and wrote to the Emperor in Rome. Knowing Andrew’s popularity among the people and in the army, the Emperor ordered the governor to set Andrew free, but to seek another occasion and another excuse (not his faith) to kill him. By God’s revelation, Andrew came to know of this imperial command, and, taking his faithful soldiers (2,593 in all) with him, went off to Tarsus in Cilicia, where they were all baptised by the bishop, Peter. Persecuted here also by imperial might, Andrew and his companions withdrew deep into the Armenian mountain of Tavros. There in a ravine, while they were at prayer, the Roman army came upon them and beheaded them all. Not one of them would recant, all being determined on death by martyrdom for Christ. On the spot where a stream of the martyrs’ blood flowed down, a spring of healing water sprang forth, healing from every disease. The bishop, Peter, came secretly with his people and buried the martyrs’ bodies in that same place. They all suffered with honour at the end of the third century and were crowned with wreaths of eternal glory, entering into the Kingdom of Christ our God.” (<i>Prologue</i>)</p>",
     "rank": 0,
     "high_rank": false,
     "new_style": false,
@@ -19726,7 +19662,7 @@
     "day": 798,
     "saint": 5510,
     "title": "20,000 Martyrs of Nicomedia",
-    "story": null,
+    "story": "<p>During a fierce persecution by the Emperor Maximian of all who would not worship the idols, the Christians of Nicomedia were subjected to especially savage treatment. (Eusebius writes that every Christian in the city was killed.) Along with many others put to the sword or otherwise butchered there, we especially commemorate the large company who, despite all danger, gathered in the church to commemorate Christ’s Nativity. The Emperor, hearing of this, sent troops to surround the building so that no-one could escape, and piled heaps of timber and brush around it. Criers then gave notice that any who wished to save their lives must come out and make sacrifice to the pagan gods.</p>\n<p>“As this announcement penetrated the church, a divine zeal, more fiery than any flame in the world, seized the deacon Agapius, who rushed to the pulpit and cried out, ‘Brethren, remember how often we have praised and extolled the Three Young Men who, when they were thrown into the Babylonian furnace, called on the whole of Creation to sing the glory of God, and how the All-Creating Word then came down in bodily appearance, to assist them and to render them invulnerable by surrounding them with a moist whistling wind. The time has now come for us to imitate them. Let us offer ourselves to a temporary death for love of our Master, in order to reign everlastingly with Him!’ The whole congregation with one voice then answered Maximian’s criers, ‘We believe in Christ God and we will give up our lives for Him!’</p>\n<p>“As the soldiers began to set fire to the piles of wood outside, Saint Anthimus [bishop of the city, commemorated September 3] told his deacons to assemble those who were still catechumens, and he baptized and anointed them with the holy Myron. He then served the divine Liturgy, at which all present communicated in the Body and Blood of Our Lord Jesus Christ. Armed with divine strength and closely united in a single body by Christ who dwelt in them, the holy Martyrs felt no fear as they saw the flames leap up everywhere and thick smoke begin to fill the church. With gladness they sang in unison the Song of the Three Young Men: Bless the Lord, all works of the Lord, sing praise to Him and highly exalt Him for ever (Dan. 3 LXX) until the last among them suffocated and gave up his soul.</p>\n<p>“The conflagration lasted for five days. Those who then ventured into the smouldering ruins anticipating the odour of charred flesh, found instead a heavenly scent pervading the air and the place surrounded by a brilliant light. The Saints who were glorified at this time are said to have numbered twenty thousand. Saint Anthimus himself miraculously escaped death, and so was able by his teaching to lead a large number of souls to salvation and to the new birth of holy Baptism before, in his turn, fulfilling his union with Christ by martyrdom.” <i>(Synaxarion)</i></p>",
     "rank": 0,
     "high_rank": false,
     "new_style": false,
@@ -20364,7 +20300,7 @@
   "pk": 5679,
   "fields": {
     "day": 636,
-    "saint": 5550,
+    "saint": 5111,
     "title": "Uncovering of the relics (1903) of St Seraphim of Sarov",
     "story": "<p>“The uncovering of the holy relics of St Seraphim of Sarov on July 19, 1903 was attended by many thousands, among them the foremost of the clergy and royalty; the holy Tsar Nicholas II (July 4) was one of the bearers of the relics in procession, and the Grand Duchess Elizabeth (July 5) wrote an eyewitness account of the many miracles that took place. Not only had the Saint foretold the coming of the Tsar to his glorification, and that from joy they would chant ‘Christ is Risen’ in summer, but he also left a letter ‘for the fourth sovereign, who will come to Sarov.’ This was Nicholas II, who was given the letter when he came in 1903; the contents of the letter are not known, but when he had read it, the Tsar and future Martyr, though not a man to show his emotions, was visibly shaken.” (<i>Great Horologion</i>)</p>\n<p>Saint Seraphim is commemorated January 2.</p>",
     "rank": 0,
@@ -21076,22 +21012,6 @@
     "new_style": false,
     "day_native": false,
     "ordering": 2,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 5724,
-  "fields": {
-    "day": 436,
-    "saint": 5595,
-    "title": "St Emilia (375), mother of Sts Macrina, Basil the Great and Gregory of Nyssa, Peter of Sebaste, and Theosevia",
-    "story": "<p>Her main commemoration is on May 8.</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 3,
     "tradition": "common"
   }
 },
@@ -22428,7 +22348,7 @@
   "pk": 5810,
   "fields": {
     "day": 507,
-    "saint": 5681,
+    "saint": 5981,
     "title": "Repose of St Symeon the New Theologian (1021)",
     "story": "<p>His main commemoration is on October 12.</p>",
     "rank": 0,
@@ -22644,22 +22564,6 @@
     "new_style": true,
     "day_native": false,
     "ordering": 1,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 5824,
-  "fields": {
-    "day": 524,
-    "saint": 5695,
-    "title": "Our Righteous Father Mark the Confessor, Bishop of Arethusa; Cyril the Deacon, and others martyred during the reign of Julian",
-    "story": "<p>“<i>Saint Mark</i> was Bishop of Arethusa in Syria. In the days of Saint Constantine the Great, Saint Mark, moved with divine zeal, destroyed a temple of the idols and raised up a church in its stead. When Julian the Apostate reigned, in 361, as the pagans were now able to avenge the destruction of their temple, Saint Mark, giving way to wrath, hid himself; but when he saw that others were being taken on his account, he gave himself up. Having no regard to his old age, they stripped him and beat his whole body, cast him into filthy sewers, and pulling him out, had children prick him with their iron writing-pens. Then they put him into a basket, smeared him with honey and a kind of relish of pickled fish, and hung him up under the burning sun to be devoured by bees and wasps. But because he bore this so nobly, his enemies repented, and unloosed him.</p>\n<p>“<i>Saint Cyril</i> was a deacon from Heliopolis in Phoenecia. During the reign of the Emperor Constantius, son of Saint Constantine, he had also broken the idols in pieces. When Julian came to power, Saint Cyril was seized by the idolators and his belly was ripped open. The other holy Martyrs celebrated today, martyred in Gaza and Ascalon during the reign of Julian, were men of priestly rank and consecrated virgins; they were disemboweled, filled with barley, and set before swine to be eaten. The account of all the above Saints is given in Book III, ch. 3, of Theodoret of Cyrrhus’ <i>Ecclesiastical History.</i> (<i>Great Horologion</i>)</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
     "tradition": "common"
   }
 },
@@ -23209,22 +23113,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 5859,
-  "fields": {
-    "day": 552,
-    "saint": 5730,
-    "title": "Hieromartyr Basil, bishop of Amasia and Righteous Virgin Glaphyra (322)",
-    "story": "<p>Licinius was co-emperor with Constantine the Great. At his accession, he had agreed to tolerate Christianity in his territories, but soon turned to persecuting the Christians, and to a variety of carnal sins. He conceived a passion for Glaphyra, a Christian virgin handmaid of the Empress Constantia. When Glaphyra told Constantia of this, the Empress sent her away to Amasia in the East for her protection. There she was received and protected by Bishop Basil of that city. Licinius learned where Glaphyra was hiding and ordered that both she and the bishop be brought to him as prisoners. The soldiers who came for her found that she had already died, so they returned with only Bishop Basil, who was subjected to cruel tortures, then beheaded. His body was cast into the sea, but, with the help of an angel of God, his people found his body, retrieved it from the sea, and returned it to Amasia.</p>\n<p>The <i>Prologue</i> adds, “The Emperor Constantine raised an army against Licinius, overcame him, arrested him and sent him into exile in Gaul, where he ended his God-hating days.”</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 5860,
   "fields": {
     "day": 553,
@@ -23604,22 +23492,6 @@
     "new_style": false,
     "day_native": false,
     "ordering": 1,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 5884,
-  "fields": {
-    "day": 568,
-    "saint": 5754,
-    "title": "Our Fathers among the Saints Epiphanios, bishop of Cyprus (403) and Germanos, Archbishop of Constantinople (740)",
-    "story": "<p><i>Saint Epiphanios</i> was born a Jew in Palestine, but he and his sister came to faith in Christ and were baptized together. Epiphanios gave all his possessions to the poor and became a monk. He knew St Hilarion the great (October 31), and traveled among the monks of Egypt to learn their ways and wisdom. The fame of his virtue spread so widely that several attempts were made to make him bishop, first in Egypt, then in Cyprus. Whenever Epiphanios heard of these plans, he fled the area. He was finally made bishop by means of a storm: told to go to Cyprus, he took ship instead for Gaza, but a contrary wind blew his ship directly to Cyprus, where “Epiphanios fell into the hands of bishops who had come together to elect a successor to the newly-departed Bishop of Constantia, and the venerable Epiphanios was at last constrained to be consecrated, about the year 367.” (<i>Great Horologion</i>). He guarded his flock faithfully for the remainder of his life, working many miracles, defending the Church against the Arian heresy, and composing several books, of which the best-loved is the <i>Panarion</i> (from the Latin for ‘bread-box’), an exposition of the Faith and an examination of eighty heresies. He was sometimes called the ‘Five-tongued’ because he was fluent in Hebrew, Egyptian, Syriac, Greek, and Latin.</p>\n<p><i>Saint Germanos</i> was the son of a prominent family, in Constantinople. He became Metropolitan of Cyzicus, then was elevated to the throne at Constantinople in 715. It was he who baptized the infant Constantine, who for his whole life was nicknamed “Copronymos” because he defecated in the baptismal font (though he was neither the first nor the last infant to do so). At this incident, Patriarch Germanos is said to have prophesied that the child would one day bring some foul heresy upon the Church, which he did, becoming a notorious iconoclast as emperor. Germanos openly opposed the decree of the Emperor Leo the Isaurian which began the persecution of the holy icons. For this he was deposed and driven into exile in 730. He lived the rest of his life in peace. Saint Germanos is the composer of many of the Church’s hymns, notably those for the Feast of the Meeting in the Temple.</p>\n<p>These two Saints are always commemorated together.</p>",
-    "rank": 0,
-    "high_rank": true,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
     "tradition": "common"
   }
 },
@@ -25700,22 +25572,6 @@
     "new_style": false,
     "day_native": false,
     "ordering": 1,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6015,
-  "fields": {
-    "day": 667,
-    "saint": 5885,
-    "title": "Martyr Andrew Strateletes and 2,593 soldiers with him in Cilicia (ca. 289)",
-    "story": "<p>“He was an officer, a tribune, in the Roman army in the time of the Emperor Maximian. A Syrian by birth, he served in his native land. When the Persians attacked the imperial Roman army, this Andrew was entrusted with the command in the battle against the enemy — whence his title: commander, <i>strateletes</i>. A secret Christian, although as yet unbaptised, Andrew commended himself to the living God, and, taking only the cream of the army, went to war. Before the battle, he told his soldiers that, if they all called upon the aid of the one, true God, Christ the Lord, their enemies would become as dust scattered before them. All the soldiers, fired with enthusiasm by Andrew and his faith, invoked Christ’s aid and attacked. The Persian army was utterly routed. When the victorious Andrew returned to Antioch, some jealous men denounced him as a Christian and the imperial governor summoned him for trial. Andrew openly proclaimed his steadfast faith in Christ. After harsh torture, the governor threw Andrew into prison and wrote to the Emperor in Rome. Knowing Andrew’s popularity among the people and in the army, the Emperor ordered the governor to set Andrew free, but to seek another occasion and another excuse (not his faith) to kill him. By God’s revelation, Andrew came to know of this imperial command, and, taking his faithful soldiers (2,593 in all) with him, went off to Tarsus in Cilicia, where they were all baptised by the bishop, Peter. Persecuted here also by imperial might, Andrew and his companions withdrew deep into the Armenian mountain of Tavros. There in a ravine, while they were at prayer, the Roman army came upon them and beheaded them all. Not one of them would recant, all being determined on death by martyrdom for Christ. On the spot where a stream of the martyrs’ blood flowed down, a spring of healing water sprang forth, healing from every disease. The bishop, Peter, came secretly with his people and buried the martyrs’ bodies in that same place. They all suffered with honour at the end of the third century and were crowned with wreaths of eternal glory, entering into the Kingdom of Christ our God.” (<i>Prologue</i>)</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
     "tradition": "common"
   }
 },
@@ -28921,22 +28777,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 6218,
-  "fields": {
-    "day": 798,
-    "saint": 6088,
-    "title": "The Twenty Thousand Martyrs burned to death in their church in Nicomedia (ca. 304).",
-    "story": "<p>During a fierce persecution by the Emperor Maximian of all who would not worship the idols, the Christians of Nicomedia were subjected to especially savage treatment. (Eusebius writes that every Christian in the city was killed.) Along with many others put to the sword or otherwise butchered there, we especially commemorate the large company who, despite all danger, gathered in the church to commemorate Christ’s Nativity. The Emperor, hearing of this, sent troops to surround the building so that no-one could escape, and piled heaps of timber and brush around it. Criers then gave notice that any who wished to save their lives must come out and make sacrifice to the pagan gods.</p>\n<p>“As this announcement penetrated the church, a divine zeal, more fiery than any flame in the world, seized the deacon Agapius, who rushed to the pulpit and cried out, ‘Brethren, remember how often we have praised and extolled the Three Young Men who, when they were thrown into the Babylonian furnace, called on the whole of Creation to sing the glory of God, and how the All-Creating Word then came down in bodily appearance, to assist them and to render them invulnerable by surrounding them with a moist whistling wind. The time has now come for us to imitate them. Let us offer ourselves to a temporary death for love of our Master, in order to reign everlastingly with Him!’ The whole congregation with one voice then answered Maximian’s criers, ‘We believe in Christ God and we will give up our lives for Him!’</p>\n<p>“As the soldiers began to set fire to the piles of wood outside, Saint Anthimus [bishop of the city, commemorated September 3] told his deacons to assemble those who were still catechumens, and he baptized and anointed them with the holy Myron. He then served the divine Liturgy, at which all present communicated in the Body and Blood of Our Lord Jesus Christ. Armed with divine strength and closely united in a single body by Christ who dwelt in them, the holy Martyrs felt no fear as they saw the flames leap up everywhere and thick smoke begin to fill the church. With gladness they sang in unison the Song of the Three Young Men: Bless the Lord, all works of the Lord, sing praise to Him and highly exalt Him for ever (Dan. 3 LXX) until the last among them suffocated and gave up his soul.</p>\n<p>“The conflagration lasted for five days. Those who then ventured into the smouldering ruins anticipating the odour of charred flesh, found instead a heavenly scent pervading the air and the place surrounded by a brilliant light. The Saints who were glorified at this time are said to have numbered twenty thousand. Saint Anthimus himself miraculously escaped death, and so was able by his teaching to lead a large number of souls to salvation and to the new birth of holy Baptism before, in his turn, fulfilling his union with Christ by martyrdom.” <i>(Synaxarion)</i></p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 6219,
   "fields": {
     "day": 798,
@@ -31820,7 +31660,7 @@
   "pk": 6434,
   "fields": {
     "day": 498,
-    "saint": 6298,
+    "saint": 5674,
     "title": "Theodoretos the Holy Martyr of Antioch",
     "story": null,
     "rank": 0,
