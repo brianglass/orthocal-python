@@ -24,9 +24,8 @@
 
 	<br>
 
-	<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
-	<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek</label>
-	<span class="beta-note">(beta)</span>
+	<label class="tradition-label-with-badge" title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
+	<label class="tradition-label-with-badge" title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek <span class="status-badge">New</span></label>
 
 	<br>
 
