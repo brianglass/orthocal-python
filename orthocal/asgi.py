@@ -35,8 +35,19 @@ from mcp_svc.server import mcp
 # against a malicious webpage's JS reaching it through the browser; it
 # doesn't apply to a public HTTPS API with no localhost-only trust boundary,
 # so disabling it here is the correct fix, not a workaround.
+#
+# stateless_http must also be set: the default session manager tracks each
+# session's transport in that process's own memory, but Cloud Run scales
+# this service to multiple instances (maxScale=15, no session affinity
+# configured) with no guarantee a session's follow-up request lands back on
+# the instance that created it -- confirmed via production logs showing
+# several instances each starting their own independent session manager.
+# Both tools are stateless reads, so there's no reason to need session
+# affinity in the first place; stateless_http=True makes every request
+# self-contained instead.
 mcp_application = mcp.streamable_http_app(
     transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
+    stateless_http=True,
 )
 
 
