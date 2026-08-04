@@ -35,7 +35,7 @@
 </ul>
 {% endif %}
 
-<h2>Scripture Readings&nbsp;(KJV)</h2>
+<h2>Scripture Readings&nbsp;({{ obj.translation_label }})</h2>
 
 {% for reading in obj.get_readings %}
 <section>
@@ -47,7 +47,7 @@
 	</h3>
 
 	<p>
-	{% for verse in reading.pericope.get_passage %}
+	{% for verse in reading.pericope.passage %}
 		{% if verse.paragraph_start and not forloop.first %}</p><p>{% endif %}
 		<sup>{{ verse.verse }}</sup> {{ verse.content }}
 	{% endfor %}

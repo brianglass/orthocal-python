@@ -140,6 +140,17 @@ class Day:
         return str(self.date)
 
     @cached_property
+    def translation_label(self):
+        """Human-readable label for the Bible translation actually in effect
+        -- resolves the per-language default the same way VerseManager does,
+        since self.translation is often None (meaning "use the default")
+        rather than always holding a concrete value."""
+
+        from bible.models import DEFAULT_TRANSLATIONS
+
+        return datetools.TRANSLATION_LABELS[self.translation or DEFAULT_TRANSLATIONS[self.language]]
+
+    @cached_property
     def summary_title(self):
         """A simplified title that summarizes the day's commemorations."""
 

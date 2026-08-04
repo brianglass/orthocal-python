@@ -15,4 +15,5 @@ urlpatterns = [
     path('feed/', cache(ReadingsFeed()), name='rss-feed'),
     path('feed/<cal:cal>/', cache(ReadingsFeed()), name='rss-feed-cal'),
     path('feed/<tradition:tradition>/<cal:cal>/', cache(ReadingsFeed()), name='rss-feed-cal'),
+    path('feed/<tradition:tradition>/<cal:cal>/<translation:translation>/', cache(ReadingsFeed()), name='rss-feed-cal'),
 ]

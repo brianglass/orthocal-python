@@ -25,6 +25,11 @@
 	<blockquote><a href="{% url "rss-feed-cal" tradition="greek" cal="gregorian" %}">{% fullurl "rss-feed-cal" tradition="greek" cal="gregorian" %}</a></blockquote>
 	<blockquote><a href="{% url "rss-feed-cal" tradition="greek" cal="julian" %}">{% fullurl "rss-feed-cal" tradition="greek" cal="julian" %}</a></blockquote>
 
+	<p>Every RSS feed above reads from the King James Version by default. For the more modern LXX2012+WEB
+	pairing instead, add the translation to the URL:</p>
+
+	<blockquote><a href="{% url "rss-feed-cal" tradition="slavic" cal="gregorian" translation="lxx2012-web" %}">{% fullurl "rss-feed-cal" tradition="slavic" cal="gregorian" translation="lxx2012-web" %}</a></blockquote>
+
 	<h3>iCal</h3>
 
 	<p>An ical feed for the Slavic tradition, new calendar is available at:</p>

@@ -9,7 +9,7 @@ from django.utils import timezone
 from django.utils.feedgenerator import Rss201rev2Feed
 
 from . import liturgics
-from .datetools import Calendar, Tradition
+from .datetools import Calendar, Tradition, TRANSLATION_LABELS
 
 
 class WSRssFeed(Rss201rev2Feed):
@@ -27,22 +27,29 @@ class ReadingsFeed(Feed):
     description_template = 'feed_description.html'
     item_categories = categories = 'orthodox', 'christian', 'religion'
 
-    def get_object(self, request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
-        return {'cal': cal, 'tradition': tradition}
+    def get_object(self, request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, translation=None):
+        return {'cal': cal, 'tradition': tradition, 'translation': translation}
 
     def title(self, obj):
-        return f'Orthodox Daily Readings ({obj["tradition"].title()}, {obj["cal"].title()})'
+        title = f'Orthodox Daily Readings ({obj["tradition"].title()}, {obj["cal"].title()})'
+        if obj['translation']:
+            title += f' [{TRANSLATION_LABELS[obj["translation"]]}]'
+        return title
 
     def description(self, obj):
-        return (f'Daily readings from scripture and the lives of the saints according to the '
-                f'{obj["tradition"].title()} tradition, {obj["cal"].title()} calendar.')
+        description = (f'Daily readings from scripture and the lives of the saints according to the '
+                        f'{obj["tradition"].title()} tradition, {obj["cal"].title()} calendar.')
+        if obj['translation']:
+            description += f' Scripture from the {TRANSLATION_LABELS[obj["translation"]]}.'
+        return description
 
     def items(self, obj):
         now = timezone.localtime()
         start_dt = now - timedelta(days=10)
         for dt in rrule(DAILY, dtstart=start_dt, until=now):
-            day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'], tradition=obj['tradition'])
+            day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'], tradition=obj['tradition'], translation=obj['translation'])
             day.initialize()
+            day.get_readings(fetch_content=True)
             yield day
 
     def item_pubdate(self, day):

@@ -12,8 +12,6 @@ from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 
-from bible.models import DEFAULT_TRANSLATIONS
-
 from . import liturgics, models
 from .datetools import Calendar, Tradition, Translation, TRANSLATION_LABELS, cal_session_key, translation_session_key
 
@@ -50,7 +48,7 @@ async def readings_view(request, cal=None, tradition=None, translation=None, yea
         'cal': cal,
         'tradition': tradition,
         'translation': translation,
-        'translation_label': TRANSLATION_LABELS[translation or DEFAULT_TRANSLATIONS[request.LANGUAGE_CODE]],
+        'translation_label': day.translation_label,
         # Only the selectable (English) translations, not every code that can
         # appear in Verse rows -- ro/sr each have one fixed translation with
         # no dropdown, so rccv/srp1865 aren't offered as choices here.
@@ -166,14 +164,18 @@ def remember_translation(request, translation, language):
     session_key = translation_session_key(language)
 
     if translation:
-        if translation != request.session.get(session_key, Translation.KJV):
+        if translation != request.session.get(session_key, Translation.LXX2012WEB):
             request.session[session_key] = translation
 
         # Don't send vary on cookie header when we have an explicit translation.
         # In this case, the session does not actually impact the content.
         request.session.accessed = False
     else:
-        translation = request.session.get(session_key, Translation.KJV)
+        # Only the readings page defaults to the modern translation -- the
+        # API and RSS feeds are unaffected, since neither calls this function;
+        # they resolve translation=None straight through to
+        # bible.models.DEFAULT_TRANSLATIONS['en'] (kjv), unchanged.
+        translation = request.session.get(session_key, Translation.LXX2012WEB)
 
     return translation
 
