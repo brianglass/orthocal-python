@@ -41,7 +41,10 @@
 		<p class="fasting">
 			{% filter widont %}
 			{{ day.fast_level_desc }}
-			{% if day.fast_level and day.fast_exception %}— {{ day.fast_exception_desc }}{% endif %}
+			{% if day.fast_level %}
+				{% if day.fast_exception_desc %}— {{ day.fast_exception_desc }}{% endif %}
+				{% if day.fast_abstentions_desc %}— {{ day.fast_abstentions_desc }}{% endif %}
+			{% endif %}
 			{% endfilter %}
 		</p>
 

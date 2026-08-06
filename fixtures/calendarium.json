@@ -18376,7 +18376,7 @@
     "saints": [],
     "story": null,
     "fast": 4,
-    "fast_exception": 4,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
