@@ -160,7 +160,7 @@ class TestCalendarView(TestCase):
         request = RequestFactory().get('/')
         html = await render_calendar_html(request, 2022, 1, cal=Calendar.Gregorian)
         self.assertIn(now.strftime('%B'), html)
-        self.assertIn('Synaxis 3 Hierarchs', html)
+        self.assertIn('Synaxis of the Three Holy Hierarchs', html)
 
     async def test_render_calendar_html_julian(self):
         now = date(2022, 1, 7)

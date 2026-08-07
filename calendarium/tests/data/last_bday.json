@@ -9,12 +9,10 @@
     "titles": [
         "Friday of the 29th week after Pentecost"
     ],
-    "summary_title": "Synaxis of St John the Baptist",
+    "summary_title": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.; New Martyr Athanasius of Attalia (1700); Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)",
     "feast_level": 3,
     "feast_level_description": "Red squigg (doxology typikon symbol)",
-    "feasts": [
-        "Synaxis of St John the Baptist"
-    ],
+    "feasts": null,
     "fast_level": 1,
     "fast_level_desc": "Fast",
     "fast_exception": 2,
@@ -25,6 +23,7 @@
         "eggs"
     ],
     "saints": [
+        "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.",
         "New Martyr Athanasius of Attalia (1700)",
         "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
     ],

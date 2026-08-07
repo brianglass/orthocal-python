@@ -43,9 +43,9 @@
 		</ul>
 		{% endif %}
 
-		{% if day.saints %}
+		{% if day.minimal_saints %}
 		<ul class="saints">
-			{% for saint in day.saints %}
+			{% for saint in day.minimal_saints %}
 			<li>{{ saint }}</li>
 			{% endfor %}
 		</ul>

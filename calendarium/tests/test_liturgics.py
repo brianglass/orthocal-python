@@ -232,14 +232,20 @@ class TestTraditionOverlay(TestCase):
         Same shape as the Catherine of Alexandria/Theophan the Recluse
         fixes: a genuine differing-date case, implemented via the
         pdist-anchored RaphaelBrooklyn float rather than a fixed month/day,
-        since "first Saturday of November" moves every year."""
+        since "first Saturday of November" moves every year.
+
+        Feb 27's feast_name was cleared by the feast_name/DayCommemoration
+        de-duplication audit (2026-08, tier 2) -- confirmed via
+        antiochian.org that Greek doesn't elevate him on this date at all,
+        so he now shows via the ordinary saints list instead."""
 
         slavic_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Slavic)
         greek_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Greek)
         await slavic_feb27.ainitialize()
         await greek_feb27.ainitialize()
 
-        self.assertIn('St Raphael Bishop of Brooklyn', slavic_feb27.feasts)
+        self.assertTrue(any('Raphael' in s for s in slavic_feb27.saints))
+        self.assertEqual(slavic_feb27.feasts, [])
         self.assertNotIn('St Raphael Bishop of Brooklyn', greek_feb27.feasts)
 
         # Nov 1, 2025 is itself a Saturday.
@@ -607,6 +613,26 @@ class TestGreekLukanNumbering(TestCase):
 
 class TestDay(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def test_minimal_saints_is_a_plain_truncation(self):
+        """minimal_saints exists purely for space-constrained displays (the
+        monthly calendar grid, summary_title's fallback) -- it should be
+        nothing more than the first MINIMAL_SAINTS_LIMIT entries of the full
+        list, regardless of day_native/story provenance. Oct 1 Greek has 6
+        commemorations; the first 3 should come through unchanged."""
+
+        day = liturgics.Day(2026, 10, 1, tradition=Tradition.Greek)
+        await day.ainitialize()
+
+        self.assertEqual(len(day.saints), 6)
+        self.assertEqual(day.minimal_saints, day.saints[:3])
+        self.assertEqual(len(day.minimal_saints), 3)
+
+    async def test_minimal_saints_untruncated_when_short(self):
+        day = liturgics.Day(2026, 1, 7)
+        await day.ainitialize()
+
+        self.assertEqual(day.minimal_saints, day.saints)
 
     async def test_no_memorial(self):
         """Memorial Saturday with no memorial readings should not have John 5.24-30."""
@@ -1134,17 +1160,24 @@ class TestDay(TestCase):
                         f'{fragment!r} unexpectedly leaked to greek {m}/{d}: {greek.saints}',
                     )
 
-        # July 5 -- Sergius/Athanasius are feast_name-matched (day_native,
-        # ordering=-1) on the *slavic* Day row, which loses Greek's
-        # feast-level-facts preference to the empty greek placeholder --
-        # so their feast_name never surfaces via greek.feasts at all, and
-        # they fall back to showing plainly via greek.saints instead (see
-        # the winning_day_ids check in _add_supplemental_commemorations).
+        # July 5 -- Sergius/Athanasius used to be feast_name-matched
+        # (day_native, ordering=-1) on the *slavic* Day row. The
+        # feast_name/DayCommemoration de-duplication audit (2026-08) cleared
+        # that feast_name and un-suppressed both (ordering=0), since
+        # antiochian.org confirmed Athanasius of Mt Athos is independently
+        # elevated in Greek practice too, while Sergius of Radonezh isn't --
+        # a per-saint distinction feast_name's single shared string couldn't
+        # express. Both traditions' *feasts* are empty now; both already
+        # showed both saints in *saints* before this change (Greek via the
+        # winning_day_ids fallback in _add_supplemental_commemorations,
+        # since Sergius/Athanasius's DayCommemoration rows are anchored to
+        # the slavic Day row, which never wins Greek's
+        # feast-level-facts preference) -- this only changes Slavic's view.
         slavic_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Slavic)
         await slavic_jul5.ainitialize()
-        self.assertIn('Unc. Rel. Ven. Sergius of Radonezh; Ven. Athanasius of Athos', slavic_jul5.feasts)
-        self.assertFalse(any('Sergius of Radonezh' in s for s in slavic_jul5.saints))
-        self.assertFalse(any('Athanasius of Mt Athos' in s for s in slavic_jul5.saints))
+        self.assertEqual(slavic_jul5.feasts, [])
+        self.assertTrue(any('Sergius of Radonezh' in s for s in slavic_jul5.saints))
+        self.assertTrue(any('Athanasius of Mt Athos' in s for s in slavic_jul5.saints))
 
         greek_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Greek)
         await greek_jul5.ainitialize()
