@@ -237,7 +237,11 @@ class TestTraditionOverlay(TestCase):
         Feb 27's feast_name was cleared by the feast_name/DayCommemoration
         de-duplication audit (2026-08, tier 2) -- confirmed via
         antiochian.org that Greek doesn't elevate him on this date at all,
-        so he now shows via the ordinary saints list instead."""
+        so he now shows via the ordinary saints list instead. The Nov 1
+        Greek commemoration got its own DayCommemoration row in the same
+        audit's final pass (previously feast_name-only, no DayCommemoration
+        existed for this date at all) -- reuses the same Saint identity as
+        the Feb 27 entry, since it's the same person."""
 
         slavic_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Slavic)
         greek_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Greek)
@@ -255,7 +259,9 @@ class TestTraditionOverlay(TestCase):
         await greek_nov1.ainitialize()
 
         self.assertNotIn('St Raphael Bishop of Brooklyn', slavic_nov1.feasts)
-        self.assertIn('St Raphael Bishop of Brooklyn', greek_nov1.feasts)
+        self.assertEqual(greek_nov1.feasts, [])
+        self.assertTrue(any('Raphael' in s for s in greek_nov1.saints))
+        self.assertFalse(any('Raphael' in s for s in slavic_nov1.saints))
 
 
 class TestGreekFasting(TestCase):
@@ -675,13 +681,17 @@ class TestDay(TestCase):
         #self.assertEqual('John 20.19-25', readings[2].pericope.display)
 
     async def test_annunciation(self):
-        """Test a sample feast day."""
+        """Test a sample feast day.
+
+        St Mary of Egypt moved from Day.feast_name into a proper
+        DayCommemoration (feast_name/DayCommemoration de-duplication
+        audit, 2026-08) -- she now shows via day.saints instead."""
 
         day = liturgics.Day(2018, 3, 25)
         await day.ainitialize()
 
         self.assertIn('Annunciation Most Holy Theotokos', day.feasts)
-        self.assertIn('St Mary of Egypt', day.feasts)
+        self.assertTrue(any('Mary of Egypt' in s for s in day.saints))
 
         self.assertEqual(day.feast_level, 7)
         self.assertEqual(day.fast_level, 2)
