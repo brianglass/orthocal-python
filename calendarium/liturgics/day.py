@@ -20,6 +20,15 @@ _YEAR_CLASSES = {
 }
 
 
+def _join_and(items):
+    """'meat' / 'meat and fish' / 'meat, fish, and dairy'."""
+    if len(items) <= 1:
+        return items[0] if items else ''
+    if len(items) == 2:
+        return f'{items[0]} and {items[1]}'
+    return f'{", ".join(items[:-1])}, and {items[-1]}'
+
+
 def _prefer_tradition(rows, tradition):
     """Resolve a mixed common/tradition-specific row list down to one row per slot.
 
@@ -358,6 +367,16 @@ class Day:
     @cached_property
     def fast_exception_desc(self):
         return FastExceptions[self.fast_exception]
+
+    @cached_property
+    def fast_abstentions(self):
+        return datetools.fast_abstentions_for(self.fast_level, self.fast_exception)
+
+    @cached_property
+    def fast_abstentions_desc(self):
+        if not self.fast_abstentions:
+            return ''
+        return f'Abstain from {_join_and(self.fast_abstentions)}'
 
     @cached_property
     def feast_level_desc(self):
@@ -755,6 +774,19 @@ class SlavicDay(Day):
                 if self.fast_exception == 2:
                     self.fast_exception -= 1
             case FastLevels.DormitionFast:
+                # Unlike the Apostles' and Nativity fasts, the Dormition Fast
+                # has no rank-based fish exception -- the Typikon's Vigil-rank
+                # fish rule (Ch. 32-33) is scoped to those two fasts only.
+                # Every source checked treats Dormition as strict as Great
+                # Lent with a single dated exception: the Transfiguration
+                # itself (Aug 6, feast_level 8, "Major feast Lord"). Cap
+                # anything baked onto a lower-ranked row -- e.g. a Vigil-rank
+                # saint's own commemoration, which grants no such exception
+                # here even though it would during the other two fasts --
+                # down to wine-and-oil.
+                if self.feast_level < 7 and self.fast_exception > 1:
+                    self.fast_exception = 1
+
                 # Allow wine and oil on weekends during the Dormition fast
                 if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
                     self.fast_exception += 1
@@ -810,6 +842,19 @@ class GreekDay(Day):
                 if self.fast_exception == 2:
                     self.fast_exception -= 1
             case FastLevels.DormitionFast:
+                # Unlike the Apostles' and Nativity fasts, the Dormition Fast
+                # has no rank-based fish exception -- the Typikon's Vigil-rank
+                # fish rule (Ch. 32-33) is scoped to those two fasts only.
+                # Every source checked treats Dormition as strict as Great
+                # Lent with a single dated exception: the Transfiguration
+                # itself (Aug 6, feast_level 8, "Major feast Lord"). Cap
+                # anything baked onto a lower-ranked row -- e.g. a Vigil-rank
+                # saint's own commemoration, which grants no such exception
+                # here even though it would during the other two fasts --
+                # down to wine-and-oil.
+                if self.feast_level < 7 and self.fast_exception > 1:
+                    self.fast_exception = 1
+
                 # Allow wine and oil on weekends during the Dormition fast
                 if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
                     self.fast_exception += 1

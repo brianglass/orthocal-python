@@ -2,6 +2,7 @@ import re
 
 from freezegun import freeze_time
 
+from django.core.cache import cache
 from django.test import TestCase
 from django.urls import reverse
 
@@ -10,6 +11,18 @@ from ..datetools import Calendar, Tradition
 
 class FeedTest(TestCase):
     fixtures = ['calendarium.json']
+
+    def setUp(self):
+        # The feed view is wrapped in cache_page (see calendarium/api_urls.py),
+        # backed by a real FileBasedCache outside local dev (local_settings.py's
+        # DummyCache override is gitignored, so it's never present in CI).
+        # Django's TestCase only rolls back the database between tests, not
+        # this cache -- without clearing it, an earlier test in this class
+        # hitting the same URL at real wall-clock time poisons the cache for
+        # every later test that requests it, including
+        # test_translation_changes_passage_content's frozen-time request
+        # below (it would silently get served that stale, non-frozen body).
+        cache.clear()
 
     def test_links(self):
         url = reverse('rss-feed-cal', kwargs={'cal': Calendar.Gregorian})

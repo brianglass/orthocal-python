@@ -49,7 +49,7 @@ api = API(
     renderer=Renderer(),
     docs=Redoc(),
     title='Orthocal API',
-    version='1.1',
+    version='1.2',
     docs_url='/docs/',
     description=(
         'Orthocal.info provides an API for looking up information about '
@@ -115,6 +115,16 @@ class DaySchemaLite(Schema):
     fast_level_desc: str = Field(..., description='Best combined with fast_exception_desc')
     fast_exception: int
     fast_exception_desc: str
+    fast_abstentions: List[str] = Field(
+        ...,
+        description=(
+            "Food categories to abstain from on this day, e.g. ['meat', 'fish', 'dairy', 'eggs']. "
+            "Derived from fast_level and fast_exception; empty on non-fasting days. A simpler "
+            "alternative to fast_exception_desc's traditional 'X is allowed' phrasing for readers "
+            "unfamiliar with it. Reflects typikon-strict practice -- consult your parish for any "
+            "pastorally-relaxed local exceptions."
+        ),
+    )
 
     saints: List[str]
     service_notes: List[str]

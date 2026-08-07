@@ -82,6 +82,91 @@ FastExceptions = (
     "Fast Free",
 )
 
+class DietaryAllowance(IntEnum):
+    """A clean, monotonic (strict -> fully free) dietary ladder.
+
+    FastExceptions above mixes real dietary rungs with app-internal
+    bookkeeping values (indices 1/3 and 2/4 are textually identical -- the
+    same rung reached via different weekday-adjustment code paths in
+    Day._apply_fasting_adjustments -- and 0/10 are "no annotation"/"no
+    overrides" sentinels rather than dietary rungs in their own right). This
+    enum is the clean version: exactly one member per distinct dietary
+    state, ordered by permissiveness.
+
+    WineOilCaviar is the Lazarus Saturday caviar exception; dietarily it
+    excludes the same categories as WineAndOil (caviar is an extra
+    allowance callout, not an additional abstention).
+    """
+
+    Strict        = 0
+    WineOnly      = 1
+    WineAndOil    = 2
+    WineOilCaviar = 3
+    FishWineOil   = 4
+    MeatFast      = 5
+    FastFree      = 6
+
+# The food categories abstained from at each rung, in a fixed
+# most-to-least-restrictive display order. Inverse of the exclusion sets
+# antiochian.org publishes in its own "ABSTAIN FROM ..." phrasing (see
+# ingest_antiochian.py's DIETARY_ALLOWANCE_TO_FAST_EXCEPTION for the
+# corresponding legacy fast_exception indices).
+ABSTENTIONS_BY_RUNG = {
+    DietaryAllowance.Strict:        ('meat', 'fish', 'dairy', 'eggs', 'wine', 'oil'),
+    DietaryAllowance.WineOnly:      ('meat', 'fish', 'dairy', 'eggs', 'oil'),
+    DietaryAllowance.WineAndOil:    ('meat', 'fish', 'dairy', 'eggs'),
+    DietaryAllowance.WineOilCaviar: ('meat', 'fish', 'dairy', 'eggs'),
+    DietaryAllowance.FishWineOil:   ('meat', 'dairy', 'eggs'),
+    DietaryAllowance.MeatFast:      ('meat',),
+    DietaryAllowance.FastFree:      (),
+}
+
+# Canonicalizes the legacy fast_exception index (0-11) onto one clean
+# DietaryAllowance rung. Verified against every value actually present in
+# the fixture data, not guessed: 0/9/10 all land on real strict-fast dates
+# (ordinary Wed/Fri, Great and Holy Friday, Theophany/Nativity Eve, Clean
+# Week/Holy Week); 8 ("Strict Fast (Wine and Oil)") lands on Beheading of
+# John the Baptist and Exaltation of the Cross, which are dietarily
+# identical to plain wine-and-oil (1/3), just labeled to flag that the day
+# would otherwise default to something stricter.
+FAST_EXCEPTION_TO_DIETARY_ALLOWANCE = {
+    0:  DietaryAllowance.Strict,
+    1:  DietaryAllowance.WineAndOil,
+    2:  DietaryAllowance.FishWineOil,
+    3:  DietaryAllowance.WineAndOil,
+    4:  DietaryAllowance.FishWineOil,
+    5:  DietaryAllowance.WineOnly,
+    6:  DietaryAllowance.WineOilCaviar,
+    7:  DietaryAllowance.MeatFast,
+    8:  DietaryAllowance.WineAndOil,
+    9:  DietaryAllowance.Strict,
+    10: DietaryAllowance.Strict,
+    11: DietaryAllowance.FastFree,
+}
+
+def fast_abstentions_for(fast_level, fast_exception):
+    """Maps (fast_level, fast_exception) to the food categories abstained
+    from, e.g. ['meat', 'fish', 'dairy', 'eggs'] -- the inverse of the
+    traditional "what's allowed" framing (fast_exception_desc), for readers
+    who don't already know what e.g. "Wine and Oil are Allowed" implies is
+    forbidden.
+
+    fast_level only distinguishes NoFast (nothing abstained) from every
+    actual fasting day; the specific dietary state is otherwise fully
+    determined by fast_exception alone, so there's no need to branch on
+    fast_level beyond that one check.
+
+    Reflects typikon-strict practice (e.g. plain, non-Lenten Wednesdays/
+    Fridays resolve to the full Strict rung); many jurisdictions relax this
+    pastorally, which this function does not attempt to model.
+    """
+
+    if fast_level == FastLevels.NoFast:
+        return []
+
+    rung = FAST_EXCEPTION_TO_DIETARY_ALLOWANCE[fast_exception]
+    return list(ABSTENTIONS_BY_RUNG[rung])
+
 FeastLevels = {
 	-1: "No Liturgy",
 	0:  "Liturgy",

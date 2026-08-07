@@ -21,6 +21,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
+        "fast_abstentions": [],
         "saints": [
             "St Gregory, Bishop of Nazianzus (374), father of St Gregory the Theologian"
         ],
@@ -134,6 +135,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
+        "fast_abstentions": [],
         "saints": [
             "Repose of St Seraphim of Sarov",
             "St Sylvester, Pope of Rome (335)",
@@ -233,6 +235,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
+        "fast_abstentions": [],
         "saints": [
             "Prophet Malachi",
             "Holy Martyr Gordius of Caesarea (4th c.)",
@@ -283,6 +286,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
+        "fast_abstentions": [],
         "saints": [
             "Synaxis of Seventy Apostles",
             "The Ethiopian Eunuch of Queen Candace",
@@ -333,6 +337,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 9,
         "fast_exception_desc": "Strict Fast",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "Holy Martyrs Theopemptus and Theonas (ca. 290)",
             "Our Venerable Mother Syncletike (4th c.)"
@@ -622,6 +634,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 11,
         "fast_exception_desc": "Fast Free",
+        "fast_abstentions": [],
         "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -716,6 +729,11 @@
         "fast_level_desc": "Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "fast_abstentions": [
+            "meat",
+            "dairy",
+            "eggs"
+        ],
         "saints": [
             "New Martyr Athanasius of Attalia (1700)",
             "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
@@ -781,6 +799,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Ven. George the Chozebite",
             "Our Venerable Mother Domnica (Domnina) (ca. 474)",
@@ -848,6 +867,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Martyr Polyeuctus of Melitene in Armenia",
             "Hieromartyr Philip, Metropolitan of Moscow",
@@ -905,6 +925,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "St Gregory of Nyssa",
             "St Theophan the Recluse"
@@ -954,6 +975,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "The Venerable Vitalis (5th c.)",
             "Venerable Michael of Klops, Fool for Christ (1456)"
@@ -1049,6 +1071,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "St Sava, Archbishop of Serbia",
             "Holy Martyr Tatiana (ca. 230)",
@@ -1097,6 +1127,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Martyrs Hermylus and Stratonicus",
             "Our Holy Father Maximos Kavsokalybites (the Hut-burner) (1365)",
@@ -1147,6 +1178,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "St Nino of Georgia",
             "Our Holy Father Sava (Sabbas), Enlightener and first Archbishop of Serbia (1236)",
@@ -1195,6 +1234,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Ven. Paul of Thebes and John Calabytes",
             "Ven. Pansophius of Alexandria, the Martyr",
@@ -1244,6 +1284,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Veneration of Chains of Apostle Peter"
         ],
@@ -1300,6 +1341,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "fast_abstentions": [],
         "saints": [
             "Pious Emperor Theodosius the Great (395)",
             "Our Holy Father Makarios (Kalogeras) of Patmos (1737)"
@@ -1395,6 +1437,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Ss Athanasius the Great and Cyril of Alexandria"
         ],
@@ -1441,6 +1484,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "Ven. Macarius the Great",
             "Our Holy Father Mark Eugenikos, Metropolitan of Ephesus and Confessor of the Orthodox Faith (1443)"
@@ -1490,6 +1541,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "fast_abstentions": [],
         "saints": [
             "Zacharias the New Martyr of Patra",
             "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st – 2nd c.)",
@@ -1586,6 +1638,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "Ven. Maximus the Confessor",
             "Holy Martyr Agnes of Rome (ca. 304)",
@@ -1634,6 +1694,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Apostle Timothy of the Seventy",
             "Holy Martyr Anastasius of Persia (628)"
@@ -1683,6 +1744,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Hieromartyr Clement and Martyr Agathangel"
         ],
@@ -1737,6 +1799,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Ven. Xenia of Rome",
             "Bl. Xenia of St Petersburg",
@@ -1787,6 +1850,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -1879,6 +1943,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "Ven. Xenophon and Mary",
             "St Simeon the Elder of Mount Sinai",
@@ -1930,6 +2002,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
@@ -2022,6 +2095,14 @@
         "fast_level_desc": "Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [
+            "meat",
+            "fish",
+            "dairy",
+            "eggs",
+            "wine",
+            "oil"
+        ],
         "saints": [
             "Ven. Ephrem the Syrian",
             "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)"
@@ -2069,6 +2150,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Trans. Rel. Ignatius the Godbearer",
             "St Laurence, Recluse of the Kiev Caves",
@@ -2121,6 +2203,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
+        "fast_abstentions": [],
         "saints": [
             "Saint Peter, King of Bulgaria (970)"
         ],
@@ -2215,6 +2298,7 @@
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
+        "fast_abstentions": [],
         "saints": [
             "Unmercenaries Cyrus and John",
             "Venerable Nicetas, hermit of the Kiev Caves and Bishop of Novgorod (1108)",

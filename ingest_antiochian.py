@@ -21,13 +21,13 @@ import json
 import re
 import time
 from datetime import date, timedelta
-from enum import IntEnum
 from pathlib import Path
 from urllib.parse import urljoin
 
 import requests
 
 from bible import books as bible_books
+from calendarium.datetools import DietaryAllowance
 
 CLIENT_ID = 'antiochian_api'
 CLIENT_SECRET = 'TAxhx@9tH(l^MgQ9FWE8}T@NWUT9U)'
@@ -119,31 +119,11 @@ def describe(day):
     )
 
 
-class DietaryAllowance(IntEnum):
-    """A clean, monotonic (strict -> fully free) dietary ladder.
-
-    calendarium.datetools.FastExceptions mixes real dietary rungs with
-    app-internal bookkeeping values (e.g. indices 1/3 and 2/4 are textually
-    identical -- they're the same rung reached via different weekday-
-    adjustment code paths in Day._apply_fasting_adjustments) and a couple of
-    meta values that aren't dietary rungs at all (0 is a "no annotation"
-    sentinel, 10 "No overrides" is a flag). This enum is the clean version:
-    exactly one member per distinct dietary state, ordered by permissiveness.
-
-    WineOilCaviar is Slavic-only (the Lazarus Saturday caviar exception) and
-    is unreachable from parse_fast_designation, since antiochian.org's Greek
-    tradition doesn't distinguish it from plain WineAndOil -- confirmed
-    empirically: their Lazarus Saturday response omits caviar entirely.
-    """
-
-    Strict        = 0   # abstain from everything
-    WineOnly      = 1   # wine allowed, no oil (e.g. Great and Holy Saturday)
-    WineAndOil    = 2   # wine and oil allowed
-    WineOilCaviar = 3   # + caviar; Slavic-only, see docstring
-    FishWineOil   = 4   # fish, wine, and oil allowed
-    MeatFast      = 5   # only meat excluded (e.g. Cheesefare week)
-    FastFree      = 6   # everything allowed, including meat
-
+# DietaryAllowance is imported from calendarium.datetools above (promoted
+# from here so calendarium.liturgics.day.Day.fast_abstentions can reuse the
+# same ladder). WineOilCaviar remains unreachable from this parser: antiochian.org's
+# Greek tradition doesn't distinguish it from plain WineAndOil -- confirmed
+# empirically, their Lazarus Saturday response omits caviar entirely.
 
 # Maps a clean rung back onto calendarium.datetools.FastExceptions' existing
 # indices, so parsed antiochian.org data can populate the current model

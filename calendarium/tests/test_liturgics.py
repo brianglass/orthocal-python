@@ -345,7 +345,13 @@ class TestGreekFasting(TestCase):
         weekly pattern as Slavic practice -- this is a regression guard
         against that accidentally changing. Ordinary weeks of Great Lent
         are NOT covered here -- see the wine-and-oil exception tests below
-        for three confirmed exceptions that do differ."""
+        for three confirmed exceptions that do differ.
+
+        Aug 9 (St Herman of Alaska's Vigil-rank feast, Slavic tradition)
+        needs no exclusion here: see
+        test_dormition_fast_grants_no_rank_based_fish_exception below for
+        why both traditions correctly agree at plain wine-and-oil despite
+        Slavic's Vigil rank."""
 
         dates = (
             [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
@@ -362,6 +368,51 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+    async def test_dormition_fast_grants_no_rank_based_fish_exception(self):
+        """Regression test for a data bug reported directly against
+        production: Aug 9, 2026 (St Herman of Alaska's Vigil-rank feast)
+        showed a fish allowance, contradicting antiochian.org and
+        goarch.org (both show wine-and-oil only).
+
+        The root cause wasn't bad data on any one row -- Herman's
+        Vigil rank (feast_level=5) is itself correct, confirmed against
+        OCA's own "Classes of Feasts" page. The bug was a wrong
+        *assumption* baked into fast_exception: the Typikon's Vigil-rank
+        fish exception (Ch. 32-33) is scoped to the Apostles' and Nativity
+        fasts only -- it doesn't exist for the Dormition Fast, which every
+        source treats as strict throughout except for one dated exception,
+        the Transfiguration itself (Aug 6). So this is fixed in
+        _apply_fasting_adjustments (the feast_level < 7 cap below
+        Transfiguration's own rank), not by editing any row's stored
+        fast_exception -- the same underlying data (Vigil rank included)
+        now produces the correct outcome for both traditions.
+
+        Aug 13 (Leavetaking of the Transfiguration, feast_level=4) is
+        caught by the same general rule for the same reason: no source
+        checked lists it as a second fish day -- every one names only
+        Aug 6."""
+
+        cases = [
+            (8, 9, 'Herman of Alaska Vigil feast'),
+            (8, 13, 'Leavetaking of the Transfiguration'),
+        ]
+
+        for month, day, label in cases:
+            with self.subTest(label):
+                slavic = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
+                self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+
+        # Transfiguration itself (Aug 6, feast_level=8) is the one dated
+        # exception and must be unaffected by the cap.
+        transfiguration = liturgics.Day(2026, 8, 6, tradition=Tradition.Slavic)
+        await transfiguration.ainitialize()
+        self.assertEqual(transfiguration.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
     async def test_lenten_wine_oil_exceptions_greek_stricter_than_slavic(self):
         """OCA's published Lenten rule grants a wine-and-oil exception on
@@ -688,6 +739,58 @@ class TestDay(TestCase):
             with self.subTest():
                 self.assertEqual(day.fast_level, fast)
                 self.assertEqual(day.fast_level_desc, description)
+
+    def test_fast_abstentions_for_every_fast_exception(self):
+        """fast_abstentions_for canonicalizes every legacy fast_exception
+        index (0-11) onto a dietary rung -- covers all values actually
+        present in the Day fixture data, not just the ones
+        test_fasting_levels happens to exercise via the Apostles Fast."""
+
+        data = [
+            (0,  ['meat', 'fish', 'dairy', 'eggs', 'wine', 'oil']),  # no annotation -> strict
+            (1,  ['meat', 'fish', 'dairy', 'eggs']),                 # wine and oil allowed
+            (2,  ['meat', 'dairy', 'eggs']),                         # fish, wine, oil allowed
+            (3,  ['meat', 'fish', 'dairy', 'eggs']),                 # duplicate text of 1
+            (4,  ['meat', 'dairy', 'eggs']),                         # duplicate text of 2
+            (5,  ['meat', 'fish', 'dairy', 'eggs', 'oil']),          # wine only
+            (6,  ['meat', 'fish', 'dairy', 'eggs']),                 # wine, oil, caviar (Lazarus Saturday)
+            (7,  ['meat']),                                          # meat fast (e.g. Cheesefare week)
+            (8,  ['meat', 'fish', 'dairy', 'eggs']),                 # "strict fast (wine and oil)"
+            (9,  ['meat', 'fish', 'dairy', 'eggs', 'wine', 'oil']),  # strict fast
+            (10, ['meat', 'fish', 'dairy', 'eggs', 'wine', 'oil']),  # no overrides -> strict
+            (11, []),                                                 # fast free
+        ]
+
+        for fast_exception, expected in data:
+            with self.subTest(fast_exception):
+                actual = datetools.fast_abstentions_for(datetools.FastLevels.LentenFast, fast_exception)
+                self.assertEqual(actual, expected)
+
+    def test_fast_abstentions_for_no_fast_is_always_empty(self):
+        for fast_exception in range(12):
+            with self.subTest(fast_exception):
+                actual = datetools.fast_abstentions_for(datetools.FastLevels.NoFast, fast_exception)
+                self.assertEqual(actual, [])
+
+    async def test_day_fast_abstentions_desc_on_real_dates(self):
+        """Integration check against real calendar dates, cross-referencing
+        each fast_exception's actual meaning rather than trusting the table
+        in isolation: Aug 29/Sep 14 carry fast_exception=8, Dec 24 carries 9,
+        and ordinary non-Lenten Wed/Fri carry 0."""
+
+        data = [
+            (2024, 8, 29, 'Abstain from meat, fish, dairy, and eggs'),   # Beheading of John the Baptist
+            (2024, 9, 14, 'Abstain from meat, fish, dairy, and eggs'),   # Exaltation of the Cross
+            (2024, 12, 24, 'Abstain from meat, fish, dairy, eggs, wine, and oil'),  # Nativity Eve
+            (2024, 10, 2, 'Abstain from meat, fish, dairy, eggs, wine, and oil'),   # ordinary Wednesday
+            (2018, 12, 26, ''),  # fast-free (Synaxis of the Theotokos)
+        ]
+
+        for year, month, day, expected in data:
+            d = liturgics.Day(year, month, day)
+            await d.ainitialize()
+            with self.subTest((year, month, day)):
+                self.assertEqual(d.fast_abstentions_desc, expected)
 
     async def test_eothinon(self):
         data = [
