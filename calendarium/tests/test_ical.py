@@ -84,10 +84,11 @@ class CalendarTest(TestCase):
     async def test_ical_content(self):
         """ical with timestamp of Jan 7, 2022 should have Synaxis of St. John.
 
-        Synaxis of St John the Baptist moved from Day.feast_name into an
-        ordinary DayCommemoration entry (feast_name/DayCommemoration
-        de-duplication audit, 2026-08) -- summary_title now joins it with
-        that day's other commemorations rather than showing it alone."""
+        Synaxis of St John the Baptist is Jan 7's sole significant
+        commemoration, so its original Day.feast_name text (restored after
+        the feast_name/DayCommemoration de-duplication audit briefly
+        blanked it, 2026-08) drives summary_title directly rather than
+        falling back to a join of that day's other commemorations."""
 
         def build_absolute_uri(url):
             return urljoin('http://testserver', url)
@@ -98,7 +99,7 @@ class CalendarTest(TestCase):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
                 self.assertIn('Synaxis', summary)
-                self.assertIn('Forerunner', summary)
+                self.assertIn('John the Baptist', summary)
                 break
         else:
             self.fail('No event for timestamp found')

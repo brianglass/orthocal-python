@@ -720,10 +720,12 @@
         "titles": [
             "Friday of the 29th week after Pentecost"
         ],
-        "summary_title": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.; New Martyr Athanasius of Attalia (1700); Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)",
+        "summary_title": "Synaxis of St John the Baptist",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Synaxis of St John the Baptist"
+        ],
         "fast_level": 1,
         "fast_level_desc": "Fast",
         "fast_exception": 2,
@@ -734,7 +736,6 @@
             "eggs"
         ],
         "saints": [
-            "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.",
             "New Martyr Athanasius of Attalia (1700)",
             "Our Venerable Father Cedd, Bishop of Essex and Abbot of Lastingham (664)"
         ],
@@ -1330,17 +1331,18 @@
         "titles": [
             "Monday of the 31st week after Pentecost"
         ],
-        "summary_title": "Our Holy Godbearing Father Anthony the Great (356).; Pious Emperor Theodosius the Great (395); Our Holy Father Makarios (Kalogeras) of Patmos (1737)",
+        "summary_title": "Ven. Godbearing Anthony the Great",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Ven. Godbearing Anthony the Great"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
         "fast_abstentions": [],
         "saints": [
-            "Our Holy Godbearing Father Anthony the Great (356).",
             "Pious Emperor Theodosius the Great (395)",
             "Our Holy Father Makarios (Kalogeras) of Patmos (1737)"
         ],
@@ -1529,10 +1531,12 @@
         "titles": [
             "Thursday of the 31st week after Pentecost"
         ],
-        "summary_title": "Zacharias the New Martyr of Patra; Our Venerable Father Euthymius the Great (473); Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st – 2nd c.)",
+        "summary_title": "Ven. Euthymius the Great",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Ven. Euthymius the Great"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
@@ -1540,7 +1544,6 @@
         "fast_abstentions": [],
         "saints": [
             "Zacharias the New Martyr of Patra",
-            "Our Venerable Father Euthymius the Great (473)",
             "Holy Martyrs Inna, Pinna and Rimma (Nirra) (1st – 2nd c.)",
             "Saint Peter the Tax Collector (6th c.)"
         ],
@@ -1837,18 +1840,18 @@
         "titles": [
             "Tuesday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Our Father among the Saints Gregory the Theologian, Archbishop of Constantinople (389)",
+        "summary_title": "St Gregory the Theologian",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "St Gregory the Theologian"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
         "fast_abstentions": [],
-        "saints": [
-            "Our Father among the Saints Gregory the Theologian, Archbishop of Constantinople (389)"
-        ],
+        "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
             4,
@@ -1989,18 +1992,18 @@
         "titles": [
             "Thursday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Translation of the relics (437) of St John Chrysostom.",
+        "summary_title": "Transl. Relics of St John Chrysostom",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Transl. Relics of St John Chrysostom"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
         "fast_abstentions": [],
-        "saints": [
-            "Translation of the relics (437) of St John Chrysostom."
-        ],
+        "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
             4,
@@ -2193,14 +2196,15 @@
         "summary_title": "32nd Sunday after Pentecost",
         "feast_level": 5,
         "feast_level_description": "Red cross half-circle (vigil typikon symbol)",
-        "feasts": null,
+        "feasts": [
+            "Synaxis 3 Hierarchs: Basil the Great, Gregory the Theologian, John Chrysostom"
+        ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 2,
         "fast_exception_desc": "Fish, Wine and Oil are Allowed",
         "fast_abstentions": [],
         "saints": [
-            "Synaxis of the Three Holy Hierarchs: St Basil the Great, St Gregory the Theologian, and St John Chrysostom",
             "Saint Peter, King of Bulgaria (970)"
         ],
         "service_notes": null,

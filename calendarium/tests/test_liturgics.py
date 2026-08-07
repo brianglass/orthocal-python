@@ -234,23 +234,32 @@ class TestTraditionOverlay(TestCase):
         pdist-anchored RaphaelBrooklyn float rather than a fixed month/day,
         since "first Saturday of November" moves every year.
 
-        Feb 27's feast_name was cleared by the feast_name/DayCommemoration
-        de-duplication audit (2026-08, tier 2) -- confirmed via
-        antiochian.org that Greek doesn't elevate him on this date at all,
-        so he now shows via the ordinary saints list instead. The Nov 1
-        Greek commemoration got its own DayCommemoration row in the same
-        audit's final pass (previously feast_name-only, no DayCommemoration
-        existed for this date at all) -- reuses the same Saint identity as
-        the Feb 27 entry, since it's the same person."""
+        Feb 27's feast_name was briefly cleared by the feast_name/
+        DayCommemoration de-duplication audit (2026-08, tier 2), then
+        restored -- Raphael is Feb 27's sole significant commemoration for
+        Slavic, so his original feast_name text belongs back in the title
+        rather than living only as an ordinary saints-list entry; his
+        DayCommemoration row's ordering went back to -1 (the "already
+        represented via feasts" convention) so he doesn't also show twice
+        in the saints list. Confirmed via antiochian.org that Greek doesn't
+        elevate him on this date at all, so Greek shows neither a feast nor
+        a saints-list entry for him here. The Nov 1 Greek commemoration got
+        its own DayCommemoration row in a later pass (previously
+        feast_name-only, no DayCommemoration existed for this date at all)
+        -- reuses the same Saint identity as the Feb 27 entry, since it's
+        the same person; unlike Feb 27, Nov 1 isn't Shape 1 (there's no
+        recovered original feast_name text for this date), so it stays an
+        ordinary saints-list entry rather than getting a restored title."""
 
         slavic_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Slavic)
         greek_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Greek)
         await slavic_feb27.ainitialize()
         await greek_feb27.ainitialize()
 
-        self.assertTrue(any('Raphael' in s for s in slavic_feb27.saints))
-        self.assertEqual(slavic_feb27.feasts, [])
-        self.assertNotIn('St Raphael Bishop of Brooklyn', greek_feb27.feasts)
+        self.assertEqual(slavic_feb27.feasts, ['St Raphael Bishop of Brooklyn'])
+        self.assertFalse(any('Raphael' in s for s in slavic_feb27.saints))
+        self.assertEqual(greek_feb27.feasts, [])
+        self.assertFalse(any('Raphael' in s for s in greek_feb27.saints))
 
         # Nov 1, 2025 is itself a Saturday.
         slavic_nov1 = liturgics.Day(2025, 11, 1, tradition=Tradition.Slavic)
@@ -1097,7 +1106,15 @@ class TestDay(TestCase):
     async def test_new_style_commemoration_unaffected_in_gregorian_mode(self):
         """In Gregorian mode self.month/self.day already equal the civil
         date, so new_style commemorations should behave exactly as any
-        other -- no exclusion, no re-fetch."""
+        other -- no exclusion, no re-fetch. Herman's canonization is
+        deliberately *not* one of the feast_name/DayCommemoration
+        de-duplication audit's (2026-08) restored dates, even though it's
+        Aug 9's sole significant commemoration like the other Shape 1
+        cases -- it's new_style (civil-date-anchored), and Day.feast_name
+        has no new_style gating, so putting it there would bleed onto the
+        Julian-shifted label date and reintroduce the #146 bug this
+        mechanism exists to prevent. It stays an ordinary saints-list
+        entry."""
 
         day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Gregorian)
         await day.ainitialize()
