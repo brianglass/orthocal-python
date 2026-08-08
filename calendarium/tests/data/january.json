@@ -10,12 +10,12 @@
         "titles": [
             "Saturday of the 28th week after Pentecost"
         ],
-        "summary_title": "Saturday before Theophany; Circumcision of Our Lord; St Basil the Great",
+        "summary_title": "Saturday before Theophany; Circumcision of Our Lord",
         "feast_level": 6,
         "feast_level_description": "Red cross circle (great feast typikon symbol)",
         "feasts": [
             "Saturday before Theophany",
-            "Circumcision of Our Lord; St Basil the Great"
+            "Circumcision of Our Lord"
         ],
         "fast_level": 0,
         "fast_level_desc": "No Fast",
@@ -23,6 +23,7 @@
         "fast_exception_desc": "Fast Free",
         "fast_abstentions": [],
         "saints": [
+            "Our Father among the Saints Basil the Great (379).",
             "St Gregory, Bishop of Nazianzus (374), father of St Gregory the Theologian"
         ],
         "service_notes": null,
@@ -965,18 +966,17 @@
         "titles": [
             "Tuesday of the 30th week after Pentecost"
         ],
-        "summary_title": "Ven. Theodosius the Great",
+        "summary_title": "Our Holy Father Theodosius the Cenobiarch (519); The Venerable Vitalis (5th c.); Venerable Michael of Klops, Fool for Christ (1456)",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
-        "feasts": [
-            "Ven. Theodosius the Great"
-        ],
+        "feasts": null,
         "fast_level": 0,
         "fast_level_desc": "No Fast",
         "fast_exception": 0,
         "fast_exception_desc": "",
         "fast_abstentions": [],
         "saints": [
+            "Our Holy Father Theodosius the Cenobiarch (519)",
             "The Venerable Vitalis (5th c.)",
             "Venerable Michael of Klops, Fool for Christ (1456)"
         ],
@@ -1063,7 +1063,7 @@
         "titles": [
             "Wednesday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Sava, Archbishop of Serbia",
+        "summary_title": "St Sava, Archbishop of Serbia; Holy Martyr Tatiana (ca. 230); Venerable Benedict Biscop, Abbot of Wearmouth (689-690)",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
         "feasts": null,
@@ -1119,7 +1119,7 @@
         "titles": [
             "Thursday of the 30th week after Pentecost"
         ],
-        "summary_title": "Martyrs Hermylus and Stratonicus",
+        "summary_title": "Martyrs Hermylus and Stratonicus; Our Holy Father Maximos Kavsokalybites (the Hut-burner) (1365); Our Holy Father Hilary, Bishop of Poitiers (369)",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1226,7 +1226,7 @@
         "titles": [
             "Saturday of the 30th week after Pentecost"
         ],
-        "summary_title": "Ven. Paul of Thebes and John Calabytes; Ven. Pansophius of Alexandria, the Martyr",
+        "summary_title": "Ven. Paul of Thebes and John Calabytes; Ven. Pansophius of Alexandria, the Martyr; Our Holy Father John Kalyvites (the hut-dweller) (ca. 450)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1476,7 +1476,7 @@
         "titles": [
             "Wednesday of the 31st week after Pentecost"
         ],
-        "summary_title": "Ven. Macarius the Great",
+        "summary_title": "Ven. Macarius the Great; Our Holy Father Mark Eugenikos, Metropolitan of Ephesus and Confessor of the Orthodox Faith (1443)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1630,7 +1630,7 @@
         "titles": [
             "Friday of the 31st week after Pentecost"
         ],
-        "summary_title": "Ven. Maximus the Confessor",
+        "summary_title": "Ven. Maximus the Confessor; Holy Martyr Agnes of Rome (ca. 304); Our Holy Father Maximos the Greek (1556)",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1686,7 +1686,7 @@
         "titles": [
             "Saturday of the 31st week after Pentecost"
         ],
-        "summary_title": "Apostle Timothy of the Seventy",
+        "summary_title": "Apostle Timothy of the Seventy; Holy Martyr Anastasius of Persia (628)",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -1791,7 +1791,7 @@
         "titles": [
             "Monday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg",
+        "summary_title": "Ven. Xenia of Rome; Bl. Xenia of St Petersburg; Our Holy Father Macedonian (ca. 430)",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
@@ -1935,7 +1935,7 @@
         "titles": [
             "Wednesday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Xenophon and Mary; St Simeon the Elder of Mount Sinai",
+        "summary_title": "Ven. Xenophon and Mary; St Simeon the Elder of Mount Sinai; St Ammonas of Egypt, disciple of St Anthony the Great (350)",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -2087,7 +2087,7 @@
         "titles": [
             "Friday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Ephrem the Syrian",
+        "summary_title": "Ven. Ephrem the Syrian; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2142,7 +2142,7 @@
         "titles": [
             "Saturday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Trans. Rel. Ignatius the Godbearer; St Laurence, Recluse of the Kiev Caves",
+        "summary_title": "Trans. Rel. Ignatius the Godbearer; St Laurence, Recluse of the Kiev Caves; St Andrei Rublev, iconographer (1430)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2290,7 +2290,7 @@
         "titles": [
             "Monday of the 33rd week after Pentecost"
         ],
-        "summary_title": "Unmercenaries Cyrus and John",
+        "summary_title": "Unmercenaries Cyrus and John; Venerable Nicetas, hermit of the Kiev Caves and Bishop of Novgorod (1108); Marcella of Rome (410)",
         "feast_level": 3,
         "feast_level_description": "Red squigg (doxology typikon symbol)",
         "feasts": null,

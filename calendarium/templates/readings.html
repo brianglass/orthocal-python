@@ -36,7 +36,7 @@
 
 {% block main %}
 	<header>
-		<h1>{{ day.gregorian_date|date|widont }}<span><br>{{ day.titles.0|widont }}</span></h1>
+		<h1>{{ day.gregorian_date|date:"l, F j, Y"|widont }}<span><br>{% if day.feasts %}{{ day.feasts|join:"; "|widont }}{% else %}{{ day.titles.0|widont }}{% endif %}</span></h1>
 
 		<p class="fasting">
 			{% filter widont %}
@@ -54,17 +54,6 @@
 			<ul>
 				{% for note in day.service_notes %}
 				<li>{{ note|widont }}</li>
-				{% endfor %}
-			</ul>
-		</section>
-		{% endif %}
-
-		{% if day.feasts %}
-		<section class="feasts">
-			<h2>Feasts</h2>
-			<ul>
-				{% for feast in day.feasts %}
-				<li>{{ feast|widont }}</li>
 				{% endfor %}
 			</ul>
 		</section>

@@ -13,7 +13,7 @@ from ..ical import generate_ical
 
 
 class CalendarTest(TestCase):
-    fixtures = ['calendarium.json']
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_ical(self):
         """ical endpoint should return 200."""
@@ -82,7 +82,13 @@ class CalendarTest(TestCase):
             self.assertEqual(match.kwargs['cal'], Calendar.Julian)
 
     async def test_ical_content(self):
-        """ical with timestamp of Jan 7, 2022 should have Synaxis of St. John."""
+        """ical with timestamp of Jan 7, 2022 should have Synaxis of St. John.
+
+        Synaxis of St John the Baptist is Jan 7's sole significant
+        commemoration, so its original Day.feast_name text (restored after
+        the feast_name/DayCommemoration de-duplication audit briefly
+        blanked it, 2026-08) drives summary_title directly rather than
+        falling back to a join of that day's other commemorations."""
 
         def build_absolute_uri(url):
             return urljoin('http://testserver', url)
@@ -92,7 +98,8 @@ class CalendarTest(TestCase):
         for event in cal.walk('vevent'):
             if event['dtstart'].dt == timestamp.date():
                 summary = event.decoded('summary')
-                self.assertEqual(summary, 'Synaxis of St John the Baptist')
+                self.assertIn('Synaxis', summary)
+                self.assertIn('John the Baptist', summary)
                 break
         else:
             self.fail('No event for timestamp found')

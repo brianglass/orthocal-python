@@ -19,6 +19,12 @@ _YEAR_CLASSES = {
     Tradition.Greek: GreekYear,
 }
 
+# How many commemorations Day.minimal_saints keeps before truncating --
+# purely a display-space constraint (the monthly calendar grid cell,
+# summary_title's fallback), not a statement about which commemorations
+# matter more. Adjust freely if the grid's cell size changes.
+MINIMAL_SAINTS_LIMIT = 3
+
 
 def _join_and(items):
     """'meat' / 'meat and fish' / 'meat, fish, and dairy'."""
@@ -297,22 +303,21 @@ class Day:
                 additive.append(dc)
             elif dc.day_native and dc.ordering >= 0:
                 day_native_by_day.setdefault(dc.day_id, []).append(dc)
-            elif not dc.day_native:
+            elif not dc.day_native and dc.ordering >= 0:
                 additive.append(dc)
             elif dc.day_id not in winning_day_ids:
-                # day_native with ordering < 0 (feast_name-matched), but its
-                # own Day row lost _prefer_tradition_days's preference for
-                # this request -- e.g. a saint shared via
-                # DayCommemoration.tradition='common' whose day_native
-                # entry lives on a different tradition's Day row than the
-                # one whose feast_name is actually being shown. Its
-                # feast_name isn't surfacing via self.feasts at all in that
-                # case, so fall back to showing it plainly rather than
-                # silently dropping it.
+                # ordering < 0 (feast_name-matched, day_native or not), but
+                # its own Day row lost _prefer_tradition_days's preference
+                # for this request -- e.g. a saint shared via
+                # DayCommemoration.tradition='common' whose entry lives on a
+                # different tradition's Day row than the one whose
+                # feast_name is actually being shown. Its feast_name isn't
+                # surfacing via self.feasts at all in that case, so fall
+                # back to showing it plainly rather than silently dropping it.
                 additive.append(dc)
-            # else: day_native with ordering < 0, and its own Day row is the
-            # one whose feast_name is being shown -- already represented via
-            # self.feasts; story-only, excluded here.
+            # else: ordering < 0 (day_native or not), and its own Day row is
+            # the one whose feast_name is being shown -- already
+            # represented via self.feasts; excluded here.
 
         self.saints = []
         # Parallel to self.saints, but pairs each title with the story's id
@@ -321,7 +326,6 @@ class Day:
         # itself -- it's consumed as plain strings elsewhere (ical.py, RSS).
         self.saint_links = []
         self.spoken_saints = []
-        self.minimal_saints = []
         for dcs in day_native_by_day.values():
             # Grouped by whichever Day row the entries originally came from
             # (dc.day_id may not be in self.days -- see the class docstring
@@ -332,12 +336,18 @@ class Day:
             self.saints.extend(titles)
             self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in dcs)
             self.spoken_saints.extend(dc.title for dc in dcs if _speech_worthy(dc))
-            if titles:
-                self.minimal_saints.append('; '.join(titles))
 
         self.saints.extend(dc.title for dc in additive)
         self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in additive)
         self.spoken_saints.extend(dc.title for dc in additive if _speech_worthy(dc))
+
+        # A length-capped view of self.saints for space-constrained displays
+        # (the monthly calendar grid, and summary_title's fallback below) --
+        # deliberately just a truncation, not a day_native/story-provenance
+        # distinction (that was the old design, and it broke down as soon as
+        # a "story-only" commemoration needed to be the thing shown, e.g.
+        # after a feast_name/DayCommemoration de-duplication).
+        self.minimal_saints = self.saints[:MINIMAL_SAINTS_LIMIT]
 
         # spoken_saints excludes only the story-less tradition='greek' overlay
         # (the bulk antiochian.org-harvested commemorations, see
