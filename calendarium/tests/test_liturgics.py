@@ -370,9 +370,9 @@ class TestGreekFasting(TestCase):
 
         Aug 9 (St Herman of Alaska's Vigil-rank feast, Slavic tradition)
         needs no exclusion here: see
-        test_dormition_fast_grants_no_rank_based_fish_exception below for
-        why both traditions correctly agree at plain wine-and-oil despite
-        Slavic's Vigil rank."""
+        test_dormition_fast_grants_no_rank_based_exception below for why
+        both traditions correctly agree at plain wine-and-oil (from the
+        weekend rule, not Herman's rank) despite Slavic's Vigil rank."""
 
         dates = (
             [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
@@ -390,11 +390,11 @@ class TestGreekFasting(TestCase):
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_dormition_fast_grants_no_rank_based_fish_exception(self):
+    async def test_dormition_fast_grants_no_rank_based_exception(self):
         """Regression test for a data bug reported directly against
         production: Aug 9, 2026 (St Herman of Alaska's Vigil-rank feast)
         showed a fish allowance, contradicting antiochian.org and
-        goarch.org (both show wine-and-oil only).
+        goarch.org (both show no such thing).
 
         The root cause wasn't bad data on any one row -- Herman's
         Vigil rank (feast_level=5) is itself correct, confirmed against
@@ -403,31 +403,39 @@ class TestGreekFasting(TestCase):
         fish exception (Ch. 32-33) is scoped to the Apostles' and Nativity
         fasts only -- it doesn't exist for the Dormition Fast, which every
         source treats as strict throughout except for one dated exception,
-        the Transfiguration itself (Aug 6). So this is fixed in
-        _apply_fasting_adjustments (the feast_level < 7 cap below
-        Transfiguration's own rank), not by editing any row's stored
-        fast_exception -- the same underlying data (Vigil rank included)
-        now produces the correct outcome for both traditions.
+        the Transfiguration itself (Aug 6).
 
-        Aug 13 (Leavetaking of the Transfiguration, feast_level=4) is
-        caught by the same general rule for the same reason: no source
-        checked lists it as a second fish day -- every one names only
-        Aug 6."""
+        First fix attempt capped any rank-based exception down to
+        wine-and-oil rather than removing it outright -- also wrong,
+        confirmed by checking antiochian.org/liturgicday/4644 directly:
+        Aug 13, 2026 (Leavetaking of the Transfiguration, feast_level=4,
+        a Thursday with no weekend exception in play) is listed there as a
+        full abstention day, no wine or oil either. Dormition grants
+        *no* exception at all from feast rank alone -- only the
+        Transfiguration's own date, and the separate weekend allowance,
+        are real exceptions. Aug 9, 2026 happens to be a Sunday, so it
+        still shows wine-and-oil -- via the weekend rule, not Herman's
+        rank -- which is why both cases below need different expected
+        values despite both starting from a similar-looking Vigil/
+        Polyeleos rank."""
 
-        cases = [
-            (8, 9, 'Herman of Alaska Vigil feast'),
-            (8, 13, 'Leavetaking of the Transfiguration'),
-        ]
+        # Aug 9, 2026 is a Sunday: wine-and-oil here comes from the
+        # weekend rule, not from Herman's Vigil rank.
+        slavic_herman = liturgics.Day(2026, 8, 9, tradition=Tradition.Slavic)
+        greek_herman = liturgics.Day(2026, 8, 9, tradition=Tradition.Greek)
+        await slavic_herman.ainitialize()
+        await greek_herman.ainitialize()
+        self.assertEqual(slavic_herman.fast_exception_desc, 'Wine and Oil are Allowed')
+        self.assertEqual(greek_herman.fast_exception_desc, 'Wine and Oil are Allowed')
 
-        for month, day, label in cases:
-            with self.subTest(label):
-                slavic = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
-                greek = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
-
-                self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
-                self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+        # Aug 13, 2026 is a Thursday: no weekend rule, no rank-based
+        # exception -- full abstention, matching antiochian.org.
+        slavic_leavetaking = liturgics.Day(2026, 8, 13, tradition=Tradition.Slavic)
+        greek_leavetaking = liturgics.Day(2026, 8, 13, tradition=Tradition.Greek)
+        await slavic_leavetaking.ainitialize()
+        await greek_leavetaking.ainitialize()
+        self.assertEqual(slavic_leavetaking.fast_exception_desc, '')
+        self.assertEqual(greek_leavetaking.fast_exception_desc, '')
 
         # Transfiguration itself (Aug 6, feast_level=8) is the one dated
         # exception and must be unaffected by the cap.
