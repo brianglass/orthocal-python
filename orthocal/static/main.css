@@ -6,6 +6,8 @@ html {
 }
 body {
     margin: 0;
+    background-color: #fdfbf5;
+    overflow-x: hidden;
 }
 h1, h2, h3, h4 {
     text-align: center;
@@ -14,55 +16,180 @@ h1, h2, h3, h4 {
 .rubric {
     color: #a00;
 }
+.gist {
+    display: block;
+    border: 1px solid #d4cfc4;
+    border-radius: 3px;
+    margin: 1em 0;
+    overflow: hidden;
+}
+.gist .gist-file {
+    margin-bottom: 0 !important;
+}
 
 /* Site title and navigation */
-body > header {
+.topbar {
+    background-color: #fdfbf5;
+    border-bottom: 1px solid #bbb3a0;
+    container-type: inline-size;
+}
+.topbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5em 1.5em;
+    width: 75%;
+    margin: 0 auto;
+    padding: 1.3em 0 0.7em 0;
+}
+.topbar-inner > header {
     margin: 0;
-    padding: 1.75em 0 0.25em 0;
-    text-align: center;
-    font-size: 2.5em;
+    padding: 0;
+    text-align: left;
+    font-size: clamp(1.2em, calc(8.6cqw - 10px), 2.1em);
     color: #666;
 	font-weight: bold;
     font-variant: small-caps;
+    min-width: 0;
+    white-space: nowrap;
 }
-body > header a {
+.topbar-inner > header a {
     text-decoration: none;
     color: #666;
     text-shadow: 2px 2px 4px #ddd;
 }
-body > nav {
+.topbar-inner > nav {
     margin: 0;
     padding: 0;
-    text-align: center;
+    text-align: right;
 }
-body > nav ul {
+.topbar-inner > nav ul {
     list-style: none;
-    margin: 0 0 1.5em 0;
+    margin: 0;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4em;
+    justify-content: flex-end;
 }
-body > nav li {
+.topbar-inner > nav li {
     display: inline;
-    border-right: 3px solid #ddd;
-    padding: 8px;
-    margin-left: -4px;
     text-transform: lowercase;
 }
-body > nav li:last-child {
-    border-right: none;
-}
-body > nav a:link, body > nav a:visited {
+.topbar-inner > nav a:link, .topbar-inner > nav a:visited {
     text-decoration: none;
     color: #777;
     transition-property: color, text-shadow;
     transition-duration: 0.3s;
 }
-body > nav a:hover {
+.topbar-inner > nav a:hover {
+    color: black;
+    text-shadow: 2px 2px 3px #bbb;
+}
+
+/* Hamburger menu -- hidden until the site nav would wrap */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+    margin-right: -4px;
+    flex-shrink: 0;
+}
+.nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: #777;
+    margin: 5px 0;
+    transition: background-color 0.2s;
+}
+.nav-toggle:hover span {
+    background-color: #333;
+}
+@media (max-width: 1250px) {
+    .topbar-inner {
+        align-items: center;
+        position: relative;
+    }
+    .topbar-inner > header {
+        max-width: calc(100% - 4rem);
+    }
+    .nav-toggle {
+        display: block;
+    }
+    .topbar-inner > nav {
+        text-align: right;
+        margin-left: -1.5em;
+    }
+    .topbar-inner > nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0;
+        box-sizing: border-box;
+        width: 12em;
+        background-color: #fdfbf5;
+        border: 1px solid #bbb3a0;
+        box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
+        z-index: 20;
+    }
+    .topbar-inner > nav.nav-open ul {
+        display: flex;
+    }
+    .topbar-inner > nav li {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0.4em 1em;
+    }
+}
+/* Last resort: viewport too narrow even for the smallest scaled title font
+   to fit on one line -- allow it to wrap after all. */
+@media (max-width: 400px) {
+    .topbar-inner > header {
+        white-space: normal;
+    }
+}
+
+/* Page-specific navigation (day/month nav, tradition/calendar toggles) --
+   lives inside .topbar, as a second row below the title/site-nav row.
+   Day/month nav sits left, tradition/calendar toggles sit right, on one
+   compressed row. */
+nav.page-nav {
+    width: 75%;
+    margin: 0 auto;
+    padding: 0.4em 0 0.5em 0;
+}
+.page-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5em 1.5em;
+}
+.day-nav {
+    display: flex;
+    flex-wrap: wrap;
+}
+nav.page-nav a:link, nav.page-nav a:visited {
+    text-decoration: none;
+    color: #777;
+    transition-property: color, text-shadow;
+    transition-duration: 0.3s;
+}
+nav.page-nav a:hover {
     color: black;
     text-shadow: 2px 2px 3px #bbb;
 }
 
 /* Readings and Calendar navigation */
-body > nav a.cal-nav {
+nav.page-nav a.cal-nav {
     display: inline-block;
     padding: 2px 6px;
     margin: 2px;
@@ -70,7 +197,7 @@ body > nav a.cal-nav {
     transition-property: color, border, text-shadow;
     transition-duration: 0.4s;
 }
-body > nav a.cal-nav:hover {
+nav.page-nav a.cal-nav:hover {
     color: #666;
     cursor: pointer;
 }
@@ -79,8 +206,7 @@ a.active {
 }
 
 main#orthocal {
-    margin: 1em auto 4em auto;
-    border-top: 8px solid #eee;
+    margin: 0 auto 4em auto;
 	width: 75%;
     min-height: 100%;
 }
@@ -92,10 +218,17 @@ main#orthocal p {
 main#orthocal iframe {
     margin: 4% auto;
     width: 100%;
+    border: 1px solid #d4cfc4;
+    border-radius: 3px;
 }
 main#orthocal > header {
-    padding-top: 1.5em;
-    padding-bottom: 1em;
+    background-color: #f3f1ea;
+    border-bottom: 1px solid #bbb3a0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding: 2.2em calc(50vw - 50%) 2.2em calc(50vw - 50%);
+    box-sizing: border-box;
 }
 main#orthocal > header h1 {
 	margin-top: 0;
@@ -129,8 +262,6 @@ main#orthocal > header h1 span {
 	grid-template-columns: 1fr 1fr;
 	gap: 3em;
 	align-items: start;
-	border-top: 3px solid #ddd;
-	padding-top: 1.5em;
 	margin-top: 1.5em;
 }
 section.readings h2 {
@@ -216,11 +347,10 @@ label {
 }
 .toggle-row {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	gap: 1em;
 	flex-wrap: wrap;
-	margin: 0.5em 0;
 }
 .segmented-control {
 	display: inline-flex;
@@ -292,22 +422,22 @@ table.month {
 table.month td {
 	margin: 0;
 	padding: 0;
-	border: 1px solid #ccc;
+	border: 1px solid #d4cfc4;
 	font-size: 0.75em;
 	vertical-align: top;
-	background-color: #f9f9f9;
+	background-color: #f3f1ea;
 	text-align: left;
     width: 14.28%;
 }
 table.month td.fast {
-	background-color: #eee;
+	background-color: #e7e5de;
 }
 table.month td.fast:hover {
-	background-color: #ddd !important;
+	background-color: #e2dfd7 !important;
 }
 table.month td.noday {
 	border: 0;
-	background-color: white;
+	background-color: #fdfbf5;
 }
 table.month tr td p {
 	text-indent: 0 !important;
@@ -316,7 +446,7 @@ table.month tr td p {
 }
 table.month tr th {
 	text-align: center;
-	color: gray;
+	color: #8a8370;
 }
 table.month tr:first-child th {
 	font-size: 1.5em;
@@ -389,6 +519,6 @@ table.month td.thu:hover,
 table.month td.fri:hover,
 table.month td.sat:hover
 {
-	background-color: #eee;
+	background-color: #e7e5de;
     cursor: pointer;
 }

@@ -19,18 +19,22 @@
 {% endblock %}
 
 {% block extra_nav %}
-	<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
-	<a class="cal-nav" href="{% url "index" %}">Today</a>
-	<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
-
-	<div class="toggle-row">
-		<div class="segmented-control">
-			<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
-			<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek<span class="status-badge">New</span></label>
+	<div class="page-nav-row">
+		<div class="day-nav">
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
+			<a class="cal-nav" href="{% url "index" %}">Today</a>
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
 		</div>
-		<div class="segmented-control">
-			<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
-			<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+
+		<div class="toggle-row">
+			<div class="segmented-control">
+				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
+				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek<span class="status-badge">New</span></label>
+			</div>
+			<div class="segmented-control">
+				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
+				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+			</div>
 		</div>
 	</div>
 {% endblock %}

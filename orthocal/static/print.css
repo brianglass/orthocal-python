@@ -8,10 +8,10 @@ body {
     padding: 0;
     margin: 1in 0 0 0;
 }
-body > header {
+.topbar {
     display: none;
 }
-body > nav {
+nav.page-nav {
     display: none;
 }
 main#orthocal {
