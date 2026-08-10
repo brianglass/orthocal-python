@@ -49,25 +49,47 @@
 		{% block head %}{% endblock %}
     </head>
     <body>
-		<header><a href="/"><span class="rubric">O</span>rthodox <span class="rubric">C</span>alendar</a></header>
+		<div class="topbar">
+			<div class="topbar-inner">
+				<header><a href="/"><span class="rubric">O</span>rthodox <span class="rubric">C</span>alendar</a></header>
 
-		<nav>
-			<ul>
-				<li><a href="{% url "index" %}">Daily Readings</a></li>
-				<li><a href="{% url "calendar-default" %}">Calendar</a></li>
-				<li><a href="{% url "alexa" %}">Alexa</a></li>
-				<li><a href="{% url "api" %}">API</a></li>
-				<li><a href="{% url "ai-assistant" %}">AI Assistant</a></li>
-				<li><a href="{% url "feeds" %}">Feeds</a></li>
-				<li><a href="{% url "about" %}">About</a></li>
-			</ul>
+				<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+					<span></span><span></span><span></span>
+				</button>
 
-			{% block extra_nav %}{% endblock %}
-		</nav>
+				<nav>
+					<ul>
+						<li><a href="{% url "index" %}">Readings</a></li>
+						<li><a href="{% url "calendar-default" %}">Calendar</a></li>
+						<li><a href="{% url "alexa" %}">Alexa</a></li>
+						<li><a href="{% url "api" %}">API</a></li>
+						<li><a href="{% url "ai-assistant" %}">AI</a></li>
+						<li><a href="{% url "feeds" %}">Feeds</a></li>
+						<li><a href="{% url "about" %}">About</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<nav class="page-nav">
+				{% block extra_nav %}{% endblock %}
+			</nav>
+		</div>
 
 		<main id="orthocal">
         {% block main %}{% endblock %}
 		</main>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var toggle = document.querySelector('.nav-toggle');
+				var nav = toggle && toggle.nextElementSibling;
+				if (!toggle || !nav) return;
+				toggle.addEventListener('click', function () {
+					var isOpen = nav.classList.toggle('nav-open');
+					toggle.setAttribute('aria-expanded', isOpen);
+				});
+			});
+		</script>
 
         {% block scripts %}{% endblock %}
     </body>
