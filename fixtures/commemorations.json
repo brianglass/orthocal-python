@@ -1017,14 +1017,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5246,
-  "fields": {
-    "name": "Nine Martyrs at Cyzicus",
-    "full_name": "Apostles Jason and Sosipater"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5247,
   "fields": {
     "name": "Prophet Jeremiah",
@@ -15548,23 +15540,7 @@
     "new_style": false,
     "day_native": true,
     "ordering": 0,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 5355,
-  "fields": {
-    "day": 555,
-    "saint": 5246,
-    "title": "Nine Martyrs at Cyzicus",
-    "story": "<p>Both were disciples of the Apostle Paul, who mentions them in his Epistle to the Romans: “Jason and Sosipater my kinsmen greet you” (16:21). Jason was born in Tarsus of Cilicia (as was the Apostle Paul), and became bishop of that town. Sosipater was from Patras of Achaia (now Greece), and became bishop of Iconium. After serving their flocks for many years, these two travelled together to Corfu, where they were the first to preach the Gospel. They were furiously opposed by the ruler of that island, but when he died, the new king came to faith in Christ and was baptised with the name Sebastian. Jason and Sosipater remained on Corfu, freely preaching the Gospel and building up the Church until they reposed in great old age. An ancient church in the city of Corfu, dating from the first centuries, bears inscriptions that mention the Saints by name.</p>\n<p><i>They are commemorated April 28 on the Slavic calendar.</i></p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -23251,16 +23227,16 @@
   "model": "commemorations.daycommemoration",
   "pk": 5862,
   "fields": {
-    "day": 554,
+    "day": 555,
     "saint": 5733,
     "title": "The Nine Martyrs at Cyzicus (3rd c.)",
     "story": "<p>These nine holy Martyrs were from various places, but when they refused to offer sacrifice to idols or to deny Christ, all were beheaded together in Cyzicus, a city in Asia Minor on the coast of the Sea of Marmara. Their names were Theognis, Rufus, Antipater, Theostoichus, Artemas, Magnus, Theodotus, Thaumasilas and Philemon. During the reign of the Emperor Constantine a church was built in Cyzicus in their honor, and their incorrupt relics were deposited there.</p>\n<p><i>They are commemorated April 29 on the Slavic calendar.</i></p>",
     "rank": 0,
     "high_rank": false,
     "new_style": false,
-    "day_native": false,
+    "day_native": true,
     "ordering": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -40973,6 +40949,38 @@
     "day_native": false,
     "ordering": 2,
     "tradition": "slavic"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7245,
+  "fields": {
+    "day": 555,
+    "saint": 5245,
+    "title": "Jason and Sosipater the Apostles of the 70 and their Companions",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": true,
+    "ordering": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7246,
+  "fields": {
+    "day": 554,
+    "saint": 5733,
+    "title": "The Holy Nine Martyrs of Cyzicus",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": true,
+    "ordering": 2,
+    "tradition": "greek"
   }
 }
 ]
