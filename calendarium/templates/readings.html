@@ -23,15 +23,16 @@
 	<a class="cal-nav" href="{% url "index" %}">Today</a>
 	<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
 
-	<br>
-
-	<label class="tradition-label-with-badge" title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
-	<label class="tradition-label-with-badge" title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek <span class="status-badge">New</span></label>
-
-	<br>
-
-	<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
-	<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+	<div class="toggle-row">
+		<div class="segmented-control">
+			<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
+			<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek<span class="status-badge">New</span></label>
+		</div>
+		<div class="segmented-control">
+			<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
+			<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+		</div>
+	</div>
 {% endblock %}
 
 {% block main %}
@@ -59,6 +60,24 @@
 		</section>
 		{% endif %}
 
+		{% if day.readings %}
+		<section class="scripture-list">
+			<h2>Scripture Readings</h2>
+			<ul>
+				{% for reading in day.readings %}
+				<li>
+					<a href="#reading-{{ reading.id }}">
+						{% filter widont %}
+						{{ reading.pericope.display }}
+						({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+						{% endfilter %}
+					</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</section>
+		{% endif %}
+
 		{% if day.saints %}
 		<section class="commemorations">
 			<h2>Commemorations</h2>
@@ -71,6 +90,7 @@
 		{% endif %}
 	</header>
 
+	<div class="readings-columns">
 	<section class="readings">
 		{% if day.language == "en" %}
 		<h1>Scripture Readings</h1>
@@ -92,7 +112,7 @@
 		{% endif %}
 
 		{% for reading in day.readings %}
-		<article class="passage">
+		<article class="passage" id="reading-{{ reading.id }}">
 			<h2>
 				{% filter widont %}
 				{{ reading.pericope.display }}
@@ -123,6 +143,7 @@
 			{% endfor %}
 		{% endif %}
 	</section>
+	</div>
 {% endblock %}
 
 {% block scripts %}

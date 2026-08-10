@@ -124,13 +124,23 @@ main#orthocal > header h1 span {
     text-decoration: underline;
 }
 
-section.readings {
+.readings-columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3em;
+	align-items: start;
 	border-top: 3px solid #ddd;
 	padding-top: 1.5em;
 	margin-top: 1.5em;
 }
 section.readings h2 {
     color: #a00;
+}
+@media (max-width: 800px) {
+	.readings-columns {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
 }
 
 .fasting {
@@ -170,13 +180,10 @@ section.readings h2 {
     padding-top: 1.5em;
     border-top: 5px solid #eee;
 }
-.commemorations li, .feasts li, .day > p {
+.commemorations li, .scripture-list li, .feasts li, .day > p {
     color: #555;
 }
 .passage {
-    columns: 3 20em;
-    column-gap: 2em;
-    column-rule: 1px solid #ddd;
     padding-top: 2em;
     widows: 3;
     orphans: 3;
@@ -207,13 +214,49 @@ section.readings h2 {
 label {
     font-size: 0.75em;
 }
-.tradition-label-with-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3em;
+.toggle-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+	flex-wrap: wrap;
+	margin: 0.5em 0;
 }
-label input[type="radio"] {
-    accent-color: #888;
+.segmented-control {
+	display: inline-flex;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.segmented-control label {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+	margin: 0;
+	padding: 3px 14px;
+	color: #666;
+	cursor: pointer;
+	transition-property: background-color, color;
+	transition-duration: 0.2s;
+}
+.segmented-control label:not(:last-child) {
+	border-right: 1px solid #ccc;
+}
+.segmented-control label:hover {
+	background-color: #eee;
+}
+.segmented-control input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.segmented-control label:has(input:checked) {
+	background-color: #a00;
+	color: #fff;
+}
+.segmented-control label:has(input:checked):hover {
+	background-color: #a00;
 }
 .status-badge {
 	display: inline-block;
@@ -228,14 +271,14 @@ label input[type="radio"] {
 	margin-left: 2px;
 	vertical-align: middle;
 }
-.service-notes ul, .commemorations ul, .feasts ul {
+.service-notes ul, .commemorations ul, .scripture-list ul, .feasts ul {
     text-align: center;
     margin: 0;
     padding: 0;
 	list-style-type: none;
 	text-wrap: balance;
 }
-.service-notes h2, .feasts h2, .commemorations h2 {
+.service-notes h2, .feasts h2, .commemorations h2, .scripture-list h2 {
     margin-bottom: 0em;
 	font-size: 1.2em;
 }
@@ -282,20 +325,20 @@ table.month tr:first-child th {
 	padding-bottom: 1em;
 }
 
-.commemorations li, .feasts li, .service-notes li {
+.commemorations li, .scripture-list li, .feasts li, .service-notes li {
 	display: inline;
     color: #a00;
 }
-.commemorations li + li:before, .feasts li + li:before {
+.commemorations li + li:before, .scripture-list li + li:before, .feasts li + li:before {
 	content: "●";
     color: black;
 	padding: 0.5em;
 }
-.commemorations li a {
+.commemorations li a, .scripture-list li a {
 	color: inherit;
 	text-decoration: none;
 }
-.commemorations li a:hover {
+.commemorations li a:hover, .scripture-list li a:hover {
 	text-decoration: underline;
 }
 
