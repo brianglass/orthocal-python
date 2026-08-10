@@ -13376,6 +13376,22 @@
   }
 },
 {
+  "model": "commemorations.saint",
+  "pk": 7106,
+  "fields": {
+    "name": "Martyrs Felicissimus and Agapitus, Deacons",
+    "full_name": "Martyrs Felicissimus and Agapitus, Deacons (258)"
+  }
+},
+{
+  "model": "commemorations.saint",
+  "pk": 7107,
+  "fields": {
+    "name": "Blessed Lawrence, Fool-for-Christ, at Kaluga",
+    "full_name": "Blessed Lawrence, Fool-for-Christ, at Kaluga (1515)"
+  }
+},
+{
   "model": "commemorations.daycommemoration",
   "pk": 5209,
   "fields": {
@@ -17285,7 +17301,7 @@
   "fields": {
     "day": 658,
     "saint": 5354,
-    "title": "Holy Martyr and Archdeacon Lawrence of Rome",
+    "title": "Holy Martyrs Archdeacon Lawrence and Pope Sixtus of Rome",
     "story": "<p>“This Saint, who was born in Spain, was the Archdeacon of the Church of Rome, caring for the sacred vessels of the Church and distributing money to the needy. About the year 257, a harsh persecution was raised up against the Christians by Valerian. Pope Sixtus, who was from Athens, was commanded to worship the idols, and refused; before his martyrdom by beheading, he committed to Laurence all the sacred vessels of the Church. When Laurence was arrested and brought before the Prefect, he was questioned concerning the treasures of the Church; he asked for three days’ time to prepare them. He then proceeded to gather all the poor and needy, and presented them to the Prefect and said, “Behold the treasures of the Church.” The Prefect became enraged at this and gave command that Laurence be racked, then scourged with scorpions (a whip furnished with sharp iron points — compare II Chron. 10:11), then stretched out on a red-hot iron grill. But the courageous athlete of Christ endured without groaning. After he had been burned on one side, he said, “My body is done on one side; turn me over on the other.” And when this had taken place, the Martyr said to the tyrants, “My flesh is now well done, you may taste of it.” And when he had said this, and had prayed for his slayers in imitation of Christ, he gave up his spirit on August 10, 258.” (<i>Great Horologion</i>). His icon shows him stretched on the grill.</p>",
     "rank": 0,
     "high_rank": false,
@@ -40925,6 +40941,38 @@
     "day_native": false,
     "ordering": 0,
     "tradition": "greek"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7243,
+  "fields": {
+    "day": 658,
+    "saint": 7106,
+    "title": "Martyrs Felicissimus and Agapitus, Deacons (258)",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": false,
+    "ordering": 1,
+    "tradition": "common"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7244,
+  "fields": {
+    "day": 658,
+    "saint": 7107,
+    "title": "Blessed Lawrence, Fool-for-Christ, at Kaluga (1515)",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": false,
+    "ordering": 2,
+    "tradition": "slavic"
   }
 }
 ]
