@@ -36,8 +36,8 @@ table.month tr:first-child th {
     orphans: 2;
     column-rule: 0;
 }
-section.readings {
-    border: 0;
+.readings-columns {
+    border-top: 0;
 }
 main#orthocal > header h1 {
 	font-size: 200%;
