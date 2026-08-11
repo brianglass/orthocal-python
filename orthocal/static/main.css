@@ -1,12 +1,7 @@
 html {
     font-size: 20px;
     font-family: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
-    /* Reserve the scrollbar's gutter on both edges so centered content
-       doesn't shift left when a page happens to be short enough not to
-       scroll (overflow-y:scroll alone reserves the gutter on the right
-       only, throwing centered content off by half a scrollbar-width). */
     overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
 }
 body {
     margin: 0;
@@ -230,13 +225,24 @@ main#orthocal iframe {
     border-radius: 3px;
 }
 main#orthocal > header {
+    position: relative;
+    padding: 2.2em 0;
+    box-sizing: border-box;
+}
+main#orthocal > header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* Spread far past the element's own edges rather than computing an
+       exact 100vw breakout -- vw units are unreliable on some mobile
+       browsers, which was throwing this off-center. body's overflow-x:
+       hidden clips the excess, so precision here doesn't matter. */
+    left: -100vmax;
+    right: -100vmax;
     background-color: #f3f1ea;
     border-bottom: 1px solid #bbb3a0;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding: 2.2em calc(50vw - 50%) 2.2em calc(50vw - 50%);
-    box-sizing: border-box;
+    z-index: -1;
 }
 main#orthocal > header h1 {
 	margin-top: 0;
@@ -271,6 +277,9 @@ main#orthocal > header h1 span {
 	gap: 3em;
 	align-items: start;
 	margin-top: 1.5em;
+}
+.readings-columns > section.readings {
+	min-width: 0;
 }
 section.readings h2 {
     color: #a00;
@@ -310,6 +319,7 @@ section.readings h2 {
 	padding: 2px 6px;
 	cursor: pointer;
 	vertical-align: middle;
+	max-width: 100%;
 }
 .translation-picker select:hover {
 	border-color: #888;
