@@ -1,9 +1,11 @@
 from datetime import date
+from types import SimpleNamespace
 
 from django.test import TestCase
 
 from .. import datetools, liturgics, models
 from ..datetools import Tradition, Translation
+from ..liturgics.day import _has_story
 from bible.models import Verse
 
 
@@ -632,6 +634,25 @@ class TestGreekLukanNumbering(TestCase):
         leavetaking_sunday = sunday_year.theophany + 8
         self.assertEqual(datetools.weekday_from_pdist(leavetaking_sunday), datetools.Weekday.Sunday)
         self.assertNotIn(leavetaking_sunday, sunday_year.floats)
+
+
+class TestHasStory(TestCase):
+    """A handful of DayCommemoration.story rows are exactly '<p></p>' --
+    non-empty and non-None, so truthy as a plain Python string, but with no
+    visible text once rendered. _has_story exists so those rows don't earn a
+    clickable commemoration title or an empty entry in the story panel (see
+    day.saint_links and day.stories)."""
+
+    def test_none_and_empty_are_not_a_story(self):
+        self.assertFalse(_has_story(SimpleNamespace(story=None)))
+        self.assertFalse(_has_story(SimpleNamespace(story='')))
+
+    def test_empty_markup_is_not_a_story(self):
+        self.assertFalse(_has_story(SimpleNamespace(story='<p></p>')))
+        self.assertFalse(_has_story(SimpleNamespace(story='<p>  </p>\n')))
+
+    def test_real_content_is_a_story(self):
+        self.assertTrue(_has_story(SimpleNamespace(story='<p>He was a deacon.</p>')))
 
 
 class TestDay(TestCase):

@@ -5,6 +5,7 @@ from datetime import date, timedelta
 from asgiref.sync import async_to_sync
 from django.db.models import Q
 from django.utils.functional import cached_property
+from django.utils.html import strip_tags
 
 from .. import datetools, models
 from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
@@ -62,6 +63,15 @@ def _prefer_tradition(rows, tradition):
     return kept
 
 
+def _has_story(dc):
+    """Whether dc.story has actual visible text, not just empty markup like
+    '<p></p>' -- a handful of rows have exactly that, which is truthy as a
+    plain Python string but renders as nothing, incorrectly earning a
+    clickable title and an empty entry in the story panel."""
+
+    return bool(strip_tags(dc.story or '').strip())
+
+
 def _speech_worthy(dc):
     """Should the Alexa skill (alexa/speech.py) say this commemoration's name?
 
@@ -71,7 +81,7 @@ def _speech_worthy(dc):
     whether it has a story, matching this project's behavior before that
     overlay existed."""
 
-    return bool(dc.story) or dc.tradition != 'greek'
+    return _has_story(dc) or dc.tradition != 'greek'
 
 
 def _prefer_tradition_days(rows, tradition):
@@ -334,11 +344,11 @@ class Day:
             # feast-level-facts preference for this tradition.
             titles = [dc.title for dc in dcs]
             self.saints.extend(titles)
-            self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in dcs)
+            self.saint_links.extend((dc.title, dc.id if _has_story(dc) else None) for dc in dcs)
             self.spoken_saints.extend(dc.title for dc in dcs if _speech_worthy(dc))
 
         self.saints.extend(dc.title for dc in additive)
-        self.saint_links.extend((dc.title, dc.id if dc.story else None) for dc in additive)
+        self.saint_links.extend((dc.title, dc.id if _has_story(dc) else None) for dc in additive)
         self.spoken_saints.extend(dc.title for dc in additive if _speech_worthy(dc))
 
         # A length-capped view of self.saints for space-constrained displays
@@ -364,7 +374,7 @@ class Day:
         if not self.spoken_saints:
             self.spoken_saints = list(self.saints)
 
-        self.stories = [dc for dc in commemorations if dc.story]
+        self.stories = [dc for dc in commemorations if _has_story(dc)]
 
     def _apply_fasting_adjustments(self):
         """Tradition-specific -- see SlavicDay/GreekDay."""
