@@ -6,6 +6,8 @@ html {
 body {
     margin: 0;
     background-color: #fdfbf5;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj4KICA8ZmlsdGVyIGlkPSJncmFpbiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMTgiIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjExIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im5vaXNlIi8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0ibm9pc2UiIHR5cGU9Im1hdHJpeCIKICAgICAgdmFsdWVzPSIwIDAgMCAwIDAuNQogICAgICAgICAgICAgIDAgMCAwIDAgMC40CiAgICAgICAgICAgICAgMCAwIDAgMCAwLjI1CiAgICAgICAgICAgICAgMCAwIDAgMC40IDAiLz4KICA8L2ZpbHRlcj4KICA8ZmlsdGVyIGlkPSJibG90Y2giIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPgogICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuMDA0IDAuMDA1IiBudW1PY3RhdmVzPSIzIiBzZWVkPSI0IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9ImJpZyIvPgogICAgPGZlQ29sb3JNYXRyaXggaW49ImJpZyIgdHlwZT0ibWF0cml4IgogICAgICB2YWx1ZXM9IjAgMCAwIDAgMC41CiAgICAgICAgICAgICAgMCAwIDAgMCAwLjM4CiAgICAgICAgICAgICAgMCAwIDAgMCAwLjIyCiAgICAgICAgICAgICAgMCAwIDAgMC42IDAiIHJlc3VsdD0iYmlnVGludCIvPgogICAgPGZlQ29tcG9uZW50VHJhbnNmZXIgaW49ImJpZ1RpbnQiPgogICAgICA8ZmVGdW5jQSB0eXBlPSJnYW1tYSIgYW1wbGl0dWRlPSIxIiBleHBvbmVudD0iMy4yIiBvZmZzZXQ9IjAiLz4KICAgIDwvZmVDb21wb25lbnRUcmFuc2Zlcj4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmRmYmY1Ii8+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2Jsb3RjaCkiIG9wYWNpdHk9IjAuNTUiLz4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZ3JhaW4pIiBvcGFjaXR5PSIwLjQiLz4KPC9zdmc+Cg==");
+    background-repeat: repeat;
     overflow-x: hidden;
 }
 h1, h2, h3, h4 {
@@ -240,7 +242,7 @@ main#orthocal > header::before {
        hidden clips the excess, so precision here doesn't matter. */
     left: -100vmax;
     right: -100vmax;
-    background-color: #f3f1ea;
+    background-color: rgba(224, 220, 204, 0.35);
     border-bottom: 1px solid #bbb3a0;
     z-index: -1;
 }
