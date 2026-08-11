@@ -1,12 +1,7 @@
 html {
     font-size: 20px;
     font-family: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
-    /* Reserve the scrollbar's gutter on both edges so centered content
-       doesn't shift left when a page happens to be short enough not to
-       scroll (overflow-y:scroll alone reserves the gutter on the right
-       only, throwing centered content off by half a scrollbar-width). */
     overflow-y: auto;
-    scrollbar-gutter: stable both-edges;
 }
 body {
     margin: 0;
