@@ -1,8 +1,12 @@
 html {
     font-size: 20px;
     font-family: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
-    /* Prevent page shifting when scrollbar disappears on short pages */
-    overflow-y: scroll;
+    /* Reserve the scrollbar's gutter on both edges so centered content
+       doesn't shift left when a page happens to be short enough not to
+       scroll (overflow-y:scroll alone reserves the gutter on the right
+       only, throwing centered content off by half a scrollbar-width). */
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
 }
 body {
     margin: 0;
@@ -155,6 +159,9 @@ h1, h2, h3, h4 {
     .topbar-inner > header {
         white-space: normal;
     }
+    .day-nav, .toggle-row {
+        flex-wrap: wrap;
+    }
 }
 
 /* Page-specific navigation (day/month nav, tradition/calendar toggles) --
@@ -165,17 +172,18 @@ nav.page-nav {
     width: 75%;
     margin: 0 auto;
     padding: 0.4em 0 0.5em 0;
+    font-size: clamp(0.6em, calc(3cqw), 1em);
 }
 .page-nav-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.5em 1.5em;
+    gap: 0.5rem 1.5rem;
 }
 .day-nav {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 nav.page-nav a:link, nav.page-nav a:visited {
     text-decoration: none;
@@ -349,8 +357,8 @@ label {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 1em;
-	flex-wrap: wrap;
+	gap: 1rem;
+	flex-wrap: nowrap;
 }
 .segmented-control {
 	display: inline-flex;
