@@ -13384,6 +13384,22 @@
   }
 },
 {
+  "model": "commemorations.saint",
+  "pk": 7108,
+  "fields": {
+    "name": "Sergios, Stephen and Kastor",
+    "full_name": null
+  }
+},
+{
+  "model": "commemorations.saint",
+  "pk": 7109,
+  "fields": {
+    "name": "Palamon, Elder of Pachomius",
+    "full_name": null
+  }
+},
+{
   "model": "commemorations.daycommemoration",
   "pk": 5209,
   "fields": {
@@ -40980,6 +40996,38 @@
     "new_style": false,
     "day_native": true,
     "ordering": 2,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7247,
+  "fields": {
+    "day": 660,
+    "saint": 7108,
+    "title": "Sergios, Stephen and Kastor",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": true,
+    "ordering": 2,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7248,
+  "fields": {
+    "day": 660,
+    "saint": 7109,
+    "title": "Palamon, Elder of Pachomius",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": true,
+    "ordering": 3,
     "tradition": "greek"
   }
 }
