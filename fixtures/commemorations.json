@@ -3,7 +3,7 @@
   "model": "commemorations.saint",
   "pk": 5111,
   "fields": {
-    "name": "Repose of St Seraphim of Sarov",
+    "name": "St Seraphim of Sarov (1833)",
     "full_name": "St Seraphim of Sarov (1833)"
   }
 },
@@ -3107,7 +3107,7 @@
   "model": "commemorations.saint",
   "pk": 5523,
   "fields": {
-    "name": "Translation of the relics (437) of St John Chrysostom.",
+    "name": "St John Chrysostom.",
     "full_name": "St John Chrysostom."
   }
 },
@@ -3435,7 +3435,7 @@
   "model": "commemorations.saint",
   "pk": 5571,
   "fields": {
-    "name": "Repose of the Holy Apostle and Evangelist St John the Theologian",
+    "name": "the Holy Apostle and Evangelist St John the Theologian",
     "full_name": "the Holy Apostle and Evangelist St John the Theologian"
   }
 },
@@ -3859,7 +3859,7 @@
   "model": "commemorations.saint",
   "pk": 5629,
   "fields": {
-    "name": "Repose of Blessed Father Dimitrios Gagastathis (1975)",
+    "name": "Blessed Father Dimitrios Gagastathis (1975)",
     "full_name": "Blessed Father Dimitrios Gagastathis (1975)"
   }
 },
@@ -4355,7 +4355,7 @@
   "model": "commemorations.saint",
   "pk": 5694,
   "fields": {
-    "name": "Repose of Gerontissa Gavrilia (1992) (March 15 OC)",
+    "name": "Gerontissa Gavrilia (1992) (March 15 OC)",
     "full_name": "Gerontissa Gavrilia (1992) (March 15 OC)"
   }
 },
@@ -5395,7 +5395,7 @@
   "model": "commemorations.saint",
   "pk": 5831,
   "fields": {
-    "name": "Martyrdom of St Elizabeth Romanov and Nun Barbara (1918)",
+    "name": "St Elizabeth Romanov and Nun Barbara (1918)",
     "full_name": "St Elizabeth Romanov and Nun Barbara (1918)"
   }
 },
@@ -5499,7 +5499,7 @@
   "model": "commemorations.saint",
   "pk": 5845,
   "fields": {
-    "name": "Repose of Photios Kontoglou (1965) (June 30 OC)",
+    "name": "Photios Kontoglou (1965) (June 30 OC)",
     "full_name": "Photios Kontoglou (1965) (June 30 OC)"
   }
 },
@@ -5931,7 +5931,7 @@
   "model": "commemorations.saint",
   "pk": 5901,
   "fields": {
-    "name": "Repose of Elder Joseph the Hesychast of Mt Athos (1959) (August 15 OC)",
+    "name": "Elder Joseph the Hesychast of Mt Athos (1959) (August 15 OC)",
     "full_name": "Elder Joseph the Hesychast of Mt Athos (1959) (August 15 OC)"
   }
 },
@@ -6011,7 +6011,7 @@
   "model": "commemorations.saint",
   "pk": 5912,
   "fields": {
-    "name": "Repose of Hieromonk Seraphim (Rose) of Platina (1982). (August 20 OC)",
+    "name": "Hieromonk Seraphim (Rose) of Platina (1982). (August 20 OC)",
     "full_name": "Hieromonk Seraphim (Rose) of Platina (1982). (August 20 OC)"
   }
 },
@@ -7035,7 +7035,7 @@
   "model": "commemorations.saint",
   "pk": 6042,
   "fields": {
-    "name": "Repose of Archimandrite Lazarus (Moore) (1992) (Nov. 14 OC)",
+    "name": "Archimandrite Lazarus (Moore) (1992) (Nov. 14 OC)",
     "full_name": "Archimandrite Lazarus (Moore) (1992) (Nov. 14 OC)"
   }
 },

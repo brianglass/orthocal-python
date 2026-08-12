@@ -20,9 +20,9 @@
 		<ul class="saint-search-results">
 			{% for saint in results %}
 			<li>
-				<a href="{% url "saint-detail" saint.pk %}">{{ saint.name }}</a>
-				{% if saint.full_name and saint.full_name != saint.name %}
-					<span class="saint-full-name">{{ saint.full_name }}</span>
+				<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
+				{% if saint.secondary_name %}
+					<span class="saint-full-name">{{ saint.secondary_name }}</span>
 				{% endif %}
 			</li>
 			{% endfor %}

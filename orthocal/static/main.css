@@ -599,3 +599,14 @@ table.month td.sat:hover
 	color: #999;
 	font-weight: normal;
 }
+.saint-commemorations-title {
+	margin-top: 1.5em;
+	margin-bottom: 0;
+	font-size: 1.3em;
+}
+.saint-stories h2 {
+	color: #a00;
+}
+.saint-stories .passage:first-child {
+	padding-top: 0.5em;
+}

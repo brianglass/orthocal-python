@@ -1,41 +1,24 @@
 {% extends "content_base.html" %}
 {% load typogrify_tags %}
 
-{% block title %}{{ saint.name }}{% endblock %}
+{% block title %}{{ saint.display_name }}{% endblock %}
 
 {% block head %}
-	<meta name="description" content="Commemorations and life of {{ saint.name }}.">
+	<meta name="description" content="Commemorations and life of {{ saint.display_name }}.">
 {% endblock %}
 
 {% block content %}
-	<h2>{{ saint.name|widont }}</h2>
-	{% if saint.full_name and saint.full_name != saint.name %}
-	<p class="saint-full-name">{{ saint.full_name|widont }}</p>
-	{% endif %}
+	<h2>{{ saint.display_name|widont }}</h2>
 
-	<section class="commemorations">
-		<h3>Commemorations</h3>
-		<ul>
-			{% for dc in commemorations %}
-			<li>
-				{% if dc in stories %}
-				<a href="#story-{{ dc.id }}">{{ dc.date_display }} &mdash; {{ dc.title|widont }}</a>
-				{% else %}
-				{{ dc.date_display }} &mdash; {{ dc.title|widont }}
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
-	</section>
-
-	{% if stories %}
+	<h3 class="saint-commemorations-title">Commemorations</h3>
 	<section class="saint-stories">
-		{% for dc in stories %}
-		<article class="passage" id="story-{{ dc.id }}">
+		{% for dc in commemorations %}
+		<article class="passage">
 			<h2>{{ dc.title|widont }} <span class="story-date">({{ dc.date_display }})</span></h2>
+			{% if dc.has_story %}
 			{{ dc.story|safe }}
+			{% endif %}
 		</article>
 		{% endfor %}
 	</section>
-	{% endif %}
 {% endblock %}

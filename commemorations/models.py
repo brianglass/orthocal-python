@@ -13,6 +13,14 @@ class Saint(models.Model):
 
     name = models.CharField(max_length=200)
     full_name = models.CharField(max_length=200, null=True, blank=True)
+    # Not auto-generated on save() -- backfilled by the
+    # backfill_saint_slugs management command, which runs after fixture
+    # loading (see Dockerfile) so it can see this saint's commemorations
+    # (for the disambiguating date) and every other saint's slug (for
+    # collision checking) already in the database. null (not '') so
+    # multiple not-yet-backfilled rows don't collide on the unique
+    # constraint before that command runs.
+    slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
 
     def __repr__(self):
         return f'<Saint: {self.name}>'

@@ -21,18 +21,41 @@ def _occasion_date(day):
     return f'Moveable (Pascha {day.pdist:+d} days)'
 
 
+def _attach_display_name(saint):
+    """Saint.name is backfilled from whichever DayCommemoration happened to
+    be used when the row was created, which is often occasion-specific
+    ("Repose of...", "Uncovering of the relics of...") rather than the
+    saint's plain identity. full_name is usually the cleaner form when it's
+    set (see the Saint model's own docstring) -- prefer it for display, and
+    only surface .name as a secondary label if it actually differs."""
+
+    saint.display_name = saint.full_name or saint.name
+    saint.secondary_name = saint.name if saint.full_name and saint.full_name != saint.name else None
+    return saint
+
+
 def search_view(request):
     query = request.GET.get('q', '').strip()
     results = []
 
     if query:
-        results = list(
-            Saint.objects.filter(
-                Q(name__icontains=query)
-                | Q(full_name__icontains=query)
-                | Q(daycommemoration__title__icontains=query)
-            ).distinct().order_by('name')[:50]
-        )
+        # Each term must match somewhere (name, full_name, or a linked
+        # commemoration's title), but not all in the same field or the same
+        # word order -- e.g. "John Theologian" should still find "St. John
+        # the Theologian" even though "John Theologian" is never a
+        # contiguous substring of that name.
+        term_filter = Q()
+        for term in query.split():
+            term_filter &= (
+                Q(name__icontains=term)
+                | Q(full_name__icontains=term)
+                | Q(daycommemoration__title__icontains=term)
+            )
+
+        results = [
+            _attach_display_name(saint)
+            for saint in Saint.objects.filter(term_filter).distinct().order_by('name')[:50]
+        ]
 
     return render(request, 'saint_search.html', context={
         'query': query,
@@ -40,8 +63,8 @@ def search_view(request):
     })
 
 
-def saint_detail_view(request, pk):
-    saint = get_object_or_404(Saint, pk=pk)
+def saint_detail_view(request, slug):
+    saint = _attach_display_name(get_object_or_404(Saint, slug=slug))
 
     commemorations = list(
         DayCommemoration.objects.filter(saint=saint)
@@ -51,11 +74,9 @@ def saint_detail_view(request, pk):
 
     for dc in commemorations:
         dc.date_display = _occasion_date(dc.day)
-
-    stories = [dc for dc in commemorations if _has_story(dc)]
+        dc.has_story = _has_story(dc)
 
     return render(request, 'saint_detail.html', context={
         'saint': saint,
         'commemorations': commemorations,
-        'stories': stories,
     })
