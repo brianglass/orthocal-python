@@ -540,3 +540,62 @@ table.month td.sat:hover
 	background-color: #e7e5de;
     cursor: pointer;
 }
+
+.saint-search-form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6em;
+	margin: 1.5em 0 2em 0;
+	text-indent: 0 !important;
+}
+.saint-search-form label {
+	font-size: 1em;
+}
+.saint-search-form input[type="text"] {
+	font-family: inherit;
+	font-size: 1em;
+	padding: 4px 8px;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	width: 16em;
+}
+.saint-search-form button {
+	font-family: inherit;
+	font-size: 1em;
+	padding: 4px 14px;
+	border: 1px solid #a00;
+	border-radius: 3px;
+	background-color: #a00;
+	color: #fff;
+	cursor: pointer;
+}
+.saint-search-form button:hover {
+	background-color: #800;
+}
+.saint-search-results {
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0;
+	max-width: 30em;
+	text-indent: 0 !important;
+}
+.saint-search-results li {
+	padding: 0.5em 0;
+	border-bottom: 1px solid #eee;
+}
+.saint-search-results .saint-full-name {
+	display: block;
+	font-size: 0.85em;
+	color: #555;
+}
+.saint-full-name {
+	text-align: center;
+	color: #555;
+	text-indent: 0 !important;
+}
+.story-date {
+	font-size: 0.8em;
+	color: #999;
+	font-weight: normal;
+}
