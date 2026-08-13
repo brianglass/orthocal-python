@@ -24,9 +24,11 @@ class SaintSearchTransliterationTestCase(TestCase):
 
     def setUp(self):
         # Fixture loading bypasses Saint.save() (same reason `slug` needs
-        # its own backfill command, see the model), so normalized_name is
-        # blank on freshly test-loaded fixture data unless backfilled here
-        # -- mirrors what the Dockerfile does for a real deployment.
+        # its own backfill command, see the model), so normalized_name and
+        # slug are blank on freshly test-loaded fixture data unless
+        # backfilled here -- mirrors what the Dockerfile does for a real
+        # deployment.
+        call_command('backfill_saint_slugs')
         call_command('backfill_saint_normalized_names')
 
     def test_greek_spelling_finds_latin_spelled_saint(self):
@@ -34,3 +36,8 @@ class SaintSearchTransliterationTestCase(TestCase):
 
         names = [saint.display_name for saint in response.context['results']]
         self.assertIn('St Athanasius the Great, patriarch of Alexandria', names)
+
+    def test_single_result_redirects_to_detail_page(self):
+        response = self.client.get(reverse('saint-search'), {'q': 'myra Nicholas'})
+
+        self.assertRedirects(response, reverse('saint-detail', args=['our-father-among-the-saints-nicholas-the-wonderworker-archbishop-of-myra-345-5-9']))

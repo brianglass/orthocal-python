@@ -551,14 +551,12 @@ table.month td.sat:hover
 
 .saint-search-form {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
 	gap: 0.6em;
 	margin: 1.5em 0 2em 0;
 	text-indent: 0 !important;
-}
-.saint-search-form label {
-	font-size: 1em;
 }
 .saint-search-form input[type="text"] {
 	font-family: inherit;
@@ -567,6 +565,7 @@ table.month td.sat:hover
 	border: 1px solid #bbb;
 	border-radius: 3px;
 	width: 16em;
+	max-width: 100%;
 }
 .saint-search-form button {
 	font-family: inherit;

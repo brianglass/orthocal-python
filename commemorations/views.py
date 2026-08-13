@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from calendarium.liturgics.day import _has_story
 
@@ -46,6 +46,11 @@ def search_view(request):
                 results.append(_attach_display_name(saint))
                 if len(results) >= 50:
                     break
+
+        # A single match is unambiguous -- skip straight to their page
+        # rather than making the user click through a one-item list.
+        if len(results) == 1:
+            return redirect('saint-detail', results[0].slug)
 
     return render(request, 'saint_search.html', context={
         'query': query,
