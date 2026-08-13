@@ -21,6 +21,12 @@ class Saint(models.Model):
     # multiple not-yet-backfilled rows don't collide on the unique
     # constraint before that command runs.
     slug = models.SlugField(max_length=255, unique=True, null=True, blank=True)
+    # Derived from name/full_name via transliteration.normalize_transliteration
+    # so search can match "Athanasios" against "Athanasius" -- backfilled by
+    # backfill_saint_normalized_names for the same fixture-loading-bypasses-
+    # save() reason as slug above, though this field has no relational
+    # dependency of its own.
+    normalized_name = models.CharField(max_length=410, blank=True, default='')
 
     def __repr__(self):
         return f'<Saint: {self.name}>'

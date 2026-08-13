@@ -23,4 +23,5 @@ RUN \
 	./manage.py collectstatic --noinput && \
 	./manage.py migrate && \
 	./manage.py loaddata calendarium commemorations && \
-	./manage.py backfill_saint_slugs
+	./manage.py backfill_saint_slugs && \
+	./manage.py backfill_saint_normalized_names

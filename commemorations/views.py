@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from calendarium.liturgics.day import _has_story
 
 from .models import DayCommemoration, Saint
+from .transliteration import normalize_transliteration
 
 _MONTH_NAMES = [
     '', 'January', 'February', 'March', 'April', 'May', 'June',
@@ -48,6 +49,7 @@ def search_view(request):
                 Q(name__icontains=term)
                 | Q(full_name__icontains=term)
                 | Q(daycommemoration__title__icontains=term)
+                | Q(normalized_name__icontains=normalize_transliteration(term))
             )
 
         results = [
