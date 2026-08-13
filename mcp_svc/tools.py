@@ -1,9 +1,8 @@
-from django.db.models import Q
-
 from calendarium import liturgics
 from calendarium.api import DaySchema
 from calendarium.datetools import Calendar, Translation, Tradition
 from commemorations.models import DayCommemoration
+from commemorations.search import matching_saints
 
 from .server import mcp
 
@@ -55,7 +54,7 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     commemorations = [
         commemoration
         async for commemoration in DayCommemoration.objects.filter(
-            Q(saints__name__icontains=query) | Q(saints__full_name__icontains=query) | Q(title__icontains=query),
+            saints__in=matching_saints(query),
             tradition__in=(tradition, 'common'),
         ).select_related('day').prefetch_related('daycommemorationsaint_set__saint').order_by(
             'day__month', 'day__day',

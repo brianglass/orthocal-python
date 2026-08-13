@@ -745,14 +745,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5211,
-  "fields": {
-    "name": "Leavetaking of Annunciation",
-    "full_name": "the Archangel Gabriel"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5212,
   "fields": {
     "name": "Synaxis of Archangel Gabriel",
@@ -3025,14 +3017,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5518,
-  "fields": {
-    "name": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John.",
-    "full_name": "The Synaxis of the Venerable and Illustrious Prophet, Forerunner and Baptist of the Lord, John."
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5519,
   "fields": {
     "name": "Our Holy Father Theodosius the Cenobiarch (519)",
@@ -3065,34 +3049,10 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5523,
-  "fields": {
-    "name": "St John Chrysostom.",
-    "full_name": "St John Chrysostom."
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5524,
-  "fields": {
-    "name": "Synaxis of the Three Holy Hierarchs: St Basil the Great, St Gregory the Theologian, and St John Chrysostom",
-    "full_name": "the Three Holy Hierarchs: St Basil the Great, St Gregory the Theologian, and St John Chrysostom"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5525,
   "fields": {
     "name": "The Meeting of our Lord, God and Savior Jesus Christ",
     "full_name": "The Meeting of our Lord, God and Savior Jesus Christ"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5526,
-  "fields": {
-    "name": "First (4th c.) and Second (9th c.) Findings of the Precious Head of St John the Baptist",
-    "full_name": "First (4th c.) and Second (9th c.) Findings of the Precious Head of St John the Baptist"
   }
 },
 {
@@ -3185,14 +3145,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5540,
-  "fields": {
-    "name": "Third Finding of the Precious Head of St John the Baptist (ca. 850)",
-    "full_name": "Third Finding of the Precious Head of St John the Baptist (ca. 850)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5541,
   "fields": {
     "name": "Holy Apostles Bartholomew and Barnabas",
@@ -3211,8 +3163,8 @@
   "model": "commemorations.saint",
   "pk": 5543,
   "fields": {
-    "name": "Nativity of St John the Baptist",
-    "full_name": "Nativity of St John the Baptist"
+    "name": "St John the Baptist",
+    "full_name": "The Holy Glorious Prophet, Forerunner, and Baptist of the Lord, John"
   }
 },
 {
@@ -3337,14 +3289,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5563,
-  "fields": {
-    "name": "The Beheading of the Glorious Prophet, Forerunner and Baptist John",
-    "full_name": "The Beheading of the Glorious Prophet, Forerunner and Baptist John"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5564,
   "fields": {
     "name": "The Beginning of the Church's Year",
@@ -3373,14 +3317,6 @@
   "fields": {
     "name": "The Universal Exaltation of the Precious and Life-giving Cross",
     "full_name": "The Universal Exaltation of the Precious and Life-giving Cross"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5569,
-  "fields": {
-    "name": "The Conception of John the Baptist",
-    "full_name": "The Conception of John the Baptist"
   }
 },
 {
@@ -3437,14 +3373,6 @@
   "fields": {
     "name": "Holy, Glorious and Great Martyr Demetrius the Outpourer of Myrrh (306)",
     "full_name": "Holy, Glorious and Great Martyr Demetrius the Outpourer of Myrrh (306)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5578,
-  "fields": {
-    "name": "Synaxis of the Chief Captains of the Heavenly Host, Michael and Gabriel, and of the other Bodiless Powers of Heaven",
-    "full_name": "the Chief Captains of the Heavenly Host, Michael and Gabriel, and of the other Bodiless Powers of Heaven"
   }
 },
 {
@@ -5113,14 +5041,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5800,
-  "fields": {
-    "name": "Commemoration of the appearance of the Archangel Gabriel to a monk on Mt Athos, and the revelation of the hymn \"It is Truly Meet\" (Axion Estin (980)",
-    "full_name": "Commemoration of the appearance of the Archangel Gabriel to a monk on Mt Athos, and the revelation of the hymn \"It is Truly Meet\" (Axion Estin (980)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5801,
   "fields": {
     "name": "Saint Triphyllius, bishop of Leucosia (Nicosia) in Cyprus (370)",
@@ -6109,14 +6029,6 @@
   "fields": {
     "name": "St Paphnutius the Confessor (4th c.)",
     "full_name": "St Paphnutius the Confessor (4th c.)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5931,
-  "fields": {
-    "name": "Canonization of St Xenia of St Petersburg (1978)",
-    "full_name": "Canonization of St Xenia of St Petersburg (1978)"
   }
 },
 {
@@ -8073,14 +7985,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6193,
-  "fields": {
-    "name": "Removal of the Honorable Relics of Saint Gregory the Theologian",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6194,
   "fields": {
     "name": "Branwallader, Bishop of Jersey",
@@ -8236,14 +8140,6 @@
   "pk": 6220,
   "fields": {
     "name": "Stamatios, John, & Nicholas, New Martyrs of Spetses",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6221,
-  "fields": {
-    "name": "Synaxis of the Most Holy Theotokos",
     "full_name": null
   }
 },
@@ -40129,7 +40025,7 @@
   "pk": 101,
   "fields": {
     "commemoration": 5320,
-    "saint": 5211,
+    "saint": 5212,
     "order": 1
   }
 },
@@ -42874,7 +42770,7 @@
   "pk": 406,
   "fields": {
     "commemoration": 5647,
-    "saint": 5518,
+    "saint": 5543,
     "order": 1
   }
 },
@@ -42919,7 +42815,7 @@
   "pk": 411,
   "fields": {
     "commemoration": 5652,
-    "saint": 5523,
+    "saint": 5579,
     "order": 1
   }
 },
@@ -42928,7 +42824,7 @@
   "pk": 412,
   "fields": {
     "commemoration": 5653,
-    "saint": 5524,
+    "saint": 5516,
     "order": 1
   }
 },
@@ -42946,7 +42842,7 @@
   "pk": 414,
   "fields": {
     "commemoration": 5655,
-    "saint": 5526,
+    "saint": 5543,
     "order": 1
   }
 },
@@ -43072,7 +42968,7 @@
   "pk": 428,
   "fields": {
     "commemoration": 5669,
-    "saint": 5540,
+    "saint": 5543,
     "order": 1
   }
 },
@@ -43279,7 +43175,7 @@
   "pk": 451,
   "fields": {
     "commemoration": 5692,
-    "saint": 5563,
+    "saint": 5543,
     "order": 1
   }
 },
@@ -43333,7 +43229,7 @@
   "pk": 457,
   "fields": {
     "commemoration": 5698,
-    "saint": 5569,
+    "saint": 5543,
     "order": 1
   }
 },
@@ -43414,7 +43310,7 @@
   "pk": 466,
   "fields": {
     "commemoration": 5707,
-    "saint": 5578,
+    "saint": 6132,
     "order": 1
   }
 },
@@ -45367,7 +45263,7 @@
   "pk": 683,
   "fields": {
     "commemoration": 5930,
-    "saint": 5800,
+    "saint": 5212,
     "order": 1
   }
 },
@@ -46528,7 +46424,7 @@
   "pk": 812,
   "fields": {
     "commemoration": 6061,
-    "saint": 5931,
+    "saint": 5138,
     "order": 1
   }
 },
@@ -48742,7 +48638,7 @@
   "pk": 1058,
   "fields": {
     "commemoration": 6329,
-    "saint": 6193,
+    "saint": 5522,
     "order": 1
   }
 },
@@ -48931,7 +48827,7 @@
   "pk": 1079,
   "fields": {
     "commemoration": 6357,
-    "saint": 6221,
+    "saint": 6133,
     "order": 1
   }
 },
@@ -54779,6 +54675,33 @@
     "commemoration": 7249,
     "saint": 7110,
     "order": 1
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1727,
+  "fields": {
+    "commemoration": 5653,
+    "saint": 5522,
+    "order": 2
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1728,
+  "fields": {
+    "commemoration": 5653,
+    "saint": 5579,
+    "order": 3
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1729,
+  "fields": {
+    "commemoration": 5707,
+    "saint": 5212,
+    "order": 2
   }
 }
 ]

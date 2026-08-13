@@ -1,10 +1,9 @@
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
 from calendarium.liturgics.day import _has_story
 
 from .models import DayCommemoration, Saint
-from .transliteration import normalize_transliteration
+from .search import matching_saints
 
 _MONTH_NAMES = [
     '', 'January', 'February', 'March', 'April', 'May', 'June',
@@ -38,24 +37,15 @@ def search_view(request):
     results = []
 
     if query:
-        # Each term must match somewhere (name, full_name, or a linked
-        # commemoration's title), but not all in the same field or the same
-        # word order -- e.g. "John Theologian" should still find "St. John
-        # the Theologian" even though "John Theologian" is never a
-        # contiguous substring of that name.
-        term_filter = Q()
-        for term in query.split():
-            term_filter &= (
-                Q(name__icontains=term)
-                | Q(full_name__icontains=term)
-                | Q(daycommemoration__title__icontains=term)
-                | Q(normalized_name__icontains=normalize_transliteration(term))
-            )
-
-        results = [
-            _attach_display_name(saint)
-            for saint in Saint.objects.filter(term_filter).distinct().order_by('name')[:50]
-        ]
+        candidates = matching_saints(query).prefetch_related('daycommemoration_set').order_by('name')
+        for saint in candidates:
+            # A result with no story on any of its commemorations is a dead
+            # end -- the detail page would show only bare titles and dates,
+            # nothing worth clicking through for.
+            if any(_has_story(dc) for dc in saint.daycommemoration_set.all()):
+                results.append(_attach_display_name(saint))
+                if len(results) >= 50:
+                    break
 
     return render(request, 'saint_search.html', context={
         'query': query,

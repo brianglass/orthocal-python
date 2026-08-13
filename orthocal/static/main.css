@@ -7,6 +7,14 @@ body {
     margin: 0;
     background-color: #fdfbf5;
     overflow-x: hidden;
+    /* Setting only overflow-x makes the UA compute overflow-y as auto
+       rather than visible, turning body into a clipping context -- on a
+       short page (e.g. the saint search page with no results) body's own
+       box can end before the open hamburger dropdown's full height,
+       clipping it. min-height keeps body at least viewport-tall so
+       there's always room underneath the topbar. */
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 h1, h2, h3, h4 {
     text-align: center;
@@ -109,7 +117,7 @@ h1, h2, h3, h4 {
 .nav-toggle:hover span {
     background-color: #333;
 }
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
     .topbar-inner {
         align-items: center;
         position: relative;
@@ -579,6 +587,7 @@ table.month td.sat:hover
 	padding: 0;
 	max-width: 30em;
 	text-indent: 0 !important;
+	text-align: left;
 }
 .saint-search-results li {
 	padding: 0.5em 0;
