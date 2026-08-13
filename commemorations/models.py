@@ -56,14 +56,17 @@ class DayCommemoration(models.Model):
     common ones, not a wholesale replacement of them (see
     docs/saint-model-refactor.md, Stage 6).
 
-    saint is nullable for commemorations of a relic, icon, or event that
+    saints can be empty for commemorations of a relic, icon, or event that
     aren't really about a distinct, individually-tracked person -- e.g. the
     Robe/Sash of the Theotokos, or Christ's Robe -- where inventing a solo
-    Saint identity just to satisfy the FK would be worse than having none
-    (see docs/saint-model-refactor.md, Stage 8)."""
+    Saint identity just to satisfy a link would be worse than having none
+    (see docs/saint-model-refactor.md, Stage 8). It can also hold more than
+    one Saint for a commemoration that's inherently about several people at
+    once (e.g. two patriarchs sharing a single feast day) -- see
+    DayCommemorationSaint.order for how their display order is controlled."""
 
     day = models.ForeignKey('calendarium.Day', on_delete=models.CASCADE)
-    saint = models.ForeignKey(Saint, on_delete=models.CASCADE, null=True, blank=True)
+    saints = models.ManyToManyField(Saint, through='DayCommemorationSaint', blank=True)
     title = models.CharField(max_length=200, default='')
     story = models.TextField(null=True, blank=True)
     rank = models.SmallIntegerField(default=0)
@@ -78,8 +81,23 @@ class DayCommemoration(models.Model):
     ], default='common')
 
     class Meta:
-        unique_together = 'day', 'saint'
         ordering = 'ordering',
 
     def __repr__(self):
         return f'<DayCommemoration: {self.title}>'
+
+
+class DayCommemorationSaint(models.Model):
+    """Through table for DayCommemoration.saints. order controls display
+    order for commemorations that name more than one saint (e.g. "Athanasius
+    the Great and Cyril of Alexandria") -- it's independent of DayCommemoration's
+    own hand-written title, which already reads correctly on its own and
+    doesn't need to be regenerated from the linked saints."""
+
+    commemoration = models.ForeignKey(DayCommemoration, on_delete=models.CASCADE)
+    saint = models.ForeignKey(Saint, on_delete=models.CASCADE)
+    order = models.SmallIntegerField(default=1)
+
+    class Meta:
+        unique_together = 'commemoration', 'saint'
+        ordering = 'order',

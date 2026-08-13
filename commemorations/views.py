@@ -26,11 +26,9 @@ def _attach_display_name(saint):
     be used when the row was created, which is often occasion-specific
     ("Repose of...", "Uncovering of the relics of...") rather than the
     saint's plain identity. full_name is usually the cleaner form when it's
-    set (see the Saint model's own docstring) -- prefer it for display, and
-    only surface .name as a secondary label if it actually differs."""
+    set (see the Saint model's own docstring) -- prefer it for display."""
 
     saint.display_name = saint.full_name or saint.name
-    saint.secondary_name = saint.name if saint.full_name and saint.full_name != saint.name else None
     return saint
 
 
@@ -67,7 +65,7 @@ def saint_detail_view(request, slug):
     saint = _attach_display_name(get_object_or_404(Saint, slug=slug))
 
     commemorations = list(
-        DayCommemoration.objects.filter(saint=saint)
+        DayCommemoration.objects.filter(saints=saint)
         .select_related('day')
         .order_by('day__month', 'day__day')
     )

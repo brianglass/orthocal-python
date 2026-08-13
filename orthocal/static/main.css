@@ -584,16 +584,6 @@ table.month td.sat:hover
 	padding: 0.5em 0;
 	border-bottom: 1px solid #eee;
 }
-.saint-search-results .saint-full-name {
-	display: block;
-	font-size: 0.85em;
-	color: #555;
-}
-.saint-full-name {
-	text-align: center;
-	color: #555;
-	text-indent: 0 !important;
-}
 .story-date {
 	font-size: 0.8em;
 	color: #999;

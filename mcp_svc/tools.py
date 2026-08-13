@@ -55,17 +55,29 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     commemorations = [
         commemoration
         async for commemoration in DayCommemoration.objects.filter(
-            Q(saint__name__icontains=query) | Q(saint__full_name__icontains=query) | Q(title__icontains=query),
+            Q(saints__name__icontains=query) | Q(saints__full_name__icontains=query) | Q(title__icontains=query),
             tradition__in=(tradition, 'common'),
-        ).select_related('day', 'saint').order_by('day__month', 'day__day')
+        ).select_related('day').prefetch_related('daycommemorationsaint_set__saint').order_by(
+            'day__month', 'day__day',
+        ).distinct()
     ]
 
     return [
         {
             'month': commemoration.day.month,
             'day': commemoration.day.day,
-            'title': commemoration.title or commemoration.saint.name,
-            'full_name': commemoration.saint.full_name if commemoration.saint else None,
+            'title': commemoration.title,
+            # daycommemorationsaint_set (not the saints M2M directly) so
+            # DayCommemorationSaint.order controls display order for
+            # commemorations naming more than one saint -- .saints.all()
+            # falls back to Saint's own (undefined) ordering instead.
+            'full_name': ' and '.join(full_names) if (
+                full_names := [
+                    link.saint.full_name
+                    for link in commemoration.daycommemorationsaint_set.all()
+                    if link.saint.full_name
+                ]
+            ) else None,
         }
         for commemoration in commemorations
     ]

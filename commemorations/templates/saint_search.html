@@ -21,9 +21,6 @@
 			{% for saint in results %}
 			<li>
 				<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
-				{% if saint.secondary_name %}
-					<span class="saint-full-name">{{ saint.secondary_name }}</span>
-				{% endif %}
 			</li>
 			{% endfor %}
 		</ul>
