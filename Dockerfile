@@ -21,5 +21,7 @@ RUN \
 # The sqlite database is read-only, so we build it into the image.
 RUN \
 	./manage.py collectstatic --noinput && \
-	./manage.py migrate && \ 
-	./manage.py loaddata calendarium commemorations
+	./manage.py migrate && \
+	./manage.py loaddata calendarium commemorations && \
+	./manage.py backfill_saint_slugs && \
+	./manage.py backfill_saint_normalized_names
