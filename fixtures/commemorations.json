@@ -649,14 +649,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5198,
-  "fields": {
-    "name": "Trans. Rel. Nicephorus, Patr. Constantinopole",
-    "full_name": "St Nicephoros, Patriarch of Constantinople (827)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5199,
   "fields": {
     "name": "Ven. Benedict of Nursia",
@@ -1053,14 +1045,6 @@
   "fields": {
     "name": "Prophet Isaiah",
     "full_name": "Holy Prophet Isaiah (7th c. BC)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5254,
-  "fields": {
-    "name": "Trans. Rel. St Nicholas the Wonderworker",
-    "full_name": "St Nicholas the Wonderworker from Myra to Bari (1087)"
   }
 },
 {
@@ -1529,14 +1513,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5315,
-  "fields": {
-    "name": "Trans. Rel. Ven. Cyrus and John",
-    "full_name": "the Holy and Wonderworking Unmercenaries Cyrus & John"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5316,
   "fields": {
     "name": "St. Paul the Physician, of Corinth",
@@ -1741,14 +1717,6 @@
   "fields": {
     "name": "Begin Dormition Fast",
     "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5346,
-  "fields": {
-    "name": "Trans. Rel. Protomartyr Stephen",
-    "full_name": "the Protomartyr and Archdeacon Stephen (428)"
   }
 },
 {
@@ -9889,14 +9857,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6478,
-  "fields": {
-    "name": "Repose of St. Nilus, abbot of Sora",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6479,
   "fields": {
     "name": "Pachomios the New Martyr of Patmos",
@@ -10884,14 +10844,6 @@
   "pk": 6659,
   "fields": {
     "name": "Justus the Martyr",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 6660,
-  "fields": {
-    "name": "The Finding of the Head of St. Matrona of Chios",
     "full_name": null
   }
 },
@@ -40060,7 +40012,7 @@
   "pk": 88,
   "fields": {
     "commemoration": 5307,
-    "saint": 5198,
+    "saint": 5285,
     "order": 1
   }
 },
@@ -40555,7 +40507,7 @@
   "pk": 143,
   "fields": {
     "commemoration": 5363,
-    "saint": 5254,
+    "saint": 5586,
     "order": 1
   }
 },
@@ -41104,7 +41056,7 @@
   "pk": 204,
   "fields": {
     "commemoration": 5424,
-    "saint": 5315,
+    "saint": 5147,
     "order": 1
   }
 },
@@ -41392,7 +41344,7 @@
   "pk": 236,
   "fields": {
     "commemoration": 5456,
-    "saint": 5346,
+    "saint": 5592,
     "order": 1
   }
 },
@@ -50806,7 +50758,7 @@
   "pk": 1282,
   "fields": {
     "commemoration": 6614,
-    "saint": 6478,
+    "saint": 5708,
     "order": 1
   }
 },
@@ -51931,7 +51883,7 @@
   "pk": 1407,
   "fields": {
     "commemoration": 6796,
-    "saint": 6660,
+    "saint": 5432,
     "order": 1
   }
 },
