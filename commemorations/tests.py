@@ -14,6 +14,7 @@ class NormalizeTransliterationTestCase(TestCase):
             ('Symeon', 'Simeon'),
             ('Cosmas', 'Kosmas'),
             ('Isaac', 'Isaak'),
+            ('Maximovich', 'Maximovitch'),
         ]
         for latin, greek in pairs:
             self.assertEqual(normalize_transliteration(latin), normalize_transliteration(greek))
@@ -36,6 +37,17 @@ class SaintSearchTransliterationTestCase(TestCase):
 
         names = [saint.display_name for saint in response.context['results']]
         self.assertIn('St Athanasius the Great, patriarch of Alexandria', names)
+
+    def test_vitch_spelling_finds_vich_spelled_saint(self):
+        # A single story-bearing match -- the other "Maximovitch" (Metr. of
+        # Tobolsk) has no story, so it's excluded and this redirects
+        # straight to the one remaining detail page.
+        response = self.client.get(reverse('saint-search'), {'q': 'John Maximovitch'})
+
+        self.assertRedirects(response, reverse(
+            'saint-detail',
+            args=['st-john-maximovich-archbishop-of-shanghai-and-san-francisco-1966-june-19-oc-7-2'],
+        ))
 
     def test_single_result_redirects_to_detail_page(self):
         response = self.client.get(reverse('saint-search'), {'q': 'myra Nicholas'})
