@@ -46,6 +46,7 @@ urlpatterns = [
     path('api/', include('calendarium.api_urls')),
     path('', include('alexa.urls')),
     path('', include('calendarium.urls')),
+    path('', include('commemorations.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
     path('startup/', views.startup_probe),
     path('health/', views.startup_probe),

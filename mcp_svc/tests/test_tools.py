@@ -69,6 +69,15 @@ class SearchSaintsTestCase(TestCase):
 
         self.assertEqual(results, [])
 
+    async def test_full_name_orders_multiple_saints_correctly(self):
+        results = await search_saints('Athanasius the Great')
+
+        joint = next(r for r in results if r['month'] == 1 and r['day'] == 18)
+        self.assertEqual(
+            joint['full_name'],
+            'St Athanasius the Great, patriarch of Alexandria and St Cyril, archbishop of Alexandria (444)',
+        )
+
     async def test_tradition_filtering_excludes_other_traditions_saint(self):
         greek_results = await search_saints('Zenia', tradition=Tradition.Greek)
         self.assertTrue(greek_results)

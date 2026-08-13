@@ -1,0 +1,30 @@
+{% extends "content_base.html" %}
+
+{% block title %}Search for a Saint{% endblock %}
+
+{% block head %}
+	<meta name="description" content="Search for an Orthodox saint by name.">
+{% endblock %}
+
+{% block content %}
+	<h2>Search for a Saint</h2>
+
+	<form method="get" action="{% url "saint-search" %}" class="saint-search-form">
+		<input type="text" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Nicholas, Xenia" aria-label="Saint name" autofocus>
+		<button type="submit">Search</button>
+	</form>
+
+	{% if query %}
+		{% if results %}
+		<ul class="saint-search-results">
+			{% for saint in results %}
+			<li>
+				<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>No saints found matching &ldquo;{{ query }}&rdquo;.</p>
+		{% endif %}
+	{% endif %}
+{% endblock %}
