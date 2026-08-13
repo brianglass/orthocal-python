@@ -7409,14 +7409,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6109,
-  "fields": {
-    "name": "St Maximos the Confessor (662)",
-    "full_name": "St Maximos the Confessor (662)"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6110,
   "fields": {
     "name": "Holy Martyr Hippolytus of Rome and 18 Martyrs with him (258)",
@@ -47990,7 +47982,7 @@
   "pk": 986,
   "fields": {
     "commemoration": 6239,
-    "saint": 6109,
+    "saint": 5132,
     "order": 1
   }
 },

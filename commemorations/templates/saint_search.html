@@ -10,8 +10,7 @@
 	<h2>Search for a Saint</h2>
 
 	<form method="get" action="{% url "saint-search" %}" class="saint-search-form">
-		<label for="saint-search-q">Name</label>
-		<input type="text" id="saint-search-q" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Nicholas, Xenia" autofocus>
+		<input type="text" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Nicholas, Xenia" aria-label="Saint name" autofocus>
 		<button type="submit">Search</button>
 	</form>
 
