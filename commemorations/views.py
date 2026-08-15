@@ -37,19 +37,26 @@ def search_view(request):
     results = []
 
     if query:
-        candidates = matching_saints(query).prefetch_related('daycommemoration_set').order_by('name')
+        candidates = matching_saints(query).prefetch_related('daycommemoration_set__day').order_by('name')[:50]
         for saint in candidates:
-            # A result with no story on any of its commemorations is a dead
-            # end -- the detail page would show only bare titles and dates,
-            # nothing worth clicking through for.
-            if any(_has_story(dc) for dc in saint.daycommemoration_set.all()):
-                results.append(_attach_display_name(saint))
-                if len(results) >= 50:
-                    break
+            dcs = list(saint.daycommemoration_set.all())
+            # A saint with no story on any commemoration has nothing to show
+            # on the detail page -- still worth listing (it confirms they
+            # exist and disambiguates from same-named saints who do have a
+            # page), but the template renders it unlinked rather than as a
+            # dead end. Every result shows its date(s) -- a saint can have
+            # more than one commemoration (e.g. a main entry and a separate
+            # relics-related one), so this is a list, not a single date.
+            saint.has_story = any(_has_story(dc) for dc in dcs)
+            sorted_dcs = sorted(dcs, key=lambda dc: (dc.day.month, dc.day.day))
+            saint.occasion_dates = ', '.join(_occasion_date(dc.day) for dc in sorted_dcs)
+            results.append(_attach_display_name(saint))
 
-        # A single match is unambiguous -- skip straight to their page
-        # rather than making the user click through a one-item list.
-        if len(results) == 1:
+        # A single match with somewhere to go is unambiguous -- skip
+        # straight to their page rather than making the user click through
+        # a one-item list. A single story-less match has no page to redirect
+        # to, so it's shown (unlinked) same as any other story-less result.
+        if len(results) == 1 and results[0].has_story:
             return redirect('saint-detail', results[0].slug)
 
     return render(request, 'saint_search.html', context={

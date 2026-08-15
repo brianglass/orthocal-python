@@ -5531,8 +5531,8 @@
   "model": "commemorations.saint",
   "pk": 5865,
   "fields": {
-    "name": "Hieromarytyr Polychronius, Bishop of Babylon, and those with him (251)",
-    "full_name": "Hieromarytyr Polychronius, Bishop of Babylon, and those with him (251)"
+    "name": "Hieromartyr Polychronius, Bishop of Babylon, and those with him (251)",
+    "full_name": "Hieromartyr Polychronius, Bishop of Babylon, and those with him (251)"
   }
 },
 {
@@ -5651,8 +5651,8 @@
   "model": "commemorations.saint",
   "pk": 5881,
   "fields": {
-    "name": "Hieromaryr Alexander, Bishop of Comana (3rd c.)",
-    "full_name": "Hieromaryr Alexander, Bishop of Comana (3rd c.)"
+    "name": "Hieromartyr Alexander, Bishop of Comana (3rd c.)",
+    "full_name": "Hieromartyr Alexander, Bishop of Comana (3rd c.)"
   }
 },
 {
@@ -7107,8 +7107,8 @@
   "model": "commemorations.saint",
   "pk": 6069,
   "fields": {
-    "name": "Holy Virgin Maryr Lucy of Syracuse (304)",
-    "full_name": "Holy Virgin Maryr Lucy of Syracuse (304)"
+    "name": "Holy Virgin Martyr Lucy of Syracuse (304)",
+    "full_name": "Holy Virgin Martyr Lucy of Syracuse (304)"
   }
 },
 {
@@ -13141,38 +13141,6 @@
   "fields": {
     "name": "Hieromartyr Alexander Hotovitzky (1937)",
     "full_name": "Hieromartyr Alexander Hotovitzky (1937)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7102,
-  "fields": {
-    "name": "St Theodore Tyro (the Recruit)",
-    "full_name": "St Theodore Tyro (the Recruit)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7103,
-  "fields": {
-    "name": "St Gregory Palamas, Archbishop of Thessalonica",
-    "full_name": "St Gregory Palamas, Archbishop of Thessalonica"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7104,
-  "fields": {
-    "name": "St John Climacus, Author of The Ladder",
-    "full_name": "St John Climacus, Author of The Ladder"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7105,
-  "fields": {
-    "name": "St Mary of Egypt",
-    "full_name": "St Mary of Egypt"
   }
 },
 {
@@ -24417,7 +24385,7 @@
   "pk": 5995,
   "fields": {
     "day": 647,
-    "title": "Hieromarytyr Polychronius, Bishop of Babylon, and those with him (251)",
+    "title": "Hieromartyr Polychronius, Bishop of Babylon, and those with him (251)",
     "story": "<p>“When the Emperor Decius conquered Babylon, he arrested Polychronius, together with three priests, two deacons and two baptised princes, Eudin and Senis. Polychronius would make no reply before the Emperor, but kept silent, while St Parmenius, one of the priests, spoke for them all. The Emperor took the bishop and priests to Persia, to the city of Kordoba, and had them beheaded with an axe, but he took the princes with him to Rome, threw them first to the wild beasts and then had them slain with the sword. They all suffered with honour in 251.” (<i>Prologue</i>)</p>",
     "rank": 0,
     "high_rank": false,
@@ -24657,7 +24625,7 @@
   "pk": 6011,
   "fields": {
     "day": 660,
-    "title": "Hieromaryr Alexander, Bishop of Comana (3rd c.)",
+    "title": "Hieromartyr Alexander, Bishop of Comana (3rd c.)",
     "story": "<p>“He lived in the town of Comana near Neocaesarea as a simple charcoal-burner. When the Bishop of Comana died, St Gregory of Neocaesarea, the Wonderworker (Nov. 17), was invited to preside over the Council to choose a new bishop. At the Council there were both clergy and laymen. They were unable to come to agreement on one person, estimating the candidates they selected according to their outward worth and behaviour. St Gregory told them that they must not give so much weight to the outward impression as to the soul and the spiritual aptitude. Then some wag called out mockingly: ‘Then let’s choose Alexander the charcoal-burner as bishop!’, and there was general laughter. St Gregory asked who this Alexander was. Thinking that his name would not have come up before the Council except by the providence of God, he commanded that he be brought. Being a charcoal-burner, he was black with soot and in rags, and his appearance provoked further mirth in the Council. Then Gregory took him aside and asked him to tell the truth about himself. Alexander told him that he had been a Greek philosopher, enjoying great honour and position, but that he had set it all aside, demeaned himself and made himself as a fool for Christ from the time that he had read and understood the Holy Scriptures. Gregory commanded that he be bathed and clad in new clothes, then went into the Council with him and, before them all, began to examine him in the Scriptures. All were filled with amazement at the wisdom and grace of Alexander’s words, and were quite unable to recognize the former charcoal-burner in this wise man. With one voice, they chose him as bishop, and he received the love of his flock for his holiness, his wisdom and his goodness. He died a martyr for Christ under Diocletian.” (<i>Prologue</i>)</p>",
     "rank": 0,
     "high_rank": false,
@@ -27432,7 +27400,7 @@
   "pk": 6199,
   "fields": {
     "day": 783,
-    "title": "Holy Virgin Maryr Lucy of Syracuse (304)",
+    "title": "Holy Virgin Martyr Lucy of Syracuse (304)",
     "story": "<p>During Diocletian’s persecutians, the Christian maiden Lucy went with her mother on pilgrimage to the tomb of St Agatha (February 5), to pray for her mother’s healing from an ailment. Saint Agatha appeared to Lucy in a dream and said ‘Lucy, my sister, why do you ask from me what your own faith can obtain? Your mother is healed. You will soon be the glory of Syracuse as I am of Catania.’ Lucy’s mother was healed from that day, and Lucy determined to consecrate herself entirely to God. She broke off an engagement to a nobly-born young man and gave her large dowry of land and jewels to the poor. Her would-be husband angrily denounced her as a Christian to the Governor of Syracuse.</p>\n<p>At the tribunal, Lucy firmly confessed her faith in Christ and refused to make sacrifice to the gods. The Governor ordered that she be placed in a brothel, but his minions were unable to move her from the place where she stood, even when they tied her with ropes and attempted to drag her with oxen. The Governor asked what witchcraft she used, to which she answered ‘I do not use witchcraft — it is the power of God that is with me. Bring ten thousand of your men if you wish; they will not be able to move me unless God wills it.’ The men then lit a fire around her, but it did not harm her. Finally they beheaded her where she stood. With her last words, she predicted the deaths of Maximian and Diocletian, and the coming of peace to the Church.</p>",
     "rank": 0,
     "high_rank": false,
@@ -54498,7 +54466,7 @@
   "pk": 1710,
   "fields": {
     "commemoration": 7238,
-    "saint": 7102,
+    "saint": 5170,
     "order": 1
   }
 },
@@ -54507,7 +54475,7 @@
   "pk": 1711,
   "fields": {
     "commemoration": 7239,
-    "saint": 7103,
+    "saint": 6026,
     "order": 1
   }
 },
@@ -54516,7 +54484,7 @@
   "pk": 1712,
   "fields": {
     "commemoration": 7240,
-    "saint": 7104,
+    "saint": 5216,
     "order": 1
   }
 },
@@ -54525,7 +54493,7 @@
   "pk": 1713,
   "fields": {
     "commemoration": 7241,
-    "saint": 7105,
+    "saint": 5217,
     "order": 1
   }
 },
