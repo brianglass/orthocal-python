@@ -1,3 +1,5 @@
+import re
+
 from django.db.models import Exists, OuterRef, Q
 
 from .models import DayCommemoration, Saint
@@ -24,10 +26,18 @@ def _term_filter(term):
         saints=OuterRef('pk'), title__icontains=term,
     ).exclude(Exists(term_owned_by_a_linked_saint))
 
+    # Word-boundary, not icontains -- normalize_transliteration shortens some
+    # words enough (e.g. "Mary" -> "mari") that a plain substring match
+    # would false-positive against unrelated names that happen to start the
+    # same way ("Marinus", "Marina", "Mariamne"). The normalized field only
+    # exists to match whole transliterated names/tokens against each other,
+    # so it never needed substring matching in the first place.
+    normalized_term = re.escape(normalize_transliteration(term))
+
     return (
         Q(name__icontains=term)
         | Q(full_name__icontains=term)
-        | Q(normalized_name__icontains=normalize_transliteration(term))
+        | Q(normalized_name__iregex=rf'\b{normalized_term}\b')
         | Exists(shared_title_match)
     )
 

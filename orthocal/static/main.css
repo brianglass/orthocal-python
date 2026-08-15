@@ -581,16 +581,26 @@ table.month td.sat:hover
 	background-color: #800;
 }
 .saint-search-results {
-	list-style-type: none;
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
 	margin: 0 auto;
-	padding: 0;
-	max-width: 30em;
+	max-width: 38em;
 	text-indent: 0 !important;
 	text-align: left;
 }
-.saint-search-results li {
+.saint-search-results td {
 	padding: 0.5em 0;
 	border-bottom: 1px solid #eee;
+	vertical-align: baseline;
+}
+.saint-search-results td:last-child {
+	width: 11em;
+	padding-left: 1em;
+	text-align: right;
+}
+.saint-search-results .no-story {
+	color: #999;
 }
 .story-date {
 	font-size: 0.8em;

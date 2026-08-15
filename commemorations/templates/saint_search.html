@@ -16,13 +16,22 @@
 
 	{% if query %}
 		{% if results %}
-		<ul class="saint-search-results">
-			{% for saint in results %}
-			<li>
-				<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
-			</li>
-			{% endfor %}
-		</ul>
+		<table class="saint-search-results">
+			<tbody>
+				{% for saint in results %}
+				<tr>
+					<td>
+						{% if saint.has_story %}
+						<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
+						{% else %}
+						<span class="no-story">{{ saint.display_name }}</span>
+						{% endif %}
+					</td>
+					<td class="story-date">{{ saint.occasion_dates }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 		{% else %}
 		<p>No saints found matching &ldquo;{{ query }}&rdquo;.</p>
 		{% endif %}

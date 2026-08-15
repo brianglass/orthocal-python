@@ -39,15 +39,32 @@ class SaintSearchTransliterationTestCase(TestCase):
         self.assertIn('St Athanasius the Great, patriarch of Alexandria', names)
 
     def test_vitch_spelling_finds_vich_spelled_saint(self):
-        # A single story-bearing match -- the other "Maximovitch" (Metr. of
-        # Tobolsk) has no story, so it's excluded and this redirects
-        # straight to the one remaining detail page.
+        # Two matches -- St John of Shanghai and San Francisco (has a
+        # story) and St John Maximovitch, Metr. of Tobolsk (does not) --
+        # so this shows a results list rather than redirecting.
         response = self.client.get(reverse('saint-search'), {'q': 'John Maximovitch'})
 
-        self.assertRedirects(response, reverse(
-            'saint-detail',
-            args=['st-john-maximovich-archbishop-of-shanghai-and-san-francisco-1966-june-19-oc-7-2'],
-        ))
+        results = {saint.display_name: saint.has_story for saint in response.context['results']}
+        self.assertEqual(results, {
+            'St John (Maximovich), Archbishop of Shanghai and San Francisco (1966) (June 19 OC)': True,
+            'St John Maximovitch, Metropolitan of Tobolsk': False,
+        })
+
+    def test_transliteration_match_requires_word_boundary(self):
+        # normalize_transliteration("Mary") -> "mari", which is a literal
+        # prefix of unrelated names like "Marina" -- requiring a full-word
+        # regex match (not icontains) on the normalized field avoids
+        # matching those too.
+        response = self.client.get(reverse('saint-search'), {'q': 'Mary'})
+
+        pks = [saint.pk for saint in response.context['results']]
+        self.assertNotIn(5334, pks)  # Greatmartyr Marina
+
+    def test_no_story_result_has_no_link(self):
+        response = self.client.get(reverse('saint-search'), {'q': 'John Maximovitch'})
+
+        self.assertContains(response, 'St John Maximovitch, Metropolitan of Tobolsk')
+        self.assertNotContains(response, reverse('saint-detail', args=['st-john-maximovitch-metropolitan-of-tobolsk-6-10']))
 
     def test_single_result_redirects_to_detail_page(self):
         response = self.client.get(reverse('saint-search'), {'q': 'myra Nicholas'})
