@@ -51,8 +51,35 @@ mcp_application = mcp.streamable_http_app(
 )
 
 
+async def _reject_get(send):
+    """Neither of orthocal's MCP tools ever needs to push an unsolicited
+    message to a client, so the streamable-http transport's optional GET/SSE
+    channel serves no purpose here -- but the SDK holds it open indefinitely
+    waiting for a server-initiated message that will never come, and Cloud
+    Run only closes it at the request timeout (20s). That turned into the
+    single largest cost driver on this service: a flood of GET requests each
+    billed for a full 20s of held-open compute. Rejecting GET here, before it
+    reaches the MCP app, costs a few milliseconds instead."""
+
+    await send({
+        'type': 'http.response.start',
+        'status': 405,
+        'headers': [
+            (b'allow', b'POST, DELETE'),
+            (b'content-type', b'text/plain'),
+        ],
+    })
+    await send({
+        'type': 'http.response.body',
+        'body': b'Method Not Allowed',
+    })
+
+
 async def application(scope, receive, send):
-    if scope['type'] == 'lifespan' or (scope['type'] == 'http' and scope['path'].startswith('/mcp')):
+    is_mcp_path = scope['type'] == 'http' and scope['path'].startswith('/mcp')
+    if is_mcp_path and scope['method'] == 'GET':
+        await _reject_get(send)
+    elif scope['type'] == 'lifespan' or is_mcp_path:
         await mcp_application(scope, receive, send)
     else:
         await django_application(scope, receive, send)
