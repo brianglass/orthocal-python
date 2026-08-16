@@ -5,7 +5,7 @@ html {
 }
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #fcfaf6, #f8f5ed 33%);
+    background: linear-gradient(to bottom, #fcfaf6, #f8f4ed 33%);
     overflow-x: hidden;
     /* Setting only overflow-x makes the UA compute overflow-y as auto
        rather than visible, turning body into a clipping context -- on a
@@ -36,7 +36,7 @@ h1, h2, h3, h4 {
 
 /* Site title and navigation */
 .topbar {
-    background-color: #fdfbf5;
+    background-color: #fdfaf5;
     border-bottom: 1px solid #bbb3a0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     container-type: inline-size;
@@ -144,7 +144,7 @@ h1, h2, h3, h4 {
         gap: 0;
         box-sizing: border-box;
         width: 12em;
-        background-color: #fdfbf5;
+        background-color: #fdfaf5;
         border: 1px solid #bbb3a0;
         box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
         z-index: 20;
@@ -258,7 +258,7 @@ main#orthocal > header::before {
        hidden clips the excess, so precision here doesn't matter. */
     left: -100vmax;
     right: -100vmax;
-    background: linear-gradient(to bottom, #f5f1e6, #f4eee1);
+    background: linear-gradient(to bottom, #f5f0e6, #f4eee1);
     border-bottom: 1px solid #bbb3a0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: -1;
@@ -467,15 +467,15 @@ table.month td {
 	border: 1px solid #d4cfc4;
 	font-size: 0.75em;
 	vertical-align: top;
-	background-color: #f3f1ea;
+	background-color: #eee9e0;
 	text-align: left;
     width: 14.28%;
 }
 table.month td.fast {
-	background-color: #e7e5de;
+	background-color: #dfd9cd;
 }
 table.month td.fast:hover {
-	background-color: #e2dfd7 !important;
+	background-color: #dbd4c5 !important;
 }
 table.month td.noday {
 	border: 0;
@@ -488,7 +488,7 @@ table.month tr td p {
 }
 table.month tr th {
 	text-align: center;
-	color: #8a8370;
+	color: #756e5f;
 }
 table.month tr:first-child th {
 	font-size: 1.5em;
@@ -561,7 +561,7 @@ table.month td.thu:hover,
 table.month td.fri:hover,
 table.month td.sat:hover
 {
-	background-color: #e7e5de;
+	background-color: #e6e1d5;
     cursor: pointer;
 }
 
