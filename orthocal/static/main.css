@@ -5,7 +5,12 @@ html {
 }
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #fcfaf6, #f8f4ed 33%);
+    background-color: #fbf8f4;
+    background-image:
+        url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj4KICA8ZmlsdGVyIGlkPSJncmFpbiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMTgiIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjExIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im5vaXNlIi8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0ibm9pc2UiIHR5cGU9Im1hdHJpeCIKICAgICAgdmFsdWVzPSIwIDAgMCAwIDAuNQogICAgICAgICAgICAgIDAgMCAwIDAgMC40MTcKICAgICAgICAgICAgICAwIDAgMCAwIDAuMjUKICAgICAgICAgICAgICAwIDAgMCAwLjQgMCIvPgogIDwvZmlsdGVyPgogIDxmaWx0ZXIgaWQ9ImJsb3RjaCIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMDQgMC4wMDUiIG51bU9jdGF2ZXM9IjMiIHNlZWQ9IjQiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHJlc3VsdD0iYmlnIi8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0iYmlnIiB0eXBlPSJtYXRyaXgiCiAgICAgIHZhbHVlcz0iMCAwIDAgMCAwLjUKICAgICAgICAgICAgICAwIDAgMCAwIDAuNDA3CiAgICAgICAgICAgICAgMCAwIDAgMCAwLjIyCiAgICAgICAgICAgICAgMCAwIDAgMC42IDAiIHJlc3VsdD0iYmlnVGludCIvPgogICAgPGZlQ29tcG9uZW50VHJhbnNmZXIgaW49ImJpZ1RpbnQiPgogICAgICA8ZmVGdW5jQSB0eXBlPSJnYW1tYSIgYW1wbGl0dWRlPSIxIiBleHBvbmVudD0iMy4yIiBvZmZzZXQ9IjAiLz4KICAgIDwvZmVDb21wb25lbnRUcmFuc2Zlcj4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjYmxvdGNoKSIgb3BhY2l0eT0iMC40NSIvPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNncmFpbikiIG9wYWNpdHk9IjAuMzIiLz4KPC9zdmc+Cg=="),
+        linear-gradient(to bottom, #fcfaf6, #fbf8f4 33%);
+    background-repeat: repeat, no-repeat;
+    background-size: auto, 100% 100%;
     overflow-x: hidden;
     /* Setting only overflow-x makes the UA compute overflow-y as auto
        rather than visible, turning body into a clipping context -- on a
@@ -258,7 +263,7 @@ main#orthocal > header::before {
        hidden clips the excess, so precision here doesn't matter. */
     left: -100vmax;
     right: -100vmax;
-    background: linear-gradient(to bottom, #f5f0e6, #f4eee1);
+    background: linear-gradient(to bottom, rgba(238, 229, 212, 0.3), rgba(237, 227, 206, 0.3));
     border-bottom: 1px solid #bbb3a0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: -1;
