@@ -5,7 +5,7 @@ html {
 }
 body {
     margin: 0;
-    background-color: #fdfbf5;
+    background: linear-gradient(to bottom, #fcfaf6, #f8f5ed 33%);
     overflow-x: hidden;
     /* Setting only overflow-x makes the UA compute overflow-y as auto
        rather than visible, turning body into a clipping context -- on a
@@ -38,11 +38,14 @@ h1, h2, h3, h4 {
 .topbar {
     background-color: #fdfbf5;
     border-bottom: 1px solid #bbb3a0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     container-type: inline-size;
+    position: relative;
+    z-index: 1;
 }
 .topbar-inner {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: baseline;
     justify-content: space-between;
     gap: 0.5em 1.5em;
@@ -57,26 +60,25 @@ h1, h2, h3, h4 {
     font-size: clamp(1.2em, calc(8.6cqw - 10px), 2.1em);
     color: #666;
 	font-weight: bold;
-    font-variant: small-caps;
     min-width: 0;
     white-space: nowrap;
 }
 .topbar-inner > header a {
     text-decoration: none;
     color: #666;
-    text-shadow: 2px 2px 4px #ddd;
 }
 .topbar-inner > nav {
     margin: 0;
     padding: 0;
     text-align: right;
+    font-family: Optima, sans-serif;
 }
 .topbar-inner > nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1.4em;
     justify-content: flex-end;
 }
@@ -174,8 +176,9 @@ h1, h2, h3, h4 {
 nav.page-nav {
     width: 75%;
     margin: 0 auto;
-    padding: 0.4em 0 0.5em 0;
+    padding: 0.4em 0 0.15em 0;
     font-size: clamp(0.6em, calc(3cqw), 1em);
+    font-family: Optima, sans-serif;
 }
 .page-nav-row {
     display: flex;
@@ -220,6 +223,7 @@ main#orthocal {
     margin: 0 auto 4em auto;
 	width: 75%;
     min-height: 100%;
+    container-type: inline-size;
 }
 main#orthocal p {
     text-indent: 1.5em;
@@ -234,6 +238,12 @@ main#orthocal iframe {
 }
 main#orthocal > header {
     position: relative;
+    /* z-index establishes this header as its own stacking context, so the
+       ::before's z-index: -1 (used to keep the full-bleed background band
+       behind this header's own text) stays scoped locally -- without it,
+       the negative z-index escapes to the document root and paints behind
+       essentially everything on the page, including its own box-shadow. */
+    z-index: 0;
     padding: 2.2em 0;
     box-sizing: border-box;
 }
@@ -248,8 +258,9 @@ main#orthocal > header::before {
        hidden clips the excess, so precision here doesn't matter. */
     left: -100vmax;
     right: -100vmax;
-    background-color: #f3f1ea;
+    background: linear-gradient(to bottom, #f5f1e6, #f4eee1);
     border-bottom: 1px solid #bbb3a0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: -1;
 }
 main#orthocal > header h1 {
@@ -259,8 +270,9 @@ main#orthocal > header h1 {
 }
 main#orthocal > header h1 span {
 	margin-top: 0;
-	color: black;
-	font-size: 1.1em;
+	color: #333;
+	font-size: clamp(1em, calc(5cqw + 15px), 1.5em);
+	font-variant: small-caps;
 }
 
 #content {
@@ -289,6 +301,9 @@ main#orthocal > header h1 span {
 .readings-columns > section.readings {
 	min-width: 0;
 }
+.readings-columns > section.readings > h1 {
+	font-size: clamp(1.25em, calc(5cqw + 10px), 2em);
+}
 section.readings h2 {
     color: #a00;
 }
@@ -316,9 +331,10 @@ section.readings h2 {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4em;
+	font-family: Optima, sans-serif;
 }
 .translation-picker select {
-	font-family: inherit;
+	font-family: Optima, sans-serif;
 	font-size: 1.1em;
 	color: #333;
 	background-color: #fff;
@@ -463,7 +479,7 @@ table.month td.fast:hover {
 }
 table.month td.noday {
 	border: 0;
-	background-color: #fdfbf5;
+	background-color: transparent;
 }
 table.month tr td p {
 	text-indent: 0 !important;
