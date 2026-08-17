@@ -12,6 +12,12 @@
 		<link rel="stylesheet" href="{% static "main.css" %}">
 		<link rel="stylesheet" media="print" href="{% static "print.css" %}">
 
+		<!-- htmx (self-hosted, pinned to 2.0.4 -- see orthocal/static/htmx.min.js)
+		     swaps #orthocal in place instead of a full page navigation for
+		     day-nav, the tradition/calendar/translation toggles, and the
+		     saint search results. -->
+		<script src="{% static "htmx.min.js" %}" defer></script>
+
 		<!-- Load Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,7 +92,7 @@
 				</nav>
 			</div>
 
-			<nav class="page-nav">
+			<nav class="page-nav" id="page-nav" hx-swap-oob="true">
 				{% block extra_nav %}{% endblock %}
 			</nav>
 		</div>

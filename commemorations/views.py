@@ -56,7 +56,10 @@ def search_view(request):
         # straight to their page rather than making the user click through
         # a one-item list. A single story-less match has no page to redirect
         # to, so it's shown (unlinked) same as any other story-less result.
-        if len(results) == 1 and results[0].has_story:
+        # Not for htmx's live-as-you-type requests, though -- redirecting
+        # mid-keystroke the moment a query narrows to one match would yank
+        # the page out from under someone who hasn't finished typing yet.
+        if len(results) == 1 and results[0].has_story and request.headers.get('HX-Request') != 'true':
             return redirect('saint-detail', results[0].slug)
 
     return render(request, 'saint_search.html', context={
