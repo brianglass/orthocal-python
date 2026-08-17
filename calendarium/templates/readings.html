@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load typogrify_tags %}
 {% load fullurl %}
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
@@ -41,16 +40,14 @@
 
 {% block main %}
 	<header>
-		<h1>{{ day.gregorian_date|date:"l, F j, Y"|widont }}<span><br>{% if day.feasts %}{{ day.feasts|join:"; "|widont }}{% else %}{{ day.titles.0|widont }}{% endif %}</span></h1>
+		<h1>{{ day.gregorian_date|date:"l, F j, Y" }}<span><br>{% if day.feasts %}{{ day.feasts|join:"; " }}{% else %}{{ day.titles.0 }}{% endif %}</span></h1>
 
 		<p class="fasting">
-			{% filter widont %}
 			{{ day.fast_level_desc }}
 			{% if day.fast_level %}
 				{% if day.fast_exception_desc %}— {{ day.fast_exception_desc }}{% endif %}
 				{% if day.fast_abstentions_desc %}— {{ day.fast_abstentions_desc }}{% endif %}
 			{% endif %}
-			{% endfilter %}
 		</p>
 
 		{% if day.service_notes %}
@@ -58,7 +55,7 @@
 			<h2>Service Notes</h2>
 			<ul>
 				{% for note in day.service_notes %}
-				<li>{{ note|widont }}</li>
+				<li>{{ note }}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -71,10 +68,8 @@
 				{% for reading in day.readings %}
 				<li>
 					<a href="#reading-{{ reading.id }}">
-						{% filter widont %}
 						{{ reading.pericope.display }}
 						({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
-						{% endfilter %}
 					</a>
 				</li>
 				{% endfor %}
@@ -87,7 +82,7 @@
 			<h2>Commemorations</h2>
 			<ul>
 				{% for saint, story_id in day.saint_links %}
-				<li>{% if story_id %}<a href="#commemoration-{{ story_id }}">{{ saint|widont }}</a>{% else %}{{ saint|widont }}{% endif %}</li>
+				<li>{% if story_id %}<a href="#commemoration-{{ story_id }}">{{ saint }}</a>{% else %}{{ saint }}{% endif %}</li>
 				{% endfor %}
 			</ul>
 		</section>
@@ -118,10 +113,8 @@
 		{% for reading in day.readings %}
 		<article class="passage" id="reading-{{ reading.id }}">
 			<h2>
-				{% filter widont %}
 				{{ reading.pericope.display }}
 				({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
-				{% endfilter %}
 			</h2>
 
 			<p>
@@ -140,7 +133,7 @@
 
 			{% for reading in day.stories %}
 			<article class="passage" id="commemoration-{{ reading.id }}">
-				<h2>{{ reading.title|widont }}</h2>
+				<h2>{{ reading.title }}</h2>
 
 				{{ reading.story|safe }}
 			</article>
