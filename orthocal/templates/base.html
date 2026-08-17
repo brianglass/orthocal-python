@@ -62,11 +62,26 @@
 						<li><a href="{% url "index" %}">Readings</a></li>
 						<li><a href="{% url "calendar-default" %}">Calendar</a></li>
 						<li><a href="{% url "saint-search" %}">Saints</a></li>
-						<li><a href="{% url "alexa" %}">Alexa</a></li>
-						<li><a href="{% url "api" %}">API</a></li>
-						<li><a href="{% url "ai-assistant" %}">AI</a></li>
-						<li><a href="{% url "feeds" %}">Feeds</a></li>
-						<li><a href="{% url "about" %}">About</a></li>
+						<li>
+							<details name="nav-submenu">
+								<summary>Integrations</summary>
+								<ul>
+									<li><a href="{% url "alexa" %}">Alexa</a></li>
+									<li><a href="{% url "api" %}">API</a></li>
+									<li><a href="{% url "ai-assistant" %}">AI</a></li>
+									<li><a href="{% url "feeds" %}">Feeds</a></li>
+								</ul>
+							</details>
+						</li>
+						<li>
+							<details name="nav-submenu">
+								<summary>More</summary>
+								<ul>
+									<li><a href="{% url "about" %}">About</a></li>
+									<li><a href="https://paypal.me/BGlass42" target="_blank" rel="noopener">Tip Jar</a></li>
+								</ul>
+							</details>
+						</li>
 					</ul>
 				</nav>
 			</div>
