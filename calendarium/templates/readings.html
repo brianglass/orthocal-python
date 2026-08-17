@@ -20,19 +20,19 @@
 {% block extra_nav %}
 	<div class="page-nav-row">
 		<div class="day-nav">
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; Previous Day</a>
-			<a class="cal-nav" href="{% url "index" %}">Today</a>
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %}>Next Day &rarr;</a>
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">&larr; Previous Day</a>
+			<a class="cal-nav" href="{% url "index" %}" hx-get="{% url "index" %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Today</a>
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Next Day &rarr;</a>
 		</div>
 
-		<div class="toggle-row">
+		<div class="toggle-row" hx-params="none">
 			<div class="segmented-control">
-				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
-				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek<span class="status-badge">New</span></label>
+				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %} hx-get="{% if translation %}{% url "readings" tradition="slavic" cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition="slavic" cal=cal year=date.year month=date.month day=date.day %}{% endif %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Slavic</label>
+				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %} hx-get="{% if translation %}{% url "readings" tradition="greek" cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition="greek" cal=cal year=date.year month=date.month day=date.day %}{% endif %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Greek<span class="status-badge">New</span></label>
 			</div>
 			<div class="segmented-control">
-				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
-				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} hx-get="{% if translation %}{% url "readings" tradition=tradition cal="gregorian" translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition=tradition cal="gregorian" year=date.year month=date.month day=date.day %}{% endif %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Gregorian</label>
+				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} hx-get="{% if translation %}{% url "readings" tradition=tradition cal="julian" translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition=tradition cal="julian" year=date.year month=date.month day=date.day %}{% endif %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Julian</label>
 			</div>
 		</div>
 	</div>
@@ -100,9 +100,9 @@
 		{% if day.language == "en" %}
 		<p class="translation-picker">
 			<label for="translation-select">Translation:
-				<select name="translation" id="translation-select">
+				<select id="translation-select" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">
 					{% for value, label in translation_choices %}
-					<option value="{{ value }}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
+					<option value="{% url "readings" tradition=tradition cal=cal translation=value year=date.year month=date.month day=date.day %}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
 					{% endfor %}
 				</select>
 				<span class="status-badge">New</span>
@@ -141,45 +141,4 @@
 		{% endif %}
 	</section>
 	</div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-	function navigate(){
-		var cal = document.querySelector('input[name="calendar"]:checked').value;
-		var tradition = document.querySelector('input[name="tradition"]:checked').value;
-		var translationSelect = document.getElementById('translation-select');
-		var translation = translationSelect ? translationSelect.value : 'kjv';
-
-		// Reverse with real placeholder values (each a distinct, one-off path
-		// segment) and substitute them client-side, since the number of
-		// translations can grow and a per-combination URL map (as used above
-		// for cal/tradition) doesn't scale as well as a single template does.
-		var url = '{% url "readings" tradition="slavic" cal="gregorian" translation="kjv" year=date.year month=date.month day=date.day %}'
-			.replace('slavic', tradition)
-			.replace('gregorian', cal)
-			.replace('kjv', translation);
-
-		location.href = url + '?t=' + new Date().getTime();
-	}
-
-	function wire_toggles(){
-		var radios = document.getElementsByName('calendar');
-		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', navigate);
-		}
-
-		radios = document.getElementsByName('tradition');
-		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', navigate);
-		}
-
-		var translationSelect = document.getElementById('translation-select');
-		if (translationSelect) {
-			translationSelect.addEventListener('change', navigate);
-		}
-	}
-
-	document.addEventListener('DOMContentLoaded', wire_toggles)
-</script>
 {% endblock %}

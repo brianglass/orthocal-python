@@ -9,31 +9,39 @@
 {% block content %}
 	<h2>Search for a Saint</h2>
 
-	<form method="get" action="{% url "saint-search" %}" class="saint-search-form">
+	<form method="get" action="{% url "saint-search" %}" class="saint-search-form"
+		hx-get="{% url "saint-search" %}"
+		hx-trigger="submit, input changed delay:300ms"
+		hx-select="#search-results"
+		hx-target="#search-results"
+		hx-swap="outerHTML"
+		hx-replace-url="true">
 		<input type="text" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Nicholas, Xenia" aria-label="Saint name" autofocus>
 		<button type="submit">Search</button>
 	</form>
 
-	{% if query %}
-		{% if results %}
-		<table class="saint-search-results">
-			<tbody>
-				{% for saint in results %}
-				<tr>
-					<td>
-						{% if saint.has_story %}
-						<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
-						{% else %}
-						<span class="no-story">{{ saint.display_name }}</span>
-						{% endif %}
-					</td>
-					<td class="story-date">{{ saint.occasion_dates }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		{% else %}
-		<p>No saints found matching &ldquo;{{ query }}&rdquo;.</p>
+	<div id="search-results">
+		{% if query %}
+			{% if results %}
+			<table class="saint-search-results">
+				<tbody>
+					{% for saint in results %}
+					<tr>
+						<td>
+							{% if saint.has_story %}
+							<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
+							{% else %}
+							<span class="no-story">{{ saint.display_name }}</span>
+							{% endif %}
+						</td>
+						<td class="story-date">{{ saint.occasion_dates }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% else %}
+			<p>No saints found matching &ldquo;{{ query }}&rdquo;.</p>
+			{% endif %}
 		{% endif %}
-	{% endif %}
+	</div>
 {% endblock %}
