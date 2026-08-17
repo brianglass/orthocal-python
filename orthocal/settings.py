@@ -72,7 +72,6 @@ INSTALLED_APPS = [
     # Third party apps
     'corsheaders',
     'fullurl',
-    'typogrify',
     'ninja',
 
     # internal apps
