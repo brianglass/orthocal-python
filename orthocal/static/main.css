@@ -87,7 +87,7 @@ h1, h2, h3, h4 {
     gap: 1.4em;
     justify-content: flex-end;
 }
-.topbar-inner > nav li {
+.topbar-inner > nav > ul > li {
     display: inline;
     text-transform: lowercase;
 }
@@ -100,6 +100,65 @@ h1, h2, h3, h4 {
 .topbar-inner > nav a:hover {
     color: black;
     text-shadow: 2px 2px 3px #bbb;
+}
+
+/* Submenu (e.g. "Developers") -- a native <details>/<summary> disclosure
+   rather than a CSS :hover flyout, so it works identically (click to open,
+   no separate touch/mouse logic) whether it's in the inline desktop row or
+   stacked in the mobile hamburger dropdown below. */
+.topbar-inner > nav details {
+    display: inline;
+    position: relative;
+}
+.topbar-inner > nav summary {
+    display: inline;
+    cursor: pointer;
+    color: #777;
+    list-style: none;
+    text-transform: lowercase;
+    transition-property: color, text-shadow;
+    transition-duration: 0.3s;
+}
+.topbar-inner > nav summary::-webkit-details-marker {
+    display: none;
+}
+.topbar-inner > nav summary::after {
+    content: " \25be";
+    font-size: 0.7em;
+    vertical-align: middle;
+}
+.topbar-inner > nav details[open] summary::after {
+    content: " \25b4";
+}
+.topbar-inner > nav summary:hover {
+    color: black;
+    text-shadow: 2px 2px 3px #bbb;
+}
+.topbar-inner > nav details ul {
+    list-style: none;
+    margin: 0.6em 0 0 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 0;
+    box-sizing: border-box;
+    width: 10em;
+    background-color: #fdfaf5;
+    border: 1px solid #bbb3a0;
+    box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+}
+.topbar-inner > nav details ul li {
+    display: block;
+    text-transform: lowercase;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.4em 1em;
 }
 
 /* Hamburger menu -- hidden until the site nav would wrap */
@@ -124,7 +183,7 @@ h1, h2, h3, h4 {
 .nav-toggle:hover span {
     background-color: #333;
 }
-@media (max-width: 1350px) {
+@media (max-width: 1050px) {
     .topbar-inner {
         align-items: center;
         position: relative;
@@ -139,7 +198,7 @@ h1, h2, h3, h4 {
         text-align: right;
         margin-left: -1.5em;
     }
-    .topbar-inner > nav ul {
+    .topbar-inner > nav > ul {
         display: none;
         position: absolute;
         top: 100%;
@@ -154,13 +213,35 @@ h1, h2, h3, h4 {
         box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
         z-index: 20;
     }
-    .topbar-inner > nav.nav-open ul {
+    .topbar-inner > nav.nav-open > ul {
         display: flex;
     }
-    .topbar-inner > nav li {
+    .topbar-inner > nav > ul > li {
         box-sizing: border-box;
         width: 100%;
         padding: 0.4em 1em;
+    }
+    /* The "Developers" submenu stacks in normal flow here instead of
+       floating as its own boxed dropdown -- it's already inside the
+       hamburger panel, so it just needs to read as an indented,
+       collapsible group within that list rather than a second popup. */
+    .topbar-inner > nav details {
+        display: block;
+        width: 100%;
+    }
+    .topbar-inner > nav summary {
+        display: block;
+    }
+    .topbar-inner > nav details ul {
+        position: static;
+        width: 100%;
+        margin: 0;
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+    .topbar-inner > nav details ul li {
+        padding: 0.4em 1em 0.4em 2em;
     }
 }
 /* Last resort: viewport too narrow even for the smallest scaled title font
@@ -195,6 +276,7 @@ nav.page-nav {
 .day-nav {
     display: flex;
     flex-wrap: nowrap;
+    text-transform: lowercase;
 }
 nav.page-nav a:link, nav.page-nav a:visited {
     text-decoration: none;
