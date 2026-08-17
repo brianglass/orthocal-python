@@ -3129,14 +3129,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5538,
-  "fields": {
-    "name": "Holy Equals-to-the-Apostles Methodius (885) and Cyril (869), first teachers of the Slavs",
-    "full_name": "Holy Equals-to-the-Apostles Methodius (885) and Cyril (869), first teachers of the Slavs"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5539,
   "fields": {
     "name": "Holy Equals-to-the-Apostles Emperor Constantine (337) and Helen, his mother (327)",
@@ -42910,8 +42902,17 @@
   "pk": 426,
   "fields": {
     "commemoration": 5667,
-    "saint": 5538,
+    "saint": 5224,
     "order": 1
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1730,
+  "fields": {
+    "commemoration": 5667,
+    "saint": 5167,
+    "order": 2
   }
 },
 {
