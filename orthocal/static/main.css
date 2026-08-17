@@ -407,6 +407,7 @@ section.readings h2 {
 	text-align: center;
 	text-indent: 0 !important;
     color: #a00;
+	text-wrap: balance;
 }
 .translation-picker {
 	text-align: center;
@@ -596,6 +597,9 @@ table.month tr:first-child th {
 .commemorations li a, .scripture-list li a {
 	color: inherit;
 	text-decoration: none;
+}
+.scripture-list li a {
+	white-space: nowrap;
 }
 .commemorations li a:hover, .scripture-list li a:hover {
 	text-decoration: underline;
