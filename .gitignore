@@ -8,4 +8,5 @@ ve
 .coverage
 .firebase
 static
+public/media
 default-cache
