@@ -21,18 +21,18 @@
 {% block extra_nav %}
 	<div class="page-nav-row">
 		<div class="day-nav">
-			<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %}>&larr; {{ previous_month|date:"F" }}</a>
-			<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %}>{{ next_month|date:"F" }} &rarr;</a>
+			<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">&larr; {{ previous_month|date:"F" }}</a>
+			<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">{{ next_month|date:"F" }} &rarr;</a>
 		</div>
 
-		<div class="toggle-row">
+		<div class="toggle-row" hx-params="none">
 			<div class="segmented-control">
-				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %}>Slavic</label>
-				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %}>Greek<span class="status-badge">New</span></label>
+				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Slavic</label>
+				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Greek<span class="status-badge">New</span></label>
 			</div>
 			<div class="segmented-control">
-				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %}>Gregorian</label>
-				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %}>Julian</label>
+				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="gregorian" year=this_month.year month=this_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Gregorian</label>
+				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="julian" year=this_month.year month=this_month.month %}" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">Julian</label>
 			</div>
 		</div>
 	</div>
@@ -40,35 +40,4 @@
 
 {% block main %}
 	{{ content|safe }}
-{% endblock %}
-
-{% block scripts %}
-<script>
-	function navigate(){
-		var cal = document.querySelector('input[name="calendar"]:checked').value;
-		var tradition = document.querySelector('input[name="tradition"]:checked').value;
-		var urls = {
-			'gregorian_slavic': '{% url "calendar" tradition="slavic" cal="gregorian" year=this_month.year month=this_month.month %}',
-			'gregorian_greek': '{% url "calendar" tradition="greek" cal="gregorian" year=this_month.year month=this_month.month %}',
-			'julian_slavic': '{% url "calendar" tradition="slavic" cal="julian" year=this_month.year month=this_month.month %}',
-			'julian_greek': '{% url "calendar" tradition="greek" cal="julian" year=this_month.year month=this_month.month %}'
-		};
-		var t = new Date().getTime();
-		location.href = urls[cal + '_' + tradition] + '?t=' + t;
-	}
-
-	function wire_toggles(){
-		var radios = document.getElementsByName('calendar');
-		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', navigate);
-		}
-
-		radios = document.getElementsByName('tradition');
-		for (var i = 0; i < radios.length; i++) {
-			radios[i].addEventListener('change', navigate);
-		}
-	}
-
-	document.addEventListener('DOMContentLoaded', wire_toggles)
-</script>
 {% endblock %}
