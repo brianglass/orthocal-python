@@ -111,6 +111,18 @@
 					toggle.setAttribute('aria-expanded', isOpen);
 				});
 			});
+
+			// Native <details> only closes on a second click on its own
+			// <summary> (or when a sibling in the same name= group opens) --
+			// it doesn't close on a click elsewhere on the page, which reads
+			// as broken for a nav dropdown.
+			document.addEventListener('click', function (event) {
+				document.querySelectorAll('.topbar-inner > nav details[open]').forEach(function (details) {
+					if (!details.contains(event.target)) {
+						details.removeAttribute('open');
+					}
+				});
+			});
 		</script>
 
         {% block scripts %}{% endblock %}
