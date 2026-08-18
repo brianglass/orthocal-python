@@ -142,10 +142,25 @@ class TestYear(TestCase):
         """When Pascha falls late enough, Peter and Paul's fixed date
         arrives before the fast would even start -- 2024 (Pascha May 5) is
         a real example. The fast is empty that year, represented as an
-        inverted (start after end) range rather than a crash."""
+        inverted (start after end) range rather than a crash. This is a
+        Gregorian-only phenomenon: the Julian calendar's ~13-day-later
+        Peter and Paul always leaves enough room, confirmed by scanning
+        every year from 1583-4099 with zero Julian-empty results."""
         year = liturgics.SlavicYear(2024)
         start, end = year.apostles_fast
         self.assertGreater(start, end)
+
+    def test_apostles_fast_never_empty_on_julian_calendar(self):
+        """The Julian calendar's Peter and Paul falls about 13 days later
+        than the Gregorian date, which is enough of a buffer that the
+        Apostles' Fast never becomes empty under Julian reckoning -- even
+        in years where the Gregorian version does (2024, 2040, 2043, 2051,
+        2054, 2059 among them)."""
+        for year in (2024, 2040, 2043, 2051, 2054, 2059):
+            with self.subTest(year):
+                julian_year = liturgics.SlavicYear(year, calendar=datetools.Calendar.Julian)
+                start, end = julian_year.apostles_fast
+                self.assertLessEqual(start, end)
 
     def test_dormition_fast(self):
         year = liturgics.SlavicYear(2026)

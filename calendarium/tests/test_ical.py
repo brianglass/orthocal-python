@@ -11,6 +11,11 @@ from django.utils import timezone
 from ..datetools import Calendar, Tradition
 from ..ical import generate_ical
 
+# The four Great Fasts' multi-day events don't carry a url or a fixed
+# one-day length the way the daily commemoration events do -- tests that
+# check those fields on every event need to skip them.
+_FAST_UID_PREFIXES = ('great_lent-', 'apostles_fast-', 'dormition_fast-', 'nativity_fast-')
+
 
 class CalendarTest(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
@@ -39,6 +44,8 @@ class CalendarTest(TestCase):
         response = self.client.get(url)
         cal = icalendar.Calendar.from_ical(response.content)
         for event in cal.walk('vevent'):
+            if str(event.get('uid')).startswith(_FAST_UID_PREFIXES):
+                continue
             parts = urlparse(event['url'])
             match = resolve(parts.path)
             self.assertEqual(match.kwargs['tradition'], Tradition.Greek)
@@ -66,6 +73,8 @@ class CalendarTest(TestCase):
         response = self.client.get(url)
         cal = icalendar.Calendar.from_ical(response.content)
         for event in cal.walk('vevent'):
+            if str(event.get('uid')).startswith(_FAST_UID_PREFIXES):
+                continue
             parts = urlparse(event['url'])
             match = resolve(parts.path)
             self.assertEqual(match.kwargs['cal'], Calendar.Gregorian)
@@ -77,6 +86,8 @@ class CalendarTest(TestCase):
         response = self.client.get(url)
         cal = icalendar.Calendar.from_ical(response.content)
         for event in cal.walk('vevent'):
+            if str(event.get('uid')).startswith(_FAST_UID_PREFIXES):
+                continue
             parts = urlparse(event['url'])
             match = resolve(parts.path)
             self.assertEqual(match.kwargs['cal'], Calendar.Julian)
@@ -125,15 +136,13 @@ class CalendarTest(TestCase):
         legitimately multi-day; every other event (the daily commemoration
         entries) is exactly one day long."""
 
-        fast_uid_prefixes = ('great_lent-', 'apostles_fast-', 'dormition_fast-', 'nativity_fast-')
-
         url = reverse('ical', kwargs={'cal': Calendar.Gregorian})
         response = self.client.get(url)
         cal = icalendar.Calendar.from_ical(response.content)
         for event in cal.walk('vevent'):
             self.assertFalse(isinstance(event['dtstart'].dt, datetime.datetime))
             length = event['dtend'].dt - event['dtstart'].dt
-            if str(event.get('uid')).startswith(fast_uid_prefixes):
+            if str(event.get('uid')).startswith(_FAST_UID_PREFIXES):
                 self.assertGreater(length, datetime.timedelta(days=1))
             else:
                 self.assertEqual(length, datetime.timedelta(days=1))

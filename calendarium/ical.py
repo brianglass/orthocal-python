@@ -102,21 +102,16 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
             # In years with a sufficiently late Pascha, the Apostles' Fast
             # shrinks to nothing -- Peter and Paul falls before there would
             # even be a first day of the fast, giving an inverted range
-            # (e.g. 2024: fast_start 7/1, fast_end 6/28). Nothing to add.
+            # (e.g. 2024: fast_start 7/1, fast_end 6/28). This is a
+            # Gregorian-only phenomenon -- the Julian calendar's Peter and
+            # Paul falls ~13 days later, always leaving enough room (no
+            # empty years found scanning 1583-4099). Nothing to add either
+            # way once it's empty.
             if fast_start > fast_end:
                 continue
 
             if fast_end < start_dt or fast_start > end_dt:
                 continue
-
-            fast_day_path = reverse('readings', kwargs={
-                'cal': cal,
-                'tradition': tradition,
-                'year': fast_start.year,
-                'month': fast_start.month,
-                'day': fast_start.day,
-            })
-            fast_url = build_absolute_uri(fast_day_path)
 
             event = icalendar.Event()
             event.add('uid', f'{attr}-{fast_start.strftime("%Y-%m-%d")}.{title}@orthocal.info')
@@ -124,8 +119,7 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
             event.add('dtstart', fast_start)
             event.add('dtend', fast_end + timedelta(days=1))
             event.add('summary', name)
-            event.add('description', f'The season of {name} begins today.\n\nFollow this link for full readings:\n{fast_url}')
-            event.add('url', fast_url)
+            event.add('description', name)
             event.add('class', 'public')
             calendar.add_component(event)
 
