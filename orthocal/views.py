@@ -53,10 +53,6 @@ async def mcp_server_card(request):
     })
 
 @etag
-async def llms_txt(request):
-    return TemplateResponse(request, 'llms.txt', content_type='text/plain')
-
-@etag
 async def feeds(request):
     return TemplateResponse(request, 'feeds.html')
 
