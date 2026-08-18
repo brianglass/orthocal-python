@@ -123,6 +123,27 @@
 					}
 				});
 			});
+
+			// The day-nav links and the tradition/calendar/translation
+			// controls all swap #orthocal in place via htmx, but they live
+			// inside #page-nav, which is refreshed on every such request via
+			// an out-of-band swap -- so the very control the user just used
+			// gets removed from the DOM and replaced by a new node. Some
+			// browsers move the viewport when the focused element disappears
+			// like that (observed jumping/scrolling in Edge). None of these
+			// are real navigations, so pin the scroll position across them.
+			var htmxSavedScrollY = null;
+			document.addEventListener('htmx:beforeRequest', function (event) {
+				var elt = event.detail.elt;
+				if (elt && elt.getAttribute && elt.getAttribute('hx-target') === '#orthocal') {
+					htmxSavedScrollY = window.scrollY;
+				}
+			});
+			document.addEventListener('htmx:afterSettle', function () {
+				if (htmxSavedScrollY !== null) {
+					window.scrollTo(0, htmxSavedScrollY);
+				}
+			});
 		</script>
 
         {% block scripts %}{% endblock %}
