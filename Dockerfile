@@ -9,8 +9,14 @@ WORKDIR /orthocal
 CMD ["newrelic-admin", "run-program", "python", "server.py"]
 
 COPY requirements.txt .
+# --no-compile skips pip's own bytecode compilation during install -- the
+# explicit compileall pass below (needed regardless, since it also covers
+# our own app code, not just installed packages) makes it redundant.
+# Uninstalling pip afterward drops ~14MB nothing at runtime needs -- the
+# app never pip-installs anything itself.
 RUN pip install --upgrade pip && \
-	pip install --no-cache-dir -r requirements.txt
+	pip install --no-cache-dir --no-compile -r requirements.txt && \
+	pip uninstall -y pip
 COPY . .
 
 # Precompile to bytecode to reduce warmup time
