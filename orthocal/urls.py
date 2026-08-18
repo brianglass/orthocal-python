@@ -39,7 +39,6 @@ urlpatterns = [
     path('api/', views.api, name='api'),
     path('ai-assistant/', views.ai_assistant, name='ai-assistant'),
     path('.well-known/mcp/server-cards.json', views.mcp_server_card, name='mcp-server-card'),
-    path('llms.txt', views.llms_txt, name='llms-txt'),
     path('ical/', RedirectView.as_view(permanent=True, pattern_name='feeds')),
     path('feeds/', views.feeds, name='feeds'),
     path('about/', views.about, name='about'),
