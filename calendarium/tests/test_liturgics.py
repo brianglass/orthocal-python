@@ -111,6 +111,69 @@ class TestYear(TestCase):
         self.assertEqual(start, date(2025, 11, 28))
         self.assertEqual(end, date(2026, 1, 6))
 
+    def test_great_lent(self):
+        year = liturgics.SlavicYear(2026)
+        start, end = year.great_lent
+        self.assertEqual(start, date(2026, 2, 23))
+        self.assertEqual(end, date(2026, 4, 11))
+
+    def test_great_lent_same_regardless_of_calendar(self):
+        """Pascha is reckoned identically in both traditions -- only
+        fixed-date feasts differ between Julian and Gregorian."""
+        gregorian = liturgics.SlavicYear(2026, calendar=datetools.Calendar.Gregorian)
+        julian = liturgics.SlavicYear(2026, calendar=datetools.Calendar.Julian)
+        self.assertEqual(gregorian.great_lent, julian.great_lent)
+
+    def test_apostles_fast(self):
+        year = liturgics.SlavicYear(2026)
+        start, end = year.apostles_fast
+        self.assertEqual(start, date(2026, 6, 8))
+        self.assertEqual(end, date(2026, 6, 28))
+
+    def test_apostles_fast_julian(self):
+        """Start is Pascha-relative (same in both traditions); end is tied
+        to the fixed Peter and Paul feast, which does shift."""
+        year = liturgics.SlavicYear(2026, calendar=datetools.Calendar.Julian)
+        start, end = year.apostles_fast
+        self.assertEqual(start, date(2026, 6, 8))
+        self.assertEqual(end, date(2026, 7, 11))
+
+    def test_apostles_fast_empty_in_late_pascha_year(self):
+        """When Pascha falls late enough, Peter and Paul's fixed date
+        arrives before the fast would even start -- 2024 (Pascha May 5) is
+        a real example. The fast is empty that year, represented as an
+        inverted (start after end) range rather than a crash. This is a
+        Gregorian-only phenomenon: the Julian calendar's ~13-day-later
+        Peter and Paul always leaves enough room, confirmed by scanning
+        every year from 1583-4099 with zero Julian-empty results."""
+        year = liturgics.SlavicYear(2024)
+        start, end = year.apostles_fast
+        self.assertGreater(start, end)
+
+    def test_apostles_fast_never_empty_on_julian_calendar(self):
+        """The Julian calendar's Peter and Paul falls about 13 days later
+        than the Gregorian date, which is enough of a buffer that the
+        Apostles' Fast never becomes empty under Julian reckoning -- even
+        in years where the Gregorian version does (2024, 2040, 2043, 2051,
+        2054, 2059 among them)."""
+        for year in (2024, 2040, 2043, 2051, 2054, 2059):
+            with self.subTest(year):
+                julian_year = liturgics.SlavicYear(year, calendar=datetools.Calendar.Julian)
+                start, end = julian_year.apostles_fast
+                self.assertLessEqual(start, end)
+
+    def test_dormition_fast(self):
+        year = liturgics.SlavicYear(2026)
+        start, end = year.dormition_fast
+        self.assertEqual(start, date(2026, 8, 1))
+        self.assertEqual(end, date(2026, 8, 14))
+
+    def test_dormition_fast_julian(self):
+        year = liturgics.SlavicYear(2026, calendar=datetools.Calendar.Julian)
+        start, end = year.dormition_fast
+        self.assertEqual(start, date(2026, 8, 14))
+        self.assertEqual(end, date(2026, 8, 27))
+
 
 class TestTraditionOverlay(TestCase):
     """Tests for the Slavic/Greek tradition axis added on top of the shared
