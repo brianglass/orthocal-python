@@ -10,7 +10,7 @@
 		<meta name="description" content="An Orthodox calendar including information about feasts, fasts, commemorations, and readings for the month of {{ this_month|date:"F Y" }}.">
 	{% endif %}
 
-	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri }}">
+	<link rel="alternate" type="application/json+oembed" href="{% fullurl "api:get_calendar_embed" %}?url={{ request.build_absolute_uri|urlencode:"" }}">
 	<link rel="canonical" href="{% fullurl "calendar" tradition=tradition cal=cal year=this_month.year month=this_month.month %}">
 
 	{% if noindex %}
