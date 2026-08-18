@@ -397,8 +397,35 @@ class ByzantineYear:
         return floats
 
     @cached_property
-    def nativity_fast(self):
-        start, end = date(self.year, 11, 15), date(self.year, 12, 24)
+    def great_lent(self):
+        # Clean Monday through Holy Saturday -- confirmed against fast_level
+        # empirically: pdist -48 is the first Lenten Fast day, pdist -1 the
+        # last (pdist 0, Pascha itself, is No Fast). Pascha is reckoned
+        # identically regardless of self.calendar (every Orthodox tradition
+        # computes it the same way -- calendar only affects fixed-date
+        # feasts), so no Julian/Gregorian branching is needed here: jd2gcal
+        # already gives the correct real (Gregorian) date for this pdist.
+        start_y, start_m, start_d, _ = jd2gcal(self.pascha - 48, 0)
+        end_y, end_m, end_d, _ = jd2gcal(self.pascha - 1, 0)
+        return date(start_y, start_m, start_d), date(end_y, end_m, end_d)
+
+    @cached_property
+    def apostles_fast(self):
+        # The Apostles fast begins on the Monday following All Saints and
+        # ends the day before the feast of Peter and Paul (confirmed against
+        # fast_level empirically: pdist 57 is the first Apostles Fast day,
+        # peter_and_paul-1 the last -- peter_and_paul itself is No Fast).
+        # self.peter_and_paul already resolves through date_to_pdist, which
+        # picks Julian or Gregorian based on self.calendar -- adding pascha
+        # (calendar-independent, see great_lent) to it gives the correct
+        # real date directly, with no further conversion needed.
+        start_y, start_m, start_d, _ = jd2gcal(self.pascha + 57, 0)
+        end_y, end_m, end_d, _ = jd2gcal(self.pascha + self.peter_and_paul - 1, 0)
+        return date(start_y, start_m, start_d), date(end_y, end_m, end_d)
+
+    @cached_property
+    def dormition_fast(self):
+        start, end = date(self.year, 8, 1), date(self.year, 8, 14)
 
         if self.calendar == Calendar.Julian:
             start_jdn, end_jdn = datetools.julian_to_jdn(start), datetools.julian_to_jdn(end)
@@ -409,14 +436,16 @@ class ByzantineYear:
             return start, end
 
     @cached_property
-    def apostles_fast(self):
-        # The Apostles fast begins on the Monday following All Saints
-        start, end = jd2gcal(self.pascha + 57, 0), jd2gcal(self.peter_and_paul, 0)
+    def nativity_fast(self):
+        start, end = date(self.year, 11, 15), date(self.year, 12, 24)
 
         if self.calendar == Calendar.Julian:
-            return (datetools.gregorian_to_julian(*start), datetools.gregorian_to_julian(*end))
+            start_jdn, end_jdn = datetools.julian_to_jdn(start), datetools.julian_to_jdn(end)
+            start_y, start_m, start_d, _ = jd2gcal(start_jdn, 0)
+            end_y, end_m, end_d, _ = jd2gcal(end_jdn, 0)
+            return date(start_y, start_m, start_d), date(end_y, end_m, end_d)
         else:
-            return (date(*start), date(*end))
+            return start, end
 
 
 @lru_cache

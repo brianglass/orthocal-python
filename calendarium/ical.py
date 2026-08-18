@@ -15,8 +15,24 @@ from django.views.decorators.cache import cache_control
 
 from . import liturgics
 from .datetools import Calendar, Tradition
+from .liturgics.year import SlavicYear, GreekYear
 
 logger = logging.getLogger(__name__)
+
+_YEAR_CLASSES = {
+    Tradition.Slavic: SlavicYear,
+    Tradition.Greek: GreekYear,
+}
+
+# The four Great Fasts, in calendar-year order (Great Lent falls in
+# spring, Nativity Fast in Nov/Dec) -- attribute name on the
+# liturgics.year.ByzantineYear subclasses, paired with its display name.
+_GREAT_FASTS = [
+    ('great_lent', 'Great Lent'),
+    ('apostles_fast', "Apostles' Fast"),
+    ('dormition_fast', 'Dormition Fast'),
+    ('nativity_fast', 'Nativity Fast'),
+]
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 async def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
@@ -75,6 +91,43 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
         event.add('url', url)
         event.add('class', 'public')
         calendar.add_component(event)
+
+    year_class = _YEAR_CLASSES[tradition]
+    for year in range(start_dt.year, end_dt.year + 1):
+        pyear = year_class(year, cal)
+
+        for attr, name in _GREAT_FASTS:
+            fast_start, fast_end = getattr(pyear, attr)
+
+            # In years with a sufficiently late Pascha, the Apostles' Fast
+            # shrinks to nothing -- Peter and Paul falls before there would
+            # even be a first day of the fast, giving an inverted range
+            # (e.g. 2024: fast_start 7/1, fast_end 6/28). Nothing to add.
+            if fast_start > fast_end:
+                continue
+
+            if fast_end < start_dt or fast_start > end_dt:
+                continue
+
+            fast_day_path = reverse('readings', kwargs={
+                'cal': cal,
+                'tradition': tradition,
+                'year': fast_start.year,
+                'month': fast_start.month,
+                'day': fast_start.day,
+            })
+            fast_url = build_absolute_uri(fast_day_path)
+
+            event = icalendar.Event()
+            event.add('uid', f'{attr}-{fast_start.strftime("%Y-%m-%d")}.{title}@orthocal.info')
+            event.add('dtstamp', timestamp)
+            event.add('dtstart', fast_start)
+            event.add('dtend', fast_end + timedelta(days=1))
+            event.add('summary', name)
+            event.add('description', f'The season of {name} begins today.\n\nFollow this link for full readings:\n{fast_url}')
+            event.add('url', fast_url)
+            event.add('class', 'public')
+            calendar.add_component(event)
 
     return calendar
 

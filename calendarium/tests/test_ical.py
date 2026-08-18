@@ -121,7 +121,11 @@ class CalendarTest(TestCase):
             self.fail('No event for timestamp found')
 
     def test_event_all_day(self):
-        """Events should be all-day events."""
+        """Events should be all-day events. The four Great Fasts are
+        legitimately multi-day; every other event (the daily commemoration
+        entries) is exactly one day long."""
+
+        fast_uid_prefixes = ('great_lent-', 'apostles_fast-', 'dormition_fast-', 'nativity_fast-')
 
         url = reverse('ical', kwargs={'cal': Calendar.Gregorian})
         response = self.client.get(url)
@@ -129,4 +133,32 @@ class CalendarTest(TestCase):
         for event in cal.walk('vevent'):
             self.assertFalse(isinstance(event['dtstart'].dt, datetime.datetime))
             length = event['dtend'].dt - event['dtstart'].dt
-            self.assertEqual(length, datetime.timedelta(days=1))
+            if str(event.get('uid')).startswith(fast_uid_prefixes):
+                self.assertGreater(length, datetime.timedelta(days=1))
+            else:
+                self.assertEqual(length, datetime.timedelta(days=1))
+
+    async def test_ical_includes_great_fasts(self):
+        """The ical feed includes one multi-day event per Great Fast."""
+
+        def build_absolute_uri(url):
+            return urljoin('http://testserver', url)
+
+        timestamp = datetime.datetime(2026, 1, 15, tzinfo=datetime.timezone.utc)
+        cal = await generate_ical(timestamp, Calendar.Gregorian, Tradition.Slavic, build_absolute_uri)
+        uids = {str(event.get('uid')) for event in cal.walk('vevent')}
+        self.assertIn('great_lent-2026-02-23.Gregorian@orthocal.info', uids)
+        self.assertIn('apostles_fast-2026-06-08.Gregorian@orthocal.info', uids)
+        self.assertIn('nativity_fast-2025-11-15.Gregorian@orthocal.info', uids)
+
+    async def test_ical_skips_empty_apostles_fast(self):
+        """2024 has no Apostles' Fast (Pascha fell too late) -- it should
+        be skipped rather than emitted as a malformed, inverted event."""
+
+        def build_absolute_uri(url):
+            return urljoin('http://testserver', url)
+
+        timestamp = datetime.datetime(2024, 6, 20, tzinfo=datetime.timezone.utc)
+        cal = await generate_ical(timestamp, Calendar.Gregorian, Tradition.Slavic, build_absolute_uri)
+        for event in cal.walk('vevent'):
+            self.assertNotIn('apostles_fast', str(event.get('uid')))
