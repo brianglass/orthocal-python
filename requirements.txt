@@ -4,7 +4,6 @@ django-cors-headers==4.9.0
 django-fullurl==1.4
 django-ninja==1.6.3
 django==6.1
-google-cloud-logging==3.16.2
 icalendar==7.2.2
 jdcal==1.4.1
 mcp==2.0.0
