@@ -56,8 +56,6 @@ ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_API_RATELIMIT = os.environ.get('API_RATELIMIT', '5/s')
 ORTHOCAL_REVISION = os.environ.get('K_REVISION', str(uuid.uuid4()))
 
-IS_GCLOUD = 'K_REVISION' in os.environ
-
 if TESTING:
     RATELIMIT_ENABLE = False
 
@@ -153,13 +151,11 @@ CACHES = {
 
 CACHE_MIDDLEWARE_SECONDS = ORTHOCAL_MAX_AGE
 
-HANDLER = 'gcloud' if IS_GCLOUD else 'console'
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'root': {
-        'handlers': [HANDLER],
+        'handlers': ['console'],
         'level': 'DEBUG',
     },
     'formatters': {
@@ -174,10 +170,6 @@ LOGGING = {
             'formatter': 'simple',
             'level': 'DEBUG',
         },
-        "gcloud": {
-            "class": "google.cloud.logging.handlers.StructuredLogHandler",
-            'level': 'DEBUG',
-        },
     },
     'loggers': {
         'django.request': {
@@ -188,11 +180,11 @@ LOGGING = {
         },
         'uvicorn': {
             'level': 'DEBUG',
-            'handlers': [HANDLER],
+            'handlers': ['console'],
         },
         'uvicorn.error': {
             'level': 'DEBUG',
-            'handlers': [HANDLER],
+            'handlers': ['console'],
         },
         'alexa': {
             'level': 'DEBUG',
