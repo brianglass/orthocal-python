@@ -560,6 +560,21 @@ table.month td {
 	background-color: #eee9e0;
 	text-align: left;
     width: 14.28%;
+    position: relative;
+}
+/* An invisible link, positioned to cover the whole cell, so clicking
+   anywhere in the cell navigates -- not just the visible content's own
+   anchor. A percentage height on that visible anchor doesn't reliably
+   fill the cell's actual (row-driven) height across browsers (Chrome
+   resolves it, Firefox doesn't), so this avoids that entirely: absolute
+   positioning against the cell's own box works consistently everywhere.
+   aria-hidden + tabindex="-1" keep it out of the accessibility tree and
+   tab order -- the real, visible anchor right after it is what screen
+   readers and keyboard navigation see. */
+table.month td .cell-overlay-link {
+    position: absolute;
+    inset: 0;
+    padding: 0;
 }
 table.month td.fast {
 	background-color: #dfd9cd;

@@ -1,10 +1,10 @@
 {% load fullurl %}
-<td class="{{ cell_class }} {% if day.fast_level %}fast{% endif %}" 
+<td class="{{ cell_class }} {% if day.fast_level %}fast{% endif %}">
 	{% if full_urls %}
-		onclick="location.href='{% fullurl "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}'">
+		<a class="cell-overlay-link" aria-hidden="true" tabindex="-1" href="{% fullurl "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}"></a>
 		<a href="{% fullurl "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}">
 	{% else %}
-		onclick="location.href='{% url "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}'">
+		<a class="cell-overlay-link" aria-hidden="true" tabindex="-1" href="{% url "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}"></a>
 		<a href="{% url "readings" tradition=tradition cal=cal year=day.gregorian_date.year month=day.gregorian_date.month day=day.gregorian_date.day %}">
 	{% endif %}
 		<p class="day-number">
