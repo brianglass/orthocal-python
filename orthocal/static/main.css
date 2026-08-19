@@ -12,10 +12,14 @@
        themselves based on prefers-color-scheme without us hand-styling them. */
     color-scheme: light dark;
 
-    /* Accent (brand red) */
+    /* Accent */
     --color-accent: #a00;
     --color-accent-hover: #800;
     --color-text-on-accent: #fff;
+    /* Rubric red -- kept red in both themes (not overridden in the dark
+       block below), unlike --color-accent above which desaturates to gray
+       in dark mode. Separate token so .rubric can hold out on its own. */
+    --color-rubric: #a00;
 
     /* Text scale, darkest to lightest */
     --color-text-strong: black;
@@ -75,48 +79,57 @@
      surfaces, but is nearly invisible against an already-dark surface, so
      alpha is bumped up so they still read as depth.
 
+   Everything here is desaturated to a shade of gray except red, which
+   stays red for --color-rubric and the --color-accent group (used for
+   links, badges, the segmented-control's checked state, etc.) -- both get
+   a brightened red rather than reusing the light theme's flat #a00, which
+   has too little contrast against these dark backgrounds to read well as
+   link/badge text (decorative uses like the rubric initials can get away
+   with more, but there's no reason to make it inconsistent).
+
    The body background's grain texture is dropped entirely in dark mode
    (see the @media block next to the body rule itself, in Global base below)
-   rather than given its own dark-tuned copy -- its warm-sepia tint doesn't
-   translate, and the plain gradient alone reads fine against the dark
-   palette. It isn't overridden here alongside everything else because it
-   isn't a token: it's a direct property on `body`, so unlike the :root
-   custom properties above, its override has to come after the light body
-   rule in the file to win the cascade tie -- see the comment there. */
+   rather than given its own dark-tuned copy -- tried it against the gray
+   palette and it didn't work. It isn't overridden here alongside everything
+   else because it isn't a token: it's a direct property on `body`, so
+   unlike the :root custom properties above, its override has to come after
+   the light body rule in the file to win the cascade tie -- see the
+   comment there. */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-accent: #e2635b;
         --color-accent-hover: #ef8079;
         --color-text-on-accent: #1a1512;
+        --color-rubric: #e2635b;
 
-        --color-text-strong: #f5f1ea;
-        --color-text: #e4dfd4;
-        --color-text-secondary: #c7c0b0;
-        --color-text-tertiary: #ada58f;
-        --color-text-muted: #948c78;
-        --color-text-faint: #756e5d;
-        --color-text-table-header: #a89f8a;
+        --color-text-strong: #e8e8e8;
+        --color-text: #cfcfcf;
+        --color-text-secondary: #b0b0b0;
+        --color-text-tertiary: #999999;
+        --color-text-muted: #838383;
+        --color-text-faint: #6b6b6b;
+        --color-text-table-header: #969696;
 
-        --color-border: #4a4438;
-        --color-border-light: #3a352c;
-        --color-border-subtle: #33302a;
-        --color-border-neutral: #4d4a44;
-        --color-border-input: #55504a;
-        --color-border-input-hover: #726b5f;
+        --color-border: #444444;
+        --color-border-light: #363636;
+        --color-border-subtle: #2b2b2b;
+        --color-border-neutral: #4a4a4a;
+        --color-border-input: #525252;
+        --color-border-input-hover: #6e6e6e;
 
-        --color-bg-page: #1c1a17;
-        --color-bg-page-gradient: #211e1a;
-        --color-bg-panel: #242019;
-        --color-bg-hover: #2f2a22;
-        --color-bg-active: #3a3327;
-        --color-bg-input: #2a251e;
-        --color-bg-table-cell: #171510;
-        --color-bg-table-fast: #2c2620;
-        --color-bg-table-fast-hover: #362f24;
-        --color-bg-table-hover: #231f19;
+        --color-bg-page: #181818;
+        --color-bg-page-gradient: #1c1c1c;
+        --color-bg-panel: #202020;
+        --color-bg-hover: #2a2a2a;
+        --color-bg-active: #333333;
+        --color-bg-input: #222222;
+        --color-bg-table-cell: #141414;
+        --color-bg-table-fast: #2c2c2c;
+        --color-bg-table-fast-hover: #363636;
+        --color-bg-table-hover: #242424;
 
-        --gradient-header-start: rgba(58, 50, 38, 0.4);
-        --gradient-header-end: rgba(50, 44, 34, 0.4);
+        --gradient-header-start: rgba(60, 60, 60, 0.4);
+        --gradient-header-end: rgba(50, 50, 50, 0.4);
 
         --shadow-topbar: 0 4px 10px rgba(0, 0, 0, 0.5);
         --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.5);
@@ -160,7 +173,7 @@ body {
    lose to the rule above if it came first. */
 @media (prefers-color-scheme: dark) {
     body {
-        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 33%);
+        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 100%);
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
@@ -170,7 +183,7 @@ h1, h2, h3, h4 {
     text-wrap: balance;
 }
 .rubric {
-    color: var(--color-accent);
+    color: var(--color-rubric);
 }
 .gist {
     display: block;
@@ -495,6 +508,7 @@ a.active {
 .segmented-control label:has(input:checked) {
 	background-color: var(--color-accent);
 	color: var(--color-text-on-accent);
+	font-weight: bold;
 }
 .segmented-control label:has(input:checked):hover {
 	background-color: var(--color-accent);
