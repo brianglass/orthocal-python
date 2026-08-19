@@ -508,10 +508,19 @@ a.active {
 .segmented-control label:has(input:checked) {
 	background-color: var(--color-accent);
 	color: var(--color-text-on-accent);
-	font-weight: bold;
 }
 .segmented-control label:has(input:checked):hover {
 	background-color: var(--color-accent);
+}
+/* Extra legibility for the dark theme's brightened accent red -- not
+   needed against light mode's white-on-#a00, which already has plenty of
+   contrast. Has to come after the rule above (not grouped with the rest of
+   the dark theme up in the tokens section): same-specificity tie, later
+   rule in the file wins regardless of which one is behind a media query. */
+@media (prefers-color-scheme: dark) {
+    .segmented-control label:has(input:checked) {
+        font-weight: bold;
+    }
 }
 .status-badge {
 	display: inline-block;
