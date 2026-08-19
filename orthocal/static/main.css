@@ -371,9 +371,11 @@ main#orthocal > header h1 span {
 	font-variant: small-caps;
 }
 
+/* No text-wrap: pretty here -- Safari supports the property but its
+   implementation drops hyphens: auto for any rule that also declares it,
+   so we skip it everywhere rather than special-case a browser in CSS. */
 #content {
     text-align: justify;
-    text-wrap: pretty;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -458,7 +460,6 @@ section.readings h2 {
     widows: 3;
     orphans: 3;
     text-align: justify;
-    text-wrap: pretty;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
