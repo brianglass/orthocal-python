@@ -15,6 +15,7 @@ from ninja import Field, NinjaAPI, Redoc, Schema
 from ninja.decorators import decorate_view
 from ninja.renderers import JSONRenderer
 from ninja.responses import NinjaJSONEncoder
+from ninja.throttling import AnonRateThrottle
 from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
@@ -24,6 +25,27 @@ from orthocal.decorators import etag, etag_date, instrument_endpoint
 logger = logging.getLogger(__name__)
 
 BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
+
+class ShadowAnonRateThrottle(AnonRateThrottle):
+    """
+    Runs the real per-IP rate check and logs what WOULD be throttled, but
+    always allows the request through -- no client sees a 429 yet. This is
+    a deliberate rollout step: BURST_RATE was defined but never wired up to
+    anything, so there's no data on how real (including third-party, non-
+    browser) traffic would be affected by actually enforcing it. Watch the
+    logs this produces for a while, then swap this for AnonRateThrottle
+    directly (same rate, same identity-by-IP behavior) once it looks safe.
+    """
+    def allow_request(self, request):
+        allowed = super().allow_request(request)
+        if not allowed:
+            logger.warning(
+                'Would rate-limit (shadow mode, not enforced): ip=%s path=%s ua=%s',
+                self.get_ident(request),
+                request.path,
+                request.META.get('HTTP_USER_AGENT', ''),
+            )
+        return True
 
 class Encoder(NinjaJSONEncoder):
     def default(self, o):
@@ -59,7 +81,8 @@ api = API(
     ),
     servers=[
         {'url': settings.ORTHOCAL_PUBLIC_URL, 'description': 'Public API'},
-    ]
+    ],
+    throttle=[ShadowAnonRateThrottle(BURST_RATE)],
 )
 
 
