@@ -3,12 +3,15 @@
 
    Semantic, role-based custom properties -- e.g. --color-border-subtle and
    --color-bg-hover are separate tokens even though they currently share the
-   same literal value, because a future theme (dark mode) may need a hover
-   background and a subtle border to diverge even though they're identical
-   today. This is groundwork for offering alternate themes; there is no dark
-   palette yet, just the token layer components are built on.
+   same literal value, because the dark theme below needs a hover background
+   and a subtle border to diverge even though they're identical in light mode.
    ========================================================================== */
 :root {
+    /* Tells the browser this page supports both schemes, so native controls
+       (the translation <select>'s dropdown chrome, scrollbars) re-theme
+       themselves based on prefers-color-scheme without us hand-styling them. */
+    color-scheme: light dark;
+
     /* Accent (brand red) */
     --color-accent: #a00;
     --color-accent-hover: #800;
@@ -55,6 +58,66 @@
     /* Fonts */
     --font-serif: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
     --font-sans: 'Ysabeau', sans-serif;
+}
+
+/* Dark theme -- redefines the same tokens above, nothing else. Every
+   component rule in this file consumes tokens exclusively (no literal
+   colors outside :root), so this block is the entire theme.
+
+   Two relationships are deliberately inverted rather than each value being
+   independently darkened, since they encode meaning rather than just tone:
+   - Fasting-day table cells: light mode marks a fasting day by making its
+     cell *darker* than a normal cell -- "shaded" reads as emphasis against
+     a light background. On a dark background emphasis reads the opposite
+     way, so --color-bg-table-fast/-hover are *lighter* than
+     --color-bg-table-cell here, preserving "this is emphasized".
+   - Shadows: low-opacity black registers as a soft depth cue against light
+     surfaces, but is nearly invisible against an already-dark surface, so
+     alpha is bumped up so they still read as depth.
+
+   The body background's grain texture (the embedded SVG in body's
+   background-image, below) keeps its light-mode warm-sepia tint in both
+   themes -- it's a fixed asset, not a token, and revisiting it is easy to
+   do later once this palette is visually validated. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-accent: #e2635b;
+        --color-accent-hover: #ef8079;
+        --color-text-on-accent: #1a1512;
+
+        --color-text-strong: #f5f1ea;
+        --color-text: #e4dfd4;
+        --color-text-secondary: #c7c0b0;
+        --color-text-tertiary: #ada58f;
+        --color-text-muted: #948c78;
+        --color-text-faint: #756e5d;
+        --color-text-table-header: #a89f8a;
+
+        --color-border: #4a4438;
+        --color-border-light: #3a352c;
+        --color-border-subtle: #33302a;
+        --color-border-neutral: #4d4a44;
+        --color-border-input: #55504a;
+        --color-border-input-hover: #726b5f;
+
+        --color-bg-page: #1c1a17;
+        --color-bg-page-gradient: #211e1a;
+        --color-bg-panel: #242019;
+        --color-bg-hover: #2f2a22;
+        --color-bg-active: #3a3327;
+        --color-bg-input: #2a251e;
+        --color-bg-table-cell: #171510;
+        --color-bg-table-fast: #2c2620;
+        --color-bg-table-fast-hover: #362f24;
+        --color-bg-table-hover: #231f19;
+
+        --gradient-header-start: rgba(58, 50, 38, 0.4);
+        --gradient-header-end: rgba(50, 44, 34, 0.4);
+
+        --shadow-topbar: 0 4px 10px rgba(0, 0, 0, 0.5);
+        --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.5);
+        --shadow-hover-text: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    }
 }
 
 /* ==========================================================================
@@ -770,6 +833,8 @@ p.day-number {
 	font-family: inherit;
 	font-size: 1em;
 	padding: 4px 8px;
+	color: var(--color-text);
+	background-color: var(--color-bg-input);
 	border: 1px solid var(--color-border-input);
 	border-radius: 3px;
 	width: 16em;
