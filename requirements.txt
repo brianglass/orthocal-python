@@ -11,7 +11,17 @@ newrelic==13.4.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
 servestatic[brotli]==4.3.1
-uvicorn[standard]==0.52.1
+# uvicorn[standard] bundles websockets, watchfiles, python-dotenv, and
+# pyyaml alongside the two extras this app actually benefits from --
+# nothing here uses WebSockets, --reload falls back to uvicorn's built-in
+# stdlib-only StatReload when watchfiles isn't installed (confirmed: the
+# only overhead is polling instead of OS-level file-watching, unnoticeable
+# at this app's size), and nothing passes --env-file or a YAML
+# --log-config. Installing just uvloop/httptools directly instead of the
+# [standard] extra keeps the two extras that matter.
+uvicorn==0.52.1
+uvloop==0.22.1
+httptools==0.8.0
 # oscrypto is a dependency of one of the above packages.
 # We can go back to mainline oscrypto once
 # https://github.com/wbond/oscrypto/issues/78 is fixed

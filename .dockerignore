@@ -4,6 +4,7 @@ public
 .ackrc
 .git
 orthocal/local_settings.py
+newrelic*.ini
 *sqlite3
 **/__pycache__
 **/*.pyc
@@ -16,3 +17,22 @@ skill-package
 .firebase
 static
 default-cache
+
+# Scratch/research data and one-off scripts -- not used by the running app,
+# only by manual data-ingestion/analysis work. See git status for the full,
+# ever-growing list of these; excluding by directory/extension here instead
+# of naming each file individually, since new ones get added often.
+#
+# data/ is mostly scratch too, but bible/migrations actually loads
+# scripture text from five specific USFX XML files there at build time
+# (./manage.py migrate) -- excluded by content (data/*), not by directory
+# (data/), so these negations can re-include just the files that matter.
+data/*
+!data/eng-kjv_usfx.xml
+!data/ron-rccv.usfx.xml
+!data/srp1865_usfx.xml
+!data/eng-lxx2012_usfx.xml
+!data/eng-web_usfx.xml
+*.sql
+*.csv
+scratch_*.py
