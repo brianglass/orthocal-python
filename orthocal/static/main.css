@@ -75,10 +75,14 @@
      surfaces, but is nearly invisible against an already-dark surface, so
      alpha is bumped up so they still read as depth.
 
-   The body background's grain texture (the embedded SVG in body's
-   background-image, below) is dropped entirely in dark mode rather than
-   given its own dark-tuned copy -- its warm-sepia tint doesn't translate,
-   and the plain gradient alone reads fine against the dark palette. */
+   The body background's grain texture is dropped entirely in dark mode
+   (see the @media block next to the body rule itself, in Global base below)
+   rather than given its own dark-tuned copy -- its warm-sepia tint doesn't
+   translate, and the plain gradient alone reads fine against the dark
+   palette. It isn't overridden here alongside everything else because it
+   isn't a token: it's a direct property on `body`, so unlike the :root
+   custom properties above, its override has to come after the light body
+   rule in the file to win the cascade tie -- see the comment there. */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-accent: #e2635b;
@@ -118,11 +122,6 @@
         --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.5);
         --shadow-hover-text: 2px 2px 3px rgba(0, 0, 0, 0.6);
     }
-    body {
-        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 33%);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
 }
 
 /* ==========================================================================
@@ -150,6 +149,21 @@ body {
        there's always room underneath the topbar. */
     min-height: 100vh;
     min-height: 100dvh;
+}
+/* Dark mode drops the grain texture layer above rather than giving it a
+   dark-tuned copy -- its warm-sepia tint doesn't translate, and the plain
+   gradient alone reads fine against the dark palette. This has to be
+   declared after the unprefixed body rule above (not grouped with the rest
+   of the dark theme up in the tokens section): both target `body` at equal
+   specificity, and for tied specificity the *later* rule in the file wins
+   regardless of which one is behind a media query -- so this would silently
+   lose to the rule above if it came first. */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 33%);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 }
 h1, h2, h3, h4 {
     text-align: center;
