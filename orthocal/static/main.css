@@ -3,16 +3,23 @@
 
    Semantic, role-based custom properties -- e.g. --color-border-subtle and
    --color-bg-hover are separate tokens even though they currently share the
-   same literal value, because a future theme (dark mode) may need a hover
-   background and a subtle border to diverge even though they're identical
-   today. This is groundwork for offering alternate themes; there is no dark
-   palette yet, just the token layer components are built on.
+   same literal value, because the dark theme below needs a hover background
+   and a subtle border to diverge even though they're identical in light mode.
    ========================================================================== */
 :root {
-    /* Accent (brand red) */
+    /* Tells the browser this page supports both schemes, so native controls
+       (the translation <select>'s dropdown chrome, scrollbars) re-theme
+       themselves based on prefers-color-scheme without us hand-styling them. */
+    color-scheme: light dark;
+
+    /* Accent */
     --color-accent: #a00;
     --color-accent-hover: #800;
     --color-text-on-accent: #fff;
+    /* Rubric red -- kept red in both themes (not overridden in the dark
+       block below), unlike --color-accent above which desaturates to gray
+       in dark mode. Separate token so .rubric can hold out on its own. */
+    --color-rubric: #a00;
 
     /* Text scale, darkest to lightest */
     --color-text-strong: black;
@@ -57,6 +64,79 @@
     --font-sans: 'Ysabeau', sans-serif;
 }
 
+/* Dark theme -- redefines the same tokens above, nothing else. Every
+   component rule in this file consumes tokens exclusively (no literal
+   colors outside :root), so this block is the entire theme.
+
+   Two relationships are deliberately inverted rather than each value being
+   independently darkened, since they encode meaning rather than just tone:
+   - Fasting-day table cells: light mode marks a fasting day by making its
+     cell *darker* than a normal cell -- "shaded" reads as emphasis against
+     a light background. On a dark background emphasis reads the opposite
+     way, so --color-bg-table-fast/-hover are *lighter* than
+     --color-bg-table-cell here, preserving "this is emphasized".
+   - Shadows: low-opacity black registers as a soft depth cue against light
+     surfaces, but is nearly invisible against an already-dark surface, so
+     alpha is bumped up so they still read as depth.
+
+   Everything here is desaturated to a shade of gray except red, which
+   stays red for --color-rubric and the --color-accent group (used for
+   links, badges, the segmented-control's checked state, etc.) -- both get
+   a brightened red rather than reusing the light theme's flat #a00, which
+   has too little contrast against these dark backgrounds to read well as
+   link/badge text (decorative uses like the rubric initials can get away
+   with more, but there's no reason to make it inconsistent).
+
+   The body background's grain texture is dropped entirely in dark mode
+   (see the @media block next to the body rule itself, in Global base below)
+   rather than given its own dark-tuned copy -- tried it against the gray
+   palette and it didn't work. It isn't overridden here alongside everything
+   else because it isn't a token: it's a direct property on `body`, so
+   unlike the :root custom properties above, its override has to come after
+   the light body rule in the file to win the cascade tie -- see the
+   comment there. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-accent: #e2635b;
+        --color-accent-hover: #ef8079;
+        --color-text-on-accent: #1a1512;
+        --color-rubric: #e2635b;
+
+        --color-text-strong: #e8e8e8;
+        --color-text: #cfcfcf;
+        --color-text-secondary: #b0b0b0;
+        --color-text-tertiary: #999999;
+        --color-text-muted: #838383;
+        --color-text-faint: #6b6b6b;
+        --color-text-table-header: #969696;
+
+        --color-border: #444444;
+        --color-border-light: #363636;
+        --color-border-subtle: #2b2b2b;
+        --color-border-neutral: #4a4a4a;
+        --color-border-input: #525252;
+        --color-border-input-hover: #6e6e6e;
+
+        --color-bg-page: #181818;
+        --color-bg-page-gradient: #1c1c1c;
+        --color-bg-panel: #202020;
+        --color-bg-hover: #2a2a2a;
+        --color-bg-active: #333333;
+        --color-bg-input: #222222;
+        --color-bg-table-cell: #141414;
+        --color-bg-table-fast: #2c2c2c;
+        --color-bg-table-fast-hover: #363636;
+        --color-bg-table-hover: #242424;
+
+        --gradient-header-start: rgba(60, 60, 60, 0.4);
+        --gradient-header-end: rgba(50, 50, 50, 0.4);
+
+        --shadow-topbar: 0 4px 10px rgba(0, 0, 0, 0.5);
+        --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.5);
+        --shadow-hover-text: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    }
+}
+
 /* ==========================================================================
    Global base
    ========================================================================== */
@@ -83,12 +163,27 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
 }
+/* Dark mode drops the grain texture layer above rather than giving it a
+   dark-tuned copy -- its warm-sepia tint doesn't translate, and the plain
+   gradient alone reads fine against the dark palette. This has to be
+   declared after the unprefixed body rule above (not grouped with the rest
+   of the dark theme up in the tokens section): both target `body` at equal
+   specificity, and for tied specificity the *later* rule in the file wins
+   regardless of which one is behind a media query -- so this would silently
+   lose to the rule above if it came first. */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 100%);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+}
 h1, h2, h3, h4 {
     text-align: center;
     text-wrap: balance;
 }
 .rubric {
-    color: var(--color-accent);
+    color: var(--color-rubric);
 }
 .gist {
     display: block;
@@ -416,6 +511,16 @@ a.active {
 }
 .segmented-control label:has(input:checked):hover {
 	background-color: var(--color-accent);
+}
+/* Extra legibility for the dark theme's brightened accent red -- not
+   needed against light mode's white-on-#a00, which already has plenty of
+   contrast. Has to come after the rule above (not grouped with the rest of
+   the dark theme up in the tokens section): same-specificity tie, later
+   rule in the file wins regardless of which one is behind a media query. */
+@media (prefers-color-scheme: dark) {
+    .segmented-control label:has(input:checked) {
+        font-weight: bold;
+    }
 }
 .status-badge {
 	display: inline-block;
@@ -770,6 +875,8 @@ p.day-number {
 	font-family: inherit;
 	font-size: 1em;
 	padding: 4px 8px;
+	color: var(--color-text);
+	background-color: var(--color-bg-input);
 	border: 1px solid var(--color-border-input);
 	border-radius: 3px;
 	width: 16em;
