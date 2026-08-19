@@ -1,14 +1,76 @@
+/* ==========================================================================
+   Design tokens
+
+   Semantic, role-based custom properties -- e.g. --color-border-subtle and
+   --color-bg-hover are separate tokens even though they currently share the
+   same literal value, because a future theme (dark mode) may need a hover
+   background and a subtle border to diverge even though they're identical
+   today. This is groundwork for offering alternate themes; there is no dark
+   palette yet, just the token layer components are built on.
+   ========================================================================== */
+:root {
+    /* Accent (brand red) */
+    --color-accent: #a00;
+    --color-accent-hover: #800;
+    --color-text-on-accent: #fff;
+
+    /* Text scale, darkest to lightest */
+    --color-text-strong: black;
+    --color-text: #333;
+    --color-text-secondary: #555;
+    --color-text-tertiary: #666;
+    --color-text-muted: #777;
+    --color-text-faint: #999;
+    --color-text-table-header: #756e5f;
+
+    /* Borders */
+    --color-border: #bbb3a0;
+    --color-border-light: #d4cfc4;
+    --color-border-subtle: #eee;
+    --color-border-neutral: #ccc;
+    --color-border-input: #bbb;
+    --color-border-input-hover: #888;
+
+    /* Backgrounds */
+    --color-bg-page: #fbf8f4;
+    --color-bg-page-gradient: #fcfaf6;
+    --color-bg-panel: #fdfaf5;
+    --color-bg-hover: #eee;
+    --color-bg-active: #ddd;
+    --color-bg-input: #fff;
+    --color-bg-table-cell: #eee9e0;
+    --color-bg-table-fast: #dfd9cd;
+    --color-bg-table-fast-hover: #dbd4c5;
+    --color-bg-table-hover: #e6e1d5;
+
+    /* Header banner overlay gradient */
+    --gradient-header-start: rgba(238, 229, 212, 0.3);
+    --gradient-header-end: rgba(237, 227, 206, 0.3);
+
+    /* Shadows */
+    --shadow-topbar: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.15);
+    --shadow-hover-text: 2px 2px 3px #bbb;
+
+    /* Fonts */
+    --font-serif: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
+    --font-sans: 'Ysabeau', sans-serif;
+}
+
+/* ==========================================================================
+   Global base
+   ========================================================================== */
 html {
     font-size: 20px;
-    font-family: 'EB Garamond', Garamond, 'Times New Roman', Georgia, serif;
+    font-family: var(--font-serif);
     overflow-y: auto;
 }
 body {
     margin: 0;
-    background-color: #fbf8f4;
+    background-color: var(--color-bg-page);
     background-image:
         url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj4KICA8ZmlsdGVyIGlkPSJncmFpbiIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMTgiIG51bU9jdGF2ZXM9IjQiIHNlZWQ9IjExIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIiByZXN1bHQ9Im5vaXNlIi8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0ibm9pc2UiIHR5cGU9Im1hdHJpeCIKICAgICAgdmFsdWVzPSIwIDAgMCAwIDAuNQogICAgICAgICAgICAgIDAgMCAwIDAgMC40MTcKICAgICAgICAgICAgICAwIDAgMCAwIDAuMjUKICAgICAgICAgICAgICAwIDAgMCAwLjQgMCIvPgogIDwvZmlsdGVyPgogIDxmaWx0ZXIgaWQ9ImJsb3RjaCIgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC4wMDQgMC4wMDUiIG51bU9jdGF2ZXM9IjMiIHNlZWQ9IjQiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHJlc3VsdD0iYmlnIi8+CiAgICA8ZmVDb2xvck1hdHJpeCBpbj0iYmlnIiB0eXBlPSJtYXRyaXgiCiAgICAgIHZhbHVlcz0iMCAwIDAgMCAwLjUKICAgICAgICAgICAgICAwIDAgMCAwIDAuNDA3CiAgICAgICAgICAgICAgMCAwIDAgMCAwLjIyCiAgICAgICAgICAgICAgMCAwIDAgMC42IDAiIHJlc3VsdD0iYmlnVGludCIvPgogICAgPGZlQ29tcG9uZW50VHJhbnNmZXIgaW49ImJpZ1RpbnQiPgogICAgICA8ZmVGdW5jQSB0eXBlPSJnYW1tYSIgYW1wbGl0dWRlPSIxIiBleHBvbmVudD0iMy4yIiBvZmZzZXQ9IjAiLz4KICAgIDwvZmVDb21wb25lbnRUcmFuc2Zlcj4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjYmxvdGNoKSIgb3BhY2l0eT0iMC40NSIvPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNncmFpbikiIG9wYWNpdHk9IjAuMzIiLz4KPC9zdmc+Cg=="),
-        linear-gradient(to bottom, #fcfaf6, #fbf8f4 33%);
+        linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 33%);
     background-repeat: repeat, no-repeat;
     background-size: auto, 100% 100%;
     overflow-x: hidden;
@@ -26,11 +88,11 @@ h1, h2, h3, h4 {
     text-wrap: balance;
 }
 .rubric {
-    color: #a00;
+    color: var(--color-accent);
 }
 .gist {
     display: block;
-    border: 1px solid #d4cfc4;
+    border: 1px solid var(--color-border-light);
     border-radius: 3px;
     margin: 1em 0;
     overflow: hidden;
@@ -39,11 +101,13 @@ h1, h2, h3, h4 {
     margin-bottom: 0 !important;
 }
 
-/* Site title and navigation */
+/* ==========================================================================
+   Site header & primary navigation
+   ========================================================================== */
 .topbar {
-    background-color: #fdfaf5;
-    border-bottom: 1px solid #bbb3a0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-bg-panel);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-topbar);
     container-type: inline-size;
     position: relative;
     z-index: 1;
@@ -63,20 +127,20 @@ h1, h2, h3, h4 {
     padding: 0;
     text-align: left;
     font-size: clamp(1.2em, calc(8.6cqw - 10px), 2.1em);
-    color: #666;
+    color: var(--color-text-tertiary);
 	font-weight: bold;
     min-width: 0;
     white-space: nowrap;
 }
 .topbar-inner > header a {
     text-decoration: none;
-    color: #666;
+    color: var(--color-text-tertiary);
 }
 .topbar-inner > nav {
     margin: 0;
     padding: 0;
     text-align: right;
-    font-family: 'Ysabeau', sans-serif;
+    font-family: var(--font-sans);
     font-size: 1.1em;
 }
 .topbar-inner > nav ul {
@@ -94,13 +158,13 @@ h1, h2, h3, h4 {
 }
 .topbar-inner > nav a:link, .topbar-inner > nav a:visited {
     text-decoration: none;
-    color: #777;
+    color: var(--color-text-muted);
     transition-property: color, text-shadow;
     transition-duration: 0.3s;
 }
 .topbar-inner > nav a:hover {
-    color: black;
-    text-shadow: 2px 2px 3px #bbb;
+    color: var(--color-text-strong);
+    text-shadow: var(--shadow-hover-text);
 }
 
 /* Submenu (e.g. "Developers") -- a native <details>/<summary> disclosure
@@ -114,7 +178,7 @@ h1, h2, h3, h4 {
 .topbar-inner > nav summary {
     display: inline;
     cursor: pointer;
-    color: #777;
+    color: var(--color-text-muted);
     list-style: none;
     text-transform: lowercase;
     white-space: nowrap;
@@ -133,8 +197,8 @@ h1, h2, h3, h4 {
     content: " \25b4";
 }
 .topbar-inner > nav summary:hover {
-    color: black;
-    text-shadow: 2px 2px 3px #bbb;
+    color: var(--color-text-strong);
+    text-shadow: var(--shadow-hover-text);
 }
 .topbar-inner > nav details ul {
     list-style: none;
@@ -150,9 +214,9 @@ h1, h2, h3, h4 {
     gap: 0;
     box-sizing: border-box;
     width: 10em;
-    background-color: #fdfaf5;
-    border: 1px solid #bbb3a0;
-    box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-dropdown);
     z-index: 20;
 }
 .topbar-inner > nav details ul li {
@@ -178,12 +242,12 @@ h1, h2, h3, h4 {
     display: block;
     width: 26px;
     height: 2px;
-    background-color: #777;
+    background-color: var(--color-text-muted);
     margin: 5px 0;
     transition: background-color 0.2s;
 }
 .nav-toggle:hover span {
-    background-color: #333;
+    background-color: var(--color-text);
 }
 @media (max-width: 1200px) {
     .topbar-inner {
@@ -210,9 +274,9 @@ h1, h2, h3, h4 {
         gap: 0;
         box-sizing: border-box;
         width: 12em;
-        background-color: #fdfaf5;
-        border: 1px solid #bbb3a0;
-        box-shadow: -2px 3px 6px rgba(0, 0, 0, 0.15);
+        background-color: var(--color-bg-panel);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-dropdown);
         z-index: 20;
     }
     .topbar-inner > nav.nav-open > ul {
@@ -252,21 +316,19 @@ h1, h2, h3, h4 {
     .topbar-inner > header {
         white-space: normal;
     }
-    .day-nav, .toggle-row {
-        flex-wrap: wrap;
-    }
 }
 
-/* Page-specific navigation (day/month nav, tradition/calendar toggles) --
-   lives inside .topbar, as a second row below the title/site-nav row.
-   Day/month nav sits left, tradition/calendar toggles sit right, on one
-   compressed row. */
+/* ==========================================================================
+   Page navigation -- day/month nav and the tradition/calendar toggle.
+   Lives inside .topbar, as a second row below the title/site-nav row.
+   Day/month nav sits left, toggles sit right, on one compressed row.
+   ========================================================================== */
 nav.page-nav {
     width: 75%;
     margin: 0 auto;
     padding: 0.4em 0 0.15em 0;
     font-size: clamp(0.65em, calc(3.2cqw), 1.1em);
-    font-family: 'Ysabeau', sans-serif;
+    font-family: var(--font-sans);
     /* This whole element is destroyed and rebuilt via an htmx OOB swap on
        every readings/calendar navigation. When it's near the top of the
        viewport, Chromium's CSS Scroll Anchoring can pick an anchor node
@@ -289,16 +351,14 @@ nav.page-nav {
 }
 nav.page-nav a:link, nav.page-nav a:visited {
     text-decoration: none;
-    color: #777;
+    color: var(--color-text-muted);
     transition-property: color, text-shadow;
     transition-duration: 0.3s;
 }
 nav.page-nav a:hover {
-    color: black;
-    text-shadow: 2px 2px 3px #bbb;
+    color: var(--color-text-strong);
+    text-shadow: var(--shadow-hover-text);
 }
-
-/* Readings and Calendar navigation */
 nav.page-nav a.cal-nav {
     display: inline-block;
     padding: 2px 6px;
@@ -308,13 +368,79 @@ nav.page-nav a.cal-nav {
     transition-duration: 0.4s;
 }
 nav.page-nav a.cal-nav:hover {
-    color: #666;
+    color: var(--color-text-tertiary);
     cursor: pointer;
 }
 a.active {
-    background-color: #ddd;
+    background-color: var(--color-bg-active);
+}
+.toggle-row {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 1rem;
+	flex-wrap: nowrap;
+}
+.segmented-control {
+	display: inline-flex;
+	border: 1px solid var(--color-border-neutral);
+	border-radius: 3px;
+	overflow: hidden;
+}
+.segmented-control label {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+	margin: 0;
+	padding: 3px 14px;
+	color: var(--color-text-tertiary);
+	cursor: pointer;
+	transition-property: background-color, color;
+	transition-duration: 0.2s;
+}
+.segmented-control label:not(:last-child) {
+	border-right: 1px solid var(--color-border-neutral);
+}
+.segmented-control label:hover {
+	background-color: var(--color-bg-hover);
+}
+.segmented-control input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.segmented-control label:has(input:checked) {
+	background-color: var(--color-accent);
+	color: var(--color-text-on-accent);
+}
+.segmented-control label:has(input:checked):hover {
+	background-color: var(--color-accent);
+}
+.status-badge {
+	display: inline-block;
+	font-size: 0.65em;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--color-text-on-accent);
+	background-color: var(--color-accent);
+	border-radius: 3px;
+	padding: 1px 5px;
+	margin-left: 2px;
+	vertical-align: middle;
+}
+/* Let the day-nav and toggle row wrap onto two lines at the narrowest
+   viewports, alongside the topbar's own last-resort wrap above. */
+@media (max-width: 400px) {
+    .day-nav, .toggle-row {
+        flex-wrap: wrap;
+    }
 }
 
+/* ==========================================================================
+   Main content shell
+   ========================================================================== */
 main#orthocal {
     margin: 0 auto 4em auto;
 	width: 75%;
@@ -329,7 +455,7 @@ main#orthocal p {
 main#orthocal iframe {
     margin: 4% auto;
     width: 100%;
-    border: 1px solid #d4cfc4;
+    border: 1px solid var(--color-border-light);
     border-radius: 3px;
 }
 main#orthocal > header {
@@ -354,19 +480,19 @@ main#orthocal > header::before {
        hidden clips the excess, so precision here doesn't matter. */
     left: -100vmax;
     right: -100vmax;
-    background: linear-gradient(to bottom, rgba(238, 229, 212, 0.3), rgba(237, 227, 206, 0.3));
-    border-bottom: 1px solid #bbb3a0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, var(--gradient-header-start), var(--gradient-header-end));
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-topbar);
     z-index: -1;
 }
 main#orthocal > header h1 {
 	margin-top: 0;
-	color: #555;
+	color: var(--color-text-secondary);
 	font-size: 1.5em;
 }
 main#orthocal > header h1 span {
 	margin-top: 0;
-	color: #333;
+	color: var(--color-text);
 	font-size: clamp(1em, calc(5cqw + 15px), 1.5em);
 	font-variant: small-caps;
 }
@@ -382,13 +508,16 @@ main#orthocal > header h1 span {
     hyphens: auto;
 }
 #content a {
-    color: #a00;
+    color: var(--color-accent);
     text-decoration: none;
 }
 #content a:hover {
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   Readings page
+   ========================================================================== */
 .readings-columns {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -403,7 +532,7 @@ main#orthocal > header h1 span {
 	font-size: clamp(1.25em, calc(5cqw + 10px), 2em);
 }
 section.readings h2 {
-    color: #a00;
+    color: var(--color-accent);
 }
 @media (max-width: 800px) {
 	.readings-columns {
@@ -414,30 +543,29 @@ section.readings h2 {
 
 .fasting {
 	font-size: 1.4em;
-	color: #555;
+	color: var(--color-accent);
 	text-align: center;
 	text-indent: 0 !important;
-    color: #a00;
 	text-wrap: balance;
 }
 .translation-picker {
 	text-align: center;
 	text-indent: 0 !important;
 	font-size: 0.9em;
-	color: #555;
+	color: var(--color-text-secondary);
 }
 .translation-picker label {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4em;
-	font-family: 'Ysabeau', sans-serif;
+	font-family: var(--font-sans);
 }
 .translation-picker select {
-	font-family: 'Ysabeau', sans-serif;
+	font-family: var(--font-sans);
 	font-size: 1.1em;
-	color: #333;
-	background-color: #fff;
-	border: 1px solid #bbb;
+	color: var(--color-text);
+	background-color: var(--color-bg-input);
+	border: 1px solid var(--color-border-input);
 	border-radius: 3px;
 	padding: 2px 6px;
 	cursor: pointer;
@@ -445,15 +573,15 @@ section.readings h2 {
 	max-width: 100%;
 }
 .translation-picker select:hover {
-	border-color: #888;
+	border-color: var(--color-border-input-hover);
 }
 .day {
     margin-top: 1em;
     padding-top: 1.5em;
-    border-top: 5px solid #eee;
+    border-top: 5px solid var(--color-border-subtle);
 }
 .commemorations li, .scripture-list li, .feasts li, .day > p {
-    color: #555;
+    color: var(--color-text-secondary);
 }
 .passage {
     padding-top: 2em;
@@ -473,7 +601,7 @@ section.readings h2 {
 .passage p .verse-number {
     vertical-align: super;
     font-size: 0.70em;
-    color: #999;
+    color: var(--color-text-faint);
     margin-right: 1px;
 }
 .day>p {
@@ -484,62 +612,6 @@ section.readings h2 {
 }
 label {
     font-size: 0.75em;
-}
-.toggle-row {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	gap: 1rem;
-	flex-wrap: nowrap;
-}
-.segmented-control {
-	display: inline-flex;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	overflow: hidden;
-}
-.segmented-control label {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.35em;
-	margin: 0;
-	padding: 3px 14px;
-	color: #666;
-	cursor: pointer;
-	transition-property: background-color, color;
-	transition-duration: 0.2s;
-}
-.segmented-control label:not(:last-child) {
-	border-right: 1px solid #ccc;
-}
-.segmented-control label:hover {
-	background-color: #eee;
-}
-.segmented-control input[type="radio"] {
-	position: absolute;
-	opacity: 0;
-	pointer-events: none;
-}
-.segmented-control label:has(input:checked) {
-	background-color: #a00;
-	color: #fff;
-}
-.segmented-control label:has(input:checked):hover {
-	background-color: #a00;
-}
-.status-badge {
-	display: inline-block;
-	font-size: 0.65em;
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: #fff;
-	background-color: #a00;
-	border-radius: 3px;
-	padding: 1px 5px;
-	margin-left: 2px;
-	vertical-align: middle;
 }
 .service-notes ul, .commemorations ul, .scripture-list ul, .feasts ul {
     text-align: center;
@@ -552,7 +624,44 @@ label {
     margin-bottom: 0em;
 	font-size: 1.2em;
 }
+/* This has equal specificity to, and must stay ordered after, the
+   .commemorations/.scripture-list/.feasts li rule above -- it deliberately
+   overrides their color for those three (but not .day > p, which isn't
+   listed here and keeps the color above). */
+.commemorations li, .scripture-list li, .feasts li, .service-notes li {
+	display: inline;
+    color: var(--color-accent);
+}
+.commemorations li + li:before, .scripture-list li + li:before, .feasts li + li:before {
+	content: "●";
+    color: var(--color-text-strong);
+	padding: 0.5em;
+}
+.commemorations li a, .scripture-list li a {
+	color: inherit;
+	text-decoration: none;
+}
+.scripture-list li a {
+	white-space: nowrap;
+}
+.commemorations li a:hover, .scripture-list li a:hover {
+	text-decoration: underline;
+}
+p.feast {
+	font-weight: bold;
+	color: var(--color-text-strong);
+}
+ul.feasts li {
+	font-weight: bold;
+	color: var(--color-text-strong);
+}
+ul.saints li {
+	font-size: 0.75em;
+}
 
+/* ==========================================================================
+   Calendar month table
+   ========================================================================== */
 table.month {
 	font-size: 1.65vw;
     margin: 2em auto;
@@ -562,13 +671,15 @@ table.month {
 table.month td {
 	margin: 0;
 	padding: 0;
-	border: 1px solid #d4cfc4;
+	border: 1px solid var(--color-border-light);
 	font-size: 0.75em;
 	vertical-align: top;
-	background-color: #eee9e0;
+	background-color: var(--color-bg-table-cell);
 	text-align: left;
     width: 14.28%;
     position: relative;
+    transition-property: background-color;
+    transition-duration: 0.25s;
 }
 /* An invisible link, positioned to cover the whole cell, so clicking
    anywhere in the cell navigates -- not just the visible content's own
@@ -585,10 +696,10 @@ table.month td .cell-overlay-link {
     padding: 0;
 }
 table.month td.fast {
-	background-color: #dfd9cd;
+	background-color: var(--color-bg-table-fast);
 }
 table.month td.fast:hover {
-	background-color: #dbd4c5 !important;
+	background-color: var(--color-bg-table-fast-hover) !important;
 }
 table.month td.noday {
 	border: 0;
@@ -601,40 +712,14 @@ table.month tr td p {
 }
 table.month tr th {
 	text-align: center;
-	color: #756e5f;
+	color: var(--color-text-table-header);
 }
 table.month tr:first-child th {
 	font-size: 1.5em;
-    color: black;
+    color: var(--color-text-strong);
     padding-top: 0;
 	padding-bottom: 1em;
 }
-
-.commemorations li, .scripture-list li, .feasts li, .service-notes li {
-	display: inline;
-    color: #a00;
-}
-.commemorations li + li:before, .scripture-list li + li:before, .feasts li + li:before {
-	content: "●";
-    color: black;
-	padding: 0.5em;
-}
-.commemorations li a, .scripture-list li a {
-	color: inherit;
-	text-decoration: none;
-}
-.scripture-list li a {
-	white-space: nowrap;
-}
-.commemorations li a:hover, .scripture-list li a:hover {
-	text-decoration: underline;
-}
-
-p.feast {
-	font-weight: bold;
-	color: black;
-}
-
 table.month ul {
 	list-style-type: none;
 	margin: 0 0 1em 0;
@@ -647,26 +732,11 @@ table.month li + li:before {
 	content: "●";
 	padding: 0 0.5vw;
 }
-ul.feasts li {
-	font-weight: bold;
-	color: black;
-}
-ul.saints li {
-	font-size: 0.75em;
-}
-
-p.day-number {
-	font-size: 1.5em;
-}
-table.month td {
-    transition-property: background-color;
-    transition-duration: 0.25s;
-}
 table.month td a {
 	display: block;
 	padding: 1vw;
 	text-decoration: none;
-	color: black;
+	color: var(--color-text-strong);
 	height: 100%;
 }
 table.month td.sun:hover,
@@ -677,10 +747,16 @@ table.month td.thu:hover,
 table.month td.fri:hover,
 table.month td.sat:hover
 {
-	background-color: #e6e1d5;
+	background-color: var(--color-bg-table-hover);
     cursor: pointer;
 }
+p.day-number {
+	font-size: 1.5em;
+}
 
+/* ==========================================================================
+   Saint search page
+   ========================================================================== */
 .saint-search-form {
 	display: flex;
 	flex-wrap: wrap;
@@ -694,7 +770,7 @@ table.month td.sat:hover
 	font-family: inherit;
 	font-size: 1em;
 	padding: 4px 8px;
-	border: 1px solid #bbb;
+	border: 1px solid var(--color-border-input);
 	border-radius: 3px;
 	width: 16em;
 	max-width: 100%;
@@ -703,14 +779,14 @@ table.month td.sat:hover
 	font-family: inherit;
 	font-size: 1em;
 	padding: 4px 14px;
-	border: 1px solid #a00;
+	border: 1px solid var(--color-accent);
 	border-radius: 3px;
-	background-color: #a00;
-	color: #fff;
+	background-color: var(--color-accent);
+	color: var(--color-text-on-accent);
 	cursor: pointer;
 }
 .saint-search-form button:hover {
-	background-color: #800;
+	background-color: var(--color-accent-hover);
 }
 .saint-search-results {
 	border-collapse: collapse;
@@ -723,7 +799,7 @@ table.month td.sat:hover
 }
 .saint-search-results td {
 	padding: 0.5em 0;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid var(--color-border-subtle);
 	vertical-align: baseline;
 }
 .saint-search-results td:last-child {
@@ -732,11 +808,11 @@ table.month td.sat:hover
 	text-align: right;
 }
 .saint-search-results .no-story {
-	color: #999;
+	color: var(--color-text-faint);
 }
 .story-date {
 	font-size: 0.8em;
-	color: #999;
+	color: var(--color-text-faint);
 	font-weight: normal;
 }
 .saint-commemorations-title {
@@ -745,7 +821,7 @@ table.month td.sat:hover
 	font-size: 1.3em;
 }
 .saint-stories h2 {
-	color: #a00;
+	color: var(--color-accent);
 }
 .saint-stories .passage:first-child {
 	padding-top: 0.5em;
