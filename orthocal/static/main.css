@@ -76,9 +76,9 @@
      alpha is bumped up so they still read as depth.
 
    The body background's grain texture (the embedded SVG in body's
-   background-image, below) keeps its light-mode warm-sepia tint in both
-   themes -- it's a fixed asset, not a token, and revisiting it is easy to
-   do later once this palette is visually validated. */
+   background-image, below) is dropped entirely in dark mode rather than
+   given its own dark-tuned copy -- its warm-sepia tint doesn't translate,
+   and the plain gradient alone reads fine against the dark palette. */
 @media (prefers-color-scheme: dark) {
     :root {
         --color-accent: #e2635b;
@@ -117,6 +117,11 @@
         --shadow-topbar: 0 4px 10px rgba(0, 0, 0, 0.5);
         --shadow-dropdown: -2px 3px 6px rgba(0, 0, 0, 0.5);
         --shadow-hover-text: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    }
+    body {
+        background-image: linear-gradient(to bottom, var(--color-bg-page-gradient), var(--color-bg-page) 33%);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
 }
 
