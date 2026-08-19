@@ -100,7 +100,7 @@
 		{% if day.language == "en" %}
 		<p class="translation-picker">
 			<label for="translation-select">Translation:
-				<select id="translation-select" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal" hx-target="#orthocal" hx-swap="outerHTML" hx-push-url="true">
+				<select id="translation-select" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#scripture-readings" hx-target="#scripture-readings" hx-swap="outerHTML" hx-push-url="true">
 					{% for value, label in translation_choices %}
 					<option value="{% url "readings" tradition=tradition cal=cal translation=value year=date.year month=date.month day=date.day %}" {% if translation == value %}selected{% endif %}>{{ label }}</option>
 					{% endfor %}
@@ -110,6 +110,7 @@
 		</p>
 		{% endif %}
 
+		<div id="scripture-readings">
 		{% for reading in day.readings %}
 		<article class="passage" id="reading-{{ reading.id }}">
 			<h2>
@@ -125,6 +126,7 @@
 			</p>
 		</article>
 		{% endfor %}
+		</div>
 	</section>
 
 	<section class="readings">

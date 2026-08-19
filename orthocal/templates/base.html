@@ -123,52 +123,6 @@
 					}
 				});
 			});
-
-			// The day-nav links and the tradition/calendar/translation
-			// controls all swap #orthocal in place via htmx, but they live
-			// inside #page-nav, which is refreshed on every such request via
-			// an out-of-band swap -- so the very control the user just used
-			// gets removed from the DOM and replaced by a new node. Some
-			// browsers move the viewport when the focused element disappears
-			// like that (observed jumping/scrolling in Edge). None of these
-			// are real navigations, so pin the scroll position across them.
-			//
-			// (We tried hx-preserve on the toggle radios instead, so the
-			// live node -- and its focus -- would never be removed in the
-			// first place. That's the "correct" fix, but htmx's hx-preserve
-			// implementation uses the Element.moveBefore API via a shared
-			// staging element, and with more than one hx-preserve sibling
-			// swapping at once (our 2 tradition + 2 calendar radios, all in
-			// one #page-nav OOB swap) it deterministically strips the id/
-			// hx-preserve attributes off the moved nodes every other swap --
-			// reproduced locally on both our pinned 2.0.4 and current 2.0.10,
-			// so not a version-specific bug we can fix by upgrading. Not
-			// safe to ship, so back to pinning scroll position directly.)
-			//
-			// A single correction on htmx:afterSettle is visibly late in
-			// Edge: the erroneous scroll already painted, so the fix reads
-			// as a jump-then-snap-back "blink" rather than nothing happening.
-			// Instead, re-assert the saved position on every scroll event
-			// that occurs during the request, so any stray scroll gets
-			// cancelled out within the same event, before the user
-			// perceives it having settled anywhere else.
-			var htmxSavedScrollY = null;
-			function htmxRelockScroll() {
-				if (htmxSavedScrollY !== null) {
-					window.scrollTo(0, htmxSavedScrollY);
-				}
-			}
-			document.addEventListener('htmx:beforeRequest', function (event) {
-				var elt = event.detail.elt;
-				if (elt && elt.getAttribute && elt.getAttribute('hx-target') === '#orthocal') {
-					htmxSavedScrollY = window.scrollY;
-					window.addEventListener('scroll', htmxRelockScroll);
-				}
-			});
-			document.addEventListener('htmx:afterSettle', function () {
-				window.removeEventListener('scroll', htmxRelockScroll);
-				htmxSavedScrollY = null;
-			});
 		</script>
 
         {% block scripts %}{% endblock %}

@@ -267,6 +267,13 @@ nav.page-nav {
     padding: 0.4em 0 0.15em 0;
     font-size: clamp(0.65em, calc(3.2cqw), 1.1em);
     font-family: 'Ysabeau', sans-serif;
+    /* This whole element is destroyed and rebuilt via an htmx OOB swap on
+       every readings/calendar navigation. When it's near the top of the
+       viewport, Chromium's CSS Scroll Anchoring can pick an anchor node
+       from inside it; destroying that node mid-swap makes the browser
+       re-anchor elsewhere, producing a visible scroll jump (seen in Edge).
+       Opting this subtree out of anchor selection avoids that entirely. */
+    overflow-anchor: none;
 }
 .page-nav-row {
     display: flex;
