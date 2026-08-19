@@ -98,7 +98,16 @@
 		</div>
 
 		<main id="orthocal">
+			<!-- day-nav/toggle controls swap this inner div's outerHTML, not
+			     main#orthocal's own -- Safari clamps scrollY to the document's
+			     shrunken height the instant a large scrolling element like
+			     main#orthocal is removed from the DOM, and doesn't restore it
+			     once the replacement is reinserted. Keeping main#orthocal
+			     itself (with its min-height: 100%, in main.css) permanently in
+			     the DOM avoids that collapse ever happening. -->
+			<div id="orthocal-content">
         {% block main %}{% endblock %}
+			</div>
 		</main>
 
 		<script>

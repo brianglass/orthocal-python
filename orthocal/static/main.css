@@ -563,7 +563,7 @@ main#orthocal iframe {
     border: 1px solid var(--color-border-light);
     border-radius: 3px;
 }
-main#orthocal > header {
+#orthocal-content > header {
     position: relative;
     /* z-index establishes this header as its own stacking context, so the
        ::before's z-index: -1 (used to keep the full-bleed background band
@@ -574,7 +574,7 @@ main#orthocal > header {
     padding: 2.2em 0;
     box-sizing: border-box;
 }
-main#orthocal > header::before {
+#orthocal-content > header::before {
     content: "";
     position: absolute;
     top: 0;
@@ -590,12 +590,12 @@ main#orthocal > header::before {
     box-shadow: var(--shadow-topbar);
     z-index: -1;
 }
-main#orthocal > header h1 {
+#orthocal-content > header h1 {
 	margin-top: 0;
 	color: var(--color-text-secondary);
 	font-size: 1.5em;
 }
-main#orthocal > header h1 span {
+#orthocal-content > header h1 span {
 	margin-top: 0;
 	color: var(--color-text);
 	font-size: clamp(1em, calc(5cqw + 15px), 1.5em);
