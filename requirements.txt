@@ -19,7 +19,7 @@ servestatic[brotli]==4.3.1
 # at this app's size), and nothing passes --env-file or a YAML
 # --log-config. Installing just uvloop/httptools directly instead of the
 # [standard] extra keeps the two extras that matter.
-uvicorn==0.52.1
+uvicorn==0.52.3
 uvloop==0.22.1
 httptools==0.8.0
 # oscrypto is a dependency of one of the above packages.
