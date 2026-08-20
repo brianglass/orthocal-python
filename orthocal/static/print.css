@@ -54,11 +54,20 @@ table.month tr:first-child th {
     widows: 2;
     orphans: 2;
 }
-/* Bias the page-break engine against starting the readings on page 2 --
-   this is a hint, not a guarantee, but combined with the compact
-   multi-column layout above it should keep the readings under the title
-   on page 1 for all but the longest commemoration lists. */
+/* Keep the two sections (Scripture Readings / Commemorations) side by side
+   for print, matching the screen layout. main.css already has a
+   @media (max-width: 800px) that would collapse this to one column, but
+   print engines don't agree on what width that ends up evaluating against
+   for a page box (confirmed: Chrome collapsed it at print, Safari didn't)
+   -- re-assert the side-by-side values here so print doesn't depend on
+   that breakpoint matching (or not) at all. Also bias the page-break
+   engine against starting the readings on page 2 -- a hint, not a
+   guarantee, but combined with the compact multi-column layout above it
+   should keep the readings under the title on page 1 for all but the
+   longest commemoration lists. */
 .readings-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
     break-before: avoid;
 }
 /* The reddish gradient/shadow band behind the date and day title (main.css's
