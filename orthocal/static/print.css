@@ -69,6 +69,7 @@ table.month tr:first-child th {
     grid-template-columns: 1fr 1fr;
     gap: 3em;
     break-before: avoid;
+    page-break-before: avoid;
 }
 /* The reddish gradient/shadow band behind the date and day title (main.css's
    #orthocal-content > header::before) is screen-only decoration, added well
@@ -76,6 +77,13 @@ table.month tr:first-child th {
    above. */
 #orthocal-content > header::before {
     display: none;
+}
+#orthocal-content > header {
+    /* Screen's 2.2em top/bottom padding is real vertical cost print can't
+       spare -- break-before: avoid on .readings-columns below is only a
+       hint the engine can still ignore if there isn't room, so reclaiming
+       space here gives it an actual better chance of holding. */
+    padding: 0.5em 0;
 }
 #orthocal-content > header h1 {
 	font-size: 200%;
