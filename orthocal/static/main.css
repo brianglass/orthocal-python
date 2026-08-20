@@ -422,7 +422,7 @@ nav.page-nav {
     width: 75%;
     margin: 0 auto;
     padding: 0.4em 0 0.15em 0;
-    font-size: clamp(0.65em, calc(3.2cqw), 1.1em);
+    font-size: clamp(0.8em, calc(3.2cqw), 1.1em);
     font-family: var(--font-sans);
     /* This whole element is destroyed and rebuilt via an htmx OOB swap on
        every readings/calendar navigation. When it's near the top of the
@@ -536,10 +536,18 @@ a.active {
 	vertical-align: middle;
 }
 /* Let the day-nav and toggle row wrap onto two lines at the narrowest
-   viewports, alongside the topbar's own last-resort wrap above. */
+   viewports, alongside the topbar's own last-resort wrap above. Below this
+   breakpoint the two segmented controls alone no longer fit side by side
+   either (see .toggle-row's own flex-wrap here) -- center them as a
+   stacked pair instead of leaving them at flex-end, where a lone
+   wrapped-down control would sit oddly right-aligned under the row above
+   it. */
 @media (max-width: 400px) {
     .day-nav, .toggle-row {
         flex-wrap: wrap;
+    }
+    .toggle-row {
+        justify-content: center;
     }
 }
 
