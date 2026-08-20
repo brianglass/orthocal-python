@@ -422,7 +422,7 @@ nav.page-nav {
     width: 75%;
     margin: 0 auto;
     padding: 0.4em 0 0.15em 0;
-    font-size: clamp(0.65em, calc(3.2cqw), 1.1em);
+    font-size: clamp(0.8em, calc(3.2cqw), 1.1em);
     font-family: var(--font-sans);
     /* This whole element is destroyed and rebuilt via an htmx OOB swap on
        every readings/calendar navigation. When it's near the top of the
@@ -473,7 +473,7 @@ a.active {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.5rem;
 	flex-wrap: nowrap;
 }
 .segmented-control {
@@ -488,7 +488,7 @@ a.active {
 	align-items: center;
 	gap: 0.35em;
 	margin: 0;
-	padding: 3px 14px;
+	padding: 3px 9px;
 	color: var(--color-text-tertiary);
 	cursor: pointer;
 	transition-property: background-color, color;
@@ -522,23 +522,13 @@ a.active {
         font-weight: bold;
     }
 }
-.status-badge {
-	display: inline-block;
-	font-size: 0.65em;
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: var(--color-text-on-accent);
-	background-color: var(--color-accent);
-	border-radius: 3px;
-	padding: 1px 5px;
-	margin-left: 2px;
-	vertical-align: middle;
-}
-/* Let the day-nav and toggle row wrap onto two lines at the narrowest
-   viewports, alongside the topbar's own last-resort wrap above. */
+/* Let the day-nav wrap onto its own line at the narrowest viewports,
+   alongside the topbar's own last-resort wrap above, when it no longer
+   fits alongside the toggle row. The toggle row itself (.toggle-row,
+   above) stays nowrap and is sized to always fit on one line down to the
+   narrowest realistic phone width instead of wrapping. */
 @media (max-width: 400px) {
-    .day-nav, .toggle-row {
+    .day-nav {
         flex-wrap: wrap;
     }
 }
@@ -593,7 +583,7 @@ main#orthocal iframe {
 #orthocal-content > header h1 {
 	margin-top: 0;
 	color: var(--color-text-secondary);
-	font-size: 1.5em;
+	font-size: clamp(1.1em, calc(4cqw + 12px), 1.5em);
 }
 #orthocal-content > header h1 span {
 	margin-top: 0;
@@ -689,6 +679,9 @@ section.readings h2 {
     color: var(--color-text-secondary);
 }
 .passage {
+    columns: 3 20em;
+    column-gap: 2em;
+    column-rule: 1px solid var(--color-border-subtle);
     padding-top: 2em;
     widows: 3;
     orphans: 3;

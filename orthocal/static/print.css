@@ -7,6 +7,11 @@ html {
 body {
     padding: 0;
     margin: 1in 0 0 0;
+    /* The parchment grain texture and page-background gradient (main.css)
+       are screen-only decoration added well after this stylesheet was
+       written -- neither was ever meant to survive to print, and printing
+       them just wastes ink. */
+    background: none;
 }
 .topbar {
     display: none;
@@ -16,7 +21,6 @@ nav.page-nav {
 }
 main#orthocal {
     width: 100%;
-    border-top: 0;
     margin: 0;
     padding: 0;
 }
@@ -31,15 +35,49 @@ table.month tr:first-child th {
 .print-exclude {
     display: none;
 }
+/* The select's own border and native dropdown caret only make sense as an
+   interactive-control affordance -- on paper it's just inert text, so drop
+   both rather than carry them over from the screen styling. */
+.translation-picker select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+}
+/* The columns/column-gap themselves are inherited from main.css's .passage
+   rule (restored there too, matching how this worked in June -- print was
+   only ever a thin override on top of a shared screen-authoritative base,
+   not a separate layout). column-rule stays off for print specifically,
+   same as it always did even back when main.css set one for screen. */
 .passage {
+    column-rule: none;
     widows: 2;
     orphans: 2;
-    column-rule: 0;
 }
+/* Keep the two sections (Scripture Readings / Commemorations) side by side
+   for print, matching the screen layout. main.css already has a
+   @media (max-width: 800px) that would collapse this to one column, but
+   print engines don't agree on what width that ends up evaluating against
+   for a page box (confirmed: Chrome collapsed it at print, Safari didn't)
+   -- re-assert the side-by-side values here so print doesn't depend on
+   that breakpoint matching (or not) at all. Also bias the page-break
+   engine against starting the readings on page 2 -- a hint, not a
+   guarantee, but combined with the compact multi-column layout above it
+   should keep the readings under the title on page 1 for all but the
+   longest commemoration lists. */
 .readings-columns {
-    border-top: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+    break-before: avoid;
 }
-main#orthocal > header h1 {
+/* The reddish gradient/shadow band behind the date and day title (main.css's
+   #orthocal-content > header::before) is screen-only decoration, added well
+   after this stylesheet was written -- same reasoning as body's background
+   above. */
+#orthocal-content > header::before {
+    display: none;
+}
+#orthocal-content > header h1 {
 	font-size: 200%;
 }
 h1, h2, h3, h4 {
