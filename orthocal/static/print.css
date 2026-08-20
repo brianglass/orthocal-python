@@ -44,13 +44,7 @@ table.month tr:first-child th {
     -moz-appearance: none;
     border: none;
 }
-/* The columns/column-gap themselves are inherited from main.css's .passage
-   rule (restored there too, matching how this worked in June -- print was
-   only ever a thin override on top of a shared screen-authoritative base,
-   not a separate layout). column-rule stays off for print specifically,
-   same as it always did even back when main.css set one for screen. */
 .passage {
-    column-rule: none;
     widows: 2;
     orphans: 2;
 }
@@ -60,15 +54,25 @@ table.month tr:first-child th {
    print engines don't agree on what width that ends up evaluating against
    for a page box (confirmed: Chrome collapsed it at print, Safari didn't)
    -- re-assert the side-by-side values here so print doesn't depend on
-   that breakpoint matching (or not) at all. Also bias the page-break
-   engine against starting the readings on page 2 -- a hint, not a
-   guarantee, but combined with the compact multi-column layout above it
-   should keep the readings under the title on page 1 for all but the
-   longest commemoration lists. */
+   that breakpoint matching (or not) at all.
+
+   break-before/page-break-before: avoid are left in as a best-effort hint,
+   but confirmed (real Firefox, both with and without a nested multi-column
+   passage layout, plus trimming the header's own print padding for extra
+   room) that they don't actually help there: Firefox treats this grid as
+   atomic for pagination purposes -- it either fits entirely in the space
+   left on the page or moves entirely to the next one, so as long as the
+   day's readings/stories are taller than one page (normally true), it
+   always moves. Chrome and Safari don't have this limitation. Accepted as
+   a known cross-engine gap rather than something more CSS can fix --
+   the alternative (dropping the grid for a fragmentation-friendly
+   mechanism like CSS multicol, or single-column stacking) would cost the
+   side-by-side layout itself, which was the higher priority call here. */
 .readings-columns {
     grid-template-columns: 1fr 1fr;
     gap: 3em;
     break-before: avoid;
+    page-break-before: avoid;
 }
 /* The reddish gradient/shadow band behind the date and day title (main.css's
    #orthocal-content > header::before) is screen-only decoration, added well
@@ -76,6 +80,13 @@ table.month tr:first-child th {
    above. */
 #orthocal-content > header::before {
     display: none;
+}
+#orthocal-content > header {
+    /* Screen's 2.2em top/bottom padding is real vertical cost print can't
+       spare -- break-before: avoid on .readings-columns below is only a
+       hint the engine can still ignore if there isn't room, so reclaiming
+       space here gives it an actual better chance of holding. */
+    padding: 0.5em 0;
 }
 #orthocal-content > header h1 {
 	font-size: 200%;
