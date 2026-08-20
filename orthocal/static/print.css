@@ -7,6 +7,11 @@ html {
 body {
     padding: 0;
     margin: 1in 0 0 0;
+    /* The parchment grain texture and page-background gradient (main.css)
+       are screen-only decoration added well after this stylesheet was
+       written -- neither was ever meant to survive to print, and printing
+       them just wastes ink. */
+    background: none;
 }
 .topbar {
     display: none;
@@ -16,7 +21,6 @@ nav.page-nav {
 }
 main#orthocal {
     width: 100%;
-    border-top: 0;
     margin: 0;
     padding: 0;
 }
@@ -36,10 +40,14 @@ table.month tr:first-child th {
     orphans: 2;
     column-rule: 0;
 }
-.readings-columns {
-    border-top: 0;
+/* The reddish gradient/shadow band behind the date and day title (main.css's
+   #orthocal-content > header::before) is screen-only decoration, added well
+   after this stylesheet was written -- same reasoning as body's background
+   above. */
+#orthocal-content > header::before {
+    display: none;
 }
-main#orthocal > header h1 {
+#orthocal-content > header h1 {
 	font-size: 200%;
 }
 h1, h2, h3, h4 {
