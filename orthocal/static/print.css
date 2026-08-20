@@ -35,10 +35,31 @@ table.month tr:first-child th {
 .print-exclude {
     display: none;
 }
+/* The select's own border and native dropdown caret only make sense as an
+   interactive-control affordance -- on paper it's just inert text, so drop
+   both rather than carry them over from the screen styling. */
+.translation-picker select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+}
+/* The columns/column-gap themselves are inherited from main.css's .passage
+   rule (restored there too, matching how this worked in June -- print was
+   only ever a thin override on top of a shared screen-authoritative base,
+   not a separate layout). column-rule stays off for print specifically,
+   same as it always did even back when main.css set one for screen. */
 .passage {
+    column-rule: none;
     widows: 2;
     orphans: 2;
-    column-rule: 0;
+}
+/* Bias the page-break engine against starting the readings on page 2 --
+   this is a hint, not a guarantee, but combined with the compact
+   multi-column layout above it should keep the readings under the title
+   on page 1 for all but the longest commemoration lists. */
+.readings-columns {
+    break-before: avoid;
 }
 /* The reddish gradient/shadow band behind the date and day title (main.css's
    #orthocal-content > header::before) is screen-only decoration, added well
