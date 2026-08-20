@@ -679,9 +679,6 @@ section.readings h2 {
     color: var(--color-text-secondary);
 }
 .passage {
-    columns: 3 20em;
-    column-gap: 2em;
-    column-rule: 1px solid var(--color-border-subtle);
     padding-top: 2em;
     widows: 3;
     orphans: 3;
