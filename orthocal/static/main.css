@@ -152,6 +152,14 @@ html {
        so the topbar's position) constant regardless of page height. */
     scrollbar-gutter: stable;
 }
+/* Scripture-reference and commemoration links (e.g. "2 Corinthians 7.10-16")
+   jump to their #reading-N/#commemoration-N passage further down the same
+   page -- smooth-scrolling that jump reads much better than a hard cut. */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
 body {
     margin: 0;
     background-color: var(--color-bg-page);
@@ -340,6 +348,45 @@ h1, h2, h3, h4 {
     box-shadow: var(--shadow-dropdown);
     z-index: 20;
 }
+/* <details> content becomes visible/hidden as a discrete step (there's no
+   cross-browser-reliable way yet to animate that transition itself), but a
+   plain CSS animation still replays from its "from" state every time the
+   content is un-hidden -- so a fade+slide-in plays whenever the browser
+   actually un-hides it on open. The reverse (dropdown-out, via the
+   .closing class) is driven by base.html's script, which defers actually
+   closing the <details> until this animation finishes, so the content
+   stays rendered (and animatable) for the moment it takes to fade out.
+   The .closing rule is listed after the [open] one so it wins the tie --
+   both match while a close is in flight, since .closing is added before
+   [open] is removed. */
+@media (prefers-reduced-motion: no-preference) {
+    .topbar-inner > nav details[open] ul {
+        animation: dropdown-in 0.15s ease;
+    }
+    .topbar-inner > nav details ul.closing {
+        animation: dropdown-out 0.15s ease;
+    }
+}
+@keyframes dropdown-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes dropdown-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
 .topbar-inner > nav details ul li {
     display: block;
     text-transform: lowercase;
@@ -402,6 +449,16 @@ h1, h2, h3, h4 {
     }
     .topbar-inner > nav.nav-open > ul {
         display: flex;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+        .topbar-inner > nav.nav-open > ul {
+            animation: dropdown-in 0.15s ease;
+        }
+        /* See the .closing comment above the desktop submenu's dropdown-out
+           rule -- same deferred-close mechanism, driven by the same script. */
+        .topbar-inner > nav > ul.closing {
+            animation: dropdown-out 0.15s ease;
+        }
     }
     .topbar-inner > nav > ul > li {
         box-sizing: border-box;
@@ -578,6 +635,30 @@ main#orthocal iframe {
     width: 100%;
     border: 1px solid var(--color-border-light);
     border-radius: 3px;
+}
+/* The translation <select> and the tradition/calendar toggles all swap
+   some part of #orthocal-content via htmx's transition:true modifier,
+   which wraps the swap in the View Transitions API when the browser
+   supports it (a no-op fallback -- an instant swap, same as before --
+   everywhere else). Giving the region its own view-transition-name makes
+   it crossfade as its own isolated group; without this it would still
+   animate, but as part of the default ::view-transition-old/new(root)
+   group, which also captures (and so crossfades) the rest of the page --
+   topbar included -- around it for no reason. Disabling the root group's
+   own animation leaves only #orthocal-content animating. Named on this
+   outer element rather than on the narrower #scripture-readings (which
+   the translation swap alone actually touches) so a nested element is
+   never independently named while its ancestor also is -- the View
+   Transitions spec extracts named elements from their ancestor's capture,
+   which would otherwise split one swap into two competing transitions. */
+@media (prefers-reduced-motion: no-preference) {
+    #orthocal-content {
+        view-transition-name: orthocal-content;
+    }
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
 }
 #orthocal-content > header {
     position: relative;

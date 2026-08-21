@@ -113,24 +113,90 @@
 		</main>
 
 		<script>
+			// The CSS entrance animation (main.css's dropdown-in keyframes)
+			// plays automatically whenever these panels go from hidden to
+			// shown, since that's a plain display change the browser
+			// animates from its "from" state on its own. There's no native
+			// equivalent for the reverse: content vanishes the instant
+			// <details> closes (or nav-open is removed), so playing an exit
+			// animation means deferring the actual close until our own
+			// dropdown-out animation finishes.
+			var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			function closeAnimated(content, onClose) {
+				if (reduceMotion) {
+					onClose();
+					return;
+				}
+				content.classList.add('closing');
+				var done = false;
+				function finish() {
+					if (done) return;
+					done = true;
+					content.classList.remove('closing');
+					onClose();
+				}
+				content.addEventListener('animationend', finish, { once: true });
+				// Backstop in case animationend never arrives (e.g. the tab
+				// is backgrounded mid-close and the browser throttles the
+				// animation timeline) -- without this the menu would stay
+				// open with no way to close it, since a later click just
+				// re-adds an already-present .closing class.
+				setTimeout(finish, 300);
+			}
+
 			document.addEventListener('DOMContentLoaded', function () {
 				var toggle = document.querySelector('.nav-toggle');
 				var nav = toggle && toggle.nextElementSibling;
 				if (!toggle || !nav) return;
+				var navList = nav.querySelector(':scope > ul');
 				toggle.addEventListener('click', function () {
-					var isOpen = nav.classList.toggle('nav-open');
-					toggle.setAttribute('aria-expanded', isOpen);
+					var isOpen = nav.classList.contains('nav-open');
+					toggle.setAttribute('aria-expanded', !isOpen);
+					if (isOpen) {
+						closeAnimated(navList, function () {
+							nav.classList.remove('nav-open');
+						});
+					} else {
+						nav.classList.add('nav-open');
+					}
 				});
 			});
 
 			// Native <details> only closes on a second click on its own
 			// <summary> (or when a sibling in the same name= group opens) --
 			// it doesn't close on a click elsewhere on the page, which reads
-			// as broken for a nav dropdown.
+			// as broken for a nav dropdown. Exclusivity between submenus and
+			// the click-outside close are both handled here (instead of
+			// relying on <details name=...>) so every close path -- not
+			// just a second click on the same summary -- gets the same
+			// animated close.
+			var submenus = document.querySelectorAll('.topbar-inner > nav details');
+			submenus.forEach(function (details) {
+				var summary = details.querySelector('summary');
+				var content = details.querySelector('ul');
+				details._closeAnimated = function () {
+					if (!details.open) return;
+					closeAnimated(content, function () {
+						details.open = false;
+					});
+				};
+				summary.addEventListener('click', function (event) {
+					event.preventDefault();
+					if (details.open) {
+						details._closeAnimated();
+					} else {
+						submenus.forEach(function (other) {
+							if (other !== details) other._closeAnimated();
+						});
+						details.open = true;
+					}
+				});
+			});
 			document.addEventListener('click', function (event) {
-				document.querySelectorAll('.topbar-inner > nav details[open]').forEach(function (details) {
-					if (!details.contains(event.target)) {
-						details.removeAttribute('open');
+				submenus.forEach(function (details) {
+					if (details.open && !details.contains(event.target)) {
+						details._closeAnimated();
 					}
 				});
 			});

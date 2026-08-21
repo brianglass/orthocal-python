@@ -27,12 +27,12 @@
 
 		<div class="toggle-row" hx-params="none">
 			<div class="segmented-control">
-				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Slavic</label>
-				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Greek</label>
+				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Slavic</label>
+				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Greek</label>
 			</div>
 			<div class="segmented-control">
-				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="gregorian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Gregorian</label>
-				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="julian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Julian</label>
+				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="gregorian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Gregorian</label>
+				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="julian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Julian</label>
 			</div>
 		</div>
 	</div>
