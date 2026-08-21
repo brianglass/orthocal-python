@@ -304,12 +304,18 @@ h1, h2, h3, h4 {
     display: none;
 }
 .topbar-inner > nav summary::after {
+    /* A single glyph rotated in place, rather than swapping between "\25be"
+       and "\25b4" on open -- those two characters have very slightly
+       different advance widths, which shifted the whole (flex-end
+       justified) nav row by a pixel or two whenever a submenu toggled. */
     content: " \25be";
+    display: inline-block;
     font-size: 0.7em;
     vertical-align: middle;
+    transition: transform 0.15s ease;
 }
 .topbar-inner > nav details[open] summary::after {
-    content: " \25b4";
+    transform: rotate(180deg);
 }
 .topbar-inner > nav summary:hover {
     color: var(--color-text-strong);
