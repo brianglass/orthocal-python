@@ -63,33 +63,35 @@
 					<span></span><span></span><span></span>
 				</button>
 
+				{% with url_name=request.resolver_match.url_name %}
 				<nav>
 					<ul>
-						<li><a href="{% url "index" %}">Readings</a></li>
-						<li><a href="{% url "calendar-default" %}">Calendar</a></li>
-						<li><a href="{% url "saint-search" %}">Saints</a></li>
+						<li><a href="{% url "index" %}" {% if url_name == "index" or url_name == "readings" %}aria-current="page"{% endif %}>Readings</a></li>
+						<li><a href="{% url "calendar-default" %}" {% if url_name == "calendar-default" or url_name == "calendar" %}aria-current="page"{% endif %}>Calendar</a></li>
+						<li><a href="{% url "saint-search" %}" {% if url_name == "saint-search" %}aria-current="page"{% endif %}>Saints</a></li>
 						<li>
 							<details name="nav-submenu">
-								<summary>Integrations</summary>
+								<summary {% if url_name == "alexa" or url_name == "api" or url_name == "ai-assistant" or url_name == "feeds" %}class="has-active"{% endif %}>Integrations</summary>
 								<ul>
-									<li><a href="{% url "alexa" %}">Alexa</a></li>
-									<li><a href="{% url "api" %}">API</a></li>
-									<li><a href="{% url "ai-assistant" %}">AI</a></li>
-									<li><a href="{% url "feeds" %}">Feeds</a></li>
+									<li><a href="{% url "alexa" %}" {% if url_name == "alexa" %}aria-current="page"{% endif %}>Alexa</a></li>
+									<li><a href="{% url "api" %}" {% if url_name == "api" %}aria-current="page"{% endif %}>API</a></li>
+									<li><a href="{% url "ai-assistant" %}" {% if url_name == "ai-assistant" %}aria-current="page"{% endif %}>AI</a></li>
+									<li><a href="{% url "feeds" %}" {% if url_name == "feeds" %}aria-current="page"{% endif %}>Feeds</a></li>
 								</ul>
 							</details>
 						</li>
 						<li>
 							<details name="nav-submenu">
-								<summary>More</summary>
+								<summary {% if url_name == "about" %}class="has-active"{% endif %}>More</summary>
 								<ul>
-									<li><a href="{% url "about" %}">About</a></li>
+									<li><a href="{% url "about" %}" {% if url_name == "about" %}aria-current="page"{% endif %}>About</a></li>
 									<li><a href="https://paypal.me/BGlass42" target="_blank" rel="noopener">Tip Jar</a></li>
 								</ul>
 							</details>
 						</li>
 					</ul>
 				</nav>
+				{% endwith %}
 			</div>
 
 			<nav class="page-nav" id="page-nav" hx-swap-oob="true">

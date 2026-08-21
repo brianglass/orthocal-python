@@ -261,6 +261,19 @@ h1, h2, h3, h4 {
     color: var(--color-text-strong);
     text-shadow: var(--shadow-hover-text);
 }
+/* Marks which top-level section the current page belongs to. Applied to
+   the <a> itself for direct nav items, and to the submenu's <summary> (via
+   .has-active, set server-side alongside the rest of the nav) for pages
+   that live inside "Integrations"/"More" -- otherwise a page like About
+   would have no visible indicator at all while its disclosure is closed. */
+.topbar-inner > nav a[aria-current="page"],
+.topbar-inner > nav summary.has-active {
+    color: var(--color-text-strong);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+}
 
 /* Submenu (e.g. "Developers") -- a native <details>/<summary> disclosure
    rather than a CSS :hover flyout, so it works identically (click to open,
