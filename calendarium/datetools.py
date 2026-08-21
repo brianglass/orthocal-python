@@ -47,7 +47,7 @@ def translation_session_key(language):
 TRANSLATION_LABELS = {
     'kjv': 'King James Version',
     'lxx2012-web': 'LXX2012 & WEB',
-    'douay-rheims': 'Douay-Rheims (Challoner, 1899)',
+    'douay-rheims': 'Douay-Rheims',
     'rccv': 'Romanian Corrected Cornilescu Version',
     'srp1865': 'Serbian (Karadžić/Daničić, 1865)',
 }
