@@ -144,6 +144,13 @@ html {
     font-size: 20px;
     font-family: var(--font-serif);
     overflow-y: auto;
+    /* Without this, a page short enough to need no vertical scrollbar is a
+       few pixels wider (viewport-wise) than one that does, which shifts the
+       centered, percentage-width topbar horizontally between pages -- most
+       visible on classic (non-overlay) scrollbars, e.g. Windows/Linux.
+       Reserving the gutter unconditionally keeps the available width (and
+       so the topbar's position) constant regardless of page height. */
+    scrollbar-gutter: stable;
 }
 body {
     margin: 0;
