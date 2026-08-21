@@ -33,6 +33,7 @@ data/*
 !data/srp1865_usfx.xml
 !data/eng-lxx2012_usfx.xml
 !data/eng-web_usfx.xml
+!data/eng-dra_usfx.xml
 *.sql
 *.csv
 scratch_*.py

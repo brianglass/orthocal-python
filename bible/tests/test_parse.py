@@ -18,3 +18,14 @@ class ParseTest(TestCase):
         verse = Verse.objects.get(book='HEB', chapter=11, verse=33, language='en', translation='lxx2012-web')
         self.assertEqual(expected, verse.content)
         self.assertNotIn('Daniel', verse.content)
+
+    def test_douay_rheims_strongs_tags_stripped(self):
+        """Douay-Rheims verses are word-tagged with Strong's numbers
+        (<w s="G3056">Word</w>), unlike the other translations already
+        ingested. parse_usfx() has no explicit case for <w>, so this
+        confirms the tags don't leak into the content and word spacing
+        still comes out correct."""
+        expected = 'In the beginning was the Word, and the Word was with God, and the Word was God.'
+        verse = Verse.objects.get(book='JHN', chapter=1, verse=1, language='en', translation='douay-rheims')
+        self.assertEqual(expected, verse.content)
+        self.assertNotIn('G3056', verse.content)
