@@ -31,8 +31,8 @@ def cal_session_key(tradition):
     return f'cal_{tradition}'
 
 class Translation(StrEnum):
-    KJV = 'kjv'
     LXX2012WEB = 'lxx2012-web'
+    KJV = 'kjv'
     DOUAY_RHEIMS = 'douay-rheims'
 
 def translation_session_key(language):
