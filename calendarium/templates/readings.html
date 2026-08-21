@@ -20,9 +20,9 @@
 {% block extra_nav %}
 	<div class="page-nav-row">
 		<div class="day-nav">
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">&larr; Previous Day</a>
-			<a class="cal-nav" href="{% url "index" %}" hx-get="{% url "index" %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Today</a>
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML" hx-push-url="true">Next Day &rarr;</a>
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr; Previous Day</a>
+			<a class="cal-nav" href="{% url "index" %}" hx-get="{% url "index" %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Today</a>
+			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Next Day &rarr;</a>
 		</div>
 
 		<div class="toggle-row" hx-params="none">

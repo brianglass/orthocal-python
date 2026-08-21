@@ -659,6 +659,36 @@ main#orthocal iframe {
     ::view-transition-new(root) {
         animation: none;
     }
+    /* The browser's own default for a named group is a plain crossfade,
+       blended via mix-blend-mode: plus-lighter so overlapping old/new
+       images combine cleanly. That reads fine when the two states look
+       very different, but readings/calendar swaps are often subtle (e.g.
+       one tradition just adds a couple of extra commemorations) -- against
+       nearly-identical content a plain crossfade is barely visible. Adding
+       an explicit fade+shift (echoing the dropdown-in/out menu animation)
+       gives the swap a clear, consistent motion regardless of how much
+       actually changed. mix-blend-mode reset to normal since the two
+       images no longer sit in the exact same place while shifting. */
+    ::view-transition-old(orthocal-content) {
+        animation: content-out 0.2s ease both;
+        mix-blend-mode: normal;
+    }
+    ::view-transition-new(orthocal-content) {
+        animation: content-in 0.2s ease both;
+        mix-blend-mode: normal;
+    }
+}
+@keyframes content-out {
+    to {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+}
+@keyframes content-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
 }
 #orthocal-content > header {
     position: relative;
