@@ -8,8 +8,29 @@ from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from .. import api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent
+
+
+class ClientIpMixinTestCase(TestCase):
+    def setUp(self):
+        self.throttle = api.ShadowAnonRateThrottle('5/s')
+        self.factory = RequestFactory()
+
+    def test_uses_first_xff_entry(self):
+        """Cloud Run puts the real client IP first in X-Forwarded-For and
+        appends its own hop(s) after it; those appended hops can vary
+        between requests from the same client, so only the first entry is
+        a stable per-client identity."""
+        request = self.factory.get('/', HTTP_X_FORWARDED_FOR='203.0.113.5, 66.249.82.68')
+        self.assertEqual('203.0.113.5', self.throttle.get_ident(request))
+
+    def test_falls_back_to_remote_addr(self):
+        request = self.factory.get('/')
+        request.META['REMOTE_ADDR'] = '203.0.113.5'
+        self.assertEqual('203.0.113.5', self.throttle.get_ident(request))
 
 
 class DayAPITestCase(TestCase):
