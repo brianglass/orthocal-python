@@ -33,6 +33,7 @@ def cal_session_key(tradition):
 class Translation(StrEnum):
     KJV = 'kjv'
     LXX2012WEB = 'lxx2012-web'
+    DOUAY_RHEIMS = 'douay-rheims'
 
 def translation_session_key(language):
     """Mirrors cal_session_key(tradition): translation choice is remembered
@@ -46,6 +47,7 @@ def translation_session_key(language):
 TRANSLATION_LABELS = {
     'kjv': 'King James Version',
     'lxx2012-web': 'LXX2012 & WEB',
+    'douay-rheims': 'Douay-Rheims (Challoner, 1899)',
     'rccv': 'Romanian Corrected Cornilescu Version',
     'srp1865': 'Serbian (Karadžić/Daničić, 1865)',
 }

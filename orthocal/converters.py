@@ -34,7 +34,7 @@ class TraditionConverter:
         return value
 
 
-TRANSLATION_RE = '(kjv|lxx2012-web)'
+TRANSLATION_RE = '(kjv|lxx2012-web|douay-rheims)'
 
 class TranslationConverter:
     regex = TRANSLATION_RE
