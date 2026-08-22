@@ -843,7 +843,15 @@ label {
 	color: inherit;
 	text-decoration: none;
 }
-.scripture-list li a {
+/* The reference itself (e.g. "2 Corinthians 7.10-16") can wrap freely at
+   its own spaces -- nowrap here previously forced the entire reference
+   *and* its "(Source, Desc)" suffix onto one unbreakable line, which on a
+   narrow phone (main#orthocal's 75% width leaves very little room) simply
+   overflowed rather than wrapping anywhere. Only the short parenthetical
+   suffix stays glued together now, so the line can still break between it
+   and the reference, or within the reference, without ever breaking
+   inside "(Gospel, Thaddaeus)" itself. */
+.scripture-list li a .ref-source {
 	white-space: nowrap;
 }
 .commemorations li a:hover, .scripture-list li a:hover {
