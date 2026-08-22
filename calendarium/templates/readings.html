@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load fullurl %}
+{% load scripture_extras %}
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
@@ -68,8 +69,8 @@
 				{% for reading in day.readings %}
 				<li>
 					<a href="#reading-{{ reading.id }}">
-						{{ reading.pericope.display }}
-						({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
+						{{ reading.pericope.display|keep_numeral_with_book }}
+						<span class="ref-source">({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})</span>
 					</a>
 				</li>
 				{% endfor %}
@@ -113,7 +114,7 @@
 		{% for reading in day.readings %}
 		<article class="passage" id="reading-{{ reading.id }}">
 			<h2>
-				{{ reading.pericope.display }}
+				{{ reading.pericope.display|keep_numeral_with_book }}
 				({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})
 			</h2>
 
