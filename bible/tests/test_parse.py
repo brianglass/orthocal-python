@@ -29,3 +29,14 @@ class ParseTest(TestCase):
         verse = Verse.objects.get(book='JHN', chapter=1, verse=1, language='en', translation='douay-rheims')
         self.assertEqual(expected, verse.content)
         self.assertNotIn('G3056', verse.content)
+
+    def test_lxx2012_plural_you_marker_preserved(self):
+        """LXX2012's source file documents (in its own front matter) that
+        U+2303 (UP ARROWHEAD) glued onto "you"/"You" is a deliberate mark
+        for 2nd-person *plural* ("ye"), not a stray artifact -- modern
+        English has no distinct plural "you". parse_usfx() must preserve
+        it in stored content; rendering it legibly is a template-layer
+        concern (see scripture_extras.mark_plural_you)."""
+        expected = 'And if you⌃ be willing, and listen to me, you⌃ shall eat the good of the land:'
+        verse = Verse.objects.get(book='ISA', chapter=1, verse=19, language='en', translation='lxx2012-web')
+        self.assertEqual(expected, verse.content)
