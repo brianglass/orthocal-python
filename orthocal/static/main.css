@@ -668,7 +668,14 @@ main#orthocal iframe {
    as the rest of this block -- without that, reduced-motion users would
    still get the root group's default crossfade on every navigation, since
    enabling navigation itself and disabling the root's animation are two
-   separate declarations. */
+   separate declarations.
+
+   Duration/easing pinned explicitly to Chrome's own UA-default values
+   (0.25s ease) rather than left to each browser's default: Safari ships
+   cross-document view transitions too, but with a noticeably shorter
+   default duration, so the same navigation feels abrupt there and
+   unhurried in Chrome. Setting it here makes both engines pace the
+   crossfade identically instead of each reaching for their own default. */
 @media (prefers-reduced-motion: no-preference) {
     @view-transition {
         navigation: auto;
@@ -679,6 +686,12 @@ main#orthocal iframe {
     ::view-transition-old(root),
     ::view-transition-new(root) {
         animation: none;
+    }
+    ::view-transition-group(orthocal-content),
+    ::view-transition-old(orthocal-content),
+    ::view-transition-new(orthocal-content) {
+        animation-duration: 0.25s;
+        animation-timing-function: ease;
     }
 }
 #orthocal-content > header {
