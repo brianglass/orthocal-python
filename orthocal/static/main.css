@@ -650,8 +650,29 @@ main#orthocal iframe {
    the translation swap alone actually touches) so a nested element is
    never independently named while its ancestor also is -- the View
    Transitions spec extracts named elements from their ancestor's capture,
-   which would otherwise split one swap into two competing transitions. */
+   which would otherwise split one swap into two competing transitions.
+
+   @view-transition (navigation: auto) extends the same mechanism to full
+   navigations between separate pages (Readings -> Calendar -> About,
+   etc. -- plain <a> links, not htmx) in browsers that support
+   cross-document view transitions; unsupported browsers just keep doing
+   an ordinary instant navigation, so this is pure progressive
+   enhancement. Every page shares this same #orthocal-content wrapper
+   (base.html), and the spec matches same-named elements across the
+   outgoing/incoming document pair automatically, so no per-page markup
+   is needed -- only the topbar differs in a way worth calling out: its
+   own content is nearly always identical between two page loads (same
+   header, same nav), so it isn't given a name at all and is left inside
+   the (disabled-animation) root group, where an unnamed identical region
+   simply doesn't visibly change. Nested in the same reduced-motion query
+   as the rest of this block -- without that, reduced-motion users would
+   still get the root group's default crossfade on every navigation, since
+   enabling navigation itself and disabling the root's animation are two
+   separate declarations. */
 @media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
     #orthocal-content {
         view-transition-name: orthocal-content;
     }
