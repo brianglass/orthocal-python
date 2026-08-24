@@ -230,3 +230,44 @@ arithmetic, three different Nov-1 weekdays) and
   Lent's three confirmed exceptions needed an actual `Day`-row data split
   instead (see Implementation above) -- both kinds of change turned out to
   be needed, just for different fasts.
+
+## Bug found 2026-08-24: 9 dates with stale/never-ingested fast_exception
+
+Brian noticed Aug 28, 2026 showing "Wine and Oil are Allowed" for Greek
+tradition when antiochian.org and goarch.org both show a strict fast that
+day. Not a rule-logic gap like the findings above -- the `common`-tradition
+row for that Friday is correctly strict (`fast=1, fast_exception=0`); the
+bug was in a separate `greek`-tradition `Day` row for 8/28 (blank title,
+`feast_level=0`) carrying `fast_exception=1` with nothing to justify it.
+
+Found 9 such rows total (`title=''`, `feast_name=''`, `feast_level=0`,
+`fast_exception>0`, `tradition='greek'`) by querying the DB directly.
+Cross-checked each against its own already-cached `data/antiochian_raw/
+*.json` fetch using `ingest_antiochian.py`'s own `fast_exception_for()` --
+which parses correctly -- and every single one of the 9 mismatched what
+its own cached source actually says. 7 of the 9 shared the exact same
+stale value (`fast_exception=2`), suggesting these were placeholder rows
+that were never actually run through the fastDesignation-parsing step at
+all, not a parsing bug (the parser itself checks out fine against all 9
+sources). Corrected all 9 directly from the cached raw JSON:
+
+| Date | antiochian.org | Was | Now |
+|---|---|---|---|
+| Mar 31 | Strict | Wine & Oil (1) | Strict (9) |
+| May 7 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
+| May 11 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
+| Jul 15 | Strict | Fish/Wine/Oil (2) | Strict (9) |
+| Jul 26 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
+| Aug 28 | Strict | Wine & Oil (1) | Strict (9) |
+| Sep 25 | Strict | Fish/Wine/Oil (2) | Strict (9) |
+| Oct 1 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
+| Dec 13 | Fish/Wine/Oil | Fish/Wine/Oil (2) | Wine & Oil (1) |
+
+168/168 tests pass; fixture diff is exactly these 9 `fast_exception`
+values (no other fields touched). Slavic tradition's own Aug 28 row
+(Ven. Job of Pochaev, polyeleos rank) was left untouched -- that
+exception has an actual feast-rank basis and wasn't part of this bug.
+
+**Not investigated further**: whether other `greek`-tradition rows (not
+matching this exact blank-placeholder shape) have similar staleness --
+this pass only searched for the specific pattern that surfaced the bug.

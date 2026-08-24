@@ -16574,7 +16574,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 11,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16814,7 +16814,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 11,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16914,7 +16914,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 1,
+    "fast_exception": 9,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16974,7 +16974,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 11,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17014,7 +17014,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 9,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17074,7 +17074,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 11,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17094,7 +17094,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 1,
+    "fast_exception": 9,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17114,7 +17114,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 2,
+    "fast_exception": 9,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17134,7 +17134,7 @@
     "service_note": "",
     "story": null,
     "fast": 5,
-    "fast_exception": 2,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "greek"
   }
