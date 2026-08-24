@@ -253,13 +253,13 @@ sources). Corrected all 9 directly from the cached raw JSON:
 
 | Date | antiochian.org | Was | Now |
 |---|---|---|---|
-| Mar 31 | Strict | Wine & Oil (1) | Strict (9) |
+| Mar 31 | Strict | Wine & Oil (1) | Strict (0) |
 | May 7 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
 | May 11 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
-| Jul 15 | Strict | Fish/Wine/Oil (2) | Strict (9) |
+| Jul 15 | Strict | Fish/Wine/Oil (2) | Strict (0) |
 | Jul 26 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
-| Aug 28 | Strict | Wine & Oil (1) | Strict (9) |
-| Sep 25 | Strict | Fish/Wine/Oil (2) | Strict (9) |
+| Aug 28 | Strict | Wine & Oil (1) | Strict (0) |
+| Sep 25 | Strict | Fish/Wine/Oil (2) | Strict (0) |
 | Oct 1 | No Fast | Fish/Wine/Oil (2) | No Fast (11) |
 | Dec 13 | Fish/Wine/Oil | Fish/Wine/Oil (2) | Wine & Oil (1) |
 
@@ -271,3 +271,33 @@ exception has an actual feast-rank basis and wasn't part of this bug.
 **Not investigated further**: whether other `greek`-tradition rows (not
 matching this exact blank-placeholder shape) have similar staleness --
 this pass only searched for the specific pattern that surfaced the bug.
+
+### Correction: the 4 "Strict" dates initially used the wrong index
+
+Brian noticed Aug 28 now displaying an explicit "Strict Fast" label,
+when other ordinary full-abstention Wed/Fri days (e.g. 8/21, 8/26) show
+no label at all for the identical restriction -- only genuinely notable
+strict-fast days (Beheading of John the Baptist, 8/29) get that
+callout. The `DIETARY_ALLOWANCE_TO_FAST_EXCEPTION` table in
+`ingest_antiochian.py` maps `DietaryAllowance.Strict` to
+`fast_exception=9` ("Strict Fast"), and that mapping was used verbatim
+for the Mar 31 / Jul 15 / Aug 28 / Sep 25 fixes above without checking
+it against how the rest of the corpus actually represents an ordinary
+strict day.
+
+`FAST_EXCEPTION_TO_DIETARY_ALLOWANCE` in `datetools.py` shows indices
+0, 9, and 10 all map to the identical `DietaryAllowance.Strict` rung
+(same abstentions either way) -- they're display-text variants for
+different narrative contexts, not different dietary outcomes. Checking
+the DB directly: `fast_exception=9` appeared *nowhere* in the entire
+`greek`-tradition table except these 4 rows just added, while `0`
+(blank, no special text) is the convention used consistently elsewhere,
+including for other full-abstention-but-unremarkable rows ("Forefeast
+of Annunciation", "Wednesday of the Fifth Week of Lent"). Corrected all
+4 from 9 to 0 to match. The other 5 dates (`11`/Fast Free, `1`/Wine and
+Oil) weren't affected by this mistake -- `11` is a code-recognized
+sentinel (`_apply_fasting_adjustments` forces `NoFast` on sight of it)
+and `1` already matched precedent elsewhere.
+
+168/168 tests pass after the correction; fixture diff is exactly these
+4 rows' `fast_exception`, 9 -> 0.
