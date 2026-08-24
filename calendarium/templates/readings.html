@@ -121,7 +121,7 @@
 			<p>
 			{% for verse in reading.pericope.passage %}
 				{% if verse.paragraph_start and not forloop.first %}</p><p>{% endif %}
-				<span class="verse-number">{{ verse.verse }}</span>{{ verse.content }}
+				<span class="verse-number">{{ verse.verse }}</span>{{ verse.content|mark_plural_you }}
 			{% endfor %}
 			</p>
 		</article>

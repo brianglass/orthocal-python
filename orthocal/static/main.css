@@ -840,6 +840,14 @@ section.readings h2 {
     color: var(--color-text-faint);
     margin-right: 1px;
 }
+/* LXX2012's plural-"you" marker (see scripture_extras.mark_plural_you) --
+   styled like .verse-number above (small, faint, superscript) so it
+   reads as the same family of unobtrusive annotation, not a typo. */
+.passage p .plural-you {
+    font-size: 0.7em;
+    color: var(--color-text-faint);
+    cursor: help;
+}
 .day>p {
     text-align: center;
 }
