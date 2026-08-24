@@ -106,3 +106,17 @@ Three of the day-native-vs-additive merges (Basil of Amasea, Mark of Arethusa, E
 ## Status
 
 Stopped here per explicit direction (spot-check + targeted scan rather than a full literal 366-date read) after 9 confirmed merges across 5 independent techniques, with strong convergent evidence the easily-findable duplicates are now cleared. Branch `saint-dedup-2026-08`, PR #157 open.
+
+## Correction #2 (2026-08-24): Hieromartyr Eutychius/Eutyches was a real duplicate after all
+
+Flagged by Brian on the live Aug 24 page. Both this pass (line 71/95 above) and the original saint-model-refactor's Stage 2 had left "Hieromartyr Eutychius" (Saint 5366, day-native, no story) and "Hieromartyr Eutyches (1st c.)" (Saint 5892, additive, full story) unmerged -- but on inspection, the Stage 2 finding those citations actually rest on was about something else entirely: Stage 2 severed an *incorrect* `alt_title` link that had conflated "Eutyches (1st c.)" with **Patriarch Eutychius of Constantinople** (d. 582, feast April 6 -- see `docs/saint-model-refactor.md` line 201). That's a real, different, well-documented person -- but he isn't who's actually sitting on Aug 24 in this data, and nothing here was ever re-checked against a live external source before this pass re-cited the old finding as if it settled *this* pairing too.
+
+Checked against two independent live sources:
+- **OCA's calendar** (oca.org/saints/lives) lists exactly one such saint for Aug 24: "Hieromartyr Eutyches," disciple of Sts John the Theologian and Paul, from Sebastea -- matching Saint 5892's story almost verbatim.
+- **Wikipedia's "August 24 (Eastern Orthodox liturgics)"** compilation lists exactly one such saint for the same date, same biography (disciple of John the Theologian, imprisonment/tortures, peaceful death) -- but spells it **"Hieromartyr Eutychius"**, matching Saint 5366's name instead.
+
+Two independent calendars, one person, two transliterations -- and Patriarch Eutychius's actual date (April 6) rules him out as an explanation for the bare Aug 24 entry. Merged: moved Saint 5892's story onto DayCommemoration 5476 (day-native, kept as canonical per the established pattern), set Saint 5366's `full_name` to "Hieromartyr Eutyches, disciple of St John the Theologian (1st c.)" (trimmed to solo identity per the Correction #1 rule above -- his teachers stay in the story prose, not the identity descriptor), deleted Saint 5892 / DayCommemoration 6022 / the DayCommemorationSaint link row.
+
+168/168 tests pass after the fix; fixture diff confirms only these rows changed.
+
+**Takeaway**: a documented "already checked, left unmerged" conclusion is only as good as what was actually checked at the time -- worth re-verifying against a live source when revisited, not just re-citing the prior note.
