@@ -1868,7 +1868,7 @@
   "pk": 5366,
   "fields": {
     "name": "Hieromartyr Eutychius",
-    "full_name": null
+    "full_name": "Hieromartyr Eutyches, disciple of St John the Theologian (1st c.)"
   }
 },
 {
@@ -5717,14 +5717,6 @@
   "fields": {
     "name": "Hieromartyr Pothinos, Bishop of Lyons (177)",
     "full_name": "Hieromartyr Pothinos, Bishop of Lyons (177)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5892,
-  "fields": {
-    "name": "Hieromartyr Eutyches (1st c.)",
-    "full_name": "Hieromartyr Eutyches (1st c.)"
   }
 },
 {
@@ -16998,7 +16990,7 @@
   "fields": {
     "day": 672,
     "title": "Hieromartyr Eutychius",
-    "story": null,
+    "story": "<p>He was a disciple and friend of St John the Theologian, and worked with the Apostle Paul, and is himself named as an Apostle though he is not one of the Seventy. He travelled widely in the ministry of the Gospel of Christ, suffering many imprisonments and tortures. He died in Sebastia, the place of his birth. The <i>Prologue</i> says that he was beheaded, the <i>Great Horologion</i> that he reposed in peace “in deep old age.”</p>",
     "rank": 3,
     "high_rank": false,
     "new_style": false,
@@ -24759,21 +24751,6 @@
     "new_style": false,
     "day_native": false,
     "ordering": 3,
-    "tradition": "common"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
-  "pk": 6022,
-  "fields": {
-    "day": 672,
-    "title": "Hieromartyr Eutyches (1st c.)",
-    "story": "<p>He was a disciple and friend of St John the Theologian, and worked with the Apostle Paul, and is himself named as an Apostle though he is not one of the Seventy. He travelled widely in the ministry of the Gospel of Christ, suffering many imprisonments and tortures. He died in Sebastia, the place of his birth. The <i>Prologue</i> says that he was beheaded, the <i>Great Horologion</i> that he reposed in peace “in deep old age.”</p>",
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": false,
-    "ordering": 0,
     "tradition": "common"
   }
 },
@@ -46026,15 +46003,6 @@
   "fields": {
     "commemoration": 6021,
     "saint": 5891,
-    "order": 1
-  }
-},
-{
-  "model": "commemorations.daycommemorationsaint",
-  "pk": 773,
-  "fields": {
-    "commemoration": 6022,
-    "saint": 5892,
     "order": 1
   }
 },
