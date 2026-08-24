@@ -301,3 +301,34 @@ and `1` already matched precedent elsewhere.
 
 168/168 tests pass after the correction; fixture diff is exactly these
 4 rows' `fast_exception`, 9 -> 0.
+
+### Related open question: does Aug 28's vigil reading set actually apply to Greek tradition?
+
+While investigating the fast_exception bug above, Brian separately
+noticed the Aug 28 scripture readings shown for Greek tradition (all
+`Reading` rows for that date are tagged `tradition='common'`, so both
+traditions get the same set) include a full vigil package -- 3 Vespers
+Old Testament lessons (Wisdom of Solomon), a Matins Gospel, and a
+"St Job" Epistle/Gospel pair (Galatians 5.22-6.2 / Luke 6.17-23) for
+Ven. Job of Pochaev, a specifically Slavic/ROCOR saint. OCA's own page
+lists exactly this same 8-reading set (confirmed directly), so it's
+certainly correct for Slavic.
+
+For Greek: antiochian.org's own reading citations for 8/28 show only
+the ordinary Epistle/Gospel (2 Cor 11.5-21 / Mark 4.1-9) -- no "St Job"
+variant, no vespers/matins citations -- but the page *does* separately
+link a "Great Vespers" service text, which turned out (on inspection)
+to actually be for Aug 29's Beheading of John the Baptist feast (served
+the evening before, cross-linked from both days -- confirmed the same
+file is linked from Aug 29's own page too, alongside Festal Orthros and
+Divine Liturgy Variables). So that PDF doesn't settle anything about
+Aug 28 itself. Checked goarch.org as well; also inconclusive.
+
+**Left as-is**: no confirming evidence either way that Job of Pochaev's
+vigil should or shouldn't extend to Greek tradition here, and per this
+project's standing rule, data isn't changed on inference alone. If this
+comes up again, the open question is specifically whether Antiochian/
+GOARCH assign vigil rank to Job of Pochaev (or any other of 8/28's
+several co-commemorated saints -- Moses the Black, the 33 Martyrs of
+Nicomedia, Synaxis of the Kiev Cave Fathers) the way OCA does, not
+whether the vigil itself is real (it evidently is, for Slavic).
