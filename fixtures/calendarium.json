@@ -61488,5 +61488,772 @@
   "fields": {
     "content": "The Lord spoke to the children of Israel saying, ‘If you walk in my ordinances and keep my commandments and do them, I will give you rain in its season and the earth will give its produce and the trees of the plains their fruit. Your threshing time will overtake the vintage, and the vintage will overtake the sowing. You will eat your bread to the full and dwell in safety on your land; and no one shall make you afraid. And I will destroy the evil wild beasts from your lands, and war shall not pass through your land, and enemies will fall before you. Five of you will pursue a hundred and a hundred of you will pursue tens of thousands. And I will look upon you and bless you and make you increase and multiply and I will establish my covenant with you. And you will eat what is old and very old, and bring out the old to make way for the new. And my soul will not abhor you, and I will walk among you, and I will be your God and you shall be my people. But if you will not listen to me, nor observe these ordinances of mine, but disobey them, and if your soul loathes my judgements, so that you do not keep all my commandments, I in turn will treat you like this: I will bring distress upon you, and you will sow your seed in vain and your enemies will devour your labours. And I will set my face against you and you will fall before your foes and they will pursue you and you will flee though no one pursues you; and I will smash the arrogance of your pride. And I will make the heaven like iron for you and your earth like solid bronze. And your strength will be in vain and your land will not give its fruit, and the trees of the field will not give their fruit. And I will send the wild beasts of the earth against you, and they will consume your cattle, and the sword will come against you and make you few in number. And your land will be desert and your farms will be desert; because you have walked against me crook­edly, and I will walk against you with crooked rage, says the Lord God, the Holy One of Israel’."
   }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 1,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2011,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 2,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2011,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 161,
+    "note": "goarch.org: Matthew 25:14-30"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 3,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2011,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 273,
+    "note": "goarch.org: Luke 19:1-10"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 4,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2012,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 5,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2012,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 6,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2012,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 161,
+    "note": "goarch.org: Matthew 25:14-30"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 7,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2013,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 70,
+    "note": "goarch.org: Matthew 6:22-33"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 8,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2013,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 9,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2014,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 70,
+    "note": "goarch.org: Matthew 6:22-33"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 10,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2015,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 11,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2015,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 266,
+    "note": "goarch.org: Luke 18:35-43"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 12,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2015,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 274,
+    "note": "goarch.org: Mark 12:13-17"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 13,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2016,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 98,
+    "note": "goarch.org: Matthew 9:27-35"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 14,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2016,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 15,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2017,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 16,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2017,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 140,
+    "note": "goarch.org: Matthew 21:33-42"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 17,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2017,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 18,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2018,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 19,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2018,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 276,
+    "note": "goarch.org: Mark 12:28-37"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 20,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2018,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 278,
+    "note": "goarch.org: Mark 13:1-8"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 21,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2019,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 77,
+    "note": "goarch.org: Matthew 8:5-13"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 22,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2019,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 98,
+    "note": "goarch.org: Matthew 9:27-35"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 23,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2019,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 24,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2020,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 25,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2021,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 26,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2021,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 27,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2022,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 140,
+    "note": "goarch.org: Matthew 21:33-42"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 28,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2022,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 29,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2022,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 30,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2023,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 31,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2023,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 32,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2023,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 161,
+    "note": "goarch.org: Matthew 25:14-30"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 33,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2024,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 91,
+    "note": "goarch.org: Matthew 9:1-8"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 34,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2024,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 112,
+    "note": "goarch.org: Matthew 14:22-34"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 35,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2024,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "goarch.org: Matthew 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 36,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2025,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 70,
+    "note": "goarch.org: Matthew 6:22-33"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 37,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2026,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 38,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2026,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 266,
+    "note": "goarch.org: Luke 18:35-43"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 39,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2026,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 274,
+    "note": "goarch.org: Mark 12:13-17"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 40,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2027,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 98,
+    "note": "goarch.org: Matthew 9:27-35"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 41,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2027,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "goarch.org: Matthew 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 42,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2019,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 77,
+    "note": "antiochian.org: MATTHEW 8:5-13"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 43,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2019,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 98,
+    "note": "antiochian.org: MATTHEW 9:27-35"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 44,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2019,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "antiochian.org: MATTHEW 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 45,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2021,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 133,
+    "note": "antiochian.org: MATTHEW 19:16-26"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 46,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2021,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 163,
+    "note": "antiochian.org: MARK 11:11-23"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 47,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2022,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 140,
+    "note": "antiochian.org: MATTHEW 21:33-42"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 48,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2022,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "antiochian.org: MATTHEW 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 49,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2022,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "antiochian.org: MATTHEW 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 50,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2023,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "antiochian.org: MATTHEW 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 51,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2023,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "antiochian.org: MATTHEW 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 52,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2023,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 161,
+    "note": "antiochian.org: MATTHEW 25:14-30"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 53,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2024,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 133,
+    "note": "antiochian.org: MATTHEW 19:16-26"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 54,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2024,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 112,
+    "note": "antiochian.org: MATTHEW 14:22-34"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 55,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2024,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 147,
+    "note": "antiochian.org: MATTHEW 22:2-14"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 56,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2025,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 70,
+    "note": "antiochian.org: MATTHEW 6:22-33"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 57,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2026,
+    "month": 1,
+    "day": 19,
+    "source": "Gospel",
+    "pdist": 154,
+    "note": "antiochian.org: MATTHEW 22:35-46"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 58,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2026,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 145,
+    "note": "antiochian.org: MARK 5:24-34"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 59,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2026,
+    "month": 1,
+    "day": 26,
+    "source": "Gospel",
+    "pdist": 274,
+    "note": "antiochian.org: MARK 12:13-17"
+  }
 }
 ]

@@ -1,0 +1,89 @@
+"""Populate models.OrdoReading from harvested ordo data, then regenerate the fixture.
+
+Greek rows come from goarch.org (the GOA Kanonion, as published on their web
+calendar); Antiochian rows from antiochian.org's feed. Both are transcriptions
+of what the jurisdiction published, resolved onto pdists that already exist in
+the Reading table.
+
+    docker compose exec -T local python tools/greek/load_ordo.py
+    docker compose exec -T local ./manage.py dumpdata calendarium --indent=1 -o fixtures/calendarium.json
+"""
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+os.chdir(sys.path[0])
+
+import django, re, json, glob, datetime, collections
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
+django.setup()
+from calendarium.models import OrdoReading, Reading
+
+ORDO_DATES = (19, 24, 26)     # January; the only dates surveyed so far
+
+def ref(s):
+    s = (s or '').upper().replace('.', ':')
+    m = re.match(r'\s*(ST\.\s*)?(MATTHEW|MATT|MARK|MK|LUKE|LK|JOHN|JN)\.?\s*(.*)$', s)
+    if not m: return None
+    b = {'MATTHEW':'MATT','MATT':'MATT','MARK':'MARK','MK':'MARK','LUKE':'LUKE','LK':'LUKE','JOHN':'JOHN','JN':'JOHN'}[m.group(2)]
+    v = re.search(r'(\d+)[:.](\d+)', s)
+    return (b, int(v.group(1)), int(v.group(2))) if v else None
+
+index = collections.defaultdict(list)
+for r in Reading.objects.filter(source='Gospel').select_related('pericope'):
+    k = ref(r.pericope.sdisplay)
+    if k:
+        index[k].append(r)
+
+def resolve(citation):
+    """The single ordinary pdist carrying this citation, or None."""
+    want = ref(citation)
+    if not want:
+        return None
+    pdists = sorted({
+        r.pdist for k, rs in index.items()
+        if k[0] == want[0] and k[1] == want[1] and abs(k[2] - want[2]) <= 2
+        for r in rs if 0 <= r.pdist < 500
+    })
+    return pdists[0] if pdists else None
+
+def goarch_rows():
+    src = {}
+    for line in open('data/goarch_winter_rows.txt'):
+        d, label, gospel = line.rstrip('\n').split('|')
+        src[d] = gospel
+    for year in range(2011, 2028):
+        for dd in ORDO_DATES:
+            key = f'{year}-01-{dd:02d}'
+            if key not in src or datetime.date(year, 1, dd).weekday() == 6:
+                continue
+            pdist = resolve(src[key])
+            if pdist is None:
+                print(f'  skip greek {key}: {src[key]!r} does not resolve to an ordinary pdist')
+                continue
+            yield ('greek', year, 1, dd, 'Gospel', pdist, f'goarch.org: {src[key]}')
+
+def antiochian_rows():
+    for path in sorted(glob.glob('data/antiochian_raw/*.json')):
+        d = json.load(open(path))
+        dt = datetime.date.fromisoformat(d['originalCalendarDate'])
+        if dt.month != 1 or dt.day not in ORDO_DATES or dt.weekday() == 6:
+            continue
+        citation = d.get('reading2Title', '')
+        pdist = resolve(citation)
+        if pdist is None:
+            print(f'  skip antiochian {dt}: {citation!r} does not resolve to an ordinary pdist')
+            continue
+        yield ('antiochian', dt.year, 1, dt.day, 'Gospel', pdist, f'antiochian.org: {citation}')
+
+OrdoReading.objects.all().delete()
+made = collections.Counter()
+for jur, y, m, dd, source, pdist, note in list(goarch_rows()) + list(antiochian_rows()):
+    OrdoReading.objects.update_or_create(
+        jurisdiction=jur, year=y, month=m, day=dd, source=source,
+        defaults={'pdist': pdist, 'note': note},
+    )
+    made[jur] += 1
+
+for jur, n in sorted(made.items()):
+    yrs = OrdoReading.objects.filter(jurisdiction=jur).order_by('year')
+    print(f'{jur:<12} {n:>3} rows, {yrs.first().year}-{yrs.last().year}')
+print(f'total {OrdoReading.objects.count()}')

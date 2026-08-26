@@ -69,3 +69,7 @@ browser call per cycle returns a whole Jan-Mar window compactly.
 `ordo_resolve.py` prints `_GREEK_ORDO_GOSPEL` ready to paste into
 `calendarium/liturgics/year.py`. Re-harvest goarch.org first (see above) when
 GOA publishes a new Kanonion; the table is currently good through January 2027.
+
+`load_ordo.py` populates `models.OrdoReading` for both jurisdictions and prints
+the two commands needed to regenerate `fixtures/calendarium.json`. Run it after
+re-harvesting when a new annual ordo is published.

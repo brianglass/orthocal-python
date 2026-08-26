@@ -1500,8 +1500,23 @@ class TestGreekAnnualOrdoGospels(TestCase):
                 ]
                 self.assertNotIn(greek_gospel, gospels)
 
-    def test_outside_the_published_range_the_ordinary_cycle_stands(self):
-        # The table must not silently extend past what GOA has published.
-        pyear = liturgics.GreekYear(2035)
-        self.assertIsNone(pyear.ordo_gospel_override(2036, 1, 19))
-        self.assertIsNone(pyear.ordo_gospel_override(2036, 1, 24))
+    async def test_outside_the_published_range_the_ordinary_cycle_stands(self):
+        # The overlay must not silently extend past what GOA has published.
+        pday = liturgics.Day(2036, 1, 24, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        self.assertEqual(pday.ordo_readings, {})
+
+    async def test_antiochian_rows_are_inert_for_the_greek_tradition(self):
+        # Both jurisdictions' ordos are stored, but a tradition only ever reads
+        # its own. The two agree on 14 of the 18 dates they share; 2021-01-19
+        # is one where they do not -- goarch.org assigns Matthew 22:2-14,
+        # antiochian.org Matthew 19:16-26.
+        greek = await models.OrdoReading.objects.aget(
+                jurisdiction='greek', year=2021, month=1, day=19, source='Gospel')
+        antiochian = await models.OrdoReading.objects.aget(
+                jurisdiction='antiochian', year=2021, month=1, day=19, source='Gospel')
+        self.assertNotEqual(greek.pdist, antiochian.pdist)
+
+        pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        self.assertEqual(pday.ordo_readings.get('Gospel'), greek.pdist)

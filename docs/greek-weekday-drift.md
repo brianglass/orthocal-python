@@ -2054,24 +2054,41 @@ wrong 14 times in 15.
 
 ### Implementation
 
-`GreekYear._GREEK_ORDO_GOSPEL` maps `(year, month, day)` to a pdist;
-`GreekYear.ordo_gospel_override()` reads it; `Day.gospel_pdist` consults it
-first. This reuses the shape already established by `sunday_gospel_override`,
-so:
+Held in the database as `models.OrdoReading`, keyed by
+`(jurisdiction, year, month, day, source)` and carrying the target `pdist`
+plus a provenance note. `Day._collect_ordo_readings()` loads the row set for
+the date during `ainitialize`, and `Day.gospel_pdist` consults it first.
 
-- **no schema change and no migration** — it is a lookup, not a new model
-- the ordo **replaces** the cycle Gospel rather than being listed alongside it,
-  because overriding the pdist swaps which row is selected
-- `SlavicYear` has no such attribute, so Slavic is structurally unable to pick
-  it up (asserted in `TestGreekAnnualOrdoGospels`)
-- the Epistle is untouched
+The lookup happens in `ainitialize` rather than in `gospel_pdist` because
+`gospel_pdist` is a sync `cached_property` and the DB access has to stay
+async -- the same reason `_collect_commemorations` exists. `Day.__init__`
+defaults `ordo_readings` to `{}` so the property can read it unconditionally.
 
-Result: **41 of 42 curated slots now match GOA**, up from 4.
+Pointing at a `pdist` rather than a `Pericope` means the ordo **replaces** the
+computed reading instead of being listed beside it (overriding the pdist
+changes which `Reading` row gets selected), and no synthetic rows are needed.
+`_ORDO_JURISDICTIONS` maps a tradition to the jurisdiction whose ordo it
+follows; Slavic is absent, so it cannot pick anything up.
 
-`TestGreekAnnualOrdoGospels` covers ten dates chosen so their ordo values are
-maximally spread (3rd, 4th, 6th, 7th, 9th, 13th, 15th, 16th of Matthew), so a
-formula fitted to any single shape cannot pass; plus a Slavic-isolation test
-and a test that the table does not silently extend past the published range.
+**Why the database and not a constant in code.** The first cut was a dict in
+`GreekYear`, which was defensible while the overlay had one jurisdiction: this
+project's sqlite is a read-only build artifact (`Dockerfile`: *"The sqlite
+database is read-only, so we build it into the image"*), no admin is
+registered, and the fixture is loaded at image build time -- so a fixture row
+and a Python constant cost exactly the same to change. What tipped it was the
+decision to carry **both** the GOA and Antiochian ordos: a jurisdiction axis
+makes this data rather than a constant, and puts it where the rest of the
+lectionary lives so it is discoverable by anyone asking why a given date shows
+what it shows.
+
+Result: **41 of 42 curated Greek slots now match GOA**, up from 4.
+
+Antiochian rows are loaded too (18, covering 2019-2026, from the existing
+antiochian.org harvest). **Nothing reads them yet** -- no tradition maps to
+that jurisdiction, and adding one is the separate refactor costed earlier in
+this document. They are a faithful transcription and are stored so the data
+half of that work is already done. They also make the axis concrete: of the 18
+dates the two jurisdictions share, they agree on 14 and differ on 4.
 
 ### The maintenance commitment, stated plainly
 
@@ -2082,5 +2099,7 @@ because the cost is small and bounded: about two rows a year.
 
 It needs extending as GOA publishes each new Kanonion — currently good through
 **January 2027**. Beyond that the app falls through to the ordinary cycle,
-which is wrong but no worse than before. Regenerate with
-`tools/greek/ordo_resolve.py` after re-harvesting goarch.org.
+which is wrong but no worse than before. Re-harvest goarch.org, then
+`tools/greek/load_ordo.py` repopulates the table and `dumpdata` regenerates
+`fixtures/calendarium.json` -- see that script's docstring for the two
+commands.

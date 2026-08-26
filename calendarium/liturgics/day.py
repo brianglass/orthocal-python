@@ -15,6 +15,13 @@ from .year import SlavicYear, GreekYear
 
 logger = logging.getLogger(__name__)
 
+# Which jurisdiction's published ordo a tradition follows. `greek` means the
+# Greek Orthodox Archdiocese of America -- see docs/greek-weekday-drift.md for
+# that decision. Slavic has no overlay: its ordo days have not been surveyed.
+_ORDO_JURISDICTIONS = {
+    Tradition.Greek: 'greek',
+}
+
 _YEAR_CLASSES = {
     Tradition.Slavic: SlavicYear,
     Tradition.Greek: GreekYear,
@@ -150,14 +157,39 @@ class Day:
         self.language = language
         self.translation = translation
 
+        # Filled by ainitialize. Defaulted here so gospel_pdist -- which is a
+        # sync cached_property and must stay one -- can read it unconditionally
+        # even if a caller skips ainitialize.
+        self.ordo_readings = {}
+
     async def ainitialize(self):
         """Do the expensive stuff here to keep it out of the constructor."""
 
         if not hasattr(self, '_initialized'):
             await self._collect_commemorations()
             await self._add_supplemental_commemorations()
+            await self._collect_ordo_readings()
             self._apply_fasting_adjustments()
             self._initialized = True
+
+
+    async def _collect_ordo_readings(self):
+        """Load this date's annual-ordo overrides, if the tradition has any.
+
+        See models.OrdoReading. The lookup lives here rather than in
+        gospel_pdist because that is a sync property and the DB access has to
+        stay async; this is the same reason _collect_commemorations exists.
+        """
+
+        jurisdiction = _ORDO_JURISDICTIONS.get(self.tradition)
+        if jurisdiction is None:
+            return
+
+        queryset = models.OrdoReading.objects.filter(
+                jurisdiction=jurisdiction,
+                year=self.year, month=self.month, day=self.day,
+        )
+        self.ordo_readings = {o.source: o.pdist async for o in queryset}
 
     initialize = async_to_sync(ainitialize)
 
@@ -738,13 +770,11 @@ class Day:
         if not self.has_daily_readings:
             return None
 
-        # The annual ordo wins outright where it speaks: these dates' Gospels
+        # The annual ordo wins outright where it speaks: these dates' readings
         # are not computable, and the ordo replaces the cycle reading rather
-        # than being listed alongside it. See GreekYear._GREEK_ORDO_GOSPEL.
-        ordo = getattr(self.pyear, 'ordo_gospel_override', None)
-        if ordo is not None:
-            if (override := ordo(self.year, self.month, self.day)) is not None:
-                return override
+        # than being listed alongside it. See models.OrdoReading.
+        if (override := self.ordo_readings.get('Gospel')) is not None:
+            return override
 
         if self._sunday_gospel_override is False:
             return None

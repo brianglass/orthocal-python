@@ -617,74 +617,6 @@ class GreekYear(ByzantineYear):
     # Note this admits the 15th of Matthew, which the old table never used.
     # It needs no new data: _matthew_sunday_target(15) is pdist 154, which
     # already carries Matt 22.35-46 as a `common` row.
-    # The annual-ordo Gospels: Jan 19, 24 and 26.
-    #
-    # These three dates carry venerable-monastic commemorations (Macarius the
-    # Great, Xenia, Xenophon) whose Menaion entries supply an Epistle but no
-    # proper Gospel, so the Gospel slot falls to whatever the year's ordo
-    # assigns. They are NOT computable. Established directly: past their
-    # published Kanonion horizon, goarch.org's own software stops assigning
-    # them and falls back to a commons Gospel (Matt 19:16-26) -- which matches
-    # the curated ordo in 1 of 15 sampled years. Inside the horizon a human
-    # supplies the value from the Kanonion. See docs/greek-weekday-drift.md.
-    #
-    # So this is a per-year data overlay, deliberately, and it is the only one
-    # in this codebase. It covers ~2 dates a year and needs extending as GOA
-    # publishes each Kanonion; `tools/greek/ordo_resolve.py` regenerates it
-    # from harvested goarch.org data.
-    #
-    # Values are the plain Reading pdist the ordo points at -- overwhelmingly
-    # numbered Sundays of Matthew, which is what finding #7 in the doc was
-    # circling: content the Lukan jump displaced, read later as weekdays.
-    #
-    # Not covered: 2013-01-26, where goarch.org shows Mark 1:1-8 (the Sunday
-    # before Theophany) on a Saturday labelled "of the 15th Week". That
-    # pericope exists only at float pdists and the pairing looks like an error
-    # on their side, so it is left to the ordinary cycle.
-    _GREEK_ORDO_GOSPEL = {
-        (2011, 1, 19): 147,   # Matthew 22:2-14
-        (2011, 1, 24): 161,   # Matthew 25:14-30
-        (2011, 1, 26): 273,   # Luke 19:1-10
-        (2012, 1, 19): 147,   # Matthew 22:2-14
-        (2012, 1, 24): 154,   # Matthew 22:35-46
-        (2012, 1, 26): 161,   # Matthew 25:14-30
-        (2013, 1, 19): 70,    # Matthew 6:22-33
-        (2013, 1, 24): 147,   # Matthew 22:2-14
-        (2014, 1, 24): 70,    # Matthew 6:22-33
-        (2015, 1, 19): 147,   # Matthew 22:2-14
-        (2015, 1, 24): 266,   # Luke 18:35-43
-        (2015, 1, 26): 274,   # Mark 12:13-17
-        (2016, 1, 19): 98,    # Matthew 9:27-35
-        (2016, 1, 26): 154,   # Matthew 22:35-46
-        (2017, 1, 19): 147,   # Matthew 22:2-14
-        (2017, 1, 24): 140,   # Matthew 21:33-42
-        (2017, 1, 26): 147,   # Matthew 22:2-14
-        (2018, 1, 19): 154,   # Matthew 22:35-46
-        (2018, 1, 24): 276,   # Mark 12:28-37
-        (2018, 1, 26): 278,   # Mark 13:1-8
-        (2019, 1, 19): 77,    # Matthew 8:5-13
-        (2019, 1, 24): 98,    # Matthew 9:27-35
-        (2019, 1, 26): 154,   # Matthew 22:35-46
-        (2020, 1, 24): 147,   # Matthew 22:2-14
-        (2021, 1, 19): 147,   # Matthew 22:2-14
-        (2021, 1, 26): 154,   # Matthew 22:35-46
-        (2022, 1, 19): 140,   # Matthew 21:33-42
-        (2022, 1, 24): 147,   # Matthew 22:2-14
-        (2022, 1, 26): 154,   # Matthew 22:35-46
-        (2023, 1, 19): 147,   # Matthew 22:2-14
-        (2023, 1, 24): 154,   # Matthew 22:35-46
-        (2023, 1, 26): 161,   # Matthew 25:14-30
-        (2024, 1, 19): 91,    # Matthew 9:1-8
-        (2024, 1, 24): 112,   # Matthew 14:22-34
-        (2024, 1, 26): 147,   # Matthew 22:2-14
-        (2025, 1, 24): 70,    # Matthew 6:22-33
-        (2026, 1, 19): 154,   # Matthew 22:35-46
-        (2026, 1, 24): 266,   # Luke 18:35-43
-        (2026, 1, 26): 274,   # Mark 12:13-17
-        (2027, 1, 19): 98,    # Matthew 9:27-35
-        (2027, 1, 26): 154,   # Matthew 22:35-46
-    }
-
     _INTERPOLATION_PRIORITY = (
         (None, 12),
         (None, 15),
@@ -766,14 +698,6 @@ class GreekYear(ByzantineYear):
         return n
 
 
-    def ordo_gospel_override(self, year, month, day):
-        """The ordo's Gospel pdist for a calendar date, or None.
-
-        Covers only the handful of dates whose Gospel is not computable at all
-        -- see _GREEK_ORDO_GOSPEL. Returns None outside the published range,
-        where the ordinary cycle stands.
-        """
-        return self._GREEK_ORDO_GOSPEL.get((year, month, day))
 
     @cached_property
     def interpolation_sequence(self):
