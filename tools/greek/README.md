@@ -57,3 +57,15 @@ consecutive Sundays).
 `data/goarch_daily_long_cycles.txt` holds full daily Gospels for three clean
 long cycles. To add more, use the `__daily()` harvester described above — one
 browser call per cycle returns a whole Jan-Mar window compactly.
+
+## Annual-ordo overlay
+
+| purpose | script |
+|---|---|
+| how many Jan 19/24/26 slots disagree with the app | `ordo_coverage.py` |
+| do the curated values drain a computable pool? (no) | `ordo_pool.py` |
+| resolve ordo citations to pdists, and emit the table | `ordo_resolve.py` |
+
+`ordo_resolve.py` prints `_GREEK_ORDO_GOSPEL` ready to paste into
+`calendarium/liturgics/year.py`. Re-harvest goarch.org first (see above) when
+GOA publishes a new Kanonion; the table is currently good through January 2027.

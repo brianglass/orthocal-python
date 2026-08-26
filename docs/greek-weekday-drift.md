@@ -2011,3 +2011,76 @@ cycle is back-anchored to Triodion and counts backward 16, 15, 14, 13, 12; the
 app implements exactly that; weeks 16/15/14 are confirmed against GOA at
 289/289, and 13/12 are the rule's own continuation, where GOA substitutes
 repeats.
+
+## The annual-ordo days: implemented as a deliberate per-year overlay
+
+### The Kanonion PDFs are parseable — and turn out not to be needed
+
+Answered the load-bearing question by inspecting `2027 Kanonion - English.pdf`
+in place (HEAD plus an in-memory structural read, no download): **180 KB,
+PDF 1.6, unencrypted, FlateDecode throughout, 9 object streams, 2 images (a
+logo).** An ordinary text PDF; any PDF library would read it. Far too small to
+be scanned pages.
+
+But it is not the shortest path. **goarch.org's web calendar already publishes
+the same curated data**, and this project has already proven it can extract it.
+The PDF matters only if an offline or more authoritative copy is wanted later.
+
+### Scope
+
+`tools/greek/ordo_coverage.py` checks every weekday Jan 19/24/26 slot across
+GOA's curated range: **42 slots over 2011-2027, of which 38 disagreed with what
+the app computed.** About 2.2 dates a year.
+
+`tools/greek/ordo_resolve.py` then resolves each ordo Gospel against the
+existing `Reading` table: **41 of 42 land on a plain pdist**, overwhelmingly
+numbered Sundays of Matthew — which is what finding #7 was circling all along.
+No new `Pericope` or `Reading` rows are needed.
+
+The one holdout is **2013-01-26**, where goarch.org shows `Mark 1:1-8` — the
+Sunday-before-Theophany Gospel — on a Saturday labelled "of the 15th Week".
+That pericope exists only at float pdists, and the pairing looks like an error
+on their side, so it is left to the ordinary cycle.
+
+### Why this is data and not a formula
+
+Restating the evidence, because it is what justifies reversing the standing
+constraint. Past their Kanonion horizon GOA's software stops assigning these
+days and falls back to a commons Gospel, `Matt 19:16-26`, invariantly. That
+fallback matches the curated ordo in **1 of 15** sampled years. The curated
+values span the 3rd through the 16th Sunday of Matthew with no derivable
+pattern. There is no formula to find, and shipping GOA's own fallback would be
+wrong 14 times in 15.
+
+### Implementation
+
+`GreekYear._GREEK_ORDO_GOSPEL` maps `(year, month, day)` to a pdist;
+`GreekYear.ordo_gospel_override()` reads it; `Day.gospel_pdist` consults it
+first. This reuses the shape already established by `sunday_gospel_override`,
+so:
+
+- **no schema change and no migration** — it is a lookup, not a new model
+- the ordo **replaces** the cycle Gospel rather than being listed alongside it,
+  because overriding the pdist swaps which row is selected
+- `SlavicYear` has no such attribute, so Slavic is structurally unable to pick
+  it up (asserted in `TestGreekAnnualOrdoGospels`)
+- the Epistle is untouched
+
+Result: **41 of 42 curated slots now match GOA**, up from 4.
+
+`TestGreekAnnualOrdoGospels` covers ten dates chosen so their ordo values are
+maximally spread (3rd, 4th, 6th, 7th, 9th, 13th, 15th, 16th of Matthew), so a
+formula fitted to any single shape cannot pass; plus a Slavic-isolation test
+and a test that the table does not silently extend past the published range.
+
+### The maintenance commitment, stated plainly
+
+This is **a per-year data overlay, the only one in this codebase**, and it
+directly reverses the constraint recorded at the top of this document. It was
+adopted because the evidence now shows no algorithm exists for these days, and
+because the cost is small and bounded: about two rows a year.
+
+It needs extending as GOA publishes each new Kanonion — currently good through
+**January 2027**. Beyond that the app falls through to the ordinary cycle,
+which is wrong but no worse than before. Regenerate with
+`tools/greek/ordo_resolve.py` after re-harvesting goarch.org.

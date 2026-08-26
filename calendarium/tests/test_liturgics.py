@@ -1437,3 +1437,71 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
                     if r.source == 'Gospel'
                 ]
                 self.assertIn(expected, gospels)
+
+
+class TestGreekAnnualOrdoGospels(TestCase):
+    """Jan 19, 24 and 26 take their Gospel from the year's ordo, not from any
+    computable cycle.
+
+    These dates carry venerable-monastic commemorations whose Menaion entries
+    supply an Epistle but no proper Gospel. That the Gospel is genuinely not
+    computable was established from goarch.org itself: past their published
+    Kanonion horizon their own software stops assigning these days and falls
+    back to a commons Gospel, which matches the curated ordo in 1 of 15
+    sampled years. See docs/greek-weekday-drift.md.
+
+    `GreekYear._GREEK_ORDO_GOSPEL` is therefore a deliberate per-year data
+    overlay -- the only one in this codebase.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # (year, month, day, expected Gospel), transcribed from goarch.org.
+    # Deliberately spread across years whose ordo picks very different
+    # Matthean Sundays, so a formula fitted to one shape cannot pass.
+    ORDO = [
+        (2013, 1, 19, 'Matt 6.22-33'),      # 3rd of Matthew -- far from any cycle position
+        (2016, 1, 19, 'Matt 9.27-35'),      # 7th
+        (2019, 1, 19, 'Matt 8.5-13'),       # 4th
+        (2022, 1, 19, 'Matt 21.33-42'),     # 13th
+        (2023, 1, 24, 'Matt 22.35-46'),     # 15th
+        (2023, 1, 26, 'Matt 25.14-30'),     # 16th
+        (2024, 1, 19, 'Matt 9.1-8'),        # 6th
+        (2024, 1, 24, 'Matt 14.22-34'),     # 9th
+        (2026, 1, 19, 'Matt 22.35-46'),     # 15th
+        (2027, 1, 19, 'Matt 9.27-35'),      # 7th
+    ]
+
+    async def test_ordo_gospel_replaces_the_cycle_reading(self):
+        for year, month, day, expected in self.ORDO:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                # the ordo *replaces* the cycle Gospel rather than being listed
+                # alongside it, so this is the only Gospel for the day
+                self.assertEqual(gospels, [expected])
+
+    async def test_slavic_is_untouched_by_the_greek_ordo(self):
+        # SlavicYear has no ordo hook at all; these dates must still resolve
+        # through the ordinary Pascha-relative computation.
+        for year, month, day, greek_gospel in self.ORDO:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                self.assertNotIn(greek_gospel, gospels)
+
+    def test_outside_the_published_range_the_ordinary_cycle_stands(self):
+        # The table must not silently extend past what GOA has published.
+        pyear = liturgics.GreekYear(2035)
+        self.assertIsNone(pyear.ordo_gospel_override(2036, 1, 19))
+        self.assertIsNone(pyear.ordo_gospel_override(2036, 1, 24))

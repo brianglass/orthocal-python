@@ -738,6 +738,14 @@ class Day:
         if not self.has_daily_readings:
             return None
 
+        # The annual ordo wins outright where it speaks: these dates' Gospels
+        # are not computable, and the ordo replaces the cycle reading rather
+        # than being listed alongside it. See GreekYear._GREEK_ORDO_GOSPEL.
+        ordo = getattr(self.pyear, 'ordo_gospel_override', None)
+        if ordo is not None:
+            if (override := ordo(self.year, self.month, self.day)) is not None:
+                return override
+
         if self._sunday_gospel_override is False:
             return None
 
