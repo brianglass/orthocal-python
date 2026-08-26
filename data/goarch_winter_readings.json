@@ -1,0 +1,47 @@
+{
+ "_comment": "goarch.org/chapel readings for the contested post-Theophany window, harvested manually 2026-08-25 via a real browser (Cloudflare blocks scripted access; the user cleared the interstitial). Format: date -> [GOA day label, GOA epistle, GOA gospel]. Collected to cross-check antiochian.org on the days the Greek weekday cycle is unresolved; see docs/greek-weekday-drift.md.",
+ "2019-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 8:5-13"],
+ "2019-01-24": ["Thursday of the 15th Week", "Galatians 5:22-26;6:1-2", "Matthew 9:27-35"],
+ "2019-01-26": ["Saturday of the 15th Week", "Romans 6:18-23", "Matthew 22:35-46"],
+ "2019-02-04": ["Monday of the 15th Week", "James 2:14-26", "Mark 10:46-52"],
+ "2019-02-05": ["Tuesday of the 15th Week", "James 3:1-10", "Mark 11:11-23"],
+ "2019-02-07": ["Thursday of the 15th Week", "James 4:7-17;5:1-9", "Mark 11:27-33"],
+ "2019-02-09": ["Saturday of the 15th Week", "I Thessalonians 5:14-23", "Luke 17:3-10"],
+ "2019-02-12": ["Tuesday of the 16th Week", "I Peter 3:10-22", "Mark 12:18-27"],
+ "2019-02-13": ["Wednesday of the 16th Week", "I Peter 4:1-11", "Mark 12:28-37"],
+ "2019-02-14": ["Thursday of the 16th Week", "I Peter 4:12-19;5:1-5", "Mark 12:38-44"],
+ "2019-02-15": ["Friday of the 16th Week", "Philemon 1:1-25", "Mark 13:1-8"],
+ "2019-02-16": ["Saturday of the 16th Week", "II Timothy 2:11-19", "Luke 18:2-8"],
+
+ "2021-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 22:2-14"],
+ "2021-01-26": ["Tuesday of the 15th Week", "Romans 6:18-23", "Matthew 22:35-46"],
+ "2021-02-04": ["Thursday of the 14th Week", "James 1:19-27", "Mark 10:17-27"],
+ "2021-02-05": ["Friday of the 14th Week", "James 2:1-13", "Mark 10:24-32"],
+ "2021-02-09": ["Tuesday of the 15th Week", "James 3:1-10", "Mark 11:11-23"],
+ "2021-02-12": ["Friday of the 15th Week", "I Peter 1:1-25;2:1-10", "Mark 12:1-12"],
+ "2021-02-13": ["Saturday of the 15th Week", "I Thessalonians 5:14-23", "Luke 17:3-10"],
+ "2021-02-15": ["Monday of the 16th Week", "Philemon 1:1-25", "Mark 12:13-17"],
+ "2021-02-16": ["Tuesday of the 16th Week", "I Peter 3:10-22", "Mark 12:18-27"],
+ "2021-02-18": ["Thursday of the 16th Week", "I Peter 4:12-19;5:1-5", "Mark 12:38-44"],
+ "2021-02-19": ["Friday of the 16th Week", "II Peter 1:1-10", "Mark 13:1-8"],
+ "2021-02-20": ["Saturday of the 16th Week", "II Timothy 2:11-19", "Luke 18:2-8"],
+
+ "2022-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 21:33-42"],
+ "2022-01-24": ["Monday of the 14th Week", "Galatians 5:22-26;6:1-2", "Matthew 22:2-14"],
+ "2022-01-26": ["Wednesday of the 14th Week", "Romans 10:1-10", "Matthew 22:35-46"],
+
+ "2023-01-14": ["Saturday after Epiphany", "Ephesians 6:10-17", "Matthew 4:1-11"],
+ "2023-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 22:2-14"],
+ "2023-01-24": ["Tuesday of the 15th Week", "Galatians 5:22-26;6:1-2", "Matthew 22:35-46"],
+ "2023-01-26": ["Thursday of the 15th Week", "II Corinthians 1:21-24;2:1-4", "Matthew 25:14-30"],
+
+ "2024-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 9:1-8"],
+ "2024-01-24": ["Wednesday of the 15th Week", "Galatians 5:22-26;6:1-2", "Matthew 14:22-34"],
+ "2024-01-26": ["Friday of the 15th Week", "I Corinthians 3:9-17", "Matthew 22:2-14"],
+
+ "2025-01-24": ["Friday of the 14th Week", "Galatians 5:22-26;6:1-2", "Matthew 6:22-33"],
+
+ "2026-01-19": ["Macarius the Great of Egypt", "Galatians 5:22-26;6:1-2", "Matthew 22:35-46"],
+ "2026-01-24": ["Saturday of the 15th Week", "Galatians 5:22-26;6:1-2", "Luke 18:35-43"],
+ "2026-01-26": ["Monday of Publican and Pharisee", "I Peter 2:21-25;3:1-9", "Mark 12:13-17"]
+}

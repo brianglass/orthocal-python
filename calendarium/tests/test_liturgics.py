@@ -584,13 +584,15 @@ class TestGreekLukanNumbering(TestCase):
                 self.assertEqual(pyear.lukan_sunday_numbers.get(pdist), expected)
 
     def test_theophany_interpolation(self):
-        # Each confirmed against real antiochian.org harvest data for the
-        # specific cycle year named -- see docs/greek-weekday-drift.md for
-        # the full derivation. The n=5 case corrects a table entry that had
-        # never been checked against a real n=5 year (it was transcribed
-        # from a source that only covered n<=5 in the abstract); n=6 and
-        # n=7 were previously entirely missing (crashed -- see
-        # TestReadingsView.test_greek_extra_sundays_overflow_does_not_500).
+        # Confirmed against real harvest data for the specific cycle year
+        # named -- see docs/greek-weekday-drift.md for the full derivation.
+        #
+        # Source of truth changed 2026-08-26: `greek` now means GOA, so these
+        # are checked against goarch.org. The four cycles below that predate
+        # that decision (2025, 2018, 2020 here) are unaffected -- GOA and
+        # antiochian.org agree on them. The 2023 cycle is the one place the
+        # two sources genuinely diverge, and it now carries GOA's answer;
+        # see the comment there.
 
         # 2025 cycle (n=3): 12th of Luke. (The following Sunday, Jan 25,
         # would be "15th of Luke" in the old table, but that's the row's
@@ -631,9 +633,40 @@ class TestGreekLukanNumbering(TestCase):
         self.assertEqual(pyear.theophany_interpolation[jan31], (None, 15))
         self.assertEqual(pyear.theophany_interpolation[feb7], ('matthew', 16))
 
+        # 2010 cycle (n=5, but the autumn left the 14th of Luke free): 12th,
+        # 14th, 15th of Luke. The old keyed-on-n table gave 12th, 15th, 16th
+        # of Matthew here -- correct only for the *other* n=5 shape, where
+        # the autumn had already used the 14th. Confirmed against goarch.org
+        # (2011-01-16, -23, -30); the third slot is claimed that year by the
+        # Three Hierarchs, but the assignment underneath is still made.
+        pyear = liturgics.GreekYear(2010)
+        self.assertEqual(pyear.regular_extra_sundays, 5)
+        self.assertEqual(
+            pyear.interpolation_sequence,
+            ((None, 12), (None, 14), (None, 15)),
+        )
+
+        # 2012 cycle (n=6, and the autumn *had* used the 14th of Luke): 12th,
+        # 15th of Luke, then 15th and 16th of Matthew. The old table gave
+        # 12th, 14th, 15th, 16th here. Confirmed against goarch.org
+        # (2013-01-20, -27, 2013-02-03, -10). This is the only shape that
+        # reaches the 15th of Matthew.
+        pyear = liturgics.GreekYear(2012)
+        self.assertEqual(pyear.regular_extra_sundays, 6)
+        self.assertEqual(
+            pyear.interpolation_sequence,
+            ((None, 12), (None, 15), ('matthew', 15), ('matthew', 16)),
+        )
+
         # 2023 cycle (n=7, and Leavetaking of Theophany -- Jan 14, 2024 --
         # falls on a Sunday that year): Leavetaking special case, then the
-        # exact same sequence as 2020's n=6 case.
+        # remaining slots.
+        #
+        # This is the one cycle in the sample where GOA and antiochian.org
+        # genuinely disagree. antiochian.org reads 14th then 15th of Luke on
+        # Jan 28 / Feb 4; GOA reads 15th of Luke then 15th of Matthew. Under
+        # the 2026-08-26 decision that `greek` means GOA, these assertions
+        # carry GOA's answer -- they previously carried Antiochian's.
         pyear = liturgics.GreekYear(2023)
         self.assertEqual(pyear.greek_extra_sundays, 7)
         self.assertEqual(
@@ -650,8 +683,8 @@ class TestGreekLukanNumbering(TestCase):
             ('direct', datetools.FloatIndex.SunAfterTheophany),
         )
         self.assertEqual(pyear.theophany_interpolation[jan21], (None, 12))
-        self.assertEqual(pyear.theophany_interpolation[jan28], (None, 14))
-        self.assertEqual(pyear.theophany_interpolation[feb4], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[jan28], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[feb4], ('matthew', 15))
         self.assertEqual(pyear.theophany_interpolation[feb11], ('matthew', 16))
 
     def test_canaanite_woman_applies(self):
@@ -1317,3 +1350,90 @@ class TestDay(TestCase):
         greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
         await greek.ainitialize()
         self.assertNotIn('St Raphael Bishop of Brooklyn', greek.feasts)
+
+
+class TestGreekPreTriodionWeekdayCycle(TestCase):
+    """The Greek Luke-section weekday cycle is anchored to the *end* of the
+    season, not to the Lukan jump.
+
+    The three weeks immediately preceding Triodion always read Luke-section
+    weeks 14, 15 and 16, in that order, whatever the year's `lukan_jump`.
+    Confirmed against goarch.org across 22 independent cycles: 145/145
+    observations for the last week, 96/96 for the second-last, 48/48 for the
+    third-last -- 289 in total, zero exceptions, spanning every jump value
+    from 0 through 35.  See docs/greek-weekday-drift.md.
+
+    This documents behaviour the app already gets right; the test exists so a
+    future change to the Greek weekday logic cannot silently break it.  The
+    surplus weeks *before* this three-week tail (only reachable in the longest
+    seasons) are a separate, still-unsolved case and are deliberately not
+    asserted here.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # Luke-section week -> weekday (Mon=0) -> Gospel, in this project's own
+    # `Pericope.sdisplay` notation.  Week 14 Friday is `Mark 10.23-32` where
+    # goarch.org prints `Mark 10:24-32` -- one of the known one-verse
+    # citation-boundary variants, not a discrepancy.
+    LUKE_SECTION_TAIL = {
+        14: {0: 'Mark 9.42-10.1', 1: 'Mark 10.2-12', 2: 'Mark 10.11-16',
+             3: 'Mark 10.17-27', 4: 'Mark 10.23-32', 5: 'Luke 16.10-15'},
+        15: {0: 'Mark 10.46-52', 1: 'Mark 11.11-23', 2: 'Mark 11.22-26',
+             3: 'Mark 11.27-33', 4: 'Mark 12.1-12', 5: 'Luke 17.3-10'},
+        16: {0: 'Mark 12.13-17', 1: 'Mark 12.18-27', 2: 'Mark 12.28-37',
+             3: 'Mark 12.38-44', 4: 'Mark 13.1-8', 5: 'Luke 18.2-8'},
+    }
+
+    # Spread deliberately across every reachable `lukan_jump` so a formula
+    # that happened to work for one jump size cannot pass.
+    DATES = [
+        # jump 0
+        (2038, 1, 26), (2038, 2, 4), (2038, 2, 5), (2038, 2, 9), (2038, 2, 12),
+        (2038, 2, 13),
+        # jump 7
+        (2030, 2, 14), (2030, 2, 15), (2030, 2, 16), (2032, 2, 4), (2032, 2, 5),
+        (2032, 2, 7), (2032, 2, 13), (2032, 2, 16), (2035, 2, 7), (2065, 1, 26),
+        (2084, 2, 4),
+        # jump 14
+        (2037, 1, 24), (2040, 2, 7), (2040, 2, 13), (2040, 2, 14), (2040, 2, 15),
+        (2040, 2, 16), (2040, 2, 18), (2040, 2, 20), (2040, 2, 21), (2040, 2, 23),
+        (2059, 2, 5), (2059, 2, 7), (2059, 2, 14), (2078, 2, 7), (2078, 2, 12),
+        # jump 21
+        (2039, 1, 24), (2039, 1, 26), (2039, 2, 4), (2039, 2, 5), (2042, 1, 24),
+        # jump 28
+        (2031, 1, 24), (2033, 1, 24), (2033, 1, 26), (2033, 2, 5), (2033, 2, 7),
+        (2036, 1, 24), (2036, 1, 26), (2036, 2, 5), (2036, 2, 7), (2044, 1, 26),
+        (2044, 2, 4),
+        # jump 35
+        (2041, 1, 24), (2041, 1, 26), (2041, 2, 4), (2041, 2, 5), (2041, 2, 7),
+        (2041, 2, 9), (2052, 1, 24), (2052, 1, 26), (2052, 2, 7), (2052, 2, 9),
+    ]
+
+    @staticmethod
+    def weeks_before_triodion(dt):
+        """Which week before Triodion `dt` falls in: -1 is the last one.
+
+        Triodion (Sunday of the Publican and Pharisee) is always exactly 70
+        days before Pascha, so the Monday opening the Triodion week is at
+        pdist -69 and everything here can be derived from Pascha alone.
+        """
+        pdist = datetools.gregorian_to_jdn(dt) - datetools.compute_pascha_jdn(dt.year)
+        return (pdist + 69) // 7
+
+    async def test_last_three_weeks_before_triodion_read_luke_weeks_14_15_16(self):
+        for year, month, day in self.DATES:
+            dt = date(year, month, day)
+            back = self.weeks_before_triodion(dt)
+            with self.subTest(date=dt.isoformat(), weeks_before_triodion=back):
+                self.assertIn(back, (-3, -2, -1))
+                expected = self.LUKE_SECTION_TAIL[17 + back][dt.weekday()]
+
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                self.assertIn(expected, gospels)

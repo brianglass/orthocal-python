@@ -1,6 +1,26 @@
 # Greek weekday-drift investigation
 
-**Status: CLOSED.** The fixed-feast portion of the problem is fully solved
+**Status: REOPENED 2026-08-25.** See "REOPENED (2026-08-25): the day labels
+are Greek's own lectionary index" at the end of this document. In short: every
+earlier pass resolved Greek citations by matching them against this project's
+Slavic-built `pdist` table, and antiochian.org was publishing Greek's own
+lectionary slot index the whole time, in a JSON field no pass ever read. Using
+it, the ordinary weekday formula is now pinned exactly (zero exceptions across
+303 labeled days in 9 cycles), the disruption is identified as a pointer
+*suspension* rather than a drift, and the remaining gap is measured at 20 days
+across 7 cycles — concentrated on just three calendar dates (Jan 19, 24, 26).
+goarch.org was also read for the first time, which showed the app is already
+correct in February and that GOA and antiochian.org genuinely disagree on the
+contested days. The harvest was then extended to 27 cycles (2011-2037), which
+established that **GOA's own software does not compute the contested days
+either** — a human curates them from the annual ordo out to the published
+Kanonion horizon, and past that the site falls back to a commons Gospel. See
+"GOA harvest extended" at the very end. That section also identifies an
+unlimited, noise-free oracle for the one mechanism still worth modelling.
+The sections below are retained as written; where they conflict with the new
+section, the new section supersedes them.
+
+**Previous status: CLOSED.** The fixed-feast portion of the problem is fully solved
 and implemented (sections 2-3, 7-8 below, plus the 18-saint Jan 15 - Feb 10
 Menaion set added in the final pass). The genuine "free weekday" content in
 that same window — the handful of days per year (0-5, see the corrected
@@ -1193,3 +1213,714 @@ and `canaanite_woman_applies` together are confirmed correct across every
 reachable magnitude (n=2 through 7) against real data. n≥8 has never been
 observed and remains unverified in principle, but no such year exists in
 the checked 2010-2050 range, so this is not a live gap.
+
+## REOPENED (2026-08-25): the day labels are Greek's own lectionary index
+
+This investigation was closed as "not solvable from the sources available."
+That conclusion rested on a method, not on the data: every pass resolved
+Greek citations by **matching them against this project's `common`/`slavic`
+`Reading` table by `pdist`**, and then tried to explain the resulting
+positions. The final disposition above says as much — "the 'matches' driving
+this whole investigation are very likely coincidental text reuse between two
+different, undocumented algorithms."
+
+That is correct, and it is also avoidable. **antiochian.org publishes Greek's
+own lectionary index, and no pass ever read it.** The harvest scripts only
+ever consumed `reading1Title`/`reading2Title` (the citations).
+`feastDayTitle` is normally a saint's name, but on a day with no ranking
+commemoration it is instead the day's own **slot identity**, in one of three
+formats:
+
+| Format | Example | Meaning |
+|---|---|---|
+| A | `17TH TUESDAY AFTER PENTECOST` | Matthew section, week 17, Tuesday |
+| B | `TUESDAY OF THE 15TH WEEK` | Luke section, week 15, Tuesday |
+| S | `12TH SUNDAY OF LUKE` | numbered Sunday/Saturday series |
+
+`tools/greek/greek_labels.py` (repo root) extracts these into
+`data/greek_lectionary_from_labels.json`: **394 labeled slots** across the
+1500 cached days. Resolving through this index instead of through `pdist`
+removes the coincidental-reuse noise entirely, because it is Greek's own
+numbering rather than an inference from Slavic's.
+
+### What the index shows
+
+**1. Two complete weekday sequences, reconstructed directly.**
+
+- **Matthew section** (format A): Matthew weekdays weeks 1-11, then **Mark**
+  weekdays weeks 12-17, plus a separate Matthew-Saturday series.
+- **Luke section** (format B): Luke weekdays weeks 1-12, then **Mark**
+  weekdays weeks 13-16, plus a separate Luke-Saturday series.
+
+Both are reconstructed nearly gap-free. The Gospel is a **pure function of
+(section, week, weekday)** — of 169 weekday slots, every single conflicting
+one falls inside the disputed January window. Outside it, 5-8 independent
+years agree exactly, with zero contradictions. (Epistle slots do conflict,
+but only because a saint's own Epistle displaces the cycle's while the day
+keeps its slot label — a known, separate effect.)
+
+**2. The Luke-section pointer is calendar-locked, exactly, with no
+exceptions.** Defining `calendar_week = (date - (first_sun_luke + 1)) // 7 + 1`,
+the label's week number satisfies
+
+        label_week = calendar_week + 1
+
+for **every one of 303 labeled days across 9 independent cycles**
+(2018/19 through 2026/27), from the Lukan jump through December 31. Not a
+majority, not a fit — zero exceptions. This is the first time the ordinary
+weekday formula has been stated in Greek's own terms rather than inferred as
+`calendar_pdist + lukan_jump` against the Slavic table.
+
+**3. The disruption is a pointer *suspension*, not a drift or a reshuffle.**
+The lag holds at -1 through Dec 31, then jumps to +3..+6 during the
+Nativity/Theophany cluster, then the sequence resumes — still weekday-aligned
+(Monday content on a Monday) and still contiguous, just behind schedule. Direct
+evidence of deferral rather than loss: 2021-12-31 was labeled `FRIDAY OF THE
+15TH WEEK` but read `Luke 16:10-15` (the `SatAfterNativityFriday` feast), and
+that slot's real content, `Mark 12:1-12`, then appears on **2022-02-04** — the
+next free Friday. This is the Typikon's "omission and repeat" rule operating
+exactly as written, and it is why the FIFO model in #5 above looked right for
+some years and wrong for others: it applies to the *cluster*, not to ordinary
+saints.
+
+**4. When the Luke section runs out, the Matthew section resumes.** In the
+2018/19 cycle (`jump=7`, latest Triodion of any harvested year, 2019-02-18)
+the format-B labels stop after Dec 31 and February's free days carry
+**format-A** labels instead — `17TH MONDAY/TUESDAY/THURSDAY AFTER PENTECOST`
+reading `Mark 5:24-34`, `6:1-7`, `6:30-45`, a contiguous Markan run. That is
+the Typikon's "we return to St. Matthew and count the weeks that are left
+from the Sunday after the Elevation" clause, observed live.
+
+### Re-measured: exactly which days the app gets wrong
+
+`tools/greek/greek_check.py` compares `Day(..., tradition='greek')`'s computed
+Gospel against every harvested day between Leavetaking of Theophany and
+Triodion, tolerating the known +/-2 verse-boundary variants and counting a day
+correct if the antiochian citation appears anywhere in the app's reading list
+(the app lists a saint's reading alongside the continuous one):
+
+| cycle | days checked | wrong |
+|---|---|---|
+| 2019 | 28 | 7 |
+| 2021 | 30 | 2 |
+| 2022 | 28 | 5 |
+| 2023 | 24 | 4 |
+| 2024 | 32 | 3 |
+| 2025 | 28 | 1 |
+| 2026 | 20 | 2 |
+
+**24 wrong days across 7 cycles** against antiochian.org — but see the GOA
+cross-check below: **four of those 24 are false alarms**, days where the app
+is right and antiochian.org is the outlier, so the real count is **20**.
+February is already correct throughout. The gap is really **three calendar
+dates**:
+
+- **Jan 19** (Macarius the Great) — wrong in 6 of 7 cycles
+- **Jan 24** (Xenia) — wrong in 5 of 7
+- **Jan 26** (Xenophon) — wrong in 5 of 7
+
+plus 2019's four format-A February days, 2023-01-14, 2026-01-24, and two
+Sundays (2022-01-23, 2022-01-30) that belong to the Sunday mechanism, not
+this one.
+
+### The residual unknown, stated precisely
+
+On those three dates the Gospel slot is unclaimed (the saints supply only the
+already-implemented `Gal 5:22-26; 6:1-2` ascetic Epistle), and what
+antiochian.org shows is a **numbered Sunday-of-Matthew pericope** — confirming
+the recovered-Matthew-Sunday mechanism of #7 qualitatively. The numbers
+observed, against each cycle's parameters:
+
+| cycle | jump | jump/7 | Sunday interpolation uses | observed weekday Matthew numbers (Jan 19/24/26) |
+|---|---|---|---|---|
+| 2021 | 28 | 4 | 16th Matthew | **13, 14, 15** |
+| 2022 | 21 | 3 | none | **14, 15, 16** |
+| 2020 | 14 | 2 | 16th Matthew | 12 |
+| 2023 | 14 | 2 | 16th Matthew | 12, 9, 14 |
+| 2024 | 35 | 5 | none | 3 |
+| 2025 | 7 | 1 | none | 15 |
+| 2018 | 7 | 1 | 16th Matthew | 4, 7, 15 |
+
+Two cycles fit a clean rule perfectly. Taking the numbered Matthew Sundays as
+1-16 (17th being the Canaanite Woman, handled separately by
+`canaanite_woman_applies`), the jump skips `{17 - jump/7, ..., 16}`:
+
+- **2021** (`jump=28`): skipped `{13,14,15,16}`; weekdays drain 13, 14, 15 in
+  order and the Sunday interpolation takes 16. Complete, no remainder.
+- **2022** (`jump=21`): skipped `{14,15,16}`; weekdays drain 14, 15, 16.
+  Complete, no remainder.
+
+The other five cycles do not fit this or any variant tried, and 2023's
+`12, 9, 14` is not even monotonic. So the rule is **not** confirmed, and
+nothing should be implemented from it. But the failure now has a specific
+shape worth testing rather than a general one: either there is a further
+constraint governing which skipped Sunday is drained when, or — given that
+`Matt 19:16-26` (the rich young ruler, the classic venerable-monastic
+Gospel) shows up on Macarius's day in two separate cycles, and `Matt 6:22-33`
+on Xenia's in another — **antiochian.org is itself making ad-hoc editorial
+choices on these three dates**, in which case there is no rule to find in this
+source at all.
+
+### GOA cross-check: obtained at last, and it changes two conclusions
+
+goarch.org has never been readable by this project — Cloudflare's
+TLS-fingerprint block defeats `requests`/`WebFetch`, and a real browser engine
+(Claude in Chrome) still hits the "Performing security verification"
+interstitial. **The user cleared the interstitial manually on 2026-08-25**,
+after which seven months of the grid view were readable in-session. The
+results are saved to `data/goarch_winter_readings.json`. Use the same
+human-in-the-loop procedure to extend it:
+
+    https://www.goarch.org/chapel/calendar?month=M&year=YYYY&viewStyle=GridView&viewType=ViewReadings
+
+GOA's grid is strictly better source data than antiochian.org's feed for this
+question: it prints the day label **and** both citations together, so a slot
+identity is never hidden behind a saint's name the way `feastDayTitle` hides
+it.
+
+**Conclusion change 1: the app is already correct in February, and
+antiochian.org is the outlier.** For the 2018/19 cycle, GOA's February reads
+
+| date | GOA label | GOA Gospel | app computes | antiochian |
+|---|---|---|---|---|
+| 2019-02-04 | Monday of the 15th Week | Mark 10:46-52 | Mark 10.46-52 | Mark 5:24-34 |
+| 2019-02-05 | Tuesday of the 15th Week | Mark 11:11-23 | Mark 11.11-23 | Mark 6:1-7 |
+| 2019-02-07 | Thursday of the 15th Week | Mark 11:27-33 | Mark 11.27-33 | Mark 6:30-45 |
+| 2019-02-09 | Saturday of the 15th Week | Luke 17:3-10 | Luke 17.3-10 | Matthew 25:1-13 |
+
+GOA simply continues the Luke section (format B) contiguously into weeks 15
+and 16, exactly as the pointer model predicts, and **the app matches it on
+every one**. Antiochian.org instead returns to the Matthew section — which is
+also a defensible reading of the Typikon, but it is Antiochian practice, not
+universal Greek practice. The "return to St. Matthew" behaviour documented in
+finding #4 of this section is therefore real but **jurisdiction-specific**.
+Four of the 24 measured wrong days evaporate; the corrected count is **20**.
+
+**Conclusion change 2: GOA and antiochian genuinely disagree on the
+contested days, so there is no single ground truth to compute.** Of 14
+comparable Jan 19/24/26 slots, they agree on 11 and disagree on 3:
+
+| date | GOA | antiochian |
+|---|---|---|
+| 2021-01-19 | Matthew 22:2-14 (14th of Matthew) | Matthew 19:16-26 (12th) |
+| 2021-01-26 | Matthew 22:35-46 (15th) | Mark 11:11-23 (ordinary B wk15 Tue) |
+| 2024-01-19 | Matthew 9:1-8 (6th) | Matthew 19:16-26 (12th) |
+
+This supersedes the 2026-07-22 note above, which found GOA and antiochian
+agreeing on 2025-01-24 and reasonably read that as evidence against
+"antiochian.org has a bug." With a wider sample the two sources do diverge —
+so on these three dates the project is not choosing between right and wrong,
+it is choosing **whose calendar to follow**.
+
+**What GOA's numbers do for the drain hypothesis.** Substituting GOA where it
+differs, the observed weekday Matthew-Sunday numbers become:
+
+| cycle | jump | jump/7 | Jan 19 | Jan 24 | Jan 26 | + Sunday interp | fits? |
+|---|---|---|---|---|---|---|---|
+| 2020 | 14 | 2 | 14th | (Sun) | 15th | 16th | ends at 16 |
+| 2021 | 28 | 4 | 13th | 14th | 15th | 16th | **exact** |
+| 2022 | 21 | 3 | 14th | 15th | 16th | — | **exact** |
+| 2018 | 7 | 1 | 4th | 7th | 15th | 16th | no |
+| 2023 | 14 | 2 | 6th | 9th | 14th | 16th | no |
+| 2024 | 35 | 5 | (Sun) | 3rd | (Sun) | — | no |
+| 2025 | 7 | 1 | 15th | (Sat) | (Mon P&P) | — | partial |
+
+GOA's 2020 numbers (14, 15) are consecutive and, with the interpolation's
+16th, end exactly where 2021 and 2022 do. Three consecutive cycles now form
+clean ascending runs terminating at the 16th of Matthew — the last numbered
+Matthew Sunday before the Canaanite Woman. That is a real, repeated
+structure, and it is the strongest positive signal this investigation has
+produced.
+
+It still does not generalise. Cycles 2018, 2023 and 2024 give 4/7/15, 6/9/14
+and 3 — not ascending runs, not terminating at 16, and not explained by
+`jump`, `triodion_start`, or the interpolation count. Notably those three are
+the extremes of `triodion_start` (315, 315, 280 against 287-308 for the
+cycles that fit), which is worth testing but is one degree of freedom fitted
+to three points.
+
+**Recommendation.** Do not implement a drain formula. Two things are worth
+doing instead, in order:
+
+1. **Extend the GOA harvest** to the cycles not yet covered and to more
+   years in each direction, using the manual procedure above. The drain
+   hypothesis makes a sharp, falsifiable prediction — ascending run of
+   `jump/7` numbered Matthew Sundays ending at the 16th — and roughly six
+   more cycles would settle it. This is cheap and it is the only remaining
+   line of evidence that could turn the gap into code.
+2. **Decide the jurisdiction question explicitly.** The `tradition=greek`
+   axis was built on the premise that GOA and Antiochian are in lockstep on
+   the ordinary daily lectionary. On these ~20 days per 7 years they are not.
+   The February evidence says the app's current behaviour already matches
+   GOA, so "Greek" here effectively means GOA — worth stating in the docs
+   deliberately rather than leaving it as an accident of which source was
+   easiest to scrape.
+
+### Artifacts from this pass
+
+- `tools/greek/greek_labels.py` -> `data/greek_lectionary_from_labels.json`:
+  the label-derived Greek-native lectionary (394 slots) and the per-cycle
+  pointer-lag trace. Rebuild with `python3 tools/greek/greek_labels.py`.
+- `tools/greek/greek_check.py`: the app-vs-antiochian audit that produced the
+  24-day table above. Run inside Docker
+  (`docker compose exec -T local python tools/greek/greek_check.py`).
+- `data/goarch_winter_readings.json`: the first goarch.org data this project
+  has ever held — 7 months of the contested window, labels plus both
+  citations. Extend it manually; scripted access is blocked.
+
+## GOA harvest extended (2026-08-25, same session): the source of truth is partly human
+
+`data/goarch_winter_rows.txt` now holds **215 rows covering 27 cycles**
+(Jan/Feb 2011 through Jan 2037), harvested from goarch.org's grid view.
+`tools/greek/goa_analyze.py` and `tools/greek/goa_audit.py` (repo root) do the
+analysis; both need Docker (`docker compose exec -T local python ...`).
+
+### GOA breaks both of antiochian.org's horizon limits
+
+The "Leftover floats: final disposition" section above establishes that
+antiochian.org's API fails before 2018 and beyond roughly a year out, and
+several questions were closed as permanently unobservable on that basis.
+**goarch.org serves 2011 and 2037 equally well.** Any question previously
+closed for lack of reachable years should be reconsidered against GOA before
+being treated as settled.
+
+Harvest method: navigate to any goarch.org page once (the user clears the
+Cloudflare interstitial), then `fetch()` further months from inside the page
+origin via `javascript_tool` — same-origin requests inherit the clearance
+cookie, so one manual step buys a whole session. The month grid parses out of
+`innerText`: `[day number, long date, fasting lines, label, saints...,
+'Epistle Reading', '-', epistle, 'Gospel Reading', '-', gospel]`.
+
+### The decisive finding: GOA's own software does not compute these days
+
+Every year from **Jan 2028 onward** is invariant:
+
+- **Jan 19 is always `Matthew 19:16-26`** — the rich young ruler, the standard
+  venerable-monastic commons Gospel — regardless of weekday, jump, or
+  Triodion date. Checked 2028-2037, ten consecutive years, no exceptions.
+- **Jan 24 and Jan 26 are always ordinary continuous-cycle readings**, carrying
+  a genuine slot label and the matching universal citation.
+
+Every year from **Jan 2011 through Jan 2027** varies: Jan 19 takes Matthew
+Sunday numbers 3, 4, 6, 7, 12, 13, 14 or 15 depending on the year, and Jan
+24/26 sometimes take Matthew Sundays and sometimes ordinary readings.
+
+2027 is exactly GOA's published-Kanonion horizon (the site footer advertises
+"2027 Kanonion"). So the boundary is not liturgical — it is editorial.
+**GOA's calendar software computes only the ordinary continuous cycle; for
+years inside the Kanonion horizon a human overrides these days from the
+annual ordo, and past that the software falls through to the saint's commons
+Gospel.** That is the same conclusion the "Final disposition" section above
+reached from the Typikon ("the day-by-day arithmetic apparently lives only in
+an actual annual lectionary chart/ordo") — now confirmed from the other side,
+by watching a real implementation run out of curated data.
+
+Supporting evidence that the *algorithmic* part is genuinely deterministic:
+cycles 11 years apart share `(lukan_jump, triodion_start,
+regular_extra_sundays)`, and all **8 such pairs in range reproduce their
+Format-B pointer lag exactly** — 2011/2022 both lag 3, 2012/2023 both [3,6],
+2013/2024 both 4, 2014/2025 both 2, 2015/2026 both [3,5], 2016/2027 both 3,
+2017/2028 both 2, 2018/2029 both [3,5]. The reproducible part reproduces
+perfectly; the contested days do not. Note the paired cycles do *not* share
+weekday alignment, which is why their labels differ while their week numbers
+agree.
+
+(One earlier claim in this document needs softening: the return to the
+Matthew section is **not** Antiochian-specific. GOA does it too — 2035-01-24
+and 2035-01-26 carry `16th Wednesday/Friday after Pentecost`. The two sources
+differ about *when* the Luke section is exhausted, not about the rule.)
+
+### Consequence 1: an unlimited, noise-free oracle for the suspension lag
+
+Because GOA's uncurated years are pure algorithm, they are a clean training
+and validation set for the one mechanism still unmodelled — the pointer
+suspension across the Nativity/Theophany cluster. `tools/greek/goa_audit.py`
+scores the app against them: **47 uncurated days, 17 mismatches**, and once
+the ten Jan-19 commons days are set aside the residue is a consistent
+**~2-week lag** — the app reads B-week 13 where GOA reads B-week 15:
+
+| date | GOA slot | GOA Gospel | app computes |
+|---|---|---|---|
+| 2030-01-24 | Thursday of the 15th Week | Mark 11:27-33 | Mark 9.10-15 (B13 Thu) |
+| 2030-01-26 | Saturday of the 15th Week | Luke 17:3-10 | Luke 14.1-11 (B13 Sat) |
+| 2032-01-24 | Saturday of the 14th Week | Luke 16:10-15 | Luke 13.18-29 (B12 Sat) |
+| 2032-01-26 | Monday of the 15th Week | Mark 10:46-52 | Mark 8.11-21 (B13 Mon) |
+
+This is the first time the unsolved mechanism has had a source that can be
+sampled arbitrarily. Harvesting 2028-2060 gives ~30 clean cycles spanning
+every `(jump, triodion_start)` combination, which is almost certainly enough
+to pin the lag rule and finally implement it. **This is the recommended next
+step**, and it no longer depends on anyone's editorial judgement.
+
+Two smaller app bugs also surface in the uncurated set and are worth
+confirming separately, since they are on the Sunday side rather than the
+weekday side: 2031-01-19 (app says 12th Sunday of Luke, GOA says 15th) and
+2031-01-26 (app says 15th Sunday of Luke, GOA says the Publican and
+Pharisee, i.e. Triodion has already begun).
+
+### Consequence 2: one small fix available now
+
+**Jan 19 (Macarius the Great) has no Greek Gospel in this project's data.**
+GOA assigns `Matthew 19:16-26` invariantly whenever no curated override
+applies, paired with the `Gal 5:22-26; 6:1-2` Epistle this repo already
+implemented for that date. Adding it as a `greek`-tagged `month`/`day`
+`Reading` row is the same one-line change as the Xenia/Macarius Epistle rows,
+and would replace today's output — an unrelated continuous-cycle pericope
+that is wrong in every sampled year — with the reading GOA falls back to.
+Not implemented here: it is right against GOA's algorithm but will disagree
+with the curated ordo in the years GOA has curated, and that trade-off is a
+judgement call about which the project should follow.
+
+### Consequence 3: the standing "no per-year overlay" constraint now bites
+
+GOA's curated values for Jan 19/24/26 are available for 2011-2027 and could
+simply be loaded as data. That is exactly the per-year overlay the standing
+constraint at the top of this document rules out, and it would need
+re-harvesting each year as the Kanonion horizon advances. Worth restating
+deliberately rather than assuming: the constraint is now the only thing
+standing between this project and correct output on those days, because the
+evidence says no algorithm exists to be found for them.
+
+## The lag rule, SOLVED: the Luke-section cycle is back-anchored to Triodion
+
+Harvested GOA's uncurated (pure-algorithm) years at scale to fit the pointer
+suspension. `data/goarch_pointer_sequences.txt` holds the resulting
+observations for **37 cycles** (2027-2096, concentrating on long seasons);
+`tools/greek/backanchor.py` and `tools/greek/backanchor_audit.py` do the fitting.
+
+**The mechanism is not a lag at all.** Every earlier pass, including the
+first half of this session, modelled the Luke-section pointer as running
+*forward* from `first_sun_luke` and falling behind across the
+Nativity/Theophany cluster — hence "lag", and hence the search for a rule
+predicting how far behind. That framing is wrong. The cycle is anchored to
+the **end** of the season:
+
+| weeks before Triodion | Luke-section week read | observations | exceptions |
+|---|---|---|---|
+| last (b-1) | **16** | 145 | 0 |
+| second-last (b-2) | **15** | 96 | 0 |
+| third-last (b-3) | **14** | 48 | 0 |
+
+**289 observations, zero exceptions**, spanning every `lukan_jump` value from
+0 through 35 and every Nativity weekday. The forward `lag` looked
+year-dependent only because it is an artefact of measuring a back-anchored
+sequence from the wrong end.
+
+This also explains why the forward-lag hunt kept producing partial fits that
+broke on cross-checks: `triodion_start` varies independently of
+`lukan_jump` (it depends on the *following* year's Pascha), so any rule
+expressed in terms of `lukan_jump` was fitting noise.
+
+### The app already implements this correctly
+
+`tools/greek/backanchor_audit.py` scores `Day(..., tradition='greek')` against
+every harvested observation:
+
+- **b >= -3 (the back-anchored tail): 140 days, 140 correct, 0 wrong.**
+- **b <= -4 (surplus weeks): 14 days, 0 correct, 14 wrong.**
+
+The app's Gospel pdist is computed relative to Pascha, and Triodion is itself
+a fixed Pascha offset, so the existing computation *is* back-anchored — it
+gets the tail right by construction. There was nothing to fix here. What was
+missing was any test pinning the property, so a future change to the Greek
+weekday path could have broken it silently.
+
+**Added `TestGreekPreTriodionWeekdayCycle`** in
+`calendarium/tests/test_liturgics.py`: 56 dates spread deliberately across
+jumps 0, 7, 14, 21, 28 and 35, asserting that the three weeks before Triodion
+read Luke-section weeks 14/15/16 with the correct weekday pericope. The test
+derives the week purely from Pascha (Triodion is always pdist -70), so it
+asserts the invariant rather than memorised answers. Verified to fail when
+the expected table is perturbed.
+
+### What actually remains broken
+
+The residual is now precisely bounded: **the surplus weeks, b <= -4**, which
+only exist in the longest seasons (`triodion_start >= 308`, roughly one year
+in five). The app is wrong on all of them. What GOA reads there is
+deterministic — every configuration observed twice or three times agrees
+exactly — but no generative rule was found:
+
+| jump | Nativity | b-5 | b-4 | cycles |
+|---|---|---|---|---|
+| 7 | Mon | — | A16 | 2034, 2045, 2056 |
+| 7 | Tue | — | B15 | 2029, 2091 |
+| 7 | Wed | — | B12 | 2075, 2086 |
+| 7 | Thu | B14 | B15 | 2031, 2042, 2053 |
+| 7 | Sat | — | B14 | 2083 |
+| 7 | Sun | — | B15 | 2061, 2067, 2072 |
+| 14 | Sun | B15 | A15 | 2039, 2050 |
+| 14 | Tue | B15 | — | 2096 |
+| 14 | Wed | B12 | — | 2058, 2069, 2080 |
+| 14 | Sat | B14 | A15 | 2077 |
+
+Tested and rejected: forward continuation from December's last week (checked
+directly against harvested December sequences for 2029, 2034, 2058, 2075,
+2083 — the December pointer ends at B14/B15/B16 in every case, while the
+surplus reads B12/B14/B15/A15/A16, so it is neither a continuation nor a
+simple repeat).
+
+### Caution: GOA's uncurated data has its own bugs
+
+Do not treat GOA's generated years as infallible. **2031-01-26 is labelled
+"Sunday of the Publican and Pharisee: Triodion Begins Today", but GOA's own
+April 2031 page gives Pascha as April 13, 2031** — which puts Triodion at
+February 2, a week later. GOA's pre-Lenten labels for that cycle are
+internally inconsistent with their own Paschalion. This project's Paschalion
+agrees with GOA's Pascha date, and the back-anchor analysis (which uses this
+project's Triodion) came out 289/289 — so the anomaly is confined to GOA's
+labels, not to the reading sequence.
+
+This retracts the note in the previous section flagging 2031-01-19 and
+2031-01-26 as app bugs on the Sunday side. **They are GOA data errors; the
+app is correct on both dates.**
+
+## The GOA/Antiochian deterministic split — and orthocal's current mixed allegiance
+
+`tools/greek/goa_vs_ant.py` compares the two sources on every date both hold in
+the winter window: **56 dates, 46 identical Gospels, 10 different.** The 10
+are not one phenomenon. They sort into three classes:
+
+**1. Weekday section divergence (4 days, 1 cycle) — deterministic.**
+Cycle 2018 (`jump=7`, `triodion_start=315` — the longest season with the
+smallest jump, so the largest gap to fill), all four at `b-2`:
+
+| date | GOA | Antiochian |
+|---|---|---|
+| 2019-02-04 | Monday of the 15th Week, `Mark 10:46-52` | 17th Monday after Pentecost, `Mark 5:24-34` |
+| 2019-02-05 | Tuesday of the 15th Week, `Mark 11:11-23` | 17th Tuesday after Pentecost, `Mark 6:1-7` |
+| 2019-02-07 | Thursday of the 15th Week, `Mark 11:27-33` | 17th Thursday after Pentecost, `Mark 6:30-45` |
+| 2019-02-09 | Saturday of the 15th Week, `Luke 17:3-10` | 17th Saturday after Pentecost, `Matthew 25:1-13` |
+
+Both jurisdictions have both rules — GOA also returns to the Matthew section
+(e.g. 2035-01-24/26). They disagree about *when the Luke-section material is
+exhausted*: GOA keeps the back-anchored Luke-section tail at `b-2` and pushes
+Matthew-section content into the surplus weeks instead; Antiochian brings it
+forward to `b-2`.
+
+**2. Sunday numbering divergence (2 days) — also deterministic.** In cycle
+2023, Antiochian runs one week behind GOA at the end of the Luke Sunday
+sequence, and terminates on a Luke Sunday where GOA terminates on a Matthew
+Sunday:
+
+| date | GOA | Antiochian |
+|---|---|---|
+| 2024-01-28 | 15th Sunday of Luke, `Luke 19:1-10` | 14th Sunday of Luke, `Luke 18:35-43` |
+| 2024-02-04 | 15th Sunday of Matthew, `Matthew 22:35-46` | 15th Sunday of Luke, `Luke 19:1-10` |
+
+**3. Annual-ordo and surplus-week differences (4 days)** — Jan 19 in 2021 and
+2024, plus 2021-01-26 and 2026-01-24. Not deterministic; these are the
+curated-ordo days already documented above.
+
+### orthocal currently follows *both*, inconsistently
+
+`tools/greek/sunday_alleg.py` asks, on each date where the two sources disagree,
+which one `Day(..., tradition='greek')` matches:
+
+- **Weekdays: follows GOA, 4 of 4.**
+- **Sundays: follows Antiochian, 2 of 2.**
+
+This is not a choice anyone made; it is an artefact of provenance. The
+Sunday machinery (`lukan_sunday_numbers`, `_THEOPHANY_INTERPOLATION`,
+`canaanite_woman_applies`) was built and validated against antiochian.org's
+official liturgical charts — see `TestGreekLukanNumbering`'s docstring and
+`data/antiochian_official_chart_2026.json`. The weekday tail was never
+authored at all; it falls out of the shared Pascha-relative `Reading` table,
+which happens to agree with GOA.
+
+So `tradition='greek'` today means **Antiochian on Sundays, GOA on
+weekdays**. That has to be resolved before any jurisdictional overlay is
+built, or the overlay will be layering one jurisdiction's ordo data on top of
+another's Sunday logic.
+
+### What accounting for it would take
+
+- **Cheapest: name one jurisdiction and make the other half match.** If GOA,
+  `_THEOPHANY_INTERPOLATION` and the Lukan Sunday numbering need rebuilding
+  against Kanonion/goarch data (the table has already been rebuilt once, so
+  this is known-touchable). If Antiochian, the weekday tail must change — and
+  there is currently **no seam to change it at**: the back-anchor is implicit
+  in the Pascha-relative pdist computation shared with `slavic`. It would
+  have to be promoted into an explicit `GreekYear` method before it can vary.
+- **Full split into `greek_goa` / `greek_antiochian`**: schema `choices`,
+  fixture rows, API surface, and the same missing seam. Hard to justify for
+  6 days per 8 years unless the overlay work makes the distinction load-
+  bearing anyway.
+
+### Evidence caveat before committing
+
+The weekday divergence rests on **one cycle**. The other reachable
+`jump=7, trio=315` cycle is 2015, which is before antiochian.org's 2018
+horizon, and the next is cycle 2026 (Jan 2027), at or past their forward
+edge. GOA has many such cycles and is sampleable to 2060+; Antiochian is not.
+Confirming Antiochian's behaviour is a stable rule rather than a one-off is
+**not currently possible from that source** — which is itself an argument for
+treating GOA as the definition of `greek`.
+
+## DECISION (2026-08-26): `tradition='greek'` means GOA
+
+Brian's call, taken deliberately as a working decision rather than a final
+one: **GOA is the definition of the `greek` tradition.** Refactoring to
+support Antiochian separately is a possible future step, but the axis needs
+one unambiguous meaning now.
+
+Reasons, from the section above: GOA has a published multi-year upstream
+(the Kanonion PDFs at `/chapel/kanonion`, currently 2021-2027); GOA's
+algorithmic output is sampleable to 2060+, which is what made the back-anchor
+proof possible; the app already matches GOA on the weekday side; and
+Antiochian's 2018-onward horizon makes their divergent behaviour
+unconfirmable in principle.
+
+Noted for the future refactor: **antiochian.org publishes an equivalent
+annual document**, e.g.
+`https://antiochianprodsa.blob.core.windows.net/liturgicalinstructions/Liturgical%20Chart%20for%202026%20English.pdf`
+— the direct counterpart to the Kanonion. That makes the eventual Antiochian
+overlay a data problem rather than a blocked one.
+
+### Consequence: the Sunday side is now the half that must change
+
+Per the split-allegiance finding, the app follows Antiochian on Sundays. With
+GOA chosen, `_THEOPHANY_INTERPOLATION` is the thing that has to be rebuilt.
+`data/goarch_sunday_sequences.txt` holds GOA's Sunday sequence for **30
+cycles (2010-2039)**; `tools/greek/interp_fit.py`, `tools/greek/pool_fit.py` and
+`tools/greek/rule_verify.py` do the analysis.
+
+**Diagnosis: the table is keyed on the wrong thing.** It maps
+`regular_extra_sundays` alone to a fixed sequence. But the sequence also
+depends on **which Lukan Sunday numbers the autumn actually consumed** —
+`lukan_sunday_numbers` leaves either `{12, 14, 15}` or `{12, 15}` unassigned
+depending on the year, and GOA fills the interpolation from whatever is left.
+The current table is correct for the (n, availability) combinations that
+happened to be sampled from antiochian.org's charts, and wrong for the rest:
+
+| n | autumn left 14 free? | GOA sequence | app table | |
+|---|---|---|---|---|
+| 5 | no | `12L 15L 16M` | `12L 15L 16M` | correct |
+| 5 | **yes** | `12L 14L 15L` | `12L 15L 16M` | **wrong** |
+| 6 | yes | `12L 14L 15L 16M` | `12L 14L 15L 16M` | correct |
+| 6 | **no** | `12L 15L 15M 16M` | `12L 14L 15L 16M` | **wrong** |
+
+This exactly explains the observed failures: cycles 2010/2021/2032 (n=5, 14
+free) and 2012/2023 (n=6, 14 taken).
+
+**The rule, verified against 26 of 27 observable cycles.** Build the pool by
+this inclusion priority, dropping any Lukan number the autumn already used:
+
+        12L, 15L, 14L, 16M, 15M
+
+take the first `regular_extra_sundays - 2`, and read them out in ascending
+order (Lukan numbers first, then Matthean). The final slot is always the
+Canaanite Woman / Zacchaeus boundary, already governed by
+`canaanite_woman_applies`. The count rule (`n - 2`) holds for 25 of 27.
+
+Note this introduces the **15th Sunday of Matthew**, which the current table
+never uses. No new data is needed: `_matthew_sunday_target(15)` is pdist 154,
+which already holds `Matt 22.35-46` as a `common` row — precisely what GOA
+reads there.
+
+**Two edge cases remain, both involving the count rather than the
+selection**, and both in Leavetaking-of-Theophany-on-Sunday years: cycle 2030
+(n=3 but 0 interpolated slots) and cycle 2034 (n=5 but 2 slots, and the only
+selection mismatch — it omits `12L`, plausibly because the Leavetaking Sunday
+consumed that slot). The doc already treats Leavetaking-on-Sunday as a
+special case; these should be resolved before the rewrite, not after.
+
+### Resolved: the two "Leavetaking edge cases" were GOA data errors
+
+The two cycles that failed the rule (2030 and 2034) turned out not to involve
+Leavetaking at all. Both are cycles where **goarch.org's own "Triodion Begins
+Today" contradicts goarch.org's own Paschalion**:
+
+| cycle | this project's Triodion | GOA marks Publican & Pharisee on |
+|---|---|---|
+| 2030 | 2031-02-02 | 2031-01-26 |
+| 2034 | 2035-02-18 | 2035-02-11 **and** 2035-02-18 |
+
+Cycle 2034 is unambiguous: GOA prints Publican and Pharisee on **two
+consecutive Sundays**, the later of which matches this project. Pascha 2035 is
+April 29 (GOA's own April page agrees), and 70 days back is February 18. In
+both cycles GOA's whole pre-Lenten tail is shifted one Sunday early, which
+swallows an interpolation slot and truncated the harvest.
+
+Checked systematically: **28 of 30 cycles align exactly**, and the 2 that do
+not are precisely the 2 that broke the rule. With them excluded the rule is
+**25 matches, 0 failures** (3 further cycles unobservable because a fixed
+feast claims a slot). The Leavetaking-on-Sunday handling needed no change --
+cycles 2017, 2023 and 2028 all pass with the existing `regular_extra_sundays`
+adjustment.
+
+### Implemented
+
+- `_THEOPHANY_INTERPOLATION` (keyed on `n` alone) replaced by
+  `_INTERPOLATION_PRIORITY` plus a new `GreekYear.interpolation_sequence`
+  cached property implementing the pool rule. `theophany_interpolation` now
+  consults it; the Leavetaking `leading` slot is unchanged.
+- No data change: the newly reachable 15th of Matthew is pdist 154, already
+  carrying `Matt 22.35-46` as a `common` row.
+- `TestGreekLukanNumbering.test_theophany_interpolation` updated. The 2023
+  cycle's assertions previously carried **antiochian.org's** answer (14th then
+  15th of Luke) and now carry **GOA's** (15th of Luke, then 15th of Matthew) --
+  this is the one cycle in the sample where the two sources genuinely diverge,
+  so it is a deliberate behaviour change under the GOA decision, not a fix.
+  Added coverage for the two shapes the old table got wrong: cycle 2010 (n=5
+  with the 14th of Luke still free) and cycle 2012 (n=6 with it already used,
+  the only shape that reaches the 15th of Matthew).
+- App vs GOA on Sundays in this window: **48/56 before, 54/56 after.** The
+  two remaining differences are cycle 2030's GOA Triodion error, where the app
+  is correct.
+- Full suite: 170 tests, 0 failures.
+
+## How much do GOA and Antiochian actually differ? A full-year count
+
+Everything above compares the two sources only inside the winter window. To
+size the jurisdictional gap properly, 2026 was compared end to end: `data/`
+holds a complete 365-day antiochian.org harvest for that year, and goarch.org
+was harvested for all twelve months to match (`data/goa2026.txt`,
+`data/ant2026.txt`; `tools/greek/fingerprint.py` builds the Antiochian side,
+`tools/greek/year_diff.py` does the comparison).
+
+Both sides are reduced to a canonical `[ordinal]BOOK chapter:verse` fingerprint
+of the first reference, compared with the same +/-2 verse tolerance used
+elsewhere in this document.
+
+**Calendar year 2026, 365 days compared:**
+
+| | days |
+|---|---|
+| no Epistle/Gospel listed on one or both sides (aliturgical Lenten weekdays etc.) | 29 |
+| source-formatting artifacts (see below) | 5 |
+| **genuine differences** | **4** |
+
+That is **roughly 1% of the year** — 4 days out of 336 comparable ones.
+
+The four:
+
+| date | GOA | Antiochian | what it is |
+|---|---|---|---|
+| 2026-01-24 | `Gal 5:22` / `Luke 18:35` | `Gal 3:23` / `Mark 5:24` | Xenia — the annual-ordo day documented at length above |
+| 2026-02-01 | `Rom 8:28` / `Luke 18:10` | `2 Tim 3:10` / `Luke 18:10` | Publican & Pharisee vs. Trypho the Martyr: a precedence difference, same Gospel |
+| 2026-02-06 | `Heb 7:26` / `John 10:9` | `2 Tim 2:1` / `John 15:17` | Photius vs. Julian of Homs, an Antiochian-regional commemoration |
+| 2026-06-14 | `Rom 2:10` / `Matt 4:18` | `Acts 11:19` / `Matt 4:18` | Antiochian reads Acts 11:19 ("the disciples were first called Christians in Antioch") — a jurisdiction's own patronal commemoration |
+
+Note what these are *not*: only one of the four (Jan 24) belongs to the
+lectionary machinery this document has been about. The other three are
+commemoration-ranking and regional-saint differences, which the existing
+`tradition` field on `Day` already has the shape to express.
+
+**The five artifacts, for the record** — both are source formatting, not
+liturgy, and anyone redoing this comparison will hit them:
+
+- antiochian.org writes Jude as "St. Jude's **First** Universal Letter" though
+  there is only one (2026-02-19, 2026-06-19). Their ordinals also *follow* the
+  book name ("St. Peter's First Universal Letter") where goarch.org's precede
+  it ("I Corinthians") -- getting this wrong inflated the count from 4 to 16.
+- On Holy Week days (2026-04-06/07/08) antiochian.org carries the **Matins
+  Gospel** in `reading1Title`, where the Epistle normally sits, and the
+  Liturgy Gospel in `reading2Title`; goarch.org's grid lists a single Gospel.
+  Same services, different field layout.
+
+**Caveat on generalising**: this is one year, chosen because it is the only
+complete Antiochian harvest in the repo. The winter-window comparison across
+2018-2026 (56 shared dates, 10 differences) is consistent with the same order
+of magnitude, but a second full year would be needed before treating "about 4
+days" as a stable annual figure rather than a 2026 measurement.
