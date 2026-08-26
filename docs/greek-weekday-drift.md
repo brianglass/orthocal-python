@@ -1924,3 +1924,90 @@ complete Antiochian harvest in the repo. The winter-window comparison across
 2018-2026 (56 shared dates, 10 differences) is consistent with the same order
 of magnitude, but a second full year would be needed before treating "about 4
 days" as a stable annual figure rather than a 2026 measurement.
+
+## The surplus weeks: mechanism identified, rule not derivable, app left alone
+
+Picking this up after the interpolation fix, with a much larger goarch.org
+sample. Four findings, and the conclusion is the opposite of what the earlier
+"0/14 correct" framing suggested.
+
+### 1. It is far bigger than the audit made it look
+
+The audit could only *observe* Jan 24 and Jan 26 — every other weekday in the
+span carries a fixed commemoration, so goarch.org prints the saint's name
+instead of a week label. But the app still shows a continuous-cycle reading
+alongside the saint's on those days, so the user-visible span is the whole
+surplus region. `tools/greek/surplus_impact.py`, over 2010-2059:
+
+- **34 of 50 cycles affected (68%)**
+- **324 affected weekdays over 50 years = 6.5 per year**
+- in an affected year, **9.5 days**, up to **18** in the longest seasons
+
+This is the largest remaining source of Greek weekday divergence — an order of
+magnitude more than the annual-ordo days (Jan 19/24/26) that consumed most of
+the earlier investigation.
+
+### 2. The mechanism is repetition, and it is proven
+
+Cycle 2031 settles it. `tools/greek/surplus_map.py` lays the weeks out:
+
+        b-5 = 14, b-4 = 15, b-3 = 14, b-2 = 15, b-1 = 16
+
+Weeks 14 and 15 are each read **twice**, and not by inference — 2032-01-24 and
+2032-02-07 both carry `Luke 16:10-15`, the Saturday of week 14, on a Saturday.
+Same slot, same citation, two weeks apart. This is the Typikon's "omission and
+repeat" operating at week granularity.
+
+### 3. Forward continuation is definitively dead
+
+`tools/greek/surplus_forward.py` tests the obvious hypothesis — that the
+December pointer (`label_week = calendar_week + 1`, proven exceptionless
+through Dec 31) simply keeps running. It does not: **0 matches, 22 misses**.
+The forward pointer would be at week 19, which does not exist; the Luke section
+has 16. That is precisely *why* there is a gap to fill.
+
+### 4. The app is not producing noise here — it applies the proven rule
+
+This is the finding that changes the recommendation. `tools/greek/surplus_app_rule.py`
+checks whether the app extends the back-anchor backward — b-4 = week 13,
+b-5 = week 12, continuing 16/15/14 outward:
+
+        302 surplus days checked, 302 follow the extended rule. 100%.
+
+So the app is not wrong-by-accident in the surplus region. It applies the
+natural, coherent continuation of the rule that is *proven* correct for
+b-1/b-2/b-3 (289/289). GOA instead stops counting backward and starts
+repeating weeks.
+
+### Why no rule was derived, and why that is probably fine
+
+GOA's surplus fill is reproducible — configurations 11 years apart agree
+exactly — but varies by `(lukan_jump, triodion_start, Nativity weekday)` with
+no derivable logic. Across the harvested long cycles it variously repeats week
+15, repeats week 14, alternates 14/15, reaches back to week 12, or switches to
+the Matthew section (A15/A16). No formula fits.
+
+A lookup table keyed on those three values *would* be deterministic and
+year-independent, so it would satisfy this document's standing constraint. It
+was rejected anyway: there are **~20 distinct long-season configurations**, only
+12 of which are harvestable from cycles near enough to matter — the rest first
+occur in 2118, 2132, 2172, 2189. Those are deep in goarch.org's uncurated
+range, which is exactly where their generator is demonstrably unreliable (two
+cycles in thirty put Triodion on the wrong Sunday; 2035 prints Publican and
+Pharisee twice). Fitting a table to that would be encoding someone else's
+fallback code, including entries we cannot check.
+
+**Recommendation: leave the app as it is, and document the divergence.** The
+cost is real and should not be minimised — the app knowingly differs from the
+chosen source of truth on ~6.5 days a year. But the alternative is replacing a
+coherent extension of a proven rule with a fitted table derived from the least
+trustworthy part of the source. If this is revisited, the harvest is now cheap:
+`tools/greek/surplus_map.py` and one `__daily()` call per cycle (see
+`tools/greek/README.md`), and `data/goarch_daily_long_cycles.txt` holds full
+daily Gospels for three clean long cycles to start from.
+
+**The deterministic portion is therefore complete**: the Luke-section weekday
+cycle is back-anchored to Triodion and counts backward 16, 15, 14, 13, 12; the
+app implements exactly that; weeks 16/15/14 are confirmed against GOA at
+289/289, and 13/12 are the rule's own continuation, where GOA substitutes
+repeats.

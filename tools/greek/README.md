@@ -44,3 +44,16 @@ Kanonion horizon they are pure algorithm, which makes them a clean oracle for
 the *reading cycle* — but their pre-Lenten labels carry real errors (see
 `pp_align.py`, and 2035, where they print "Publican and Pharisee" on two
 consecutive Sundays).
+
+## Surplus-week investigation
+
+| question | script |
+|---|---|
+| how many days a year fall in the surplus region | `surplus_impact.py` |
+| per-cycle map of weeks-before-Triodion -> week read | `surplus_map.py` |
+| is the surplus the forward pointer still running? (no: 0/22) | `surplus_forward.py` |
+| does the app extend the back-anchor backward? (yes: 302/302) | `surplus_app_rule.py` |
+
+`data/goarch_daily_long_cycles.txt` holds full daily Gospels for three clean
+long cycles. To add more, use the `__daily()` harvester described above — one
+browser call per cycle returns a whole Jan-Mar window compactly.
