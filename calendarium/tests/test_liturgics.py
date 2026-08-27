@@ -1520,3 +1520,52 @@ class TestGreekAnnualOrdoGospels(TestCase):
         pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
         await pday.ainitialize()
         self.assertEqual(pday.ordo_readings.get('Gospel'), greek.pdist)
+
+
+class TestGreekMenaionReadings(TestCase):
+    """Greek-tradition Menaion readings the app was missing.
+
+    Each was found by comparing the app against goarch.org *and*
+    antiochian.org: on these dates the two sources agree and the app differed
+    from both, so they are Greek-tradition gaps rather than jurisdictional
+    ones. Each is confirmed across multiple independent years of harvest --
+    see docs/greek-lectionary.md for the counts.
+
+    They are additive `greek` rows. Where a `common` row already held the slot
+    it stays, so Slavic is unaffected; that is asserted below rather than
+    assumed, because two of these override a common Gospel.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # (month, day, source, expected for Greek, expected for Slavic or None if
+    # Slavic has no row of its own there)
+    CASES = [
+        (4, 25, 'Gospel', 'Luke 10.16-21', 'Mark 6.7-13'),                   # Mark the Apostle
+        (4, 30, 'Gospel', 'Luke 9.1-6', 'Luke 5.1-11'),                      # James the Apostle
+        (7, 13, 'Epistle', 'Heb 2.2-10', None),                              # Synaxis of Gabriel
+        (8, 31, 'Epistle', 'Heb 9.1-7', None),                               # Placing of the Sash
+        (8, 31, 'Gospel', 'Luke 10.38-42, 11.27-28', None),                  # Placing of the Sash
+        (12, 17, 'Epistle', 'Heb 11.33-12.2', None),                         # Three Youths
+    ]
+
+    async def test_greek_gets_the_menaion_reading(self):
+        for month, day, source, greek, _ in self.CASES:
+            with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
+                pday = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                found = [r.pericope.sdisplay
+                         for r in await pday.aget_readings() if r.source == source]
+                self.assertIn(greek, found)
+
+    async def test_slavic_is_unaffected(self):
+        for month, day, source, greek, slavic in self.CASES:
+            with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
+                pday = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
+                await pday.ainitialize()
+                found = [r.pericope.sdisplay
+                         for r in await pday.aget_readings() if r.source == source]
+                self.assertNotIn(greek, found)
+                if slavic is not None:
+                    # the common row it overrides for Greek still stands here
+                    self.assertIn(slavic, found)

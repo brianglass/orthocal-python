@@ -44115,6 +44115,96 @@
   }
 },
 {
+  "model": "calendarium.reading",
+  "pk": 1800,
+  "fields": {
+    "month": 4,
+    "day": 25,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Mark",
+    "pericope": 255,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1801,
+  "fields": {
+    "month": 4,
+    "day": 30,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St James",
+    "pericope": 243,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1802,
+  "fields": {
+    "month": 7,
+    "day": 13,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Synaxis of Archangel Gabriel",
+    "pericope": 754,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1803,
+  "fields": {
+    "month": 8,
+    "day": 31,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Placing of the Sash of the Theotokos",
+    "pericope": 771,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1804,
+  "fields": {
+    "month": 8,
+    "day": 31,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Placing of the Sash of the Theotokos",
+    "pericope": 259,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1805,
+  "fields": {
+    "month": 12,
+    "day": 17,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Daniel and the Three Youths",
+    "pericope": 783,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
   "model": "calendarium.pericope",
   "pk": 1,
   "fields": {

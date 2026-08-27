@@ -11,7 +11,7 @@ which hypotheses are already dead; some of its early sections are superseded
 and are marked as such.
 
 Last measured 2026-08-27: against goarch.org over calendar 2026, the app is
-**correct on 323 of 336 days (96.1%)**.
+**correct on 330 of 336 days (98.2%)**.
 
 ---
 
@@ -104,27 +104,33 @@ are all implemented and recorded in Part III.
 
 Ranked by how much they cost a reader:
 
-1. **The eleven shared bugs.** Days where goarch.org *and* antiochian.org agree
-   and the app differs from both -- so they are Greek-tradition defects, not
-   jurisdictional ones. This is most of the remaining 13-day gap.
-   `tools/greek/three_way.py` produces the list.
-2. **The surplus weeks.** In long seasons (`triodion_start >= 308`, about one
+1. **The surplus weeks.** In long seasons (`triodion_start >= 308`, about one
    year in five) there are more weeks before Triodion than the back-anchored
    tail covers. The app extends the tail backward (weeks 13, 12), consistently
    -- 302 of 302 days. GOA instead repeats weeks, reproducibly but with no
    derivable rule. **~6.5 days a year, 68% of cycles.** Deliberately left alone:
    see Part III.
-3. **Jan 3 (Forefeast of Theophany).** Genuinely inconsistent across every
+2. **Jan 3 (Forefeast of Theophany).** Genuinely inconsistent across every
    sampled year; all five obtainable samples are already in hand.
-4. **`SatAfterNativityFriday`** (Dec 31, only when Nativity falls on a
+3. **`SatAfterNativityFriday`** (Dec 31, only when Nativity falls on a
    Saturday, roughly one year in seven).
-5. **Royal Hours.** Four-part services neither source's feed can express.
+4. **Royal Hours.** Four-part services neither source's feed can express.
 
 ## Accuracy, measured
 
 | | days compared | correct |
 |---|---|---|
-| app(Greek) vs goarch.org, calendar 2026 | 336 | **323 (96.1%)** |
+| app(Greek) vs goarch.org, calendar 2026 | 336 | **330 (98.2%)** |
+
+The six remaining, all corroborated as real by both sources:
+
+| date | what |
+|---|---|
+| 2026-04-10 | Holy Friday -- the Royal Hours structure, which neither feed expresses |
+| 2026-05-07 | a Paschal-season Epistle-cycle difference, not yet investigated |
+| 2026-07-05 | Athanasius of Athos' Epistle -- only one year of evidence, deliberately not added |
+| 2026-09-24 | the source itself splits 2/2 on the Gospel, so there is nothing to add |
+| 2026-12-30, 12-31 | the surplus weeks |
 
 There is no equivalent Antiochian tradition: one was built, measured and
 removed -- see Part III.
@@ -1827,3 +1833,61 @@ weeks; the rest are missing or wrong fixed-feast readings. Unlike the
 Antiochian work, that is not blocked by a source horizon -- goarch.org is
 sampleable to 2060 and antiochian.org corroborates. `tools/greek/three_way.py`
 produces the list.
+
+---
+
+## Shared bugs: six Greek Menaion readings added (2026-08-27)
+
+`tools/greek/three_way.py` compares the app against both sources at once and
+splits its errors into two piles that need different fixes: dates where the two
+sources **agree** and the app differs from both (a Greek-tradition defect), and
+dates where the sources **disagree** (jurisdictional). For calendar 2026 the
+split was 11 shared against 3 jurisdictional, with 3 more turning out to be
+artifacts of the comparison rather than real.
+
+Working the shared pile needed one methodological correction. Grouping the
+differences by calendar date conflates a fixed saint with the moveable feasts
+that periodically outrank it: April 25 is Mark the Apostle in five harvested
+years, and Holy Thursday, Palm Sunday or Renewal Monday in the other three.
+`tools/greek/classify_shared.py` groups by what actually fell on the date each
+year, which makes the fixed readings visible.
+
+Six rows added, all `greek`-tagged and additive, each confirmed across multiple
+independent years of antiochian.org harvest **and** corroborated by goarch.org
+for 2026:
+
+| date | source | reading | evidence |
+|---|---|---|---|
+| Apr 25 | Gospel | `Luke 10.16-21` | Mark the Apostle, 5/5 years carrying that commemoration |
+| Apr 30 | Gospel | `Luke 9.1-6` | James the Apostle, 2/2 |
+| Jul 13 | Epistle | `Heb 2.2-10` | Synaxis of Gabriel, 4/5 (the exception is a Sunday) |
+| Aug 31 | Epistle | `Heb 9.1-7` | Placing of the Sash, 5/5 |
+| Aug 31 | Gospel | `Luke 10.38-42, 11.27-28` | Placing of the Sash, 4/5 |
+| Dec 17 | Epistle | `Heb 11.33-12.2` | Daniel and the Three Youths, 7/8 |
+
+Every pericope already existed; no new `Pericope` rows were needed. Two of
+these (Apr 25 and Apr 30) override an existing `common` Gospel for the Greek
+tradition while leaving it in place for Slavic --
+`TestGreekMenaionReadings.test_slavic_is_unaffected` asserts that rather than
+assuming it.
+
+**Result: 96.1% -> 98.2% against goarch.org over a full year**, 13 wrong days
+down to 6.
+
+### Deliberately not added
+
+- **Jul 5 (Athanasius of Athos)**, Epistle `Gal 5:22-26; 6:1-2`. Only one
+  harvested year carries the commemoration; the rest are outranked. Below this
+  project's two-year bar.
+- **Sep 24**, Gospel. The source itself splits 2/2 between `Luke 5:12-16` and
+  `Luke 10:38-42, 11:27-28`, so there is no fixed value to carry. The Epistle
+  there is already correct.
+
+### A note on the audits themselves
+
+Two of the "differences" in the first run were the comparison's fault, not the
+app's: `goa_gap.py` did not handle single-chapter books, so every Jude citation
+failed to canonicalise. Fixing it moved the figure from 97.6% to 98.2% without
+touching any data. When a gap analysis reports a suspiciously round pile of
+errors in one book or one season, suspect the canonicaliser first -- an earlier
+pass in this document reported 87.9% differing for exactly this reason.

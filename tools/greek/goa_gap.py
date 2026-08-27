@@ -15,7 +15,7 @@ from calendarium.liturgics import Day
 from calendarium.datetools import Tradition
 
 BOOKS = [
-    ('MATT', r'MATTHEW|MATT'), ('MARK', r'MARK'), ('LUKE', r'LUKE'), ('JOHN', r'JOHN'),
+    ('PHLM', r'PHILEMON|PHLM'), ('MATT', r'MATTHEW|MATT'), ('MARK', r'MARK'), ('LUKE', r'LUKE'), ('JOHN', r'JOHN'),
     ('ACTS', r'ACTS'), ('ROM', r'ROMANS|ROM'), ('COR', r'CORINTHIANS|COR'),
     ('GAL', r'GALATIANS|GAL'), ('EPH', r'EPHESIANS|EPH'), ('PHIL', r'PHILIPPIANS|PHIL'),
     ('COL', r'COLOSSIANS|COL'), ('THESS', r'THESSALONIANS|THESS'), ('TIM', r'TIMOTHY|TIM'),
@@ -38,8 +38,19 @@ def canon(s):
         m = re.search(r'\b(I{1,3}|[123])\s*$', u[:pos].strip() + ' ')
         if m:
             o = m.group(1) if m.group(1).isdigit() else str(len(m.group(1)))
-    m = re.search(r'(\d+):(\d+)', u[pos:])
-    return f'{o}{book}{m.group(1)}:{m.group(2)}' if m else ''
+    if book in ('JUDE', 'PHLM'):
+        o = ''       # antiochian.org writes "St. Jude's FIRST Universal Letter"
+    tail = u[pos:]
+    m = re.search(r'(\d+):(\d+)', tail)
+    if m:
+        return f'{o}{book}{m.group(1)}:{m.group(2)}'
+    # Jude and Philemon have one chapter; this repo cites them without it
+    # ("Jude 11-25") where the sources write "1:11-25".
+    if book in ('JUDE', 'PHLM'):
+        m = re.search(r'(\d+)', tail)
+        if m:
+            return f'{o}{book}1:{m.group(1)}'
+    return ''
 
 def near(a, b):
     if a == b: return True
