@@ -73,3 +73,8 @@ GOA publishes a new Kanonion; the table is currently good through January 2027.
 `load_ordo.py` populates `models.OrdoReading` for both jurisdictions and prints
 the two commands needed to regenerate `fixtures/calendarium.json`. Run it after
 re-harvesting when a new annual ordo is published.
+
+`harvest_dates.py` fills in specific calendar dates across years from
+antiochian.org's API. The standing harvest is winter-weighted, so a fixed date
+elsewhere in the year can have too few samples to confirm a Menaion reading;
+this is the cheapest way to get them. Edit `TARGETS`/`YEARS` and run it.

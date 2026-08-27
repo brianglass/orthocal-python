@@ -1898,7 +1898,7 @@ assuming it.
 Three of the remaining differences looked like moveable-cycle problems or had
 too little evidence. All three turned out to be fixed Menaion readings whose
 evidence was simply missing, because the standing harvest is winter-weighted.
-`scratch_harvest_dates.py` pulls specific calendar dates across years from
+`tools/greek/harvest_dates.py` pulls specific calendar dates across years from
 antiochian.org's API -- worth reaching for whenever a date has too few samples,
 since the API is unrestricted within its horizon and this took one run.
 
