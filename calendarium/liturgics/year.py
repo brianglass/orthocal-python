@@ -561,7 +561,7 @@ class GreekYear(ByzantineYear):
     # Theophany and the Triodion" and was never checked against a real n=5
     # year. Rebuilt from scratch against real antiochian.org data across 4
     # independent years (2022=n4, 2018=n5, 2020=n6, 2023=n7 -- see
-    # docs/greek-weekday-drift.md for the full derivation) -- this revealed
+    # docs/greek-lectionary.md for the full derivation) -- this revealed
     # the n=5 entry above was simply wrong (real 2018 data: 12th, 15th,
     # *16th* of Matthew, 17th of Matthew/"Canaanite Woman" -- not 12th,
     # 14th, 15th, 17th), and confirmed a clean, monotonic insertion pattern
@@ -594,15 +594,36 @@ class GreekYear(ByzantineYear):
     #
     # n=7 is handled separately -- see theophany_interpolation below --
     # because of the Leavetaking-of-Theophany-falls-on-Sunday special case.
-    _THEOPHANY_INTERPOLATION = {
-        0: (),
-        1: (),
-        2: (),
-        3: ((None, 12),),
-        4: ((None, 12), (None, 15)),
-        5: ((None, 12), (None, 15), ('matthew', 16)),
-        6: ((None, 12), (None, 14), (None, 15), ('matthew', 16)),
-    }
+    #
+    # SUPERSEDED (2026-08-26). The keyed-on-n table above was correct only for
+    # the (n, availability) combinations that happened to appear in the
+    # antiochian.org charts it was built from. The sequence is not a function
+    # of n alone: it also depends on **which Lukan Sunday numbers the autumn
+    # actually consumed**. lukan_sunday_numbers leaves either {12, 14, 15} or
+    # {12, 15} unassigned depending on the year, and the interpolation is
+    # filled from whatever is left. Concretely, the old table was wrong for
+    # n=5 when 14 was still free (real: 12th, 14th, 15th of Luke) and for n=6
+    # when it was not (real: 12th, 15th of Luke, 15th, 16th of Matthew).
+    #
+    # Replaced by the pool below: drop any Lukan number the autumn already
+    # used, take the first (regular_extra_sundays - 2) survivors in this
+    # inclusion priority, then read them out in ascending order -- Lukan
+    # numbers first, then Matthean. Verified against goarch.org across 25
+    # cycles with zero exceptions (3 further cycles are unobservable because a
+    # fixed feast claims a slot; 2 more are excluded as GOA data errors, where
+    # their own "Triodion Begins Today" contradicts their own Paschalion --
+    # see docs/greek-lectionary.md).
+    #
+    # Note this admits the 15th of Matthew, which the old table never used.
+    # It needs no new data: _matthew_sunday_target(15) is pdist 154, which
+    # already carries Matt 22.35-46 as a `common` row.
+    _INTERPOLATION_PRIORITY = (
+        (None, 12),
+        (None, 15),
+        (None, 14),
+        ('matthew', 16),
+        ('matthew', 15),
+    )
 
     @staticmethod
     def _lukan_sunday_target(n):
@@ -676,6 +697,27 @@ class GreekYear(ByzantineYear):
             n -= 1
         return n
 
+
+
+    @cached_property
+    def interpolation_sequence(self):
+        """The (book, n) assignments filling the Sundays between Theophany and
+        Triodion, in the order they are read.
+
+        See _INTERPOLATION_PRIORITY. The pool is the priority list minus every
+        Lukan number the autumn already used, truncated to the number of slots
+        available (regular_extra_sundays, less the Sunday after Theophany and
+        the Canaanite Woman / Zacchaeus boundary), then sorted back into
+        reading order.
+        """
+        used = {n for n in self.lukan_sunday_numbers.values() if n}
+        pool = [
+            entry for entry in self._INTERPOLATION_PRIORITY
+            if entry[0] == 'matthew' or entry[1] not in used
+        ]
+        chosen = pool[:max(self.regular_extra_sundays - 2, 0)]
+        return tuple(sorted(chosen, key=lambda entry: (entry[0] == 'matthew', entry[1])))
+
     @cached_property
     def theophany_interpolation(self):
         """Map the pdist of each interpolated Sunday (after the Sunday after
@@ -706,7 +748,7 @@ class GreekYear(ByzantineYear):
         if n != self.greek_extra_sundays:
             leading = (('direct', FloatIndex.SunAfterTheophany),)
 
-        entries = leading + self._THEOPHANY_INTERPOLATION.get(n, ())
+        entries = leading + self.interpolation_sequence
         result = {}
         pdist = self.sun_after_theophany + 7
         for book, val in entries:

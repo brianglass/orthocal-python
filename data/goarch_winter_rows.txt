@@ -1,0 +1,215 @@
+2011-01-16|12th Sunday of Luke|Luke 17:12-19
+2011-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2011-01-23|14th Sunday of Luke|Luke 18:35-43
+2011-01-24|Monday of the 14th Week|Matthew 25:14-30
+2011-01-26|Wednesday of the 14th Week|Luke 19:1-10
+2011-02-04|Friday of the 15th Week|Mark 12:1-12
+2011-02-05|Saturday of the 15th Week|Luke 17:3-10
+2011-02-07|Monday of the 16th Week|Mark 12:13-17
+2011-02-09|Wednesday of the 16th Week|Mark 12:28-37
+2011-02-12|Saturday of the 16th Week|Luke 18:2-8
+2012-01-15|12th Sunday of Luke|Luke 17:12-19
+2012-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2012-01-22|15th Sunday of Luke|Luke 19:1-10
+2012-01-24|Tuesday of the 15th Week|Matthew 22:35-46
+2012-01-26|Thursday of the 15th Week|Matthew 25:14-30
+2012-02-04|Saturday of the 16th Week|Luke 18:2-8
+2013-01-19|Macarius the Great of Egypt|Matthew 6:22-33
+2013-01-20|12th Sunday of Luke|Luke 17:12-19
+2013-01-24|Thursday of the 15th Week|Matthew 22:2-14
+2013-01-26|Saturday of the 15th Week|Mark 1:1-8
+2013-01-27|15th Sunday of Luke|Luke 19:1-10
+2013-02-03|15th Sunday of Matthew|Matthew 22:35-46
+2013-02-04|Monday of the 14th Week|Mark 9:42-50; 10:1
+2013-02-05|Tuesday of the 14th Week|Mark 10:2-12
+2013-02-07|Thursday of the 14th Week|Mark 10:17-27
+2013-02-09|Saturday of the 14th Week|Luke 16:10-15
+2013-02-10|16th Sunday of Matthew|Matthew 25:14-30
+2013-02-12|Tuesday of the 15th Week|Mark 11:11-23
+2013-02-13|Wednesday of the 15th Week|Mark 11:22-26
+2013-02-14|Thursday of the 15th Week|Mark 11:27-33
+2013-02-15|Friday of the 15th Week|Mark 12:1-12
+2013-02-16|Saturday of the 15th Week|Luke 17:3-10
+2013-02-18|Monday of the 16th Week|Mark 12:13-17
+2013-02-19|Tuesday of the 16th Week|Mark 12:18-27
+2013-02-20|Wednesday of the 16th Week|Mark 12:28-37
+2014-01-19|12th Sunday of Luke|Luke 17:12-19
+2014-01-24|Friday of the 14th Week|Matthew 6:22-33
+2014-01-26|15th Sunday of Luke|Luke 19:1-10
+2014-02-04|Tuesday of the 16th Week|Mark 12:18-27
+2014-02-05|Wednesday of the 16th Week|Mark 12:28-37
+2014-02-07|Friday of the 16th Week|Mark 13:1-8
+2015-01-18|12th Sunday of Luke|Luke 17:12-19
+2015-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2015-01-24|Saturday of the 15th Week|Luke 18:35-43
+2015-01-25|15th Sunday of Luke|Luke 19:1-10
+2015-01-26|Monday of Publican and Pharisee|Mark 12:13-17
+2016-01-17|12th Sunday of Luke|Luke 17:12-19
+2016-01-19|Macarius the Great of Egypt|Matthew 9:27-35
+2016-01-24|14th Sunday of Luke|Luke 18:35-43
+2016-01-26|Tuesday of the 15th Week|Matthew 22:35-46
+2016-01-31|15th Sunday of Luke|Luke 19:1-10
+2016-02-04|Thursday of the 14th Week|Mark 10:17-27
+2016-02-05|Friday of the 14th Week|Mark 10:24-32
+2016-02-07|16th Sunday of Matthew|Matthew 25:14-30
+2016-02-09|Tuesday of the 15th Week|Mark 11:11-23
+2016-02-12|Friday of the 15th Week|Mark 12:1-12
+2016-02-13|Saturday of the 15th Week|Luke 17:3-10
+2016-02-15|Monday of the 16th Week|Mark 12:13-17
+2016-02-16|Tuesday of the 16th Week|Mark 12:18-27
+2016-02-18|Thursday of the 16th Week|Mark 12:38-44
+2016-02-19|Friday of the 16th Week|Mark 13:1-8
+2016-02-20|Saturday of the 16th Week|Luke 18:2-8
+2017-01-15|12th Sunday of Luke|Luke 17:12-19
+2017-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2017-01-22|15th Sunday of Luke|Luke 19:1-10
+2017-01-24|Tuesday of the 15th Week|Matthew 21:33-42
+2017-01-26|Thursday of the 15th Week|Matthew 22:2-14
+2017-02-04|Saturday of the 16th Week|Luke 18:2-8
+2018-01-19|Macarius the Great of Egypt|Matthew 22:35-46
+2018-01-21|15th Sunday of Luke|Luke 19:1-10
+2018-01-24|Wednesday of the 16th Week|Mark 12:28-37
+2018-01-26|Friday of the 16th Week|Mark 13:1-8
+2019-01-19|Macarius the Great of Egypt|Matthew 8:5-13
+2019-01-20|12th Sunday of Luke|Luke 17:12-19
+2019-01-24|Thursday of the 15th Week|Matthew 9:27-35
+2019-01-26|Saturday of the 15th Week|Matthew 22:35-46
+2019-01-27|15th Sunday of Luke|Luke 19:1-10
+2019-02-03|16th Sunday of Matthew|Matthew 25:14-30
+2019-02-04|Monday of the 15th Week|Mark 10:46-52
+2019-02-05|Tuesday of the 15th Week|Mark 11:11-23
+2019-02-07|Thursday of the 15th Week|Mark 11:27-33
+2019-02-09|Saturday of the 15th Week|Luke 17:3-10
+2019-02-12|Tuesday of the 16th Week|Mark 12:18-27
+2019-02-13|Wednesday of the 16th Week|Mark 12:28-37
+2019-02-14|Thursday of the 16th Week|Mark 12:38-44
+2019-02-15|Friday of the 16th Week|Mark 13:1-8
+2019-02-16|Saturday of the 16th Week|Luke 18:2-8
+2020-01-19|12th Sunday of Luke|Luke 17:12-19
+2020-01-24|Friday of the 14th Week|Matthew 22:2-14
+2020-01-26|15th Sunday of Luke|Luke 19:1-10
+2020-02-04|Tuesday of the 16th Week|Mark 12:18-27
+2020-02-05|Wednesday of the 16th Week|Mark 12:28-37
+2020-02-07|Friday of the 16th Week|Mark 13:1-8
+2021-01-17|12th Sunday of Luke|Luke 17:12-19
+2021-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2021-01-24|14th Sunday of Luke|Luke 18:35-43
+2021-01-26|Tuesday of the 15th Week|Matthew 22:35-46
+2021-01-31|15th Sunday of Luke|Luke 19:1-10
+2021-02-04|Thursday of the 14th Week|Mark 10:17-27
+2021-02-05|Friday of the 14th Week|Mark 10:24-32
+2021-02-07|16th Sunday of Matthew|Matthew 25:14-30
+2021-02-09|Tuesday of the 15th Week|Mark 11:11-23
+2021-02-12|Friday of the 15th Week|Mark 12:1-12
+2021-02-13|Saturday of the 15th Week|Luke 17:3-10
+2021-02-15|Monday of the 16th Week|Mark 12:13-17
+2021-02-16|Tuesday of the 16th Week|Mark 12:18-27
+2021-02-18|Thursday of the 16th Week|Mark 12:38-44
+2021-02-19|Friday of the 16th Week|Mark 13:1-8
+2021-02-20|Saturday of the 16th Week|Luke 18:2-8
+2022-01-16|12th Sunday of Luke|Luke 17:12-19
+2022-01-19|Macarius the Great of Egypt|Matthew 21:33-42
+2022-01-23|14th Sunday of Luke|Luke 18:35-43
+2022-01-24|Monday of the 14th Week|Matthew 22:2-14
+2022-01-26|Wednesday of the 14th Week|Matthew 22:35-46
+2022-02-04|Friday of the 15th Week|Mark 12:1-12
+2022-02-05|Saturday of the 15th Week|Luke 17:3-10
+2022-02-07|Monday of the 16th Week|Mark 12:13-17
+2022-02-09|Wednesday of the 16th Week|Mark 12:28-37
+2022-02-12|Saturday of the 16th Week|Luke 18:2-8
+2023-01-15|12th Sunday of Luke|Luke 17:12-19
+2023-01-19|Macarius the Great of Egypt|Matthew 22:2-14
+2023-01-22|15th Sunday of Luke|Luke 19:1-10
+2023-01-24|Tuesday of the 15th Week|Matthew 22:35-46
+2023-01-26|Thursday of the 15th Week|Matthew 25:14-30
+2023-02-04|Saturday of the 16th Week|Luke 18:2-8
+2024-01-19|Macarius the Great of Egypt|Matthew 9:1-8
+2024-01-21|12th Sunday of Luke|Luke 17:12-19
+2024-01-24|Wednesday of the 15th Week|Matthew 14:22-34
+2024-01-26|Friday of the 15th Week|Matthew 22:2-14
+2024-01-28|15th Sunday of Luke|Luke 19:1-10
+2024-02-04|15th Sunday of Matthew|Matthew 22:35-46
+2024-02-05|Monday of the 14th Week|Mark 9:42-50; 10:1
+2024-02-07|Wednesday of the 14th Week|Mark 10:11-16
+2024-02-09|Friday of the 14th Week|Mark 10:24-32
+2024-02-11|16th Sunday of Matthew|Matthew 25:14-30
+2024-02-12|Monday of the 15th Week|Mark 10:46-52
+2024-02-13|Tuesday of the 15th Week|Mark 11:11-23
+2024-02-14|Wednesday of the 15th Week|Mark 11:22-26
+2024-02-15|Thursday of the 15th Week|Mark 11:27-33
+2024-02-19|Monday of the 16th Week|Mark 12:13-17
+2024-02-20|Tuesday of the 16th Week|Mark 12:18-27
+2025-01-19|12th Sunday of Luke|Luke 17:12-19
+2025-01-24|Friday of the 14th Week|Matthew 6:22-33
+2025-01-26|15th Sunday of Luke|Luke 19:1-10
+2025-02-04|Tuesday of the 16th Week|Mark 12:18-27
+2025-02-05|Wednesday of the 16th Week|Mark 12:28-37
+2025-02-07|Friday of the 16th Week|Mark 13:1-8
+2026-01-18|12th Sunday of Luke|Luke 17:12-19
+2026-01-19|Macarius the Great of Egypt|Matthew 22:35-46
+2026-01-24|Saturday of the 15th Week|Luke 18:35-43
+2026-01-25|15th Sunday of Luke|Luke 19:1-10
+2026-01-26|Monday of Publican and Pharisee|Mark 12:13-17
+2027-01-17|12th Sunday of Luke|Luke 17:12-19
+2027-01-19|Macarius the Great of Egypt|Matthew 9:27-35
+2027-01-24|14th Sunday of Luke|Luke 18:35-43
+2027-01-26|Tuesday of the 15th Week|Matthew 22:35-46
+2027-01-31|15th Sunday of Luke|Luke 19:1-10
+2027-02-04|Thursday of the 14th Week|Mark 10:17-27
+2027-02-05|Friday of the 14th Week|Mark 10:24-32
+2027-02-07|16th Sunday of Matthew|Matthew 25:14-30
+2027-02-09|Tuesday of the 15th Week|Mark 11:11-23
+2027-02-12|Friday of the 15th Week|Mark 12:1-12
+2027-02-13|Saturday of the 15th Week|Luke 17:3-10
+2027-02-15|Monday of the 16th Week|Mark 12:13-17
+2027-02-16|Tuesday of the 16th Week|Mark 12:18-27
+2027-02-18|Thursday of the 16th Week|Mark 12:38-44
+2027-02-19|Friday of the 16th Week|Mark 13:1-8
+2027-02-20|Saturday of the 16th Week|Luke 18:2-8
+2028-01-16|12th Sunday of Luke|Luke 17:12-19
+2028-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2028-01-23|15th Sunday of Luke|Luke 19:1-10
+2028-01-24|Monday of the 15th Week|Mark 10:46-52
+2028-01-26|Wednesday of the 15th Week|Mark 11:22-26
+2028-02-04|Friday of the 16th Week|Mark 13:1-8
+2028-02-05|Saturday of the 16th Week|Luke 18:2-8
+2029-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2029-01-21|15th Sunday of Luke|Luke 19:1-10
+2029-01-24|Wednesday of the 16th Week|Mark 12:28-37
+2029-01-26|Friday of the 16th Week|Mark 13:1-8
+2030-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2030-01-20|12th Sunday of Luke|Luke 17:12-19
+2030-01-24|Thursday of the 15th Week|Mark 11:27-33
+2030-01-26|Saturday of the 15th Week|Luke 17:3-10
+2030-01-27|15th Sunday of Luke|Luke 19:1-10
+2030-02-03|16th Sunday of Matthew|Matthew 25:14-30
+2030-02-04|Monday of the 15th Week|Mark 10:46-52
+2030-02-05|Tuesday of the 15th Week|Mark 11:11-23
+2030-02-07|Thursday of the 15th Week|Mark 11:27-33
+2030-02-09|Saturday of the 15th Week|Luke 17:3-10
+2030-02-12|Tuesday of the 16th Week|Mark 12:18-27
+2030-02-13|Wednesday of the 16th Week|Mark 12:28-37
+2030-02-14|Thursday of the 16th Week|Mark 12:38-44
+2030-02-15|Friday of the 16th Week|Mark 13:1-8
+2030-02-16|Saturday of the 16th Week|Luke 18:2-8
+2031-01-19|15th Sunday of Luke|Luke 19:1-10
+2031-01-24|Friday of the 15th Week|Mark 12:1-12
+2031-01-26|Sunday of the Publican and Pharisee: Triodion Begins Today|Luke 18:10-14
+2032-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2032-01-24|Saturday of the 14th Week|Luke 16:10-15
+2032-01-26|Monday of the 15th Week|Mark 10:46-52
+2033-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2033-01-24|Monday of the 14th Week|Mark 9:42-50; 10:1
+2033-01-26|Wednesday of the 14th Week|Mark 10:11-16
+2034-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2034-01-24|Tuesday of Publican and Pharisee|Mark 12:18-27
+2034-01-26|Thursday of Publican and Pharisee|Mark 12:38-44
+2035-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2035-01-24|16th Wednesday after Pentecost|Mark 7:14-24
+2035-01-26|16th Friday after Pentecost|Mark 8:1-10
+2036-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2036-01-24|Thursday of the 14th Week|Mark 10:17-27
+2036-01-26|Saturday of the 14th Week|Luke 16:10-15
+2037-01-19|Macarius the Great of Egypt|Matthew 19:16-26
+2037-01-24|Saturday of the 16th Week|Luke 18:2-8
+2037-01-26|Monday of Prodigal Son|Mark 13:9-13

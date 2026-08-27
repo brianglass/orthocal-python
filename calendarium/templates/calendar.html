@@ -26,14 +26,18 @@
 		</div>
 
 		<div class="toggle-row" hx-params="none">
-			<div class="segmented-control">
-				<label title="OCA, ROCOR"><input type="radio" name="tradition" value="slavic" {% if tradition == "slavic" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Slavic</label>
-				<label title="Antiochian, Greek Archdiocese"><input type="radio" name="tradition" value="greek" {% if tradition == "greek" %}checked=""{% endif %} hx-get="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Greek</label>
-			</div>
-			<div class="segmented-control">
-				<label><input type="radio" name="calendar" value="gregorian" {% if cal == "gregorian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="gregorian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Gregorian</label>
-				<label><input type="radio" name="calendar" value="julian" {% if cal == "julian" %}checked=""{% endif %} hx-get="{% url "calendar" tradition=tradition cal="julian" year=this_month.year month=this_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Julian</label>
-			</div>
+			<label class="toggle-picker" title="Liturgical tradition">
+				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+					<option value="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "slavic" %}selected{% endif %} title="OCA, ROCOR">Slavic</option>
+					<option value="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "greek" %}selected{% endif %} title="Antiochian, Greek Archdiocese">Greek</option>
+				</select>
+			</label>
+			<label class="toggle-picker" title="Calendar">
+				<select name="calendar" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+					<option value="{% url "calendar" tradition=tradition cal="gregorian" year=this_month.year month=this_month.month %}" {% if cal == "gregorian" %}selected{% endif %}>Gregorian</option>
+					<option value="{% url "calendar" tradition=tradition cal="julian" year=this_month.year month=this_month.month %}" {% if cal == "julian" %}selected{% endif %}>Julian</option>
+				</select>
+			</label>
 		</div>
 	</div>
 {% endblock extra_nav %}

@@ -584,13 +584,15 @@ class TestGreekLukanNumbering(TestCase):
                 self.assertEqual(pyear.lukan_sunday_numbers.get(pdist), expected)
 
     def test_theophany_interpolation(self):
-        # Each confirmed against real antiochian.org harvest data for the
-        # specific cycle year named -- see docs/greek-weekday-drift.md for
-        # the full derivation. The n=5 case corrects a table entry that had
-        # never been checked against a real n=5 year (it was transcribed
-        # from a source that only covered n<=5 in the abstract); n=6 and
-        # n=7 were previously entirely missing (crashed -- see
-        # TestReadingsView.test_greek_extra_sundays_overflow_does_not_500).
+        # Confirmed against real harvest data for the specific cycle year
+        # named -- see docs/greek-lectionary.md for the full derivation.
+        #
+        # Source of truth changed 2026-08-26: `greek` now means GOA, so these
+        # are checked against goarch.org. The four cycles below that predate
+        # that decision (2025, 2018, 2020 here) are unaffected -- GOA and
+        # antiochian.org agree on them. The 2023 cycle is the one place the
+        # two sources genuinely diverge, and it now carries GOA's answer;
+        # see the comment there.
 
         # 2025 cycle (n=3): 12th of Luke. (The following Sunday, Jan 25,
         # would be "15th of Luke" in the old table, but that's the row's
@@ -631,9 +633,40 @@ class TestGreekLukanNumbering(TestCase):
         self.assertEqual(pyear.theophany_interpolation[jan31], (None, 15))
         self.assertEqual(pyear.theophany_interpolation[feb7], ('matthew', 16))
 
+        # 2010 cycle (n=5, but the autumn left the 14th of Luke free): 12th,
+        # 14th, 15th of Luke. The old keyed-on-n table gave 12th, 15th, 16th
+        # of Matthew here -- correct only for the *other* n=5 shape, where
+        # the autumn had already used the 14th. Confirmed against goarch.org
+        # (2011-01-16, -23, -30); the third slot is claimed that year by the
+        # Three Hierarchs, but the assignment underneath is still made.
+        pyear = liturgics.GreekYear(2010)
+        self.assertEqual(pyear.regular_extra_sundays, 5)
+        self.assertEqual(
+            pyear.interpolation_sequence,
+            ((None, 12), (None, 14), (None, 15)),
+        )
+
+        # 2012 cycle (n=6, and the autumn *had* used the 14th of Luke): 12th,
+        # 15th of Luke, then 15th and 16th of Matthew. The old table gave
+        # 12th, 14th, 15th, 16th here. Confirmed against goarch.org
+        # (2013-01-20, -27, 2013-02-03, -10). This is the only shape that
+        # reaches the 15th of Matthew.
+        pyear = liturgics.GreekYear(2012)
+        self.assertEqual(pyear.regular_extra_sundays, 6)
+        self.assertEqual(
+            pyear.interpolation_sequence,
+            ((None, 12), (None, 15), ('matthew', 15), ('matthew', 16)),
+        )
+
         # 2023 cycle (n=7, and Leavetaking of Theophany -- Jan 14, 2024 --
         # falls on a Sunday that year): Leavetaking special case, then the
-        # exact same sequence as 2020's n=6 case.
+        # remaining slots.
+        #
+        # This is the one cycle in the sample where GOA and antiochian.org
+        # genuinely disagree. antiochian.org reads 14th then 15th of Luke on
+        # Jan 28 / Feb 4; GOA reads 15th of Luke then 15th of Matthew. Under
+        # the 2026-08-26 decision that `greek` means GOA, these assertions
+        # carry GOA's answer -- they previously carried Antiochian's.
         pyear = liturgics.GreekYear(2023)
         self.assertEqual(pyear.greek_extra_sundays, 7)
         self.assertEqual(
@@ -650,8 +683,8 @@ class TestGreekLukanNumbering(TestCase):
             ('direct', datetools.FloatIndex.SunAfterTheophany),
         )
         self.assertEqual(pyear.theophany_interpolation[jan21], (None, 12))
-        self.assertEqual(pyear.theophany_interpolation[jan28], (None, 14))
-        self.assertEqual(pyear.theophany_interpolation[feb4], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[jan28], (None, 15))
+        self.assertEqual(pyear.theophany_interpolation[feb4], ('matthew', 15))
         self.assertEqual(pyear.theophany_interpolation[feb11], ('matthew', 16))
 
     def test_canaanite_woman_applies(self):
@@ -1317,3 +1350,325 @@ class TestDay(TestCase):
         greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
         await greek.ainitialize()
         self.assertNotIn('St Raphael Bishop of Brooklyn', greek.feasts)
+
+
+class TestGreekPreTriodionWeekdayCycle(TestCase):
+    """The Greek Luke-section weekday cycle is anchored to the *end* of the
+    season, not to the Lukan jump.
+
+    The three weeks immediately preceding Triodion always read Luke-section
+    weeks 14, 15 and 16, in that order, whatever the year's `lukan_jump`.
+    Confirmed against goarch.org across 22 independent cycles: 145/145
+    observations for the last week, 96/96 for the second-last, 48/48 for the
+    third-last -- 289 in total, zero exceptions, spanning every jump value
+    from 0 through 35.  See docs/greek-lectionary.md.
+
+    This documents behaviour the app already gets right; the test exists so a
+    future change to the Greek weekday logic cannot silently break it.  The
+    surplus weeks *before* this three-week tail (only reachable in the longest
+    seasons) are a separate, still-unsolved case and are deliberately not
+    asserted here.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # Luke-section week -> weekday (Mon=0) -> Gospel, in this project's own
+    # `Pericope.sdisplay` notation.  Week 14 Friday is `Mark 10.23-32` where
+    # goarch.org prints `Mark 10:24-32` -- one of the known one-verse
+    # citation-boundary variants, not a discrepancy.
+    LUKE_SECTION_TAIL = {
+        14: {0: 'Mark 9.42-10.1', 1: 'Mark 10.2-12', 2: 'Mark 10.11-16',
+             3: 'Mark 10.17-27', 4: 'Mark 10.23-32', 5: 'Luke 16.10-15'},
+        15: {0: 'Mark 10.46-52', 1: 'Mark 11.11-23', 2: 'Mark 11.22-26',
+             3: 'Mark 11.27-33', 4: 'Mark 12.1-12', 5: 'Luke 17.3-10'},
+        16: {0: 'Mark 12.13-17', 1: 'Mark 12.18-27', 2: 'Mark 12.28-37',
+             3: 'Mark 12.38-44', 4: 'Mark 13.1-8', 5: 'Luke 18.2-8'},
+    }
+
+    # Spread deliberately across every reachable `lukan_jump` so a formula
+    # that happened to work for one jump size cannot pass.
+    DATES = [
+        # jump 0
+        (2038, 1, 26), (2038, 2, 4), (2038, 2, 5), (2038, 2, 9), (2038, 2, 12),
+        (2038, 2, 13),
+        # jump 7
+        (2030, 2, 14), (2030, 2, 15), (2030, 2, 16), (2032, 2, 4), (2032, 2, 5),
+        (2032, 2, 7), (2032, 2, 13), (2032, 2, 16), (2035, 2, 7), (2065, 1, 26),
+        (2084, 2, 4),
+        # jump 14
+        (2037, 1, 24), (2040, 2, 7), (2040, 2, 13), (2040, 2, 14), (2040, 2, 15),
+        (2040, 2, 16), (2040, 2, 18), (2040, 2, 20), (2040, 2, 21), (2040, 2, 23),
+        (2059, 2, 5), (2059, 2, 7), (2059, 2, 14), (2078, 2, 7), (2078, 2, 12),
+        # jump 21
+        (2039, 1, 24), (2039, 1, 26), (2039, 2, 4), (2039, 2, 5), (2042, 1, 24),
+        # jump 28
+        (2031, 1, 24), (2033, 1, 24), (2033, 1, 26), (2033, 2, 5), (2033, 2, 7),
+        (2036, 1, 24), (2036, 1, 26), (2036, 2, 5), (2036, 2, 7), (2044, 1, 26),
+        (2044, 2, 4),
+        # jump 35
+        (2041, 1, 24), (2041, 1, 26), (2041, 2, 4), (2041, 2, 5), (2041, 2, 7),
+        (2041, 2, 9), (2052, 1, 24), (2052, 1, 26), (2052, 2, 7), (2052, 2, 9),
+    ]
+
+    @staticmethod
+    def weeks_before_triodion(dt):
+        """Which week before Triodion `dt` falls in: -1 is the last one.
+
+        Triodion (Sunday of the Publican and Pharisee) is always exactly 70
+        days before Pascha, so the Monday opening the Triodion week is at
+        pdist -69 and everything here can be derived from Pascha alone.
+        """
+        pdist = datetools.gregorian_to_jdn(dt) - datetools.compute_pascha_jdn(dt.year)
+        return (pdist + 69) // 7
+
+    async def test_last_three_weeks_before_triodion_read_luke_weeks_14_15_16(self):
+        for year, month, day in self.DATES:
+            dt = date(year, month, day)
+            back = self.weeks_before_triodion(dt)
+            with self.subTest(date=dt.isoformat(), weeks_before_triodion=back):
+                self.assertIn(back, (-3, -2, -1))
+                expected = self.LUKE_SECTION_TAIL[17 + back][dt.weekday()]
+
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                self.assertIn(expected, gospels)
+
+
+class TestGreekAnnualOrdoGospels(TestCase):
+    """Jan 19, 24 and 26 take their Gospel from the year's ordo, not from any
+    computable cycle.
+
+    These dates carry venerable-monastic commemorations whose Menaion entries
+    supply an Epistle but no proper Gospel. That the Gospel is genuinely not
+    computable was established from goarch.org itself: past their published
+    Kanonion horizon their own software stops assigning these days and falls
+    back to a commons Gospel, which matches the curated ordo in 1 of 15
+    sampled years. See docs/greek-lectionary.md.
+
+    `GreekYear._GREEK_ORDO_GOSPEL` is therefore a deliberate per-year data
+    overlay -- the only one in this codebase.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # (year, month, day, expected Gospel), transcribed from goarch.org.
+    # Deliberately spread across years whose ordo picks very different
+    # Matthean Sundays, so a formula fitted to one shape cannot pass.
+    ORDO = [
+        (2013, 1, 19, 'Matt 6.22-33'),      # 3rd of Matthew -- far from any cycle position
+        (2016, 1, 19, 'Matt 9.27-35'),      # 7th
+        (2019, 1, 19, 'Matt 8.5-13'),       # 4th
+        (2022, 1, 19, 'Matt 21.33-42'),     # 13th
+        (2023, 1, 24, 'Matt 22.35-46'),     # 15th
+        (2023, 1, 26, 'Matt 25.14-30'),     # 16th
+        (2024, 1, 19, 'Matt 9.1-8'),        # 6th
+        (2024, 1, 24, 'Matt 14.22-34'),     # 9th
+        (2026, 1, 19, 'Matt 22.35-46'),     # 15th
+        (2027, 1, 19, 'Matt 9.27-35'),      # 7th
+    ]
+
+    async def test_ordo_gospel_replaces_the_cycle_reading(self):
+        for year, month, day, expected in self.ORDO:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                gospels = [r for r in await pday.aget_readings() if r.source == 'Gospel']
+                displays = [r.pericope.sdisplay for r in gospels]
+
+                self.assertIn(expected, displays)
+
+                # The ordo replaces the cycle Gospel rather than standing
+                # beside it. The only thing that may also appear is the other
+                # jurisdiction's ordo reading, and that always carries a label
+                # saying whose it is -- see TestOrdoJurisdictionLabels.
+                for reading in gospels:
+                    if reading.pericope.sdisplay != expected:
+                        self.assertEqual(reading.desc, 'Antiochian Archdiocese')
+
+    async def test_slavic_is_untouched_by_the_greek_ordo(self):
+        # SlavicYear has no ordo hook at all; these dates must still resolve
+        # through the ordinary Pascha-relative computation.
+        for year, month, day, greek_gospel in self.ORDO:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                self.assertNotIn(greek_gospel, gospels)
+
+    async def test_outside_the_published_range_the_ordinary_cycle_stands(self):
+        # The overlay must not silently extend past what GOA has published.
+        pday = liturgics.Day(2036, 1, 24, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        self.assertEqual(pday.ordo_readings, {})
+
+    async def test_antiochian_rows_are_inert_for_the_greek_tradition(self):
+        # Both jurisdictions' ordos are stored, but a tradition only ever reads
+        # its own. The two agree on 14 of the 18 dates they share; 2021-01-19
+        # is one where they do not -- goarch.org assigns Matthew 22:2-14,
+        # antiochian.org Matthew 19:16-26.
+        greek = await models.OrdoReading.objects.aget(
+                jurisdiction='greek', year=2021, month=1, day=19, source='Gospel')
+        antiochian = await models.OrdoReading.objects.aget(
+                jurisdiction='antiochian', year=2021, month=1, day=19, source='Gospel')
+        self.assertNotEqual(greek.pdist, antiochian.pdist)
+
+        pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        self.assertEqual(pday.ordo_readings.get('Gospel'), greek.pdist)
+
+
+class TestGreekMenaionReadings(TestCase):
+    """Greek-tradition Menaion readings the app was missing.
+
+    Each was found by comparing the app against goarch.org *and*
+    antiochian.org: on these dates the two sources agree and the app differed
+    from both, so they are Greek-tradition gaps rather than jurisdictional
+    ones. Each is confirmed across multiple independent years of harvest --
+    see docs/greek-lectionary.md for the counts.
+
+    They are additive `greek` rows. Where a `common` row already held the slot
+    it stays, so Slavic is unaffected; that is asserted below rather than
+    assumed, because two of these override a common Gospel.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    # (month, day, source, reading Greek must now have, what Slavic must have)
+    #
+    # The Slavic column is explicit per case rather than "must not contain the
+    # Greek reading", because the three situations differ:
+    #   a citation  -- Slavic keeps its own reading, which the Greek row
+    #                  overrides for Greek only
+    #   SHARED      -- both traditions read the same thing; the row existed but
+    #                  was tagged `slavic`, so Greek was falling through to the
+    #                  cycle
+    #   ABSENT      -- Slavic has no Menaion reading here at all
+    SHARED, ABSENT = 'shared', 'absent'
+    CASES = [
+        (4, 25, 'Gospel', 'Luke 10.16-21', 'Mark 6.7-13'),                   # Mark the Apostle
+        (4, 30, 'Gospel', 'Luke 9.1-6', 'Luke 5.1-11'),                      # James the Apostle
+        (5, 7, 'Epistle', 'Acts 26.1-5, 12-20', ABSENT),                     # Appearance of the Cross
+        (7, 5, 'Epistle', 'Gal 5.22-6.2', SHARED),                           # Athanasius of Athos
+        (7, 5, 'Gospel', 'Matt 11.27-30', 'Luke 6.17-23'),                   # Athanasius of Athos
+        (7, 13, 'Epistle', 'Heb 2.2-10', ABSENT),                            # Synaxis of Gabriel
+        (8, 31, 'Epistle', 'Heb 9.1-7', ABSENT),                             # Placing of the Sash
+        (8, 31, 'Gospel', 'Luke 10.38-42, 11.27-28', ABSENT),                # Placing of the Sash
+        (9, 24, 'Gospel', 'Luke 10.38-42, 11.27-28', 'Luke 21.12-19'),       # Theotokos Myrtidiotissa
+        (12, 17, 'Epistle', 'Heb 11.33-12.2', ABSENT),                       # Three Youths
+    ]
+
+    # 2026 is the reference year, but a few of these fall on a Sunday there,
+    # where the Sunday reading outranks the Menaion one. Use a year in which
+    # each date is an ordinary weekday.
+    YEARS = {(7, 5): 2024, (9, 24): 2024}
+
+    async def test_greek_gets_the_menaion_reading(self):
+        for month, day, source, greek, _ in self.CASES:
+            with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
+                year = self.YEARS.get((month, day), 2026)
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                found = [r.pericope.sdisplay
+                         for r in await pday.aget_readings() if r.source == source]
+                self.assertIn(greek, found)
+
+    async def test_slavic_is_unaffected(self):
+        for month, day, source, greek, slavic in self.CASES:
+            with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
+                year = self.YEARS.get((month, day), 2026)
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                await pday.ainitialize()
+                found = [r.pericope.sdisplay
+                         for r in await pday.aget_readings() if r.source == source]
+                if slavic == self.SHARED:
+                    self.assertIn(greek, found)
+                elif slavic == self.ABSENT:
+                    self.assertNotIn(greek, found)
+                else:
+                    # Slavic keeps its own reading; the Greek row overrode it
+                    # only for Greek
+                    self.assertNotIn(greek, found)
+                    self.assertIn(slavic, found)
+
+
+class TestOrdoJurisdictionLabels(TestCase):
+    """Where the two ordos disagree, show both and say which is which.
+
+    The Greek and Antiochian annual ordos assign different readings on a
+    handful of dates a year. Rather than silently serving one jurisdiction's
+    answer to everyone, both are shown, each labelled -- the same treatment
+    this project already gives a saint's reading standing beside the cycle's.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def gospels(self, year, month, day, tradition=Tradition.Greek):
+        pday = liturgics.Day(year, month, day, tradition=tradition)
+        await pday.ainitialize()
+        return [(r.pericope.sdisplay, r.desc)
+                for r in await pday.aget_readings() if r.source == 'Gospel']
+
+    async def labelled_gospels(self, year, month, day):
+        """(reading, short label, full label) -- the two forms the page uses."""
+        pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        return [(r.pericope.sdisplay, getattr(r, 'short_desc', ''), r.desc)
+                for r in await pday.aget_readings() if r.source == 'Gospel']
+
+    async def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
+        cases = [
+            (2021, 1, 19, 'Matt 22.1-14', 'Matt 19.16-26'),
+            (2021, 1, 26, 'Matt 22.35-46', 'Mark 11.11-23'),
+            (2024, 1, 19, 'Matt 9.1-8', 'Matt 19.16-26'),
+            (2026, 1, 24, 'Luke 18.35-43', 'Mark 5.24-34'),
+        ]
+        for year, month, day, greek, antiochian in cases:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                self.assertEqual(
+                        await self.gospels(year, month, day),
+                        [(greek, 'Greek Archdiocese'),
+                         (antiochian, 'Antiochian Archdiocese')])
+
+    async def test_labels_have_a_short_and_a_full_form(self):
+        # The reference index at the top of the page is tight, so it uses the
+        # short form; the passage heading further down, and the API, use the
+        # full one.
+        self.assertEqual(
+                await self.labelled_gospels(2021, 1, 19),
+                [('Matt 22.1-14', 'GOA', 'Greek Archdiocese'),
+                 ('Matt 19.16-26', 'Antiochian', 'Antiochian Archdiocese')])
+
+    async def test_ordinary_readings_have_no_short_form(self):
+        # Everything else falls back to desc in both places, so the template's
+        # `short_desc|default:desc` must find nothing to override.
+        pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        others = [r for r in await pday.aget_readings()
+                  if r.desc and r.source != 'Gospel']
+        self.assertTrue(others, 'expected at least one other described reading')
+        for reading in others:
+            self.assertEqual(getattr(reading, 'short_desc', ''), '')
+
+    async def test_no_label_when_the_ordos_agree(self):
+        # Naming a jurisdiction is only meaningful against another one. When
+        # both publish the same reading there is nothing to contrast.
+        self.assertEqual(await self.gospels(2023, 1, 24), [('Matt 22.35-46', '')])
+
+    async def test_no_label_when_only_one_jurisdiction_published(self):
+        # antiochian.org's feed does not reach before 2018, so earlier dates
+        # have a Greek row and no counterpart. Those show plainly.
+        self.assertEqual(await self.gospels(2013, 1, 19), [('Matt 6.22-33', '')])
+
+    async def test_slavic_sees_none_of_this(self):
+        displays = [d for d, _ in await self.gospels(2021, 1, 19, Tradition.Slavic)]
+        self.assertNotIn('Matt 22.1-14', displays)
+        self.assertNotIn('Matt 19.16-26', displays)

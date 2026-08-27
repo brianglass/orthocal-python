@@ -128,3 +128,49 @@ class Pericope(models.Model):
 class Composite(models.Model):
     composite_num = models.SmallIntegerField(primary_key=True)
     content = models.TextField()
+
+
+class OrdoReading(models.Model):
+    """A reading assigned by a jurisdiction's published annual ordo.
+
+    A small set of days carry commemorations whose Menaion entries supply one
+    reading but not the other, leaving the empty slot to whatever that year's
+    ordo assigns. Those assignments are not computable from any cycle -- see
+    docs/greek-lectionary.md, which establishes it directly: past its
+    published Kanonion horizon goarch.org's own software stops assigning these
+    days and falls back to a commons reading, which matches the curated ordo in
+    1 of 15 sampled years.
+
+    So this is a deliberate per-year overlay, the only one in this project. It
+    is small (a couple of dates per jurisdiction per year) and bounded, and it
+    needs extending as each jurisdiction publishes its annual ordo. Rows are
+    keyed by calendar date rather than pdist because that is how an ordo is
+    published.
+
+    `pdist` points at the Reading rows to use instead of whatever the cycle
+    would have selected, so the ordo *replaces* the computed reading rather
+    than being listed beside it, and no synthetic Reading rows are needed.
+    """
+
+    jurisdiction = models.CharField(max_length=16, choices=[
+        ('greek', 'Greek (GOA)'),
+        ('antiochian', 'Antiochian'),
+    ])
+    year = models.SmallIntegerField()
+    month = models.SmallIntegerField()
+    day = models.SmallIntegerField()
+    source = models.CharField(max_length=64)   # 'Gospel' or 'Epistle'
+    pdist = models.SmallIntegerField()
+    note = models.CharField(max_length=255, blank=True, default='')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=('jurisdiction', 'year', 'month', 'day', 'source'),
+                name='unique_ordo_reading',
+            ),
+        ]
+        indexes = [models.Index(fields=('jurisdiction', 'year', 'month', 'day'))]
+
+    def __str__(self):
+        return f'{self.jurisdiction} {self.year}-{self.month:02d}-{self.day:02d} {self.source} -> pdist {self.pdist}'

@@ -168,3 +168,44 @@ class TestCalendarView(TestCase):
         html = await render_calendar_html(request, 2022, 1, cal=Calendar.Julian)
         self.assertIn(now.strftime('%B'), html)
         self.assertIn('Nativity of Christ', html)
+
+
+class TestTraditionRouting(TestCase):
+    """Every tradition URL segment resolves, and the aliases track their principals.
+
+    `antiochian` and `goa` both alias the Greek tradition, and `oca` aliases
+    Slavic. An Antiochian tradition of its own was built and then removed --
+    see docs/greek-lectionary.md for why -- so these aliases must keep
+    behaving exactly as they always have.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_every_tradition_segment_resolves(self):
+        for segment in ('slavic', 'oca', 'greek', 'goa', 'antiochian'):
+            with self.subTest(segment=segment):
+                page = self.client.get(f'/readings/{segment}/gregorian/2021/1/19/')
+                self.assertEqual(page.status_code, 200)
+
+                api = self.client.get(f'/api/{segment}/gregorian/2021/1/19/')
+                self.assertEqual(api.status_code, 200)
+                self.assertIn('readings', api.json())
+
+    def test_aliases_track_their_principals(self):
+        for alias, principal in (('oca', 'slavic'), ('goa', 'greek'), ('antiochian', 'greek')):
+            with self.subTest(alias=alias):
+                self.assertEqual(
+                        self.client.get(f'/api/{alias}/gregorian/2021/1/19/').json(),
+                        self.client.get(f'/api/{principal}/gregorian/2021/1/19/').json())
+
+    def test_picker_offers_both_traditions(self):
+        response = self.client.get('/readings/greek/gregorian/2021/1/19/')
+        self.assertContains(response, '>Slavic</option>')
+        self.assertContains(response, 'selected title="Antiochian, Greek Archdiocese">Greek</option>')
+        self.assertNotContains(response, '>Antiochian<')
+
+    def test_greek_ordo_gospel_is_served(self):
+        # The annual-ordo overlay is the substantive change this PR makes to
+        # what a reader actually sees on these dates.
+        response = self.client.get('/readings/greek/gregorian/2021/1/19/')
+        self.assertContains(response, 'Matthew 22.1-14')
