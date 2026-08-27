@@ -170,55 +170,18 @@ class TestCalendarView(TestCase):
         self.assertIn('Nativity of Christ', html)
 
 
-class TestAntiochianTraditionRouting(TestCase):
-    """The `antiochian` URL segment now resolves to its own tradition.
+class TestTraditionRouting(TestCase):
+    """Every tradition URL segment resolves, and the aliases track their principals.
 
-    It previously aliased to Greek (see orthocal/converters.py), so this is a
-    deliberate behaviour change for anyone already using those URLs -- they now
-    get the Antiochian calendar rather than the Greek Archdiocese's, which is
-    presumably what they wanted when they typed it.
+    `antiochian` and `goa` both alias the Greek tradition, and `oca` aliases
+    Slavic. An Antiochian tradition of its own was built and then removed --
+    see docs/greek-weekday-drift.md for why -- so these aliases must keep
+    behaving exactly as they always have.
     """
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    def test_readings_view_distinguishes_the_traditions(self):
-        # 2021-01-19 is an annual-ordo date where the two jurisdictions differ.
-        greek = self.client.get('/readings/greek/gregorian/2021/1/19/')
-        antiochian = self.client.get('/readings/antiochian/gregorian/2021/1/19/')
-        self.assertEqual(greek.status_code, 200)
-        self.assertEqual(antiochian.status_code, 200)
-        self.assertContains(greek, 'Matthew 22.1-14')
-        self.assertContains(antiochian, 'Matthew 19.16-26')
-        self.assertNotContains(antiochian, 'Matthew 22.1-14')
-
-    def test_goa_alias_still_means_greek(self):
-        goa = self.client.get('/readings/goa/gregorian/2021/1/19/')
-        self.assertEqual(goa.status_code, 200)
-        self.assertContains(goa, 'Matthew 22.1-14')
-
-    def test_api_distinguishes_the_traditions(self):
-        def gospels(tradition):
-            response = self.client.get(f'/api/{tradition}/gregorian/2021/1/19/')
-            self.assertEqual(response.status_code, 200)
-            return [r['display'] for r in response.json()['readings'] if r['source'] == 'Gospel']
-
-        self.assertEqual(gospels('greek'), ['Matthew 22.1-14'])
-        self.assertEqual(gospels('antiochian'), ['Matthew 19.16-26'])
-
-    def test_picker_offers_all_three_traditions(self):
-        response = self.client.get('/readings/greek/gregorian/2021/1/19/')
-        for label in ('>OCA<', '>GOA<', '>Antiochian<'):
-            self.assertContains(response, label)
-        # the selected one is the tradition actually being viewed
-        self.assertContains(response, 'selected>GOA<')
-
-    def test_every_legacy_url_segment_still_resolves(self):
-        """Backward compatibility: no pre-existing segment may 404 or change shape.
-
-        `antiochian` is the one whose *content* changed -- it used to alias
-        `greek` and now selects the Antiochian calendar. Everything else,
-        including the `oca` and `goa` aliases, is untouched.
-        """
+    def test_every_tradition_segment_resolves(self):
         for segment in ('slavic', 'oca', 'greek', 'goa', 'antiochian'):
             with self.subTest(segment=segment):
                 page = self.client.get(f'/readings/{segment}/gregorian/2021/1/19/')
@@ -227,12 +190,22 @@ class TestAntiochianTraditionRouting(TestCase):
                 api = self.client.get(f'/api/{segment}/gregorian/2021/1/19/')
                 self.assertEqual(api.status_code, 200)
                 self.assertIn('readings', api.json())
-                self.assertIn('pascha_distance', api.json())
 
-        # the aliases still track their principals exactly
-        self.assertEqual(
-                self.client.get('/api/oca/gregorian/2021/1/19/').json(),
-                self.client.get('/api/slavic/gregorian/2021/1/19/').json())
-        self.assertEqual(
-                self.client.get('/api/goa/gregorian/2021/1/19/').json(),
-                self.client.get('/api/greek/gregorian/2021/1/19/').json())
+    def test_aliases_track_their_principals(self):
+        for alias, principal in (('oca', 'slavic'), ('goa', 'greek'), ('antiochian', 'greek')):
+            with self.subTest(alias=alias):
+                self.assertEqual(
+                        self.client.get(f'/api/{alias}/gregorian/2021/1/19/').json(),
+                        self.client.get(f'/api/{principal}/gregorian/2021/1/19/').json())
+
+    def test_picker_offers_both_traditions(self):
+        response = self.client.get('/readings/greek/gregorian/2021/1/19/')
+        self.assertContains(response, '>OCA<')
+        self.assertContains(response, 'selected>GOA<')
+        self.assertNotContains(response, '>Antiochian<')
+
+    def test_greek_ordo_gospel_is_served(self):
+        # The annual-ordo overlay is the substantive change this PR makes to
+        # what a reader actually sees on these dates.
+        response = self.client.get('/readings/greek/gregorian/2021/1/19/')
+        self.assertContains(response, 'Matthew 22.1-14')

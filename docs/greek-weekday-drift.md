@@ -2103,3 +2103,79 @@ which is wrong but no worse than before. Re-harvest goarch.org, then
 `tools/greek/load_ordo.py` repopulates the table and `dumpdata` regenerates
 `fixtures/calendarium.json` -- see that script's docstring for the two
 commands.
+
+## Antiochian as its own tradition: built, measured, removed
+
+A selectable Antiochian tradition was implemented in full -- `Tradition.Antiochian`,
+`AntiochianYear`/`AntiochianDay`, a tradition lineage so it inherited Greek's
+rows, the URL converter, the UI picker, the API -- and then reverted. The
+measurements that killed it are worth keeping, because the idea is an obvious
+one to have again.
+
+### The gap is mostly not Antiochian
+
+`tools/greek/antiochian_gap.py` and `tools/greek/goa_gap.py` measure each
+tradition against its own source over a complete year (2026, the only year with
+a full harvest of both):
+
+| | days compared | wrong |
+|---|---|---|
+| app(Greek) vs goarch.org | 336 | **13** (96.1% correct) |
+| app(Antiochian) vs antiochian.org | 365 | **16** |
+
+`tools/greek/three_way.py` then splits those 16 by asking what goarch.org says
+on the same date:
+
+- **11 are shared bugs** -- goarch.org agrees with antiochian.org and the app
+  differs from *both*. These are Greek-tradition defects; fixing them helps
+  every tradition.
+- **3 are audit artifacts** -- Holy Week, where antiochian.org lists the Matins
+  and Liturgy Gospels while goarch.org lists one. The app has both and is right.
+- **3 looked genuinely jurisdictional.**
+
+So an Antiochian user switching from Greek to Antiochian would have gained
+about one day a year.
+
+### And the three jurisdictional ones are not stable rules
+
+Each was checked across the whole harvest rather than trusting the 2026
+snapshot. None survives:
+
+- **Feb 6** -- Photius in **6 of 7 harvested years**; Julian of Homs only in
+  2026. A row keyed on this date would be wrong six years in seven. (The
+  "Implemented (final pass)" section above had already flagged 2026 as the lone
+  exception here; this confirms it.)
+- **Jun 14** -- Elisseus, then the Apodosis of Pentecost, then the 2nd Sunday of
+  Matthew across years. `Acts 11:19-30` appears in 2026 only because the date
+  fell on a Sunday; it is the Sunday *cycle* Epistle, where GOA reckons
+  `Rom 2:10`. It is not a patronal commemoration, which is what it looked like
+  from one year's data.
+- **Jan 26** -- the Epistle differs every single year. A cycle reading, not a
+  Menaion one.
+
+**There is no set of Antiochian-specific data rows to add.** The genuine
+jurisdictional differences live in the moveable cycles -- post-Pentecost
+Epistle numbering, and the weekday-section divergence documented earlier --
+and deriving those needs more years than antiochian.org serves (2018 through
+roughly one year ahead). That is the same horizon wall the surplus weeks hit.
+
+### What was kept
+
+- **The dropdowns and the OCA/GOA labels.** Independent UI improvements; the
+  traditions are now named for the jurisdictions the data actually came from.
+- **`models.OrdoReading`'s `jurisdiction` column and its 18 Antiochian rows.**
+  Nothing reads them -- no tradition maps to that jurisdiction any more. They
+  are correct transcriptions and are kept so that re-adding the tradition, if
+  antiochian.org's horizon ever widens, is a small change rather than a
+  re-harvest.
+- **API compatibility restored**: reverting the converter puts `antiochian`
+  back to aliasing `greek`, so no URL changed meaning after all.
+
+### What this points at instead
+
+The 11 shared bugs. The app is 96.1% against GOA over a full year, and those
+eleven days are most of the remainder. Two of them are the unsolved surplus
+weeks; the rest are missing or wrong fixed-feast readings. Unlike the
+Antiochian work, that is not blocked by a source horizon -- goarch.org is
+sampleable to 2060 and antiochian.org corroborates. `tools/greek/three_way.py`
+produces the list.

@@ -24,19 +24,6 @@ class Calendar(StrEnum):
 class Tradition(StrEnum):
     Slavic = 'slavic'
     Greek = 'greek'
-    Antiochian = 'antiochian'
-
-
-# Which data rows a tradition may use, in descending precedence. A tradition
-# inherits its parent's rows and overrides them where it has its own, so
-# Antiochian gets everything Greek has unless it says otherwise -- the two
-# share the ordinary lectionary and differ on only a handful of days a year
-# (see docs/greek-weekday-drift.md).
-TRADITION_LINEAGE = {
-    Tradition.Slavic: ('slavic', 'common'),
-    Tradition.Greek: ('greek', 'common'),
-    Tradition.Antiochian: ('antiochian', 'greek', 'common'),
-}
 
 def cal_session_key(tradition):
     """The calendar preference is remembered per-tradition, since Greek is

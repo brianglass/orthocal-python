@@ -29,7 +29,6 @@ class Day(models.Model):
         ('common', 'Common'),  # shared by all traditions (the default)
         ('slavic', 'Slavic-specific'),
         ('greek', 'Greek-specific'),
-        ('antiochian', 'Antiochian-specific'),
     ], default='common')
 
     def __str__(self):
@@ -70,7 +69,6 @@ class Reading(models.Model):
         ('common', 'Common'),  # shared by all traditions (the default)
         ('slavic', 'Slavic-specific'),
         ('greek', 'Greek-specific'),
-        ('antiochian', 'Antiochian-specific'),
     ], default='common')
 
     class Meta:

@@ -17,7 +17,7 @@
 
 	<p>Orthocal.info provides an RSS feed that can be used to embed the daily readings on your website or
 	used in an RSS feed reader. The default is the Slavic tradition, Gregorian calendar, but the Julian
-	calendar and the Greek and Antiochian traditions (both beta) are also available</p>
+	calendar and the Greek tradition (Antiochian, Greek Archdiocese; beta) are also available</p>
 
 	<blockquote><a href="{% url "rss-feed" %}">{% fullurl "rss-feed" %}</a></blockquote>
 	<blockquote><a href="{% url "rss-feed-cal" cal="gregorian" %}">{% fullurl "rss-feed-cal" cal="gregorian" %}</a></blockquote>
@@ -40,7 +40,7 @@
 
 	<blockquote><a href="{% url "ical" cal="julian" %}">{% fullurl "ical" cal="julian" %}</a></blockquote>
 
-	<p>For the Greek tradition (Greek Archdiocese; beta), new calendar:</p>
+	<p>For the Greek tradition (Antiochian, Greek Archdiocese; beta), new calendar:</p>
 
 	<blockquote><a href="{% url "ical" tradition="greek" cal="gregorian" %}">{% fullurl "ical" tradition="greek" cal="gregorian" %}</a></blockquote>
 

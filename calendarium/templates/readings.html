@@ -31,7 +31,6 @@
 				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
 					<option value="{% if translation %}{% url "readings" tradition="slavic" cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition="slavic" cal=cal year=date.year month=date.month day=date.day %}{% endif %}" {% if tradition == "slavic" %}selected{% endif %}>OCA</option>
 					<option value="{% if translation %}{% url "readings" tradition="greek" cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition="greek" cal=cal year=date.year month=date.month day=date.day %}{% endif %}" {% if tradition == "greek" %}selected{% endif %}>GOA</option>
-					<option value="{% if translation %}{% url "readings" tradition="antiochian" cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition="antiochian" cal=cal year=date.year month=date.month day=date.day %}{% endif %}" {% if tradition == "antiochian" %}selected{% endif %}>Antiochian</option>
 				</select>
 			</label>
 			<label class="toggle-picker" title="Calendar">

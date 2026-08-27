@@ -8,10 +8,10 @@ from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 
 from .. import datetools, models
-from ..datetools import Calendar, Tradition, TRADITION_LINEAGE, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
+from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 from commemorations.models import DayCommemoration
 
-from .year import SlavicYear, GreekYear, AntiochianYear
+from .year import SlavicYear, GreekYear
 
 logger = logging.getLogger(__name__)
 
@@ -20,13 +20,11 @@ logger = logging.getLogger(__name__)
 # that decision. Slavic has no overlay: its ordo days have not been surveyed.
 _ORDO_JURISDICTIONS = {
     Tradition.Greek: 'greek',
-    Tradition.Antiochian: 'antiochian',
 }
 
 _YEAR_CLASSES = {
     Tradition.Slavic: SlavicYear,
     Tradition.Greek: GreekYear,
-    Tradition.Antiochian: AntiochianYear,
 }
 
 # How many commemorations Day.minimal_saints keeps before truncating --
@@ -48,27 +46,22 @@ def _join_and(items):
 def _prefer_tradition(rows, tradition):
     """Resolve a mixed common/tradition-specific row list down to one row per slot.
 
-    A row takes precedence over another for the same (pdist, month, day,
-    source, ordering, desc) slot when it sits earlier in the tradition's
-    lineage -- so an 'antiochian' row beats a 'greek' one, which beats
-    'common'. No tradition is privileged; each just prefers the most specific
-    row available to it. See datetools.TRADITION_LINEAGE.
+    Rows tagged for the requested tradition take precedence over the shared
+    'common' row for the same (pdist, month, day, source, ordering, desc)
+    slot; this is symmetric for both traditions -- neither is privileged.
     """
-
-    lineage = TRADITION_LINEAGE[tradition]
-    rank = {name: i for i, name in enumerate(lineage)}
 
     kept = []
     slot_index = {}
 
     for row in rows:
-        if row.tradition not in rank:
+        if row.tradition not in (tradition, 'common'):
             continue
 
         slot = (row.pdist, row.month, row.day, row.source, row.ordering, row.desc)
 
         if slot in slot_index:
-            if rank[row.tradition] < rank[kept[slot_index[slot]].tradition]:
+            if row.tradition != 'common':
                 kept[slot_index[slot]] = row
         else:
             slot_index[slot] = len(kept)
@@ -102,20 +95,17 @@ def _prefer_tradition_days(rows, tradition):
     """Like _prefer_tradition, but for Day rows, which have no
     source/ordering/desc -- the slot is just (pdist, month, day)."""
 
-    lineage = TRADITION_LINEAGE[tradition]
-    rank = {name: i for i, name in enumerate(lineage)}
-
     kept = []
     slot_index = {}
 
     for row in rows:
-        if row.tradition not in rank:
+        if row.tradition not in (tradition, 'common'):
             continue
 
         slot = (row.pdist, row.month, row.day)
 
         if slot in slot_index:
-            if rank[row.tradition] < rank[kept[slot_index[slot]].tradition]:
+            if row.tradition != 'common':
                 kept[slot_index[slot]] = row
         else:
             slot_index[slot] = len(kept)
@@ -319,7 +309,7 @@ class Day:
         elevated feast_level/fast for that day."""
 
         query = DayCommemoration.objects.filter(
-            day_id__in=self._commemoration_day_ids, tradition__in=TRADITION_LINEAGE[self.tradition],
+            day_id__in=self._commemoration_day_ids, tradition__in=(self.tradition, 'common'),
         )
         if self.calendar == Calendar.Julian:
             query = query.exclude(new_style=True)
@@ -335,7 +325,7 @@ class Day:
             new_style_commemorations = [
                 dc async for dc in
                 DayCommemoration.objects.filter(
-                    day_id__in=civil_day_ids, new_style=True, tradition__in=TRADITION_LINEAGE[self.tradition],
+                    day_id__in=civil_day_ids, new_style=True, tradition__in=(self.tradition, 'common'),
                 )
                 .order_by('ordering')
             ] if civil_day_ids else []
@@ -585,7 +575,7 @@ class Day:
             subquery &= ~Q(desc='Theotokos')
 
         query |= subquery
-        query &= Q(tradition__in=TRADITION_LINEAGE[self.tradition])
+        query &= Q(tradition__in=(self.tradition, 'common'))
 
         # Generate the list of readings
 
@@ -653,7 +643,7 @@ class Day:
         if float_index := self.pyear.floats.get(self.pdist):
             query |= Q(pdist=float_index, source__in=['Epistle', 'Gospel'])
 
-        query &= Q(tradition__in=TRADITION_LINEAGE[self.tradition])
+        query &= Q(tradition__in=(self.tradition, 'common'))
 
         # Generate the list of readings.
         # Do select_related to avoid later synchronous foreign key lookup.
@@ -974,14 +964,7 @@ class GreekDay(Day):
             self.fast_exception = 1
 
 
-class AntiochianDay(GreekDay):
-    """Fasting is identical to GreekDay -- the two jurisdictions keep the same
-    fasting seasons and weekly pattern. Kept as its own class so the tradition
-    has a home if that ever diverges."""
-
-
 _DAY_CLASSES = {
     Tradition.Slavic: SlavicDay,
     Tradition.Greek: GreekDay,
-    Tradition.Antiochian: AntiochianDay,
 }
