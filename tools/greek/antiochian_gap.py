@@ -63,8 +63,19 @@ def canon(s):
         if m:
             tok = m.group(1)
             o = tok if tok.isdigit() else str(len(tok))
-    m = re.search(r'(\d+):(\d+)', u[pos:])
-    return f'{o}{book}{m.group(1)}:{m.group(2)}' if m else ''
+    if book in ('JUDE', 'PHLM'):
+        o = ''       # antiochian.org writes "St. Jude's FIRST Universal Letter"
+    tail = u[pos:]
+    m = re.search(r'(\d+):(\d+)', tail)
+    if m:
+        return f'{o}{book}{m.group(1)}:{m.group(2)}'
+    # Jude and Philemon have a single chapter, and this repo cites them without
+    # one ("Jude 11-25") where antiochian.org writes "JUDE 1:11-25".
+    if book in ('JUDE', 'PHLM'):
+        m = re.search(r'(\d+)', tail)
+        if m:
+            return f'{o}{book}1:{m.group(1)}'
+    return ''
 
 def near(a, b):
     if a == b: return True
@@ -143,9 +154,25 @@ async def main():
     ep_only = sum(1 for *_, e_ok, g_ok in misses if g_ok and not e_ok)
     gs_only = sum(1 for *_, e_ok, g_ok in misses if e_ok and not g_ok)
     print(f'  Epistle only: {ep_only}   Gospel only: {gs_only}   both: {len(misses) - ep_only - gs_only}')
-    print('\n  calendar 2026 in full (the only complete year):')
-    for dt, title, we, wg, ge, gg, e_ok, g_ok in [m for m in misses if m[0].year == 2026]:
+    # Group by (month, day): a difference that recurs on the same calendar date
+    # across years is a fixed-Menaion difference and can be carried as an
+    # antiochian-tagged row. One that appears in a single year is either a
+    # moveable-cycle effect or noise.
+    by_date = collections.defaultdict(list)
+    for dt, title, we, wg, ge, gg, e_ok, g_ok in misses:
+        by_date[(dt.month, dt.day)].append((dt.year, title, we, wg, ge, gg, e_ok, g_ok))
+
+    recurring = {k: v for k, v in by_date.items() if len(v) > 1}
+    oneoff = {k: v for k, v in by_date.items() if len(v) == 1}
+    print(f'\n  distinct calendar dates involved: {len(by_date)}'
+          f'  ({len(recurring)} recur across years, {len(oneoff)} appear once)\n')
+    print('  RECURRING -- candidates for antiochian-tagged fixed rows:')
+    for (m, d), rows in sorted(recurring.items()):
+        yrs = ','.join(str(r[0]) for r in rows)
+        _, title, we, wg, ge, gg, e_ok, g_ok = rows[0]
         flag = ('' if e_ok else 'E') + ('' if g_ok else 'G')
-        print(f'    {dt} {flag:<2} {title[:30]:<30} want E={we:<12} G={wg:<12} got E={ge} G={gg}')
+        consistent = len({(r[2], r[3]) for r in rows}) == 1
+        print(f'    {m:02d}-{d:02d} {flag:<2} x{len(rows)} [{yrs}] {"consistent" if consistent else "VARIES"}'
+              f'  {title[:26]:<26} want E={we:<11} G={wg:<11} got E={ge} G={gg}')
 
 asyncio.run(main())
