@@ -34,16 +34,42 @@ for r in Reading.objects.filter(source='Gospel').select_related('pericope'):
         index[k].append(r)
 
 def resolve(citation):
-    """The single ordinary pdist carrying this citation, or None."""
-    want = ref(citation)
+    """The single ordinary pdist carrying this citation, or None.
+
+    The opening chapter:verse must match within one -- the traditions differ by
+    a verse at a few pericope boundaries (this repo has `Matt 22.1-14` where
+    both jurisdictions print `22:2-14`, for instance). The *closing* reference
+    has to match within two as well. Without that second check a loose start
+    match picks up entirely different pericopes: `Mark 5:24-34` (the woman with
+    the issue of blood) and `Mark 5.22-24, 35-6.1` (Jairus' daughter) open two
+    verses apart and are not the same reading.
+    """
+    want, want_end = ref(citation), last_ref(citation)
     if not want:
         return None
     pdists = sorted({
         r.pdist for k, rs in index.items()
-        if k[0] == want[0] and k[1] == want[1] and abs(k[2] - want[2]) <= 2
-        for r in rs if 0 <= r.pdist < 500
+        if k[0] == want[0] and k[1] == want[1] and abs(k[2] - want[2]) <= 1
+        for r in rs
+        if 0 <= r.pdist < 500
+        and _end_matches(want_end, last_ref(r.pericope.sdisplay))
     })
     return pdists[0] if pdists else None
+
+
+def last_ref(s):
+    """The final chapter:verse (or bare verse) mentioned in a citation."""
+    s = (s or '').upper().replace('.', ':')
+    nums = re.findall(r'(\d+):(\d+)|(\d+)', s)
+    tail = [n for n in nums if any(n)]
+    if not tail:
+        return None
+    ch, v, bare = tail[-1]
+    return int(v) if v else int(bare)
+
+
+def _end_matches(a, b):
+    return a is None or b is None or abs(a - b) <= 2
 
 def goarch_rows():
     src = {}
