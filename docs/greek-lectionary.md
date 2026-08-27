@@ -104,12 +104,33 @@ are all implemented and recorded in Part III.
 
 Ranked by how much they cost a reader:
 
-1. **The surplus weeks.** In long seasons (`triodion_start >= 308`, about one
-   year in five) there are more weeks before Triodion than the back-anchored
-   tail covers. The app extends the tail backward (weeks 13, 12), consistently
-   -- 302 of 302 days. GOA instead repeats weeks, reproducibly but with no
-   derivable rule. **~6.5 days a year, 68% of cycles.** Deliberately left alone:
-   see Part III.
+1. **The unmodelled pointer suspension.** The app runs the Luke-section cycle
+   weekday-aligned and consistent with its own week label. GOA's content
+   pointer instead falls behind, because the Nativity/Theophany cluster
+   consumes days it never makes up -- the Typikon's "omission and repeat". The
+   app models no suspension at all, and that shows up in two places:
+
+   - **The surplus weeks**, after Leavetaking. In long seasons
+     (`triodion_start >= 308`, about one year in five) there are more weeks
+     before Triodion than the back-anchored tail covers. The app extends the
+     tail backward (weeks 13, 12), consistently -- 302 of 302 days. GOA
+     repeats weeks instead, reproducibly but with no derivable rule.
+     **~6.5 days a year, 68% of cycles.**
+   - **The last days of December**, before Theophany. Here GOA's content
+     disagrees with **its own label**: on 2026-12-30, labelled "Wednesday of
+     the 15th Week", it reads `Mark 10:17-27`, which is week 14's Thursday.
+     The app follows the label. Roughly **1-2 days a year**, and only when
+     Nativity falls late enough in the week for the cluster to eat the days --
+     Friday in 2026 and Saturday in 2021 both show it, Thursday in 2025 does
+     not.
+
+   Across the whole harvest, **13 Luke-section days have content contradicting
+   their own label**: 7 in January (the annual-ordo days, now fixed), 3 in
+   December and 1 in February (this suspension), and 2 in November 2020 that
+   look like source glitches rather than the mechanism.
+
+   Deliberately left alone -- see Part III for why the rule could not be
+   derived and why a configuration table was rejected.
 2. **Jan 3 (Forefeast of Theophany).** Genuinely inconsistent across every
    sampled year; all five obtainable samples are already in hand.
 3. **`SatAfterNativityFriday`** (Dec 31, only when Nativity falls on a
@@ -127,7 +148,7 @@ Three remain, and none is addressable from these sources:
 | date | what |
 |---|---|
 | 2026-04-10 | Holy Friday -- the Royal Hours structure, which neither feed expresses |
-| 2026-12-30, 12-31 | the surplus weeks |
+| 2026-12-30, 12-31 | the pointer suspension, in its pre-Theophany form. These are **not** the surplus weeks, which sit after Leavetaking; both are the same unmodelled mechanism in different parts of the season |
 
 There is no equivalent Antiochian tradition: one was built, measured and
 removed -- see Part III.
@@ -1573,7 +1594,11 @@ complete Antiochian harvest in the repo. The winter-window comparison across
 of magnitude, but a second full year would be needed before treating "about 4
 days" as a stable annual figure rather than a 2026 measurement.
 
-## The surplus weeks: mechanism identified, rule not derivable, app left alone
+## The pointer suspension: mechanism identified, rule not derivable, app left alone
+
+Originally written about the surplus weeks alone. The same mechanism has a
+second, earlier symptom -- see "The pre-Theophany symptom" at the end of
+this section.
 
 Picking this up after the interpolation fix, with a much larger goarch.org
 sample. Four findings, and the conclusion is the opposite of what the earlier
@@ -1915,3 +1940,38 @@ failed to canonicalise. Fixing it moved the figure from 97.6% to 98.2% without
 touching any data. When a gap analysis reports a suspiciously round pile of
 errors in one book or one season, suspect the canonicaliser first -- an earlier
 pass in this document reported 87.9% differing for exactly this reason.
+
+### The pre-Theophany symptom (correction, 2026-08-27)
+
+The surplus weeks are not the only place the missing suspension shows. An
+earlier revision of this document described the two remaining 2026
+differences -- 2026-12-30 and 2026-12-31 -- as "the surplus weeks". **They are
+not.** They sit at eight weeks before Triodion, in late December, *before*
+Theophany; the surplus weeks are after Leavetaking. Same mechanism, different
+part of the season.
+
+What happens there is that goarch.org's content disagrees with **its own
+label**:
+
+| date | GOA label | GOA reads | which is |
+|---|---|---|---|
+| 2026-12-30 (Wed) | Wednesday of the 15th Week | `Mark 10:17-27` | week 14 Thursday |
+| 2026-12-31 (Thu) | Thursday of the 15th Week | `Mark 10:24-32` | week 14 Friday |
+
+The app follows the label -- weekday-aligned and self-consistent, which is also
+what GOA's own labelling says. GOA's content pointer is running behind because
+the Nativity cluster consumed days it never made up.
+
+Frequency: **1-2 days a year**, and only when Nativity falls late enough in the
+week for the cluster to eat them. Nativity was a Friday in 2026 and a Saturday
+in 2021 and both show the lag; it was a Thursday in 2025, which does not.
+
+For scale, counting every Luke-section day in the harvest whose content
+contradicts its own label gives **13**: seven in January (the annual-ordo days,
+now carried as data), three in December and one in February (this), and two in
+November 2020 that look like source glitches rather than the mechanism.
+
+Note what this means for the "303 labelled days, zero exceptions" result
+earlier in this document: that finding is about the **label** being
+calendar-locked, which it is. The *content* can still diverge from the label,
+and these thirteen days are where it does.
