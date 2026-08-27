@@ -1,3 +1,4 @@
+import collections
 import logging
 
 from datetime import date, timedelta
@@ -20,6 +21,13 @@ logger = logging.getLogger(__name__)
 # that decision. Slavic has no overlay: its ordo days have not been surveyed.
 _ORDO_JURISDICTIONS = {
     Tradition.Greek: 'greek',
+}
+
+# Shown in parentheses beside a reading when the two jurisdictions' ordos
+# disagree, so it is clear whose practice each one is.
+_JURISDICTION_LABELS = {
+    'greek': 'Greek Archdiocese',
+    'antiochian': 'Antiochian',
 }
 
 _YEAR_CLASSES = {
@@ -161,6 +169,7 @@ class Day:
         # sync cached_property and must stay one -- can read it unconditionally
         # even if a caller skips ainitialize.
         self.ordo_readings = {}
+        self.ordo_alternatives = []
 
     async def ainitialize(self):
         """Do the expensive stuff here to keep it out of the constructor."""
@@ -174,22 +183,39 @@ class Day:
 
 
     async def _collect_ordo_readings(self):
-        """Load this date's annual-ordo overrides, if the tradition has any.
+        """Load this date's annual-ordo assignments.
 
         See models.OrdoReading. The lookup lives here rather than in
         gospel_pdist because that is a sync property and the DB access has to
         stay async; this is the same reason _collect_commemorations exists.
+
+        Both jurisdictions are loaded, not just this tradition's. Where they
+        disagree the other one is shown alongside, labelled -- see
+        _add_ordo_alternatives.
         """
 
         jurisdiction = _ORDO_JURISDICTIONS.get(self.tradition)
         if jurisdiction is None:
             return
 
+        by_jurisdiction = collections.defaultdict(dict)
         queryset = models.OrdoReading.objects.filter(
-                jurisdiction=jurisdiction,
-                year=self.year, month=self.month, day=self.day,
-        )
-        self.ordo_readings = {o.source: o.pdist async for o in queryset}
+                year=self.year, month=self.month, day=self.day)
+        async for ordo in queryset:
+            by_jurisdiction[ordo.jurisdiction][ordo.source] = ordo.pdist
+
+        self.ordo_readings = by_jurisdiction.get(jurisdiction, {})
+
+        # Only worth mentioning a jurisdiction by name when there is another
+        # one to contrast it with. A date only one of them has published --
+        # anything outside antiochian.org's 2018-onward window, for instance --
+        # is shown plainly.
+        self.ordo_alternatives = [
+            (other, source, pdist)
+            for other, readings in by_jurisdiction.items() if other != jurisdiction
+            for source, pdist in readings.items()
+            if self.ordo_readings.get(source) not in (None, pdist)
+        ]
 
     initialize = async_to_sync(ainitialize)
 
@@ -596,7 +622,49 @@ class Day:
             else:
                 self.readings.append(reading)
 
+        await self._add_ordo_alternatives(fetch_content)
+
         return self.readings
+
+    async def _add_ordo_alternatives(self, fetch_content=False):
+        """Show the other jurisdiction's annual-ordo reading alongside ours.
+
+        On a handful of dates a year the Greek and Antiochian ordos assign
+        different readings (see models.OrdoReading). Rather than silently
+        serving one jurisdiction's answer to everyone, show both and say which
+        is which -- the same "list every applicable reading, with a qualifier"
+        treatment this project already gives a saint's reading standing beside
+        the cycle's.
+
+        Nothing is written: the label is set on the in-memory Reading only.
+        """
+
+        if not self.ordo_alternatives:
+            return
+
+        ours = _ORDO_JURISDICTIONS.get(self.tradition)
+
+        for jurisdiction, source, pdist in self.ordo_alternatives:
+            queryset = models.Reading.objects.filter(
+                    pdist=pdist, source=source,
+                    tradition__in=(self.tradition, 'common'),
+            ).select_related('pericope').order_by('ordering')
+            alternative = await queryset.afirst()
+            if alternative is None:
+                continue
+
+            alternative.desc = _JURISDICTION_LABELS.get(jurisdiction, jurisdiction)
+            if fetch_content:
+                await alternative.pericope.aget_passage(
+                        language=self.language, translation=self.translation)
+
+            # Name ours too, so the pair reads as a contrast rather than as one
+            # plain reading and one oddly-labelled extra.
+            for reading in self.readings:
+                if reading.source == source and reading.pdist == self.ordo_readings.get(source):
+                    reading.desc = _JURISDICTION_LABELS.get(ours, ours)
+
+            self.readings.append(alternative)
 
     get_readings = async_to_sync(aget_readings)
 

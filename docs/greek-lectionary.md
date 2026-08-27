@@ -88,7 +88,16 @@ curated values span the 3rd through the 16th Sunday of Matthew with no
 derivable pattern.
 
 They are therefore carried as data in `models.OrdoReading`, keyed by
-`(jurisdiction, year, month, day, source)`. **This is a per-year overlay, the
+`(jurisdiction, year, month, day, source)`.
+
+**Where the two jurisdictions' ordos disagree, both readings are shown, each
+labelled** -- "(Gospel, Greek Archdiocese)" and "(Gospel, Antiochian)" -- the
+same treatment this project already gives a saint's reading standing beside the
+cycle's. A jurisdiction is only named when there is another to contrast it
+with: where the ordos agree, or where only one has published (anything before
+antiochian.org's 2018 horizon), the reading shows plainly. That happens on
+about four dates a year; `Day._add_ordo_alternatives` does it, and the label
+reaches the API as a reading's `description`. **This is a per-year overlay, the
 only one in this codebase**, and it deliberately reverses the constraint this
 investigation began under. It covers about two dates a year and is currently
 good through **January 2027**; extending it means re-harvesting goarch.org and
@@ -150,8 +159,13 @@ Three remain, and none is addressable from these sources:
 | 2026-04-10 | Holy Friday -- the Royal Hours structure, which neither feed expresses |
 | 2026-12-30, 12-31 | the pointer suspension, in its pre-Theophany form. These are **not** the surplus weeks, which sit after Leavetaking; both are the same unmodelled mechanism in different parts of the season |
 
-There is no equivalent Antiochian tradition: one was built, measured and
-removed -- see Part III.
+Against **antiochian.org** over the same year the figure is 6 days of 365.
+Three of those are the shared unsolved items above; the other three are dates
+where the two jurisdictions genuinely differ, and on the annual-ordo ones both
+readings are now shown side by side rather than only GOA's.
+
+There is no separate Antiochian tradition: one was built, measured and removed
+-- see Part III.
 
 ---
 
@@ -1975,3 +1989,40 @@ Note what this means for the "303 labelled days, zero exceptions" result
 earlier in this document: that finding is about the **label** being
 calendar-locked, which it is. The *content* can still diverge from the label,
 and these thirteen days are where it does.
+
+### Showing both jurisdictions where the ordos disagree (2026-08-27)
+
+Choosing GOA as the meaning of `greek` left Antiochian readers served the Greek
+Archdiocese's answer on the handful of dates the two ordos differ. Rather than
+pick a winner and hide the alternative, both are now shown with a parenthetical
+saying whose each is:
+
+        (Gospel, Greek Archdiocese)   Matthew 22.1-14
+        (Gospel, Antiochian)          Matthew 19.16-26
+
+This is the treatment the project already gives a saint's proper reading
+standing beside the cycle's, so it needed no new display machinery -- the
+existing `Reading.desc` renders in parentheses in the templates and surfaces in
+the API as a reading's `description`.
+
+`Day._collect_ordo_readings` now loads **every** jurisdiction's rows for the
+date, not just the tradition's own. `gospel_pdist` still uses ours, so the
+primary reading is unchanged; `Day._add_ordo_alternatives` appends the other
+jurisdiction's where it differs and labels both. The label is set on the
+in-memory `Reading` only -- nothing is written.
+
+A jurisdiction is named only when there is another to contrast it with:
+
+| situation | shown |
+|---|---|
+| the ordos disagree | both readings, each labelled |
+| the ordos agree | one reading, no label |
+| only one jurisdiction has published | one reading, no label |
+
+That last row matters more than it looks: antiochian.org's feed does not reach
+before 2018, so most of the `OrdoReading` table has a Greek row and no
+counterpart. Labelling those "Greek Archdiocese" would imply a contrast that
+was never observed.
+
+This also puts the 18 Antiochian rows to work. They had been stored but unread
+since the Antiochian tradition was removed.

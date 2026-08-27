@@ -1477,14 +1477,18 @@ class TestGreekAnnualOrdoGospels(TestCase):
             with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
                 await pday.ainitialize()
-                gospels = [
-                    r.pericope.sdisplay
-                    for r in await pday.aget_readings()
-                    if r.source == 'Gospel'
-                ]
-                # the ordo *replaces* the cycle Gospel rather than being listed
-                # alongside it, so this is the only Gospel for the day
-                self.assertEqual(gospels, [expected])
+                gospels = [r for r in await pday.aget_readings() if r.source == 'Gospel']
+                displays = [r.pericope.sdisplay for r in gospels]
+
+                self.assertIn(expected, displays)
+
+                # The ordo replaces the cycle Gospel rather than standing
+                # beside it. The only thing that may also appear is the other
+                # jurisdiction's ordo reading, and that always carries a label
+                # saying whose it is -- see TestOrdoJurisdictionLabels.
+                for reading in gospels:
+                    if reading.pericope.sdisplay != expected:
+                        self.assertEqual(reading.desc, 'Antiochian')
 
     async def test_slavic_is_untouched_by_the_greek_ordo(self):
         # SlavicYear has no ordo hook at all; these dates must still resolve
@@ -1594,3 +1598,49 @@ class TestGreekMenaionReadings(TestCase):
                     # only for Greek
                     self.assertNotIn(greek, found)
                     self.assertIn(slavic, found)
+
+
+class TestOrdoJurisdictionLabels(TestCase):
+    """Where the two ordos disagree, show both and say which is which.
+
+    The Greek and Antiochian annual ordos assign different readings on a
+    handful of dates a year. Rather than silently serving one jurisdiction's
+    answer to everyone, both are shown, each labelled -- the same treatment
+    this project already gives a saint's reading standing beside the cycle's.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def gospels(self, year, month, day, tradition=Tradition.Greek):
+        pday = liturgics.Day(year, month, day, tradition=tradition)
+        await pday.ainitialize()
+        return [(r.pericope.sdisplay, r.desc)
+                for r in await pday.aget_readings() if r.source == 'Gospel']
+
+    async def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
+        cases = [
+            (2021, 1, 19, 'Matt 22.1-14', 'Matt 19.16-26'),
+            (2021, 1, 26, 'Matt 22.35-46', 'Mark 11.11-23'),
+            (2024, 1, 19, 'Matt 9.1-8', 'Matt 19.16-26'),
+            (2026, 1, 24, 'Luke 18.35-43', 'Mark 5.24-34'),
+        ]
+        for year, month, day, greek, antiochian in cases:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                self.assertEqual(
+                        await self.gospels(year, month, day),
+                        [(greek, 'Greek Archdiocese'), (antiochian, 'Antiochian')])
+
+    async def test_no_label_when_the_ordos_agree(self):
+        # Naming a jurisdiction is only meaningful against another one. When
+        # both publish the same reading there is nothing to contrast.
+        self.assertEqual(await self.gospels(2023, 1, 24), [('Matt 22.35-46', '')])
+
+    async def test_no_label_when_only_one_jurisdiction_published(self):
+        # antiochian.org's feed does not reach before 2018, so earlier dates
+        # have a Greek row and no counterpart. Those show plainly.
+        self.assertEqual(await self.gospels(2013, 1, 19), [('Matt 6.22-33', '')])
+
+    async def test_slavic_sees_none_of_this(self):
+        displays = [d for d, _ in await self.gospels(2021, 1, 19, Tradition.Slavic)]
+        self.assertNotIn('Matt 22.1-14', displays)
+        self.assertNotIn('Matt 19.16-26', displays)
