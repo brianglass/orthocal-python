@@ -2161,8 +2161,11 @@ roughly one year ahead). That is the same horizon wall the surplus weeks hit.
 
 ### What was kept
 
-- **The dropdowns and the OCA/GOA labels.** Independent UI improvements; the
-  traditions are now named for the jurisdictions the data actually came from.
+- **The dropdowns.** The tradition and calendar controls became `<select>`s,
+  following the pattern the translation picker already used. An independent UI
+  improvement, unrelated to the Antiochian question. The traditions were
+  briefly relabelled OCA/GOA and are back to Slavic/Greek, with the
+  jurisdictions carried as per-option tooltips the way the old toggles did.
 - **`models.OrdoReading`'s `jurisdiction` column and its 18 Antiochian rows.**
   Nothing reads them -- no tradition maps to that jurisdiction any more. They
   are correct transcriptions and are kept so that re-adding the tradition, if

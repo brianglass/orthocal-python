@@ -28,8 +28,8 @@
 		<div class="toggle-row" hx-params="none">
 			<label class="toggle-picker" title="Liturgical tradition">
 				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
-					<option value="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "slavic" %}selected{% endif %}>OCA</option>
-					<option value="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "greek" %}selected{% endif %}>GOA</option>
+					<option value="{% url "calendar" tradition="slavic" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "slavic" %}selected{% endif %} title="OCA, ROCOR">Slavic</option>
+					<option value="{% url "calendar" tradition="greek" cal=cal year=this_month.year month=this_month.month %}" {% if tradition == "greek" %}selected{% endif %} title="Antiochian, Greek Archdiocese">Greek</option>
 				</select>
 			</label>
 			<label class="toggle-picker" title="Calendar">

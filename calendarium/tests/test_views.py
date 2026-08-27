@@ -200,8 +200,8 @@ class TestTraditionRouting(TestCase):
 
     def test_picker_offers_both_traditions(self):
         response = self.client.get('/readings/greek/gregorian/2021/1/19/')
-        self.assertContains(response, '>OCA<')
-        self.assertContains(response, 'selected>GOA<')
+        self.assertContains(response, '>Slavic</option>')
+        self.assertContains(response, 'selected title="Antiochian, Greek Archdiocese">Greek</option>')
         self.assertNotContains(response, '>Antiochian<')
 
     def test_greek_ordo_gospel_is_served(self):
