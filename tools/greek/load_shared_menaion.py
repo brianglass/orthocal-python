@@ -42,6 +42,28 @@ ROWS = [
     (12, 17, 'Epistle', 'Heb 11.33-12.2',          'Daniel and the Three Youths',
      'Heb 11:33-40; 12:1-2 in 7 of 8 harvested years; the exception is a '
      'Sunday. The Gospel already matches'),
+    (7, 5, 'Epistle', 'Gal 5.22-6.2',              'Athanasius of Mount Athos',
+     'Gal 5:22-26; 6:1-2 in 8 of 8 harvested years, including both years the '
+     'date falls on a Sunday. Slavic already carries this Epistle, tagged '
+     'slavic, so Greek was falling through to the cycle'),
+    (7, 5, 'Gospel',  'Matt 11.27-30',              'Athanasius of Mount Athos',
+     'Matthew 11:27-30 in 6 of 8 harvested years; the two exceptions are '
+     'Sundays. Slavic carries this as its Matins Gospel and reads Luke 6:17-23 '
+     'at Liturgy, so the two traditions genuinely differ here'),
+    (9, 24, 'Gospel', 'Luke 10.38-42, 11.27-28',    'Miracle of the Theotokos Myrtidiotissa',
+     'A Greek commemoration Slavic does not keep, hence the Theotokos Gospel '
+     'where the common row has Luke 21:12-19 for St Thekla. Note the source '
+     'changed: antiochian.org showed Luke 5:12-16 in 2019-2021 and '
+     'Luke 10:38-42, 11:27-28 in every year from 2022 through 2026, which '
+     'goarch.org corroborates for 2026. Taking the later, stable value'),
+    (5, 7, 'Epistle', 'Acts 26.1-5, 12-20',         'Appearance of the Cross over Jerusalem',
+     'Acts 26:1, 12-20 on all 3 harvested years where May 7 falls on a weekday '
+     '(2019 Tue, 2025 Wed, 2026 Thu); the other two are outranked by Bright '
+     'Week and a Sunday. The same Epistle Ss Constantine and Helen carry on '
+     'May 21, which this project already has as a common row -- the Cross '
+     'appeared to Constantine, and Acts 26 is Paul recounting the light from '
+     'heaven. The Gospel stays with the Paschal cycle: antiochian.org shows a '
+     'different one each year, matching what the app already computes'),
 ]
 ORDERING = {'Epistle': 821, 'Gospel': 921}
 

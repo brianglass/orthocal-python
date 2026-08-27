@@ -44205,6 +44205,66 @@
   }
 },
 {
+  "model": "calendarium.reading",
+  "pk": 1806,
+  "fields": {
+    "month": 5,
+    "day": 7,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Appearance of the Cross over Jerusalem",
+    "pericope": 450,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1807,
+  "fields": {
+    "month": 7,
+    "day": 5,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Athanasius of Mount Athos",
+    "pericope": 647,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1808,
+  "fields": {
+    "month": 7,
+    "day": 5,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Athanasius of Mount Athos",
+    "pericope": 46,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1809,
+  "fields": {
+    "month": 9,
+    "day": 24,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Miracle of the Theotokos Myrtidiotissa",
+    "pericope": 259,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
   "model": "calendarium.pericope",
   "pk": 1,
   "fields": {

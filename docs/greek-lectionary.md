@@ -11,7 +11,7 @@ which hypotheses are already dead; some of its early sections are superseded
 and are marked as such.
 
 Last measured 2026-08-27: against goarch.org over calendar 2026, the app is
-**correct on 330 of 336 days (98.2%)**.
+**correct on 333 of 336 days (99.1%)**.
 
 ---
 
@@ -120,16 +120,13 @@ Ranked by how much they cost a reader:
 
 | | days compared | correct |
 |---|---|---|
-| app(Greek) vs goarch.org, calendar 2026 | 336 | **330 (98.2%)** |
+| app(Greek) vs goarch.org, calendar 2026 | 336 | **333 (99.1%)** |
 
-The six remaining, all corroborated as real by both sources:
+Three remain, and none is addressable from these sources:
 
 | date | what |
 |---|---|
 | 2026-04-10 | Holy Friday -- the Royal Hours structure, which neither feed expresses |
-| 2026-05-07 | a Paschal-season Epistle-cycle difference, not yet investigated |
-| 2026-07-05 | Athanasius of Athos' Epistle -- only one year of evidence, deliberately not added |
-| 2026-09-24 | the source itself splits 2/2 on the Gospel, so there is nothing to add |
 | 2026-12-30, 12-31 | the surplus weeks |
 
 There is no equivalent Antiochian tradition: one was built, measured and
@@ -1871,17 +1868,44 @@ tradition while leaving it in place for Slavic --
 `TestGreekMenaionReadings.test_slavic_is_unaffected` asserts that rather than
 assuming it.
 
-**Result: 96.1% -> 98.2% against goarch.org over a full year**, 13 wrong days
-down to 6.
+### Four more, after filling in the harvest
 
-### Deliberately not added
+Three of the remaining differences looked like moveable-cycle problems or had
+too little evidence. All three turned out to be fixed Menaion readings whose
+evidence was simply missing, because the standing harvest is winter-weighted.
+`scratch_harvest_dates.py` pulls specific calendar dates across years from
+antiochian.org's API -- worth reaching for whenever a date has too few samples,
+since the API is unrestricted within its horizon and this took one run.
 
-- **Jul 5 (Athanasius of Athos)**, Epistle `Gal 5:22-26; 6:1-2`. Only one
-  harvested year carries the commemoration; the rest are outranked. Below this
-  project's two-year bar.
-- **Sep 24**, Gospel. The source itself splits 2/2 between `Luke 5:12-16` and
-  `Luke 10:38-42, 11:27-28`, so there is no fixed value to carry. The Epistle
-  there is already correct.
+| date | source | reading | evidence |
+|---|---|---|---|
+| May 7 | Epistle | `Acts 26.1-5, 12-20` | 3/3 of the years May 7 is a weekday |
+| Jul 5 | Epistle | `Gal 5.22-6.2` | 8/8 years, including both Sundays |
+| Jul 5 | Gospel | `Matt 11.27-30` | 6/8; the two exceptions are Sundays |
+| Sep 24 | Gospel | `Luke 10.38-42, 11.27-28` | 4 consecutive recent years |
+
+**May 7** was the one that looked like a Paschal-season Epistle-cycle bug. It is
+not: `Acts 26:1, 12-20` is the Epistle for **Ss Constantine and Helen**, which
+this project already carries as a `common` row on May 21, and May 7 is the
+Appearance of the Cross over Jerusalem -- the vision granted to Constantine,
+with Acts 26 being Paul recounting the light from heaven. It shows up only when
+May 7 lands on a weekday. Note the shape: the *Epistle* is fixed while the
+*Gospel* stays with the Paschal cycle, which is why the Gospel always matched.
+
+**Jul 5** is a tagging problem rather than missing data. Slavic already carried
+`Gal 5.22-6.2` -- tagged `slavic`, so Greek fell through to the cycle. The
+Gospel genuinely differs: Slavic reads `Luke 6:17-23` at Liturgy and has
+`Matt 11:27-30` only as its Matins Gospel.
+
+**Sep 24** is a Greek commemoration Slavic does not keep -- the Miracle of the
+Theotokos Myrtidiotissa -- hence the Theotokos Gospel where the `common` row
+has `Luke 21:12-19` for St Thekla. The source changed here: antiochian.org
+showed `Luke 5:12-16` in 2019-2021 and `Luke 10:38-42, 11:27-28` in every year
+from 2022 through 2026, which goarch.org corroborates for 2026. The later,
+stable value was taken.
+
+**Result: 96.1% -> 99.1% against goarch.org over a full year**, 13 wrong days
+down to 3.
 
 ### A note on the audits themselves
 

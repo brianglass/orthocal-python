@@ -1538,21 +1538,40 @@ class TestGreekMenaionReadings(TestCase):
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    # (month, day, source, expected for Greek, expected for Slavic or None if
-    # Slavic has no row of its own there)
+    # (month, day, source, reading Greek must now have, what Slavic must have)
+    #
+    # The Slavic column is explicit per case rather than "must not contain the
+    # Greek reading", because the three situations differ:
+    #   a citation  -- Slavic keeps its own reading, which the Greek row
+    #                  overrides for Greek only
+    #   SHARED      -- both traditions read the same thing; the row existed but
+    #                  was tagged `slavic`, so Greek was falling through to the
+    #                  cycle
+    #   ABSENT      -- Slavic has no Menaion reading here at all
+    SHARED, ABSENT = 'shared', 'absent'
     CASES = [
         (4, 25, 'Gospel', 'Luke 10.16-21', 'Mark 6.7-13'),                   # Mark the Apostle
         (4, 30, 'Gospel', 'Luke 9.1-6', 'Luke 5.1-11'),                      # James the Apostle
-        (7, 13, 'Epistle', 'Heb 2.2-10', None),                              # Synaxis of Gabriel
-        (8, 31, 'Epistle', 'Heb 9.1-7', None),                               # Placing of the Sash
-        (8, 31, 'Gospel', 'Luke 10.38-42, 11.27-28', None),                  # Placing of the Sash
-        (12, 17, 'Epistle', 'Heb 11.33-12.2', None),                         # Three Youths
+        (5, 7, 'Epistle', 'Acts 26.1-5, 12-20', ABSENT),                     # Appearance of the Cross
+        (7, 5, 'Epistle', 'Gal 5.22-6.2', SHARED),                           # Athanasius of Athos
+        (7, 5, 'Gospel', 'Matt 11.27-30', 'Luke 6.17-23'),                   # Athanasius of Athos
+        (7, 13, 'Epistle', 'Heb 2.2-10', ABSENT),                            # Synaxis of Gabriel
+        (8, 31, 'Epistle', 'Heb 9.1-7', ABSENT),                             # Placing of the Sash
+        (8, 31, 'Gospel', 'Luke 10.38-42, 11.27-28', ABSENT),                # Placing of the Sash
+        (9, 24, 'Gospel', 'Luke 10.38-42, 11.27-28', 'Luke 21.12-19'),       # Theotokos Myrtidiotissa
+        (12, 17, 'Epistle', 'Heb 11.33-12.2', ABSENT),                       # Three Youths
     ]
+
+    # 2026 is the reference year, but a few of these fall on a Sunday there,
+    # where the Sunday reading outranks the Menaion one. Use a year in which
+    # each date is an ordinary weekday.
+    YEARS = {(7, 5): 2024, (9, 24): 2024}
 
     async def test_greek_gets_the_menaion_reading(self):
         for month, day, source, greek, _ in self.CASES:
             with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
-                pday = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
+                year = self.YEARS.get((month, day), 2026)
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
                 await pday.ainitialize()
                 found = [r.pericope.sdisplay
                          for r in await pday.aget_readings() if r.source == source]
@@ -1561,11 +1580,17 @@ class TestGreekMenaionReadings(TestCase):
     async def test_slavic_is_unaffected(self):
         for month, day, source, greek, slavic in self.CASES:
             with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
-                pday = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
+                year = self.YEARS.get((month, day), 2026)
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
                 await pday.ainitialize()
                 found = [r.pericope.sdisplay
                          for r in await pday.aget_readings() if r.source == source]
-                self.assertNotIn(greek, found)
-                if slavic is not None:
-                    # the common row it overrides for Greek still stands here
+                if slavic == self.SHARED:
+                    self.assertIn(greek, found)
+                elif slavic == self.ABSENT:
+                    self.assertNotIn(greek, found)
+                else:
+                    # Slavic keeps its own reading; the Greek row overrode it
+                    # only for Greek
+                    self.assertNotIn(greek, found)
                     self.assertIn(slavic, found)
