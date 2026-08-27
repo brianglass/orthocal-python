@@ -24,10 +24,13 @@ _ORDO_JURISDICTIONS = {
 }
 
 # Shown in parentheses beside a reading when the two jurisdictions' ordos
-# disagree, so it is clear whose practice each one is.
+# disagree, so it is clear whose practice each one is. Two forms: the short one
+# keeps the reference index at the top of the page compact, the full one is
+# used in the passage heading further down (and in the API) where there is
+# room to be explicit.
 _JURISDICTION_LABELS = {
-    'greek': 'Greek Archdiocese',
-    'antiochian': 'Antiochian',
+    'greek': ('GOA', 'Greek Archdiocese'),
+    'antiochian': ('Antiochian', 'Antiochian Archdiocese'),
 }
 
 _YEAR_CLASSES = {
@@ -653,7 +656,8 @@ class Day:
             if alternative is None:
                 continue
 
-            alternative.desc = _JURISDICTION_LABELS.get(jurisdiction, jurisdiction)
+            alternative.short_desc, alternative.desc = _JURISDICTION_LABELS.get(
+                    jurisdiction, (jurisdiction, jurisdiction))
             if fetch_content:
                 await alternative.pericope.aget_passage(
                         language=self.language, translation=self.translation)
@@ -662,7 +666,8 @@ class Day:
             # plain reading and one oddly-labelled extra.
             for reading in self.readings:
                 if reading.source == source and reading.pdist == self.ordo_readings.get(source):
-                    reading.desc = _JURISDICTION_LABELS.get(ours, ours)
+                    reading.short_desc, reading.desc = _JURISDICTION_LABELS.get(
+                            ours, (ours, ours))
 
             self.readings.append(alternative)
 

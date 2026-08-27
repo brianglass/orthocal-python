@@ -1488,7 +1488,7 @@ class TestGreekAnnualOrdoGospels(TestCase):
                 # saying whose it is -- see TestOrdoJurisdictionLabels.
                 for reading in gospels:
                     if reading.pericope.sdisplay != expected:
-                        self.assertEqual(reading.desc, 'Antiochian')
+                        self.assertEqual(reading.desc, 'Antiochian Archdiocese')
 
     async def test_slavic_is_untouched_by_the_greek_ordo(self):
         # SlavicYear has no ordo hook at all; these dates must still resolve
@@ -1617,6 +1617,13 @@ class TestOrdoJurisdictionLabels(TestCase):
         return [(r.pericope.sdisplay, r.desc)
                 for r in await pday.aget_readings() if r.source == 'Gospel']
 
+    async def labelled_gospels(self, year, month, day):
+        """(reading, short label, full label) -- the two forms the page uses."""
+        pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        return [(r.pericope.sdisplay, getattr(r, 'short_desc', ''), r.desc)
+                for r in await pday.aget_readings() if r.source == 'Gospel']
+
     async def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
         cases = [
             (2021, 1, 19, 'Matt 22.1-14', 'Matt 19.16-26'),
@@ -1628,7 +1635,28 @@ class TestOrdoJurisdictionLabels(TestCase):
             with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
                 self.assertEqual(
                         await self.gospels(year, month, day),
-                        [(greek, 'Greek Archdiocese'), (antiochian, 'Antiochian')])
+                        [(greek, 'Greek Archdiocese'),
+                         (antiochian, 'Antiochian Archdiocese')])
+
+    async def test_labels_have_a_short_and_a_full_form(self):
+        # The reference index at the top of the page is tight, so it uses the
+        # short form; the passage heading further down, and the API, use the
+        # full one.
+        self.assertEqual(
+                await self.labelled_gospels(2021, 1, 19),
+                [('Matt 22.1-14', 'GOA', 'Greek Archdiocese'),
+                 ('Matt 19.16-26', 'Antiochian', 'Antiochian Archdiocese')])
+
+    async def test_ordinary_readings_have_no_short_form(self):
+        # Everything else falls back to desc in both places, so the template's
+        # `short_desc|default:desc` must find nothing to override.
+        pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        others = [r for r in await pday.aget_readings()
+                  if r.desc and r.source != 'Gospel']
+        self.assertTrue(others, 'expected at least one other described reading')
+        for reading in others:
+            self.assertEqual(getattr(reading, 'short_desc', ''), '')
 
     async def test_no_label_when_the_ordos_agree(self):
         # Naming a jurisdiction is only meaningful against another one. When

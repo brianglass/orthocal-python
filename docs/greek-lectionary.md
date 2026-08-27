@@ -91,7 +91,9 @@ They are therefore carried as data in `models.OrdoReading`, keyed by
 `(jurisdiction, year, month, day, source)`.
 
 **Where the two jurisdictions' ordos disagree, both readings are shown, each
-labelled** -- "(Gospel, Greek Archdiocese)" and "(Gospel, Antiochian)" -- the
+labelled** -- "(Gospel, GOA)" and "(Gospel, Antiochian)" in the reference index,
+"(Gospel, Greek Archdiocese)" and "(Gospel, Antiochian Archdiocese)" in the
+passage heading and the API -- the
 same treatment this project already gives a saint's reading standing beside the
 cycle's. A jurisdiction is only named when there is another to contrast it
 with: where the ordos agree, or where only one has published (anything before
@@ -1997,8 +1999,18 @@ Archdiocese's answer on the handful of dates the two ordos differ. Rather than
 pick a winner and hide the alternative, both are now shown with a parenthetical
 saying whose each is:
 
-        (Gospel, Greek Archdiocese)   Matthew 22.1-14
-        (Gospel, Antiochian)          Matthew 19.16-26
+        index    (Gospel, GOA)                     Matthew 22.1-14
+                 (Gospel, Antiochian)              Matthew 19.16-26
+
+        passage  (Gospel, Greek Archdiocese)       Matthew 22.1-14
+                 (Gospel, Antiochian Archdiocese)  Matthew 19.16-26
+
+Two forms, because the two places have different room. The reference index at
+the top of the readings page is a tight column of links, so it takes the short
+label; the passage heading further down -- and the API's `description` -- takes
+the full one. The template is `{{ reading.short_desc|default:reading.desc }}`,
+so every other reading, which has no short form, is untouched and still shows
+its `desc` in both places.
 
 This is the treatment the project already gives a saint's proper reading
 standing beside the cycle's, so it needed no new display machinery -- the

@@ -74,7 +74,7 @@
 				<li>
 					<a href="#reading-{{ reading.id }}">
 						{{ reading.pericope.display|keep_numeral_with_book }}
-						<span class="ref-source">({{ reading.source }}{% if reading.desc %}, {{ reading.desc }}{% endif %})</span>
+						<span class="ref-source">({{ reading.source }}{% if reading.desc %}, {{ reading.short_desc|default:reading.desc }}{% endif %})</span>
 					</a>
 				</li>
 				{% endfor %}
