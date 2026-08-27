@@ -40,7 +40,7 @@ async def main():
                 print(f'        {n}x  {cit}')
         # what the app produces on the most recent harvested occurrence
         dt = rows[-1][0]
-        pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Antiochian)
+        pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
         await pday.ainitialize()
         rs = await pday.aget_readings()
         print(f'    app({dt}): ' + ', '.join(f'{r.source}={r.pericope.sdisplay}' for r in rs))

@@ -76,7 +76,7 @@ async def main():
         if not (ae or ag) or not (ge or gg):
             continue
         month, dayn = int(key[:2]), int(key[2:])
-        day = Day(2026, month, dayn, tradition=Tradition.Antiochian)
+        day = Day(2026, month, dayn, tradition=Tradition.Greek)
         await day.ainitialize()
         rs = await day.aget_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']

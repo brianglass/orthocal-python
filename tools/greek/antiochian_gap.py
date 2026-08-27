@@ -84,6 +84,9 @@ def near(a, b):
     if not (pa and pb): return False
     return pa.group(1) == pb.group(1) and pa.group(2) == pb.group(2) and abs(int(pa.group(3)) - int(pb.group(3))) <= 2
 
+# The Antiochian tradition was built and removed (see docs/greek-lectionary.md),
+# so an Antiochian reader is served the Greek tradition. That is what this
+# measures: how far what we actually serve is from antiochian.org.
 async def main():
     days = []
     for path in sorted(glob.glob('data/antiochian_raw/*.json')):
@@ -117,7 +120,7 @@ async def main():
         if book(want_e) in GOSPELS:
             stats['reading1 is a Matins Gospel, not an Epistle'] += 1
             want_e = ''
-        day = Day(dt.year, dt.month, dt.day, tradition=Tradition.Antiochian)
+        day = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
         await day.ainitialize()
         rs = await day.aget_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
@@ -131,7 +134,7 @@ async def main():
             stats['differ'] += 1
             misses.append((dt, title, want_e, want_g, got_e, got_g, e_ok, g_ok))
 
-    print(f'app(Antiochian) vs antiochian.org, {stats["checked"]} harvested days with readings')
+    print(f'app(Greek) vs antiochian.org, {stats["checked"]} harvested days with readings')
     print(f'  match : {stats["match"]}  ({stats["match"]/stats["checked"]*100:.1f}%)')
     print(f'  differ: {stats["differ"]}  ({stats["differ"]/stats["checked"]*100:.1f}%)')
     for label in ('no readings listed', 'vespers-only (aliturgical Lenten weekday)',
