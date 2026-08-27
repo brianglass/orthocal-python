@@ -16,7 +16,7 @@ from .year import SlavicYear, GreekYear
 logger = logging.getLogger(__name__)
 
 # Which jurisdiction's published ordo a tradition follows. `greek` means the
-# Greek Orthodox Archdiocese of America -- see docs/greek-weekday-drift.md for
+# Greek Orthodox Archdiocese of America -- see docs/greek-lectionary.md for
 # that decision. Slavic has no overlay: its ordo days have not been surveyed.
 _ORDO_JURISDICTIONS = {
     Tradition.Greek: 'greek',

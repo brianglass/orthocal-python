@@ -1,6 +1,6 @@
 # Greek lectionary analysis tooling
 
-Throwaway-but-kept analysis scripts backing `docs/greek-weekday-drift.md`.
+Throwaway-but-kept analysis scripts backing `docs/greek-lectionary.md`.
 **None of this is application code** — nothing in `calendarium/` imports it.
 It exists so the claims in that document can be re-derived rather than taken
 on trust, and so the next investigation starts from the harvested evidence

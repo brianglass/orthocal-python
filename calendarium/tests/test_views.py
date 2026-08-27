@@ -175,7 +175,7 @@ class TestTraditionRouting(TestCase):
 
     `antiochian` and `goa` both alias the Greek tradition, and `oca` aliases
     Slavic. An Antiochian tradition of its own was built and then removed --
-    see docs/greek-weekday-drift.md for why -- so these aliases must keep
+    see docs/greek-lectionary.md for why -- so these aliases must keep
     behaving exactly as they always have.
     """
 

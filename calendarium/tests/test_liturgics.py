@@ -585,7 +585,7 @@ class TestGreekLukanNumbering(TestCase):
 
     def test_theophany_interpolation(self):
         # Confirmed against real harvest data for the specific cycle year
-        # named -- see docs/greek-weekday-drift.md for the full derivation.
+        # named -- see docs/greek-lectionary.md for the full derivation.
         #
         # Source of truth changed 2026-08-26: `greek` now means GOA, so these
         # are checked against goarch.org. The four cycles below that predate
@@ -1361,7 +1361,7 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
     Confirmed against goarch.org across 22 independent cycles: 145/145
     observations for the last week, 96/96 for the second-last, 48/48 for the
     third-last -- 289 in total, zero exceptions, spanning every jump value
-    from 0 through 35.  See docs/greek-weekday-drift.md.
+    from 0 through 35.  See docs/greek-lectionary.md.
 
     This documents behaviour the app already gets right; the test exists so a
     future change to the Greek weekday logic cannot silently break it.  The
@@ -1448,7 +1448,7 @@ class TestGreekAnnualOrdoGospels(TestCase):
     computable was established from goarch.org itself: past their published
     Kanonion horizon their own software stops assigning these days and falls
     back to a commons Gospel, which matches the curated ordo in 1 of 15
-    sampled years. See docs/greek-weekday-drift.md.
+    sampled years. See docs/greek-lectionary.md.
 
     `GreekYear._GREEK_ORDO_GOSPEL` is therefore a deliberate per-year data
     overlay -- the only one in this codebase.

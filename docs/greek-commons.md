@@ -2,7 +2,7 @@
 
 ## Background
 
-The [greek-weekday-drift](greek-weekday-drift.md) investigation closed out
+The [greek-lectionary](greek-lectionary.md) investigation closed out
 the *mechanism* side of the Greek tradition (Sunday-of-Luke numbering,
 Theophany interpolation, the ordinary continuous weekday cycle). While
 investigating a user-reported discrepancy (Sept 29, 2026: antiochian.org
@@ -127,7 +127,7 @@ handling:
 - **Dec 17, Dec 30-31**: no consistent pattern across any sampled years for
   these specific calendar dates — these fall inside the already-documented,
   permanently-accepted "unsolved recovery mechanism" window from
-  `greek-weekday-drift.md`, not a new gap.
+  `greek-lectionary.md`, not a new gap.
 
 ## Implemented, pass 1
 

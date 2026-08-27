@@ -136,7 +136,7 @@ class OrdoReading(models.Model):
     A small set of days carry commemorations whose Menaion entries supply one
     reading but not the other, leaving the empty slot to whatever that year's
     ordo assigns. Those assignments are not computable from any cycle -- see
-    docs/greek-weekday-drift.md, which establishes it directly: past its
+    docs/greek-lectionary.md, which establishes it directly: past its
     published Kanonion horizon goarch.org's own software stops assigning these
     days and falls back to a commons reading, which matches the curated ordo in
     1 of 15 sampled years.

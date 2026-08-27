@@ -561,7 +561,7 @@ class GreekYear(ByzantineYear):
     # Theophany and the Triodion" and was never checked against a real n=5
     # year. Rebuilt from scratch against real antiochian.org data across 4
     # independent years (2022=n4, 2018=n5, 2020=n6, 2023=n7 -- see
-    # docs/greek-weekday-drift.md for the full derivation) -- this revealed
+    # docs/greek-lectionary.md for the full derivation) -- this revealed
     # the n=5 entry above was simply wrong (real 2018 data: 12th, 15th,
     # *16th* of Matthew, 17th of Matthew/"Canaanite Woman" -- not 12th,
     # 14th, 15th, 17th), and confirmed a clean, monotonic insertion pattern
@@ -612,7 +612,7 @@ class GreekYear(ByzantineYear):
     # cycles with zero exceptions (3 further cycles are unobservable because a
     # fixed feast claims a slot; 2 more are excluded as GOA data errors, where
     # their own "Triodion Begins Today" contradicts their own Paschalion --
-    # see docs/greek-weekday-drift.md).
+    # see docs/greek-lectionary.md).
     #
     # Note this admits the 15th of Matthew, which the old table never used.
     # It needs no new data: _matthew_sunday_target(15) is pdist 154, which

@@ -4,7 +4,7 @@ three_way.py found dates in 2026 where goarch.org and antiochian.org agree and
 the app differs -- shared bugs rather than jurisdictional ones. Before any of
 them becomes a data row this checks the whole harvest: does antiochian.org say
 the same thing on that calendar date every year? This project's standard is two
-or more independent years (see docs/greek-weekday-drift.md).
+or more independent years (see docs/greek-lectionary.md).
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
