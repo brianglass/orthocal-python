@@ -234,7 +234,8 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
     """Get information about the liturgical day for the given calendar and date.
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
     will still work, but should be avoided for new code. This serves the Slavic/OCA
-    tradition; see the `{tradition}/{cal}/...` routes below for the Greek tradition.
+    tradition; see the `{tradition}/{cal}/...` routes below for the Greek and
+    Antiochian traditions.
     The optional *translation* query parameter selects the Bible translation
     (`kjv` or `lxx2012-web`); it only affects English content and defaults to
     `kjv` when omitted.
@@ -247,8 +248,13 @@ async def get_calendar_day(request, cal: Calendar, year: year, month: month, day
 @decorate_view(etag)
 async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calendar, year: year, month: month, day: day, translation: Translation = None):
     """Get information about the liturgical day for the given tradition, calendar, and date.
-    The *tradition* path parameter should be `slavic` or `greek`. The legacy `oca`,
-    `antiochian`, and `goa` will still work, but should be avoided for new code.
+    The *tradition* path parameter should be `slavic`, `greek` or `antiochian`.
+    `oca` remains an alias for `slavic` and `goa` for `greek`.
+
+    Note that `antiochian` changed meaning: it was previously an alias for
+    `greek`, and now selects the Antiochian Archdiocese's own calendar. The two
+    are identical except on a handful of days a year. Use `greek` or `goa` to
+    pin the Greek Archdiocese explicitly.
     The *cal* path parameter should be `gregorian` or `julian`.
     The optional *translation* query parameter selects the Bible translation
     (`kjv` or `lxx2012-web`); it only affects English content and defaults to
@@ -275,7 +281,8 @@ async def get_calendar_month(request, cal: Calendar, year: year, month: month) -
 
     The *cal* path parameter should be `gregorian` or `julian`. The legacy `oca` or `rocor`
     will still work, but should be avoided for new code. This serves the Slavic/OCA
-    tradition; see the `{tradition}/{cal}/...` routes below for the Greek tradition.
+    tradition; see the `{tradition}/{cal}/...` routes below for the Greek and
+    Antiochian traditions.
     """
 
     return await _get_calendar_month(request, cal, Tradition.Slavic, year, month)
@@ -288,7 +295,7 @@ async def get_calendar_month_tradition(request, tradition: Tradition, cal: Calen
     This endpoint excludes the readings and stories in order to avoid returning
     a response that is too large.
 
-    The *tradition* path parameter should be `slavic` or `greek`. The *cal* path
+    The *tradition* path parameter should be `slavic`, `greek` or `antiochian`. The *cal* path
     parameter should be `gregorian` or `julian`.
     """
 

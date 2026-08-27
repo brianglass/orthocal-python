@@ -830,3 +830,26 @@ class GreekYear(ByzantineYear):
             return False if n is None else None
 
         return self.sunday_gospel_override(pdist)
+
+
+# GreekYear is wrapped in lru_cache (see its declaration above), so `GreekYear`
+# is the cache wrapper rather than the class; reach the class itself through
+# __wrapped__ in order to subclass it, and cache this one the same way.
+@lru_cache
+class AntiochianYear(GreekYear.__wrapped__):
+    """The Antiochian Archdiocese's reckoning.
+
+    Computationally identical to GreekYear today. The two jurisdictions share
+    the ordinary lectionary; across a full year (2026, the one year with a
+    complete harvest of both) they differ on 4 days, of which one is an
+    annual-ordo day -- carried as data in models.OrdoReading -- and the rest
+    are commemoration ranking and regional saints, which live in Day/Reading
+    rows rather than here.
+
+    One deterministic difference is known but deliberately not implemented:
+    Antiochian brings the Matthew-section content forward to the second week
+    before Triodion where GOA keeps the Luke-section tail (2019-02-04/05/07/09).
+    That rests on a single observed cycle, and antiochian.org's feed cannot
+    reach the years that would confirm it -- see docs/greek-weekday-drift.md.
+    Implementing it from one sample would be a guess.
+    """

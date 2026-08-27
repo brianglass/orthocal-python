@@ -27,8 +27,10 @@ class TraditionConverter:
         match value:
             case 'slavic' | 'oca':
                 return Tradition.Slavic
-            case 'greek' | 'antiochian' | 'goa':
+            case 'greek' | 'goa':
                 return Tradition.Greek
+            case 'antiochian':
+                return Tradition.Antiochian
 
     def to_url(self, value):
         return value

@@ -1520,3 +1520,72 @@ class TestGreekAnnualOrdoGospels(TestCase):
         pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
         await pday.ainitialize()
         self.assertEqual(pday.ordo_readings.get('Gospel'), greek.pdist)
+
+
+class TestAntiochianTradition(TestCase):
+    """Antiochian is its own selectable tradition, inheriting Greek.
+
+    The two archdioceses keep the same lectionary almost everywhere -- across
+    calendar 2026, the one year with a complete harvest of both, they differ on
+    four days. What is modelled here is the annual-ordo difference; regional
+    commemorations are not yet carried. See docs/greek-weekday-drift.md.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def test_ordo_days_differ_from_greek(self):
+        # Dates where goarch.org and antiochian.org publish different Gospels.
+        cases = [
+            (2021, 1, 19, 'Matt 22.1-14', 'Matt 19.16-26'),
+            (2021, 1, 26, 'Matt 22.35-46', 'Mark 11.11-23'),
+            (2024, 1, 19, 'Matt 9.1-8', 'Matt 19.16-26'),
+        ]
+        for year, month, day, greek, antiochian in cases:
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                for tradition, expected in (
+                        (Tradition.Greek, greek), (Tradition.Antiochian, antiochian)):
+                    pday = liturgics.Day(year, month, day, tradition=tradition)
+                    await pday.ainitialize()
+                    gospels = [
+                        r.pericope.sdisplay
+                        for r in await pday.aget_readings()
+                        if r.source == 'Gospel'
+                    ]
+                    self.assertEqual(gospels, [expected])
+
+    async def test_matches_greek_where_no_ordo_row_applies(self):
+        # The overwhelming majority of the year. Sampled across the seasons
+        # rather than only near the dates that differ.
+        for month, day in ((3, 15), (5, 20), (8, 6), (10, 1), (12, 25), (1, 17)):
+            with self.subTest(date=f'2026-{month:02d}-{day:02d}'):
+                readings = {}
+                for tradition in (Tradition.Greek, Tradition.Antiochian):
+                    pday = liturgics.Day(2026, month, day, tradition=tradition)
+                    await pday.ainitialize()
+                    readings[tradition] = [
+                        (r.source, r.pericope.sdisplay)
+                        for r in await pday.aget_readings()
+                    ]
+                self.assertEqual(readings[Tradition.Greek], readings[Tradition.Antiochian])
+
+    def test_inherits_greek_computation_and_data_lineage(self):
+        self.assertIsInstance(
+                liturgics.Day(2026, 1, 19, tradition=Tradition.Antiochian),
+                liturgics.GreekDay)
+        self.assertEqual(
+                datetools.TRADITION_LINEAGE[Tradition.Antiochian],
+                ('antiochian', 'greek', 'common'))
+        # Greek must not inherit Antiochian rows in the other direction.
+        self.assertNotIn('antiochian', datetools.TRADITION_LINEAGE[Tradition.Greek])
+
+    async def test_slavic_is_unaffected(self):
+        for year, month, day in ((2021, 1, 19), (2024, 1, 19)):
+            with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                await pday.ainitialize()
+                gospels = [
+                    r.pericope.sdisplay
+                    for r in await pday.aget_readings()
+                    if r.source == 'Gospel'
+                ]
+                self.assertNotIn('Matt 19.16-26', gospels)

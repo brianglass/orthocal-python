@@ -81,7 +81,7 @@
 
    Everything here is desaturated to a shade of gray except red, which
    stays red for --color-rubric and the --color-accent group (used for
-   links, badges, the segmented-control's checked state, etc.) -- both get
+   links, badges, selected controls, etc.) -- both get
    a brightened red rather than reusing the light theme's flat #a00, which
    has too little contrast against these dark backgrounds to read well as
    link/badge text (decorative uses like the rubric initials can get away
@@ -559,52 +559,6 @@ a.active {
 	gap: 0.5rem;
 	flex-wrap: nowrap;
 }
-.segmented-control {
-	display: inline-flex;
-	border: 1px solid var(--color-border-neutral);
-	border-radius: 3px;
-	overflow: hidden;
-}
-.segmented-control label {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.35em;
-	margin: 0;
-	padding: 3px 9px;
-	color: var(--color-text-tertiary);
-	cursor: pointer;
-	transition-property: background-color, color;
-	transition-duration: 0.2s;
-}
-.segmented-control label:not(:last-child) {
-	border-right: 1px solid var(--color-border-neutral);
-}
-.segmented-control label:hover {
-	background-color: var(--color-bg-hover);
-}
-.segmented-control input[type="radio"] {
-	position: absolute;
-	opacity: 0;
-	pointer-events: none;
-}
-.segmented-control label:has(input:checked) {
-	background-color: var(--color-accent);
-	color: var(--color-text-on-accent);
-}
-.segmented-control label:has(input:checked):hover {
-	background-color: var(--color-accent);
-}
-/* Extra legibility for the dark theme's brightened accent red -- not
-   needed against light mode's white-on-#a00, which already has plenty of
-   contrast. Has to come after the rule above (not grouped with the rest of
-   the dark theme up in the tokens section): same-specificity tie, later
-   rule in the file wins regardless of which one is behind a media query. */
-@media (prefers-color-scheme: dark) {
-    .segmented-control label:has(input:checked) {
-        font-weight: bold;
-    }
-}
 /* Let the day-nav wrap onto its own line at the narrowest viewports,
    alongside the topbar's own last-resort wrap above, when it no longer
    fits alongside the toggle row. The toggle row itself (.toggle-row,
@@ -784,6 +738,25 @@ section.readings h2 {
 	text-indent: 0 !important;
 	text-wrap: balance;
 }
+/* The tradition and calendar <select>s in .toggle-row. They share the
+   translation picker's input chrome but inherit the surrounding font size so
+   they sit on one line with the rest of the row. */
+.toggle-picker select {
+	font-family: var(--font-sans);
+	font-size: inherit;
+	color: var(--color-text);
+	background-color: var(--color-bg-input);
+	border: 1px solid var(--color-border-input);
+	border-radius: 3px;
+	padding: 2px 6px;
+	cursor: pointer;
+	vertical-align: middle;
+	max-width: 100%;
+}
+.toggle-picker select:hover {
+	border-color: var(--color-border-input-hover);
+}
+
 .translation-picker {
 	text-align: center;
 	text-indent: 0 !important;
