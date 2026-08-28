@@ -166,3 +166,85 @@ Liturgy-level gaps above turn out to be worth chasing.
 
 Only 2026 has been audited. One year is enough to find a rule but not to
 confirm one.
+
+# Composite readings: recovering the verse selections
+
+The `Composite` table holds 24 hand-entered readings in Archimandrite Ephrem
+Lash's translation (`~/src/anastasis`). Each is stitched from verses that no
+plain reference names, and until now most carried only a chapter-level
+`sdisplay` — `Prov 10, 3, 8`, `Isa 40, 41, 45, 48, 54`. Those are inert,
+because a composite pericope resolves through the table rather than through
+`sdisplay`, but they are wrong if resolved: `Isa 40, 41, 45, 48, 54` fetches
+123 verses where the reading is ten.
+
+**Nobody publishes the selection.** Ephrem writes "and selection"; oca.org
+titles a composite by chapter and numbers its *parts* (1, 2, 3) where an
+ordinary reading gets true verse numbers; orthodox_calendar stores opaque
+`NNNMM` part keys. The text is the only record of what a composite contains.
+
+## Method
+
+oca.org publishes the same composite corpus under the same numbering —
+verified word-for-word identical to orthodox_calendar on Composites 17 and 18,
+181 and 209 words with zero differences. It is *not* Ephrem's translation, so
+it is useless as replacement text, but it is excellent evidence of **which
+verses** a composite covers.
+
+So each composite was read against our Bible by eye, part by part, and the
+selection written down. Deliberately not by similarity threshold: the numbers
+below are a check on a reading already done, not the thing that made the
+decision. Composite 18's error was found by reading, and no threshold would
+have flagged it.
+
+Fidelity is measured as word-level similarity between oca.org's text and our
+LXX2012-WEB rendering of the derived reference. **The sixteen specs that were
+already precise score 59–78%**, so that band is what a correct selection looks
+like; the gap from 100% is translation, not selection.
+
+## Results
+
+| composite | was | now | fidelity | |
+|---|---|---|---|---|
+| 13 — 3 Kgs 18, 19 | 62% | `18:1, 17-46; 19:1-16` | **74%** | in band |
+| 8 — Isaiah | 11% | `40:1-3, 9; 41:17-18; 45:8; 48:20-21; 54:1` | **66%** | in band |
+| 2 — Proverbs | 17% | `10:7, 6; 3:13-16; 8:32, 34-35, 4, 12, 14, 17, 5-9` | **64%** | in band |
+| 3 — Wisdom | 24% | `4:7, 16-17, 19-20; 5:1-7` | 56% | marginal |
+| 9 — Malachi | 34% | `3:1-3, 5-7, 12, 17-18; 4:6, 4-5` | 54% | marginal |
+| 6 — Exodus/Lev/Num | 15% | `Exod 13:1-3, 11-12, 14-16; Lev 12:2-4, 6-8; Num 8:16-17` | 53% | marginal |
+| 4 — Prov/Wisdom | 15% | `Prov 10:31-32; Wis 6:12-16; 7:30; 8:2-4, 7-8; 9:1-5, 10-11, 14` | 44% | not stored |
+| 5 — Wisdom | 17% | `4:1, 14; 6:12, 17-18, 21-22; 7:15, 22, 26-27, 29-30; 2:1, 10-20` | 37% | not stored |
+
+**Six of the eight are stored; 4 and 5 were deliberately left loose.** Their
+derived specs are recorded above for reference only. `sdisplay` is not a private
+note -- `calendarium/api.py` publishes it as the API's `short_display`, so a
+44%-confidence guess there would present inference as fact to API consumers,
+and the loose value it would replace is at least honestly vague. Composite 5's
+derived spec is also 67 characters against the column's `max_length=64`.
+
+(Three *pre-existing* sdisplay values already exceed that limit -- the Holy Week
+composite gospels at pks 116, 120 and 1013, 72-73 characters each. SQLite does
+not enforce max_length so they work, but they would fail validation or another
+backend.)
+
+**Composites 4 and 5 should not be converted to references.** Their low scores
+are not a failure to find the right verses — adding candidate verses made them
+*worse*, 44%→43%→40% and 37%→37%→35%. They are free adaptations rather than
+selections, condensing and reordering within verses, so no reference can
+represent them. Composite 2's part [2] shows the pattern at its most extreme
+even where the verses are findable: 8:32, then 34-35, then 4, 12, 14, 17.
+
+Two notes on the ordering, both already handled: `bible.models.lookup_reference`
+renders out-of-order segments in the order written (see `calendarium/models.py`),
+and Composite 9's third part really does run 4:6 before 4:4-5.
+
+## Where this leaves the composites
+
+Ephrem's text stays. Converting the in-band specs to references would trade a
+translation the reader cannot get anywhere else for translation-awareness, at
+about 60-75% fidelity — worth doing only deliberately, and never for 4 and 5.
+What the derived specs buy today is that `sdisplay` is now *true*, so the
+option exists and nothing silently fetches whole chapters.
+
+Composites 17 and 18 remain the two with no Ephrem text at all: they are the
+Slavic propers for the Entrance of the Theotokos, absent from his
+Prophetologion, which assigns the Greek Marian set to that feast instead.
