@@ -1,0 +1,114 @@
+[
+ {
+  "date": "2026-01-01",
+  "labels": [
+   "Circumcision",
+   "Saint"
+  ],
+  "missing": [
+   "HEB10:35",
+   "MARK11:27"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2026-01-03",
+  "labels": [
+   "Saturday Before"
+  ],
+  "missing": [],
+  "extra": [
+   "EPH5:1",
+   "LUKE17:3"
+  ]
+ },
+ {
+  "date": "2026-01-05",
+  "labels": [],
+  "missing": [
+   "HEB11:17",
+   "MARK8:11"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2026-03-26",
+  "labels": [
+   "Theotokos"
+  ],
+  "missing": [
+   "HEB2:11",
+   "LUKE1:24"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2026-04-07",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Presanctified"
+  ],
+  "missing": [],
+  "extra": [
+   "MATT22:15",
+   "JOHN10:9"
+  ]
+ },
+ {
+  "date": "2026-04-09",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Composite"
+  ],
+  "missing": [],
+  "extra": [
+   "JOHN13:1",
+   "JOHN13:12"
+  ]
+ },
+ {
+  "date": "2026-05-21",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "ACTS26:1",
+   "JOHN10:1"
+  ]
+ },
+ {
+  "date": "2026-10-31",
+  "labels": [
+   "St. John Kochurov"
+  ],
+  "missing": [
+   "JOHN10:9"
+  ],
+  "extra": [
+   "HEB13:7",
+   "LUKE8:16",
+   "LUKE12:32"
+  ]
+ },
+ {
+  "date": "2026-11-08",
+  "labels": [
+   "Angels"
+  ],
+  "missing": [],
+  "extra": [
+   "1COR12:27",
+   "MATT10:1"
+  ]
+ },
+ {
+  "date": "2026-12-24",
+  "labels": [],
+  "missing": [
+   "HEB10:35",
+   "MARK10:17"
+  ],
+  "extra": []
+ }
+]
