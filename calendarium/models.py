@@ -118,21 +118,28 @@ class Pericope(models.Model):
         # better representation and should replace this if the text is ever
         # obtained.
         #
-        # Not because of the verse selection -- bible.models.lookup_reference
-        # handles that fine, including out-of-order segments. It renders
-        # "Lev 26:3-12, 14-17, 19-20, 22, 33, 23-25" with verse 33 ahead of
-        # 23-25 as written, and Composite 20's "Isaiah 55:1; 12:3-4; 55:2-13"
-        # jumping chapters backwards and forwards. Order follows the OR terms
-        # in the query rather than an explicit order_by, and production already
-        # depends on it for the Holy Thursday composite gospel.
+        # Not for want of a parser. bible.models.lookup_reference handles
+        # out-of-order segments: it renders "Lev 26:3-12, 14-17, 19-20, 22, 33,
+        # 23-25" with verse 33 ahead of 23-25 as written, and Composite 20's
+        # "Isaiah 55:1; 12:3-4; 55:2-13" jumping chapters backwards and
+        # forwards. Order follows the OR terms in the generated query rather
+        # than an explicit order_by (there is no Meta.ordering on Verse), and
+        # production already depends on it for the Holy Thursday composite
+        # gospel, a five-segment cross-book reference.
         #
-        # What a reference cannot reproduce is the text. Composite text is
-        # Archimandrite Ephrem Lash's, translated from the LXX, where the Verse
-        # table's Old Testament is KJV and Masoretic -- "If you walk in my
-        # ordinances" against "If ye walk in my statutes". And it carries the
-        # liturgical incipit, which is not scripture at all: Composite 24 opens
-        # "The Lord spoke to the children of Israel saying", which appears
-        # nowhere in Leviticus 26:3.
+        # The obstacle is that for most composites NO verse list exists to
+        # write down. Archimandrite Ephrem's Prophetologion, which is where
+        # this text comes from, gives specifications like "Proverbs 10:31-32 &
+        # Selection", "40:1 and selection", "3 & 4 and selection" -- he did not
+        # enumerate them, so the stored text IS the specification. Only
+        # Composite 24 is fully spelled out there, and its sdisplay carries
+        # that spec.
+        #
+        # Consequently EIGHT sdisplay values here are chapter-only and wrong if
+        # they are ever resolved: "Isa 40, 41, 45, 48, 54" fetches 123 verses
+        # where the reading is a short selection, and "3 Kgs 18, 19" fetches
+        # 67. They are inert today because those pericopes route through the
+        # Composite table. Do not put a zero-width space on one of them.
         #
         # Why 17 and 18 are missing: they are the Slavic propers for that feast
         # (Exodus 40; 3 Kingdoms 7-8). The composites we do have come from
