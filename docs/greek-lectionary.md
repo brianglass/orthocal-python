@@ -203,6 +203,13 @@ A JSON feed, ingested by `ingest_antiochian.py` into `data/antiochian_raw/`
   `"TUESDAY OF THE 15TH WEEK"` (Luke section). This is Greek's own numbering
   and it is what made the weekday cycle tractable. It is hidden whenever a
   ranking commemoration claims the day.
+- **A linked service PDF may belong to the *next* day.** Great Vespers is
+  served the evening before, so the file is cross-linked from both dates. Aug
+  28 links a "Great Vespers" text that is actually Aug 29's Beheading of John
+  the Baptist -- the same file is linked from Aug 29's own page, alongside that
+  day's Festal Orthros and Liturgy variables. A vigil-looking service linked
+  from a page is not evidence that *that* day carries a vigil. Read the
+  citations, not the attachments.
 
 ## oca.org
 
@@ -2107,10 +2114,13 @@ document.
 Aug 28 carried a full vigil package tagged `common` -- three Vespers Old
 Testament lessons, a Matins Gospel, and a proper Epistle and Gospel -- for
 **Job of Pochaev**, a 17th-century Ukrainian saint kept in the Russian church.
-Greek was therefore being served a saint it does not commemorate. PR #217
-logged this as an open question in August 2026 and deliberately left the data
-alone: the evidence available then was inconclusive, and this project does not
-change reading data on inference.
+Greek was therefore being served a saint it does not commemorate. This was
+logged as an open question in August 2026 (PR #217, closed unmerged in favour
+of this section) and the data was deliberately left alone: the evidence
+available then was inconclusive, and this project does not change reading data
+on inference. The misreading that made it look inconclusive is now recorded as
+a source trap in Part II -- the "Great Vespers" text linked from Aug 28 is
+Aug 29's.
 
 It is now settled:
 
