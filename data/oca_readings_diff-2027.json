@@ -1,62 +1,51 @@
 [
  {
-  "date": "2026-01-01",
+  "date": "2027-01-01",
   "labels": [
    "Circumcision",
    "Saint"
   ],
   "missing": [
-   "HEB10:35",
-   "MARK11:27"
+   "JAS2:1",
+   "MARK12:1"
   ],
   "extra": []
  },
  {
-  "date": "2026-01-03",
+  "date": "2027-01-02",
   "labels": [
+   "Saint",
    "Saturday Before"
   ],
   "missing": [],
   "extra": [
-   "EPH5:1",
+   "COL1:3",
    "LUKE17:3"
   ]
  },
  {
-  "date": "2026-01-05",
+  "date": "2027-01-05",
   "labels": [],
   "missing": [
-   "HEB11:17",
-   "MARK8:11"
+   "JAS3:1",
+   "LUKE17:26"
   ],
   "extra": []
  },
  {
-  "date": "2026-03-26",
+  "date": "2027-01-09",
   "labels": [
-   "Theotokos"
+   "Saturday After"
   ],
   "missing": [
-   "HEB2:11",
-   "LUKE1:24"
+   "LUKE10:19"
   ],
-  "extra": []
- },
- {
-  "date": "2026-04-07",
-  "labels": [
-   "Matins",
-   "Vespers",
-   "Presanctified"
-  ],
-  "missing": [],
   "extra": [
-   "MATT22:15",
-   "JOHN10:9"
+   "LUKE10:16"
   ]
  },
  {
-  "date": "2026-04-09",
+  "date": "2027-04-29",
   "labels": [
    "Matins",
    "Vespers",
@@ -69,29 +58,30 @@
   ]
  },
  {
-  "date": "2026-05-21",
-  "labels": [],
+  "date": "2027-04-30",
+  "labels": [
+   "Vespers",
+   "Vespers"
+  ],
   "missing": [],
   "extra": [
-   "ACTS26:1",
-   "JOHN10:1"
+   "ACTS12:1",
+   "LUKE5:1"
   ]
  },
  {
-  "date": "2026-10-31",
+  "date": "2027-10-31",
   "labels": [
    "St. John Kochurov"
   ],
   "missing": [],
   "extra": [
-   "LUKE8:16"
+   "LUKE8:26"
   ]
  },
  {
-  "date": "2026-11-08",
-  "labels": [
-   "Angels"
-  ],
+  "date": "2027-11-07",
+  "labels": [],
   "missing": [],
   "extra": [
    "1COR12:27",
@@ -99,12 +89,23 @@
   ]
  },
  {
-  "date": "2026-12-24",
+  "date": "2027-12-24",
   "labels": [],
   "missing": [
-   "HEB10:35",
-   "MARK10:17"
+   "2TIM1:1",
+   "MARK10:23"
   ],
   "extra": []
+ },
+ {
+  "date": "2027-12-26",
+  "labels": [
+   "Sunday After"
+  ],
+  "missing": [],
+  "extra": [
+   "HEB2:11",
+   "MATT2:13"
+  ]
  }
 ]
