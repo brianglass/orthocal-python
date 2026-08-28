@@ -291,6 +291,8 @@
         "fast_abstentions": [],
         "saints": [
             "Synaxis of Seventy Apostles",
+            "Our Righteous Father Theoctistus, Abbot of Cucomo in Sicily",
+            "Nikephoros the Leper",
             "Eustathios Archbishop of Serbia",
             "The Ethiopian Eunuch of Queen Candace",
             "Venerable Apollinaria (5th c.)"
@@ -349,6 +351,7 @@
             "oil"
         ],
         "saints": [
+            "Apollinaria of Egypt",
             "Holy Martyrs Theopemptus and Theonas (ca. 290)",
             "Our Venerable Mother Syncletike (4th c.)"
         ],
@@ -921,7 +924,7 @@
         "titles": [
             "Monday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Gregory of Nyssa; St Theophan the Recluse",
+        "summary_title": "St Gregory of Nyssa; Dometian, Bishop of Melitene; St Theophan the Recluse",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
@@ -932,6 +935,7 @@
         "fast_abstentions": [],
         "saints": [
             "St Gregory of Nyssa",
+            "Dometian, Bishop of Melitene",
             "St Theophan the Recluse"
         ],
         "service_notes": null,
@@ -2090,7 +2094,7 @@
         "titles": [
             "Friday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Ephrem the Syrian; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
+        "summary_title": "Ven. Ephrem the Syrian; Theodosius of Totma; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2108,6 +2112,7 @@
         ],
         "saints": [
             "Ven. Ephrem the Syrian",
+            "Theodosius of Totma",
             "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)"
         ],
         "service_notes": null,
