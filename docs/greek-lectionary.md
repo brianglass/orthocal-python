@@ -204,6 +204,23 @@ A JSON feed, ingested by `ingest_antiochian.py` into `data/antiochian_raw/`
   and it is what made the weekday cycle tractable. It is hidden whenever a
   ranking commemoration claims the day.
 
+## oca.org
+
+The source this project's `common`/`slavic` data was originally compiled from,
+and the one to check before assuming a reading is Greek-specific.
+
+- Daily: `https://www.oca.org/readings/daily/YYYY/MM/DD`
+- A whole year at once: `https://www.oca.org/readings/monthly/YYYY`
+
+Plainly fetchable -- no API, no bot blocking. It lists everything for the day,
+Vespers and Matins included, so a saint's proper readings are distinguishable
+from the daily cycle by what else is present. Lives of the saints are at
+`/saints/lives`.
+
+Note that a commemoration appearing on the page does not mean it has proper
+readings: oca.org lists the Appearance of the Cross on May 7 and the Myrtle
+Tree icon on Sep 24, and gives neither a Liturgy reading.
+
 ## goarch.org
 
 No API, and Cloudflare blocks scripted access -- `requests`, `curl` and
@@ -2043,6 +2060,47 @@ was never observed.
 
 This also puts the 18 Antiochian rows to work. They had been stored but unread
 since the Antiochian tradition was removed.
+
+### Cross-checked against oca.org: the ten Menaion rows are correctly `greek`
+
+The ten Menaion readings added above were scoped `greek` because no OCA source
+was available at the time to say whether Slavic keeps them too. oca.org's daily
+readings turn out to be plainly fetchable at
+`https://www.oca.org/readings/daily/YYYY/MM/DD` (and a whole year at
+`/readings/monthly/YYYY`), so the question was settled directly.
+
+**Nine of the ten are correctly `greek`.** On each date oca.org either gives a
+different reading or none at all:
+
+| date | Greek reads | OCA reads |
+|---|---|---|
+| Apr 25, Mark the Apostle | `Luke 10:16-21` | `Mark 6:7-13` |
+| Apr 30, James the Apostle | `Luke 9:1-6` | `Luke 5:1-11` |
+| May 7 | `Acts 26:1-5, 12-20` | `Gal 1:11-19` / `John 10:1-9`, for St Alexis Toth |
+| Jul 5, Athanasius of Athos (Gospel) | `Matt 11:27-30` at Liturgy | `Luke 6:17-23` at Liturgy, `Matt 11:27-30` at Matins |
+| Jul 13, Synaxis of Gabriel | `Heb 2:2-10` | daily cycle only |
+| Aug 31, Placing of the Sash (both) | `Heb 9:1-7` / `Luke 10:38-42, 11:27-28` | daily cycle only |
+| Sep 24 | `Luke 10:38-42, 11:27-28` | daily cycle only |
+| Dec 17, Daniel and the Three Youths | `Heb 11:33-12:2` | daily cycle only |
+
+May 7 and Sep 24 are worth noting: oca.org *does* list the commemoration --
+the Appearance of the Cross, and an icon called "THE MYRTLE TREE", which is
+Myrtidiotissa -- but assigns it no proper reading. Commemorating a saint and
+giving them a Liturgy reading are separate things, and only the second one
+matters here.
+
+**The tenth is shared but should still stay as two rows.** Both traditions read
+`Gal 5:22-26; 6:1-2` on Jul 5, so a single `common` row looks tempting. It
+would be wrong: the two carry different attributions, and both are accurate.
+Slavic's says *"either Saint"*, because OCA commemorates Athanasius **and** the
+uncovering of the relics of Sergius of Radonezh that day and the Epistle serves
+either; Greek's names Athanasius. Merging would force one tradition's
+attribution on the other.
+
+**Incidental confirmation**: on all eight dates the app's *Slavic* output
+matches oca.org exactly, including the Vespers and Matins readings. That is the
+first direct check of the Slavic data against its own source anywhere in this
+document.
 
 ### Aug 28's vigil set is Slavic only (resolves the open question in PR #217)
 
