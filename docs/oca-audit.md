@@ -5,9 +5,18 @@ was added, and they were never measured against their own source the way Greek
 was measured against goarch.org (`docs/greek-lectionary.md`, which took Greek
 from 96.1% to 99.1%). This is that measurement.
 
-**Current state: 329/339 dates match for 2026 — 97.1%.** Ten dates differ, in
-three coherent groups, and the largest group is a single unmodelled rule rather
-than ten separate mistakes.
+**Current state, five years harvested (2023-2027): 97.0% to 98.2% a year.**
+Nearly every remaining difference is one unmodelled rule rather than a
+collection of separate mistakes. See "Five years changes the diagnosis" below;
+**one year was actively misleading** about which dates matter.
+
+| year | dates | match | differ |
+|---|---|---|---|
+| 2023 | 338 | 330 | 8 |
+| 2024 | 338 | 328 | 10 |
+| 2025 | 337 | 331 | 6 |
+| 2026 | 339 | 329 | 10 |
+| 2027 | 338 | 328 | 10 |
 
 ## Sources
 
@@ -269,3 +278,88 @@ they would pose if resolved is recorded in `calendarium/models.py`.
 Composites 17 and 18 remain the two with no Ephrem text at all: they are the
 Slavic propers for the Entrance of the Theotokos, absent from his
 Prophetologion, which assigns the Greek Marian set to that feast instead.
+
+
+# Five years changes the diagnosis (2026-08-28)
+
+The sections above were written from 2026 alone. Harvesting 2023-2027 and
+cross-tabulating by month-day corrected two conclusions:
+
+| date | years differing | |
+|---|---|---|
+| **10-31** | **5 of 5** | filed above as a one-off single date |
+| 01-05 Eve of Theophany | 4 of 5 | |
+| 12-24 Eve of Nativity | 4 of 5 | |
+| 01-01 Circumcision | 3 of 5 | |
+| 01-02, 01-03, 01-04 | 1 each | not three dates -- the Saturday before Theophany moving |
+
+Jan 3 is not a fixed-date problem; it is whichever day the Saturday before
+Theophany lands on. And Oct 31 is not a one-off; it is the single most
+consistent difference in the whole audit. **One year of data is enough to find
+a candidate and not enough to rank it.**
+
+## Fixed: St John Kochurov, Oct 31
+
+oca.org gives him a proper Gospel and no proper Epistle. The Epistle differs
+every year -- Col 2:20-3:3, Phil 1:20-27, Col 2:1-7, 2 Cor 5:1-10,
+2 Cor 11:31-12:9 -- which is what proves it is the ordinary daily reading; the
+Gospel is `John 10:9-16` in all five.
+
+The app had `Heb 13:7-16` and `Luke 12:32-40`, both plausible hieromartyr
+commons. Gospel repointed, Epistle row removed. Oct 31 now differs by one
+citation a year instead of three.
+
+(When checking locally, note that `loaddata` is additive: it will not remove a
+deleted row from an existing dev database, and the audit kept reporting the
+removed Epistle until it was deleted explicitly. Production rebuilds from the
+fixture at image build, so it is unaffected.)
+
+## The remaining rule, and why it is not implemented
+
+Everything still differing is one question: **does the ordinary daily reading
+coexist with a proper one?** It runs both ways.
+
+- The app *drops* the daily reading where oca.org keeps it -- Jan 1, Jan 5,
+  Dec 24.
+- The app *keeps* it where oca.org replaces it -- Oct 31, and the moving
+  Saturday before Theophany.
+
+Implementing it would close roughly 4-5 of the 6-10 differing dates a year,
+call it 97% to 98.5%. **Paused deliberately (2026-08-28), because the harness
+cannot yet prove such a change safe.**
+
+### What the harness does and does not cover
+
+| harness | scope | baseline |
+|---|---|---|
+| this audit | 5 years x ~338 days = 1,690 comparisons vs oca.org | 97.0-98.2% |
+| `tools/greek/goa_gap.py` | 336 days vs goarch.org | 333/336, 99.1% |
+| unit tests | | 189 |
+
+**The reading-selection logic is shared.** `aget_readings` is on the base `Day`
+class (`calendarium/liturgics/day.py`), which both `SlavicDay` and `GreekDay`
+inherit, so a change made for Slavic accuracy is measured for Greek against a
+*different* source. A Slavic improvement can cost Greek silently.
+
+**Both audits check the Liturgy Epistle and Gospel only -- 894 of 1,446
+readings a year, so 38% is unmeasured.** The blind spot is exactly where this
+rule operates: Jan 1, Jan 5 and Dec 24 are the days heaviest with Vespers,
+Matins and Hours, and Theophany Eve alone renders thirteen Vespers lessons and
+four sets of Hours. Jan 5's Liturgy readings could be brought into agreement
+while its Royal Hours were wrecked, and every harness would stay green.
+
+Smaller gaps: 26-28 Lenten days a year are skipped as Old-Testament-only; five
+years does not cover rare weekday configurations of these feasts; the Greek
+audit is one year, because goarch.org is harvest-limited.
+
+### Prerequisite before touching the logic
+
+1. **Extend the audit to `/readings/daily/`**, which lists every service --
+   the same pages used to verify Jan 1 and Dec 24 above. That closes the 38%.
+   365 requests a year at the 10-second crawl delay, about an hour, cached
+   permanently. This is a prerequisite, not an optional extra.
+2. Run both audits before and after. A Greek regression is a stop, not a
+   trade.
+3. Pin tests on the dates the rule must change *and* neighbours it must not.
+4. Scope the rule to what the evidence covers rather than to a general
+   principle about propers and daily readings.
