@@ -106,14 +106,38 @@ class Pericope(models.Model):
             return self.passage
 
     def get_passage(self, language='en', translation=None):
+        # Two pericopes -- Composite 17 and 18, the Entrance of the Theotokos
+        # Vespers lessons -- carry a deliberate zero-width space (U+200B) in
+        # front of "Composite" so this match FAILS and they fall through to the
+        # scripture lookup below. It is invisible on the page and it is load
+        # bearing; do not "clean" it out of the fixture.
+        #
+        # It is a stopgap, not a design. The Composite table has no rows 17 or
+        # 18, and d4d5d54 (Nov 2023) moved a hardcoded `not in ('17', '18')`
+        # out of this function and into the data. Approximating them with a
+        # reference works only because these two happen to have exact verse
+        # ranges; a real composite is the better representation and should
+        # replace this if the text is ever obtained. Composites frequently
+        # cannot be expressed as a reference at all -- Composite 24 is
+        # Leviticus 26:3-12, 14-17, 19-20, 22, 33, 23-25, which runs verse 33
+        # *before* 23-25 -- which is the whole reason the table exists.
+        #
+        # Why 17 and 18 are missing: they are the Slavic propers for that feast
+        # (Exodus 40; 3 Kingdoms 7-8). The composites we do have come from
+        # Archimandrite Ephrem Lash's Prophetologion, and his book assigns the
+        # Greek Marian set to the Entrance instead -- Genesis 28, Ezekiel 43,
+        # Proverbs 9 -- so these two readings simply are not in it. Only the
+        # Ezekiel overlaps, which is why it alone is a plain reference here.
         match = re.match(r'Composite (\d+)', self.display)
         if match:
             return Composite.objects.filter(
                     composite_num=match.group(1)
             ).annotate(
                     # Make the composite look like a Verse instance. Composite
-                    # readings only have one hardcoded (KJV-sourced) content
-                    # column, regardless of the requested translation.
+                    # readings only have one hardcoded content column,
+                    # regardless of the requested translation. That text is
+                    # Archimandrite Ephrem Lash's, not KJV as this comment
+                    # previously said -- see ~/src/anastasis.
                     book=models.Value(''),
                     chapter=models.Value(1),
                     verse=models.Value(1),
