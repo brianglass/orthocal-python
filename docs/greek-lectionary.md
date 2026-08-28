@@ -2043,3 +2043,35 @@ was never observed.
 
 This also puts the 18 Antiochian rows to work. They had been stored but unread
 since the Antiochian tradition was removed.
+
+### Aug 28's vigil set is Slavic only (resolves the open question in PR #217)
+
+Aug 28 carried a full vigil package tagged `common` -- three Vespers Old
+Testament lessons, a Matins Gospel, and a proper Epistle and Gospel -- for
+**Job of Pochaev**, a 17th-century Ukrainian saint kept in the Russian church.
+Greek was therefore being served a saint it does not commemorate. PR #217
+logged this as an open question in August 2026 and deliberately left the data
+alone: the evidence available then was inconclusive, and this project does not
+change reading data on inference.
+
+It is now settled:
+
+- **antiochian.org shows only the ordinary daily cycle on Aug 28 in 8 of 8
+  harvested years** (2019-2026), and the day's title is always the plain cycle
+  label -- "13th Friday after Pentecost" and so on. No year names a
+  commemoration, and none carries the `Gal 5:22-26; 6:1-2` / `Luke 6:17-23`
+  pair.
+- **goarch.org agrees** for 2026: `2 Cor 11:5-21` / `Mark 4:1-9`.
+- **oca.org confirms the set is right for Slavic**, listing Job of Pochaev
+  along with all eight readings.
+
+The absence is meaningful rather than merely uninformative, which is what the
+earlier pass could not establish. The same antiochian.org feed demonstrably
+*does* surface a saint's proper readings when one applies -- that is how most
+of the Greek Menaion data in this document was found, and on Jul 5 the very
+same `Gal 5:22-26; 6:1-2` shows up for Athanasius of Athos. A feed that reports
+saint readings reliably, reporting none here across eight years, is evidence.
+
+The six rows are retagged `common` -> `slavic`. Slavic is unchanged; Greek now
+shows the daily cycle alone. `TestAug28JobOfPochaev` covers both, including
+that removing the set does not leave the day empty.

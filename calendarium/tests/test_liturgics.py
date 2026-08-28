@@ -1672,3 +1672,46 @@ class TestOrdoJurisdictionLabels(TestCase):
         displays = [d for d, _ in await self.gospels(2021, 1, 19, Tradition.Slavic)]
         self.assertNotIn('Matt 22.1-14', displays)
         self.assertNotIn('Matt 19.16-26', displays)
+
+
+class TestAug28JobOfPochaev(TestCase):
+    """Aug 28's vigil set is Slavic only.
+
+    Job of Pochaev is a 17th-century Ukrainian saint kept in the Russian
+    church, and the day carries a full vigil package -- Vespers Old Testament
+    lessons, a Matins Gospel, and a proper Epistle and Gospel. It had been
+    tagged `common`, so Greek was being served a saint it does not commemorate.
+
+    Settled against the sources rather than by inference, which is why it sat
+    open for a while (see PR #217): antiochian.org shows only the ordinary
+    daily cycle on Aug 28 in 8 of 8 harvested years, never naming a
+    commemoration in the day's title, and goarch.org agrees for 2026. That is
+    meaningful rather than merely absent evidence, because the same feed
+    demonstrably *does* surface a saint's proper readings when one applies --
+    that is how most of the Greek Menaion data in this project was found.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    JOB_SET = ['Wis 3.1-9', 'Wis 5.15-6.3', 'Wis 4.7-15',
+               'Matt 11.27-30', 'Gal 5.22-6.2', 'Luke 6.17-23']
+
+    async def readings(self, tradition):
+        pday = liturgics.Day(2026, 8, 28, tradition=tradition)
+        await pday.ainitialize()
+        return [r.pericope.sdisplay for r in await pday.aget_readings()]
+
+    async def test_slavic_keeps_the_whole_vigil_set(self):
+        found = await self.readings(Tradition.Slavic)
+        for reading in self.JOB_SET:
+            self.assertIn(reading, found)
+
+    async def test_greek_gets_none_of_it(self):
+        found = await self.readings(Tradition.Greek)
+        for reading in self.JOB_SET:
+            self.assertNotIn(reading, found)
+
+    async def test_greek_still_gets_the_daily_cycle(self):
+        # Removing the vigil set must not leave the day empty.
+        self.assertEqual(await self.readings(Tradition.Greek),
+                         ['2 Cor 11.5-21', 'Mark 4.1-9'])
