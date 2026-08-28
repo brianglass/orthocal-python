@@ -114,13 +114,25 @@ class Pericope(models.Model):
         #
         # It is a stopgap, not a design. The Composite table has no rows 17 or
         # 18, and d4d5d54 (Nov 2023) moved a hardcoded `not in ('17', '18')`
-        # out of this function and into the data. Approximating them with a
-        # reference works only because these two happen to have exact verse
-        # ranges; a real composite is the better representation and should
-        # replace this if the text is ever obtained. Composites frequently
-        # cannot be expressed as a reference at all -- Composite 24 is
-        # Leviticus 26:3-12, 14-17, 19-20, 22, 33, 23-25, which runs verse 33
-        # *before* 23-25 -- which is the whole reason the table exists.
+        # out of this function and into the data. A real composite is the
+        # better representation and should replace this if the text is ever
+        # obtained.
+        #
+        # Not because of the verse selection -- bible.models.lookup_reference
+        # handles that fine, including out-of-order segments. It renders
+        # "Lev 26:3-12, 14-17, 19-20, 22, 33, 23-25" with verse 33 ahead of
+        # 23-25 as written, and Composite 20's "Isaiah 55:1; 12:3-4; 55:2-13"
+        # jumping chapters backwards and forwards. Order follows the OR terms
+        # in the query rather than an explicit order_by, and production already
+        # depends on it for the Holy Thursday composite gospel.
+        #
+        # What a reference cannot reproduce is the text. Composite text is
+        # Archimandrite Ephrem Lash's, translated from the LXX, where the Verse
+        # table's Old Testament is KJV and Masoretic -- "If you walk in my
+        # ordinances" against "If ye walk in my statutes". And it carries the
+        # liturgical incipit, which is not scripture at all: Composite 24 opens
+        # "The Lord spoke to the children of Israel saying", which appears
+        # nowhere in Leviticus 26:3.
         #
         # Why 17 and 18 are missing: they are the Slavic propers for that feast
         # (Exodus 40; 3 Kingdoms 7-8). The composites we do have come from
