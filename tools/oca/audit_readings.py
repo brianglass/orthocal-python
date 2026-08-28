@@ -41,14 +41,18 @@ from calendarium.liturgics import Day                # noqa: E402
 from tools.oca.refs import canon, near, slot         # noqa: E402
 
 
-# Slot is deliberately NOT used to pair readings up. Neither side is
-# self-consistent about it: oca.org labels Holy Week's Bridegroom gospels
-# "(Matins)" while the app files those same readings under source "Gospel", and
-# the app splits Theophany Eve across Hours, Vespers and Blessing of Waters
-# where oca.org prints two rows. Matching by slot invented differences on
-# precisely the hardest days -- it moved the score the wrong way and flagged
-# readings both sides plainly had. Match on the citation, and report the two
-# directions separately, which is what actually needs fixing:
+# Slot is deliberately NOT used to pair readings up, because "slot" is really
+# two independent axes -- the *kind* of reading and the *service* it is read at
+# -- and the two sources name different ones. Holy Week's Bridegroom readings
+# are Gospels AND are read at Matins: oca.org's "(Matins)" names the service,
+# the app's source "Gospel" names the kind, and neither is wrong. The app's
+# `source` is compositional over both axes with either omissible ("Gospel" =
+# Liturgy Gospel, "Vespers" = service only, "Matins Gospel" = both), so it
+# cannot be read as a single slot at all.
+#
+# Matching by slot therefore invented differences on precisely the hardest days
+# -- it moved the score the wrong way and flagged readings both sides plainly
+# had. Match on the citation, and report the two directions separately:
 #
 #   missing -- oca.org lists it, the app has it nowhere. A real gap.
 #   extra   -- the app shows it as an Epistle or Gospel, oca.org lists nothing

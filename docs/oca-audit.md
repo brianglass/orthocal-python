@@ -40,12 +40,31 @@ numbers swaps Epistle and Gospel for a third of the year: it scored the app at
 **73.7%** when the true figure was far higher. Classify by book instead —
 `tools/oca/refs.py:slot()`.
 
-**Neither side is self-consistent about which slot a reading belongs to.**
-oca.org labels Holy Week's Bridegroom gospels `(Matins)`; the app files those
-same readings under source `Gospel`. The app splits Theophany Eve across Hours,
-Vespers and the Blessing of Waters where oca.org prints two rows. Excluding
-oca.org's service-labelled rows to compensate made things *worse* — 95.6%, with
-false differences on exactly the hardest days.
+**"Slot" is two axes, and the two sources name different ones.** A reading has
+a *kind* — Gospel, Epistle, Prophecy — and a *service* it is read at. These are
+independent. Holy Week's Bridegroom readings are Gospels **and** are read at
+Matins; oca.org's `(Matins)` names the service and the app's `Gospel` names the
+kind, and neither is wrong.
+
+The app's `source` is compositional over both axes, with either omissible:
+
+| source | service | kind | rows |
+|---|---|---|---|
+| `Gospel` | Liturgy, implied | Gospel | 617 |
+| `Vespers` | Vespers | unstated | 358 |
+| `Matins Gospel` | Matins | Gospel | 72 |
+| `6th Hour, Epistle` | Sixth Hour | Epistle | 4 |
+
+So a bare `Gospel` means *Liturgy* Gospel by default. Six Holy Week rows are the
+exception: the four Bridegroom gospels and the two at the Washing of the Feet
+carry `source='Gospel'` and name their service in `desc` instead
+(`Bridegroom`, `At the Washing of the Feet`). A reader loses nothing — the desc
+is displayed — but a matcher keying on `source` alone reads them as Liturgy
+gospels.
+
+This is why excluding oca.org's service-labelled rows to compensate made things
+*worse* — 95.6%, with false differences on exactly the hardest days. The two
+sources were being asked to agree on an axis neither was consistently naming.
 
 So the audit does not pair readings by slot at all. It asks two questions
 separately:
@@ -96,9 +115,11 @@ suppresses them. The app serves them. This is a ranking question, not a data
 error, and it is the same shape as the fast-exception ranking work in
 `docs/greek-fasting.md`.
 
-The two foot-washing gospels on Apr 9 are genuinely served, but at the Washing
-rite rather than the Liturgy; the app files them under `Gospel`. That is a
-`source` classification issue, not a missing or spurious reading.
+The two foot-washing gospels on Apr 9 are genuinely served, and the app has
+them right — they are Gospels, read at the Washing of the Feet, and `desc` says
+so. They surface here only because oca.org's monthly table does not list them
+and the audit's "extra" direction keys on `source`, where they look like
+Liturgy gospels. Nothing to fix; see the two-axis note above.
 
 ### 3. Single dates, not yet explained — 3 dates
 
