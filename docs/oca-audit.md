@@ -51,7 +51,7 @@ The app's `source` is compositional over both axes, with either omissible:
 | source | service | kind | rows |
 |---|---|---|---|
 | `Gospel` | Liturgy, implied | Gospel | 617 |
-| `Vespers` | Vespers | unstated | 358 |
+| `Vespers` | Vespers | Old Testament in practice — see below | 358 |
 | `Matins Gospel` | Matins | Gospel | 72 |
 | `6th Hour, Epistle` | Sixth Hour | Epistle | 4 |
 
@@ -65,6 +65,29 @@ gospels.
 This is why excluding oca.org's service-labelled rows to compensate made things
 *worse* — 95.6%, with false differences on exactly the hardest days. The two
 sources were being asked to agree on an axis neither was consistently naming.
+
+**`Vespers` implies Old Testament, and its exceptions are principled.** Of 359
+Vespers rows, 320 (89%) are Old Testament lessons. The exceptions are not
+noise:
+
+- **38 are Catholic Epistles on apostolic feasts** — three lessons from James
+  for St James, three from 1 Peter for St Peter, three from 1 John for St John,
+  three from Jude. On an apostle's feast the three Old Testament lessons are
+  replaced by three from the catholic epistles, which is exactly what these
+  are. Correct as stored.
+- **1 is a genuine Vespers Gospel**, `John 20:19-25`, with its own `source`
+  value saying so.
+
+So the useful rule for reading this data is that a bare `Vespers` means an Old
+Testament lesson unless the day is an apostle's feast. Useful in both
+directions: an unexplained New Testament reading under `Vespers` on a
+non-apostolic day would be worth a second look.
+
+One classifier note: 38 Vespers rows are composite lessons whose display names
+books and chapters but no verse — `Composite 2 - Proverbs 10, 3, 8`. `canon()`
+needs a chapter:verse and returns nothing for them, so `refs.classify()` falls
+back to the book name. They can be *classified* but never *matched* by
+citation; all 38 are Old Testament, so nothing in this audit turns on them.
 
 So the audit does not pair readings by slot at all. It asks two questions
 separately:

@@ -104,6 +104,32 @@ def slot(token):
     return 'OT'
 
 
+def classify(citation):
+    """The slot of a raw citation, even when it carries no chapter:verse.
+
+    canon() needs a chapter and verse, which the composite Vespers lessons do
+    not have -- "Composite 2 - Proverbs 10, 3, 8" names three chapters of
+    Proverbs and no verse at all. There are 38 such rows and every one is an
+    Old Testament Vespers lesson, so falling back to the book name alone
+    classifies them correctly even though they can never be matched by citation.
+    """
+    token = canon(citation)
+    if token:
+        return slot(token)
+
+    u = re.sub(r'[^A-Z0-9:; ,\-]', ' ', (citation or '').upper().replace('.', ':'))
+    hit = min(((m.start(), t) for t, rx in BOOK_RE if (m := rx.search(u))), default=None)
+    if hit is None:
+        return None
+    pos, book = hit
+    ordinal = bool(re.search(r'\b(I{1,3}|[123]|FIRST|SECOND|THIRD)\s*$', u[:pos].strip() + ' '))
+    if book in GOSPELS and not ordinal:
+        return 'Gospel'
+    if book in EPISTLES:
+        return 'Epistle'
+    return 'OT'
+
+
 def near(a, b, tolerance=2):
     """Same book and chapter, opening verse within `tolerance`.
 
