@@ -214,12 +214,23 @@ like; the gap from 100% is translation, not selection.
 | 4 — Prov/Wisdom | 15% | `Prov 10:31-32; Wis 6:12-16; 7:30; 8:2-4, 7-8; 9:1-5, 10-11, 14` | 44% | not stored |
 | 5 — Wisdom | 17% | `4:1, 14; 6:12, 17-18, 21-22; 7:15, 22, 26-27, 29-30; 2:1, 10-20` | 37% | not stored |
 
-**Six of the eight are stored; 4 and 5 were deliberately left loose.** Their
-derived specs are recorded above for reference only. `sdisplay` is not a private
-note -- `calendarium/api.py` publishes it as the API's `short_display`, so a
-44%-confidence guess there would present inference as fact to API consumers,
-and the loose value it would replace is at least honestly vague. Composite 5's
-derived spec is also 67 characters against the column's `max_length=64`.
+**None of the derived specs are stored.** They are recorded above as research,
+and the decision (2026-08-28) was to keep the composite mechanism as it is:
+Ephrem's text for the 22 that have it, and the zero-width-space fall-through
+for 17 and 18.
+
+That decision follows from the table. Only three of eight derivations reach the
+band a correct selection occupies, and the other five sit below it -- so there
+is no clean path to references, and a partial conversion would render some
+composites in the reader's translation and others in Ephrem's, on the same
+page, for no gain in what the reader sees.Storing them was tried and reverted for a reason worth keeping in mind:
+`sdisplay` is not a private note. `calendarium/api.py` publishes it as the
+API's `short_display`, documented as "the scripture reference with abbreviated
+book name". For a composite there is no such reference, and the loose form is
+what oca.org itself prints as the title -- so an enumerated 54-character guess
+would both break with convention and assert a precision measured at 53-64%.
+Composite 5's derived spec was also 67 characters against the column's
+`max_length=64`.
 
 (Three *pre-existing* sdisplay values already exceed that limit -- the Holy Week
 composite gospels at pks 116, 120 and 1013, 72-73 characters each. SQLite does
@@ -239,11 +250,21 @@ and Composite 9's third part really does run 4:6 before 4:4-5.
 
 ## Where this leaves the composites
 
-Ephrem's text stays. Converting the in-band specs to references would trade a
-translation the reader cannot get anywhere else for translation-awareness, at
-about 60-75% fidelity — worth doing only deliberately, and never for 4 and 5.
-What the derived specs buy today is that `sdisplay` is now *true*, so the
-option exists and nothing silently fetches whole chapters.
+Unchanged, deliberately. Ephrem's text stays, and 17 and 18 keep falling
+through to a scripture reference. Two corrections did land, because neither is
+inference:
+
+- **Composite 18** was `3 Kgs 7:51-8:1, 8:4-7, 9-11`, which included a verse
+  oca.org's text does not have and omitted one it does. Now
+  `3 Kgs 8:1, 3-7, 9-11`. This one is *functional* -- it is a fall-through, so
+  the range is what readers actually get.
+- **Composite 24** was `Lev 26`, the whole 46-verse chapter, where the reading
+  is 21 verses. Ephrem spells this one out in full, so the spec is his rather
+  than derived.
+
+The remaining six loose `sdisplay` values are left as they are. They are
+inert -- those pericopes resolve through the Composite table -- and the trap
+they would pose if resolved is recorded in `calendarium/models.py`.
 
 Composites 17 and 18 remain the two with no Ephrem text at all: they are the
 Slavic propers for the Entrance of the Theotokos, absent from his
