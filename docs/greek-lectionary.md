@@ -181,8 +181,13 @@ API. Everything here was learned the hard way; each trap below cost real time.
 A JSON feed, ingested by `ingest_antiochian.py` into `data/antiochian_raw/`
 (currently ~1500 days, 2018-2026).
 
-- **Horizon: 2018 through roughly one year ahead.** 2015-2017 and earlier fail
-  consistently; so does anything much beyond a year out. Several questions in
+- **Horizon: 2018 through the end of the current published year.** 2015-2017
+  and earlier fail consistently. Forward, the limit is not really a horizon:
+  their liturgical chart is published a year at a time, and dates past the end
+  of the current chart return **HTTP 500** because the ordo does not exist yet
+  rather than because the API refuses to reach them. As of August 2026 the
+  chart runs to the end of 2026, and January 2027 returns 500. Re-harvest once
+  the next chart is out rather than concluding the dates are unreachable. Several questions in
   Part III were closed as "permanently unobservable" on this basis --
   **reconsider all of them against goarch.org**, which has no such limit.
 - **Isolated single-date gaps exist** inside the reachable window (2021-01-01
