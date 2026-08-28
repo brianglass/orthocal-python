@@ -6,7 +6,10 @@ of what the jurisdiction published, resolved onto pdists that already exist in
 the Reading table.
 
     docker compose exec -T local python tools/greek/load_ordo.py
-    docker compose exec -T local ./manage.py dumpdata calendarium --indent=1 -o fixtures/calendarium.json
+    docker compose exec -T local ./manage.py dumpdata calendarium --indent=2 -o fixtures/calendarium.json
+
+The indent must be 2. The fixture is stored that way, and dumping it at any
+other width reformats all ~62,000 lines, burying the handful that changed.
 """
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
@@ -100,14 +103,27 @@ def antiochian_rows():
             continue
         yield ('antiochian', dt.year, 1, dt.day, 'Gospel', pdist, f'antiochian.org: {citation}')
 
-OrdoReading.objects.all().delete()
 made = collections.Counter()
+seen = set()
 for jur, y, m, dd, source, pdist, note in list(goarch_rows()) + list(antiochian_rows()):
     OrdoReading.objects.update_or_create(
         jurisdiction=jur, year=y, month=m, day=dd, source=source,
         defaults={'pdist': pdist, 'note': note},
     )
     made[jur] += 1
+    seen.add((jur, y, m, dd, source))
+
+# Prune what the sources no longer produce, rather than emptying the table up
+# front and rebuilding it. Rebuilding renumbered every pk on every run, so
+# harvesting one new date rewrote all ~120 rows in the fixture diff and hid the
+# one line that actually changed. update_or_create keeps a surviving row's pk.
+stale = [
+    o.pk for o in OrdoReading.objects.all()
+    if (o.jurisdiction, o.year, o.month, o.day, o.source) not in seen
+]
+if stale:
+    OrdoReading.objects.filter(pk__in=stale).delete()
+    print(f'pruned {len(stale)} row(s) the sources no longer produce')
 
 for jur, n in sorted(made.items()):
     yrs = OrdoReading.objects.filter(jurisdiction=jur).order_by('year')

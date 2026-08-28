@@ -36356,7 +36356,7 @@
     "pericope": 890,
     "ordering": 604,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -36371,7 +36371,7 @@
     "pericope": 892,
     "ordering": 605,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -36386,7 +36386,7 @@
     "pericope": 891,
     "ordering": 606,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -36401,7 +36401,7 @@
     "pericope": 46,
     "ordering": 721,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -36416,7 +36416,7 @@
     "pericope": 647,
     "ordering": 821,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -36431,7 +36431,7 @@
     "pericope": 227,
     "ordering": 921,
     "flag": 0,
-    "tradition": "common"
+    "tradition": "slavic"
   }
 },
 {
@@ -62404,6 +62404,19 @@
     "source": "Gospel",
     "pdist": 274,
     "note": "antiochian.org: MARK 12:13-17"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 180,
+  "fields": {
+    "jurisdiction": "antiochian",
+    "year": 2020,
+    "month": 1,
+    "day": 24,
+    "source": "Gospel",
+    "pdist": 166,
+    "note": "antiochian.org: MARK 12:1-12"
   }
 }
 ]

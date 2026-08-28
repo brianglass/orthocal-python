@@ -181,8 +181,13 @@ API. Everything here was learned the hard way; each trap below cost real time.
 A JSON feed, ingested by `ingest_antiochian.py` into `data/antiochian_raw/`
 (currently ~1500 days, 2018-2026).
 
-- **Horizon: 2018 through roughly one year ahead.** 2015-2017 and earlier fail
-  consistently; so does anything much beyond a year out. Several questions in
+- **Horizon: 2018 through the end of the current published year.** 2015-2017
+  and earlier fail consistently. Forward, the limit is not really a horizon:
+  their liturgical chart is published a year at a time, and dates past the end
+  of the current chart return **HTTP 500** because the ordo does not exist yet
+  rather than because the API refuses to reach them. As of August 2026 the
+  chart runs to the end of 2026, and January 2027 returns 500. Re-harvest once
+  the next chart is out rather than concluding the dates are unreachable. Several questions in
   Part III were closed as "permanently unobservable" on this basis --
   **reconsider all of them against goarch.org**, which has no such limit.
 - **Isolated single-date gaps exist** inside the reachable window (2021-01-01
@@ -198,6 +203,30 @@ A JSON feed, ingested by `ingest_antiochian.py` into `data/antiochian_raw/`
   `"TUESDAY OF THE 15TH WEEK"` (Luke section). This is Greek's own numbering
   and it is what made the weekday cycle tractable. It is hidden whenever a
   ranking commemoration claims the day.
+- **A linked service PDF may belong to the *next* day.** Great Vespers is
+  served the evening before, so the file is cross-linked from both dates. Aug
+  28 links a "Great Vespers" text that is actually Aug 29's Beheading of John
+  the Baptist -- the same file is linked from Aug 29's own page, alongside that
+  day's Festal Orthros and Liturgy variables. A vigil-looking service linked
+  from a page is not evidence that *that* day carries a vigil. Read the
+  citations, not the attachments.
+
+## oca.org
+
+The source this project's `common`/`slavic` data was originally compiled from,
+and the one to check before assuming a reading is Greek-specific.
+
+- Daily: `https://www.oca.org/readings/daily/YYYY/MM/DD`
+- A whole year at once: `https://www.oca.org/readings/monthly/YYYY`
+
+Plainly fetchable -- no API, no bot blocking. It lists everything for the day,
+Vespers and Matins included, so a saint's proper readings are distinguishable
+from the daily cycle by what else is present. Lives of the saints are at
+`/saints/lives`.
+
+Note that a commemoration appearing on the page does not mean it has proper
+readings: oca.org lists the Appearance of the Cross on May 7 and the Myrtle
+Tree icon on Sep 24, and gives neither a Liturgy reading.
 
 ## goarch.org
 
@@ -2038,3 +2067,79 @@ was never observed.
 
 This also puts the 18 Antiochian rows to work. They had been stored but unread
 since the Antiochian tradition was removed.
+
+### Cross-checked against oca.org: the ten Menaion rows are correctly `greek`
+
+The ten Menaion readings added above were scoped `greek` because no OCA source
+was available at the time to say whether Slavic keeps them too. oca.org's daily
+readings turn out to be plainly fetchable at
+`https://www.oca.org/readings/daily/YYYY/MM/DD` (and a whole year at
+`/readings/monthly/YYYY`), so the question was settled directly.
+
+**Nine of the ten are correctly `greek`.** On each date oca.org either gives a
+different reading or none at all:
+
+| date | Greek reads | OCA reads |
+|---|---|---|
+| Apr 25, Mark the Apostle | `Luke 10:16-21` | `Mark 6:7-13` |
+| Apr 30, James the Apostle | `Luke 9:1-6` | `Luke 5:1-11` |
+| May 7 | `Acts 26:1-5, 12-20` | `Gal 1:11-19` / `John 10:1-9`, for St Alexis Toth |
+| Jul 5, Athanasius of Athos (Gospel) | `Matt 11:27-30` at Liturgy | `Luke 6:17-23` at Liturgy, `Matt 11:27-30` at Matins |
+| Jul 13, Synaxis of Gabriel | `Heb 2:2-10` | daily cycle only |
+| Aug 31, Placing of the Sash (both) | `Heb 9:1-7` / `Luke 10:38-42, 11:27-28` | daily cycle only |
+| Sep 24 | `Luke 10:38-42, 11:27-28` | daily cycle only |
+| Dec 17, Daniel and the Three Youths | `Heb 11:33-12:2` | daily cycle only |
+
+May 7 and Sep 24 are worth noting: oca.org *does* list the commemoration --
+the Appearance of the Cross, and an icon called "THE MYRTLE TREE", which is
+Myrtidiotissa -- but assigns it no proper reading. Commemorating a saint and
+giving them a Liturgy reading are separate things, and only the second one
+matters here.
+
+**The tenth is shared but should still stay as two rows.** Both traditions read
+`Gal 5:22-26; 6:1-2` on Jul 5, so a single `common` row looks tempting. It
+would be wrong: the two carry different attributions, and both are accurate.
+Slavic's says *"either Saint"*, because OCA commemorates Athanasius **and** the
+uncovering of the relics of Sergius of Radonezh that day and the Epistle serves
+either; Greek's names Athanasius. Merging would force one tradition's
+attribution on the other.
+
+**Incidental confirmation**: on all eight dates the app's *Slavic* output
+matches oca.org exactly, including the Vespers and Matins readings. That is the
+first direct check of the Slavic data against its own source anywhere in this
+document.
+
+### Aug 28's vigil set is Slavic only (resolves the open question in PR #217)
+
+Aug 28 carried a full vigil package tagged `common` -- three Vespers Old
+Testament lessons, a Matins Gospel, and a proper Epistle and Gospel -- for
+**Job of Pochaev**, a 17th-century Ukrainian saint kept in the Russian church.
+Greek was therefore being served a saint it does not commemorate. This was
+logged as an open question in August 2026 (PR #217, closed unmerged in favour
+of this section) and the data was deliberately left alone: the evidence
+available then was inconclusive, and this project does not change reading data
+on inference. The misreading that made it look inconclusive is now recorded as
+a source trap in Part II -- the "Great Vespers" text linked from Aug 28 is
+Aug 29's.
+
+It is now settled:
+
+- **antiochian.org shows only the ordinary daily cycle on Aug 28 in 8 of 8
+  harvested years** (2019-2026), and the day's title is always the plain cycle
+  label -- "13th Friday after Pentecost" and so on. No year names a
+  commemoration, and none carries the `Gal 5:22-26; 6:1-2` / `Luke 6:17-23`
+  pair.
+- **goarch.org agrees** for 2026: `2 Cor 11:5-21` / `Mark 4:1-9`.
+- **oca.org confirms the set is right for Slavic**, listing Job of Pochaev
+  along with all eight readings.
+
+The absence is meaningful rather than merely uninformative, which is what the
+earlier pass could not establish. The same antiochian.org feed demonstrably
+*does* surface a saint's proper readings when one applies -- that is how most
+of the Greek Menaion data in this document was found, and on Jul 5 the very
+same `Gal 5:22-26; 6:1-2` shows up for Athanasius of Athos. A feed that reports
+saint readings reliably, reporting none here across eight years, is evidence.
+
+The six rows are retagged `common` -> `slavic`. Slavic is unchanged; Greek now
+shows the daily cycle alone. `TestAug28JobOfPochaev` covers both, including
+that removing the set does not leave the day empty.
