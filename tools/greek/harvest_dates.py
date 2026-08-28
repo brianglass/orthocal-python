@@ -12,8 +12,8 @@ from ingest_antiochian import Antiochian, CACHE_DIR
 
 # Edit these for whatever dates need filling in. Already-cached dates are
 # skipped, so re-running is cheap and safe.
-TARGETS = [(7, 5), (9, 24)]
-YEARS = range(2019, 2027)
+TARGETS = [(1, 19), (1, 24), (1, 26)]
+YEARS = [2020, 2027]
 
 client = Antiochian(delay=2.0)
 client.authenticate()
