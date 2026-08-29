@@ -31989,7 +31989,7 @@
     "source": "Epistle",
     "desc": "Circumcision",
     "pericope": 694,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -32004,7 +32004,7 @@
     "source": "Epistle",
     "desc": "St Basil",
     "pericope": 768,
-    "ordering": 822,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -32019,7 +32019,7 @@
     "source": "Gospel",
     "desc": "Circumcision",
     "pericope": 208,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -32034,7 +32034,7 @@
     "source": "Gospel",
     "desc": "St Basil",
     "pericope": 227,
-    "ordering": 922,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -34959,7 +34959,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 535,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -34974,7 +34974,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 202,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "slavic"
   }
@@ -35049,7 +35049,7 @@
     "source": "Epistle",
     "desc": "Apostles",
     "pericope": 624,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -35064,7 +35064,7 @@
     "source": "Gospel",
     "desc": "Apostles",
     "pericope": 72,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -36504,7 +36504,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 432,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "slavic"
   }
@@ -36519,7 +36519,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 151,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -38201,7 +38201,7 @@
     "source": "Epistle",
     "desc": "St Matthew",
     "pericope": 557,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -38216,7 +38216,7 @@
     "source": "Gospel",
     "desc": "St Matthew",
     "pericope": 31,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -41591,7 +41591,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 990,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "greek"
   }
@@ -41606,7 +41606,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 991,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "greek"
   }
@@ -42806,7 +42806,7 @@
     "source": "Epistle",
     "desc": "Matthew the Apostle",
     "pericope": 527,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "greek"
   }
@@ -42821,7 +42821,7 @@
     "source": "Gospel",
     "desc": "Matthew the Apostle",
     "pericope": 31,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "greek"
   }

@@ -28,8 +28,8 @@
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
-            5,
-            8
+            4,
+            7
         ],
         "readings": [
             {
@@ -67,14 +67,6 @@
             {
                 "source": "Epistle",
                 "book": "Apostol",
-                "description": "Saturday before Theophany",
-                "display": "1 Timothy 3.14-4.5",
-                "short_display": "1 Tim 3.14-4.5",
-                "passage": null
-            },
-            {
-                "source": "Epistle",
-                "book": "Apostol",
                 "description": "Circumcision",
                 "display": "Colossians 2.8-12",
                 "short_display": "Col 2.8-12",
@@ -89,11 +81,11 @@
                 "passage": null
             },
             {
-                "source": "Gospel",
-                "book": "Matthew",
+                "source": "Epistle",
+                "book": "Apostol",
                 "description": "Saturday before Theophany",
-                "display": "Matthew 3.1-11",
-                "short_display": "Matt 3.1-11",
+                "display": "1 Timothy 3.14-4.5",
+                "short_display": "1 Tim 3.14-4.5",
                 "passage": null
             },
             {
@@ -110,6 +102,14 @@
                 "description": "St Basil",
                 "display": "Luke 6.17-23",
                 "short_display": "Luke 6.17-23",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Saturday before Theophany",
+                "display": "Matthew 3.1-11",
+                "short_display": "Matt 3.1-11",
                 "passage": null
             }
         ]
