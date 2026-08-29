@@ -673,6 +673,21 @@ class Day:
 
     get_readings = async_to_sync(aget_readings)
 
+    @staticmethod
+    def _first_epistle_and_gospel(readings):
+        """The first Epistle and the first Gospel at or after it, or None."""
+        sources = [r.source for r in readings]
+        if 'Epistle' not in sources or 'Gospel' not in sources:
+            return None
+        epistle = readings[start := sources.index('Epistle')]
+        try:
+            gospel = readings[sources.index('Gospel', start)]
+        except ValueError:
+            # Some epistles are out of order in the data; be forgiving rather
+            # than drop the gospel entirely.
+            gospel = readings[sources.index('Gospel')]
+        return [epistle, gospel]
+
     async def aget_abbreviated_readings(self, fetch_content=False):
         """Return an abbreviated list of lectionary readings."""
 
@@ -724,21 +739,34 @@ class Day:
         readings = [reading async for reading in queryset.order_by('ordering')]
         readings = _prefer_tradition(readings, self.tradition)
 
-        # Include only the first Epistle and Gospel if we have them.
-        sources = [r.source for r in readings]
-        if 'Epistle' in sources and 'Gospel' in sources:
-            epistle = readings[start := sources.index('Epistle')]
-            try:
-                # Attempt to fetch the gospel that comes after the selected epistle
-                gospel = readings[sources.index('Gospel', start)]
-            except ValueError:
-                # If this goes wrong, we'll take any epistle. This shouldn't
-                # happen, but there are some epistles out of order in the
-                # database. This should be fixed in the data, but for now we'll
-                # be forgiving.
-                gospel = readings[sources.index('Gospel')]
+        # Reduce to a single Epistle and Gospel -- this is what the Alexa skill
+        # speaks, so it has to be the pair that characterises the day.
+        #
+        # Which pair that is depends on rank, and the thresholds below are
+        # measured rather than assumed. Against antiochian.org and goarch.org,
+        # which each publish exactly one pair a day, on days that have a
+        # proper: at feast level 6 and above the proper always wins, at level 3
+        # to 5 it wins on 88% of weekdays, and at levels 0-2 the ordinary daily
+        # reading wins more often than not.
+        #
+        # Sunday is the exception that decides where this logic lives. On a
+        # Sunday the resurrectional reading takes precedence over almost any
+        # saint -- 7 of 8 observed -- and that cannot be expressed in the
+        # static `ordering` column, because whether a fixed date falls on a
+        # Sunday changes from year to year. See docs/oca-audit.md.
+        propers = [r for r in readings if r.month]
+        ordinary = [r for r in readings if not r.month]
 
-            readings = [epistle, gospel]
+        prefer_propers = self.feast_level >= 3 and self.weekday != Weekday.Sunday
+        for group in ([propers, ordinary] if prefer_propers else [ordinary, propers]):
+            pair = self._first_epistle_and_gospel(group)
+            if pair:
+                readings = pair
+                break
+        else:
+            pair = self._first_epistle_and_gospel(readings)
+            if pair:
+                readings = pair
 
         if fetch_content:
             for reading in readings:

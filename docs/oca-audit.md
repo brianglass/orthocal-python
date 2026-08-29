@@ -416,3 +416,79 @@ The Mar 30/31 pair is a new kind of finding the Liturgy-only audit could not
 see: not a wrong reading but a wrong *date*, and the two entries cancel out in
 any per-year total. `Isa 43:9 / Wis 3:1 / Wis 5:15` appearing as missing on
 Jun 30 and extra on Nov 8 may be the same shape.
+
+# Choosing the abbreviated readings
+
+`Day.aget_abbreviated_readings()` reduces a day to one Epistle and one Gospel;
+it is what the Alexa skill speaks. It was hand-tuned and had never been
+measured, because there was no obvious ground truth for "the" reading of a day.
+
+There are three, and they disagree usefully:
+
+- **antiochian.org and goarch.org publish exactly one pair a day.** That is a
+  direct answer, and on every feast checked the two agree with each other.
+- **oca.org's monthly lectionary lists reading sets per date**, propers
+  labelled and the ordinary set unlabelled. Useful, but **its row order is not
+  reliably primary-first** -- Jan 1 leads with Circumcision, while Feb 2, the
+  Meeting of the Lord, leads with the *daily* reading and puts the feast
+  second. Do not treat the first row as the answer.
+
+## The rule, measured
+
+Against antiochian.org for 2026, on days that have a proper:
+
+| feast level | proper wins | daily wins |
+|---|---|---|
+| 0 | 18 | 22 |
+| 2 | 20 | 16 |
+| 3-5 | 47 | 14 |
+| 6-7 | 8 | 0 |
+| 8 | 5 | 1 |
+
+So the proper takes over somewhere around level 3, and below that the ordinary
+daily reading is more often right -- which matches the intuition that a minor
+commemoration does not displace the daily cycle.
+
+Splitting levels 3 and up by weekday sharpens it considerably:
+
+| | proper | daily |
+|---|---|---|
+| **Sunday** | 1 | 7 |
+| **weekday** | 59 | 8 |
+
+**Sunday is why this logic cannot live in the data.** On a Sunday the
+resurrectional reading takes precedence over almost any saint, and whether a
+fixed date falls on a Sunday changes from year to year, while `ordering` is a
+static column. Retiering rows alone would get Sundays wrong.
+
+The implemented rule is therefore: prefer the day's propers when
+`feast_level >= 3` and the day is not a Sunday; otherwise prefer the ordinary
+daily readings; fall back to whatever exists. Lenten weekdays are untouched --
+there is no Epistle/Gospel pair to reduce to, so the Old Testament readings
+(Sixth Hour Isaiah, Vespers Genesis and Proverbs) pass through for every
+tradition, which is correct.
+
+Measured against oca.org's leading pair, this moved 2026 from **244/339
+(72.0%) to 283/339 (83.5%)**. That understates it, since the metric counts Feb 2
+as a miss where we now agree with antiochian.org and goarch.org.
+
+A cleaner metric for the Greek tradition -- its abbreviated pair against
+antiochian.org -- is not yet usable: it conflates the selection logic with
+known gaps in the Greek proper data and with Lenten days where antiochian's two
+readings are Old Testament rather than Epistle and Gospel. Separating those is
+worth doing before trusting a number from it.
+
+## Follow-up: is Oct 31's Kochurov data there for ROCOR?
+
+Brian raised this (2026-08-29). The Oct 31 readings for St John Kochurov were
+first judged wrong against oca.org's monthly lectionary, then restored when the
+all-services harvest showed oca.org has them after all. But there is a further
+question underneath: Kochurov is a New Martyr of the Russian Church, and the
+data may have been shaped for **ROCOR** practice rather than OCA.
+
+**Not yet checked.** <https://www.holytrinityorthodox.com/htc/orthodox-calendar/>
+(Holy Trinity, Jordanville) is the ROCOR calendar to compare against. Worth
+doing before any further change to that date -- and worth remembering that
+`tradition` here has only `slavic`, `greek` and `common`, with no OCA/ROCOR
+axis, so a genuine OCA-vs-ROCOR divergence has nowhere to live in the current
+schema.
