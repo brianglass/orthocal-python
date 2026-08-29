@@ -461,15 +461,32 @@ resurrectional reading takes precedence over almost any saint, and whether a
 fixed date falls on a Sunday changes from year to year, while `ordering` is a
 static column. Retiering rows alone would get Sundays wrong.
 
-The implemented rule is therefore: prefer the day's propers when
-`feast_level >= 3` and the day is not a Sunday; otherwise prefer the ordinary
-daily readings; fall back to whatever exists. Lenten weekdays are untouched --
+**Floating commemorations rank ahead of all of it**, Sunday included. They are
+not a saint landing on a day, they *are* the day -- the memorial Saturdays, the
+Sundays of the Forefathers and of the Fathers, the Saturdays and Sundays before
+and after a great feast. oca.org prints their readings first (Demetrius
+Saturday leads with the Departed pair, the Saturday before Nativity with its
+own), and the Sunday statistic above was measured on saints *displacing* a
+Sunday, which is a different question. A float is identified by a `pdist` at or
+above 1000, the base of `FloatIndex`.
+
+The implemented rule is therefore: floats first; then, when
+`feast_level >= 3` and the day is not a Sunday, the day's propers; otherwise
+the ordinary daily readings; falling back to whatever exists.
+
+The Lenten soul Saturdays needed a data change rather than a rule. Their
+Departed readings are not floats -- they carry the day's own `pdist` and were
+distinguished only by `desc` and an `ordering` of 812/912, one tier *below* the
+daily cycle. Since those days are always Saturdays, static ordering can express
+the precedence, so the twelve rows moved to 802/902. Demetrius Saturday needed
+nothing; its Departed readings are already a float at `pdist=1003`. Lenten weekdays are untouched --
 there is no Epistle/Gospel pair to reduce to, so the Old Testament readings
 (Sixth Hour Isaiah, Vespers Genesis and Proverbs) pass through for every
 tradition, which is correct.
 
 Measured against oca.org's leading pair, this moved 2026 from **244/339
-(72.0%) to 283/339 (83.5%)**. That understates it, since the metric counts Feb 2
+(72.0%) to 294/339 (86.7%)** -- 83.5% from the rank rule, 85.0% once floats
+rank first, 86.7% with the soul Saturdays retiered. That understates it, since the metric counts Feb 2
 as a miss where we now agree with antiochian.org and goarch.org.
 
 A cleaner metric for the Greek tradition -- its abbreviated pair against
@@ -477,6 +494,19 @@ antiochian.org -- is not yet usable: it conflates the selection logic with
 known gaps in the Greek proper data and with Lenten days where antiochian's two
 readings are Old Testament rather than Epistle and Gospel. Separating those is
 worth doing before trusting a number from it.
+
+## The Annunciation on a Lenten weekday
+
+It shows its own Epistle and Gospel, `Hebrews 2:11-18` / `Luke 1:24-38`,
+confirmed on the 2024, 2026 and 2027 occurrences -- Monday, Wednesday and
+Thursday of Lent respectively. A plain Lenten weekday still yields only the Old
+Testament set, for both traditions.
+
+Worth knowing *why* it works, because it is not obvious: Mar 25 has **no
+fixed-date Epistle or Gospel rows at all**. Its readings are floats, which is
+what makes them survive both the Lenten suppression and the rank rule. A tier
+audit looking only at `month`/`day` rows reports "no Epistle/Gospel rows" for
+the Annunciation and that is not a fault.
 
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 

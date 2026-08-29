@@ -10,6 +10,10 @@ from django.utils.html import strip_tags
 
 from .. import datetools, models
 from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
+
+# FloatIndex values start at 1001, well above any Pascha-distance, so a reading
+# carrying one is a floating commemoration rather than part of the daily cycle.
+FLOAT_PDIST = 1000
 from commemorations.models import DayCommemoration
 
 from .year import SlavicYear, GreekYear
@@ -754,11 +758,22 @@ class Day:
         # saint -- 7 of 8 observed -- and that cannot be expressed in the
         # static `ordering` column, because whether a fixed date falls on a
         # Sunday changes from year to year. See docs/oca-audit.md.
-        propers = [r for r in readings if r.month]
-        ordinary = [r for r in readings if not r.month]
+        # Floating commemorations rank first, ahead of even the Sunday rule.
+        # They are not a saint landing on a day, they *are* the day: the
+        # memorial Saturdays, the Sundays of the Forefathers and of the
+        # Fathers, the Saturdays and Sundays before and after a great feast.
+        # oca.org prints their readings ahead of the ordinary ones -- Demetrius
+        # Saturday leads with the Departed pair, the Saturday before Nativity
+        # with its own -- and the Sunday statistic that governs fixed-date
+        # propers below was measured on saints displacing a Sunday, which is a
+        # different question.
+        floats = [r for r in readings if r.pdist and r.pdist >= FLOAT_PDIST]
+        propers = [r for r in readings if r.month and r not in floats]
+        ordinary = [r for r in readings if r not in floats and not r.month]
 
         prefer_propers = self.feast_level >= 3 and self.weekday != Weekday.Sunday
-        for group in ([propers, ordinary] if prefer_propers else [ordinary, propers]):
+        groups = [floats] + ([propers, ordinary] if prefer_propers else [ordinary, propers])
+        for group in groups:
             pair = self._first_epistle_and_gospel(group)
             if pair:
                 readings = pair

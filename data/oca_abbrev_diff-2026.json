@@ -1,30 +1,5 @@
 [
  {
-  "date": "2026-01-03",
-  "kind": "differ",
-  "feast_level": 0,
-  "feasts": [
-   "Saturday before Theophany",
-   "Forefeast of Theophany"
-  ],
-  "ours": [
-   "EPH5:1",
-   "LUKE17:3"
-  ],
-  "oca_first": [
-   "1TIM3:14",
-   "MATT3:1",
-   "Saturday Before"
-  ],
-  "oca_all": [
-   [
-    "1TIM3:14",
-    "MATT3:1",
-    "Saturday Before"
-   ]
-  ]
- },
- {
   "date": "2026-01-05",
   "kind": "ordered",
   "feast_level": 0,
@@ -170,64 +145,6 @@
   ]
  },
  {
-  "date": "2026-02-14",
-  "kind": "ordered",
-  "feast_level": 4,
-  "feasts": [
-   "Memorial Saturday"
-  ],
-  "ours": [
-   "1COR10:23",
-   "LUKE21:8"
-  ],
-  "oca_first": [
-   "1THESS4:13",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1THESS4:13",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "1COR10:23",
-    "LUKE21:8",
-    ""
-   ]
-  ]
- },
- {
-  "date": "2026-02-21",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Commemoration of Departed Righteous Monastics"
-  ],
-  "ours": [
-   "ROM14:19",
-   "MATT6:1"
-  ],
-  "oca_first": [
-   "GAL5:22",
-   "MATT11:27",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "GAL5:22",
-    "MATT11:27",
-    "Departed"
-   ],
-   [
-    "ROM14:19",
-    "MATT6:1",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-02-24",
   "kind": "differ",
   "feast_level": 4,
@@ -303,35 +220,6 @@
   ]
  },
  {
-  "date": "2026-03-07",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Memorial Saturday"
-  ],
-  "ours": [
-   "HEB3:12",
-   "MARK1:35"
-  ],
-  "oca_first": [
-   "1THESS4:13",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1THESS4:13",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "HEB3:12",
-    "MARK1:35",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-03-08",
   "kind": "ordered",
   "feast_level": 0,
@@ -354,64 +242,6 @@
    [
     "HEB1:10",
     "MARK2:1",
-    ""
-   ]
-  ]
- },
- {
-  "date": "2026-03-14",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Memorial Saturday"
-  ],
-  "ours": [
-   "HEB10:32",
-   "MARK2:14"
-  ],
-  "oca_first": [
-   "1THESS4:13",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1THESS4:13",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "HEB10:32",
-    "MARK2:14",
-    ""
-   ]
-  ]
- },
- {
-  "date": "2026-03-21",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Memorial Saturday"
-  ],
-  "ours": [
-   "HEB6:9",
-   "MARK7:31"
-  ],
-  "oca_first": [
-   "1COR15:47",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1COR15:47",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "HEB6:9",
-    "MARK7:31",
     ""
    ]
   ]
@@ -748,40 +578,6 @@
   ]
  },
  {
-  "date": "2026-05-30",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Memorial Saturday"
-  ],
-  "ours": [
-   "ACTS28:1",
-   "JOHN21:15"
-  ],
-  "oca_first": [
-   "1THESS4:13",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1THESS4:13",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "1COR15:47",
-    "JOHN6:35",
-    "Departed, variant"
-   ],
-   [
-    "ACTS28:1",
-    "JOHN21:15",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-06-14",
   "kind": "ordered",
   "feast_level": 0,
@@ -846,8 +642,8 @@
    "Unc. Rel. Ven. Seraphim of Sarov"
   ],
   "ours": [
-   "ROM15:1",
-   "MATT9:27"
+   "HEB13:7",
+   "JOHN17:1"
   ],
   "oca_first": [
    "GAL5:22",
@@ -1203,35 +999,6 @@
   ]
  },
  {
-  "date": "2026-10-11",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Fathers of the Seventh Ecumenical Council"
-  ],
-  "ours": [
-   "2COR11:31",
-   "LUKE7:11"
-  ],
-  "oca_first": [
-   "HEB13:7",
-   "JOHN17:1",
-   "Fathers"
-  ],
-  "oca_all": [
-   [
-    "HEB13:7",
-    "JOHN17:1",
-    "Fathers"
-   ],
-   [
-    "2COR11:31",
-    "LUKE7:11",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-10-18",
   "kind": "ordered",
   "feast_level": 4,
@@ -1261,35 +1028,6 @@
   ]
  },
  {
-  "date": "2026-10-24",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Memorial (Demetrius) Saturday"
-  ],
-  "ours": [
-   "2COR3:12",
-   "LUKE7:1"
-  ],
-  "oca_first": [
-   "1THESS4:13",
-   "JOHN5:24",
-   "Departed"
-  ],
-  "oca_all": [
-   [
-    "1THESS4:13",
-    "JOHN5:24",
-    "Departed"
-   ],
-   [
-    "2COR3:12",
-    "LUKE7:1",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-10-31",
   "kind": "differ",
   "feast_level": 0,
@@ -1313,15 +1051,15 @@
  },
  {
   "date": "2026-11-08",
-  "kind": "ordered",
+  "kind": "differ",
   "feast_level": 5,
   "feasts": [
    "Synaxis of the Holy Unmercenaries",
    "Synaxis of Archangel Michael and the Bodiless Powers"
   ],
   "ours": [
-   "EPH2:4",
-   "LUKE8:41"
+   "1COR12:27",
+   "MATT10:1"
   ],
   "oca_first": [
    "HEB2:2",
@@ -1486,35 +1224,6 @@
   ]
  },
  {
-  "date": "2026-12-19",
-  "kind": "ordered",
-  "feast_level": 0,
-  "feasts": [
-   "Saturday before Nativity"
-  ],
-  "ours": [
-   "EPH2:11",
-   "LUKE14:1"
-  ],
-  "oca_first": [
-   "GAL3:8",
-   "LUKE13:18",
-   "Saturday Before"
-  ],
-  "oca_all": [
-   [
-    "GAL3:8",
-    "LUKE13:18",
-    "Saturday Before"
-   ],
-   [
-    "EPH2:11",
-    "LUKE14:1",
-    ""
-   ]
-  ]
- },
- {
   "date": "2026-12-24",
   "kind": "ordered",
   "feast_level": 0,
@@ -1540,36 +1249,6 @@
     "HEB1:1",
     "LUKE2:1",
     ""
-   ]
-  ]
- },
- {
-  "date": "2026-12-26",
-  "kind": "ordered",
-  "feast_level": 3,
-  "feasts": [
-   "Saturday after Nativity",
-   "Synaxis of the Most-Holy Theotokos"
-  ],
-  "ours": [
-   "HEB2:11",
-   "MATT2:13"
-  ],
-  "oca_first": [
-   "1TIM6:11",
-   "MATT12:15",
-   "Saturday After"
-  ],
-  "oca_all": [
-   [
-    "1TIM6:11",
-    "MATT12:15",
-    "Saturday After"
-   ],
-   [
-    "HEB2:11",
-    "MATT2:13",
-    "Theotokos"
    ]
   ]
  },
