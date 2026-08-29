@@ -37816,7 +37816,23 @@
 },
 {
   "model": "calendarium.reading",
-  "pk": 1379,
+  "pk": 1378,
+  "fields": {
+    "month": 10,
+    "day": 31,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St John Kochurov",
+    "pericope": 789,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "slavic"
+  }
+},
+
+{
+  "model": "calendarium.reading",
+  "pk": 1810,
   "fields": {
     "month": 10,
     "day": 31,
@@ -37824,6 +37840,22 @@
     "source": "Gospel",
     "desc": "St John Kochurov",
     "pericope": 358,
+    "ordering": 922,
+    "flag": 0,
+    "tradition": "slavic"
+  }
+},
+
+{
+  "model": "calendarium.reading",
+  "pk": 1379,
+  "fields": {
+    "month": 10,
+    "day": 31,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St John Kochurov",
+    "pericope": 272,
     "ordering": 921,
     "flag": 0,
     "tradition": "slavic"
