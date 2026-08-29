@@ -363,3 +363,56 @@ audit is one year, because goarch.org is harvest-limited.
 3. Pin tests on the dates the rule must change *and* neighbours it must not.
 4. Scope the rule to what the evidence covers rather than to a general
    principle about propers and daily readings.
+
+
+# The all-services audit (2026-08-28)
+
+The prerequisite named above is done. `tools/oca/harvest_daily.py` pulls
+`/readings/daily/YYYY/MM/DD`, which lists **every** service, and
+`tools/oca/audit_daily.py` compares the whole day on both sides. Theophany Eve
+returns 34 readings there against the monthly lectionary's two.
+
+**Baseline for 2026: 352/365 dates match exactly (96.4%)**, comparing 1,448 app
+readings against 1,438 from oca.org. The older Liturgy-only figure of 97.1% was
+measuring 62% of the data.
+
+The good news is where the differences are *not*. The 38% that was previously
+unmeasured is almost entirely clean: Theophany Eve's thirteen Vespers lessons,
+four sets of Hours and Blessing of Waters all match exactly, and the day
+differs only in the two Liturgy readings already known about.
+
+## It immediately caught a bad fix of ours
+
+The Oct 31 change committed earlier that same day deleted St John Kochurov's
+`Hebrews 13:7-16` and repointed his `Luke 12:32-40`, because the monthly
+lectionary showed neither, in five consecutive years. The daily page lists both,
+labelled by oca.org itself as *(Epistle, St. John Kochurov)* and *(Gospel, St.
+John Kochurov)*. The app had been right except for omitting `John 10:9-16`.
+
+So: **the monthly lectionary is lossy, not merely Liturgy-only.** It keeps one
+reading set per label and drops others, including ones oca.org labels Epistle
+and Gospel. No rule about which services it covers would have predicted this.
+Use `/readings/daily/` for anything that will change data.
+
+This is exactly the failure the coverage note above predicted in the abstract,
+arriving before the logic change it was written about, and against a change
+that had five years of consistent evidence behind it.
+
+## What differs now
+
+| date | | |
+|---|---|---|
+| 05-21 | extra 6 | Constantine and Helen -- Vespers lessons oca.org does not list |
+| 11-08 | extra 5 | Synaxis of the Archangel Michael, same shape |
+| 11-14 | extra 4 | Apostle Philip -- the catholic-epistle Vespers set for an apostle |
+| 03-30 / 03-31 | 3 each way | **a one-day offset**: Composites 2, 3 and 4 sit on Mar 30 here and Mar 31 on oca.org |
+| 06-30 | missing 3 | Synaxis of the Twelve Apostles -- `Isa 43:9`, `Wis 3:1`, `Wis 5:15` |
+| 07-05 | extra 3 | Athanasius of Athos |
+| 01-01, 01-05, 12-24 | missing 2 | the feast-eve rule, unchanged |
+| 01-03 | extra 2 | its mirror, the Saturday before Theophany |
+| 03-26, 04-07 | | as before |
+
+The Mar 30/31 pair is a new kind of finding the Liturgy-only audit could not
+see: not a wrong reading but a wrong *date*, and the two entries cancel out in
+any per-year total. `Isa 43:9 / Wis 3:1 / Wis 5:15` appearing as missing on
+Jun 30 and extra on Nov 8 may be the same shape.

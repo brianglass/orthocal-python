@@ -42,10 +42,23 @@ BOOK_RE = [(t, re.compile(rf'\b(?:{p})\b')) for t, p in BOOKS]
 SINGLE_CHAPTER = ('JUDE', 'PHLM')
 
 
+COMPOSITE = re.compile(r'Composite\s+(\d+)')
+
+
 def canon(s):
     """"1 Timothy 3:14-4:5" -> "1TIM3:14". Empty string if unparseable."""
     if not s:
         return ''
+
+    # Composites are named, not cited. oca.org prints "Composite 17 - Exodus
+    # 40" and this repo "Composite 17 - Exodus 40:1-5, 9-10, 16, 34-35", so
+    # neither the chapter nor the verses can be relied on to agree -- oca.org
+    # often gives no verse at all, which would make the citation unparseable
+    # and the app's resolved reference look spurious. Both sides carry the same
+    # number, and that number is the identity.
+    m = COMPOSITE.search(s)
+    if m:
+        return f'COMP{m.group(1)}'
     u = re.sub(r'[^A-Z0-9:; ,\-]', ' ', s.upper().replace('.', ':'))
     hit = min(((m.start(), t) for t, rx in BOOK_RE if (m := rx.search(u))), default=None)
     if hit is None:
@@ -114,8 +127,10 @@ def classify(citation):
     classifies them correctly even though they can never be matched by citation.
     """
     token = canon(citation)
-    if token:
+    if token and not token.startswith('COMP'):
         return slot(token)
+    # A composite token carries no book, so fall through to the book name in
+    # the citation text -- "Composite 2 - Proverbs 10, 3, 8" is an OT lesson.
 
     u = re.sub(r'[^A-Z0-9:; ,\-]', ' ', (citation or '').upper().replace('.', ':'))
     hit = min(((m.start(), t) for t, rx in BOOK_RE if (m := rx.search(u))), default=None)
