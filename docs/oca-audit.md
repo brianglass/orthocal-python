@@ -508,6 +508,69 @@ what makes them survive both the Lenten suppression and the rank rule. A tier
 audit looking only at `month`/`day` rows reports "no Epistle/Gospel rows" for
 the Annunciation and that is not a fault.
 
+# The rank exception on ordinary Wednesdays and Fridays (2026-09-01)
+
+Brian was notified that St Tikhon's calendar lightens Jul 24 to wine and oil,
+where this app had a full abstention. Investigating it found a systematic gap,
+though **not** one that explains the reading differences above -- of the 13
+affected dates, only Jun 30 also appears in either readings audit. It is its own
+axis.
+
+`_apply_fasting_adjustments` had cases for Lent, Dormition and the
+Apostles'/Nativity fasts, and **none for the ordinary Wednesday and Friday
+fast**. Outside the four great fasts, `fast_exception` came entirely from the
+data with no rank adjustment -- and the data is not consistent, because at
+feast level 4 the fixture carries 0 for Boris and Gleb and Constantine and
+Helen, 1 for Job of Pochaev, and 2 for Sergius of Radonezh.
+
+**It cannot be consistent, because it is in the wrong place.** `fast_exception`
+is baked onto a fixed-date `Day` row, but whether that date lands on a
+Wednesday or Friday changes from year to year. This is the same structural
+point as the Sunday rule for abbreviated readings: a weekday-conditional rule
+cannot live in a static per-date column.
+
+## Sources
+
+antiochian.org is no use here. It reports Jul 24 2026 as a full abstention, but
+its title for the day is "8TH FRIDAY AFTER PENTECOST" -- Boris and Gleb are not
+in the Antiochian calendar at all, so no rank exception could apply. oca.org
+publishes no fasting information on either its readings or its lives pages.
+
+`holytrinityorthodox.com/calendar/calendar.php?month=M&today=D&year=Y` does,
+one dietary line per day. Note it reckons **old calendar**: a fixed date N
+appears there on Gregorian N+13, so the weekday differs from this app's, and a
+commemoration has to be looked up in a year where *its* day falls on a
+Wednesday or Friday.
+
+Checked that way, on days where the commemoration falls on a Wednesday or
+Friday:
+
+| commemoration | holytrinityorthodox.com | this app, before |
+|---|---|---|
+| Boris and Gleb | Fast. Food with Oil | strict |
+| Anthony of the Kiev Caves | Fast. Food with Oil | strict |
+| Synaxis of the Twelve Apostles | Fast. Food with Oil | strict |
+| Sep 11 | Fast. Food with Oil | strict |
+| Leavetaking of Theophany | Fast. **Fish** Allowed | strict |
+
+## The rule
+
+Added to `SlavicDay._apply_fasting_adjustments`: at `FastLevels.Fast`, a
+commemoration of feast level 4 or higher on a Wednesday or Friday takes wine
+and oil. A floor of wine and oil is deliberately conservative -- the Leavetaking
+of Theophany case shows the source is sometimes more lenient still.
+
+13 dates a year change from a full abstention to wine and oil; all 45
+level-4-and-above ordinary Wednesday and Friday fast days across 2025-2027 now
+carry an exception, and days below level 4 are untouched (35 with an exception,
+107 strict, unchanged).
+
+**GreekDay is deliberately not changed.** It has its own
+`_apply_fasting_adjustments`, the evidence gathered here is Slavic
+(holytrinityorthodox.com and St Tikhon's), and Greek feast levels differ --
+Jul 24 is level 0 for Greek, since Boris and Gleb are not kept. Whether the
+same rank exception applies in Greek practice is unverified.
+
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 
 Brian raised this (2026-08-29). The Oct 31 readings for St John Kochurov were
