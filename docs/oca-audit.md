@@ -565,11 +565,43 @@ level-4-and-above ordinary Wednesday and Friday fast days across 2025-2027 now
 carry an exception, and days below level 4 are untouched (35 with an exception,
 107 strict, unchanged).
 
-**GreekDay is deliberately not changed.** It has its own
-`_apply_fasting_adjustments`, the evidence gathered here is Slavic
-(holytrinityorthodox.com and St Tikhon's), and Greek feast levels differ --
-Jul 24 is level 0 for Greek, since Boris and Gleb are not kept. Whether the
-same rank exception applies in Greek practice is unverified.
+**GreekDay is not changed, and that is now a measured decision rather than
+caution** -- see "Does the rank exception apply in Greek practice?" below.
+
+## Does the rank exception apply in Greek practice? Not on this evidence.
+
+Tested against antiochian.org's `fastDesignation`, its own official dietary
+line, over every ordinary Wednesday and Friday fast day in the harvest
+(2018-2026).
+
+Bucketing by *our* `feast_level` is confounded and should not be trusted: that
+number is compiled from Slavic sources, so Jul 24 is level 0 for Greek because
+Boris and Gleb are not kept at all. It gives 43% strict against 43% wine and
+oil at level 4 and above -- a coin flip.
+
+The feed carries no rank field, but `feastDayTitle` is a serviceable proxy: it
+shows a plain lectionary slot ("8TH FRIDAY AFTER PENTECOST") unless a
+commemoration claims the day. On that split:
+
+| antiochian.org's own title | strict | wine and oil |
+|---|---|---|
+| a commemoration is named (n=141) | **52%** | 33% |
+| a plain cycle label (n=92) | 87% | 2% |
+
+So being commemorated raises the chance of wine and oil sharply, 33% against
+2% -- there is clearly *a* rank effect. But **a majority of named days are
+still strict**, which is nothing like the Slavic picture, where every sampled
+polyeleos day gave wine and oil or better. Named-yet-strict includes the
+Apostle Philip, Athanasius of Mount Athos, the Apostle Thaddaeus and James son
+of Alphaeus, while Gregory the Theologian, the Three Hierarchs and Theodore the
+Commander are relaxed.
+
+Whatever threshold Greek practice uses is therefore higher, or differently
+drawn, than the Slavic one -- and neither the feed nor this app's `feast_level`
+can identify which commemorations clear it. Applying the Slavic rule to
+`GreekDay` would be wrong in the lenient direction on roughly half the days it
+touched. **Left alone.** Reopening this needs a Greek source that publishes
+rank, not just a dietary line.
 
 ## Did orthodox_calendar already handle it? No.
 
@@ -635,12 +667,25 @@ Apostles' Fast" in code:
 | Nov 15 | Begin Nativity Fast |
 | Aug 1 | Begin Dormition Fast |
 
-All four render with an empty `service_notes` here. So one of the three fast
-beginnings is announced and two are silent, and neither the Triodion nor the
-Pentecostarion is marked. The fifth, a Presanctified note at pdist -17, is
-generated dynamically by both codebases and is not a gap. **Not added** -- see
-the standing decision above; raising it here because it is the kind of thing the
-reference is good for.
+On a closer look one of the four was not lost but *relocated*: pdist -70 keeps
+"Beginning of the Lenten Triodion" in `feast_name`, where Paul has it as a note
+and leaves `daFname` empty. It is displayed either way.
+
+The other three were genuinely absent and are now added (2026-09-02), since
+this is an oversight rather than a revision -- the app already generates
+"Beginning of Apostles' Fast" in both `SlavicDay` and `GreekDay`, so it plainly
+intends to announce these:
+
+| | note added |
+|---|---|
+| pdist 0, Pascha | Beginning of the Pentecostarion |
+| Aug 1 | Beginning of Dormition Fast |
+| Nov 15 | Beginning of Nativity Fast |
+
+The two fast beginnings are worded to match the generated Apostles' Fast note
+rather than Paul's terser "Begin Nativity Fast". All three are `common`, so both
+traditions get them. The fifth of Paul's notes, a Presanctified note at
+pdist -17, is generated dynamically by both codebases and was never a gap.
 
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 
