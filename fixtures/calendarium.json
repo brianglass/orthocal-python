@@ -1511,7 +1511,7 @@
     "feast_name": "The Resurrection of our Lord and Savior Jesus Christ",
     "feast_level": 8,
     "service": 0,
-    "service_note": "",
+    "service_note": "Beginning of the Pentecostarion",
     "story": null,
     "fast": 0,
     "fast_exception": 11,
@@ -9754,7 +9754,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }
@@ -10014,7 +10014,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }
@@ -10934,7 +10934,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }
@@ -12891,7 +12891,7 @@
     "feast_name": "Procession of the Lifegiving Cross",
     "feast_level": 3,
     "service": 0,
-    "service_note": "",
+    "service_note": "Beginning of Dormition Fast",
     "story": null,
     "fast": 4,
     "fast_exception": 1,
@@ -15011,7 +15011,7 @@
     "feast_name": "",
     "feast_level": 0,
     "service": 0,
-    "service_note": "",
+    "service_note": "Beginning of Nativity Fast",
     "story": null,
     "fast": 5,
     "fast_exception": 0,
@@ -19479,7 +19479,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 711,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -19494,7 +19494,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 337,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -19719,7 +19719,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 647,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -19734,7 +19734,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 46,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -20349,7 +20349,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 711,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -20364,7 +20364,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 337,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -20694,7 +20694,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 711,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -20709,7 +20709,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 337,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -21009,7 +21009,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 592,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -21024,7 +21024,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 337,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -24759,7 +24759,7 @@
     "source": "Epistle",
     "desc": "Departed",
     "pericope": 711,
-    "ordering": 812,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -24789,7 +24789,7 @@
     "source": "Gospel",
     "desc": "Departed",
     "pericope": 337,
-    "ordering": 912,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -31989,7 +31989,7 @@
     "source": "Epistle",
     "desc": "Circumcision",
     "pericope": 694,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -32004,7 +32004,7 @@
     "source": "Epistle",
     "desc": "St Basil",
     "pericope": 768,
-    "ordering": 822,
+    "ordering": 802,
     "flag": 0,
     "tradition": "common"
   }
@@ -32019,7 +32019,7 @@
     "source": "Gospel",
     "desc": "Circumcision",
     "pericope": 208,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -32034,7 +32034,7 @@
     "source": "Gospel",
     "desc": "St Basil",
     "pericope": 227,
-    "ordering": 922,
+    "ordering": 902,
     "flag": 0,
     "tradition": "common"
   }
@@ -34959,7 +34959,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 535,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -34974,7 +34974,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 202,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "slavic"
   }
@@ -35049,7 +35049,7 @@
     "source": "Epistle",
     "desc": "Apostles",
     "pericope": 624,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -35064,7 +35064,7 @@
     "source": "Gospel",
     "desc": "Apostles",
     "pericope": 72,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -36504,7 +36504,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 432,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "slavic"
   }
@@ -36519,7 +36519,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 151,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -37829,6 +37829,23 @@
     "tradition": "slavic"
   }
 },
+
+{
+  "model": "calendarium.reading",
+  "pk": 1810,
+  "fields": {
+    "month": 10,
+    "day": 31,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St John Kochurov",
+    "pericope": 358,
+    "ordering": 922,
+    "flag": 0,
+    "tradition": "slavic"
+  }
+},
+
 {
   "model": "calendarium.reading",
   "pk": 1379,
@@ -38184,7 +38201,7 @@
     "source": "Epistle",
     "desc": "St Matthew",
     "pericope": 557,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "common"
   }
@@ -38199,7 +38216,7 @@
     "source": "Gospel",
     "desc": "St Matthew",
     "pericope": 31,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "common"
   }
@@ -41574,7 +41591,7 @@
     "source": "Epistle",
     "desc": "Forerunner",
     "pericope": 990,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "greek"
   }
@@ -41589,7 +41606,7 @@
     "source": "Gospel",
     "desc": "Forerunner",
     "pericope": 991,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "greek"
   }
@@ -42789,7 +42806,7 @@
     "source": "Epistle",
     "desc": "Matthew the Apostle",
     "pericope": 527,
-    "ordering": 821,
+    "ordering": 801,
     "flag": 0,
     "tradition": "greek"
   }
@@ -42804,7 +42821,7 @@
     "source": "Gospel",
     "desc": "Matthew the Apostle",
     "pericope": 31,
-    "ordering": 921,
+    "ordering": 901,
     "flag": 0,
     "tradition": "greek"
   }
@@ -60964,8 +60981,8 @@
   "fields": {
     "pericope": "193",
     "book": "OT",
-    "display": "​Composite 18 - 3 [1] Kings 7:51-8:1, 8:4-7, 9-11",
-    "sdisplay": "3 Kgs 7:51-8:1, 8:4-7, 9-11",
+    "display": "​Composite 18 - 3 [1] Kings 8:1, 3-7, 9-11",
+    "sdisplay": "3 Kgs 8:1, 3-7, 9-11",
     "desc": "Entrance Theotokos",
     "preverse": "",
     "prefix": "",
@@ -61067,7 +61084,7 @@
     "pericope": "199",
     "book": "OT",
     "display": "Composite 24 - Leviticus 26",
-    "sdisplay": "Lev 26",
+    "sdisplay": "Lev 26:3-12, 14-17, 19-20, 22, 33, 23-25",
     "desc": "New Year",
     "preverse": "",
     "prefix": "",

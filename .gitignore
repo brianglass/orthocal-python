@@ -9,3 +9,7 @@ ve
 .firebase
 static
 default-cache
+
+# Raw HTML cache for the oca.org harvests; the parsed JSON beside it is
+# what matters, and this is re-fetchable (slowly -- see tools/oca/README.md).
+data/oca_raw/_cache/
