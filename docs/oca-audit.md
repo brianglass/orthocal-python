@@ -581,6 +581,51 @@ doxology here -- the same confound that made the Greek measurement unusable.
 What it does establish is that the error the rule leaves behind is one of being
 *too strict*, never too lenient, which is the safe direction to be wrong in.
 
+### Chasing the threshold: inconclusive, and why
+
+Four more samples were taken at levels 3 and 2, this time filtering on the
+season. All four came back "Fast. Fish Allowed", which looks at first like
+strong evidence that the threshold should be far below 4. It is not.
+
+A control settles it: **2026-04-29, a plain Wednesday in the Paschal season
+with only two minor virgin-martyrs commemorated, also gives "Fast. Fish
+Allowed."** So the Paschal season relaxes Wednesday and Friday to fish
+irrespective of rank, and the two April samples were measuring the season. A
+second control confirmed the other end -- 2026-02-04 returns "Fast-free Week",
+the week of the Publican and Pharisee.
+
+That leaves two samples, neither clean: the Synaxis of the Forerunner sits in
+the relaxed days after Theophany and is a significant feast in its own right,
+and Paul of Thebes at level 2 is unexplained but falls days before the Triodion.
+
+**The threshold below level 4 is therefore still unknown.** Testing it needs
+samples drawn from ordinary time -- outside the Paschal season, the Triodion,
+the four fasts and the fast-free weeks -- and the season filter used here was
+not strict enough to guarantee that. The rule as shipped rests on seven
+level-4 confirmations and is unaffected.
+
+### A separate candidate: Paschal-season Wednesdays and Fridays
+
+The control turned up something larger than the question it was answering.
+holytrinityorthodox.com allows **fish** on Paschal-season Wednesdays and
+Fridays; this app allows only wine and oil on most of them:
+
+| 2026 | this app | holytrinityorthodox.com |
+|---|---|---|
+| Apr 22 Wed | Wine and Oil | Fish Allowed |
+| Apr 24 Fri | Wine and Oil | Fish Allowed |
+| Apr 29 Wed | Wine and Oil | Fish Allowed |
+
+The app does give fish on a few days in that stretch -- May 6 and May 20 in
+2026 -- but from per-date data rather than a rule, so the pattern is uneven.
+If fish is right for the whole season from Thomas Sunday to Pentecost, that is
+roughly 12 to 14 days a year, appreciably more than the 13 the rank rule
+touched.
+
+**Not investigated further and not changed.** One source is not enough for a
+change of that size, particularly on a day-count that large, and it should be
+established from a source that states the rule rather than from sampled days.
+
 ## Confirming it further
 
 Five confirmations stand: Brian's own St Tikhon's calendar for Jul 24, and the
