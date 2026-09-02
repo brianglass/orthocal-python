@@ -537,7 +537,10 @@ in the Antiochian calendar at all, so no rank exception could apply. oca.org
 publishes no fasting information on either its readings or its lives pages.
 
 `holytrinityorthodox.com/calendar/calendar.php?month=M&today=D&year=Y` does,
-one dietary line per day. Note it reckons **old calendar**: a fixed date N
+one dietary line per day. **But its robots.txt disallows `/calendar`**, which
+was not checked until after the queries below had been made -- an error, and
+the reason that sample was not widened. Do not scrape it. Its `Crawl-delay` is
+120 seconds for the paths that are allowed. Note it reckons **old calendar**: a fixed date N
 appears there on Gregorian N+13, so the weekday differs from this app's, and a
 commemoration has to be looked up in a year where *its* day falls on a
 Wednesday or Friday.
@@ -552,6 +555,25 @@ Friday:
 | Synaxis of the Twelve Apostles | Fast. Food with Oil | strict |
 | Sep 11 | Fast. Food with Oil | strict |
 | Leavetaking of Theophany | Fast. **Fish** Allowed | strict |
+
+## Confirming it further
+
+Five confirmations stand: Brian's own St Tikhon's calendar for Jul 24, and the
+four holytrinityorthodox.com lookups above. Widening that sample is blocked --
+its robots.txt disallows the calendar path, azbyka.ru sits behind a DDoS-Guard
+JS challenge, and oca.org publishes no fasting at all.
+
+Two routes remain. `days.pravoslavie.ru` and `orthochristian.com` serve no
+robots.txt, so nothing is disallowed there, but both are Moscow Patriarchate
+rather than OCA. Better, the printed St Tikhon's calendar can settle it
+directly: in 2026 the rule changes exactly eight days, all checkable by eye --
+Jan 9, Jan 14, Jul 3, Jul 10, Jul 17, Jul 24, Aug 26 and Sep 11, each of which
+now reads wine and oil where it previously read a full abstention.
+
+Seven more 2026 days are worth checking as controls, because they carried an
+exception from the data before this rule and are untouched by it: Jan 30,
+May 8, Jul 15, Aug 28, Sep 25, Oct 9 and Nov 13. If the calendar shows a full
+abstention on any of those, the *data* was wrong rather than the rule.
 
 ## The rule
 
