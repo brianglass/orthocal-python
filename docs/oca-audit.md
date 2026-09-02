@@ -710,17 +710,30 @@ exception from the data before this rule and are untouched by it: Jan 30,
 May 8, Jul 15, Aug 28, Sep 25, Oct 9 and Nov 13. If the calendar shows a full
 abstention on any of those, the *data* was wrong rather than the rule.
 
-## The rule
+## The rule -- added, then backed out before shipping
 
-Added to `SlavicDay._apply_fasting_adjustments`: at `FastLevels.Fast`, a
-commemoration of feast level 4 or higher on a Wednesday or Friday takes wine
-and oil. A floor of wine and oil is deliberately conservative -- the Leavetaking
-of Theophany case shows the source is sometimes more lenient still.
+A rule was added to `SlavicDay._apply_fasting_adjustments`: at
+`FastLevels.Fast`, a commemoration of feast level 4 or higher on a Wednesday or
+Friday takes wine and oil. It worked, and moved 13 dates a year from full
+abstention to wine and oil.
 
-13 dates a year change from a full abstention to wine and oil; all 45
-level-4-and-above ordinary Wednesday and Friday fast days across 2025-2027 now
-carry an exception, and days below level 4 are untouched (35 with an exception,
-107 strict, unchanged).
+**It was removed again (2026-09-02) before this PR shipped.** Two reasons, both
+found after it was written:
+
+- The threshold rests on nothing. The Typikon text OCA quotes names *doxology*
+  rank (level 3) for wine and oil on a Wednesday or Friday and *vigil* rank
+  (level 5) for fish. Level 4, polyeleos, is not singled out at all; it was
+  chosen because that is where this app's data happened to be inconsistent.
+- More fundamentally, it was another patch on a pile of patches. Combining the
+  Paschal and festal cycles is done with `max()` over an index that encodes
+  precedence and sentinels alongside dietary rungs, so the combination cannot be
+  arithmetic and every case it gets wrong is fixed by hand in
+  `_apply_fasting_adjustments`. Adding a fourteenth special case is the wrong
+  move. See `docs/fasting-refactor-scope.md`.
+
+The evidence for the *behaviour* still stands -- seven confirmations plus
+Brian's St Tikhon's calendar, nothing contradicting -- and is recorded there as
+a decision to make once the model can express it cleanly.
 
 **GreekDay is not changed, and that is now a measured decision rather than
 caution** -- see "Does the rank exception apply in Greek practice?" below.

@@ -943,29 +943,6 @@ class SlavicDay(Day):
                 self.service_notes.append("Beginning of Apostles' Fast")
 
         match self.fast_level:
-            case FastLevels.Fast:
-                # The ordinary Wednesday and Friday fast. A polyeleos-rank or
-                # higher commemoration relaxes it to wine and oil -- the
-                # Typikon's rank exception, which nothing here applied.
-                #
-                # This cannot live in the data. `fast_exception` is baked onto
-                # a fixed-date Day row, but whether that date lands on a
-                # Wednesday or Friday changes from year to year, which is why
-                # the rows are inconsistent: at feast level 4 the fixture
-                # carries 0 for Boris and Gleb and for Constantine and Helen,
-                # 1 for Job of Pochaev and 2 for Sergius of Radonezh.
-                #
-                # Checked against holytrinityorthodox.com, which publishes a
-                # dietary line per day, on years where each commemoration falls
-                # on a Wednesday or Friday: Boris and Gleb, Anthony of the Kiev
-                # Caves, the Synaxis of the Twelve Apostles and Sep 11 all give
-                # "Fast. Food with Oil", and the Leavetaking of Theophany gives
-                # "Fast. Fish Allowed". A floor of wine and oil is therefore
-                # conservative -- never more lenient than the source.
-                if (self.feast_level >= 4
-                        and self.weekday in (Weekday.Wednesday, Weekday.Friday)
-                        and self.fast_exception == 0):
-                    self.fast_exception = 1
             case FastLevels.LentenFast:
                 # Remove fish for minor feast days in Lent
                 if self.fast_exception == 2:

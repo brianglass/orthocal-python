@@ -1183,13 +1183,15 @@
         ],
         "fast_level": 1,
         "fast_level_desc": "Fast",
-        "fast_exception": 1,
-        "fast_exception_desc": "Wine and Oil are Allowed",
+        "fast_exception": 0,
+        "fast_exception_desc": "",
         "fast_abstentions": [
             "meat",
             "fish",
             "dairy",
-            "eggs"
+            "eggs",
+            "wine",
+            "oil"
         ],
         "saints": [
             "St Nino of Georgia",
