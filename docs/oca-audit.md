@@ -548,13 +548,38 @@ Wednesday or Friday.
 Checked that way, on days where the commemoration falls on a Wednesday or
 Friday:
 
-| commemoration | holytrinityorthodox.com | this app, before |
-|---|---|---|
-| Boris and Gleb | Fast. Food with Oil | strict |
-| Anthony of the Kiev Caves | Fast. Food with Oil | strict |
-| Synaxis of the Twelve Apostles | Fast. Food with Oil | strict |
-| Sep 11 | Fast. Food with Oil | strict |
-| Leavetaking of Theophany | Fast. **Fish** Allowed | strict |
+| commemoration | our level | holytrinityorthodox.com | this app, before |
+|---|---|---|---|
+| Boris and Gleb | 4 | Fast. Food with Oil | strict |
+| Anthony of the Kiev Caves | 4 | Fast. Food with Oil | strict |
+| Synaxis of the Twelve Apostles | 4 | Fast. Food with Oil | strict |
+| Sep 11 | 4 | Fast. Food with Oil | strict |
+| Leavetaking of Theophany | 4 | Fast. **Fish** Allowed | strict |
+| Greatmartyr Marina | 4 | Fast. Food with Oil | strict |
+| Adrian and Natalia | 4 | Fast. Food with Oil | strict |
+| **St Sava of Serbia** | **3** | Fast. **Fish** Allowed | strict |
+
+**Seven of seven at level 4 confirm the rule**, in the direction it was
+applied, and none contradicts it.
+
+Two further samples were discarded as invalid, and the mistake is worth
+recording: the date arithmetic found a year where each commemoration lands on a
+Wednesday or Friday, but did not check that the day is an *ordinary* fast in
+holytrinityorthodox.com's own reckoning. Greatmartyr Theodore Tyro fell inside
+Great Lent (plain "Fast") and Constantine and Helen inside a fast-free week
+("Fast-free Week"). Neither says anything about the ordinary Wednesday and
+Friday rule. Filter on the season, not just the weekday.
+
+**The control did not behave as expected, and that is the interesting result.**
+St Sava is level 3 here, below the threshold the rule uses, and
+holytrinityorthodox.com relaxes his day all the way to fish. So this app may
+still be too strict on level-3 days.
+
+That is not necessarily a threshold error. Our `feast_level` is this project's
+own number, and St Sava may simply be polyeleos in ROCOR reckoning where he is
+doxology here -- the same confound that made the Greek measurement unusable.
+What it does establish is that the error the rule leaves behind is one of being
+*too strict*, never too lenient, which is the safe direction to be wrong in.
 
 ## Confirming it further
 
