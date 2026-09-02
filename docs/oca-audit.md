@@ -571,6 +571,49 @@ carry an exception, and days below level 4 are untouched (35 with an exception,
 Jul 24 is level 0 for Greek, since Boris and Gleb are not kept. Whether the
 same rank exception applies in Greek practice is unverified.
 
+## Did orthodox_calendar already handle it? No.
+
+Checked at Brian's request, to rule out a missed conversion.
+
+`lib/core.lib.php`'s `calculateFasting($fast, $level, $feast_level, $dow, $pday,
+$year)` has cases for fast-free, Lent, Dormition and the Apostles'/Nativity
+fasts, in the same order and with the same thresholds this app uses. **It has no
+case for `$fast == 1`, the ordinary Wednesday and Friday fast** -- exactly the
+gap found here. And its Jul 24 row carries `daFexc = 0`, identical to ours. The
+conversion was faithful; the rule was never there to convert.
+
+Comparing all 366 fixed dates confirms how faithful, and turns up the handful
+that do differ:
+
+**`fast_exception`, 7 dates.** We are more lenient on four -- May 7 (Alexis
+Toth), May 11 (Cyril and Methodius), Jul 26 (Jacob Netsvetov) and Oct 1
+(Pokrov) are Fast Free here against Paul's fish/wine/oil -- and grant wine and
+oil on three where he has none: Aug 16, Aug 28 (Job of Pochaev) and Sep 13.
+
+**`feast_level`, 6 dates.** Two of them matter, because the rules written in
+this document key on that number: **Jun 30, the Synaxis of the Twelve Apostles,
+is level 4 here and 3 for Paul**, and **Nov 16, the Apostle Matthew, is level 6
+here and 5 for Paul** -- which is what put it among the "great feast" dates
+retiered earlier.
+
+## One schema difference worth knowing
+
+Paul has **two** level columns where this app has one: `daFlevel`, the level of
+the feast, and `daSlevel`, the level of the saint. Our `feast_level` is the max
+of the two, on 360 of 366 dates.
+
+That is not a neutral collapse, because Paul's own code uses them differently.
+`calculateFasting` and the reading logic are passed `daFlevel` alone;
+`daSlevel` is used only to decide the katavasia, which this app does not
+implement. So a date like Jan 14, the Leavetaking of Theophany, is `F=0 S=4` for
+Paul and level 4 here -- and Paul's fasting logic would treat it as level 0.
+
+In this instance the collapse made the data *better*: holytrinityorthodox.com
+gives Jan 14 "Fast. Fish Allowed" when it falls on a Wednesday or Friday, which
+a level-0 reading could never produce. But it means feast-level-gated rules here
+fire on days the original would not have, and that is worth knowing before
+adding more of them.
+
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 
 Brian raised this (2026-08-29). The Oct 31 readings for St John Kochurov were
