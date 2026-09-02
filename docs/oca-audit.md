@@ -596,6 +596,13 @@ is level 4 here and 3 for Paul**, and **Nov 16, the Apostle Matthew, is level 6
 here and 5 for Paul** -- which is what put it among the "great feast" dates
 retiered earlier.
 
+**Do not port Paul's values into the fixtures.** This data has seen a lot of
+revision since he stopped work, so where the two disagree the assumption should
+be that ours is the later judgement, not that his is the original truth.
+orthodox_calendar is a *reference* -- good for answering "was this ever
+handled?", as here, and for corroborating a reading or a date. That is the
+standing decision (Brian, 2026-09-02).
+
 ## One schema difference worth knowing
 
 Paul has **two** level columns where this app has one: `daFlevel`, the level of
@@ -613,6 +620,27 @@ gives Jan 14 "Fast. Fish Allowed" when it falls on a Wednesday or Friday, which
 a level-0 reading could never produce. But it means feast-level-gated rules here
 fire on days the original would not have, and that is worth knowing before
 adding more of them.
+
+`daSnote` was kept, as `Day.service_note`. Of Paul's 25 notes, 20 are present
+here with identical text.
+
+Five are not, and four of those look like an oversight rather than a revision,
+because this app clearly wants such notes -- it generates "Beginning of
+Apostles' Fast" in code:
+
+| | Paul's note |
+|---|---|
+| pdist -70 | Beginning of the Lenten Triodion |
+| pdist 0 | Beginning of the Pentecostarion |
+| Nov 15 | Begin Nativity Fast |
+| Aug 1 | Begin Dormition Fast |
+
+All four render with an empty `service_notes` here. So one of the three fast
+beginnings is announced and two are silent, and neither the Triodion nor the
+Pentecostarion is marked. The fifth, a Presanctified note at pdist -17, is
+generated dynamically by both codebases and is not a gap. **Not added** -- see
+the standing decision above; raising it here because it is the kind of thing the
+reference is good for.
 
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 
