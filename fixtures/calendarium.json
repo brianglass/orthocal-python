@@ -9754,7 +9754,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }
@@ -10014,7 +10014,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }
@@ -10934,7 +10934,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "common"
   }

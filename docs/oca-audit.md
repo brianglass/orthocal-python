@@ -604,6 +604,71 @@ the four fasts and the fast-free weeks -- and the season filter used here was
 not strict enough to guarantee that. The rule as shipped rests on seven
 level-4 confirmations and is unaffected.
 
+### OCA publishes the rules, which settles several of these
+
+<https://www.oca.org/liturgics/outlines/fasting-fast-free-seasons-of-the-church>
+states the rules rather than showing sampled days, which is what was wanted.
+Brian pointed to it (2026-09-02). Everything it states outright, this app
+already gets right: Trinity Week and the week of the Publican and Pharisee are
+fast-free, Cheesefare is a Meat Fast, and the Eve of Theophany, the Beheading
+and the Elevation are fast days.
+
+**It also deflates the Paschal-season candidate below.** The page lists Bright
+Week and Trinity Week as fast-free and otherwise says "the Wednesdays and
+Fridays of the Year" are fast days, with no fish allowance for the Paschal
+season at all. This app already gives wine and oil there, which is *more*
+lenient than OCA's stated rule, so holytrinityorthodox.com's fish is ROCOR
+practice rather than a gap here. Candidate withdrawn.
+
+**It states the Lenten named list**, which turned out to be three-quarters
+implemented. Wine and oil are permitted on nine named dates "if they fall on a
+weekday in the second, third, fourth, fifth or sixth week". Checking each in
+years where it does:
+
+| | granted |
+|---|---|
+| Feb 27, Mar 24, Mar 26, Mar 31, Apr 7, Apr 23 | 3 of 3 each |
+| **Feb 24**, 1st and 2nd Finding of the Head | **0 of 1** |
+| **Mar 9**, Forty Martyrs of Sebaste | **0 of 3** |
+| **Apr 25**, Apostle Mark | **0 of 2** |
+
+The three are now set to `fast_exception = 1` (2026-09-02). They are left
+`common` rather than split: antiochian.org grants wine and oil on Mar 9 in both
+2020 and 2026 and on Apr 25 in 2024, confirming those are shared and not
+Slavic-only. Feb 24 has no qualifying harvested year, so its Greek side is
+assumed rather than verified.
+
+No scoping logic was needed. Week 1 and Holy Week already exclude themselves,
+because those pdist rows carry `fast_exception = 10`, "No overrides", and
+`Day.fast_exception` takes the max -- which is why Feb 24 correctly stays strict
+in 2026, when it falls in the first week.
+
+### A caution about the rank rule this document does *not* state
+
+The Typikon quotation on that page is scoped to the Apostles' and Nativity
+fasts, not to ordinary Wednesdays and Fridays:
+
+> "If there occur on Tuesday or Thursday a Saint who has a [Great] Doxology, we
+> eat fish; if on Monday, the same; but if on Wednesday or Friday, we allow only
+> oil and wine…. If it be a Saint who has a Vigil on Wednesday or Friday … we
+> allow oil and wine and fish."
+
+Two things follow. First, for the ordinary Wednesday and Friday fast the page
+says the opposite of the rule added here: a Fast Day means "no meat, eggs, dairy
+products, fish, wine or oil", and rank relaxations are described as "many local
+variations … when the feast of a great Saint (or Saints) is celebrated which has
+particular local or national significance". **So the rank rule matches OCA's
+published *calendar* -- St Tikhon's, and seven of seven on
+holytrinityorthodox.com -- but not their published *guidelines*.** It is
+defensible as calendar practice; it should not be described as the stated rule.
+
+Second, within the Apostles' and Nativity fasts the Typikon gives thresholds
+this app does not implement: doxology rank (level 3) takes wine and oil on a
+Wednesday or Friday, and vigil rank (level 5) takes fish. The code's
+Apostles'/Nativity branch only ever *reduces* an exception
+(`if feast_level < 4 and fast_exception > 1`), never grants one. Worth checking;
+not done.
+
 ### A separate candidate: Paschal-season Wednesdays and Fridays
 
 The control turned up something larger than the question it was answering.
