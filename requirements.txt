@@ -2,12 +2,12 @@ ask_sdk_core==1.19.0
 django-ask-sdk==1.0.0
 django-cors-headers==4.9.0
 django-fullurl==1.4
-django-ninja==1.6.3
+django-ninja==1.7.0
 django==6.1
-icalendar==7.2.2
+icalendar==7.3.0
 jdcal==1.4.1
-mcp==2.0.0
-newrelic==13.4.0
+mcp==2.1.1
+newrelic==13.5.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
 servestatic[brotli]==4.3.1
@@ -19,7 +19,7 @@ servestatic[brotli]==4.3.1
 # at this app's size), and nothing passes --env-file or a YAML
 # --log-config. Installing just uvloop/httptools directly instead of the
 # [standard] extra keeps the two extras that matter.
-uvicorn==0.52.1
+uvicorn==0.52.4
 uvloop==0.22.1
 httptools==0.8.0
 # oscrypto is a dependency of one of the above packages.
