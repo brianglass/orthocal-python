@@ -201,6 +201,56 @@ The Dormition cap is what currently reads as `if feast_level < 7 and
 fast_exception > 0: fast_exception = 0`, and the Lenten cap is the `== 2` fish
 strip. Both become one parameter each instead of a special case.
 
+## The mock-up, and what it found (2026-09-08)
+
+`tools/fasting/prototype.py` implements the model above and resolves every day
+the characterisation pins, comparing its answer to the live one at the dietary
+rung. It is not wired into the app.
+
+**1824 of 1826 Slavic days, 99.9%** -- every season exact except two days.
+Writing the rule out loud needed three concepts the legacy integer hides:
+
+- **claims versus caps.** Most rows say "this date allows at least X". A few say
+  "at most X": Clean Week's no-overrides, the strict eves, and Holy Saturday,
+  which allows wine but *not* oil -- "on this one Saturday, alone among
+  Saturdays of the year, olive oil is not permitted" -- and so must beat a
+  saint's wine-and-oil claim rather than lose to it. Holy Saturday is both: it
+  lifts the strict floor and caps above itself.
+- **the ladder is not linear at one point.** `WineOilCaviar` excludes exactly
+  what `WineAndOil` does; it is a callout, not a stricter rung. A season cap
+  meaning "no fish" must let a caviar claim through rather than clamp it.
+- **a season cap is a clamp, not an assignment** -- which is where the two
+  remaining differences come from.
+
+### The two differences are a bug in current behaviour
+
+Nativity Eve carries `fast_exception = 9`, "Strict Fast", every year. What the
+app does with it depends on the weekday:
+
+| weekday | current | |
+|---|---|---|
+| Sunday | wine and oil | correct -- the eve-on-weekend rule |
+| Monday, Thursday | strict | correct |
+| **Wednesday, Friday** | **wine and oil** | **wrong** |
+
+The Apostles'/Nativity rule for Wednesday and Friday reads
+`if feast_level < 4 and fast_exception > 1: self.fast_exception = 1`. It is
+meant to *remove* fish from a lenient claim, but it is written as an assignment,
+so it also *raises* a strictness assertion. Nativity Eve therefore becomes more
+lenient on precisely the two strictest weekdays. The prototype gets it right by
+construction, because a cap there can only lower.
+
+This is the concrete answer to "what does the refactor buy": the explicit model
+found a bug the emergent one produced and hid, and the bug is of a kind the
+architecture invites.
+
+### Not yet covered
+
+The prototype runs Slavic only. `GreekDay` needs its own season table --
+chiefly the Nativity fast, where Greek practice differs structurally (see
+`docs/greek-fasting.md`), and its stricter period starts at `nativity - 12`
+rather than `nativity - 6`.
+
 ## What is deliberately *not* in scope
 
 The rank questions that surfaced during the investigation are behaviour
