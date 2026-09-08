@@ -890,17 +890,33 @@ divergence is from OCA specifically rather than from Greek practice. Reducing to
 one pair is the contract `aget_abbreviated_readings` promises, and two of the
 three sources agree with it.
 
-## Follow-up: is Oct 31's Kochurov data there for ROCOR?
+## Oct 31's Kochurov data is OCA's, not ROCOR's -- closed
 
-Brian raised this (2026-08-29). The Oct 31 readings for St John Kochurov were
-first judged wrong against oca.org's monthly lectionary, then restored when the
-all-services harvest showed oca.org has them after all. But there is a further
-question underneath: Kochurov is a New Martyr of the Russian Church, and the
-data may have been shaped for **ROCOR** practice rather than OCA.
+Checked 2026-09-03 against holytrinityorthodox.com (Holy Trinity, Jordanville),
+the ROCOR calendar. It reckons old calendar, so Julian Oct 31 is Gregorian
+Nov 13.
 
-**Not yet checked.** <https://www.holytrinityorthodox.com/htc/orthodox-calendar/>
-(Holy Trinity, Jordanville) is the ROCOR calendar to compare against. Worth
-doing before any further change to that date -- and worth remembering that
-`tradition` here has only `slavic`, `greek` and `common`, with no OCA/ROCOR
-axis, so a genuine OCA-vs-ROCOR divergence has nowhere to live in the current
-schema.
+**ROCOR commemorates him and gives him no proper readings.** The day lists "New
+Hieromartyr Priest John Kochurov of Chicago and St. Petersburg (1917)" among a
+dozen commemorations, and its scripture line is the plain daily cycle for the
+24th week after Pentecost -- `1 Thess 5:9-13, 24-28` / `Luke 11:23-26`.
+
+A control rules out the obvious objection that the page simply does not print
+propers: Gregorian Nov 26 2026, Julian Nov 13, St John Chrysostom, lists
+`John 10:1-9` as Matins Gospel and `Heb 7:26-8:2` / `John 10:9-16` each labelled
+"St. John". The format shows propers, with their service and attribution, when
+they exist.
+
+So the hypothesis was backwards. Kochurov's three readings are OCA's -- oca.org
+gives `Heb 13:7-16`, `Luke 12:32-40` and `John 10:9-16`, all labelled for him --
+and ROCOR is the tradition that has none. This app's Slavic data is compiled
+from oca.org and follows it here, which is correct and needs no change.
+
+It is worth recording as a genuine OCA/ROCOR divergence, since `tradition` has
+only `slavic`, `greek` and `common` and no axis to express one. Oct 31 is a
+known instance if that axis is ever added.
+
+One thing this does settle retrospectively: the earlier "fix" that deleted
+Kochurov's Epistle and repointed his Gospel would have moved this app toward
+ROCOR practice by accident, away from its own documented source. The
+all-services harvest caught it, and this check confirms the restore was right.
