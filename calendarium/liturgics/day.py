@@ -9,6 +9,7 @@ from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 
 from .. import datetools, models
+from .. import fasting
 from ..datetools import Calendar, Tradition, Weekday, FastLevels, FastLevelDesc, FastExceptions, FeastLevels, FloatIndex
 
 # FloatIndex values start at 1001, well above any Pascha-distance, so a reading
@@ -929,155 +930,18 @@ class Day:
 
 class SlavicDay(Day):
     def _apply_fasting_adjustments(self):
-        # Adjust for fast free days
-        if self.fast_exception == 11:
-            self.fast_level = FastLevels.NoFast
-            return
-
-        # Are we in the Apostles fast? This can't be gleaned from the database
-        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
-        # but the beginning of this fast is defined by the Paschal cycle.
-        if 56 < self.pdist < self.pyear.peter_and_paul:
-            self.fast_level = FastLevels.ApostlesFast
-            if self.pdist == 57:
-                self.service_notes.append("Beginning of Apostles' Fast")
-
-        match self.fast_level:
-            case FastLevels.LentenFast:
-                # Remove fish for minor feast days in Lent
-                if self.fast_exception == 2:
-                    self.fast_exception -= 1
-            case FastLevels.DormitionFast:
-                # Unlike the Apostles' and Nativity fasts, the Dormition Fast
-                # has no rank-based exception at all -- the Typikon's
-                # Vigil-rank fish rule (Ch. 32-33) is scoped to those two
-                # fasts only, and no source found extends even a wine-and-oil
-                # floor to a lower-ranked commemoration during Dormition
-                # (confirmed directly against antiochian.org/liturgicday for
-                # 8/13, 2026: Leavetaking of Transfiguration, feast_level 4,
-                # is listed as a full abstention day -- no wine or oil).
-                # Every source checked treats Dormition as strict as Great
-                # Lent with exactly one dated exception: the Transfiguration
-                # itself (Aug 6, feast_level 8, "Major feast Lord"). Zero out
-                # anything baked onto a lower-ranked row -- e.g. a Vigil-rank
-                # saint's own commemoration, which would grant an exception
-                # during the other two fasts but not here.
-                if self.feast_level < 7 and self.fast_exception > 0:
-                    self.fast_exception = 0
-
-                # Allow wine and oil on weekends during the Dormition fast --
-                # a day-of-week exception, independent of feast rank.
-                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
-                    self.fast_exception += 1
-            case FastLevels.ApostlesFast | FastLevels.NativityFast:
-                match self.weekday:
-                    case Weekday.Tuesday | Weekday.Thursday:
-                        if self.fast_exception == 0:
-                            self.fast_exception += 1
-                    case Weekday.Wednesday | Weekday.Friday:
-                        if self.feast_level < 4 and self.fast_exception > 1:
-                            self.fast_exception = 1
-                    case Weekday.Sunday | Weekday.Saturday:
-                        self.fast_exception = 2
-
-                # Disallow fish for the week before Nativity
-                if self.pyear.nativity-6 < self.pdist < self.pyear.nativity-1 and self.fast_exception > 1:
-                    self.fast_exception = 1
-
-        # The days before Nativity and Theophany are wine and oil days
-        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
-            self.fast_exception = 1
+        """Slavic dietary rules. The seasons, and the rule combining them with
+        the festal cycle, live in calendarium/fasting.py -- this used to be a
+        run of weekday and season special cases patching a `max()` over an
+        overloaded integer. See docs/fasting-refactor-scope.md."""
+        fasting.apply(self, fasting.slavic_season)
 
 
 class GreekDay(Day):
     def _apply_fasting_adjustments(self):
-        """Confirmed via docs/greek-fasting.md: the Apostles Fast, Lenten
-        Fast, and Dormition Fast all follow the identical weekly pattern as
-        Slavic practice. Only the Nativity Fast differs -- Greek practice
-        treats every day but Wednesday/Friday as a fish day for the first
-        four weeks (Nov 15 - Dec 12), then tightens for the final 12 days
-        (Dec 13 - 24) more than Slavic practice does: no fish at all, and
-        only Saturday/Sunday keep any wine-and-oil allowance (Monday/
-        Tuesday/Thursday drop to the same strictness as Wednesday/Friday,
-        rather than just losing fish the way Slavic's ~5-day-shorter
-        stricter period does)."""
-
-        # Adjust for fast free days
-        if self.fast_exception == 11:
-            self.fast_level = FastLevels.NoFast
-            return
-
-        # Are we in the Apostles fast? This can't be gleaned from the database
-        # because the feast of Sts. Peter and Paul is part of the Festal cycle,
-        # but the beginning of this fast is defined by the Paschal cycle.
-        if 56 < self.pdist < self.pyear.peter_and_paul:
-            self.fast_level = FastLevels.ApostlesFast
-            if self.pdist == 57:
-                self.service_notes.append("Beginning of Apostles' Fast")
-
-        match self.fast_level:
-            case FastLevels.LentenFast:
-                # Remove fish for minor feast days in Lent
-                if self.fast_exception == 2:
-                    self.fast_exception -= 1
-            case FastLevels.DormitionFast:
-                # Unlike the Apostles' and Nativity fasts, the Dormition Fast
-                # has no rank-based exception at all -- the Typikon's
-                # Vigil-rank fish rule (Ch. 32-33) is scoped to those two
-                # fasts only, and no source found extends even a wine-and-oil
-                # floor to a lower-ranked commemoration during Dormition
-                # (confirmed directly against antiochian.org/liturgicday for
-                # 8/13, 2026: Leavetaking of Transfiguration, feast_level 4,
-                # is listed as a full abstention day -- no wine or oil).
-                # Every source checked treats Dormition as strict as Great
-                # Lent with exactly one dated exception: the Transfiguration
-                # itself (Aug 6, feast_level 8, "Major feast Lord"). Zero out
-                # anything baked onto a lower-ranked row -- e.g. a Vigil-rank
-                # saint's own commemoration, which would grant an exception
-                # during the other two fasts but not here.
-                if self.feast_level < 7 and self.fast_exception > 0:
-                    self.fast_exception = 0
-
-                # Allow wine and oil on weekends during the Dormition fast --
-                # a day-of-week exception, independent of feast rank.
-                if self.weekday in (Weekday.Sunday, Weekday.Saturday) and self.fast_exception == 0:
-                    self.fast_exception += 1
-            case FastLevels.ApostlesFast:
-                match self.weekday:
-                    case Weekday.Tuesday | Weekday.Thursday:
-                        if self.fast_exception == 0:
-                            self.fast_exception += 1
-                    case Weekday.Wednesday | Weekday.Friday:
-                        if self.feast_level < 4 and self.fast_exception > 1:
-                            self.fast_exception = 1
-                    case Weekday.Sunday | Weekday.Saturday:
-                        self.fast_exception = 2
-            case FastLevels.NativityFast:
-                stricter_period = self.pdist >= self.pyear.nativity - 12
-
-                match self.weekday:
-                    case Weekday.Wednesday | Weekday.Friday:
-                        if self.feast_level < 4 and self.fast_exception > 1:
-                            self.fast_exception = 1
-                    case Weekday.Sunday | Weekday.Saturday:
-                        if stricter_period:
-                            # Force wine-and-oil, but never loosen a
-                            # deliberately stricter override (7+, e.g. the
-                            # "Strict Fast" baseline on Nativity Eve itself).
-                            if self.fast_exception == 0 or 1 < self.fast_exception <= 6:
-                                self.fast_exception = 1
-                        else:
-                            self.fast_exception = 2
-                    case _:  # Monday, Tuesday, Thursday
-                        if stricter_period:
-                            if self.feast_level < 4 and 1 < self.fast_exception <= 6:
-                                self.fast_exception = 1
-                        else:
-                            self.fast_exception = 2
-
-        # The days before Nativity and Theophany are wine and oil days
-        if self.pdist in (self.pyear.nativity-1, self.pyear.theophany-1) and self.weekday in (Weekday.Sunday, Weekday.Saturday):
-            self.fast_exception = 1
+        """Greek dietary rules, which differ from Slavic only in the Nativity
+        fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
+        fasting.apply(self, fasting.greek_season)
 
 
 _DAY_CLASSES = {

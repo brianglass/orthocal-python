@@ -267,6 +267,34 @@ That is the licence to swap the implementation: the refactor lands
 byte-identical with the flag on, and removing the flag is a four-line diff in
 the characterisation file.
 
+## Step 1 done: the model is the implementation (2026-09-08)
+
+`calendarium/fasting.py` now holds the seasons and the rule; both
+`SlavicDay._apply_fasting_adjustments` and `GreekDay`'s are two lines that call
+it. `calendarium/liturgics/day.py` loses 145 lines and gains 9.
+
+**The characterisation test passes unchanged** -- 3,652 days, both traditions,
+identical on the dietary rung and on the legacy `fast_exception` index. The
+Wednesday/Friday quirk is preserved deliberately behind
+`Season.legacy_wed_fri_assignment` so this step could be proven to change
+nothing at all.
+
+One thing the swap turned up that the prototype had missed: on a **NoFast** day
+the old code left `fast_exception` as the row maximum rather than treating the
+day as fast-free, because `NoFast` matched none of its cases and fell through. A
+feast row on a free day therefore still shows "Fish, Wine and Oil are Allowed".
+`NO_FAST` is a real season now for that reason, and the characterisation caught
+the difference on the first run.
+
+### Still to do
+
+- **Remove `legacy_wed_fri_assignment`.** That is the Nativity Eve fix, and it
+  is a four-line diff in the characterisation file.
+- **Turn on `Season.apply_grants`.** The Ch. 33 rank clause is written in
+  `_CH33_GRANTS` and switched off, so the refactor changed nothing. Enabling it
+  is a real behaviour change and wants its own commit and its own review of the
+  characterisation diff.
+
 ## What is deliberately *not* in scope
 
 The rank questions that surfaced during the investigation are behaviour
