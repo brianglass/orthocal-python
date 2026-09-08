@@ -71,13 +71,6 @@ class Season:
     # December until the 25th, even if it be Saturday or Sunday, we do not allow
     # fish." Slavic only; Greek expresses the same tightening as a second season.
     no_fish_before_nativity: bool = False
-    # Reproduces a bug in the code this module replaced, so the change could be
-    # proven to alter nothing. That code wrote the Wednesday/Friday cap as an
-    # assignment rather than a clamp, so it *raised* a strictness assertion
-    # instead of only lowering a leniency claim, and Nativity Eve came out more
-    # lenient on Wednesday and Friday than on Monday or Thursday. Removing this
-    # is the fix; see docs/fasting-refactor-scope.md.
-    legacy_wed_fri_assignment: bool = False
 
     def floor_for(self, weekday):
         return self.floor.get(weekday, self.default_floor)
@@ -129,12 +122,10 @@ _CH33_GRANTS = (
 )
 
 APOSTLES = Season('Apostles', floor=_CH33_FLOOR, cap=_CH33_CAP,
-                  cap_exempt_rank=4, grants=_CH33_GRANTS,
-                  legacy_wed_fri_assignment=True)
+                  cap_exempt_rank=4, grants=_CH33_GRANTS)
 NATIVITY = Season('Nativity', floor=_CH33_FLOOR, cap=_CH33_CAP,
                   cap_exempt_rank=4, grants=_CH33_GRANTS,
-                  no_fish_before_nativity=True,
-                  legacy_wed_fri_assignment=True)
+                  no_fish_before_nativity=True)
 
 # Greek practice differs only in the Nativity fast, and there it splits in two:
 # for the first four weeks everything but Wednesday and Friday is a fish day,
@@ -145,12 +136,12 @@ NATIVITY_GREEK_EARLY = Season(
     'Nativity (Greek, to Dec 12)',
     floor={WED: D.Strict, FRI: D.Strict}, default_floor=D.FishWineOil,
     cap={WED: D.WineAndOil, FRI: D.WineAndOil}, default_cap=D.FishWineOil,
-    cap_exempt_rank=4, legacy_wed_fri_assignment=True)
+    cap_exempt_rank=4)
 NATIVITY_GREEK_STRICT = Season(
     'Nativity (Greek, from Dec 13)',
     floor={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_floor=D.Strict,
     cap={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_cap=D.WineAndOil,
-    cap_exempt_rank=4, legacy_wed_fri_assignment=True)
+    cap_exempt_rank=4)
 
 _BY_LEVEL = {
     FastLevels.NoFast: NO_FAST,
@@ -209,12 +200,6 @@ def resolve(season, weekday, feast_level, rows, no_fish=False, eve_on_weekend=Fa
             allowance, winner = cap, index
         elif cap == allowance and winner is None:
             winner = index                  # it agrees, and has the better label
-
-    index = winner if winner is not None else CANONICAL[allowance]
-
-    if (season.legacy_wed_fri_assignment and weekday in (WED, FRI)
-            and feast_level < season.cap_exempt_rank and index > 1):
-        allowance, index, winner = D.WineAndOil, 1, None
 
     if no_fish:
         allowance = min(allowance, D.WineAndOil)

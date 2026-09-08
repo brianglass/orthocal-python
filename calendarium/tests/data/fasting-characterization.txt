@@ -355,7 +355,7 @@
 2025-12-21 slavic w0 feast0 fast5 exc1 rows=0,0,0 -> meat,fish,dairy,eggs
 2025-12-22 slavic w1 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2025-12-23 slavic w2 feast0 fast5 exc1 rows=0,0 -> meat,fish,dairy,eggs
-2025-12-24 slavic w3 feast0 fast5 exc1 rows=0,0,9 -> meat,fish,dairy,eggs
+2025-12-24 slavic w3 feast0 fast5 exc9 rows=0,0,9 -> meat,fish,dairy,eggs,wine,oil
 2025-12-25 slavic w4 feast8 fast0 exc11 rows=0,11 -> -
 2025-12-26 slavic w5 feast3 fast0 exc11 rows=0,11 -> -
 2025-12-27 slavic w6 feast2 fast0 exc11 rows=0,0,11 -> -
@@ -1085,7 +1085,7 @@
 2027-12-21 slavic w2 feast0 fast5 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2027-12-22 slavic w3 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-12-23 slavic w4 feast0 fast5 exc1 rows=0,0 -> meat,fish,dairy,eggs
-2027-12-24 slavic w5 feast0 fast5 exc1 rows=0,0,9 -> meat,fish,dairy,eggs
+2027-12-24 slavic w5 feast0 fast5 exc9 rows=0,0,9 -> meat,fish,dairy,eggs,wine,oil
 2027-12-25 slavic w6 feast8 fast0 exc11 rows=0,11 -> -
 2027-12-26 slavic w0 feast3 fast0 exc11 rows=0,0,11 -> -
 2027-12-27 slavic w1 feast2 fast0 exc11 rows=0,11 -> -
@@ -2181,7 +2181,7 @@
 2025-12-21 greek w0 feast0 fast5 exc1 rows=0,0,0 -> meat,fish,dairy,eggs
 2025-12-22 greek w1 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2025-12-23 greek w2 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
-2025-12-24 greek w3 feast0 fast5 exc1 rows=0,0,9 -> meat,fish,dairy,eggs
+2025-12-24 greek w3 feast0 fast5 exc9 rows=0,0,9 -> meat,fish,dairy,eggs,wine,oil
 2025-12-25 greek w4 feast8 fast0 exc11 rows=0,11 -> -
 2025-12-26 greek w5 feast3 fast0 exc11 rows=0,11 -> -
 2025-12-27 greek w6 feast2 fast0 exc11 rows=0,0,11 -> -
@@ -2911,7 +2911,7 @@
 2027-12-21 greek w2 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-12-22 greek w3 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-12-23 greek w4 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
-2027-12-24 greek w5 feast0 fast5 exc1 rows=0,0,9 -> meat,fish,dairy,eggs
+2027-12-24 greek w5 feast0 fast5 exc9 rows=0,0,9 -> meat,fish,dairy,eggs,wine,oil
 2027-12-25 greek w6 feast8 fast0 exc11 rows=0,11 -> -
 2027-12-26 greek w0 feast3 fast0 exc11 rows=0,0,11 -> -
 2027-12-27 greek w1 feast2 fast0 exc11 rows=0,11 -> -

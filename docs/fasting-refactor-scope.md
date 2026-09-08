@@ -286,10 +286,27 @@ feast row on a free day therefore still shows "Fish, Wine and Oil are Allowed".
 `NO_FAST` is a real season now for that reason, and the characterisation caught
 the difference on the first run.
 
+## Step 2 done: Nativity Eve is strict again (2026-09-08)
+
+`legacy_wed_fri_assignment` is removed, which fixes the bug the prototype found.
+The characterisation diff is exactly four lines in each direction -- Dec 24 in
+2025 and 2027, both traditions, the two years it falls on a Wednesday or a
+Friday -- going from wine and oil to a full abstention.
+
+The day is coherent now, and matches Theophany Eve, which was always correct
+because the ordinary fast never carried the buggy clamp:
+
+| weekday | Nativity Eve |
+|---|---|
+| Sunday | wine and oil -- the eve-on-weekend rule |
+| every other day | strict |
+
+Nothing else moved: 190 tests pass and `calendarium/tests/data/january.json` is
+untouched, since Jan 5 resolves through `ORDINARY` rather than the Nativity
+season.
+
 ### Still to do
 
-- **Remove `legacy_wed_fri_assignment`.** That is the Nativity Eve fix, and it
-  is a four-line diff in the characterisation file.
 - **Turn on `Season.apply_grants`.** The Ch. 33 rank clause is written in
   `_CH33_GRANTS` and switched off, so the refactor changed nothing. Enabling it
   is a real behaviour change and wants its own commit and its own review of the
