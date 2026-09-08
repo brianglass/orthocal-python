@@ -78,14 +78,54 @@ The bulk are index 0 (718), 11 (36), 2 (34) and 1 (27).
 
 ## How to do it safely
 
-1. **Characterisation test first.** Pin the current fasting output --
-   `fast_level`, `fast_exception`, `fast_abstentions_desc` -- for every day of
-   several years in both traditions. Refactor until it is byte-identical, then
-   change behaviour deliberately and visibly.
+1. **Characterisation test first. Done 2026-09-08.**
+   `tools/fasting/characterize.py` writes
+   `calendarium/tests/data/fasting-characterization.txt`, and
+   `calendarium/tests/test_fasting_characterization.py` regenerates and compares
+   it -- 3,652 days, five years across the whole Paschal range, both traditions,
+   4 seconds. Each line carries the inputs as well as the outputs, so a diff
+   names the date, tradition, rank, season and contributing rows rather than
+   just moving a number. Refactor until it is byte-identical, then change
+   behaviour deliberately and visibly.
 2. The Greek path has its own `_apply_fasting_adjustments`, so both need
    covering.
 3. The API exposes these fields; check `calendarium/tests/data/january.json` and
    the API schema before changing anything user-visible.
+
+## What the characterisation revealed
+
+The pinned data has **36 distinct row-collision patterns and only 6 distinct
+dietary outcomes**, which is the first encouraging sign: the output space is
+tiny, close to `DietaryAllowance`'s seven rungs.
+
+More useful, **six patterns resolve differently in different contexts** -- the
+same contributing rows producing a different answer -- and that is precisely
+the work `_apply_fasting_adjustments` is doing. `rows=(0,4)`, a single row
+claiming fish, is the clearest window:
+
+| outcome | season | feast levels | weekdays |
+|---|---|---|---|
+| exc 4, keeps fish | Lent, Dormition | **7-8** | any |
+| exc 1, wine and oil | Dormition | 4-5 | Sat, Sun |
+| exc 0, strict | Dormition | 4-5 | Mon-Fri |
+
+**The discriminator is `feast_level`, plus season and weekday. It is not
+precedence.** The same shape appears in `rows=(0,1)`, where a wine-and-oil claim
+is zeroed on six Dormition days at feast level 3, and inverted in `rows=(0,0)`,
+where *no* row claims anything and the Apostles' and Nativity fasts still
+produce wine and oil on Tuesday and Thursday and fish at the weekend -- a floor
+rather than a claim.
+
+That settles the design question raised before starting: the row does not need a
+stored precedence field. What indices 3 and 4 encode is "this claim is
+important enough to survive the season's cap", and the rank that makes it
+important is already on the row as `feast_level`. Palm Sunday is 8, the
+Annunciation 7, the Transfiguration 8; the index-3 rows are all Paschal-cycle
+rows at level 0, which set the floor rather than making a festal claim.
+
+So the target rule is roughly: **the season sets a floor and a cap, and a festal
+claim lifts the floor only if its rank clears the season's bar.** That is
+arithmetic, and it dissolves the `== 2` special case instead of re-encoding it.
 
 ## What is deliberately *not* in scope
 
