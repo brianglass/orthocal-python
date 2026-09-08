@@ -123,9 +123,83 @@ important is already on the row as `feast_level`. Palm Sunday is 8, the
 Annunciation 7, the Transfiguration 8; the index-3 rows are all Paschal-cycle
 rows at level 0, which set the floor rather than making a festal claim.
 
-So the target rule is roughly: **the season sets a floor and a cap, and a festal
-claim lifts the floor only if its rank clears the season's bar.** That is
-arithmetic, and it dissolves the `== 2` special case instead of re-encoding it.
+A first guess was that this generalises: the season sets a floor and a cap, and
+a festal claim lifts the floor only if its rank clears the season's bar. The
+sources say otherwise -- see below. **The mechanism differs by season**, and a
+single rank-threshold model would be wrong for Lent.
+
+## What the published rules actually say (checked 2026-09-08)
+
+Checked before deriving anything from the data, so the parameters are sourced
+rather than fitted. The Antiochian typikon at
+`~/Documents/Orthodox Studies/54-typikon-full.pdf` is a service-order and
+rubrics reference and contains no rank-based fasting rules; its fasting notes
+are scattered and tied to individual feasts. The usable source is OCA's
+guidelines page, which quotes the Typikon and the Lenten Triodion verbatim:
+<https://www.oca.org/liturgics/outlines/fasting-fast-free-seasons-of-the-church>
+
+| season | what the rule keys on | source |
+|---|---|---|
+| ordinary Wed/Fri | nothing; strict, and rank relaxations are called "local variations" | OCA guidelines |
+| Great Lent | weekday/weekend, plus **named dates** | Ware, *The Lenten Triodion*, quoted by OCA |
+| Apostles' & Nativity | weekday, plus **saint's rank** | Typikon Ch. 33, quoted verbatim |
+| Dormition | weekday, plus a named feast | OCA guidelines |
+
+**Apostles' and Nativity are explicitly rank-based.** Ch. 33: "on Tuesday and
+Thursday we do not eat fish, but only oil or wine. On Monday, Wednesday and
+Friday, we eat neither oil nor wine.... On Saturday and Sunday we eat fish. If
+there occur on Tuesday or Thursday a Saint who has a [Great] Doxology, we eat
+fish; if on Monday, the same; but if on Wednesday or Friday, we allow only oil
+and wine.... If it be a Saint who has a Vigil on Wednesday or Friday ... we
+allow oil and wine and fish.... But from the 20th of December until the 25th,
+even if it be Saturday or Sunday, we do not allow fish."
+
+Against the pinned data, the app's **base weekly pattern matches exactly** --
+Mon/Wed/Fri strict, Tue/Thu wine and oil, Sat/Sun fish, and the December
+tightening. **The rank clause is entirely unimplemented**: feast level 3,
+doxology, behaves identically to level 0 on every weekday. Level 5, vigil, does
+get fish on Wednesday, but from per-date data rather than from a rule, and
+level 4 is inconsistent for the same reason.
+
+**Lent is not rank-based.** Ware gives a named list of nine dates that take wine
+and oil on a weekday of weeks 2-6, and names the Annunciation and Palm Sunday
+for fish. The data agrees that rank is not the discriminator: on Lenten
+weekdays *every* feast level has both outcomes --
+
+| level | strict | wine and oil |
+|---|---|---|
+| 2 | 4 | 4 |
+| 3 | 13 | 9 |
+| 4 | 9 | 10 |
+| 5 | 1 | 2 |
+
+so no threshold separates them. (The two fish days are levels 7 and 8, which
+fits a rank bar, but the source names them rather than ranking them, and two
+dates cannot distinguish the two readings.)
+
+**Dormition is the cleanest and already correct.** Strict on weekdays, wine and
+oil at the weekend at every level 0-5, and the Transfiguration at level 8 takes
+fish -- matching "wine and oil are allowed only on Saturdays and Sundays (and
+sometimes on a few feast days and vigils)".
+
+### What this means for the model
+
+A row's `fast_exception` already *is* the named-date grant, which is why Lent
+works today. What cannot live in data is the rank rule, because it keys on
+weekday, and whether a fixed date falls on a Wednesday changes yearly -- the
+same argument that moved the abbreviated-readings Sunday rule into code.
+
+So the shape is:
+
+- the **season** supplies a floor per weekday, and a cap;
+- a **data row** supplies a named grant, as now;
+- a **rank rule** supplies a further grant, per season -- only the Apostles' and
+  Nativity fasts have one, and Ch. 33 states it precisely;
+- the result is the most lenient of those, then the season's cap applied.
+
+The Dormition cap is what currently reads as `if feast_level < 7 and
+fast_exception > 0: fast_exception = 0`, and the Lenten cap is the `== 2` fish
+strip. Both become one parameter each instead of a special case.
 
 ## What is deliberately *not* in scope
 
@@ -143,4 +217,8 @@ express them cleanly:
   and whether vigil rank (level 5) should take fish. The Typikon text OCA quotes
   uses exactly those two ranks, but scoped to the Apostles' and Nativity fasts.
 - Implementing that Typikon rule inside those two fasts, where it *is* stated.
-  The current code there only ever reduces an exception, never grants one.
+  The current code there only ever reduces an exception, never grants one, and
+  the section above confirms level 3 behaves exactly like level 0 there. This is
+  the best-evidenced of the three and the natural first behaviour change once
+  the refactor lands -- but it is still a behaviour change, and belongs in its
+  own commit with the characterisation diff visible.
