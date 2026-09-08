@@ -106,14 +106,57 @@ class Pericope(models.Model):
             return self.passage
 
     def get_passage(self, language='en', translation=None):
+        # Two pericopes -- Composite 17 and 18, the Entrance of the Theotokos
+        # Vespers lessons -- carry a deliberate zero-width space (U+200B) in
+        # front of "Composite" so this match FAILS and they fall through to the
+        # scripture lookup below. It is invisible on the page and it is load
+        # bearing; do not "clean" it out of the fixture.
+        #
+        # It is a stopgap, not a design. The Composite table has no rows 17 or
+        # 18, and d4d5d54 (Nov 2023) moved a hardcoded `not in ('17', '18')`
+        # out of this function and into the data. A real composite is the
+        # better representation and should replace this if the text is ever
+        # obtained.
+        #
+        # Not for want of a parser. bible.models.lookup_reference handles
+        # out-of-order segments: it renders "Lev 26:3-12, 14-17, 19-20, 22, 33,
+        # 23-25" with verse 33 ahead of 23-25 as written, and Composite 20's
+        # "Isaiah 55:1; 12:3-4; 55:2-13" jumping chapters backwards and
+        # forwards. Order follows the OR terms in the generated query rather
+        # than an explicit order_by (there is no Meta.ordering on Verse), and
+        # production already depends on it for the Holy Thursday composite
+        # gospel, a five-segment cross-book reference.
+        #
+        # The obstacle is that for most composites NO verse list exists to
+        # write down. Archimandrite Ephrem's Prophetologion, which is where
+        # this text comes from, gives specifications like "Proverbs 10:31-32 &
+        # Selection", "40:1 and selection", "3 & 4 and selection" -- he did not
+        # enumerate them, so the stored text IS the specification. Only
+        # Composite 24 is fully spelled out there, and its sdisplay carries
+        # that spec.
+        #
+        # Consequently EIGHT sdisplay values here are chapter-only and wrong if
+        # they are ever resolved: "Isa 40, 41, 45, 48, 54" fetches 123 verses
+        # where the reading is a short selection, and "3 Kgs 18, 19" fetches
+        # 67. They are inert today because those pericopes route through the
+        # Composite table. Do not put a zero-width space on one of them.
+        #
+        # Why 17 and 18 are missing: they are the Slavic propers for that feast
+        # (Exodus 40; 3 Kingdoms 7-8). The composites we do have come from
+        # Archimandrite Ephrem Lash's Prophetologion, and his book assigns the
+        # Greek Marian set to the Entrance instead -- Genesis 28, Ezekiel 43,
+        # Proverbs 9 -- so these two readings simply are not in it. Only the
+        # Ezekiel overlaps, which is why it alone is a plain reference here.
         match = re.match(r'Composite (\d+)', self.display)
         if match:
             return Composite.objects.filter(
                     composite_num=match.group(1)
             ).annotate(
                     # Make the composite look like a Verse instance. Composite
-                    # readings only have one hardcoded (KJV-sourced) content
-                    # column, regardless of the requested translation.
+                    # readings only have one hardcoded content column,
+                    # regardless of the requested translation. That text is
+                    # Archimandrite Ephrem Lash's, not KJV as this comment
+                    # previously said -- see ~/src/anastasis.
                     book=models.Value(''),
                     chapter=models.Value(1),
                     verse=models.Value(1),

@@ -1,0 +1,1285 @@
+[
+ {
+  "date": "2026-01-05",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Eve of Theophany"
+  ],
+  "ours": [
+   "1COR9:19",
+   "LUKE3:1"
+  ],
+  "oca_first": [
+   "HEB11:17",
+   "MARK8:11",
+   ""
+  ],
+  "oca_all": [
+   [
+    "HEB11:17",
+    "MARK8:11",
+    ""
+   ],
+   [
+    "1COR9:19",
+    "LUKE3:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-01-07",
+  "kind": "ordered",
+  "feast_level": 3,
+  "feasts": [
+   "Synaxis of St John the Baptist"
+  ],
+  "ours": [
+   "ACTS19:1",
+   "JOHN1:29"
+  ],
+  "oca_first": [
+   "JAS1:1",
+   "MARK8:30",
+   ""
+  ],
+  "oca_all": [
+   [
+    "JAS1:1",
+    "MARK8:30",
+    ""
+   ],
+   [
+    "ACTS19:1",
+    "JOHN1:29",
+    "Forerunner"
+   ]
+  ]
+ },
+ {
+  "date": "2026-01-11",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Sunday after Theophany"
+  ],
+  "ours": [
+   "EPH4:7",
+   "MATT4:12"
+  ],
+  "oca_first": [
+   "2COR4:6",
+   "MATT11:27",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "2COR4:6",
+    "MATT11:27",
+    "Saint"
+   ],
+   [
+    "EPH4:7",
+    "MATT4:12",
+    "Sunday After"
+   ]
+  ]
+ },
+ {
+  "date": "2026-01-25",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "St Gregory the Theologian"
+  ],
+  "ours": [
+   "1TIM4:9",
+   "LUKE19:1"
+  ],
+  "oca_first": [
+   "1COR12:7",
+   "JOHN10:9",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "1COR12:7",
+    "JOHN10:9",
+    "Saint"
+   ],
+   [
+    "1TIM4:9",
+    "LUKE19:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-02-02",
+  "kind": "ordered",
+  "feast_level": 8,
+  "feasts": [
+   "Meeting of Christ in the Temple"
+  ],
+  "ours": [
+   "HEB7:7",
+   "LUKE2:22"
+  ],
+  "oca_first": [
+   "2PET1:20",
+   "MARK13:9",
+   ""
+  ],
+  "oca_all": [
+   [
+    "2PET1:20",
+    "MARK13:9",
+    ""
+   ],
+   [
+    "HEB7:7",
+    "LUKE2:22",
+    "Meeting"
+   ]
+  ]
+ },
+ {
+  "date": "2026-02-24",
+  "kind": "differ",
+  "feast_level": 4,
+  "feasts": [
+   "1st and 2nd Finding Honorable Head of St John the Baptist"
+  ],
+  "ours": [
+   null,
+   null
+  ],
+  "oca_first": [
+   "2COR4:6",
+   "MATT11:2",
+   "Forerunner"
+  ],
+  "oca_all": [
+   [
+    "2COR4:6",
+    "MATT11:2",
+    "Forerunner"
+   ]
+  ]
+ },
+ {
+  "date": "2026-02-27",
+  "kind": "differ",
+  "feast_level": 5,
+  "feasts": [
+   "St Raphael Bishop of Brooklyn"
+  ],
+  "ours": [
+   null,
+   null
+  ],
+  "oca_first": [
+   "HEB13:17",
+   "JOHN10:9",
+   "St. Raphael"
+  ],
+  "oca_all": [
+   [
+    "HEB13:17",
+    "JOHN10:9",
+    "St. Raphael"
+   ]
+  ]
+ },
+ {
+  "date": "2026-02-28",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "HEB1:1",
+   "MARK2:23"
+  ],
+  "oca_first": [
+   "2TIM2:1",
+   "JOHN15:17",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "2TIM2:1",
+    "JOHN15:17",
+    "Saint"
+   ],
+   [
+    "HEB1:1",
+    "MARK2:23",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-03-08",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "HEB1:10",
+   "MARK2:1"
+  ],
+  "oca_first": [
+   "HEB7:26",
+   "JOHN10:9",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "HEB7:26",
+    "JOHN10:9",
+    "Saint"
+   ],
+   [
+    "HEB1:10",
+    "MARK2:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-03-22",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "HEB6:13",
+   "MARK9:17"
+  ],
+  "oca_first": [
+   "EPH5:9",
+   "MATT4:25",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "EPH5:9",
+    "MATT4:25",
+    "Saint"
+   ],
+   [
+    "HEB6:13",
+    "MARK9:17",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-03-26",
+  "kind": "differ",
+  "feast_level": 3,
+  "feasts": [
+   "Great Canon of St Andrew of Crete"
+  ],
+  "ours": [
+   null,
+   null
+  ],
+  "oca_first": [
+   "HEB2:11",
+   "LUKE1:24",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "HEB2:11",
+    "LUKE1:24",
+    "Theotokos"
+   ]
+  ]
+ },
+ {
+  "date": "2026-03-28",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Saturday of the Akathist to the Most-Holy Theotokos"
+  ],
+  "ours": [
+   "HEB9:24",
+   "MARK8:27"
+  ],
+  "oca_first": [
+   "HEB9:1",
+   "LUKE10:38",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "HEB9:1",
+    "LUKE10:38",
+    "Theotokos"
+   ],
+   [
+    "HEB9:24",
+    "MARK8:27",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-03-29",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "HEB9:11",
+   "MARK10:32"
+  ],
+  "oca_first": [
+   "GAL3:23",
+   "LUKE7:36",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "GAL3:23",
+    "LUKE7:36",
+    "Saint"
+   ],
+   [
+    "HEB9:11",
+    "MARK10:32",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-04-07",
+  "kind": "differ",
+  "feast_level": 4,
+  "feasts": [
+   "Repose St. Tikhon, Patriarch of Moscow, Enlightener N. America"
+  ],
+  "ours": [
+   null,
+   "MATT22:15"
+  ],
+  "oca_first": [
+   "HEB7:26",
+   null,
+   "Matins"
+  ],
+  "oca_all": [
+   [
+    "HEB7:26",
+    null,
+    "Matins"
+   ],
+   [
+    null,
+    "MATT24:36",
+    "Presanctified"
+   ]
+  ]
+ },
+ {
+  "date": "2026-04-09",
+  "kind": "ordered",
+  "feast_level": 3,
+  "feasts": [],
+  "ours": [
+   "1COR11:23",
+   "MATT26:2"
+  ],
+  "oca_first": [
+   null,
+   "LUKE22:1",
+   "Matins"
+  ],
+  "oca_all": [
+   [
+    null,
+    "LUKE22:1",
+    "Matins"
+   ],
+   [
+    "1COR11:23",
+    "MATT26:2",
+    "Composite"
+   ]
+  ]
+ },
+ {
+  "date": "2026-04-11",
+  "kind": "ordered",
+  "feast_level": 3,
+  "feasts": [],
+  "ours": [
+   "ROM6:3",
+   "MATT28:1"
+  ],
+  "oca_first": [
+   "1COR5:6",
+   "MATT27:62",
+   "Matins"
+  ],
+  "oca_all": [
+   [
+    "1COR5:6",
+    "MATT27:62",
+    "Matins"
+   ],
+   [
+    "ROM6:3",
+    "MATT28:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-04-13",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "ACTS1:12",
+   "JOHN1:18"
+  ],
+  "oca_first": [
+   null,
+   "JOHN20:19",
+   "Vespers"
+  ],
+  "oca_all": [
+   [
+    null,
+    "JOHN20:19",
+    "Vespers"
+   ],
+   [
+    "ACTS1:12",
+    "JOHN1:18",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-04-17",
+  "kind": "ordered",
+  "feast_level": 3,
+  "feasts": [
+   "The Life-Giving Spring of the Most-holy Theotokos"
+  ],
+  "ours": [
+   "ACTS3:1",
+   "JOHN2:12"
+  ],
+  "oca_first": [
+   "PHIL2:5",
+   "LUKE10:38",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "PHIL2:5",
+    "LUKE10:38",
+    "Theotokos"
+   ],
+   [
+    "ACTS3:1",
+    "JOHN2:12",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-05-03",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Paralytic",
+   "Ven. Theodosius, Abbot of the Kiev Caves"
+  ],
+  "ours": [
+   "ACTS9:32",
+   "JOHN5:1"
+  ],
+  "oca_first": [
+   "HEB13:7",
+   "MATT11:27",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "HEB13:7",
+    "MATT11:27",
+    "Saint"
+   ],
+   [
+    "ACTS9:32",
+    "JOHN5:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-05-10",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Samaritan Woman",
+   "Apostle Simon the Zealot"
+  ],
+  "ours": [
+   "ACTS11:19",
+   "JOHN4:5"
+  ],
+  "oca_first": [
+   "1COR4:9",
+   "MATT13:54",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "1COR4:9",
+    "MATT13:54",
+    "Saint"
+   ],
+   [
+    "ACTS11:19",
+    "JOHN4:5",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-05-21",
+  "kind": "differ",
+  "feast_level": 8,
+  "feasts": [
+   "Ascension of the Lord",
+   "SS Constantine and Helen, Equals-to-the-Apostles"
+  ],
+  "ours": [
+   "ACTS26:1",
+   "JOHN10:1"
+  ],
+  "oca_first": [
+   "ACTS1:1",
+   "LUKE24:36",
+   ""
+  ],
+  "oca_all": [
+   [
+    "ACTS1:1",
+    "LUKE24:36",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-06-14",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "All Saints of America, All Saints of Russia"
+  ],
+  "ours": [
+   "ROM2:10",
+   "MATT4:18"
+  ],
+  "oca_first": [
+   "HEB11:33",
+   "MATT4:25",
+   "Saints"
+  ],
+  "oca_all": [
+   [
+    "HEB11:33",
+    "MATT4:25",
+    "Saints"
+   ],
+   [
+    "ROM2:10",
+    "MATT4:18",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-07-05",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [],
+  "ours": [
+   "ROM10:1",
+   "MATT8:28"
+  ],
+  "oca_first": [
+   "GAL5:22",
+   "LUKE6:17",
+   "either Saint"
+  ],
+  "oca_all": [
+   [
+    "GAL5:22",
+    "LUKE6:17",
+    "either Saint"
+   ],
+   [
+    "ROM10:1",
+    "MATT8:28",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-07-19",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Fathers of the 1st Six Ecumenical Councils",
+   "Unc. Rel. Ven. Seraphim of Sarov"
+  ],
+  "ours": [
+   "HEB13:7",
+   "JOHN17:1"
+  ],
+  "oca_first": [
+   "GAL5:22",
+   "LUKE6:17",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "GAL5:22",
+    "LUKE6:17",
+    "Saint"
+   ],
+   [
+    "HEB13:7",
+    "JOHN17:1",
+    "Fathers"
+   ],
+   [
+    "ROM15:1",
+    "MATT9:27",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-07-26",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Repose of St Jacob Netsvetov, Enlightener of the Peoples of Alaska"
+  ],
+  "ours": [
+   "1COR1:10",
+   "MATT14:14"
+  ],
+  "oca_first": [
+   "PHIL3:7",
+   "MARK10:29",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "PHIL3:7",
+    "MARK10:29",
+    "Saint"
+   ],
+   [
+    "1COR1:10",
+    "MATT14:14",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-07-27",
+  "kind": "ordered",
+  "feast_level": 2,
+  "feasts": [
+   "Greatmartyr and Healer Panteleimon"
+  ],
+  "ours": [
+   "1COR11:31",
+   "MATT18:1"
+  ],
+  "oca_first": [
+   "2TIM2:1",
+   "JOHN15:17",
+   "St. Panteleimon"
+  ],
+  "oca_all": [
+   [
+    "2TIM2:1",
+    "JOHN15:17",
+    "St. Panteleimon"
+   ],
+   [
+    "1COR11:31",
+    "MATT18:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-08-06",
+  "kind": "ordered",
+  "feast_level": 8,
+  "feasts": [
+   "Transfiguration of Our Lord"
+  ],
+  "ours": [
+   "2PET1:10",
+   "MATT17:1"
+  ],
+  "oca_first": [
+   "2COR1:1",
+   "MATT21:43",
+   ""
+  ],
+  "oca_all": [
+   [
+    "2COR1:1",
+    "MATT21:43",
+    ""
+   ],
+   [
+    "2PET1:10",
+    "MATT17:1",
+    "Transfiguration"
+   ]
+  ]
+ },
+ {
+  "date": "2026-08-09",
+  "kind": "ordered",
+  "feast_level": 5,
+  "feasts": [
+   "Afterfeast of the Transfiguration"
+  ],
+  "ours": [
+   "1COR4:9",
+   "MATT17:14"
+  ],
+  "oca_first": [
+   "GAL5:22",
+   "LUKE6:17",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "GAL5:22",
+    "LUKE6:17",
+    "Saint"
+   ],
+   [
+    "1COR4:9",
+    "MATT17:14",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-08-15",
+  "kind": "ordered",
+  "feast_level": 7,
+  "feasts": [
+   "Dormition of the Most-Holy Theotokos"
+  ],
+  "ours": [
+   "PHIL2:5",
+   "LUKE10:38"
+  ],
+  "oca_first": [
+   "1COR1:3",
+   "MATT19:3",
+   ""
+  ],
+  "oca_all": [
+   [
+    "1COR1:3",
+    "MATT19:3",
+    ""
+   ],
+   [
+    "PHIL2:5",
+    "LUKE10:38",
+    "Theotokos"
+   ]
+  ]
+ },
+ {
+  "date": "2026-08-16",
+  "kind": "ordered",
+  "feast_level": 5,
+  "feasts": [
+   "Image of Christ Not Made by Hands"
+  ],
+  "ours": [
+   "1COR9:2",
+   "MATT18:23"
+  ],
+  "oca_first": [
+   "COL1:12",
+   "LUKE9:51",
+   "Image"
+  ],
+  "oca_all": [
+   [
+    "COL1:12",
+    "LUKE9:51",
+    "Image"
+   ],
+   [
+    "1COR9:2",
+    "MATT18:23",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-08-23",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Leavetaking of Dormition"
+  ],
+  "ours": [
+   "1COR15:1",
+   "MATT19:16"
+  ],
+  "oca_first": [
+   "PHIL2:5",
+   "LUKE10:38",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "PHIL2:5",
+    "LUKE10:38",
+    "Theotokos"
+   ],
+   [
+    "1COR15:1",
+    "MATT19:16",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-09-08",
+  "kind": "ordered",
+  "feast_level": 7,
+  "feasts": [
+   "Nativity of the Most-Holy Theotokos"
+  ],
+  "ours": [
+   "PHIL2:5",
+   "LUKE10:38"
+  ],
+  "oca_first": [
+   "GAL2:21",
+   "MARK6:1",
+   ""
+  ],
+  "oca_all": [
+   [
+    "GAL2:21",
+    "MARK6:1",
+    ""
+   ],
+   [
+    "PHIL2:5",
+    "LUKE10:38",
+    "Theotokos"
+   ]
+  ]
+ },
+ {
+  "date": "2026-09-12",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Saturday before Elevation"
+  ],
+  "ours": [
+   "1COR2:6",
+   "MATT10:37"
+  ],
+  "oca_first": [
+   "PHIL2:5",
+   "LUKE10:38",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "PHIL2:5",
+    "LUKE10:38",
+    "Theotokos"
+   ],
+   [
+    "1COR2:6",
+    "MATT10:37",
+    "Saturday Before"
+   ],
+   [
+    "1COR4:17",
+    "MATT24:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-09-13",
+  "kind": "ordered",
+  "feast_level": 3,
+  "feasts": [
+   "Sunday before Elevation",
+   "Founding of Church of the Holy Sepulchre"
+  ],
+  "ours": [
+   "GAL6:11",
+   "JOHN3:13"
+  ],
+  "oca_first": [
+   "HEB3:1",
+   "MATT16:13",
+   "Church"
+  ],
+  "oca_all": [
+   [
+    "HEB3:1",
+    "MATT16:13",
+    "Church"
+   ],
+   [
+    "GAL6:11",
+    "JOHN3:13",
+    "Sunday Before"
+   ],
+   [
+    "2COR4:6",
+    "MATT22:35",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-09-14",
+  "kind": "ordered",
+  "feast_level": 8,
+  "feasts": [
+   "Exaltation (Elevation) of the Precious Cross"
+  ],
+  "ours": [
+   "1COR1:18",
+   "JOHN19:6"
+  ],
+  "oca_first": [
+   "GAL4:28",
+   "MARK6:54",
+   ""
+  ],
+  "oca_all": [
+   [
+    "GAL4:28",
+    "MARK6:54",
+    ""
+   ],
+   [
+    "1COR1:18",
+    "JOHN19:6",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-10-18",
+  "kind": "ordered",
+  "feast_level": 4,
+  "feasts": [
+   "Holy Apostle and Evangelist Luke"
+  ],
+  "ours": [
+   "GAL1:11",
+   "LUKE8:5"
+  ],
+  "oca_first": [
+   "COL4:5",
+   "LUKE10:16",
+   "St. Luke"
+  ],
+  "oca_all": [
+   [
+    "COL4:5",
+    "LUKE10:16",
+    "St. Luke"
+   ],
+   [
+    "GAL1:11",
+    "LUKE8:5",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-10-31",
+  "kind": "differ",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "2COR5:1",
+   "LUKE8:16"
+  ],
+  "oca_first": [
+   "2COR5:1",
+   "JOHN10:9",
+   "St. John Kochurov"
+  ],
+  "oca_all": [
+   [
+    "2COR5:1",
+    "JOHN10:9",
+    "St. John Kochurov"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-08",
+  "kind": "differ",
+  "feast_level": 5,
+  "feasts": [
+   "Synaxis of the Holy Unmercenaries",
+   "Synaxis of Archangel Michael and the Bodiless Powers"
+  ],
+  "ours": [
+   "1COR12:27",
+   "MATT10:1"
+  ],
+  "oca_first": [
+   "HEB2:2",
+   "LUKE10:16",
+   "Angels"
+  ],
+  "oca_all": [
+   [
+    "HEB2:2",
+    "LUKE10:16",
+    "Angels"
+   ],
+   [
+    "EPH2:4",
+    "LUKE8:41",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-21",
+  "kind": "ordered",
+  "feast_level": 7,
+  "feasts": [
+   "Entry of the Most-Holy Theotokos into the Temple"
+  ],
+  "ours": [
+   "HEB9:1",
+   "LUKE10:38"
+  ],
+  "oca_first": [
+   "GAL1:3",
+   "LUKE9:57",
+   ""
+  ],
+  "oca_all": [
+   [
+    "GAL1:3",
+    "LUKE9:57",
+    ""
+   ],
+   [
+    "HEB9:1",
+    "LUKE10:38",
+    "Theotokos"
+   ]
+  ]
+ },
+ {
+  "date": "2026-11-25",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Leavetaking of the Entry"
+  ],
+  "ours": [
+   "1TIM1:18",
+   "LUKE18:15"
+  ],
+  "oca_first": [
+   "HEB9:1",
+   "LUKE10:38",
+   "Theotokos"
+  ],
+  "oca_all": [
+   [
+    "HEB9:1",
+    "LUKE10:38",
+    "Theotokos"
+   ],
+   [
+    "1TIM1:18",
+    "LUKE18:15",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-12-04",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [],
+  "ours": [
+   "2TIM1:1",
+   "LUKE20:19"
+  ],
+  "oca_first": [
+   "HEB13:7",
+   "LUKE12:32",
+   "St. Alexander"
+  ],
+  "oca_all": [
+   [
+    "HEB13:7",
+    "LUKE12:32",
+    "St. Alexander"
+   ],
+   [
+    "2TIM1:1",
+    "LUKE20:19",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-12-06",
+  "kind": "ordered",
+  "feast_level": 5,
+  "feasts": [
+   "St Nicholas the Wonderworker, Abp. of Myra in Lycia"
+  ],
+  "ours": [
+   "EPH6:10",
+   "LUKE17:12"
+  ],
+  "oca_first": [
+   "HEB13:17",
+   "LUKE6:17",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "HEB13:17",
+    "LUKE6:17",
+    "Saint"
+   ],
+   [
+    "EPH6:10",
+    "LUKE17:12",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-12-13",
+  "kind": "ordered",
+  "feast_level": 5,
+  "feasts": [
+   "Sunday of the Forefathers",
+   "Repose Ven. Herman of Alaska, Wonderworker of All America"
+  ],
+  "ours": [
+   "COL3:4",
+   "LUKE14:16"
+  ],
+  "oca_first": [
+   "GAL5:22",
+   "LUKE6:17",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "GAL5:22",
+    "LUKE6:17",
+    "Saint"
+   ],
+   [
+    "COL3:4",
+    "LUKE14:16",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-12-24",
+  "kind": "ordered",
+  "feast_level": 0,
+  "feasts": [
+   "Eve of Nativity"
+  ],
+  "ours": [
+   "HEB1:1",
+   "LUKE2:1"
+  ],
+  "oca_first": [
+   "HEB10:35",
+   "MARK10:17",
+   ""
+  ],
+  "oca_all": [
+   [
+    "HEB10:35",
+    "MARK10:17",
+    ""
+   ],
+   [
+    "HEB1:1",
+    "LUKE2:1",
+    ""
+   ]
+  ]
+ },
+ {
+  "date": "2026-12-27",
+  "kind": "ordered",
+  "feast_level": 2,
+  "feasts": [
+   "Sunday after Nativity",
+   "Protomartyr Stephen"
+  ],
+  "ours": [
+   "GAL1:11",
+   "MATT2:13"
+  ],
+  "oca_first": [
+   "ACTS6:8",
+   "MATT21:33",
+   "Saint"
+  ],
+  "oca_all": [
+   [
+    "ACTS6:8",
+    "MATT21:33",
+    "Saint"
+   ],
+   [
+    "GAL1:11",
+    "MATT2:13",
+    "Sunday After"
+   ]
+  ]
+ }
+]

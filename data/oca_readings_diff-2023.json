@@ -1,0 +1,84 @@
+[
+ {
+  "date": "2023-01-05",
+  "labels": [],
+  "missing": [
+   "HEB10:35",
+   "LUKE21:28"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2023-01-07",
+  "labels": [
+   "Saturday After",
+   "Forerunner"
+  ],
+  "missing": [
+   "EPH5:1",
+   "LUKE13:18"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2023-03-25",
+  "labels": [
+   "Theotokos"
+  ],
+  "missing": [
+   "HEB6:9",
+   "MARK7:31"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2023-04-13",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Composite"
+  ],
+  "missing": [],
+  "extra": [
+   "JOHN13:1",
+   "JOHN13:12"
+  ]
+ },
+ {
+  "date": "2023-05-25",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "2COR4:6",
+   "MATT11:2"
+  ]
+ },
+ {
+  "date": "2023-06-11",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "ACTS11:19",
+   "LUKE10:16"
+  ]
+ },
+ {
+  "date": "2023-10-31",
+  "labels": [
+   "St. John Kochurov"
+  ],
+  "missing": [],
+  "extra": [
+   "LUKE11:34"
+  ]
+ },
+ {
+  "date": "2023-11-05",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "1COR12:27",
+   "MATT10:1"
+  ]
+ }
+]

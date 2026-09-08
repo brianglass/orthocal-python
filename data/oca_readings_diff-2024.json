@@ -1,0 +1,109 @@
+[
+ {
+  "date": "2024-01-05",
+  "labels": [],
+  "missing": [
+   "JAS2:1",
+   "LUKE16:15"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2024-01-13",
+  "labels": [
+   "Saturday After"
+  ],
+  "missing": [
+   "LUKE10:19"
+  ],
+  "extra": [
+   "LUKE10:16"
+  ]
+ },
+ {
+  "date": "2024-02-29",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "1JOHN2:18",
+   "MARK11:1"
+  ]
+ },
+ {
+  "date": "2024-03-26",
+  "labels": [
+   "Theotokos"
+  ],
+  "missing": [
+   "HEB2:11",
+   "LUKE1:24"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2024-04-30",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Presanctified"
+  ],
+  "missing": [],
+  "extra": [
+   "ACTS12:1",
+   "LUKE5:1"
+  ]
+ },
+ {
+  "date": "2024-05-02",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Composite"
+  ],
+  "missing": [],
+  "extra": [
+   "JOHN13:1",
+   "JOHN13:12"
+  ]
+ },
+ {
+  "date": "2024-05-03",
+  "labels": [
+   "Vespers",
+   "Vespers"
+  ],
+  "missing": [],
+  "extra": [
+   "HEB13:7",
+   "MATT11:27"
+  ]
+ },
+ {
+  "date": "2024-10-31",
+  "labels": [
+   "St. John Kochurov"
+  ],
+  "missing": [],
+  "extra": [
+   "LUKE11:47"
+  ]
+ },
+ {
+  "date": "2024-11-03",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "1COR12:27",
+   "MATT10:1"
+  ]
+ },
+ {
+  "date": "2024-12-24",
+  "labels": [],
+  "missing": [
+   "1TIM5:11",
+   "MARK11:11"
+  ],
+  "extra": []
+ }
+]

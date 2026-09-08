@@ -28,8 +28,8 @@
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
-            5,
-            8
+            6,
+            9
         ],
         "readings": [
             {
@@ -67,14 +67,6 @@
             {
                 "source": "Epistle",
                 "book": "Apostol",
-                "description": "Saturday before Theophany",
-                "display": "1 Timothy 3.14-4.5",
-                "short_display": "1 Tim 3.14-4.5",
-                "passage": null
-            },
-            {
-                "source": "Epistle",
-                "book": "Apostol",
                 "description": "Circumcision",
                 "display": "Colossians 2.8-12",
                 "short_display": "Col 2.8-12",
@@ -89,11 +81,11 @@
                 "passage": null
             },
             {
-                "source": "Gospel",
-                "book": "Matthew",
+                "source": "Epistle",
+                "book": "Apostol",
                 "description": "Saturday before Theophany",
-                "display": "Matthew 3.1-11",
-                "short_display": "Matt 3.1-11",
+                "display": "1 Timothy 3.14-4.5",
+                "short_display": "1 Tim 3.14-4.5",
                 "passage": null
             },
             {
@@ -110,6 +102,14 @@
                 "description": "St Basil",
                 "display": "Luke 6.17-23",
                 "short_display": "Luke 6.17-23",
+                "passage": null
+            },
+            {
+                "source": "Gospel",
+                "book": "Matthew",
+                "description": "Saturday before Theophany",
+                "display": "Matthew 3.1-11",
+                "short_display": "Matt 3.1-11",
                 "passage": null
             }
         ]
@@ -139,6 +139,7 @@
         "fast_abstentions": [],
         "saints": [
             "Repose of St Seraphim of Sarov",
+            "Sylvester of the Kiev Caves",
             "St Sylvester, Pope of Rome (335)",
             "Venerable Juliana of Lazarevskoye (1604)",
             "Holy New Martyr George the Georgian (1770)"
@@ -290,6 +291,9 @@
         "fast_abstentions": [],
         "saints": [
             "Synaxis of Seventy Apostles",
+            "Our Righteous Father Theoctistus, Abbot of Cucomo in Sicily",
+            "Nikephoros the Leper",
+            "Eustathios Archbishop of Serbia",
             "The Ethiopian Eunuch of Queen Candace",
             "Venerable Apollinaria (5th c.)"
         ],
@@ -347,6 +351,7 @@
             "oil"
         ],
         "saints": [
+            "Apollinaria of Egypt",
             "Holy Martyrs Theopemptus and Theonas (ca. 290)",
             "Our Venerable Mother Syncletike (4th c.)"
         ],
@@ -803,6 +808,7 @@
         "fast_abstentions": [],
         "saints": [
             "Ven. George the Chozebite",
+            "Gregory of the Kiev Caves",
             "Our Venerable Mother Domnica (Domnina) (ca. 474)",
             "Saint Atticus, Patriarch of Constantinople (425)",
             "Saint Severinus (482)"
@@ -918,7 +924,7 @@
         "titles": [
             "Monday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Gregory of Nyssa; St Theophan the Recluse",
+        "summary_title": "St Gregory of Nyssa; Dometian, Bishop of Melitene; St Theophan the Recluse",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
@@ -929,6 +935,7 @@
         "fast_abstentions": [],
         "saints": [
             "St Gregory of Nyssa",
+            "Dometian, Bishop of Melitene",
             "St Theophan the Recluse"
         ],
         "service_notes": null,
@@ -982,8 +989,8 @@
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
-            4,
-            6
+            5,
+            7
         ],
         "readings": [
             {
@@ -1348,8 +1355,8 @@
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
-            4,
-            6
+            5,
+            7
         ],
         "readings": [
             {
@@ -1549,8 +1556,8 @@
         ],
         "service_notes": null,
         "abbreviated_reading_indices": [
-            4,
-            6
+            5,
+            7
         ],
         "readings": [
             {
@@ -1854,8 +1861,8 @@
         "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
-            4,
-            6
+            5,
+            7
         ],
         "readings": [
             {
@@ -2006,8 +2013,8 @@
         "saints": null,
         "service_notes": null,
         "abbreviated_reading_indices": [
-            4,
-            6
+            5,
+            7
         ],
         "readings": [
             {
@@ -2087,7 +2094,7 @@
         "titles": [
             "Friday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Ephrem the Syrian; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
+        "summary_title": "Ven. Ephrem the Syrian; Theodosius of Totma; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2105,6 +2112,7 @@
         ],
         "saints": [
             "Ven. Ephrem the Syrian",
+            "Theodosius of Totma",
             "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)"
         ],
         "service_notes": null,

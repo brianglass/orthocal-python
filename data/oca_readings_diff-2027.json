@@ -1,0 +1,111 @@
+[
+ {
+  "date": "2027-01-01",
+  "labels": [
+   "Circumcision",
+   "Saint"
+  ],
+  "missing": [
+   "JAS2:1",
+   "MARK12:1"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2027-01-02",
+  "labels": [
+   "Saint",
+   "Saturday Before"
+  ],
+  "missing": [],
+  "extra": [
+   "COL1:3",
+   "LUKE17:3"
+  ]
+ },
+ {
+  "date": "2027-01-05",
+  "labels": [],
+  "missing": [
+   "JAS3:1",
+   "LUKE17:26"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2027-01-09",
+  "labels": [
+   "Saturday After"
+  ],
+  "missing": [
+   "LUKE10:19"
+  ],
+  "extra": [
+   "LUKE10:16"
+  ]
+ },
+ {
+  "date": "2027-04-29",
+  "labels": [
+   "Matins",
+   "Vespers",
+   "Composite"
+  ],
+  "missing": [],
+  "extra": [
+   "JOHN13:1",
+   "JOHN13:12"
+  ]
+ },
+ {
+  "date": "2027-04-30",
+  "labels": [
+   "Vespers",
+   "Vespers"
+  ],
+  "missing": [],
+  "extra": [
+   "ACTS12:1",
+   "LUKE5:1"
+  ]
+ },
+ {
+  "date": "2027-10-31",
+  "labels": [
+   "St. John Kochurov"
+  ],
+  "missing": [],
+  "extra": [
+   "LUKE8:26"
+  ]
+ },
+ {
+  "date": "2027-11-07",
+  "labels": [],
+  "missing": [],
+  "extra": [
+   "1COR12:27",
+   "MATT10:1"
+  ]
+ },
+ {
+  "date": "2027-12-24",
+  "labels": [],
+  "missing": [
+   "2TIM1:1",
+   "MARK10:23"
+  ],
+  "extra": []
+ },
+ {
+  "date": "2027-12-26",
+  "labels": [
+   "Sunday After"
+  ],
+  "missing": [],
+  "extra": [
+   "HEB2:11",
+   "MATT2:13"
+  ]
+ }
+]
