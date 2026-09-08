@@ -244,12 +244,28 @@ This is the concrete answer to "what does the refactor buy": the explicit model
 found a bug the emergent one produced and hid, and the bug is of a kind the
 architecture invites.
 
-### Not yet covered
+### Both traditions, and the legacy index too
 
-The prototype runs Slavic only. `GreekDay` needs its own season table --
-chiefly the Nativity fast, where Greek practice differs structurally (see
-`docs/greek-fasting.md`), and its stricter period starts at `nativity - 12`
-rather than `nativity - 6`.
+Extended to Greek, whose only structural difference is the Nativity fast: it
+splits into two seasons, everything but Wednesday and Friday being a fish day
+until Dec 12 and Monday, Tuesday and Thursday dropping to full strictness from
+Dec 13 (`docs/greek-fasting.md`).
+
+The prototype also reproduces the legacy `fast_exception` index, because
+`calendarium/api.py` publishes it. A row that decides the outcome reports its
+own value; where the season decides, one canonical index per rung is used. That
+keeps indices 3 and 4 -- whose whole purpose was precedence -- reporting as
+themselves even though the model no longer needs them to.
+
+With the Wednesday/Friday quirk emulated behind
+`Season.legacy_wed_fri_assignment`, the prototype reproduces **3652 of 3652
+days exactly**, in both traditions, on both the dietary rung and the legacy
+index. Running it with `--fixed` turns the flag off and changes exactly the four
+Nativity Eve days and nothing else.
+
+That is the licence to swap the implementation: the refactor lands
+byte-identical with the flag on, and removing the flag is a four-line diff in
+the characterisation file.
 
 ## What is deliberately *not* in scope
 
