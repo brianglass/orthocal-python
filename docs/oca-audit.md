@@ -857,6 +857,39 @@ rather than Paul's terser "Begin Nativity Fast". All three are `common`, so both
 traditions get them. The fifth of Paul's notes, a Presanctified note at
 pdist -17, is generated dynamically by both codebases and was never a gap.
 
+## Lenten weekdays in the abbreviated readings: a design choice, not a bug
+
+Traced 2026-09-02 while reading `aget_abbreviated_readings`. Two behaviours:
+
+- **A plain Lenten weekday passes its Old Testament readings through
+  unreduced.** No group contains both an Epistle and a Gospel, so
+  `_first_epistle_and_gospel` returns None for each, the `for...else` fallback
+  finds none either, and the list is left alone. 2026-03-04 returns all three:
+  Sixth Hour Isaiah, Vespers Genesis, Vespers Proverbs.
+- **A Lenten weekday carrying a fixed-date commemoration at feast level 2 or
+  above drops them entirely.** 2026-03-09, the Forty Martyrs, goes from nine
+  readings to two: `Heb 12:1-10` / `Matt 20:1-16`. Clean Week and Holy Week are
+  exempt through the `fast_exception != 10` guard, which is why Feb 24 and
+  Feb 27 still pass through in 2026 despite being levels 4 and 5.
+
+oca.org does the opposite in the second case. Its monthly lectionary is itself
+an abbreviated per-set view, and it lists both sets with the Old Testament one
+first:
+
+```
+Isaiah 8:13-9:7 / Genesis 6:9-22 / Proverbs 8:1-21
+Hebrews 12:1-10 / Matthew 20:1-16  (Martyrs)
+```
+
+Across 2023-2027 that is 28 days, four or five a year, where oca.org lists the
+Old Testament set and this app drops it.
+
+**Kept as-is (Brian, 2026-09-02): antiochian.org and goarch.org both do what
+this app does**, publishing a single Epistle and Gospel pair for the day, so the
+divergence is from OCA specifically rather than from Greek practice. Reducing to
+one pair is the contract `aget_abbreviated_readings` promises, and two of the
+three sources agree with it.
+
 ## Follow-up: is Oct 31's Kochurov data there for ROCOR?
 
 Brian raised this (2026-08-29). The Oct 31 readings for St John Kochurov were
