@@ -377,12 +377,19 @@ class TestGreekFasting(TestCase):
         self.assertEqual(slavic.fast_exception_desc, '')
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_phase_two_starts_a_week_earlier_for_greek(self):
-        """Dec 15, 2026 is an ordinary Tuesday. Slavic's stricter period
-        doesn't start until ~Dec 20, so it still gets the ordinary
-        Tuesday/Thursday wine-and-oil allowance; Greek's stricter period
-        starts Dec 13, a full week earlier, and drops Monday/Tuesday/
-        Thursday to full strictness (not just losing fish)."""
+    async def test_nativity_fast_greek_first_phase_is_a_fish_day(self):
+        """Dec 15, 2026 is an ordinary Tuesday, inside Greek's first phase,
+        which runs through Dec 17: everything but Wednesday and Friday is a
+        fish day. Slavic gets only the ordinary Tuesday/Thursday
+        wine-and-oil allowance, its own stricter period not starting until
+        ~Dec 20.
+
+        The boundary is the Archdiocese's: "fish, wine and olive oil are
+        permitted, except on Wednesdays and Fridays, until December 17"
+        (Yearbook of the Greek Orthodox Archdiocese of America). It was
+        Dec 13 here until 2026-09-09, taken from Antiochian parish sources
+        before `greek` was settled as meaning GOA -- see
+        docs/greek-fasting.md."""
 
         slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
@@ -390,20 +397,26 @@ class TestGreekFasting(TestCase):
         await greek.ainitialize()
 
         self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
-        self.assertEqual(greek.fast_exception_desc, '')
+        self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_phase_two_weekend_loses_fish_earlier_for_greek(self):
-        """Dec 13, 2026 is a Sunday -- the first day of Greek's stricter
-        period, but still well inside Slavic's ordinary-weekend-gets-fish
-        window (Slavic's stricter period doesn't start until ~Dec 20)."""
+    async def test_nativity_fast_greek_second_phase_starts_december_18(self):
+        """Dec 17, 2026 is a Thursday and still a fish day for Greek; Dec 18
+        is a Friday, and Wednesday and Friday are strict in both phases, so
+        so a Tuesday shows the tightening: Dec 22 drops Greek to full strictness
+        where Slavic keeps the Tuesday/Thursday wine-and-oil allowance. Monday
+        would not do -- it is strict in Slavic practice too ("On Monday,
+        Wednesday and Friday, we eat neither oil nor wine", Typikon Ch. 33)."""
 
-        slavic = liturgics.Day(2026, 12, 13, tradition=Tradition.Slavic)
-        greek = liturgics.Day(2026, 12, 13, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        greek_before = liturgics.Day(2026, 12, 17, tradition=Tradition.Greek)
+        greek_after = liturgics.Day(2026, 12, 22, tradition=Tradition.Greek)
+        slavic_after = liturgics.Day(2026, 12, 22, tradition=Tradition.Slavic)
+        await greek_before.ainitialize()
+        await greek_after.ainitialize()
+        await slavic_after.ainitialize()
 
-        self.assertEqual(slavic.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
-        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+        self.assertEqual(greek_before.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
+        self.assertEqual(greek_after.fast_exception_desc, '')
+        self.assertEqual(slavic_after.fast_exception_desc, 'Wine and Oil are Allowed')
 
     async def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
         """Regression test for a bug caught during implementation: Dec 24,

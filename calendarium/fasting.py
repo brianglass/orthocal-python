@@ -128,17 +128,21 @@ NATIVITY = Season('Nativity', floor=_CH33_FLOOR, cap=_CH33_CAP,
                   no_fish_before_nativity=True)
 
 # Greek practice differs only in the Nativity fast, and there it splits in two:
-# for the first four weeks everything but Wednesday and Friday is a fish day,
-# and from Dec 13 it tightens further than Slavic practice does -- Monday,
+# for the first five weeks everything but Wednesday and Friday is a fish day,
+# and from Dec 18 it tightens further than Slavic practice does -- Monday,
 # Tuesday and Thursday drop to full strictness rather than merely losing fish.
-# See docs/greek-fasting.md.
+#
+# The Archdiocese's own rule sets the boundary: "Nativity Lent (November 15 -
+# December 24, although fish, wine and olive oil are permitted, except on
+# Wednesdays and Fridays, until December 17)", from the annual Yearbook of the
+# Greek Orthodox Archdiocese of America. See docs/greek-fasting.md.
 NATIVITY_GREEK_EARLY = Season(
-    'Nativity (Greek, to Dec 12)',
+    'Nativity (Greek, to Dec 17)',
     floor={WED: D.Strict, FRI: D.Strict}, default_floor=D.FishWineOil,
     cap={WED: D.WineAndOil, FRI: D.WineAndOil}, default_cap=D.FishWineOil,
     cap_exempt_rank=4)
 NATIVITY_GREEK_STRICT = Season(
-    'Nativity (Greek, from Dec 13)',
+    'Nativity (Greek, from Dec 18)',
     floor={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_floor=D.Strict,
     cap={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_cap=D.WineAndOil,
     cap_exempt_rank=4)
@@ -159,7 +163,8 @@ def slavic_season(day):
 
 def greek_season(day):
     if day.fast_level == FastLevels.NativityFast:
-        return (NATIVITY_GREEK_STRICT if day.pdist >= day.pyear.nativity - 12
+        # Dec 18 is `nativity - 7`; see NATIVITY_GREEK_EARLY for the citation.
+        return (NATIVITY_GREEK_STRICT if day.pdist >= day.pyear.nativity - 7
                 else NATIVITY_GREEK_EARLY)
     return _BY_LEVEL.get(day.fast_level)
 

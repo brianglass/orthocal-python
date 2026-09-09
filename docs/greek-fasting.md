@@ -45,9 +45,23 @@ the OCA-modeled pattern our code already implemented:
 **Phase 2, the "stricter period"**
 - Slavic: starts ~5 days out (`nativity-6` to `nativity-1`), only removes
   fish -- Tue/Thu keep their wine+oil allowance throughout.
-- Greek: starts **Dec 13** (`nativity-12`), a full week earlier, and is
-  stricter -- wine+oil is restricted to Sat/Sun only, so Mon/Tue/Thu drop to
-  full strictness (same as Wed/Fri), not just losing fish.
+- Greek: starts **Dec 18** (`nativity-7`) and is stricter -- wine+oil is
+  restricted to Sat/Sun only, so Mon/Tue/Thu drop to full strictness (same as
+  Wed/Fri), not just losing fish.
+
+**Corrected 2026-09-09: this said Dec 13 (`nativity-12`).** That date came from
+the two Antiochian parish sources below, and predates the decision that `greek`
+means GOA. The Archdiocese publishes its own rule in the annual Yearbook, and
+three GOA parishes reproduce it with attribution, all agreeing: "Nativity Lent
+(November 15-December 24, although fish, wine and olive oil are permitted,
+except on Wednesdays and Fridays, **until December 17**)." goarch.org itself is
+behind Cloudflare and returns 403 to any fetch, so the Yearbook text was not
+read first-hand.
+
+Eighteen days over five years change, all Greek, all Dec 13-17, all from wine
+and oil or strict to fish -- Wednesdays and Fridays are unaffected, being strict
+in both phases. The Antiochian sources are kept below because they are correct
+*for Antioch*; they are simply not what the `greek` tradition follows.
 
 One general Antiochian summary found early in the research contradicted this
 (grouping Monday with Wed/Fri, same as Slavic) -- judged to be an imprecise
