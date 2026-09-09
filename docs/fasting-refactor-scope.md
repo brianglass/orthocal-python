@@ -580,12 +580,18 @@ itself, and `docs/greek-fasting.md` records real Antiochian sources for the
 current date. What it needs is a decision about which jurisdiction the `greek`
 tradition follows for fasting, given that it follows GOA for readings.
 
-### Still to do
+**Answered 2026-09-09: GOA, for fasting as for readings.** Brian's call, and the
+Nativity boundary is now measured from the Archdiocese's own calendar rather
+than from Antiochian sources. Antioch's fast-free Paschal season is explicitly
+*not* adopted -- it appears to be unique to them, and is a nice-to-have for a
+possible Antiochian tradition later.
 
-- **Turn on `Season.apply_grants`.** The Ch. 33 rank clause is written in
-  `_CH33_GRANTS` and switched off, so the refactor changed nothing. Enabling it
-  is a real behaviour change and wants its own commit and its own review of the
-  characterisation diff.
+### Settled since
+
+`Season.apply_grants` was the last open item here. It has now been measured
+against goarch.org and **fails** -- see "Ch. 33's rank clause" above. It stays
+`False`, and the grants stay in `_CH33_GRANTS` as a recorded reading of the
+typikon that practice does not bear out, not as pending work.
 
 ## What is deliberately *not* in scope
 
