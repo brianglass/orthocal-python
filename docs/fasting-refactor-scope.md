@@ -331,7 +331,37 @@ Nativity fast falling on a Monday, Tuesday or Thursday would settle it.
 
 The rule stays written and switched off in `_CH33_GRANTS`, with its citation.
 
-## What the Antiochian typikon actually says (2026-09-09)
+## The "Antiochian typikon" is the Typikon of the Great Church (2026-09-09)
+
+**Correcting the framing used throughout the section below.** The PDF at
+`~/Documents/Orthodox Studies/54-typikon-full.pdf` is not an Antioch-specific
+book. Its own foreword identifies it as Rizkallah Arman's 1951 Arabic
+translation, checked against "the Typikon of the Great Church of
+Constantinople", and states plainly: "The Orthodox Churches in the East now use
+the Typikon of the Great Church of Christ in Constantinople originally received
+from St. Sabbas with some changes."
+
+That is the Violakis typikon -- **the same one the Greek Orthodox Archdiocese
+follows**. The same file is published as "The Book of the Typikon" at
+equip-orthodox.com.
+
+Three consequences, and they matter:
+
+- **Chapter X's Wednesday/Friday exceptions apply to the Greek tradition
+  generally, GOA included.** They are not an Antiochian peculiarity to be
+  modelled as a separate jurisdiction. This app implements none of them.
+- **The book marks its own local departures.** Footnote 343 attributes the
+  fast-free Paschal season to a decree of "the Holy Synod of Antioch"; the main
+  text says only that fish is permitted on those days. So the typikon
+  distinguishes the shared rule from Antioch's extension of it, and we can read
+  which is which.
+- **GOA and Antioch should not diverge much in principle**, sharing a typikon.
+  The 14% figure measured below is *this app against Antiochian practice*, not
+  GOA against Antioch, and much of it is more likely to be our model being
+  wrong than a jurisdictional difference. Brian's scepticism on this point was
+  correct.
+
+## What that typikon says about Wednesdays and Fridays (2026-09-09)
 
 An earlier pass concluded the Antiochian typikon "contains no rank-based fasting
 rules". **That was wrong, and the miss was a search failure**: the grep looked
@@ -363,9 +393,11 @@ entire Paschal season until the Feast of the Ascension."
 
 **This is a categorical rule, not a rank one.** It keys on *what kind* of feast
 -- of the Lord, of the Theotokos, of the Twelve Apostles, or an afterfeast --
-where Ch. 33 keys on typikon rank. The two jurisdictions do not merely differ in
-their dates; they differ in what the exception is *about*. That is worth
-knowing before any further rank-threshold work.
+where the Ch. 33 text OCA quotes keys on typikon rank. Both are in the same
+book, addressing different fasts: Ch. 33 governs the Apostles' and Nativity
+fasts, Chapter X the ordinary Wednesdays and Fridays of the year. They are not
+rival jurisdictional readings, which is how an earlier draft of this section
+described them.
 
 ### The Antiochian Paschal rule, stated exactly (corrected 2026-09-09)
 
@@ -391,7 +423,7 @@ contradictions were the ones the decree explicitly excludes.
 The lesson generalises past this rule: `pdist 0..49` is Pascha to Pentecost and
 is the wrong window for anything scoped to Ascension, which is pdist 39.
 
-### It resurrects the Paschal-season candidate, for Greek only
+### The Paschal-season candidate, and who it applies to
 
 A Paschal-season fish allowance was raised earlier and withdrawn, on the grounds
 that OCA's guidelines give no such allowance. For the **Greek** tradition the
