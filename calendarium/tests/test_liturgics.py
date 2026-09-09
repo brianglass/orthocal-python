@@ -436,13 +436,17 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_holy_week_apostles_dormition_fasts_are_identical_between_traditions(self):
-        """Holy Week, the Apostles' Fast, and the Dormition Fast were all
-        confirmed (via dedicated Antiochian sources) to follow the same
-        weekly pattern as Slavic practice -- this is a regression guard
-        against that accidentally changing. Ordinary weeks of Great Lent
-        are NOT covered here -- see the wine-and-oil exception tests below
-        for three confirmed exceptions that do differ.
+    async def test_holy_week_and_dormition_fasts_are_identical_between_traditions(self):
+        """Holy Week and the Dormition Fast follow the same weekly pattern in
+        both traditions -- a regression guard against that changing. Ordinary
+        weeks of Great Lent are NOT covered here; see the wine-and-oil
+        exception tests below for three confirmed exceptions that do differ.
+
+        The Apostles' Fast used to be covered here too, on the strength of a
+        dedicated Antiochian source. **goarch.org disproves that** -- GOA keeps
+        a far lighter Apostles' fast than Slavic practice, fish every day
+        except Wednesday and Friday, identical across the whole fast in 2026
+        and 2028. It has its own test below.
 
         Aug 9 (St Herman of Alaska's Vigil-rank feast, Slavic tradition)
         needs no exclusion here: see
@@ -452,7 +456,6 @@ class TestGreekFasting(TestCase):
 
         dates = (
             [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
-            + [date(2026, 6, d) for d in range(9, 15)]      # Apostles' Fast
             + [date(2026, 8, d) for d in range(1, 15)]      # Dormition Fast
         )
 
@@ -465,6 +468,35 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+    async def test_apostles_fast_is_lighter_for_greek(self):
+        """GOA keeps fish through the Apostles' fast except on Wednesday and
+        Friday, where it is strict. Slavic practice follows Typikon Ch. 33
+        instead -- Monday strict, Tuesday and Thursday wine and oil, weekends
+        fish.
+
+        Measured from goarch.org across the whole of the 2026 and 2028 fasts,
+        which agree on every day; see data/goarch_fasting.json. June 2026 is
+        used here because the 2027 fast is a single day long."""
+
+        expected = {
+            8: ('Fish, Wine and Oil are Allowed', ''),            # Monday
+            9: ('Fish, Wine and Oil are Allowed', 'Wine and Oil are Allowed'),
+            10: ('', ''),                                          # Wednesday
+            11: ('Fish, Wine and Oil are Allowed', 'Wine and Oil are Allowed'),
+            12: ('', ''),                                          # Friday
+            13: ('Fish, Wine and Oil are Allowed', 'Fish, Wine and Oil are Allowed'),
+        }
+
+        for day_of_month, (greek_desc, slavic_desc) in expected.items():
+            with self.subTest(day_of_month):
+                greek = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Greek)
+                slavic = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Slavic)
+                await greek.ainitialize()
+                await slavic.ainitialize()
+
+                self.assertEqual(greek.fast_exception_desc, greek_desc)
+                self.assertEqual(slavic.fast_exception_desc, slavic_desc)
 
     async def test_dormition_fast_grants_no_rank_based_exception(self):
         """Regression test for a data bug reported directly against

@@ -69,14 +69,27 @@ The lesson is the one this project keeps relearning: a jurisdiction's prose
 summary of its own rule is not evidence about its practice. See
 `data/goarch_fasting.json` and `tools/fasting/goarch_audit.py`.
 
-### Apostles' Fast -- no difference found
+### Apostles' Fast -- GOA is far lighter (corrected 2026-09-09)
 
-A dedicated Antiochian source states explicitly: Mon/Wed/Fri strict, Tue/Thu
-wine+oil, Sat/Sun fish -- identical to the Slavic/OCA pattern our code
-already implements. Notable: it's specifically the Nativity Fast's first
-phase that's unusually lenient in Greek practice, not a general "Greek fasts
-are more lenient" pattern -- the Apostles' Fast (sharing the exact same
-weekly structure) shows no such leniency in either tradition.
+**This section previously read "no difference found".** That rested on a
+dedicated Antiochian source stating Mon/Wed/Fri strict, Tue/Thu wine and oil,
+Sat/Sun fish -- identical to the Slavic/OCA pattern, and identical to Typikon
+Ch. 33. goarch.org disproves it:
+
+| | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|---|---|---|---|---|---|---|---|
+| Slavic (Ch. 33) | strict | wine+oil | strict | wine+oil | strict | fish | fish |
+| **GOA** | **fish** | **fish** | strict | **fish** | strict | fish | fish |
+
+GOA keeps **fish every day except Wednesday and Friday**, which stay strict --
+the same shape as its Nativity fast's first phase. Measured across the whole of
+the 2026 and 2028 fasts, three weeks each, agreeing on every single day. (2027's
+fast is one day long and says nothing either way.) Implemented as
+`APOSTLES_GREEK`; it accounted for 18 of the differences in the goarch audit.
+
+The earlier conclusion was not carelessly drawn -- it had a real source -- but
+that source was Antiochian, and this tradition follows GOA. It is the same
+mistake the Nativity boundary made twice.
 
 ### Dormition Fast (Aug 1-14) -- no difference found
 

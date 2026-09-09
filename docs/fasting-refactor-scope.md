@@ -497,6 +497,62 @@ differences are a *data* question -- Greek `fast_exception` rows for specific
 dates -- rather than a rule waiting to be written. That is the third time a
 rank-threshold hypothesis has failed against practice data on this project.
 
+## The full-year goarch audit (2026-09-09)
+
+The 9-month sample was extended to **37 months -- Dec 2025 plus all of 2026,
+2027 and 2028, 1,127 days.** Score, as each fix landed:
+
+| | |
+|---|---|
+| starting point | 1032/1127 (91.6%) |
+| after a bug in the audit's own `bucket()` | 1053/1127 (93.4%) |
+| `APOSTLES_GREEK` | 1071/1127 (95.0%) |
+| Greek Exaltation row | **1074/1127 (95.3%)** |
+
+**The first correction was to the measuring tool, not the app.** `bucket()`
+folded `MeatFast` in with `FastFree`, so all 21 Cheesefare days scored as
+differences when the app had them right. Worth recording because it is the
+second time in this work that a "finding" turned out to be an artifact of how
+the comparison was set up.
+
+### What the remaining 53 are
+
+**36 -- per-date wine and oil grants we lack.** GOA lifts an ordinary Wednesday
+or Friday to wine and oil for a large set of saints: Barbara, Spyridon,
+Eleutherius, the Prophet Daniel, Mary Magdalene, the Chains of Peter, and
+twenty-odd more. Their `feast_level` in our data ranges over 0, 2, 3 and 4, so
+no threshold picks them out -- consistent with the rank grants failing.
+
+These are only *visible* on Wednesday and Friday, because on any other weekday
+an ordinary-time day is already fast-free. A given date lands on Wed or Fri in
+roughly 2 years out of 7, so **three years of data exposes only about a third of
+the list.** Fully enumerating it needs on the order of ten years of harvest.
+Inside the fasting seasons the problem does not arise -- every day is a fast
+day, so Dec 15 shows up in all four harvested Decembers.
+
+**8 -- fish capped to wine and oil on ordinary Wed/Fri.** With three years the
+confound noted earlier is broken: 2028-01-07 is a **Friday** that keeps fish,
+and 2027-01-20, 2027-10-06 and 2028-11-08 are **Wednesdays** that are capped. So
+it is not a weekday rule. Every capped day is `feast_level` 5 -- *higher* than
+several days that keep fish -- so it is not a rank rule either:
+
+| GOA keeps fish | GOA caps to wine and oil |
+|---|---|
+| Nativity of the Theotokos (7), Meeting (8) | Three Hierarchs (5), John the Theologian (5) |
+| Midfeast, Leavetaking of Pascha (0-4) | Chrysostom (5), Euthymius (5), Thomas (5) |
+| Synaxis of the Forerunner (3) | Archangel Michael (5) |
+
+The discriminator is **what kind of feast it is** -- of the Lord or of the
+Theotokos, versus a saint -- which is exactly Chapter X's wording, except that
+GOA does not honour its "or one of the 12 Apostles" clause: John the Theologian
+and Thomas are both capped. Our schema has no Lord/Theotokos/saint category, so
+this cannot be expressed today. `feast_level >= 7` catches the two great feasts
+but would wrongly cap the Midfeast, the Leavetaking of Pascha and the Synaxis of
+the Forerunner -- fixing 7 days and breaking 8.
+
+**The remaining 9** are one-offs with no pattern yet: 5 wine-and-oil-to-strict,
+2 fish-to-strict, 2 fast-free-to-wine-and-oil.
+
 ### Clause 4, afterfeasts: confirmed by GOA too
 
 **goarch.org does not apply it either**, which settles the question the earlier

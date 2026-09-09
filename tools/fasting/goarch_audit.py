@@ -23,6 +23,11 @@ lines was wrong -- that is true of the readings, not of the fast:
 
     strict-fast   -> strict            grapes  -> wine and oil
     fasting-fish  -> fish, wine, oil   (none)  -> fast free
+    fast-day      -> dairy allowed, i.e. a meat fast
+
+`fast-day` is the trap in that list: it names the *mildest* level, not a fast
+day in the ordinary sense, and it appears only in Cheesefare week. Reading it as
+anything else silently mis-scores seven days a year.
 
 The mapping is confirmed by March 2026, where Lenten weekdays come out
 `strict-fast`, weekends `grapes`, and the Annunciation `fasting-fish`.
@@ -53,16 +58,27 @@ from calendarium.datetools import (                  # noqa: E402
 from calendarium.liturgics import Day                # noqa: E402
 
 PATH = 'data/goarch_fasting.json'
-CODE = {'S': 'strict', 'W': 'wine+oil', 'F': 'fish', 'N': 'no fast'}
+CODE = {'S': 'strict', 'W': 'wine+oil', 'F': 'fish', 'D': 'meat fast',
+        'N': 'no fast'}
 WEEKDAYS = ('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat')
 SEASONS = {0: 'no fast', 1: 'ordinary', 2: 'Lent', 3: 'Apostles',
            4: 'Dormition', 5: 'Nativity'}
 
 
 def bucket(rung):
-    """Project a DietaryAllowance onto the four buckets GOA publishes."""
-    if rung >= D.MeatFast:
+    """Project a DietaryAllowance onto the five buckets GOA publishes.
+
+    Only `FastFree` is "no fast": `MeatFast` is Cheesefare week's dairy
+    allowance, which GOA labels separately. Collapsing the two scored all 21
+    Cheesefare days in the harvest as differences when the app had them right.
+
+    `WineOnly` -- Holy Saturday's wine without oil -- has no GOA counterpart,
+    and is scored as strict because that is the nearer of the two.
+    """
+    if rung >= D.FastFree:
         return 'no fast'
+    if rung >= D.MeatFast:
+        return 'meat fast'
     if rung >= D.FishWineOil:
         return 'fish'
     if rung >= D.WineAndOil:

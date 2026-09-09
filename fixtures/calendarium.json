@@ -17134,7 +17134,7 @@
     "service_note": "",
     "story": null,
     "fast": 5,
-    "fast_exception": 1,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17155,6 +17155,26 @@
     "story": null,
     "fast": 5,
     "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 900,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 14,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Exaltation (Elevation) of the Precious Cross",
+    "feast_level": 8,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 1,
+    "fast_exception": 9,
     "flag": 0,
     "tradition": "greek"
   }

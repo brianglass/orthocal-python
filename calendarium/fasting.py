@@ -127,7 +127,24 @@ NATIVITY = Season('Nativity', floor=_CH33_FLOOR, cap=_CH33_CAP,
                   cap_exempt_rank=4, grants=_CH33_GRANTS,
                   no_fish_before_nativity=True)
 
-# Greek practice differs only in the Nativity fast, and there it splits in two:
+# Greek practice keeps a much lighter Apostles' fast than Ch. 33 prescribes, and
+# than Slavic practice: fish every day except Wednesday and Friday, which stay
+# strict. Measured from goarch.org across 2026 and 2028, where the fast runs
+# three weeks and every day matches on both -- see data/goarch_fasting.json.
+# (2027's fast is one day long, so it says nothing either way.)
+#
+# This is the same shape as the Nativity fast's first phase below, so the floor
+# and cap are shared.
+_GREEK_FISH_FLOOR = {WED: D.Strict, FRI: D.Strict}
+_GREEK_FISH_CAP = {WED: D.WineAndOil, FRI: D.WineAndOil}
+
+APOSTLES_GREEK = Season(
+    "Apostles (Greek)",
+    floor=_GREEK_FISH_FLOOR, default_floor=D.FishWineOil,
+    cap=_GREEK_FISH_CAP, default_cap=D.FishWineOil,
+    cap_exempt_rank=4)
+
+# The Nativity fast splits in two:
 # through Dec 11 everything but Wednesday and Friday is a fish day, and from
 # Dec 12 it tightens further than Slavic practice does -- fish goes entirely and
 # Monday, Tuesday and Thursday drop to full strictness rather than merely
@@ -139,8 +156,8 @@ NATIVITY = Season('Nativity', floor=_CH33_FLOOR, cap=_CH33_CAP,
 # See docs/greek-fasting.md and data/goarch_fasting.json.
 NATIVITY_GREEK_EARLY = Season(
     'Nativity (Greek, to Dec 11)',
-    floor={WED: D.Strict, FRI: D.Strict}, default_floor=D.FishWineOil,
-    cap={WED: D.WineAndOil, FRI: D.WineAndOil}, default_cap=D.FishWineOil,
+    floor=_GREEK_FISH_FLOOR, default_floor=D.FishWineOil,
+    cap=_GREEK_FISH_CAP, default_cap=D.FishWineOil,
     cap_exempt_rank=4)
 NATIVITY_GREEK_STRICT = Season(
     'Nativity (Greek, from Dec 12)',
@@ -163,6 +180,8 @@ def slavic_season(day):
 
 
 def greek_season(day):
+    if day.fast_level == FastLevels.ApostlesFast:
+        return APOSTLES_GREEK
     if day.fast_level == FastLevels.NativityFast:
         # Dec 12 is `nativity - 13`; see NATIVITY_GREEK_EARLY for the citation.
         return (NATIVITY_GREEK_STRICT if day.pdist >= day.pyear.nativity - 13
