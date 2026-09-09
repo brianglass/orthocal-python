@@ -305,6 +305,107 @@ Nothing else moved: 190 tests pass and `calendarium/tests/data/january.json` is
 untouched, since Jan 5 resolves through `ORDINARY` rather than the Nativity
 season.
 
+## Step 3 held: Ch. 33's rank clause is not settled (2026-09-09)
+
+Enabling `apply_grants` changes **70 of 3652 days**, all loosenings, and all
+exactly what Ch. 33 states: doxology rank and above takes fish on Monday,
+Tuesday and Thursday, and wine and oil on Wednesday and Friday. Levels 5 and up
+are unaffected because the data already grants them fish.
+
+It was measured against antiochian.org and **not committed**, for three reasons.
+
+**The measurement was of a half-applied change.** `apply_grants` reached the
+Slavic `APOSTLES` and `NATIVITY` and the shared Greek Apostles season, but not
+`NATIVITY_GREEK_EARLY` or `NATIVITY_GREEK_STRICT`, which are separate objects.
+Greek would have had Ch. 33 ranks during one fast and not the other.
+
+**antiochian.org is the wrong yardstick for it.** Agreement moved 56/90 to
+60/90, which looked like weak support -- but each jurisdiction keeps its own
+typikon, so Antiochian practice departing from the rule OCA quotes is not
+evidence against that rule. It is evidence they are different churches. Judging
+a Slavic change by an Antiochian source was the error.
+
+**So it still wants a Slavic source.** holytrinityorthodox.com publishes a
+dietary line per day; four or five doxology-rank days in the Apostles' or
+Nativity fast falling on a Monday, Tuesday or Thursday would settle it.
+
+The rule stays written and switched off in `_CH33_GRANTS`, with its citation.
+
+## What the Antiochian typikon actually says (2026-09-09)
+
+An earlier pass concluded the Antiochian typikon "contains no rank-based fasting
+rules". **That was wrong, and the miss was a search failure**: the grep looked
+for rank words near food words, and the relevant section names neither. It is in
+the table of contents --
+
+    Chapter X General Directions
+        Wednesdays and Fridays when exceptions to the fast are permitted…570
+
+and reads, verbatim:
+
+> Wednesdays and Fridays when meat is permitted. Between the feast of the
+> Nativity of Christ and the feast of Epiphany, except for the Forefeast of
+> Epiphany. Between the Sunday of the Pharisee and the Publican and the Sunday
+> of the Prodigal Son. During Bright Week. During the week of Pentecost.
+>
+> On Wednesday and Friday during Cheesefare Week dairy products are permitted.
+> On Wednesdays and Fridays between Thomas Sunday and Pentecost, fish is
+> permitted.[343] Fish is permitted on Wednesday or Friday if it is a feast of
+> the Lord even during fasting seasons, except for Holy Week. Such feasts are:
+> the Annunciation, Palm Sunday, and the Transfiguration. If a feast of the
+> Theotokos or one of the 12 Apostles falls on Wednesday or Friday. During the
+> days following a feast of the Lord or the Theotokos until its leavetaking
+> except during Great Lent and the Fast of the Theotokos.
+
+Footnote 343: "The Holy Synod of Antioch has decreed that there will be no
+fasting on Wednesday and Friday, not only during Bright week, but during the
+entire Paschal season until the Feast of the Ascension."
+
+**This is a categorical rule, not a rank one.** It keys on *what kind* of feast
+-- of the Lord, of the Theotokos, of the Twelve Apostles, or an afterfeast --
+where Ch. 33 keys on typikon rank. The two jurisdictions do not merely differ in
+their dates; they differ in what the exception is *about*. That is worth
+knowing before any further rank-threshold work.
+
+### It resurrects the Paschal-season candidate, for Greek only
+
+A Paschal-season fish allowance was raised earlier and withdrawn, on the grounds
+that OCA's guidelines give no such allowance. For the **Greek** tradition the
+Antiochian typikon is explicit, and its own calendar bears it out:
+
+| Wed/Fri, Thomas Sunday to Pentecost | |
+|---|---|
+| Antiochian typikon | fish, and per the Synod footnote no fast at all |
+| antiochian.org | "no fast" on 19 of 28 harvested days |
+| **this app** | wine and oil on 20 of 28 -- agreeing on **3 of 28** |
+
+Withdrawing it was right for Slavic and wrong for Greek.
+
+## Does the GOA publish a typikon? Not reachable, but its rules are (2026-09-09)
+
+goarch.org is behind Cloudflare and returns 403 to any fetch. The Archdiocese's
+rules are published in its annual Yearbook, and three GOA parishes reproduce
+them with attribution; all three agree:
+
+> "Nativity Lent (November 15-December 24, although fish, wine and olive oil are
+> permitted, except on Wednesdays and Fridays, **until December 17**)."
+
+**This app starts the Greek Nativity fast's stricter period on December 13**
+(`pdist >= nativity - 12`). That date came from two *Antiochian* parish sources
+when the Greek fasting work was done (`docs/greek-fasting.md`), before the
+decision that `greek` means GOA. GOA's own rule is five days later:
+
+| 2026 | ours | GOA |
+|---|---|---|
+| Dec 13-17 | strict period | still fish, wine and oil |
+| Dec 18 onward | strict period | strict period |
+
+So five days a year are stricter than GOA prescribes. **Not changed** -- the
+sources are three parish reproductions of the Yearbook rather than the Yearbook
+itself, and `docs/greek-fasting.md` records real Antiochian sources for the
+current date. What it needs is a decision about which jurisdiction the `greek`
+tradition follows for fasting, given that it follows GOA for readings.
+
 ### Still to do
 
 - **Turn on `Season.apply_grants`.** The Ch. 33 rank clause is written in
