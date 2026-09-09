@@ -423,6 +423,36 @@ contradictions were the ones the decree explicitly excludes.
 The lesson generalises past this rule: `pdist 0..49` is Pascha to Pentecost and
 is the wrong window for anything scoped to Ascension, which is pdist 39.
 
+### Implemented (2026-09-09): Chapter X is almost entirely satisfied already
+
+Measured clause by clause against five years, counting only Wednesdays and
+Fridays that currently fall below fish and that a clause would lift:
+
+| clause | days it changes |
+|---|---|
+| **fish between Thomas Sunday and Pentecost** | **47 over 5 years, 9.4/yr** |
+| fish on a feast of the Lord | 1 |
+| fish on a feast of the Theotokos | 0 |
+
+The second and third are already satisfied by the data. The typikon names the
+three feasts of the Lord that can fall in a fasting season -- the Annunciation,
+Palm Sunday and the Transfiguration -- and all three already carry
+`fast_exception = 4`, fish. The single day the "feast of the Lord" clause would
+have lifted is the Exaltation of the Cross, which the same typikon lists as a
+fast day in its own right, so lifting it would have been wrong.
+
+So only the Paschal clause needed implementing: `PASCHAL_WEDFRI` in
+`calendarium/fasting.py`, Greek only. 47 days over five years move from wine and
+oil to fish, all Wednesdays and Fridays, all inside the window.
+
+**Not carried into Slavic practice.** OCA's guidelines make Bright Week and
+Trinity Week fast-free and otherwise treat the Wednesdays and Fridays of the
+year as fast days, with no Paschal fish allowance.
+
+**Antioch's further extension is not implemented either.** Its Holy Synod
+decreed no fast at all on these days through Ascension, which footnote 343 marks
+as a local decree rather than the shared rule.
+
 ### The Paschal-season candidate, and who it applies to
 
 A Paschal-season fish allowance was raised earlier and withdrawn, on the grounds
