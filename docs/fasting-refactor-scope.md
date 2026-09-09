@@ -367,6 +367,30 @@ where Ch. 33 keys on typikon rank. The two jurisdictions do not merely differ in
 their dates; they differ in what the exception is *about*. That is worth
 knowing before any further rank-threshold work.
 
+### The Antiochian Paschal rule, stated exactly (corrected 2026-09-09)
+
+The rule has two edges and no exceptions:
+
+> **From Pascha through the Apodosis of Pascha, no fast at all, on every day of
+> the week. From the Feast of the Ascension, ordinary fasting resumes.**
+
+Verified two ways. Antioch's published *2026 Fasting Calendar* -- a colour-coded
+PDF, so its text layer carries only the date numbers and it has to be read as an
+image -- leaves April white from the 12th, Pascha, and May white except the
+22nd, 27th and 29th, which are red. Ascension 2026 is May 21, so those three are
+the Wednesdays and Fridays *after* it. Their API agrees on the same three days,
+and across the whole harvest **96 of 96 days from Pascha to the Apodosis are
+"no fast"**.
+
+An earlier note here claimed their own calendar only followed the decree about
+79% of the time. **That was wrong**, and the error was in the analysis rather
+than the data: the Paschal season was bucketed as Pascha to Pentecost, pdist 0
+to 49, when the decree ends at Ascension, pdist 39. The days that looked like
+contradictions were the ones the decree explicitly excludes.
+
+The lesson generalises past this rule: `pdist 0..49` is Pascha to Pentecost and
+is the wrong window for anything scoped to Ascension, which is pdist 39.
+
 ### It resurrects the Paschal-season candidate, for Greek only
 
 A Paschal-season fish allowance was raised earlier and withdrawn, on the grounds
