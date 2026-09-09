@@ -453,7 +453,60 @@ year as fast days, with no Paschal fish allowance.
 decreed no fast at all on these days through Ascension, which footnote 343 marks
 as a local decree rather than the shared rule.
 
-### Clause 4, afterfeasts: measured and deliberately not implemented
+## Measured against goarch.org (2026-09-09) -- two changes reverted
+
+The Chapter X work above was validated against GOA's own calendar, and **two
+changes made earlier the same day were wrong and have been backed out.** The
+data is in `data/goarch_fasting.json`, 276 days across nine months and three
+Decembers; `tools/fasting/goarch_audit.py` reproduces the score.
+
+| | app vs goarch.org |
+|---|---|
+| as shipped that morning | 239/276 (86.6%) |
+| **after the two reverts** | **257/276 (93.1%)** |
+
+**1. The Paschal fish clause was wrong for GOA.** Chapter X says "On Wednesdays
+and Fridays between Thomas Sunday and Pentecost, fish is permitted", and
+`PASCHAL_WEDFRI` implemented exactly that. GOA gives **wine and oil**. April
+2026 is unambiguous -- the grid labels Apr 22 and Apr 24, both inside the
+window, "Wine". So neither jurisdiction follows the plain text of the clause
+they share: Antioch is *more* lenient than it (no fast at all, by their Synod's
+decree), GOA *less* (wine and oil). The clause is removed; the app is back to
+what it did before, which was right.
+
+Fish does appear on two Paschal Wednesdays in 2026 -- Mid-Pentecost (May 6) and
+the Apodosis of Pascha (May 20). Both are feasts of the Lord, so what GOA
+applies there is Chapter X's *feast-of-the-Lord* clause, not its Paschal one.
+
+**2. The Nativity boundary was wrong, twice.** See `docs/greek-fasting.md`; it
+is Dec 12, `nativity - 13`, pinned by December 2027 falling across a weekend.
+
+### Ch. 33's rank clause: measured, and it does not hold for GOA
+
+The doxology/vigil grants in `_CH33_GRANTS` were finally testable against
+practice. Enabling them makes agreement **worse, 93.1% -> 92.8%**, and the
+errors run in both directions:
+
+- GOA grants wine and oil on days our data ranks 0 or 2 -- St Barbara (Dec 4,
+  level 0), St Spyridon (Dec 12, level 2)
+- GOA gives strict on days our data ranks 3 and 4 -- Dec 3 2025, Jan 9 2026
+
+**Rank does not predict GOA's grants.** Whatever drives them is per-saint, not
+a threshold on `feast_level`. `apply_grants` stays `False`, and the remaining 19
+differences are a *data* question -- Greek `fast_exception` rows for specific
+dates -- rather than a rule waiting to be written. That is the third time a
+rank-threshold hypothesis has failed against practice data on this project.
+
+### Clause 4, afterfeasts: confirmed by GOA too
+
+**goarch.org does not apply it either**, which settles the question the earlier
+Antiochian measurement left open. Inside the Theophany afterfeast, Jan 9 2026 is
+`strict-fast`; inside the Exaltation's, Sep 16 and Sep 18 2026 are both
+`strict-fast`; inside the Nativity of the Theotokos', Sep 11 is `strict-fast`.
+Strict is what this app already gives. No code needed, and the section below
+stands as originally written.
+
+### Clause 4, afterfeasts: measured against Antioch
 
 Chapter X's last clause reads "During the days following a feast of the Lord or
 the Theotokos until its leavetaking except during Great Lent and the Fast of the

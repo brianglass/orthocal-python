@@ -1,0 +1,12 @@
+{
+ "_comment": "GOA daily fasting designations, harvested 2026-09-09 from goarch.org/chapel/calendar?month=M&year=Y&viewStyle=GridView&viewType=ViewReadings via a real browser (Cloudflare blocks scripted access; the user cleared the interstitial, then months were fetched same-origin). The grid encodes fasting as a CSS class on div.day, NOT in the page text: 'strict-fast'=S, 'grapes'=W (wine and oil), 'fasting-fish'=F, absent=N (fast free). Mapping confirmed against March 2026, where Lenten weekdays are S, weekends W, and the Annunciation is F. One character per day, index 0 = the 1st.",
+ "2025-12": "FFSFWFFFFSFWWWWSWSSWWSSSNNNNNNN",
+ "2026-01": "NNNNSNFNSNNNNWNWNNNNSNSNNNNSNWN",
+ "2026-03": "WSSSSSWWWSSSSWWSSSSSWWSSFWSWWSS",
+ "2026-04": "SSSWFSSSWSSNNNNNNNNNNWNWNNNNWN",
+ "2026-05": "WNNNNFNWNNNNWNWNNNNFNWNNNNWNWNN",
+ "2026-09": "NSNSNNNNWNSNNSNSNSNNNNWNSNNNNS",
+ "2026-11": "NNNSNSNNNNSNWNFFFSFSFFFFWFSFFF",
+ "2026-12": "FSFWFFFFWFSWWSWSWSWWSSSSNNNNNNN",
+ "2027-12": "SFSFFFFSFSFWSSWSWWWWSSSSNNNNNNN"
+}

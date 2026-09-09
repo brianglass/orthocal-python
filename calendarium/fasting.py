@@ -128,38 +128,25 @@ NATIVITY = Season('Nativity', floor=_CH33_FLOOR, cap=_CH33_CAP,
                   no_fish_before_nativity=True)
 
 # Greek practice differs only in the Nativity fast, and there it splits in two:
-# for the first five weeks everything but Wednesday and Friday is a fish day,
-# and from Dec 18 it tightens further than Slavic practice does -- Monday,
-# Tuesday and Thursday drop to full strictness rather than merely losing fish.
+# through Dec 11 everything but Wednesday and Friday is a fish day, and from
+# Dec 12 it tightens further than Slavic practice does -- fish goes entirely and
+# Monday, Tuesday and Thursday drop to full strictness rather than merely
+# losing fish.
 #
-# The Archdiocese's own rule sets the boundary: "Nativity Lent (November 15 -
-# December 24, although fish, wine and olive oil are permitted, except on
-# Wednesdays and Fridays, until December 17)", from the annual Yearbook of the
-# Greek Orthodox Archdiocese of America. See docs/greek-fasting.md.
+# The boundary is measured from goarch.org's own published calendar rather than
+# from a summary of it, and three Decembers pin it exactly: in 2027 Dec 11 is a
+# Saturday and still a fish day while Dec 12 is a Sunday and only wine and oil.
+# See docs/greek-fasting.md and data/goarch_fasting.json.
 NATIVITY_GREEK_EARLY = Season(
-    'Nativity (Greek, to Dec 17)',
+    'Nativity (Greek, to Dec 11)',
     floor={WED: D.Strict, FRI: D.Strict}, default_floor=D.FishWineOil,
     cap={WED: D.WineAndOil, FRI: D.WineAndOil}, default_cap=D.FishWineOil,
     cap_exempt_rank=4)
 NATIVITY_GREEK_STRICT = Season(
-    'Nativity (Greek, from Dec 18)',
+    'Nativity (Greek, from Dec 12)',
     floor={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_floor=D.Strict,
     cap={SAT: D.WineAndOil, SUN: D.WineAndOil}, default_cap=D.WineAndOil,
     cap_exempt_rank=4)
-
-# Typikon of the Great Church, Chapter X, "Wednesdays and Fridays when
-# exceptions to the fast are permitted": "On Wednesdays and Fridays between
-# Thomas Sunday and Pentecost, fish is permitted."
-#
-# Greek only. OCA's guidelines give no such allowance -- they make Bright Week
-# and Trinity Week fast-free and otherwise treat the Wednesdays and Fridays of
-# the year as fast days -- so this is not carried into Slavic practice.
-#
-# Antioch goes further still, its Holy Synod having decreed no fast at all on
-# these days through Ascension (footnote 343 to the same chapter). That is
-# marked in the typikon as a local decree rather than the shared rule, so it is
-# not implemented here; see docs/fasting-refactor-scope.md.
-PASCHAL_WEDFRI = Season('Paschal Wed/Fri (Greek)', default_floor=D.FishWineOil)
 
 _BY_LEVEL = {
     FastLevels.NoFast: NO_FAST,
@@ -176,12 +163,9 @@ def slavic_season(day):
 
 
 def greek_season(day):
-    if (day.weekday in (WED, FRI) and 7 <= day.pdist <= 49
-            and day.fast_level == FastLevels.Fast):
-        return PASCHAL_WEDFRI
     if day.fast_level == FastLevels.NativityFast:
-        # Dec 18 is `nativity - 7`; see NATIVITY_GREEK_EARLY for the citation.
-        return (NATIVITY_GREEK_STRICT if day.pdist >= day.pyear.nativity - 7
+        # Dec 12 is `nativity - 13`; see NATIVITY_GREEK_EARLY for the citation.
+        return (NATIVITY_GREEK_STRICT if day.pdist >= day.pyear.nativity - 13
                 else NATIVITY_GREEK_EARLY)
     return _BY_LEVEL.get(day.fast_level)
 

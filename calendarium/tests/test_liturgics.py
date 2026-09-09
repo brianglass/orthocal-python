@@ -378,45 +378,43 @@ class TestGreekFasting(TestCase):
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
     async def test_nativity_fast_greek_first_phase_is_a_fish_day(self):
-        """Dec 15, 2026 is an ordinary Tuesday, inside Greek's first phase,
-        which runs through Dec 17: everything but Wednesday and Friday is a
-        fish day. Slavic gets only the ordinary Tuesday/Thursday
-        wine-and-oil allowance, its own stricter period not starting until
-        ~Dec 20.
+        """Dec 10, 2026 is an ordinary Thursday in Greek's first phase, which
+        runs through Dec 11: everything but Wednesday and Friday is a fish day.
+        Slavic gets only the ordinary Tuesday/Thursday wine-and-oil allowance,
+        its own stricter period not starting until ~Dec 20.
 
-        The boundary is the Archdiocese's: "fish, wine and olive oil are
-        permitted, except on Wednesdays and Fridays, until December 17"
-        (Yearbook of the Greek Orthodox Archdiocese of America). It was
-        Dec 13 here until 2026-09-09, taken from Antiochian parish sources
-        before `greek` was settled as meaning GOA -- see
-        docs/greek-fasting.md."""
+        goarch.org marks that date `fasting-fish`; see data/goarch_fasting.json.
+        """
 
-        slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
-        greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
+        slavic = liturgics.Day(2026, 12, 10, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 12, 10, tradition=Tradition.Greek)
         await slavic.ainitialize()
         await greek.ainitialize()
 
         self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_greek_second_phase_starts_december_18(self):
-        """Dec 17, 2026 is a Thursday and still a fish day for Greek; Dec 18
-        is a Friday, and Wednesday and Friday are strict in both phases, so
-        so a Tuesday shows the tightening: Dec 22 drops Greek to full strictness
-        where Slavic keeps the Tuesday/Thursday wine-and-oil allowance. Monday
-        would not do -- it is strict in Slavic practice too ("On Monday,
-        Wednesday and Friday, we eat neither oil nor wine", Typikon Ch. 33)."""
+    async def test_nativity_fast_greek_second_phase_starts_december_12(self):
+        """December 2027 pins the boundary exactly, because it falls across a
+        weekend: Dec 11 is a Saturday and still a fish day, Dec 12 is a Sunday
+        and only wine and oil. Both are weekend days, so nothing but the phase
+        boundary separates them.
 
-        greek_before = liturgics.Day(2026, 12, 17, tradition=Tradition.Greek)
-        greek_after = liturgics.Day(2026, 12, 22, tradition=Tradition.Greek)
-        slavic_after = liturgics.Day(2026, 12, 22, tradition=Tradition.Slavic)
-        await greek_before.ainitialize()
-        await greek_after.ainitialize()
-        await slavic_after.ainitialize()
+        Measured from goarch.org's own calendar (data/goarch_fasting.json),
+        which marks Dec 11 `fasting-fish` and Dec 12 `grapes`. This test has
+        twice been wrong about this date -- Dec 13 from Antiochian parish
+        sources, then Dec 18 from a summary of the GOA Yearbook -- so it is now
+        pinned to the Archdiocese's published calendar rather than to prose
+        about it.
+        """
 
-        self.assertEqual(greek_before.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
-        self.assertEqual(greek_after.fast_exception_desc, '')
-        self.assertEqual(slavic_after.fast_exception_desc, 'Wine and Oil are Allowed')
+        before = liturgics.Day(2027, 12, 11, tradition=Tradition.Greek)
+        after = liturgics.Day(2027, 12, 12, tradition=Tradition.Greek)
+        await before.ainitialize()
+        await after.ainitialize()
+
+        self.assertEqual(before.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
+        self.assertEqual(after.fast_exception_desc, 'Wine and Oil are Allowed')
 
     async def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
         """Regression test for a bug caught during implementation: Dec 24,
