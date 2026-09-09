@@ -453,6 +453,41 @@ year as fast days, with no Paschal fish allowance.
 decreed no fast at all on these days through Ascension, which footnote 343 marks
 as a local decree rather than the shared rule.
 
+### Clause 4, afterfeasts: measured and deliberately not implemented
+
+Chapter X's last clause reads "During the days following a feast of the Lord or
+the Theotokos until its leavetaking except during Great Lent and the Fast of the
+Theotokos." Taking the afterfeast spans from each feast to its leavetaking --
+Theophany Jan 7-14, Meeting Feb 3-9, Dormition Aug 16-23, Nativity of the
+Theotokos Sep 9-12, Exaltation Sep 15-21, Entry Nov 22-25, plus Ascension and
+Pentecost -- it would lift about **ten Wednesdays and Fridays a year** to fish,
+a similar size to the Paschal clause. The rule's own exclusions behave
+correctly: the Transfiguration's afterfeast falls inside the Dormition fast and
+the Annunciation's inside Lent, and both drop out.
+
+**antiochian.org does not apply it.** On 56 afterfeast Wednesdays and Fridays
+outside Lent and Dormition, their calendar gives **strict on 43, and fish on
+2**:
+
+| afterfeast | antiochian.org |
+|---|---|
+| Theophany | strict 11, wine+oil 3, fish 2 |
+| Meeting | strict 10, no fast 3, wine+oil 1 |
+| Entry | strict 6, wine+oil 3 |
+| Exaltation | strict 6 |
+| Dormition | strict 5 |
+| Nativity of the Theotokos | strict 5, wine+oil 1 |
+
+Strict is what this app already gives, so implementing the clause would move us
+*away* from the only practice data available. That is the reverse of the Paschal
+clause, where Antioch goes further than the typikon rather than less far, and
+our wine and oil was clearly too strict.
+
+Either the clause is monastic rather than pastoral, or it is read more narrowly
+than the plain text suggests. **Held for goarch.org**: if GOA gives fish on
+afterfeast Wednesdays and Fridays, implement it; if strict, we are already
+right and the clause needs no code.
+
 ### The Paschal-season candidate, and who it applies to
 
 A Paschal-season fish allowance was raised earlier and withdrawn, on the grounds
