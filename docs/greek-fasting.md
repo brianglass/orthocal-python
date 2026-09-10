@@ -27,6 +27,59 @@ dedicated fasting-rules chapter, so don't expect a clean day-by-day table --
 search for specific terms (a saint's name, "Great Canon," "Wednesdays and
 Fridays," etc.) rather than a single section.
 
+## GOA vs Antioch, head to head (2026-09-10)
+
+Every other comparison in this file and in `docs/fasting-refactor-scope.md`
+measures *this app* against a jurisdiction. That conflates our errors with their
+divergence, and it repeatedly made the two look further apart than they are --
+an earlier note here put "our Greek model vs Antioch" at 14% and described it as
+a jurisdictional gap, which Brian rightly doubted. `tools/fasting/goa_vs_antioch.py`
+puts the two published calendars side by side instead.
+
+**374 of 396 shared days agree -- 94.4%.** They share the Typikon of the Great
+Church and it shows.
+
+**Half the gap is one rule.** Eleven of the 22 are the Paschal season, and the
+shape is unmistakable:
+
+| Wed/Fri | GOA | Antioch |
+|---|---|---|
+| Pascha to Ascension (pdist 10-38) | wine and oil, fish on Lord feasts | **no fast at all** |
+| after Ascension (pdist 40-47) | wine and oil | **strict** |
+
+That is the decree of the Holy Synod of Antioch recorded in footnote 343 to
+Chapter X, behaving exactly as written: more lenient than GOA up to Ascension,
+stricter after it. GOA simply keeps its ordinary Wednesday and Friday allowance
+across the whole season.
+
+**Five are Holy Week and Lent, and there Antioch is stricter** -- and finer
+grained. It uses a "wine but not oil" level that GOA's five colours have no
+category for:
+
+| | GOA | Antioch |
+|---|---|---|
+| Great and Holy Saturday | strict | wine only |
+| Great and Holy Thursday | wine and oil | wine only |
+| Monday of the 5th week | strict | wine only |
+
+Two of those three are a difference in granularity rather than in substance.
+
+**The remaining six are per-date judgements** -- the Leavetaking of Theophany,
+the Great Canon, the Nativity of the Forerunner, and three ordinary Wednesdays
+and Fridays.
+
+### What this means for us
+
+This app follows GOA and matches it on 3678 of 3683 days. It therefore sits at
+roughly 94% against Antioch **by construction**, and that residue is Antioch
+diverging from GOA rather than an error here -- worth knowing if the app is ever
+reported as disagreeing with an Antiochian parish calendar.
+
+It is also the starting point if an Antiochian tradition is ever added: the
+Paschal decree and the wine-only rung would cover most of the distance, and both
+are already expressible -- `DietaryAllowance.WineOnly` exists and the season
+model takes a floor per weekday.
+
 ## Findings, by fast
 
 ### Nativity Fast (Nov 15 - Dec 24) -- genuine, confirmed structural difference
