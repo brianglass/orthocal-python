@@ -214,13 +214,14 @@ _BY_LEVEL = {
 # real but the list as a whole is a floor, not a census.
 GREEK_WINE_OIL_DATES = frozenset({
     (1, 11), (1, 14), (1, 16), (1, 18), (1, 22), (1, 25), (1, 27),
-    (2, 8), (2, 9), (2, 10), (2, 11), (2, 17), (2, 24),
+    (2, 8), (2, 10), (2, 11), (2, 17), (2, 24),
     (3, 9),
     (6, 8), (6, 11), (6, 30),
-    (7, 1), (7, 2), (7, 8), (7, 17), (7, 22), (7, 25), (7, 27),
+    (5, 11),
+    (7, 1), (7, 2), (7, 8), (7, 17), (7, 22), (7, 25), (7, 26), (7, 27),
     (8, 31),
     (9, 6), (9, 9), (9, 20),
-    (10, 23),
+    (10, 1), (10, 23),
     (11, 1), (11, 12),
     (12, 4), (12, 5), (12, 9), (12, 12), (12, 15), (12, 17), (12, 20),
 })
@@ -242,6 +243,20 @@ GREEK_WINE_OIL_DATES = frozenset({
 # Three Lord-feast days our data ranks lower need naming explicitly.
 GREEK_WED_FRI_FISH_OK_DATES = frozenset({
     (1, 7),         # Synaxis of the Forerunner, in Theophany's afterfeast
+    # Two apostles that do keep fish, against the general rule above. Both sit
+    # on a fast boundary -- Peter and Paul closes the Apostles' fast, Philip is
+    # the eve of the Nativity fast -- which is the likeliest reason, though two
+    # feasts cannot establish it. Three Wednesday/Friday observations each,
+    # fish every time.
+    (6, 29),        # Holy Apostles Peter and Paul
+})
+
+# St Philip is the same case as Peter and Paul, but needs a grant rather than a
+# cap exemption: our row for him claims only wine and oil, so there is no fish
+# for an exemption to protect. Three Wednesday/Friday observations, fish each
+# time -- he is the eve of the Nativity fast.
+GREEK_FISH_DATES = frozenset({
+    (11, 14),       # Holy Apostle Philip
 })
 GREEK_WED_FRI_FISH_OK_PDISTS = frozenset({
     24,             # Midfeast of Pentecost
@@ -342,7 +357,7 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
     return allowance, (winner if winner is not None else CANONICAL[allowance])
 
 
-def apply(day, season_for, wine_oil_dates=frozenset(),
+def apply(day, season_for, wine_oil_dates=frozenset(), fish_dates=frozenset(),
           fish_ok_dates=frozenset(), fish_ok_pdists=frozenset(),
           strict_dates=frozenset()):
     """Set `day.fast_level` and `day.fast_exception` for one day."""
@@ -363,6 +378,8 @@ def apply(day, season_for, wine_oil_dates=frozenset(),
     # the season's cap still applies -- they lift a fast, they do not escape one.
     if (day.month, day.day) in wine_oil_dates:
         rows.append(1)
+    if (day.month, day.day) in fish_dates:
+        rows.append(2)
 
     if FAST_FREE in rows:
         day.fast_level = FastLevels.NoFast
@@ -382,6 +399,7 @@ def apply(day, season_for, wine_oil_dates=frozenset(),
     eve = day.pdist in (day.pyear.nativity - 1, day.pyear.theophany - 1)
 
     cap_exempt = ((day.month, day.day) in fish_ok_dates
+                  or (day.month, day.day) in fish_dates
                   or day.pdist in fish_ok_pdists)
 
     _, day.fast_exception = resolve(

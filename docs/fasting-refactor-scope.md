@@ -567,6 +567,45 @@ season floor stand is what makes the weekend relief still work; a first attempt
 dropped every claim and made Lenten Saturdays stricter than the Saturdays either
 side of them.
 
+### Chasing the last stragglers: 99.4% -> 99.9%
+
+Working through the 22 that survived turned up one substantive bug and several
+small ones.
+
+**Four `greek` rows were forcing fast-free on days GOA fasts.** May 7, May 11,
+Jul 26 and Oct 1 carried `fast_exception = 11`, set by the August 2026 pass that
+corrected nine stale rows -- **from antiochian.org**, before this tradition was
+settled as GOA. Index 11 short-circuits the whole rule, so those dates were
+fast-free even on a Wednesday or Friday, where GOA gives wine and oil. Zeroing
+them lets the Paschal row supply the fast level again, which is weekday-aware;
+three of the four then also needed adding to `GREEK_WINE_OIL_DATES`. That August
+table is worth re-reading in full: it is the same jurisdictional mismatch as the
+Nativity boundary and the Apostles' fast, and it had been sitting in the data
+for a fortnight.
+
+**`(2, 9)` was in two lists at once**, both `GREEK_WINE_OIL_DATES` and
+`GREEK_STRICT_DATES`, so the grant silently won. GOA gives strict on two of the
+three Wednesday/Friday observations, so it belongs only in the latter.
+
+**Peter and Paul and St Philip keep fish**, against the Wednesday/Friday cap --
+three observations each, fish every time. Both sit on a fast boundary, which is
+the likeliest reason though two feasts cannot establish it. They needed
+different mechanisms: Peter and Paul already claims fish, so exempting it from
+the cap suffices, while our Philip row claims only wine and oil, so there is
+nothing for an exemption to protect and `GREEK_FISH_DATES` grants it outright.
+
+### The five that remain, and why they stay
+
+| date | | |
+|---|---|---|
+| 2026-02-24, 2034-02-24, 2033-03-09 | Clean Week | `fast_exception = 10`, "no overrides", caps the grant. GOA relaxes the Finding of the Forerunner's Head and the Forty Martyrs even then. Letting a fixed-date grant through a sentinel that exists precisely to stop overrides is not a change to make for three days in ten years. |
+| 2029-02-09 | GOA's own inconsistency | Feb 9 is strict on two of its three Wednesday/Friday occurrences and wine and oil on this one. |
+| 2031-05-21 | GOA's own inconsistency | The Leavetaking of Pascha is fish on nine of its ten Wednesdays and wine and oil on this one. |
+
+Two of the five are goarch.org disagreeing with itself, so **99.9% is close to
+the ceiling this data supports.** Chasing further would mean fitting our
+calendar to their noise.
+
 ### What the earlier three-year pass had said the remaining 53 were
 
 **36 -- per-date wine and oil grants we lack.** GOA lifts an ordinary Wednesday

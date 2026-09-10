@@ -943,6 +943,7 @@ class GreekDay(Day):
         fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
         fasting.apply(self, fasting.greek_season,
                       wine_oil_dates=fasting.GREEK_WINE_OIL_DATES,
+                      fish_dates=fasting.GREEK_FISH_DATES,
                       fish_ok_dates=fasting.GREEK_WED_FRI_FISH_OK_DATES,
                       fish_ok_pdists=fasting.GREEK_WED_FRI_FISH_OK_PDISTS,
                       strict_dates=fasting.GREEK_STRICT_DATES)

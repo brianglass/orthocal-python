@@ -1950,11 +1950,11 @@
 2025-05-04 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2025-05-05 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2025-05-06 greek w2 feast0 fast0 exc0 rows=0,0 -> -
-2025-05-07 greek w3 feast0 fast0 exc11 rows=1,11 -> -
+2025-05-07 greek w3 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2025-05-08 greek w4 feast5 fast0 exc2 rows=0,2 -> -
 2025-05-09 greek w5 feast4 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2025-05-10 greek w6 feast4 fast0 exc0 rows=0,0 -> -
-2025-05-11 greek w0 feast0 fast0 exc11 rows=0,11 -> -
+2025-05-11 greek w0 feast0 fast0 exc1 rows=0,0 -> -
 2025-05-12 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2025-05-13 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2025-05-14 greek w3 feast2 fast1 exc2 rows=0,2 -> meat,dairy,eggs
@@ -2030,7 +2030,7 @@
 2025-07-23 greek w3 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2025-07-24 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2025-07-25 greek w5 feast3 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
-2025-07-26 greek w6 feast0 fast0 exc11 rows=0,11 -> -
+2025-07-26 greek w6 feast0 fast0 exc1 rows=0,0 -> -
 2025-07-27 greek w0 feast2 fast0 exc1 rows=0,0 -> -
 2025-07-28 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2025-07-29 greek w2 feast0 fast0 exc0 rows=0,0 -> -
@@ -2097,7 +2097,7 @@
 2025-09-28 greek w0 feast4 fast0 exc0 rows=0,1 -> -
 2025-09-29 greek w1 feast2 fast0 exc0 rows=0,0 -> -
 2025-09-30 greek w2 feast3 fast0 exc0 rows=0,0 -> -
-2025-10-01 greek w3 feast0 fast0 exc11 rows=0,11 -> -
+2025-10-01 greek w3 feast0 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2025-10-02 greek w4 feast2 fast0 exc0 rows=0,0 -> -
 2025-10-03 greek w5 feast2 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2025-10-04 greek w6 feast3 fast0 exc0 rows=0,0 -> -
@@ -2141,7 +2141,7 @@
 2025-11-11 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2025-11-12 greek w3 feast2 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2025-11-13 greek w4 feast5 fast0 exc2 rows=0,2 -> -
-2025-11-14 greek w5 feast4 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
+2025-11-14 greek w5 feast4 fast1 exc2 rows=0,1 -> meat,dairy,eggs
 2025-11-15 greek w6 feast0 fast5 exc2 rows=0,0 -> meat,dairy,eggs
 2025-11-16 greek w0 feast6 fast5 exc2 rows=0,2 -> meat,dairy,eggs
 2025-11-17 greek w1 feast3 fast5 exc2 rows=0,0 -> meat,dairy,eggs
@@ -2228,7 +2228,7 @@
 2026-02-06 greek w5 feast0 fast0 exc11 rows=0,11 -> -
 2026-02-07 greek w6 feast0 fast0 exc11 rows=0,11 -> -
 2026-02-08 greek w0 feast2 fast0 exc1 rows=0,0 -> -
-2026-02-09 greek w1 feast4 fast0 exc1 rows=0,0 -> -
+2026-02-09 greek w1 feast4 fast0 exc0 rows=0,0 -> -
 2026-02-10 greek w2 feast0 fast0 exc1 rows=0,0 -> -
 2026-02-11 greek w3 feast3 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2026-02-12 greek w4 feast4 fast0 exc0 rows=0,0 -> -
@@ -2315,11 +2315,11 @@
 2026-05-04 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2026-05-05 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2026-05-06 greek w3 feast0 fast1 exc2 rows=0,2 -> meat,dairy,eggs
-2026-05-07 greek w4 feast0 fast0 exc11 rows=0,11 -> -
+2026-05-07 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2026-05-08 greek w5 feast5 fast1 exc1 rows=1,2 -> meat,fish,dairy,eggs
 2026-05-09 greek w6 feast4 fast0 exc0 rows=0,0 -> -
 2026-05-10 greek w0 feast4 fast0 exc0 rows=0,0 -> -
-2026-05-11 greek w1 feast0 fast0 exc11 rows=0,11 -> -
+2026-05-11 greek w1 feast0 fast0 exc1 rows=0,0 -> -
 2026-05-12 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2026-05-13 greek w3 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2026-05-14 greek w4 feast2 fast0 exc0 rows=0,0 -> -
@@ -2395,7 +2395,7 @@
 2026-07-23 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2026-07-24 greek w5 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2026-07-25 greek w6 feast3 fast0 exc1 rows=0,0 -> -
-2026-07-26 greek w0 feast0 fast0 exc11 rows=0,11 -> -
+2026-07-26 greek w0 feast0 fast0 exc1 rows=0,0 -> -
 2026-07-27 greek w1 feast2 fast0 exc1 rows=0,0 -> -
 2026-07-28 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2026-07-29 greek w3 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
@@ -2462,7 +2462,7 @@
 2026-09-28 greek w1 feast4 fast0 exc0 rows=0,1 -> -
 2026-09-29 greek w2 feast2 fast0 exc0 rows=0,0 -> -
 2026-09-30 greek w3 feast3 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
-2026-10-01 greek w4 feast0 fast0 exc11 rows=0,11 -> -
+2026-10-01 greek w4 feast0 fast0 exc1 rows=0,0 -> -
 2026-10-02 greek w5 feast2 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2026-10-03 greek w6 feast2 fast0 exc0 rows=0,0 -> -
 2026-10-04 greek w0 feast3 fast0 exc0 rows=0,0 -> -
@@ -2506,7 +2506,7 @@
 2026-11-11 greek w3 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2026-11-12 greek w4 feast2 fast0 exc1 rows=0,0 -> -
 2026-11-13 greek w5 feast5 fast1 exc1 rows=0,2 -> meat,fish,dairy,eggs
-2026-11-14 greek w6 feast4 fast0 exc1 rows=0,1 -> -
+2026-11-14 greek w6 feast4 fast0 exc2 rows=0,1 -> -
 2026-11-15 greek w0 feast0 fast5 exc2 rows=0,0 -> meat,dairy,eggs
 2026-11-16 greek w1 feast6 fast5 exc2 rows=0,2 -> meat,dairy,eggs
 2026-11-17 greek w2 feast3 fast5 exc2 rows=0,0 -> meat,dairy,eggs
@@ -2593,7 +2593,7 @@
 2027-02-06 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2027-02-07 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2027-02-08 greek w1 feast2 fast0 exc1 rows=0,0 -> -
-2027-02-09 greek w2 feast4 fast0 exc1 rows=0,0 -> -
+2027-02-09 greek w2 feast4 fast0 exc0 rows=0,0 -> -
 2027-02-10 greek w3 feast0 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2027-02-11 greek w4 feast3 fast0 exc1 rows=0,0 -> -
 2027-02-12 greek w5 feast4 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
@@ -2680,11 +2680,11 @@
 2027-05-04 greek w2 feast0 fast0 exc11 rows=0,11 -> -
 2027-05-05 greek w3 feast0 fast0 exc11 rows=0,11 -> -
 2027-05-06 greek w4 feast0 fast0 exc11 rows=0,11 -> -
-2027-05-07 greek w5 feast0 fast0 exc11 rows=11,11 -> -
+2027-05-07 greek w5 feast0 fast0 exc11 rows=0,11 -> -
 2027-05-08 greek w6 feast5 fast0 exc11 rows=2,11 -> -
 2027-05-09 greek w0 feast4 fast0 exc0 rows=0,0 -> -
 2027-05-10 greek w1 feast4 fast0 exc0 rows=0,0 -> -
-2027-05-11 greek w2 feast0 fast0 exc11 rows=0,11 -> -
+2027-05-11 greek w2 feast0 fast0 exc1 rows=0,0 -> -
 2027-05-12 greek w3 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2027-05-13 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2027-05-14 greek w5 feast2 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
@@ -2760,7 +2760,7 @@
 2027-07-23 greek w5 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-07-24 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2027-07-25 greek w0 feast3 fast0 exc1 rows=0,0 -> -
-2027-07-26 greek w1 feast0 fast0 exc11 rows=0,11 -> -
+2027-07-26 greek w1 feast0 fast0 exc1 rows=0,0 -> -
 2027-07-27 greek w2 feast2 fast0 exc1 rows=0,0 -> -
 2027-07-28 greek w3 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-07-29 greek w4 feast0 fast0 exc0 rows=0,0 -> -
@@ -2827,7 +2827,7 @@
 2027-09-28 greek w2 feast4 fast0 exc0 rows=0,1 -> -
 2027-09-29 greek w3 feast2 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2027-09-30 greek w4 feast3 fast0 exc0 rows=0,0 -> -
-2027-10-01 greek w5 feast0 fast0 exc11 rows=0,11 -> -
+2027-10-01 greek w5 feast0 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2027-10-02 greek w6 feast2 fast0 exc0 rows=0,0 -> -
 2027-10-03 greek w0 feast2 fast0 exc0 rows=0,0 -> -
 2027-10-04 greek w1 feast3 fast0 exc0 rows=0,0 -> -
@@ -2871,7 +2871,7 @@
 2027-11-11 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2027-11-12 greek w5 feast2 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2027-11-13 greek w6 feast5 fast0 exc2 rows=0,2 -> -
-2027-11-14 greek w0 feast4 fast0 exc1 rows=0,1 -> -
+2027-11-14 greek w0 feast4 fast0 exc2 rows=0,1 -> -
 2027-11-15 greek w1 feast0 fast5 exc2 rows=0,0 -> meat,dairy,eggs
 2027-11-16 greek w2 feast6 fast5 exc2 rows=0,2 -> meat,dairy,eggs
 2027-11-17 greek w3 feast3 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
@@ -3046,11 +3046,11 @@
 2028-05-04 greek w4 feast0 fast0 exc0 rows=0,0 -> -
 2028-05-05 greek w5 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2028-05-06 greek w6 feast0 fast0 exc0 rows=0,0 -> -
-2028-05-07 greek w0 feast0 fast0 exc11 rows=0,11 -> -
+2028-05-07 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2028-05-08 greek w1 feast5 fast0 exc2 rows=0,2 -> -
 2028-05-09 greek w2 feast4 fast0 exc0 rows=0,0 -> -
 2028-05-10 greek w3 feast4 fast1 exc2 rows=0,2 -> meat,dairy,eggs
-2028-05-11 greek w4 feast0 fast0 exc11 rows=0,11 -> -
+2028-05-11 greek w4 feast0 fast0 exc1 rows=0,0 -> -
 2028-05-12 greek w5 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2028-05-13 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2028-05-14 greek w0 feast2 fast0 exc0 rows=0,0 -> -
@@ -3126,7 +3126,7 @@
 2028-07-23 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2028-07-24 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2028-07-25 greek w2 feast3 fast0 exc1 rows=0,0 -> -
-2028-07-26 greek w3 feast0 fast0 exc11 rows=0,11 -> -
+2028-07-26 greek w3 feast0 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2028-07-27 greek w4 feast2 fast0 exc1 rows=0,0 -> -
 2028-07-28 greek w5 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2028-07-29 greek w6 feast0 fast0 exc0 rows=0,0 -> -
@@ -3193,7 +3193,7 @@
 2028-09-28 greek w4 feast4 fast0 exc0 rows=0,1 -> -
 2028-09-29 greek w5 feast2 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2028-09-30 greek w6 feast3 fast0 exc0 rows=0,0 -> -
-2028-10-01 greek w0 feast0 fast0 exc11 rows=0,11 -> -
+2028-10-01 greek w0 feast0 fast0 exc1 rows=0,0 -> -
 2028-10-02 greek w1 feast2 fast0 exc0 rows=0,0 -> -
 2028-10-03 greek w2 feast2 fast0 exc0 rows=0,0 -> -
 2028-10-04 greek w3 feast3 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
@@ -3237,7 +3237,7 @@
 2028-11-11 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2028-11-12 greek w0 feast2 fast0 exc1 rows=0,0 -> -
 2028-11-13 greek w1 feast5 fast0 exc2 rows=0,2 -> -
-2028-11-14 greek w2 feast4 fast0 exc1 rows=0,1 -> -
+2028-11-14 greek w2 feast4 fast0 exc2 rows=0,1 -> -
 2028-11-15 greek w3 feast0 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2028-11-16 greek w4 feast6 fast5 exc2 rows=0,2 -> meat,dairy,eggs
 2028-11-17 greek w5 feast3 fast5 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
@@ -3324,7 +3324,7 @@
 2029-02-06 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2029-02-07 greek w3 feast0 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2029-02-08 greek w4 feast2 fast0 exc1 rows=0,0 -> -
-2029-02-09 greek w5 feast4 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
+2029-02-09 greek w5 feast4 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2029-02-10 greek w6 feast0 fast0 exc1 rows=0,0 -> -
 2029-02-11 greek w0 feast3 fast0 exc1 rows=0,0 -> -
 2029-02-12 greek w1 feast4 fast1 exc7 rows=0,7 -> meat
@@ -3411,11 +3411,11 @@
 2029-05-04 greek w5 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2029-05-05 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2029-05-06 greek w0 feast0 fast0 exc0 rows=0,0 -> -
-2029-05-07 greek w1 feast0 fast0 exc11 rows=0,11 -> -
+2029-05-07 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2029-05-08 greek w2 feast5 fast0 exc2 rows=0,2 -> -
 2029-05-09 greek w3 feast4 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2029-05-10 greek w4 feast4 fast0 exc0 rows=0,0 -> -
-2029-05-11 greek w5 feast0 fast0 exc11 rows=1,11 -> -
+2029-05-11 greek w5 feast0 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
 2029-05-12 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2029-05-13 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2029-05-14 greek w1 feast2 fast0 exc0 rows=0,0 -> -
@@ -3464,7 +3464,7 @@
 2029-06-26 greek w2 feast4 fast3 exc2 rows=0,0 -> meat,dairy,eggs
 2029-06-27 greek w3 feast0 fast3 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2029-06-28 greek w4 feast2 fast3 exc2 rows=0,0 -> meat,dairy,eggs
-2029-06-29 greek w5 feast6 fast1 exc1 rows=0,2 -> meat,fish,dairy,eggs
+2029-06-29 greek w5 feast6 fast1 exc2 rows=0,2 -> meat,dairy,eggs
 2029-06-30 greek w6 feast4 fast0 exc1 rows=0,0 -> -
 2029-07-01 greek w0 feast2 fast0 exc1 rows=0,0 -> -
 2029-07-02 greek w1 feast3 fast0 exc1 rows=0,0 -> -
@@ -3491,7 +3491,7 @@
 2029-07-23 greek w1 feast0 fast0 exc0 rows=0,0 -> -
 2029-07-24 greek w2 feast0 fast0 exc0 rows=0,0 -> -
 2029-07-25 greek w3 feast3 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
-2029-07-26 greek w4 feast0 fast0 exc11 rows=0,11 -> -
+2029-07-26 greek w4 feast0 fast0 exc1 rows=0,0 -> -
 2029-07-27 greek w5 feast2 fast1 exc1 rows=0,0 -> meat,fish,dairy,eggs
 2029-07-28 greek w6 feast0 fast0 exc0 rows=0,0 -> -
 2029-07-29 greek w0 feast0 fast0 exc0 rows=0,0 -> -
@@ -3558,7 +3558,7 @@
 2029-09-28 greek w5 feast4 fast1 exc0 rows=0,1 -> meat,fish,dairy,eggs,wine,oil
 2029-09-29 greek w6 feast2 fast0 exc0 rows=0,0 -> -
 2029-09-30 greek w0 feast3 fast0 exc0 rows=0,0 -> -
-2029-10-01 greek w1 feast0 fast0 exc11 rows=0,11 -> -
+2029-10-01 greek w1 feast0 fast0 exc1 rows=0,0 -> -
 2029-10-02 greek w2 feast2 fast0 exc0 rows=0,0 -> -
 2029-10-03 greek w3 feast2 fast1 exc0 rows=0,0 -> meat,fish,dairy,eggs,wine,oil
 2029-10-04 greek w4 feast3 fast0 exc0 rows=0,0 -> -
@@ -3602,7 +3602,7 @@
 2029-11-11 greek w0 feast0 fast0 exc0 rows=0,0 -> -
 2029-11-12 greek w1 feast2 fast0 exc1 rows=0,0 -> -
 2029-11-13 greek w2 feast5 fast0 exc2 rows=0,2 -> -
-2029-11-14 greek w3 feast4 fast1 exc1 rows=0,1 -> meat,fish,dairy,eggs
+2029-11-14 greek w3 feast4 fast1 exc2 rows=0,1 -> meat,dairy,eggs
 2029-11-15 greek w4 feast0 fast5 exc2 rows=0,0 -> meat,dairy,eggs
 2029-11-16 greek w5 feast6 fast5 exc1 rows=0,2 -> meat,fish,dairy,eggs
 2029-11-17 greek w6 feast3 fast5 exc2 rows=0,0 -> meat,dairy,eggs

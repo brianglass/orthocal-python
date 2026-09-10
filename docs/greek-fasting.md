@@ -296,6 +296,16 @@ values (no other fields touched). Slavic tradition's own Aug 28 row
 (Ven. Job of Pochaev, polyeleos rank) was left untouched -- that
 exception has an actual feast-rank basis and wasn't part of this bug.
 
+**Superseded 2026-09-10.** Every one of these nine was corrected *from
+antiochian.org*, which this tradition does not follow -- see the jurisdiction
+note at the top of this file. Re-checked against goarch.org over ten years, five
+were wrong: May 7, May 11, Jul 26 and Oct 1 were set to No Fast (11), which
+short-circuits the fasting rule entirely and made them fast-free even on
+Wednesdays and Fridays, where GOA gives wine and oil; and Dec 13 was set to Wine
+& Oil (1) to prop up the old phase boundary. All five are now zeroed, letting
+the season and the Paschal row decide. The four set to Strict (0) -- Mar 31, Jul
+15, Aug 28, Sep 25 -- check out against GOA and are left alone.
+
 **Not investigated further**: whether other `greek`-tradition rows (not
 matching this exact blank-placeholder shape) have similar staleness --
 this pass only searched for the specific pattern that surfaced the bug.

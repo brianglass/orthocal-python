@@ -16574,7 +16574,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 11,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16814,7 +16814,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 11,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16974,7 +16974,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 11,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17074,7 +17074,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 11,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }
