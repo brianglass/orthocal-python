@@ -983,9 +983,7 @@ class GreekDay(Day):
     def _apply_fasting_adjustments(self):
         """Greek dietary rules, which differ from Slavic only in the Nativity
         fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
-        fasting.apply(self, fasting.greek_season,
-                      fish_ok_dates=fasting.GREEK_WED_FRI_FISH_OK_DATES,
-                      fish_ok_pdists=fasting.GREEK_WED_FRI_FISH_OK_PDISTS)
+        fasting.apply(self, fasting.greek_season)
 
 
 _DAY_CLASSES = {

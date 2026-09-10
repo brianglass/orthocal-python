@@ -37,6 +37,14 @@ FAST_FREE = 11
 # rather than lose to it. 5 both claims and caps: it lifts the strict floor too.
 CAP_INDICES = (5, 9, 10)
 CLAIMLESS_INDICES = (0, 9, 10)
+# Indices 3 and 4 duplicate 1 and 2 in their wording, and the duplication was
+# the old scale's way of saying "this claim outranks the season's cap": every
+# index-3 row is a wine-and-oil grant inside Lent, every index-4 row a fish
+# grant inside a fast. That meaning is NOT read off the index here, because it
+# is not universal -- the Dormition fast caps index-4 claims deliberately, the
+# Leavetaking of the Transfiguration being a full abstention day in practice.
+# `Day.fast_cap_exempt` says it per row instead, which is the same thought
+# without the ambiguity.
 
 # What to report as `fast_exception` when the season decided the outcome rather
 # than any particular row: one canonical legacy index per rung. The field is
@@ -190,38 +198,18 @@ _BY_LEVEL = {
 
 # Chapter X: "Fish is permitted on Wednesday or Friday if it is a feast of the
 # Lord even during fasting seasons." GOA applies that as a *cap* -- a saint's
-# fish grant falls back to wine and oil when it lands on a Wednesday or Friday,
-# however highly ranked the saint. Ten years of data give fourteen such saints,
-# at feast levels 4, 5 and 6: Anthony the Great, Euthymius, the Three Hierarchs,
-# John the Theologian (twice a year), Constantine and Helen, Elijah, Thomas,
-# Demetrius, the Archangel Michael, Chrysostom, Matthew, Andrew and Nicholas.
+# fish grant falls back to wine and oil on a Wednesday or Friday, however highly
+# ranked the saint. Ten years of data give fourteen such saints, at feast levels
+# 4, 5 and 6: Anthony the Great, Euthymius, the Three Hierarchs, John the
+# Theologian (twice a year), Constantine and Helen, Elijah, Thomas, Demetrius,
+# the Archangel Michael, Chrysostom, Matthew, Andrew and Nicholas.
 #
 # Note GOA does *not* honour Chapter X's "or one of the 12 Apostles" clause:
 # John the Theologian, Thomas, Matthew and Andrew are all capped.
 #
-# `cap_exempt_rank=7` lets the fixed Lord and Theotokos feasts through, since
-# levels 7 and 8 are exactly "Major feast Theotokos" and "Major feast Lord".
-# Three Lord-feast days our data ranks lower need naming explicitly.
-GREEK_WED_FRI_FISH_OK_DATES = frozenset({
-    (1, 7),         # Synaxis of the Forerunner, in Theophany's afterfeast
-    # Two apostles that do keep fish, against the general rule above. Both sit
-    # on a fast boundary -- Peter and Paul closes the Apostles' fast, Philip is
-    # the eve of the Nativity fast -- which is the likeliest reason, though two
-    # feasts cannot establish it. Three Wednesday/Friday observations each,
-    # fish every time.
-    (6, 29),        # Holy Apostles Peter and Paul
-    (11, 14),       # Holy Apostle Philip
-})
-
-# Peter and Paul already claims fish in the shared data, so exempting it from
-# the cap is enough. Philip does not -- our row for him claims only wine and
-# oil -- so his fish comes from a sparse `greek` override on the slot, and this
-# exemption is what stops the cap taking it straight back off him.
-
-GREEK_WED_FRI_FISH_OK_PDISTS = frozenset({
-    24,             # Midfeast of Pentecost
-    38,             # Leavetaking of Pascha / Forefeast of the Ascension
-})
+# `cap_exempt_rank=7` lets the fixed Lord and Theotokos feasts through, levels 7
+# and 8 being exactly "Major feast Theotokos" and "Major feast Lord". The days
+# our own reckoning ranks lower say so on the row, via `Day.fast_cap_exempt`.
 
 # Cheesefare week needs its own season purely so ORDINARY_GREEK's Wednesday and
 # Friday cap does not reach it. That cap means "no fish for a saint"; the week
@@ -260,7 +248,7 @@ def greek_season(day):
 # --- the rule ---------------------------------------------------------------
 
 def resolve(season, weekday, feast_level, rows, no_fish=False,
-            eve_on_weekend=False, cap_exempt=False):
+            eve_on_weekend=False, festal=None, cap_exempt_rows=False):
     """Combine a day's contributing rows into (rung, legacy fast_exception)."""
     claims = [(i, RUNG[i]) for i in rows if i not in CLAIMLESS_INDICES]
     caps = [(i, RUNG[i]) for i in rows if i in CAP_INDICES]
@@ -271,15 +259,21 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
 
     allowance = season.floor_for(weekday)
     winner = None                           # the row that set the current answer
-    season_cap = (D.FastFree if cap_exempt
-                  else season.cap_for(weekday, feast_level))
+    season_cap = season.cap_for(weekday, feast_level)
 
+    festal = festal if festal is not None else {i: True for i, _ in claims}
     for index, claim in claims:
         # A season cap means "no fish", and caviar is not fish -- dietarily
         # WineOilCaviar excludes exactly what WineAndOil does -- so a caviar
         # claim survives the cap rather than being clamped below it.
-        clamped = (claim if claim is D.WineOilCaviar and season_cap >= D.WineAndOil
-                   else min(claim, season_cap))
+        # The Wednesday/Friday cap says "no fish for a saint". Two things are
+        # not a saint: the Paschal cycle's own claims (the Midfeast, the
+        # Leavetaking of Pascha), and a claim the data has explicitly marked as
+        # outranking a cap.
+        exempt = cap_exempt_rows or not festal.get(index, True)
+        cap = D.FastFree if exempt else season_cap
+        clamped = (claim if claim is D.WineOilCaviar and cap >= D.WineAndOil
+                   else min(claim, cap))
         if clamped > allowance:
             # A clamped claim no longer speaks for itself; the season does.
             allowance, winner = clamped, (index if clamped == claim else None)
@@ -305,7 +299,7 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
     return allowance, (winner if winner is not None else CANONICAL[allowance])
 
 
-def apply(day, season_for, fish_ok_dates=frozenset(), fish_ok_pdists=frozenset()):
+def apply(day, season_for):
     """Set `day.fast_level` and `day.fast_exception` for one day.
 
     A jurisdiction's own fixed-date departures -- the saints GOA relaxes a fast
@@ -316,6 +310,8 @@ def apply(day, season_for, fish_ok_dates=frozenset(), fish_ok_pdists=frozenset()
     lift a fast, they do not escape one.
     """
     rows = [d.fast_exception for d in day.days]
+    festal = {d.fast_exception: bool(d.month) for d in day.days}
+    cap_exempt_rows = any(d.fast_cap_exempt for d in day.days)
 
     if FAST_FREE in rows:
         day.fast_level = FastLevels.NoFast
@@ -334,9 +330,7 @@ def apply(day, season_for, fish_ok_dates=frozenset(), fish_ok_pdists=frozenset()
                    and day.pyear.nativity - 6 < day.pdist < day.pyear.nativity - 1)
     eve = day.pdist in (day.pyear.nativity - 1, day.pyear.theophany - 1)
 
-    cap_exempt = ((day.month, day.day) in fish_ok_dates
-                  or day.pdist in fish_ok_pdists)
-
     _, day.fast_exception = resolve(
         season, day.weekday, day.feast_level, rows,
-        no_fish=no_fish, eve_on_weekend=eve, cap_exempt=cap_exempt)
+        no_fish=no_fish, eve_on_weekend=eve, festal=festal,
+        cap_exempt_rows=cap_exempt_rows)

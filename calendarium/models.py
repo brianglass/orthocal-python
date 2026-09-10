@@ -29,7 +29,7 @@ class Day(models.Model):
     blank; `test_day_overrides_are_sparse` enforces it.
     """
 
-    OVERRIDABLE = ('feast_level', 'fast', 'fast_exception')
+    OVERRIDABLE = ('feast_level', 'fast', 'fast_exception', 'fast_cap_exempt')
 
     pdist = models.SmallIntegerField(db_index=True)
     month = models.SmallIntegerField()
@@ -44,6 +44,18 @@ class Day(models.Model):
     fast = models.SmallIntegerField(null=True, blank=True)
     fast_exception = models.SmallIntegerField(null=True, blank=True)
     flag = models.SmallIntegerField()
+    # "This commemoration's claim outranks the season's cap." A season that caps
+    # fish away on a Wednesday means "no fish for a saint", and is not aimed at
+    # a feast of the Lord -- but `feast_level` cannot always tell the two apart,
+    # because it follows the Slavic reckoning. The Synaxis of the Forerunner is
+    # level 3 here and keeps its fish in Greek practice; St Matthew is level 6
+    # and does not.
+    #
+    # The old scale said this positionally: indices 3 and 4 duplicate 1 and 2 in
+    # wording precisely because they were the cap-outranking variants. That is
+    # not read off the index, because it is not universal -- the Dormition fast
+    # caps index-4 claims deliberately. Saying it per row removes the ambiguity.
+    fast_cap_exempt = models.BooleanField(null=True, blank=True)
     tradition = models.CharField(max_length=16, choices=[
         ('common', 'Common'),  # shared by all traditions (the default)
         ('slavic', 'Slavic-specific'),

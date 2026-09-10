@@ -608,6 +608,39 @@ caught it, not the reasoning; the guard test now allows that case explicitly.
 Worth remembering next time a Day row looks redundant -- 379 of them are
 foreign-key targets.
 
+### The last two constants, and what made them necessary
+
+Brian objected to `GREEK_WED_FRI_FISH_OK_DATES` and `_PDISTS` on the same
+grounds as the first lists. The honest answer to "what makes this necessary" is
+that the Wednesday/Friday cap has to distinguish *feast of the Lord* from
+*saint*, and our schema encodes that only as `feast_level >= 7` -- on a scale
+that follows the **Slavic** reckoning. Five days are Lord-ish to GOA and ranked
+lower by us: the Synaxis of the Forerunner is level 3 and keeps its fish, while
+St Matthew is level 6 and does not.
+
+Both constants are gone, by two different routes.
+
+**The two pdists needed no replacement.** They were the Midfeast and the
+Leavetaking of Pascha, and the cap should never have reached them: it means "no
+fish for a *saint*", and the Paschal cycle is not a saint. Scoping the cap to
+festal claims removes them on principle rather than by name -- the same
+festal/Paschal distinction the strict-date handling already needed.
+
+**The three dates became `Day.fast_cap_exempt`.** The concept has a name now:
+"this commemoration's claim outranks the season's cap."
+
+That is what the old scale said *positionally*. Indices 3 and 4 duplicate 1 and
+2 in their wording precisely because they were the cap-outranking variants --
+every index-3 row is a wine-and-oil grant inside Lent, every index-4 row a fish
+grant inside a fast. **Reading it off the index was tried and does not work**:
+it lifts the Dormition fast's cap too, giving fish on Aug 9 and Aug 13 where
+antiochian.org lists the Leavetaking of the Transfiguration as a full abstention
+day, and dropping goarch agreement to 99.6%. The precedence idea is real but not
+universal, so it belongs on the row rather than in the index.
+
+`calendarium/fasting.py` now contains no jurisdiction data at all -- only
+seasons and the rule.
+
 ### Chasing the last stragglers: 99.4% -> 99.9%
 
 Working through the 22 that survived turned up one substantive bug and several
