@@ -3,14 +3,14 @@ django-ask-sdk==1.0.0
 django-cors-headers==4.9.0
 django-fullurl==1.4
 django-ninja==1.7.0
-django==6.1
+django==6.1.1
 icalendar==7.3.0
 jdcal==1.4.1
 mcp==2.1.1
 newrelic==13.5.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
-servestatic[brotli]==4.3.1
+servestatic[brotli]==4.3.4
 # uvicorn[standard] bundles websockets, watchfiles, python-dotenv, and
 # pyyaml alongside the two extras this app actually benefits from --
 # nothing here uses WebSockets, --reload falls back to uvicorn's built-in
