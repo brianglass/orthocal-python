@@ -27,6 +27,59 @@ dedicated fasting-rules chapter, so don't expect a clean day-by-day table --
 search for specific terms (a saint's name, "Great Canon," "Wednesdays and
 Fridays," etc.) rather than a single section.
 
+## GOA vs Antioch, head to head (2026-09-10)
+
+Every other comparison in this file and in `docs/fasting-refactor-scope.md`
+measures *this app* against a jurisdiction. That conflates our errors with their
+divergence, and it repeatedly made the two look further apart than they are --
+an earlier note here put "our Greek model vs Antioch" at 14% and described it as
+a jurisdictional gap, which Brian rightly doubted. `tools/fasting/goa_vs_antioch.py`
+puts the two published calendars side by side instead.
+
+**374 of 396 shared days agree -- 94.4%.** They share the Typikon of the Great
+Church and it shows.
+
+**Half the gap is one rule.** Eleven of the 22 are the Paschal season, and the
+shape is unmistakable:
+
+| Wed/Fri | GOA | Antioch |
+|---|---|---|
+| Pascha to Ascension (pdist 10-38) | wine and oil, fish on Lord feasts | **no fast at all** |
+| after Ascension (pdist 40-47) | wine and oil | **strict** |
+
+That is the decree of the Holy Synod of Antioch recorded in footnote 343 to
+Chapter X, behaving exactly as written: more lenient than GOA up to Ascension,
+stricter after it. GOA simply keeps its ordinary Wednesday and Friday allowance
+across the whole season.
+
+**Five are Holy Week and Lent, and there Antioch is stricter** -- and finer
+grained. It uses a "wine but not oil" level that GOA's five colours have no
+category for:
+
+| | GOA | Antioch |
+|---|---|---|
+| Great and Holy Saturday | strict | wine only |
+| Great and Holy Thursday | wine and oil | wine only |
+| Monday of the 5th week | strict | wine only |
+
+Two of those three are a difference in granularity rather than in substance.
+
+**The remaining six are per-date judgements** -- the Leavetaking of Theophany,
+the Great Canon, the Nativity of the Forerunner, and three ordinary Wednesdays
+and Fridays.
+
+### What this means for us
+
+This app follows GOA and matches it on 3678 of 3683 days. It therefore sits at
+roughly 94% against Antioch **by construction**, and that residue is Antioch
+diverging from GOA rather than an error here -- worth knowing if the app is ever
+reported as disagreeing with an Antiochian parish calendar.
+
+It is also the starting point if an Antiochian tradition is ever added: the
+Paschal decree and the wine-only rung would cover most of the distance, and both
+are already expressible -- `DietaryAllowance.WineOnly` exists and the season
+model takes a floor per weekday.
+
 ## Findings, by fast
 
 ### Nativity Fast (Nov 15 - Dec 24) -- genuine, confirmed structural difference
@@ -45,23 +98,51 @@ the OCA-modeled pattern our code already implemented:
 **Phase 2, the "stricter period"**
 - Slavic: starts ~5 days out (`nativity-6` to `nativity-1`), only removes
   fish -- Tue/Thu keep their wine+oil allowance throughout.
-- Greek: starts **Dec 13** (`nativity-12`), a full week earlier, and is
-  stricter -- wine+oil is restricted to Sat/Sun only, so Mon/Tue/Thu drop to
-  full strictness (same as Wed/Fri), not just losing fish.
+- Greek: starts **Dec 12** (`nativity-13`) and is stricter -- fish goes
+  entirely, wine+oil is restricted to Sat/Sun, so Mon/Tue/Thu drop to full
+  strictness (same as Wed/Fri) rather than just losing fish.
 
-One general Antiochian summary found early in the research contradicted this
-(grouping Monday with Wed/Fri, same as Slavic) -- judged to be an imprecise
-generalization, since it's contradicted by two independent sources that are
-specific to the Nativity Fast and agree with each other exactly.
+**This date has been wrong twice; it is now measured, not inferred.**
 
-### Apostles' Fast -- no difference found
+| | source | value |
+|---|---|---|
+| originally | two Antiochian parish pages | Dec 13 (`nativity-12`) |
+| 2026-09-09, briefly | a summary of the GOA Yearbook | Dec 18 (`nativity-7`) |
+| **now** | **goarch.org's own calendar** | **Dec 12 (`nativity-13`)** |
 
-A dedicated Antiochian source states explicitly: Mon/Wed/Fri strict, Tue/Thu
-wine+oil, Sat/Sun fish -- identical to the Slavic/OCA pattern our code
-already implements. Notable: it's specifically the Nativity Fast's first
-phase that's unusually lenient in Greek practice, not a general "Greek fasts
-are more lenient" pattern -- the Apostles' Fast (sharing the exact same
-weekly structure) shows no such leniency in either tradition.
+The Yearbook line -- "fish, wine and olive oil are permitted, except on
+Wednesdays and Fridays, until December 17" -- is reproduced by three GOA
+parishes and reads unambiguously, but the Archdiocese's own published calendar
+does not match it. December 2027 pins the real boundary exactly, because it
+falls across a weekend: **Dec 11 is a Saturday and still `fasting-fish`, Dec 12
+is a Sunday and only `grapes`.** Both are weekend days, so nothing but the
+phase boundary separates them. 2025 and 2026 agree.
+
+The lesson is the one this project keeps relearning: a jurisdiction's prose
+summary of its own rule is not evidence about its practice. See
+`data/goarch_fasting.json` and `tools/fasting/goarch_audit.py`.
+
+### Apostles' Fast -- GOA is far lighter (corrected 2026-09-09)
+
+**This section previously read "no difference found".** That rested on a
+dedicated Antiochian source stating Mon/Wed/Fri strict, Tue/Thu wine and oil,
+Sat/Sun fish -- identical to the Slavic/OCA pattern, and identical to Typikon
+Ch. 33. goarch.org disproves it:
+
+| | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+|---|---|---|---|---|---|---|---|
+| Slavic (Ch. 33) | strict | wine+oil | strict | wine+oil | strict | fish | fish |
+| **GOA** | **fish** | **fish** | strict | **fish** | strict | fish | fish |
+
+GOA keeps **fish every day except Wednesday and Friday**, which stay strict --
+the same shape as its Nativity fast's first phase. Measured across the whole of
+the 2026 and 2028 fasts, three weeks each, agreeing on every single day. (2027's
+fast is one day long and says nothing either way.) Implemented as
+`APOSTLES_GREEK`; it accounted for 18 of the differences in the goarch audit.
+
+The earlier conclusion was not carelessly drawn -- it had a real source -- but
+that source was Antiochian, and this tradition follows GOA. It is the same
+mistake the Nativity boundary made twice.
 
 ### Dormition Fast (Aug 1-14) -- no difference found
 
@@ -267,6 +348,16 @@ sources). Corrected all 9 directly from the cached raw JSON:
 values (no other fields touched). Slavic tradition's own Aug 28 row
 (Ven. Job of Pochaev, polyeleos rank) was left untouched -- that
 exception has an actual feast-rank basis and wasn't part of this bug.
+
+**Superseded 2026-09-10.** Every one of these nine was corrected *from
+antiochian.org*, which this tradition does not follow -- see the jurisdiction
+note at the top of this file. Re-checked against goarch.org over ten years, five
+were wrong: May 7, May 11, Jul 26 and Oct 1 were set to No Fast (11), which
+short-circuits the fasting rule entirely and made them fast-free even on
+Wednesdays and Fridays, where GOA gives wine and oil; and Dec 13 was set to Wine
+& Oil (1) to prop up the old phase boundary. All five are now zeroed, letting
+the season and the Paschal row decide. The four set to Strict (0) -- Mar 31, Jul
+15, Aug 28, Sep 25 -- check out against GOA and are left alone.
 
 **Not investigated further**: whether other `greek`-tradition rows (not
 matching this exact blank-placeholder shape) have similar staleness --
