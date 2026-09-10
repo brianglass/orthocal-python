@@ -188,45 +188,6 @@ _BY_LEVEL = {
 }
 
 
-# Dates on which GOA grants wine and oil whenever they land on a fast day.
-#
-# Enumerated from ten years of goarch.org (2026-2035, data/goarch_fasting.json),
-# taking every date where their calendar gives wine and oil and this app gives
-# strict. Each was observed between one and eight times and is consistent every
-# time; the ones inside the Nativity fast are seen most often, because there
-# every weekday is a fast day and so every occurrence is visible, while in
-# ordinary time only Wednesdays and Fridays reveal anything.
-#
-# **This is a list, not a rule, because no rule fits.** These are the saints GOA
-# ranks highly enough to relax a fast for, and that ranking is not ours: their
-# `feast_level` here runs 0, 2, 3 and 4, so no threshold selects them --
-# St Barbara and St Ignatius are level 0, while plenty of level 4 days get
-# nothing. That is the same reason Ch. 33's rank grants failed against this
-# data; see docs/fasting-refactor-scope.md.
-#
-# It lives here rather than in the fixture because a `greek` Day row replaces
-# the `common` one outright (`_prefer_tradition_days` keys on
-# `(pdist, month, day)`), so encoding it as data would mean duplicating 38
-# feast names and ranks that would then drift out of step with their originals.
-#
-# Incomplete by construction: a date reaches a Wednesday or Friday in roughly
-# two years out of seven, so ordinary-time entries seen once or twice here are
-# real but the list as a whole is a floor, not a census.
-GREEK_WINE_OIL_DATES = frozenset({
-    (1, 11), (1, 14), (1, 16), (1, 18), (1, 22), (1, 25), (1, 27),
-    (2, 8), (2, 10), (2, 11), (2, 17), (2, 24),
-    (3, 9),
-    (6, 8), (6, 11), (6, 30),
-    (5, 11),
-    (7, 1), (7, 2), (7, 8), (7, 17), (7, 22), (7, 25), (7, 26), (7, 27),
-    (8, 31),
-    (9, 6), (9, 9), (9, 20),
-    (10, 1), (10, 23),
-    (11, 1), (11, 12),
-    (12, 4), (12, 5), (12, 9), (12, 12), (12, 15), (12, 17), (12, 20),
-})
-
-
 # Chapter X: "Fish is permitted on Wednesday or Friday if it is a feast of the
 # Lord even during fasting seasons." GOA applies that as a *cap* -- a saint's
 # fish grant falls back to wine and oil when it lands on a Wednesday or Friday,
@@ -249,15 +210,14 @@ GREEK_WED_FRI_FISH_OK_DATES = frozenset({
     # feasts cannot establish it. Three Wednesday/Friday observations each,
     # fish every time.
     (6, 29),        # Holy Apostles Peter and Paul
-})
-
-# St Philip is the same case as Peter and Paul, but needs a grant rather than a
-# cap exemption: our row for him claims only wine and oil, so there is no fish
-# for an exemption to protect. Three Wednesday/Friday observations, fish each
-# time -- he is the eve of the Nativity fast.
-GREEK_FISH_DATES = frozenset({
     (11, 14),       # Holy Apostle Philip
 })
+
+# Peter and Paul already claims fish in the shared data, so exempting it from
+# the cap is enough. Philip does not -- our row for him claims only wine and
+# oil -- so his fish comes from a sparse `greek` override on the slot, and this
+# exemption is what stops the cap taking it straight back off him.
+
 GREEK_WED_FRI_FISH_OK_PDISTS = frozenset({
     24,             # Midfeast of Pentecost
     38,             # Leavetaking of Pascha / Forefeast of the Ascension
@@ -270,18 +230,6 @@ GREEK_WED_FRI_FISH_OK_PDISTS = frozenset({
 # turned all seven days into a fast stricter than the week they precede.
 # goarch.org marks the whole week `fast-day`, Wednesday and Friday included.
 CHEESEFARE_GREEK = Season('Cheesefare (Greek)', default_floor=D.MeatFast)
-
-# The mirror of GREEK_WINE_OIL_DATES: dates whose festal wine-and-oil grant GOA
-# does not recognise, so the season's own floor should stand instead. Chiefly
-# the Beheading of the Forerunner, which our data relaxes to wine and oil but
-# which goarch.org keeps strict on all five weekdays -- seven observations,
-# never once relaxed. The claim is dropped rather than capped, so the weekend
-# floor still applies and the Beheading is wine and oil on a Saturday or Sunday,
-# which is exactly what GOA does.
-GREEK_STRICT_DATES = frozenset({
-    (2, 9), (4, 7), (4, 23), (8, 16), (8, 29),
-    (9, 12), (9, 24), (9, 28), (10, 9),
-})
 
 ORDINARY_GREEK = Season('ordinary Wed/Fri (Greek)',
                         floor={SAT: D.WineAndOil, SUN: D.WineAndOil},
@@ -357,29 +305,17 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
     return allowance, (winner if winner is not None else CANONICAL[allowance])
 
 
-def apply(day, season_for, wine_oil_dates=frozenset(), fish_dates=frozenset(),
-          fish_ok_dates=frozenset(), fish_ok_pdists=frozenset(),
-          strict_dates=frozenset()):
-    """Set `day.fast_level` and `day.fast_exception` for one day."""
-    if (day.month, day.day) in strict_dates:
-        # Where the jurisdiction recognises no relaxation, the *festal* claim is
-        # dropped and the season's floor stands. Only festal rows are touched:
-        # the Paschal cycle's own weekend allowance has to survive, or a Lenten
-        # Saturday on one of these dates would come out stricter than the
-        # Saturdays either side of it. Caps are kept -- a row asserting
-        # strictness still has its say.
-        rows = [d.fast_exception
-                if not d.month or d.fast_exception in CAP_INDICES else 0
-                for d in day.days]
-    else:
-        rows = [d.fast_exception for d in day.days]
+def apply(day, season_for, fish_ok_dates=frozenset(), fish_ok_pdists=frozenset()):
+    """Set `day.fast_level` and `day.fast_exception` for one day.
 
-    # A jurisdiction's own fixed-date relaxations enter as an ordinary claim, so
-    # the season's cap still applies -- they lift a fast, they do not escape one.
-    if (day.month, day.day) in wine_oil_dates:
-        rows.append(1)
-    if (day.month, day.day) in fish_dates:
-        rows.append(2)
+    A jurisdiction's own fixed-date departures -- the saints GOA relaxes a fast
+    for, and the ones it declines to -- are deliberately not here. They are
+    sparse tradition `Day` rows overriding `fast_exception` on the slot, merged
+    in by `_merge_tradition_days` before this ever sees them. They therefore
+    arrive as ordinary claims, and the season's cap still applies to them: they
+    lift a fast, they do not escape one.
+    """
+    rows = [d.fast_exception for d in day.days]
 
     if FAST_FREE in rows:
         day.fast_level = FastLevels.NoFast
@@ -399,7 +335,6 @@ def apply(day, season_for, wine_oil_dates=frozenset(), fish_dates=frozenset(),
     eve = day.pdist in (day.pyear.nativity - 1, day.pyear.theophany - 1)
 
     cap_exempt = ((day.month, day.day) in fish_ok_dates
-                  or (day.month, day.day) in fish_dates
                   or day.pdist in fish_ok_pdists)
 
     _, day.fast_exception = resolve(

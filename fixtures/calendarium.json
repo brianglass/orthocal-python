@@ -16574,7 +16574,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "greek"
   }
@@ -16601,26 +16601,6 @@
 },
 {
   "model": "calendarium.day",
-  "pk": 865,
-  "fields": {
-    "pdist": 999,
-    "month": 11,
-    "day": 24,
-    "title": "",
-    "subtitle": "",
-    "feast_name": "",
-    "feast_level": 2,
-    "service": 0,
-    "service_note": "",
-    "story": null,
-    "fast": 5,
-    "fast_exception": 0,
-    "flag": 0,
-    "tradition": "slavic"
-  }
-},
-{
-  "model": "calendarium.day",
   "pk": 868,
   "fields": {
     "pdist": 999,
@@ -16633,8 +16613,8 @@
     "service": 0,
     "service_note": "",
     "story": null,
-    "fast": 0,
-    "fast_exception": 0,
+    "fast": null,
+    "fast_exception": null,
     "flag": 0,
     "tradition": "slavic"
   }
@@ -16974,7 +16954,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17074,7 +17054,7 @@
     "service_note": "",
     "story": null,
     "fast": 0,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17154,7 +17134,7 @@
     "service_note": "",
     "story": null,
     "fast": 5,
-    "fast_exception": 0,
+    "fast_exception": 1,
     "flag": 0,
     "tradition": "greek"
   }
@@ -17168,15 +17148,895 @@
     "day": 14,
     "title": "",
     "subtitle": "",
-    "feast_name": "Exaltation (Elevation) of the Precious Cross",
-    "feast_level": 8,
+    "feast_name": "",
+    "feast_level": null,
     "service": 0,
     "service_note": "",
     "story": null,
-    "fast": 1,
+    "fast": null,
     "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 901,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 11,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 902,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 14,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 903,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 16,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 904,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 18,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 905,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 22,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 906,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 25,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 907,
+  "fields": {
+    "pdist": 999,
+    "month": 1,
+    "day": 27,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 908,
+  "fields": {
+    "pdist": 999,
+    "month": 2,
+    "day": 8,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 910,
+  "fields": {
+    "pdist": 999,
+    "month": 2,
+    "day": 10,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 911,
+  "fields": {
+    "pdist": 999,
+    "month": 2,
+    "day": 11,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 912,
+  "fields": {
+    "pdist": 999,
+    "month": 2,
+    "day": 17,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 915,
+  "fields": {
+    "pdist": 999,
+    "month": 4,
+    "day": 7,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 916,
+  "fields": {
+    "pdist": 999,
+    "month": 4,
+    "day": 23,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 917,
+  "fields": {
+    "pdist": 999,
+    "month": 6,
+    "day": 8,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 918,
+  "fields": {
+    "pdist": 999,
+    "month": 6,
+    "day": 11,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 919,
+  "fields": {
+    "pdist": 999,
+    "month": 6,
+    "day": 30,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 920,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 1,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 921,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 2,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 922,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 8,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 923,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 17,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 924,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 22,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 925,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 25,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 926,
+  "fields": {
+    "pdist": 999,
+    "month": 7,
+    "day": 27,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 927,
+  "fields": {
+    "pdist": 999,
+    "month": 8,
+    "day": 16,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 928,
+  "fields": {
+    "pdist": 999,
+    "month": 8,
+    "day": 29,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 929,
+  "fields": {
+    "pdist": 999,
+    "month": 8,
+    "day": 31,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 930,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 6,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 931,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 9,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 932,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 12,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 933,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 20,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 934,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 24,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 935,
+  "fields": {
+    "pdist": 999,
+    "month": 9,
+    "day": 28,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 936,
+  "fields": {
+    "pdist": 999,
+    "month": 10,
+    "day": 9,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 937,
+  "fields": {
+    "pdist": 999,
+    "month": 10,
+    "day": 23,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 938,
+  "fields": {
+    "pdist": 999,
+    "month": 11,
+    "day": 1,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 939,
+  "fields": {
+    "pdist": 999,
+    "month": 11,
+    "day": 12,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 940,
+  "fields": {
+    "pdist": 999,
+    "month": 11,
+    "day": 14,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 2,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 941,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 4,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 942,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 5,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 943,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 9,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 944,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 12,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 945,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 15,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 946,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 17,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": 1,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 865,
+  "fields": {
+    "pdist": 999,
+    "month": 11,
+    "day": 24,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "",
+    "feast_level": null,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": null,
+    "fast_exception": null,
+    "flag": 0,
+    "tradition": "slavic"
   }
 },
 {

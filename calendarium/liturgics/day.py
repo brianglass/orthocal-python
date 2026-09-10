@@ -1,4 +1,5 @@
 import collections
+import copy
 import logging
 
 from datetime import date, timedelta
@@ -107,25 +108,66 @@ def _speech_worthy(dc):
     return _has_story(dc) or dc.tradition != 'greek'
 
 
-def _prefer_tradition_days(rows, tradition):
-    """Like _prefer_tradition, but for Day rows, which have no
-    source/ordering/desc -- the slot is just (pdist, month, day)."""
+def _merge_tradition_days(rows, tradition):
+    """Reduce the rows for a day to one per `(pdist, month, day)` slot.
 
-    kept = []
-    slot_index = {}
+    Two shapes exist in the data and they mean different things.
 
+    A slot carrying a `slavic` row and a `greek` row is a genuine disagreement
+    about *what is commemorated* -- Oct 1 is the Protection for Slavs and not
+    for Greeks -- so the tradition's own row is taken whole.
+
+    A slot carrying a `common` row plus a tradition row is an **override**: the
+    same commemoration, kept differently. There the common row is the base and
+    the tradition row contributes only the fields it actually sets, which is why
+    `Day.OVERRIDABLE` is nullable. NULL means "inherit"; 0 means "explicitly
+    zero", and the difference is load-bearing -- the Exaltation's Greek override
+    is `fast_exception=0`, an explicit "make no claim" that must not be mistaken
+    for an absence.
+
+    Fields outside `OVERRIDABLE` are taken from the common row and the override
+    row's copies are ignored, so an override should leave them blank rather than
+    duplicate them. That is what keeps a shadow row from silently serving stale
+    feast names when the common row is later edited; enforced by
+    `test_day_overrides_are_sparse`.
+    """
+
+    groups = {}
+    order = []
     for row in rows:
         if row.tradition not in (tradition, 'common'):
             continue
-
         slot = (row.pdist, row.month, row.day)
+        if slot not in groups:
+            groups[slot] = {}
+            order.append(slot)
+        groups[slot][row.tradition] = row
 
-        if slot in slot_index:
-            if row.tradition != 'common':
-                kept[slot_index[slot]] = row
+    kept = []
+    for slot in order:
+        group = groups[slot]
+        base, override = group.get('common'), group.get(tradition)
+
+        if override is None:
+            row = base
+        elif base is None:
+            row = override
         else:
-            slot_index[slot] = len(kept)
-            kept.append(row)
+            row = copy.copy(base)
+            for field in models.Day.OVERRIDABLE:
+                value = getattr(override, field)
+                if value is not None:
+                    setattr(row, field, value)
+            # full_title is a cached_property; the copy must not inherit a value
+            # computed on the base before the overlay.
+            row.__dict__.pop('full_title', None)
+
+        # A row with no common counterpart may still be sparse; nothing further
+        # is going to fill it in, so treat NULL as the field's zero.
+        for field in models.Day.OVERRIDABLE:
+            if getattr(row, field) is None:
+                setattr(row, field, 0)
+        kept.append(row)
 
     return kept
 
@@ -267,7 +309,7 @@ class Day:
         tag, not just the ones tagged for self.tradition/common -- feast-
         level facts (feast_level/fast/fast_exception/feast_name/titles/
         service_notes) still come only from whichever single row wins via
-        _prefer_tradition_days (a tradition-specific row is a genuine
+        _merge_tradition_days (a tradition-specific row is a genuine
         whole-day replacement for those facts, e.g. Greek observing a
         lower/zero feast_level on a day Slavic elevates). But the full,
         untradition-filtered id list is also kept (self._commemoration_day_ids)
@@ -296,7 +338,7 @@ class Day:
         # Bake the multiple "days" down into a single composite day for
         # feast-level facts only -- this part keeps the original
         # tradition-filtered, single-winner selection.
-        self.days = _prefer_tradition_days(
+        self.days = _merge_tradition_days(
             [d for d in all_days if d.tradition in (self.tradition, 'common')],
             self.tradition,
         )
@@ -333,7 +375,7 @@ class Day:
         commemoration supplements the day's common ones rather than
         replacing them, which is why the query below filters by tradition
         directly rather than scoping to self.days (the
-        _prefer_tradition_days-selected winner). self._commemoration_day_ids
+        _merge_tradition_days-selected winner). self._commemoration_day_ids
         (Stage 9) deliberately includes every Day row matching this slot
         regardless of tradition tag, so a saint can be shared via its own
         DayCommemoration.tradition even when attached to a Day row tagged
@@ -383,7 +425,7 @@ class Day:
                 additive.append(dc)
             elif dc.day_id not in winning_day_ids:
                 # ordering < 0 (feast_name-matched, day_native or not), but
-                # its own Day row lost _prefer_tradition_days's preference
+                # its own Day row lost _merge_tradition_days's preference
                 # for this request -- e.g. a saint shared via
                 # DayCommemoration.tradition='common' whose entry lives on a
                 # different tradition's Day row than the one whose
@@ -942,11 +984,8 @@ class GreekDay(Day):
         """Greek dietary rules, which differ from Slavic only in the Nativity
         fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
         fasting.apply(self, fasting.greek_season,
-                      wine_oil_dates=fasting.GREEK_WINE_OIL_DATES,
-                      fish_dates=fasting.GREEK_FISH_DATES,
                       fish_ok_dates=fasting.GREEK_WED_FRI_FISH_OK_DATES,
-                      fish_ok_pdists=fasting.GREEK_WED_FRI_FISH_OK_PDISTS,
-                      strict_dates=fasting.GREEK_STRICT_DATES)
+                      fish_ok_pdists=fasting.GREEK_WED_FRI_FISH_OK_PDISTS)
 
 
 _DAY_CLASSES = {

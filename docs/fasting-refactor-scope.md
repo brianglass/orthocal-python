@@ -567,6 +567,47 @@ season floor stand is what makes the weekend relief still work; a first attempt
 dropped every claim and made Lenten Saturdays stricter than the Saturdays either
 side of them.
 
+### The date lists moved out of the source (2026-09-10)
+
+Brian objected that `GREEK_WINE_OIL_DATES` and its siblings were reference data
+living in source code, and he was right. They are now sparse `Day` rows.
+
+The mechanism is his: a tradition row overrides a `common` row **field by
+field**, so it carries only what differs. `feast_level`, `fast` and
+`fast_exception` are nullable for this, and **NULL means "inherit" while 0 means
+"explicitly zero"** -- a distinction the Exaltation depends on, its Greek
+override being an explicit `fast_exception=0`. `_prefer_tradition_days` becomes
+`_merge_tradition_days`.
+
+Django's model inheritance does not do this, incidentally: abstract bases give
+separate tables with no row-level fallback, and multi-table inheritance makes a
+child row *be* a parent row rather than override a different one. This is a
+merge, not inheritance.
+
+Two shapes now coexist in the fixture and mean different things:
+
+| shape | meaning |
+|---|---|
+| `slavic` + `greek`, no common | genuine disagreement about *what is commemorated* -- Oct 1 is the Protection for Slavs, not for Greeks |
+| `common` + one tradition row | an **override**: same commemoration, kept differently |
+
+`TestDayOverrides` guards the second: an override may not carry fields the merge
+ignores (they would silently go stale when the common row is edited), and must
+either change something or anchor a commemoration.
+
+**The move paid for itself immediately.** Writing the guard exposed three
+overrides that changed nothing: for Feb 24 and Mar 9 the `common` row *already*
+claimed wine and oil, so those two entries in `GREEK_WINE_OIL_DATES` had always
+been dead -- invisible while the list lived in code, obvious the moment it
+became rows. It also found a pre-existing no-op, Nov 24's `slavic` row, which
+duplicated its common row in every field.
+
+**And deleting that one was wrong.** Two `DayCommemoration` rows hang off it, so
+it is a commemoration anchor that happens to override nothing. The foreign key
+caught it, not the reasoning; the guard test now allows that case explicitly.
+Worth remembering next time a Day row looks redundant -- 379 of them are
+foreign-key targets.
+
 ### Chasing the last stragglers: 99.4% -> 99.9%
 
 Working through the 22 that survived turned up one substantive bug and several

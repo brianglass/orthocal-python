@@ -1387,15 +1387,15 @@ class TestDay(TestCase):
     async def test_greek_gap_dates_share_confirmed_common_saints(self):
         """Stage 9: 6 dates had their only commemorations attached to a Day
         row tagged tradition='slavic' (with an empty parallel greek Day row
-        winning _prefer_tradition_days), so Greek users saw nothing at all,
+        winning _merge_tradition_days), so Greek users saw nothing at all,
         not even genuinely shared content. Fixed by decoupling
-        DayCommemoration lookup from _prefer_tradition_days's single-winner
+        DayCommemoration lookup from _merge_tradition_days's single-winner
         Day row (see _add_supplemental_commemorations) and tagging
         individual DayCommemoration rows tradition='slavic' for saints
         confirmed absent from data/antiochian_fixed_saints.json (the
         project's own Antiochian harvest) -- Toth and Nevsky in particular.
         feast_level/fast/fast_exception are untouched by any of this, since
-        they still come solely from _prefer_tradition_days's Day-row
+        they still come solely from _merge_tradition_days's Day-row
         selection -- verified directly against production (all field-level
         values match exactly; the only saints-list difference from
         production is the intentional Herman's-Glorification addition,
@@ -1456,7 +1456,7 @@ class TestDay(TestCase):
         level (he's on a moveable date instead, see
         test_raphael_brooklyn_differing_commemoration_date). feast_name is
         untouched by DayCommemoration.tradition, since it still comes
-        solely from _prefer_tradition_days's Day-row selection."""
+        solely from _merge_tradition_days's Day-row selection."""
 
         greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
         await greek.ainitialize()
@@ -1826,3 +1826,65 @@ class TestAug28JobOfPochaev(TestCase):
         # Removing the vigil set must not leave the day empty.
         self.assertEqual(await self.readings(Tradition.Greek),
                          ['2 Cor 11.5-21', 'Mark 4.1-9'])
+
+
+class TestDayOverrides(TestCase):
+    """The fixture uses two shapes for tradition-specific Day rows, and they
+    mean different things. A slot with a `slavic` row and a `greek` row is a
+    genuine disagreement about what is commemorated. A slot with a `common` row
+    plus a tradition row is an *override*: same commemoration, kept differently.
+
+    These guard the second shape, which is the one that can rot quietly."""
+
+    # commemorations.json too: one override exists only to anchor them.
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    @staticmethod
+    def _overrides():
+        """(base, override) for every slot with a common row and a tradition one."""
+        slots = {}
+        for row in models.Day.objects.all():
+            slots.setdefault((row.pdist, row.month, row.day), {})[row.tradition] = row
+        return [(g['common'], g[t])
+                for g in slots.values() if 'common' in g
+                for t in g if t != 'common']
+
+    def test_day_overrides_are_sparse(self):
+        """An override may only carry the fields it actually overrides.
+
+        Everything outside `Day.OVERRIDABLE` is taken from the common row and
+        the override's copy is ignored, so a populated field there is either a
+        misunderstanding or -- worse -- a duplicate that will silently go stale
+        when the common row is next edited. Three such rows existed before the
+        merge landed; one duplicated its common row exactly and did nothing.
+        """
+        ignored = ('title', 'subtitle', 'feast_name', 'service', 'service_note',
+                   'story', 'flag')
+        for base, override in self._overrides():
+            with self.subTest(f'{base.month:02d}-{base.day:02d} {override.tradition}'):
+                populated = [f for f in ignored if getattr(override, f)]
+                self.assertEqual(
+                    populated, [],
+                    f'override carries {populated}, which the merge ignores -- '
+                    f'blank them so they cannot drift from the common row')
+
+    def test_day_overrides_earn_their_place(self):
+        """An override must either change a field or anchor a commemoration.
+
+        A row that does neither is dead weight. A row that does the second only
+        is legitimate and must not be tidied away: Nov 24's `slavic` row
+        overrides nothing at all, but two `DayCommemoration` rows hang off it,
+        and deleting it takes them with it. That is exactly what happened while
+        this test was being written -- the foreign key caught it, not the
+        reasoning.
+        """
+        for base, override in self._overrides():
+            with self.subTest(f'{base.month:02d}-{base.day:02d} {override.tradition}'):
+                changed = [f for f in models.Day.OVERRIDABLE
+                           if getattr(override, f) is not None
+                           and getattr(override, f) != getattr(base, f)]
+                anchors = override.daycommemoration_set.exists()
+                self.assertTrue(
+                    changed or anchors,
+                    'override changes no field and anchors no commemoration; '
+                    'it has no reason to exist')

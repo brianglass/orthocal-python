@@ -12,18 +12,37 @@ from bible.models import Verse
 
 
 class Day(models.Model):
+    """One day's commemorations and fasting, for one tradition.
+
+    A row is keyed by the slot `(pdist, month, day)`. Where two traditions
+    genuinely commemorate different things, the slot carries a `slavic` row and
+    a `greek` row and no `common` one. Where they commemorate the *same* thing
+    but keep it differently, the slot carries a `common` row plus a sparse
+    tradition row that overrides only what differs -- see
+    `_merge_tradition_days` in liturgics/day.py.
+
+    `feast_level`, `fast` and `fast_exception` are nullable for that reason, and
+    the distinction matters: **NULL means "inherit from the common row", 0 means
+    "explicitly zero"**. The Exaltation's `greek` override is `fast_exception=0`
+    -- an explicit "make no claim", not an absence. Everything else on an
+    override row is ignored when a common row exists, so leave those fields
+    blank; `test_day_overrides_are_sparse` enforces it.
+    """
+
+    OVERRIDABLE = ('feast_level', 'fast', 'fast_exception')
+
     pdist = models.SmallIntegerField(db_index=True)
     month = models.SmallIntegerField()
     day = models.SmallIntegerField()
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=128)
     feast_name = models.CharField(max_length=255)
-    feast_level = models.SmallIntegerField()
+    feast_level = models.SmallIntegerField(null=True, blank=True)
     service = models.SmallIntegerField()
     service_note = models.CharField(max_length=64)
     story = models.TextField(null=True, blank=True)  # feast-level narrative, non-saint content
-    fast = models.SmallIntegerField()
-    fast_exception = models.SmallIntegerField()
+    fast = models.SmallIntegerField(null=True, blank=True)
+    fast_exception = models.SmallIntegerField(null=True, blank=True)
     flag = models.SmallIntegerField()
     tradition = models.CharField(max_length=16, choices=[
         ('common', 'Common'),  # shared by all traditions (the default)
