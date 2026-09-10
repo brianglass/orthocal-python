@@ -17174,7 +17174,7 @@
     "service_note": "",
     "story": null,
     "fast": 1,
-    "fast_exception": 9,
+    "fast_exception": 0,
     "flag": 0,
     "tradition": "greek"
   }

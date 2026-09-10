@@ -515,7 +515,59 @@ differences when the app had them right. Worth recording because it is the
 second time in this work that a "finding" turned out to be an artifact of how
 the comparison was set up.
 
-### What the remaining 53 are
+### Extended to ten years (2026-09-10)
+
+The harvest was extended to **121 months -- Dec 2025 plus every month of 2026
+through 2035, 3,683 days.** Ten years is the threshold that matters: a fixed
+date reaches a Wednesday or Friday in roughly two years out of seven, and those
+are the only days on which an ordinary-time relaxation is visible at all.
+
+| | |
+|---|---|
+| three-year state | 95.3% |
+| ten-year baseline (more data, more gaps) | 94.8% |
+| `GREEK_WINE_OIL_DATES` (38 dates) | 97.8% |
+| Wednesday/Friday fish cap + `CHEESEFARE_GREEK` | 98.5% |
+| Nativity cap raised to rank 7 | 99.3% |
+| `GREEK_STRICT_DATES`, scoped to festal rows | **99.4%** |
+
+**22 differences remain across ten years -- about two a year.**
+
+Five things came out of it, in rough order of how much they moved the number.
+
+**The fixed-date grant list is data, not a rule.** 38 dates on which GOA relaxes
+a fast to wine and oil. Their `feast_level` here runs 0, 2, 3 and 4 -- Barbara
+and Ignatius are level 0 -- so no threshold picks them out, which is the same
+reason Ch. 33's rank grants failed. It lives in `fasting.py` rather than the
+fixture because a `greek` Day row *replaces* the `common` one outright, so
+encoding it as data would mean duplicating 38 feast names that would then drift.
+
+**The Wednesday/Friday fish cap is real, and the confound is broken.** A saint's
+fish grant falls back to wine and oil on a Wednesday or Friday, however highly
+ranked -- fourteen saints at levels 4, 5 and 6. Feasts of the Lord and of the
+Theotokos keep fish, which `cap_exempt_rank=7` expresses, plus three
+lower-ranked Lord days named explicitly. **GOA does not honour Chapter X's "or
+one of the 12 Apostles" clause**: John the Theologian, Thomas, Matthew and
+Andrew are all capped.
+
+**The same cap holds inside the Nativity fast.** `NATIVITY_GREEK_EARLY` had
+`cap_exempt_rank=4`, which let St Matthew, St Andrew and St Nicholas through. It
+is 7 now, matching ordinary time.
+
+**Cheesefare week needed rescuing from that cap.** Adding a Wednesday/Friday cap
+to Greek ordinary time silently clamped the week before Lent -- whose whole
+point is that only meat is given up -- into a fast stricter than the Lent it
+precedes. It has its own season now. The characterisation caught it
+immediately.
+
+**`GREEK_STRICT_DATES` is the mirror image**: nine dates whose festal grant GOA
+does not recognise, chiefly the Beheading of the Forerunner, strict on all five
+weekdays across seven observations. Dropping the *festal* claim and letting the
+season floor stand is what makes the weekend relief still work; a first attempt
+dropped every claim and made Lenten Saturdays stricter than the Saturdays either
+side of them.
+
+### What the earlier three-year pass had said the remaining 53 were
 
 **36 -- per-date wine and oil grants we lack.** GOA lifts an ordinary Wednesday
 or Friday to wine and oil for a large set of saints: Barbara, Spyridon,

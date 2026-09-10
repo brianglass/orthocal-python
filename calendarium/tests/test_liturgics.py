@@ -498,6 +498,74 @@ class TestGreekFasting(TestCase):
                 self.assertEqual(greek.fast_exception_desc, greek_desc)
                 self.assertEqual(slavic.fast_exception_desc, slavic_desc)
 
+    async def test_greek_fixed_date_wine_oil_grants(self):
+        """GOA relaxes a fast to wine and oil on a fixed list of saints' days
+        that our own feast ranks do not pick out -- St Eleutherius (Dec 15) is
+        feast_level 2 here, and St Barbara (Dec 4) is level 0.
+
+        Dec 15 2026 is a Tuesday inside the Nativity fast's second phase, where
+        the season floor is strict; goarch.org marks it `grapes`. Slavic
+        practice has no such grant and stays on the season's own pattern.
+        See fasting.GREEK_WINE_OIL_DATES."""
+
+        greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
+        slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
+        await greek.ainitialize()
+        await slavic.ainitialize()
+
+        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+        self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
+
+    async def test_greek_caps_a_saints_fish_on_wednesday_and_friday(self):
+        """Typikon Chapter X allows fish on a Wednesday or Friday only for a
+        feast of the Lord. GOA applies that as a cap: St Nicholas carries a
+        fish grant, but on Dec 6 2028, a Wednesday, goarch.org gives only
+        `grapes`. Rank does not save him -- he is feast_level 5, above several
+        days that do keep fish."""
+
+        greek = liturgics.Day(2028, 12, 6, tradition=Tradition.Greek)
+        await greek.ainitialize()
+
+        self.assertEqual(greek.feast_level, 5)
+        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+
+    async def test_greek_beheading_is_strict_except_at_the_weekend(self):
+        """Our data relaxes the Beheading of the Forerunner to wine and oil.
+        goarch.org keeps it strict on all five weekdays -- seven observations
+        across ten years, never once relaxed -- while allowing wine and oil
+        when it falls at the weekend, which is the ordinary weekend relief
+        rather than anything about the feast.
+
+        Aug 29 2028 is a Tuesday; Aug 29 2026 is a Saturday."""
+
+        weekday = liturgics.Day(2028, 8, 29, tradition=Tradition.Greek)
+        weekend = liturgics.Day(2026, 8, 29, tradition=Tradition.Greek)
+        slavic = liturgics.Day(2028, 8, 29, tradition=Tradition.Slavic)
+        await weekday.ainitialize()
+        await weekend.ainitialize()
+        await slavic.ainitialize()
+
+        self.assertEqual(weekday.fast_exception_desc, '')
+        self.assertEqual(weekend.fast_exception_desc, 'Wine and Oil are Allowed')
+        # Slavic keeps the row's own label, "Strict Fast (Wine and Oil)" -- a
+        # fast day that nonetheless allows wine and oil, which is the same rung
+        # the Greek weekend reaches by a different route.
+        self.assertEqual(slavic.fast_exception_desc, 'Strict Fast (Wine and Oil)')
+
+    async def test_greek_cheesefare_week_is_a_meat_fast_throughout(self):
+        """Cheesefare week needs its own Greek season only so that the
+        Wednesday/Friday no-fish cap does not reach it: that cap means "no fish
+        for a saint", and clamping a week whose whole point is that only meat is
+        given up turned it into a stricter fast than the Lent it precedes.
+        goarch.org marks all seven days `fast-day`, Wednesday and Friday
+        included. 2026's Cheesefare week is Feb 16-22."""
+
+        for day_of_month in range(16, 23):
+            with self.subTest(day_of_month):
+                greek = liturgics.Day(2026, 2, day_of_month, tradition=Tradition.Greek)
+                await greek.ainitialize()
+                self.assertEqual(greek.fast_exception_desc, 'Meat Fast')
+
     async def test_dormition_fast_grants_no_rank_based_exception(self):
         """Regression test for a data bug reported directly against
         production: Aug 9, 2026 (St Herman of Alaska's Vigil-rank feast)
