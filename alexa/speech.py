@@ -4,9 +4,18 @@ import re
 
 from django.utils import timezone
 
-from calendarium.datetools import FastLevels
+from calendarium.datetools import FastLevels, Translation
 
 MAX_SPEECH_LENGTH = 8000
+
+# The skill speaks a modern translation, matching the readings page.
+#
+# It is set here rather than left to `bible.DEFAULT_TRANSLATIONS['en']`, which
+# is KJV and stays that way: the API and the RSS feeds resolve through that
+# default and are deliberately unchanged. `Pericope.get_passage` takes the
+# translation per call and does not inherit it from the Day, so every call site
+# that reads scripture has to pass it.
+TRANSLATION = Translation.LXX2012WEB
 
 ref_re = re.compile(r'(\d*)\s*([\w\s]+)\s+(\d+)')
 ssml_re = re.compile(r'<(?!p\b)(.*?)>(.*?)</\1>')
@@ -209,7 +218,7 @@ def reading_speech(reading, end=None):
     )
 
 def reading_range_speech(reading, start=None, end=None):
-    passage = reading.pericope.get_passage()
+    passage = reading.pericope.get_passage(translation=TRANSLATION)
     return '\n'.join(f'<p>{verse.content}</p>' for verse in passage[start:end])
 
 def estimate_group_size(passage):

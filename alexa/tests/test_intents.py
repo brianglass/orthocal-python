@@ -54,7 +54,9 @@ class IntentTestCase(TestCase):
         request_envelope = skill.serializer.deserialize(payload=envelope, obj_type=RequestEnvelope)
         response = skill.invoke(request_envelope=request_envelope, context=None)
 
-        self.assertIn('deceiveth his own heart', response.response.output_speech.ssml)
+        # LXX2012-WEB, the translation the skill speaks -- KJV has
+        # "deceiveth his own heart" here. See alexa.speech.TRANSLATION.
+        self.assertIn('deceives his heart', response.response.output_speech.ssml)
         self.assertIn('Would you like to hear the next reading?', response.response.output_speech.ssml)
         self.assertEqual(1, response.session_attributes['next_reading'])
         self.assertEqual(['commemorations'], response.session_attributes['task_queue'])
