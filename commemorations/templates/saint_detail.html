@@ -1,4 +1,5 @@
 {% extends "content_base.html" %}
+{% load commemoration_links %}
 
 {% block title %}{{ saint.display_name }}{% endblock %}
 
@@ -15,7 +16,7 @@
 		<article class="passage">
 			<h2>{{ dc.title }} <span class="story-date">({{ dc.date_display }})</span></h2>
 			{% if dc.has_story %}
-			{{ dc.story|safe }}
+			{{ dc.story|link_commemoration_dates:story_links }}
 			{% endif %}
 		</article>
 		{% endfor %}
