@@ -34,7 +34,7 @@ def get_day(handler_input):
     else:
         dt = timezone.localtime()
 
-    day = liturgics.Day(dt.year, dt.month, dt.day)
+    day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
     day.initialize()
 
     return day
@@ -58,7 +58,7 @@ class LaunchHandler(AbstractRequestHandler):
         session.clear()
 
         today = timezone.localtime()
-        day = liturgics.Day(today.year, today.month, today.day)
+        day = liturgics.Day(today.year, today.month, today.day, translation=speech.TRANSLATION)
         day.initialize()
 
         speech_text, card_text = speech.day_speech(day)
@@ -222,7 +222,7 @@ class ScripturesIntentHandler(AbstractRequestHandler):
 
         # Build speech
 
-        passage = readings[0].pericope.get_passage()
+        passage = readings[0].pericope.get_passage(translation=speech.TRANSLATION)
         group_size = speech.estimate_group_size(passage)
         date_text = day.gregorian_date.strftime('%A, %B %-d')
         reading_speech = speech.reading_speech(readings[0], group_size)
@@ -302,7 +302,7 @@ class NextIntentHandler(AbstractRequestHandler):
 
     def commemorations_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
-        day = liturgics.Day(dt.year, dt.month, dt.day)
+        day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
         day.initialize()
 
         next_commemoration = session.get('next_commemoration')
@@ -342,14 +342,14 @@ class NextIntentHandler(AbstractRequestHandler):
 
     def scriptures_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
-        day = liturgics.Day(dt.year, dt.month, dt.day)
+        day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
         day.initialize()
         readings = day.get_abbreviated_readings()
 
         next_reading = session.get('next_reading')
 
         reading = readings[next_reading]
-        passage = reading.pericope.get_passage()
+        passage = reading.pericope.get_passage(translation=speech.TRANSLATION)
 
         # Is this a long passage?
         if group_size := session.get('group_size'):

@@ -2,8 +2,9 @@
 <p>Orthodox Daily makes it easy to access the daily scripture readings. Simply
 ask me to open Orthodox Daily and I will provide you with a few details
 about today, including the fasting rules, and then read the prescribed
-scriptures. The scriptures are read from the King James Version and at
-present follow <say-as interpret-as="spell-out">OCA</say-as> rubrics.</p>
+scriptures. The scriptures are read from the World English Bible, with an Old
+Testament translated from the Septuagint, and at present follow
+<say-as interpret-as="spell-out">OCA</say-as> practices.</p>
 
 <p>You can also ask me directly about a particular day. For instance
 you can say, "Alexa, ask Orthodox Daily about tomorrow." Or you could say,

@@ -131,9 +131,14 @@ class SpeechTestCase(TestCase):
                 self.assertEqual(expected, actual)
 
     def test_reading_speech(self):
-        day = liturgics.Day(2023, 1, 18)
+        """The skill speaks LXX2012-WEB, not the KJV that
+        `bible.DEFAULT_TRANSLATIONS['en']` still gives the API and the feeds.
+        KJV renders this verse "The spirit that dwelleth in us lusteth to
+        envy"; see alexa.speech.TRANSLATION."""
+
+        day = liturgics.Day(2023, 1, 18, translation=speech.TRANSLATION)
         day.initialize()
         readings = day.get_readings()
 
         speech_text = speech.reading_speech(readings[0])
-        self.assertIn('The spirit that dwelleth in us lusteth to envy', speech_text)
+        self.assertIn('The Spirit who lives in us yearns jealously', speech_text)

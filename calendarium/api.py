@@ -95,8 +95,8 @@ api = API(
     description=(
         'Orthocal.info provides an API for looking up information about '
         'days and months in the Orthodox Calendar, including the ability '
-        'to look up the scripture readings and lives of the saints for a given day.'
-        'The API follow OCA rubrics.'
+        'to look up the scripture readings and lives of the saints for a given day. '
+        'The API follows OCA practices.'
     ),
     servers=[
         {'url': settings.ORTHOCAL_PUBLIC_URL, 'description': 'Public API'},
