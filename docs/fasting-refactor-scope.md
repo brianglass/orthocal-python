@@ -693,7 +693,8 @@ an ordinary-time day is already fast-free. A given date lands on Wed or Fri in
 roughly 2 years out of 7, so **three years of data exposes only about a third of
 the list.** Fully enumerating it needs on the order of ten years of harvest.
 Inside the fasting seasons the problem does not arise -- every day is a fast
-day, so Dec 15 shows up in all four harvested Decembers.
+day, so Dec 15 shows up in all four harvested Decembers. (Ten years did prove
+enough; the coverage measurement at the end of this document is the evidence.)
 
 **8 -- fish capped to wine and oil on ordinary Wed/Fri.** With three years the
 confound noted earlier is broken: 2028-01-07 is a **Friday** that keeps fish,
@@ -835,3 +836,42 @@ express them cleanly:
   the best-evidenced of the three and the natural first behaviour change once
   the refactor lands -- but it is still a behaviour change, and belongs in its
   own commit with the characterisation diff visible.
+
+
+## Is the grant list complete? Measured, 2026-09-11
+
+The list was left carrying a warning that it was incomplete by construction: a
+date only surfaces when it lands on a Wednesday or Friday, so some grants must
+still be hidden. **That was an expected-value argument rather than a
+measurement, and measuring it shows the list is complete with respect to the ten
+years harvested.** `tools/fasting/grant_coverage.py` reproduces it.
+
+The measurement has to be made against the *season*, not the app's output.
+Asking "where does the app say strict?" is circular -- a granted date no longer
+says strict, so every grant looks like a gap. It was tried that way first and
+reported 113 blind dates, most of which were the grants themselves. A grant
+leaves a trace only where the season's own floor is strict **and** its cap would
+let a claim reach wine and oil.
+
+| | of 366 calendar dates |
+|---|---|
+| probed two or more times | **329** |
+| probed once | 12 |
+| never probed | 25 |
+
+The 25 are two structural blind spots, and neither is a real gap:
+
+- **Dec 25 - Jan 4 and Jan 6** are fast-free, so no grant can exist there.
+- **Aug 1-14**, the Dormition fast, caps claims below rank 7 to strict, so a
+  grant would be invisible. Rather than leave that an unknown it was checked
+  against goarch.org directly: across ten years its Dormition weekdays are
+  **strict 93 times and fish 7**, and all seven are Aug 6, the Transfiguration,
+  which the shared data already grants. There is nothing there to miss.
+
+Of the 12 thinly-probed dates, two showed wine and oil on their single probe --
+Feb 17 and Jun 3 -- and both are already right: Feb 17 through its override, and
+Jun 3 from the Paschal season's own allowance rather than from any grant.
+
+So no gap remains that this data can reveal. More years would buy more probes
+for those 12 dates, which is the only place a further harvest could help; the
+route is documented in `tools/fasting/goarch_audit.py`.
