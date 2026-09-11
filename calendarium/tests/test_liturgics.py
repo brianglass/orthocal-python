@@ -377,33 +377,44 @@ class TestGreekFasting(TestCase):
         self.assertEqual(slavic.fast_exception_desc, '')
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_phase_two_starts_a_week_earlier_for_greek(self):
-        """Dec 15, 2026 is an ordinary Tuesday. Slavic's stricter period
-        doesn't start until ~Dec 20, so it still gets the ordinary
-        Tuesday/Thursday wine-and-oil allowance; Greek's stricter period
-        starts Dec 13, a full week earlier, and drops Monday/Tuesday/
-        Thursday to full strictness (not just losing fish)."""
+    async def test_nativity_fast_greek_first_phase_is_a_fish_day(self):
+        """Dec 10, 2026 is an ordinary Thursday in Greek's first phase, which
+        runs through Dec 11: everything but Wednesday and Friday is a fish day.
+        Slavic gets only the ordinary Tuesday/Thursday wine-and-oil allowance,
+        its own stricter period not starting until ~Dec 20.
 
-        slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
-        greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
+        goarch.org marks that date `fasting-fish`; see data/goarch_fasting.json.
+        """
+
+        slavic = liturgics.Day(2026, 12, 10, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 12, 10, tradition=Tradition.Greek)
         await slavic.ainitialize()
         await greek.ainitialize()
 
         self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
-        self.assertEqual(greek.fast_exception_desc, '')
+        self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_phase_two_weekend_loses_fish_earlier_for_greek(self):
-        """Dec 13, 2026 is a Sunday -- the first day of Greek's stricter
-        period, but still well inside Slavic's ordinary-weekend-gets-fish
-        window (Slavic's stricter period doesn't start until ~Dec 20)."""
+    async def test_nativity_fast_greek_second_phase_starts_december_12(self):
+        """December 2027 pins the boundary exactly, because it falls across a
+        weekend: Dec 11 is a Saturday and still a fish day, Dec 12 is a Sunday
+        and only wine and oil. Both are weekend days, so nothing but the phase
+        boundary separates them.
 
-        slavic = liturgics.Day(2026, 12, 13, tradition=Tradition.Slavic)
-        greek = liturgics.Day(2026, 12, 13, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        Measured from goarch.org's own calendar (data/goarch_fasting.json),
+        which marks Dec 11 `fasting-fish` and Dec 12 `grapes`. This test has
+        twice been wrong about this date -- Dec 13 from Antiochian parish
+        sources, then Dec 18 from a summary of the GOA Yearbook -- so it is now
+        pinned to the Archdiocese's published calendar rather than to prose
+        about it.
+        """
 
-        self.assertEqual(slavic.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
-        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+        before = liturgics.Day(2027, 12, 11, tradition=Tradition.Greek)
+        after = liturgics.Day(2027, 12, 12, tradition=Tradition.Greek)
+        await before.ainitialize()
+        await after.ainitialize()
+
+        self.assertEqual(before.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
+        self.assertEqual(after.fast_exception_desc, 'Wine and Oil are Allowed')
 
     async def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
         """Regression test for a bug caught during implementation: Dec 24,
@@ -425,13 +436,17 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_holy_week_apostles_dormition_fasts_are_identical_between_traditions(self):
-        """Holy Week, the Apostles' Fast, and the Dormition Fast were all
-        confirmed (via dedicated Antiochian sources) to follow the same
-        weekly pattern as Slavic practice -- this is a regression guard
-        against that accidentally changing. Ordinary weeks of Great Lent
-        are NOT covered here -- see the wine-and-oil exception tests below
-        for three confirmed exceptions that do differ.
+    async def test_holy_week_and_dormition_fasts_are_identical_between_traditions(self):
+        """Holy Week and the Dormition Fast follow the same weekly pattern in
+        both traditions -- a regression guard against that changing. Ordinary
+        weeks of Great Lent are NOT covered here; see the wine-and-oil
+        exception tests below for three confirmed exceptions that do differ.
+
+        The Apostles' Fast used to be covered here too, on the strength of a
+        dedicated Antiochian source. **goarch.org disproves that** -- GOA keeps
+        a far lighter Apostles' fast than Slavic practice, fish every day
+        except Wednesday and Friday, identical across the whole fast in 2026
+        and 2028. It has its own test below.
 
         Aug 9 (St Herman of Alaska's Vigil-rank feast, Slavic tradition)
         needs no exclusion here: see
@@ -441,7 +456,6 @@ class TestGreekFasting(TestCase):
 
         dates = (
             [date(2026, 4, d) for d in range(5, 13)]        # Holy Week
-            + [date(2026, 6, d) for d in range(9, 15)]      # Apostles' Fast
             + [date(2026, 8, d) for d in range(1, 15)]      # Dormition Fast
         )
 
@@ -454,6 +468,103 @@ class TestGreekFasting(TestCase):
 
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
+
+    async def test_apostles_fast_is_lighter_for_greek(self):
+        """GOA keeps fish through the Apostles' fast except on Wednesday and
+        Friday, where it is strict. Slavic practice follows Typikon Ch. 33
+        instead -- Monday strict, Tuesday and Thursday wine and oil, weekends
+        fish.
+
+        Measured from goarch.org across the whole of the 2026 and 2028 fasts,
+        which agree on every day; see data/goarch_fasting.json. June 2026 is
+        used here because the 2027 fast is a single day long."""
+
+        expected = {
+            8: ('Fish, Wine and Oil are Allowed', ''),            # Monday
+            9: ('Fish, Wine and Oil are Allowed', 'Wine and Oil are Allowed'),
+            10: ('', ''),                                          # Wednesday
+            11: ('Fish, Wine and Oil are Allowed', 'Wine and Oil are Allowed'),
+            12: ('', ''),                                          # Friday
+            13: ('Fish, Wine and Oil are Allowed', 'Fish, Wine and Oil are Allowed'),
+        }
+
+        for day_of_month, (greek_desc, slavic_desc) in expected.items():
+            with self.subTest(day_of_month):
+                greek = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Greek)
+                slavic = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Slavic)
+                await greek.ainitialize()
+                await slavic.ainitialize()
+
+                self.assertEqual(greek.fast_exception_desc, greek_desc)
+                self.assertEqual(slavic.fast_exception_desc, slavic_desc)
+
+    async def test_greek_fixed_date_wine_oil_grants(self):
+        """GOA relaxes a fast to wine and oil on a fixed list of saints' days
+        that our own feast ranks do not pick out -- St Eleutherius (Dec 15) is
+        feast_level 2 here, and St Barbara (Dec 4) is level 0.
+
+        Dec 15 2026 is a Tuesday inside the Nativity fast's second phase, where
+        the season floor is strict; goarch.org marks it `grapes`. Slavic
+        practice has no such grant and stays on the season's own pattern.
+        See fasting.GREEK_WINE_OIL_DATES."""
+
+        greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
+        slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
+        await greek.ainitialize()
+        await slavic.ainitialize()
+
+        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+        self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
+
+    async def test_greek_caps_a_saints_fish_on_wednesday_and_friday(self):
+        """Typikon Chapter X allows fish on a Wednesday or Friday only for a
+        feast of the Lord. GOA applies that as a cap: St Nicholas carries a
+        fish grant, but on Dec 6 2028, a Wednesday, goarch.org gives only
+        `grapes`. Rank does not save him -- he is feast_level 5, above several
+        days that do keep fish."""
+
+        greek = liturgics.Day(2028, 12, 6, tradition=Tradition.Greek)
+        await greek.ainitialize()
+
+        self.assertEqual(greek.feast_level, 5)
+        self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
+
+    async def test_greek_beheading_is_strict_except_at_the_weekend(self):
+        """Our data relaxes the Beheading of the Forerunner to wine and oil.
+        goarch.org keeps it strict on all five weekdays -- seven observations
+        across ten years, never once relaxed -- while allowing wine and oil
+        when it falls at the weekend, which is the ordinary weekend relief
+        rather than anything about the feast.
+
+        Aug 29 2028 is a Tuesday; Aug 29 2026 is a Saturday."""
+
+        weekday = liturgics.Day(2028, 8, 29, tradition=Tradition.Greek)
+        weekend = liturgics.Day(2026, 8, 29, tradition=Tradition.Greek)
+        slavic = liturgics.Day(2028, 8, 29, tradition=Tradition.Slavic)
+        await weekday.ainitialize()
+        await weekend.ainitialize()
+        await slavic.ainitialize()
+
+        self.assertEqual(weekday.fast_exception_desc, '')
+        self.assertEqual(weekend.fast_exception_desc, 'Wine and Oil are Allowed')
+        # Slavic keeps the row's own label, "Strict Fast (Wine and Oil)" -- a
+        # fast day that nonetheless allows wine and oil, which is the same rung
+        # the Greek weekend reaches by a different route.
+        self.assertEqual(slavic.fast_exception_desc, 'Strict Fast (Wine and Oil)')
+
+    async def test_greek_cheesefare_week_is_a_meat_fast_throughout(self):
+        """Cheesefare week needs its own Greek season only so that the
+        Wednesday/Friday no-fish cap does not reach it: that cap means "no fish
+        for a saint", and clamping a week whose whole point is that only meat is
+        given up turned it into a stricter fast than the Lent it precedes.
+        goarch.org marks all seven days `fast-day`, Wednesday and Friday
+        included. 2026's Cheesefare week is Feb 16-22."""
+
+        for day_of_month in range(16, 23):
+            with self.subTest(day_of_month):
+                greek = liturgics.Day(2026, 2, day_of_month, tradition=Tradition.Greek)
+                await greek.ainitialize()
+                self.assertEqual(greek.fast_exception_desc, 'Meat Fast')
 
     async def test_dormition_fast_grants_no_rank_based_exception(self):
         """Regression test for a data bug reported directly against
@@ -1276,15 +1387,15 @@ class TestDay(TestCase):
     async def test_greek_gap_dates_share_confirmed_common_saints(self):
         """Stage 9: 6 dates had their only commemorations attached to a Day
         row tagged tradition='slavic' (with an empty parallel greek Day row
-        winning _prefer_tradition_days), so Greek users saw nothing at all,
+        winning _merge_tradition_days), so Greek users saw nothing at all,
         not even genuinely shared content. Fixed by decoupling
-        DayCommemoration lookup from _prefer_tradition_days's single-winner
+        DayCommemoration lookup from _merge_tradition_days's single-winner
         Day row (see _add_supplemental_commemorations) and tagging
         individual DayCommemoration rows tradition='slavic' for saints
         confirmed absent from data/antiochian_fixed_saints.json (the
         project's own Antiochian harvest) -- Toth and Nevsky in particular.
         feast_level/fast/fast_exception are untouched by any of this, since
-        they still come solely from _prefer_tradition_days's Day-row
+        they still come solely from _merge_tradition_days's Day-row
         selection -- verified directly against production (all field-level
         values match exactly; the only saints-list difference from
         production is the intentional Herman's-Glorification addition,
@@ -1345,7 +1456,7 @@ class TestDay(TestCase):
         level (he's on a moveable date instead, see
         test_raphael_brooklyn_differing_commemoration_date). feast_name is
         untouched by DayCommemoration.tradition, since it still comes
-        solely from _prefer_tradition_days's Day-row selection."""
+        solely from _merge_tradition_days's Day-row selection."""
 
         greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
         await greek.ainitialize()
@@ -1715,3 +1826,65 @@ class TestAug28JobOfPochaev(TestCase):
         # Removing the vigil set must not leave the day empty.
         self.assertEqual(await self.readings(Tradition.Greek),
                          ['2 Cor 11.5-21', 'Mark 4.1-9'])
+
+
+class TestDayOverrides(TestCase):
+    """The fixture uses two shapes for tradition-specific Day rows, and they
+    mean different things. A slot with a `slavic` row and a `greek` row is a
+    genuine disagreement about what is commemorated. A slot with a `common` row
+    plus a tradition row is an *override*: same commemoration, kept differently.
+
+    These guard the second shape, which is the one that can rot quietly."""
+
+    # commemorations.json too: one override exists only to anchor them.
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    @staticmethod
+    def _overrides():
+        """(base, override) for every slot with a common row and a tradition one."""
+        slots = {}
+        for row in models.Day.objects.all():
+            slots.setdefault((row.pdist, row.month, row.day), {})[row.tradition] = row
+        return [(g['common'], g[t])
+                for g in slots.values() if 'common' in g
+                for t in g if t != 'common']
+
+    def test_day_overrides_are_sparse(self):
+        """An override may only carry the fields it actually overrides.
+
+        Everything outside `Day.OVERRIDABLE` is taken from the common row and
+        the override's copy is ignored, so a populated field there is either a
+        misunderstanding or -- worse -- a duplicate that will silently go stale
+        when the common row is next edited. Three such rows existed before the
+        merge landed; one duplicated its common row exactly and did nothing.
+        """
+        ignored = ('title', 'subtitle', 'feast_name', 'service', 'service_note',
+                   'story', 'flag')
+        for base, override in self._overrides():
+            with self.subTest(f'{base.month:02d}-{base.day:02d} {override.tradition}'):
+                populated = [f for f in ignored if getattr(override, f)]
+                self.assertEqual(
+                    populated, [],
+                    f'override carries {populated}, which the merge ignores -- '
+                    f'blank them so they cannot drift from the common row')
+
+    def test_day_overrides_earn_their_place(self):
+        """An override must either change a field or anchor a commemoration.
+
+        A row that does neither is dead weight. A row that does the second only
+        is legitimate and must not be tidied away: Nov 24's `slavic` row
+        overrides nothing at all, but two `DayCommemoration` rows hang off it,
+        and deleting it takes them with it. That is exactly what happened while
+        this test was being written -- the foreign key caught it, not the
+        reasoning.
+        """
+        for base, override in self._overrides():
+            with self.subTest(f'{base.month:02d}-{base.day:02d} {override.tradition}'):
+                changed = [f for f in models.Day.OVERRIDABLE
+                           if getattr(override, f) is not None
+                           and getattr(override, f) != getattr(base, f)]
+                anchors = override.daycommemoration_set.exists()
+                self.assertTrue(
+                    changed or anchors,
+                    'override changes no field and anchors no commemoration; '
+                    'it has no reason to exist')
