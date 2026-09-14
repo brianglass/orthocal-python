@@ -94,3 +94,12 @@ table.month tr:first-child th {
 h1, h2, h3, h4 {
     page-break-after: avoid;
 }
+/* A commemoration story's dates are links on screen (see main.css), but a
+   link goes nowhere on paper -- print them exactly as the surrounding text,
+   with none of the screen treatment. Same selector as the screen rule, and
+   this sheet loads after main.css, so it wins; it also has to outrank the
+   saint page's generic `#content a` red, which main.css applies in print. */
+#orthocal-content a.commemoration-date {
+    color: inherit;
+    text-decoration: none;
+}

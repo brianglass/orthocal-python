@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load fullurl %}
 {% load scripture_extras %}
+{% load commemoration_links %}
 
 {% block title %}{% if request.resolver_match.url_name == "index" %}Orthodox Daily Scripture Readings and Lives of the Saints{% else %}Orthodox Daily Readings for {{ day.gregorian_date|date:"F j, Y" }}{% endif %}{% endblock %}
 
@@ -141,7 +142,7 @@
 			<article class="passage" id="commemoration-{{ reading.id }}">
 				<h2>{{ reading.title }}</h2>
 
-				{{ reading.story|safe }}
+				{{ reading.story|link_commemoration_dates:day }}
 			</article>
 			{% endfor %}
 		{% endif %}

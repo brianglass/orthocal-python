@@ -821,6 +821,25 @@ section.readings h2 {
     color: var(--color-text-faint);
     cursor: help;
 }
+/* Dates in a commemoration's story that link to that day (see
+   calendarium/templatetags/commemoration_links.py). A solid accent-red link
+   in running prose reads like a rubric heading, and on the readings page --
+   which sits outside #content -- these were getting browser-default blue.
+   So the date keeps the paragraph's own colour and borrows the nav's accent
+   underline instead: findable as a cross-reference without shouting.
+   Scoped under #orthocal-content, which wraps both the readings and saint
+   pages, so it outranks the generic `#content a` rule on the saint page. */
+#orthocal-content a.commemoration-date {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+#orthocal-content a.commemoration-date:hover {
+    color: var(--color-accent);
+    text-decoration-thickness: 2px;
+}
 .day>p {
     text-align: center;
 }

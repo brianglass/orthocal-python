@@ -263,6 +263,18 @@ def gregorian_to_julian(year, month, day):
     # will raise a ValueError. This is a problem, but doesn't occur until 2100.
     return date(year, month, day)
 
+def julian_to_gregorian(year, month, day):
+    """Convert a Julian date to a Gregorian date.
+
+    Takes the Julian date as three integers rather than a `date`, because a
+    Julian Feb 29 in a century year that the Gregorian calendar doesn't leap
+    (1900, 2100) can't be represented as a Python `date` at all -- the same
+    limitation gregorian_to_julian runs into in the other direction."""
+
+    jd = jdcal.jcal2jd(year, month, day)
+    year, month, day, _ = jdcal.jd2gcal(*jd)
+    return date(year, month, day)
+
 def compute_pascha_distance(dt):
     """Compute the distance of a given day from Pascha.
 

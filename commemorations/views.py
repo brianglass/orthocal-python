@@ -1,5 +1,9 @@
-from django.shortcuts import get_object_or_404, redirect, render
+from types import SimpleNamespace
 
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+
+from calendarium.datetools import Calendar, Tradition, cal_session_key, gregorian_to_julian
 from calendarium.liturgics.day import _has_story
 
 from .models import DayCommemoration, Saint
@@ -19,6 +23,23 @@ def _occasion_date(day):
     if day.pdist == 999:
         return f'{_MONTH_NAMES[day.month]} {day.day}'
     return f'Moveable (Pascha {day.pdist:+d} days)'
+
+
+def _story_link_context(request):
+    """What the dates in a saint's stories link to.
+
+    A saint page has no date of its own, so links resolve against today, on
+    the calendar and tradition the reader last chose. They have to use the
+    remembered calendar rather than a fixed one: the readings page remembers
+    whatever calendar a URL carries, so linking an Old Calendar reader to a
+    `gregorian` URL would quietly switch them to the New Calendar."""
+
+    tradition = request.session.get('tradition', Tradition.Slavic)
+    cal = request.session.get(cal_session_key(tradition), Calendar.Gregorian)
+    today = timezone.localtime().date()
+    if cal == Calendar.Julian:
+        today = gregorian_to_julian(today.year, today.month, today.day)
+    return SimpleNamespace(date=today, calendar=cal, tradition=tradition)
 
 
 def _attach_display_name(saint):
@@ -84,4 +105,5 @@ def saint_detail_view(request, slug):
     return render(request, 'saint_detail.html', context={
         'saint': saint,
         'commemorations': commemorations,
+        'story_links': _story_link_context(request),
     })
