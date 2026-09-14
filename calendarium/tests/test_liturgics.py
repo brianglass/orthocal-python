@@ -5,7 +5,7 @@ from django.test import TestCase
 
 from .. import datetools, liturgics, models
 from ..datetools import Tradition, Translation
-from ..liturgics.day import _has_story
+from ..liturgics.day import _display_priority, _has_story
 from bible.models import Verse
 
 
@@ -865,19 +865,40 @@ class TestHasStory(TestCase):
 class TestDay(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def test_minimal_saints_is_a_plain_truncation(self):
-        """minimal_saints exists purely for space-constrained displays (the
-        monthly calendar grid, summary_title's fallback) -- it should be
-        nothing more than the first MINIMAL_SAINTS_LIMIT entries of the full
-        list, regardless of day_native/story provenance. Oct 1 Greek has 6
-        commemorations; the first 3 should come through unchanged."""
+    async def test_minimal_saints_keeps_three_of_the_full_list(self):
+        """Oct 1 Greek has 6 commemorations; minimal_saints keeps 3 of them."""
 
         day = liturgics.Day(2026, 10, 1, tradition=Tradition.Greek)
         await day.ainitialize()
 
         self.assertEqual(len(day.saints), 6)
-        self.assertEqual(day.minimal_saints, day.saints[:3])
         self.assertEqual(len(day.minimal_saints), 3)
+        self.assertLessEqual(set(day.minimal_saints), set(day.saints))
+
+    async def test_minimal_saints_prefers_storied_over_bare_names(self):
+        """A bare harvested name must not take a storied saint's slot just
+        because it is day_native and the storied one is additive."""
+
+        for month, day_, kept, bare in (
+            (1, 12, 'Venerable Benedict Biscop, Abbot of Wearmouth (689-690)', 'Martyr Mertios'),
+            (3, 17, 'St Patrick, Enlightener of Ireland (ca. 461)', 'Marinos the Martyr'),
+        ):
+            with self.subTest(month=month, day=day_):
+                day = liturgics.Day(2026, month, day_)
+                await day.ainitialize()
+
+                self.assertIn(bare, day.saints)
+                self.assertIn(kept, day.minimal_saints)
+                self.assertNotIn(bare, day.minimal_saints)
+
+    def test_display_priority(self):
+        row = lambda rank=0, high_rank=False, story=None: SimpleNamespace(rank=rank, high_rank=high_rank, story=story)
+
+        self.assertEqual(_display_priority(row(rank=2)), 0)
+        self.assertEqual(_display_priority(row(high_rank=True)), 0)
+        self.assertEqual(_display_priority(row(story='<p>He was a deacon.</p>')), 1)
+        self.assertEqual(_display_priority(row(story='<p></p>')), 2)
+        self.assertEqual(_display_priority(row()), 2)
 
     async def test_minimal_saints_untruncated_when_short(self):
         day = liturgics.Day(2026, 1, 7)

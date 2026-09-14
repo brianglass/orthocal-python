@@ -24,6 +24,7 @@
         "fast_abstentions": [],
         "saints": [
             "Our Father among the Saints Basil the Great (379).",
+            "Telemachos the Martyr",
             "St Gregory, Bishop of Nazianzus (374), father of St Gregory the Theologian"
         ],
         "service_notes": null,
@@ -293,6 +294,8 @@
             "Synaxis of Seventy Apostles",
             "Our Righteous Father Theoctistus, Abbot of Cucomo in Sicily",
             "Nikephoros the Leper",
+            "New Martyr Onuphrios",
+            "Righteous Euthymios of Vatopedi",
             "Eustathios Archbishop of Serbia",
             "The Ethiopian Eunuch of Queen Candace",
             "Venerable Apollinaria (5th c.)"
@@ -809,6 +812,7 @@
         "saints": [
             "Ven. George the Chozebite",
             "Gregory of the Kiev Caves",
+            "Emilianos the Confessor, Bishop of Cyzikos",
             "Our Venerable Mother Domnica (Domnina) (ca. 474)",
             "Saint Atticus, Patriarch of Constantinople (425)",
             "Saint Severinus (482)"
@@ -924,7 +928,7 @@
         "titles": [
             "Monday of the 30th week after Pentecost"
         ],
-        "summary_title": "St Gregory of Nyssa; Dometian, Bishop of Melitene; St Theophan the Recluse",
+        "summary_title": "St Gregory of Nyssa; St Theophan the Recluse; Dometian, Bishop of Melitene",
         "feast_level": 4,
         "feast_level_description": "Red cross (polyeleos typikon symbol)",
         "feasts": null,
@@ -1088,6 +1092,7 @@
         ],
         "saints": [
             "St Sava, Archbishop of Serbia",
+            "Martyr Mertios",
             "Holy Martyr Tatiana (ca. 230)",
             "Venerable Benedict Biscop, Abbot of Wearmouth (689-690)"
         ],
@@ -1233,7 +1238,7 @@
         "titles": [
             "Saturday of the 30th week after Pentecost"
         ],
-        "summary_title": "Ven. Paul of Thebes and John Calabytes; Ven. Pansophius of Alexandria, the Martyr; Our Holy Father John Kalyvites (the hut-dweller) (ca. 450)",
+        "summary_title": "Ven. Paul of Thebes and John Calabytes; Our Holy Father John Kalyvites (the hut-dweller) (ca. 450); Saint Ita of Kileedy, Ireland (570)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -1655,6 +1660,7 @@
         ],
         "saints": [
             "Ven. Maximus the Confessor",
+            "Neophytos the Martyr of Nicaea",
             "Holy Martyr Agnes of Rome (ca. 304)",
             "Our Holy Father Maximos the Greek (1556)"
         ],
@@ -1810,6 +1816,7 @@
         "saints": [
             "Ven. Xenia of Rome",
             "Bl. Xenia of St Petersburg",
+            "Vavylas the Holy Martyr",
             "Our Holy Father Macedonian (ca. 430)"
         ],
         "service_notes": null,
@@ -1942,7 +1949,7 @@
         "titles": [
             "Wednesday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Xenophon, Mary, and their sons Arcadius and John; St Simeon the Elder of Mount Sinai; St Ammonas of Egypt, disciple of St Anthony the Great (350)",
+        "summary_title": "Ven. Xenophon, Mary, and their sons Arcadius and John; St Ammonas of Egypt, disciple of St Anthony the Great (350); Our Holy Mother Paula of Rome (404)",
         "feast_level": 0,
         "feast_level_description": "Liturgy",
         "feasts": null,
@@ -2094,7 +2101,7 @@
         "titles": [
             "Friday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Ven. Ephrem the Syrian; Theodosius of Totma; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)",
+        "summary_title": "Ven. Ephrem the Syrian; Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.); Palladios the Hermit of Antioch",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2112,6 +2119,7 @@
         ],
         "saints": [
             "Ven. Ephrem the Syrian",
+            "Palladios the Hermit of Antioch",
             "Theodosius of Totma",
             "Our Holy Father Isaac the Syrian, bishop of Nineveh (7th c.)"
         ],
@@ -2150,7 +2158,7 @@
         "titles": [
             "Saturday of the 32nd week after Pentecost"
         ],
-        "summary_title": "Trans. Rel. Ignatius the Godbearer; St Laurence, Recluse of the Kiev Caves; St Andrei Rublev, iconographer (1430)",
+        "summary_title": "Trans. Rel. Ignatius the Godbearer; St Andrei Rublev, iconographer (1430); Our Holy Father Aphrahat the Persian (4th c.)",
         "feast_level": 2,
         "feast_level_description": "Black squigg (6-stich typikon symbol)",
         "feasts": null,
@@ -2309,6 +2317,7 @@
         "fast_abstentions": [],
         "saints": [
             "Unmercenaries Cyrus and John",
+            "Our Righteous Father Arsenius of Parus",
             "Venerable Nicetas, hermit of the Kiev Caves and Bishop of Novgorod (1108)",
             "Marcella of Rome (410)"
         ],
