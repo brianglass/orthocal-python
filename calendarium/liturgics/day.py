@@ -44,10 +44,10 @@ _YEAR_CLASSES = {
     Tradition.Greek: GreekYear,
 }
 
-# How many commemorations Day.minimal_saints keeps before truncating --
-# purely a display-space constraint (the monthly calendar grid cell,
-# summary_title's fallback), not a statement about which commemorations
-# matter more. Adjust freely if the grid's cell size changes.
+# How many commemorations Day.minimal_saints keeps -- a display-space
+# constraint (the monthly calendar grid cell, summary_title's fallback).
+# Which ones it keeps is _display_priority's job. Adjust freely if the
+# grid's cell size changes.
 MINIMAL_SAINTS_LIMIT = 3
 
 
@@ -106,6 +106,24 @@ def _speech_worthy(dc):
     overlay existed."""
 
     return _has_story(dc) or dc.tradition != 'greek'
+
+
+def _display_priority(dc):
+    """Sort key for which commemorations win Day.minimal_saints' few slots.
+
+    Ranked first -- a typikon service rank (rank > 0) or abbamoses's dagger
+    (high_rank), treated as one tier because the two don't agree with each
+    other and rank's 2/3/4 isn't an importance scale (see the Fast-follow
+    section of docs/saint-model-refactor.md). Then anything with a story,
+    then the rest. Day.saints order is the tie-break (sorted() is stable).
+
+    Without this, day_native rows always come before additive ones, so a
+    bare harvested name ("Martyr Mertios") took the slot of a storied saint
+    kept as an additive row (Benedict Biscop, St Patrick)."""
+
+    if dc.rank > 0 or dc.high_rank:
+        return 0
+    return 1 if _has_story(dc) else 2
 
 
 def _merge_tradition_days(rows, tradition):
@@ -444,6 +462,7 @@ class Day:
         # itself -- it's consumed as plain strings elsewhere (ical.py, RSS).
         self.saint_links = []
         self.spoken_saints = []
+        shown = []  # the rows behind self.saints, in the same order
         for dcs in day_native_by_day.values():
             # Grouped by whichever Day row the entries originally came from
             # (dc.day_id may not be in self.days -- see the class docstring
@@ -451,21 +470,24 @@ class Day:
             # shared saint can be attached to a Day row that lost the
             # feast-level-facts preference for this tradition.
             titles = [dc.title for dc in dcs]
+            shown.extend(dcs)
             self.saints.extend(titles)
             self.saint_links.extend((dc.title, dc.id if _has_story(dc) else None) for dc in dcs)
             self.spoken_saints.extend(dc.title for dc in dcs if _speech_worthy(dc))
 
+        shown.extend(additive)
         self.saints.extend(dc.title for dc in additive)
         self.saint_links.extend((dc.title, dc.id if _has_story(dc) else None) for dc in additive)
         self.spoken_saints.extend(dc.title for dc in additive if _speech_worthy(dc))
 
         # A length-capped view of self.saints for space-constrained displays
-        # (the monthly calendar grid, and summary_title's fallback below) --
-        # deliberately just a truncation, not a day_native/story-provenance
-        # distinction (that was the old design, and it broke down as soon as
-        # a "story-only" commemoration needed to be the thing shown, e.g.
-        # after a feast_name/DayCommemoration de-duplication).
-        self.minimal_saints = self.saints[:MINIMAL_SAINTS_LIMIT]
+        # (the monthly calendar grid, and summary_title's fallback below),
+        # keeping the most significant commemorations -- see _display_priority.
+        # It ranks rows rather than filtering them: the old design showed only
+        # day_native rows here, and broke down as soon as a "story-only"
+        # commemoration needed to be the thing shown, e.g. after a
+        # feast_name/DayCommemoration de-duplication.
+        self.minimal_saints = [dc.title for dc in sorted(shown, key=_display_priority)[:MINIMAL_SAINTS_LIMIT]]
 
         # spoken_saints excludes only the story-less tradition='greek' overlay
         # (the bulk antiochian.org-harvested commemorations, see

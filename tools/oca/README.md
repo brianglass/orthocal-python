@@ -15,6 +15,8 @@ two traps in these pages that produced confidently wrong numbers.
 | `refs.py` | `canon()` citation tokens, `slot()` book classification, `near()` |
 | `audit_readings.py YEAR` | app vs oca.org -> `data/oca_readings_diff-YYYY.json` |
 | `explain_diff.py DATE...` | both sides of one day in full, with sources and labels |
+| `greek_vs_oca.py` | our greek-only commemorations that oca.org keeps on the same date |
+| `oca_vs_app.py [--year Y]` | oca.org's commemorations the Slavic page lacks -> `data/oca_raw/oca_vs_app-YYYY.tsv` |
 
 Everything is cached under `data/oca_raw/_cache/`, so re-running a harvest is
 instant. That matters: at a 10-second crawl delay a fresh year of saints is
