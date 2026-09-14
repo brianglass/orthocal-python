@@ -900,6 +900,24 @@ class TestDay(TestCase):
         self.assertEqual(_display_priority(row(story='<p></p>')), 2)
         self.assertEqual(_display_priority(row()), 2)
 
+    async def test_sixth_council_date_differs_by_tradition(self):
+        """The same council, kept on different days: Jan 23 in Slavic
+        practice (oca.org), Sep 14 in Greek (antiochian.org). Neither date
+        may leak into the other tradition."""
+
+        for tradition, month, day_, expected in (
+            (Tradition.Slavic, 1, 23, True),
+            (Tradition.Greek, 1, 23, False),
+            (Tradition.Greek, 9, 14, True),
+            (Tradition.Slavic, 9, 14, False),
+        ):
+            with self.subTest(tradition=tradition, month=month, day=day_):
+                day = liturgics.Day(2026, month, day_, tradition=tradition)
+                await day.ainitialize()
+
+                self.assertEqual(any('Sixth Ecumenical Council' in s or '6th Ecumenical Council' in s
+                                     for s in day.saints), expected)
+
     async def test_minimal_saints_untruncated_when_short(self):
         day = liturgics.Day(2026, 1, 7)
         await day.ainitialize()

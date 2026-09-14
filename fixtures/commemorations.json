@@ -54632,5 +54632,29 @@
     "saint": 5212,
     "order": 2
   }
+},
+{
+  "model": "commemorations.daycommemoration",
+  "pk": 7250,
+  "fields": {
+    "day": 458,
+    "title": "Commemoration of the Holy Fathers of the Sixth Ecumenical Council",
+    "story": null,
+    "rank": 0,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": false,
+    "ordering": 1,
+    "tradition": "slavic"
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1731,
+  "fields": {
+    "commemoration": 7250,
+    "saint": 6846,
+    "order": 1
+  }
 }
 ]
