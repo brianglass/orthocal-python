@@ -22,6 +22,18 @@ from calendarium.models import OrdoReading, Reading
 
 ORDO_DATES = (19, 24, 26)     # January; the only dates surveyed so far
 
+# The Nativity/Theophany cluster can suspend the continuous weekday pointer.
+# These published 2026 assignments cannot be represented by the ordinary
+# week-15 pdists for their civil dates.  pdist 263/264 are the week-14
+# Thursday/Friday readings, with the exact Greek Friday boundary supplied by
+# load_exact_boundaries.py.
+MANUAL_ROWS = (
+    ('greek', 2026, 12, 30, 'Gospel', 263,
+     'goarch.org and antiochian.org: Mark 10:17-27'),
+    ('greek', 2026, 12, 31, 'Gospel', 264,
+     'goarch.org and antiochian.org: Mark 10:24-32'),
+)
+
 def ref(s):
     s = (s or '').upper().replace('.', ':')
     m = re.match(r'\s*(ST\.\s*)?(MATTHEW|MATT|MARK|MK|LUKE|LK|JOHN|JN)\.?\s*(.*)$', s)
@@ -105,7 +117,7 @@ def antiochian_rows():
 
 made = collections.Counter()
 seen = set()
-for jur, y, m, dd, source, pdist, note in list(goarch_rows()) + list(antiochian_rows()):
+for jur, y, m, dd, source, pdist, note in list(goarch_rows()) + list(antiochian_rows()) + list(MANUAL_ROWS):
     OrdoReading.objects.update_or_create(
         jurisdiction=jur, year=y, month=m, day=dd, source=source,
         defaults={'pdist': pdist, 'note': note},

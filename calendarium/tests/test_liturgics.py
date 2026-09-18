@@ -227,16 +227,15 @@ class TestTraditionOverlay(TestCase):
 
     async def test_common_reading_is_shared_by_both_traditions(self):
         """With no tradition-specific override, both traditions should see the
-        same 'common' Reading row -- this is the day-to-day case today, since
-        no overlay rows exist yet."""
+        same 'common' Reading row."""
 
         for tradition in (Tradition.Slavic, Tradition.Greek):
             with self.subTest(tradition):
-                day = liturgics.Day(2026, 9, 14, tradition=tradition)
+                day = liturgics.Day(2026, 1, 1, tradition=tradition)
                 await day.ainitialize()
                 readings = await day.aget_readings()
                 displays = {r.pericope.sdisplay for r in readings}
-                self.assertIn('John 19.6-11, 13-20, 25-28, 30-35', displays)
+                self.assertIn('Col 2.8-12', displays)
 
     async def test_tradition_specific_row_overrides_common_row(self):
         """A tradition-tagged row should shadow the 'common' row for the same slot."""
@@ -1523,12 +1522,11 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
     # Luke-section week -> weekday (Mon=0) -> Gospel, in this project's own
-    # `Pericope.sdisplay` notation.  Week 14 Friday is `Mark 10.23-32` where
-    # goarch.org prints `Mark 10:24-32` -- one of the known one-verse
-    # citation-boundary variants, not a discrepancy.
+    # `Pericope.sdisplay` notation. Week 14 Friday follows goarch.org's and
+    # antiochian.org's `Mark 10:24-32` in the Greek tradition.
     LUKE_SECTION_TAIL = {
         14: {0: 'Mark 9.42-10.1', 1: 'Mark 10.2-12', 2: 'Mark 10.11-16',
-             3: 'Mark 10.17-27', 4: 'Mark 10.23-32', 5: 'Luke 16.10-15'},
+             3: 'Mark 10.17-27', 4: 'Mark 10.24-32', 5: 'Luke 16.10-15'},
         15: {0: 'Mark 10.46-52', 1: 'Mark 11.11-23', 2: 'Mark 11.22-26',
              3: 'Mark 11.27-33', 4: 'Mark 12.1-12', 5: 'Luke 17.3-10'},
         16: {0: 'Mark 12.13-17', 1: 'Mark 12.18-27', 2: 'Mark 12.28-37',
@@ -1706,7 +1704,7 @@ class TestGreekMenaionReadings(TestCase):
     CASES = [
         (4, 25, 'Gospel', 'Luke 10.16-21', 'Mark 6.7-13'),                   # Mark the Apostle
         (4, 30, 'Gospel', 'Luke 9.1-6', 'Luke 5.1-11'),                      # James the Apostle
-        (5, 7, 'Epistle', 'Acts 26.1-5, 12-20', ABSENT),                     # Appearance of the Cross
+        (5, 7, 'Epistle', 'Acts 26.1, 12-20', ABSENT),                       # Appearance of the Cross
         (7, 5, 'Epistle', 'Gal 5.22-6.2', SHARED),                           # Athanasius of Athos
         (7, 5, 'Gospel', 'Matt 11.27-30', 'Luke 6.17-23'),                   # Athanasius of Athos
         (7, 13, 'Epistle', 'Heb 2.2-10', ABSENT),                            # Synaxis of Gabriel
@@ -1776,7 +1774,7 @@ class TestOrdoJurisdictionLabels(TestCase):
 
     async def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
         cases = [
-            (2021, 1, 19, 'Matt 22.1-14', 'Matt 19.16-26'),
+            (2021, 1, 19, 'Matt 22.2-14', 'Matt 19.16-26'),
             (2021, 1, 26, 'Matt 22.35-46', 'Mark 11.11-23'),
             (2024, 1, 19, 'Matt 9.1-8', 'Matt 19.16-26'),
             (2026, 1, 24, 'Luke 18.35-43', 'Mark 5.24-34'),
@@ -1794,7 +1792,7 @@ class TestOrdoJurisdictionLabels(TestCase):
         # full one.
         self.assertEqual(
                 await self.labelled_gospels(2021, 1, 19),
-                [('Matt 22.1-14', 'GOA', 'Greek Archdiocese'),
+                [('Matt 22.2-14', 'GOA', 'Greek Archdiocese'),
                  ('Matt 19.16-26', 'Antiochian', 'Antiochian Archdiocese')])
 
     async def test_ordinary_readings_have_no_short_form(self):

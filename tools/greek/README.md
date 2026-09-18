@@ -74,6 +74,12 @@ GOA publishes a new Kanonion; the table is currently good through January 2027.
 the two commands needed to regenerate `fixtures/calendarium.json`. Run it after
 re-harvesting when a new annual ordo is published.
 
+`load_exact_boundaries.py` applies the exact citations on which GOA and
+Antiochian agree. It creates Greek-only rows in the matching cycle or Menaion
+slots, leaving common rows intact for Slavic callers. Each row names the
+citation it replaces and the years each source corroborates it, and the script
+stops rather than overwrite a row that no longer reads what it expects.
+
 `harvest_dates.py` fills in specific calendar dates across years from
 antiochian.org's API. The standing harvest is winter-weighted, so a fixed date
 elsewhere in the year can have too few samples to confirm a Menaion reading;

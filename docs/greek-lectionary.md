@@ -13,6 +13,9 @@ and are marked as such.
 Last measured 2026-08-27: against goarch.org over calendar 2026, the app is
 **correct on 333 of 336 days (99.1%)**.
 
+Re-measured 2026-09-18 by verse set after the exact-boundary work; see the
+addendum under "Accuracy, measured".
+
 ---
 
 # Part I — Current state
@@ -165,6 +168,22 @@ Against **antiochian.org** over the same year the figure is 6 days of 365.
 Three of those are the shared unsolved items above; the other three are dates
 where the two jurisdictions genuinely differ, and on the annual-ordo ones both
 readings are now shown side by side rather than only GOA's.
+
+**Addendum, 2026-09-18.** The figures above compared only a citation's
+opening chapter and verse, so a reading that starts together with goarch.org's
+but ends elsewhere (`Acts 15:5-34` against `Acts 15:5-12`) counted as correct.
+Comparing the resolved verse sets instead found 45 such fields in 2026 alone.
+`tools/greek/load_exact_boundaries.py` now carries the exact citations where
+goarch.org and antiochian.org agree, and `load_shared_menaion.py` gained the
+weekday saints' readings that 2026 hid because their dates fall on Sundays.
+Measured by verse set against goarch.org: 2024 **660 of 669 fields**, 2025
+**661 of 665**, 2026 **669 of 669**. Of the three items in the table above,
+Holy Friday now serves the daily Gospel both sources print (`Matthew 27:62-66`)
+and the two December days are carried as `OrdoReading` rows for 2026; the
+general December rule is still unmodelled. Against antiochian.org, 2026 differs
+on 3 days of 365 (Jan 24, Feb 6, Jun 14), each a jurisdictional choice rather
+than a boundary. `calendarium/tests/data/antiochian-readings.tsv` pins the
+comparison for every harvested year.
 
 There is no separate Antiochian tradition: one was built, measured and removed
 -- see Part III.
