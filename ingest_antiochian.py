@@ -227,9 +227,12 @@ _ORDINAL_TO_DIGIT = {'FIRST': '1', 'SECOND': '2', 'THIRD': '3'}
 
 _ACTS_RE = re.compile(r"^ACTS OF THE APOSTLES$")
 # e.g. "ST. PAUL'S SECOND LETTER TO TIMOTHY", "ST. PAUL'S LETTER TO THE ROMANS"
-_PAULINE_RE = re.compile(r"^ST\. PAUL'S(?: (FIRST|SECOND|THIRD))? LETTER TO(?: THE)? ([A-Z]+)$")
-# e.g. "ST. JOHN'S THIRD UNIVERSAL LETTER", "ST. JUDE'S UNIVERSAL LETTER"
-_CATHOLIC_RE = re.compile(r"^ST\. ([A-Z]+)'S(?: (FIRST|SECOND|THIRD))? UNIVERSAL LETTER$")
+# Also the variants "ST. PAUL TO THE HEBREWS", "ST. PAUL EPISTLE TO THE HEBREWS"
+# and "... LETTER TO ST. TIMOTHY", each seen once or twice.
+_PAULINE_RE = re.compile(r"^ST\. PAUL(?:'S)?(?: (FIRST|SECOND|THIRD))?(?: LETTER| EPISTLE)? TO(?: THE| ST\.)? ([A-Z]+)$")
+# e.g. "ST. JOHN'S THIRD UNIVERSAL LETTER", "ST. JUDE'S UNIVERSAL LETTER",
+# "ST. JAMES' UNIVERSAL LETTER"
+_CATHOLIC_RE = re.compile(r"^ST\. ([A-Z]+)'S?(?: (FIRST|SECOND|THIRD))? UNIVERSAL LETTER$")
 
 # The citation always starts with a bare chapter number followed by ':' or
 # '.' -- this is what separates the book preamble from the range itself.
@@ -242,7 +245,7 @@ def _normalize_book_preamble(preamble):
     already bare book names and pass through untouched; only the verbose
     liturgical epistle preambles need translating."""
 
-    preamble = preamble.strip()
+    preamble = preamble.strip().rstrip('.')   # "ST. JOHN. 10:9-16"
 
     if _ACTS_RE.match(preamble):
         return 'Acts'
@@ -253,9 +256,13 @@ def _normalize_book_preamble(preamble):
 
     if m := _CATHOLIC_RE.match(preamble):
         book, ordinal = m.groups()
+        # Antiochian calls Jude "St. Jude's First Universal Letter" even
+        # though Jude is not one book in a numbered series.
+        if book == 'JUDE':
+            ordinal = None
         return f'{_ORDINAL_TO_DIGIT[ordinal]} {book.title()}' if ordinal else book.title()
 
-    return preamble.title()
+    return re.sub(r'^ST\. ', '', preamble).title()   # "ST. JOHN 10:9-16"
 
 
 def parse_reading_citation(title):
@@ -283,6 +290,11 @@ def parse_reading_citation(title):
         raise ValueError(f'No chapter:verse citation found in {title!r}')
 
     preamble, citation = m.groups()
+    # "MARK 13:31-37: 14:1-2" -- a colon standing in for the ';' before a new chapter.
+    citation = re.sub(r':\s+(?=\d+:)', '; ', citation)
+    # "MATTHEW 10:32-33; 37-38; 19:27-30" -- a bare range after ';' continues
+    # the chapter, which lookup_reference only does for ','.
+    citation = re.sub(r';\s*(?=\d+(?:-\d+)?(?:[,;]|$))', ', ', citation)
     book = _normalize_book_preamble(preamble)
 
     if not bible_books.normalize_book_name(book):

@@ -14,6 +14,8 @@ class VerseTestCase(TestCase):
             ("Mark 15.22, 25, 33-41", 11),
             # single chapter book
             ("Jude 1-10", 10),
+            ("Jude 1.11-25", 15),
+            ("3 John 1:5-14", 10),
             ("1 John 2.7-17", 11),
             ("Gen 17.1-2, 4, 5-7, 8, 9-10, 11-12, 14", 12),
             # discontinuous chapters
