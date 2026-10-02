@@ -23,8 +23,8 @@ async def get_day(
     selects Slavic (OCA/ROCOR) or Greek (Antiochian/GOARCH) practice.
     translation selects the Bible translation for English readings --
     lxx2012-web (the default, a modern-English pairing of the Brenton
-    Septuagint and the World English Bible) or kjv (King James Version);
-    it has no effect on non-English content.
+    Septuagint and the World English Bible), kjv (King James Version), or
+    douay-rheims (Douay-Rheims); it has no effect on non-English content.
     """
 
     try:
