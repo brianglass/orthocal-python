@@ -41,3 +41,16 @@ Reading results:
   markup when quoting them.
 ''',
 )
+
+# Don't serve subscriptions/listen (protocol 2026-07-28). It's a long-lived
+# POST that waits to push change notifications, and orthocal never sends
+# any -- its tools, prompts, and resources are fixed at deploy -- so Claude
+# clients' listen streams sat idle until Cloud Run's 20s request timeout cut
+# them off, then re-listened, each billed for the full 20s: the same problem
+# asgi.py's _reject_get solves for the older GET stream. With no handler,
+# server/discover advertises no listChanged or subscribe capability, so
+# clients don't open the stream at all, and one that tries anyway gets an
+# immediate "Method not found". MCPServer has no option to turn the handler
+# off, hence reaching into the low-level server; test_server.py fails if an
+# SDK upgrade changes this.
+mcp._lowlevel_server._request_handlers.pop('subscriptions/listen', None)
