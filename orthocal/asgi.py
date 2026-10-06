@@ -19,6 +19,7 @@ django_application = get_asgi_application()
 
 # mcp_svc.server.mcp imports Django models, so it can only be constructed
 # after get_asgi_application() has set up Django.
+from mcp_svc.request_log import log_mcp_requests
 from mcp_svc.server import mcp
 
 # MCPServer.streamable_http_app() returns a complete Starlette app -- it
@@ -46,18 +47,17 @@ from mcp_svc.server import mcp
 # affinity in the first place; stateless_http=True makes every request
 # self-contained instead.
 #
-# json_response must be set too, for the same reason _reject_get exists
-# below: by default the SDK answers each POST with an SSE stream, and for
-# some requests from Claude clients it writes the reply but never closes
-# the stream, so Cloud Run holds it to the 20s request timeout -- ~2/3 of
-# claude.ai sessions stalled 21s waiting on one. Neither tool streams
-# progress or other mid-request messages, so a plain JSON body per POST
-# loses nothing and can't be left open.
-mcp_application = mcp.streamable_http_app(
+# json_response answers each POST with a plain JSON body instead of an SSE
+# stream. Neither tool streams progress or other mid-request messages, so
+# the stream bought nothing. It was added (#241) on the theory that an
+# unclosed POST stream caused the 21s POSTs Claude clients hit; that theory
+# was wrong -- they persisted, byte-for-byte identical -- and
+# log_mcp_requests below is there to find the real cause.
+mcp_application = log_mcp_requests(mcp.streamable_http_app(
     transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
     stateless_http=True,
     json_response=True,
-)
+))
 
 
 async def _reject_get(send):
