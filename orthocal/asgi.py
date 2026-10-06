@@ -45,9 +45,18 @@ from mcp_svc.server import mcp
 # Both tools are stateless reads, so there's no reason to need session
 # affinity in the first place; stateless_http=True makes every request
 # self-contained instead.
+#
+# json_response must be set too, for the same reason _reject_get exists
+# below: by default the SDK answers each POST with an SSE stream, and for
+# some requests from Claude clients it writes the reply but never closes
+# the stream, so Cloud Run holds it to the 20s request timeout -- ~2/3 of
+# claude.ai sessions stalled 21s waiting on one. Neither tool streams
+# progress or other mid-request messages, so a plain JSON body per POST
+# loses nothing and can't be left open.
 mcp_application = mcp.streamable_http_app(
     transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
     stateless_http=True,
+    json_response=True,
 )
 
 
