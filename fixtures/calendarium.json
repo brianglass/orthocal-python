@@ -43414,7 +43414,7 @@
     "pdist": 999,
     "source": "Epistle",
     "desc": "Forerunner",
-    "pericope": 990,
+    "pericope": 432,
     "ordering": 801,
     "flag": 0,
     "tradition": "greek"
@@ -43429,7 +43429,7 @@
     "pdist": 999,
     "source": "Gospel",
     "desc": "Forerunner",
-    "pericope": 991,
+    "pericope": 202,
     "ordering": 901,
     "flag": 0,
     "tradition": "greek"
@@ -44944,7 +44944,7 @@
     "pdist": 999,
     "source": "Gospel",
     "desc": "Synaxis of the Twelve Apostles",
-    "pericope": 35,
+    "pericope": 1049,
     "ordering": 921,
     "flag": 0,
     "tradition": "greek"
@@ -46054,7 +46054,7 @@
     "pdist": 999,
     "source": "Epistle",
     "desc": "Appearance of the Cross over Jerusalem",
-    "pericope": 450,
+    "pericope": 1019,
     "ordering": 821,
     "flag": 0,
     "tradition": "greek"
@@ -64258,6 +64258,2099 @@
     "source": "Gospel",
     "pdist": 166,
     "note": "antiochian.org: MARK 12:1-12"
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1014,
+  "fields": {
+    "pericope": "309grk",
+    "book": "Apostol",
+    "display": "1 John 2.18-29; 3.1-8",
+    "sdisplay": "1 John 2.18-29; 3.1-8",
+    "desc": "Monday of 35th",
+    "preverse": "",
+    "prefix": "Children,",
+    "prefixb": "",
+    "verses": "1John_2018_2029|1John_3001_3008",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1015,
+  "fields": {
+    "pericope": "310grk",
+    "book": "Apostol",
+    "display": "3 John 1.1-15",
+    "sdisplay": "3 John 1.1-15",
+    "desc": "Monday of Cheesefare",
+    "preverse": "",
+    "prefix": "",
+    "prefixb": "",
+    "verses": "3John_1001_1015",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1016,
+  "fields": {
+    "pericope": "311grk",
+    "book": "Apostol",
+    "display": "Hebrews 11.24-26, 32-40",
+    "sdisplay": "Heb 11.24-26, 32-40",
+    "desc": "1st Sunday of Lent Orthodoxy",
+    "preverse": "",
+    "prefix": "Brethren, by",
+    "prefixb": "",
+    "verses": "Heb_11024_11026|Heb_11032_11040",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1017,
+  "fields": {
+    "pericope": "312grk",
+    "book": "Matthew",
+    "display": "Matthew 27.62-66",
+    "sdisplay": "Matt 27.62-66",
+    "desc": "Great Friday vespers",
+    "preverse": "",
+    "prefix": "At that time,",
+    "prefixb": "",
+    "verses": "Matt_27062_27066",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1018,
+  "fields": {
+    "pericope": "313grk",
+    "book": "Apostol",
+    "display": "Acts 2.22-38",
+    "sdisplay": "Acts 2.22-38",
+    "desc": "Bright Wednesday",
+    "preverse": "",
+    "prefix": "In those days, Peter said to the people: ",
+    "prefixb": "",
+    "verses": "Acts_2022_2038",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1019,
+  "fields": {
+    "pericope": "314grk",
+    "book": "Apostol",
+    "display": "Acts 26.1, 12-20",
+    "sdisplay": "Acts 26.1, 12-20",
+    "desc": "Constantine",
+    "preverse": "",
+    "prefix": "In those days,",
+    "prefixb": "",
+    "verses": "Acts_26001_26001|Acts_26012_26020",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1020,
+  "fields": {
+    "pericope": "315grk",
+    "book": "John",
+    "display": "John 19.25-28, 21.24-25",
+    "sdisplay": "John 19.25-28, 21.24-25",
+    "desc": "St John Theologian",
+    "preverse": "",
+    "prefix": "At that time,",
+    "prefixb": "",
+    "verses": "John_19025_19028|John_21024_21025",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1021,
+  "fields": {
+    "pericope": "316grk",
+    "book": "Apostol",
+    "display": "Acts 11.19-30",
+    "sdisplay": "Acts 11.19-30",
+    "desc": "5th Sunday after Pascha",
+    "preverse": "",
+    "prefix": "In those days, the Apostles",
+    "prefixb": "",
+    "verses": "Acts_11019_11030",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1022,
+  "fields": {
+    "pericope": "317grk",
+    "book": "Apostol",
+    "display": "Acts 14.20-28; 15.1-4",
+    "sdisplay": "Acts 14.20-28; 15.1-4",
+    "desc": "Thursday of 5th after Pascha",
+    "preverse": "",
+    "prefix": "In those days, Paul",
+    "prefixb": "",
+    "verses": "Acts_14020_14028|Acts_15001_15004",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1023,
+  "fields": {
+    "pericope": "318grk",
+    "book": "Apostol",
+    "display": "Acts 15.5-12",
+    "sdisplay": "Acts 15.5-12",
+    "desc": "Friday of 5th after Pascha",
+    "preverse": "",
+    "prefix": "In those days,",
+    "prefixb": "",
+    "verses": "Acts_15005_15012",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1024,
+  "fields": {
+    "pericope": "319grk",
+    "book": "Apostol",
+    "display": "Acts 17.1-9",
+    "sdisplay": "Acts 17.1-9",
+    "desc": "Monday of 6th after Pascha",
+    "preverse": "",
+    "prefix": "In those days, when Paul and Silas",
+    "prefixb": "",
+    "verses": "Acts_17001_17009",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1025,
+  "fields": {
+    "pericope": "320grk",
+    "book": "John",
+    "display": "John 11.47-54",
+    "sdisplay": "John 11.47-54",
+    "desc": "Monday of 6th Sunday",
+    "preverse": "",
+    "prefix": "At that time, the chief priests and the Pharisees gathered a council for Jesus",
+    "prefixb": "",
+    "verses": "John_11047_11054",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1026,
+  "fields": {
+    "pericope": "321grk",
+    "book": "Apostol",
+    "display": "Acts 27.1-44; 28.1",
+    "sdisplay": "Acts 27.1-44; 28.1",
+    "desc": "Friday of 7th after Pascha",
+    "preverse": "",
+    "prefix": "In those days,",
+    "prefixb": "",
+    "verses": "Acts_27001_27044|Acts_28001_28001",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1027,
+  "fields": {
+    "pericope": "322grk",
+    "book": "Matthew",
+    "display": "Matthew 4.23-25; 5.1-13",
+    "sdisplay": "Matt 4.23-25; 5.1-13",
+    "desc": "Tuesday of 1st Sunday",
+    "preverse": "",
+    "prefix": "At that time, great",
+    "prefixb": "",
+    "verses": "Matt_4023_4025|Matt_5001_5013",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1028,
+  "fields": {
+    "pericope": "323grk",
+    "book": "Apostol",
+    "display": "Romans 2.14-28",
+    "sdisplay": "Rom 2.14-28",
+    "desc": "Friday of 1st",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "Rom_2014_2028",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1029,
+  "fields": {
+    "pericope": "324grk",
+    "book": "Apostol",
+    "display": "Romans 3.19-24",
+    "sdisplay": "Rom 3.19-24",
+    "desc": "Saturday of 2d",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "Rom_3019_3024",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1030,
+  "fields": {
+    "pericope": "325grk",
+    "book": "Apostol",
+    "display": "Romans 7.1-14",
+    "sdisplay": "Rom 7.1-14",
+    "desc": "Monday of 3d",
+    "preverse": "",
+    "prefix": "Brethren, do you not know",
+    "prefixb": "",
+    "verses": "Rom_7001_7014",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1031,
+  "fields": {
+    "pericope": "326grk",
+    "book": "Apostol",
+    "display": "Jude 1.1-25",
+    "sdisplay": "Jude 1.1-25",
+    "desc": "Tuesday of Cheesefare",
+    "preverse": "",
+    "prefix": "",
+    "prefixb": "",
+    "verses": "Jude_1001_1025",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1032,
+  "fields": {
+    "pericope": "327grk",
+    "book": "Matthew",
+    "display": "Matthew 13.10-23, 43",
+    "sdisplay": "Matt 13.10-23, 43",
+    "desc": "Monday of 6th Sunday",
+    "preverse": "",
+    "prefix": "At that time, the disciples came to Jesus",
+    "prefixb": "",
+    "verses": "Matt_13010_13023|Matt_13043_13043",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1033,
+  "fields": {
+    "pericope": "312grk",
+    "book": "Apostol",
+    "display": "1 Corinthians 10.28-33; 11.1-8",
+    "sdisplay": "1 Cor 10.28-33; 11.1-8",
+    "desc": "Thursday of 8th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "1Cor_10028_10033|1Cor_11001_11008",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1034,
+  "fields": {
+    "pericope": "315grk",
+    "book": "Apostol",
+    "display": "1 Corinthians 11.8-23",
+    "sdisplay": "1 Cor 11.8-23",
+    "desc": "Friday of 8th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "1Cor_11008_11023",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1035,
+  "fields": {
+    "pericope": "320grk",
+    "book": "Apostol",
+    "display": "2 Corinthians 4.1-12",
+    "sdisplay": "2 Cor 4.1-12",
+    "desc": "Thursday of 11th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "2Cor_4001_4012",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1036,
+  "fields": {
+    "pericope": "322grk",
+    "book": "Apostol",
+    "display": "1 Corinthians 1.26-31; 2.1-5",
+    "sdisplay": "1 Cor 1.26-31; 2.1-5",
+    "desc": "Saturday of 12th, Saturday after Elevation",
+    "preverse": "",
+    "prefix": "Brethren, you see your calling,",
+    "prefixb": "",
+    "verses": "1Cor_1026_1031|1Cor_2001_2005",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1037,
+  "fields": {
+    "pericope": "309grk",
+    "book": "Mark",
+    "display": "Mark 3.20-27",
+    "sdisplay": "Mark 3.20-27",
+    "desc": "Wednesday of 13th Sunday",
+    "preverse": "",
+    "prefix": "At that time, Jesus",
+    "prefixb": "",
+    "verses": "Mark_3020_3027",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1038,
+  "fields": {
+    "pericope": "327grk",
+    "book": "Apostol",
+    "display": "Galatians 1.1-3, 20-24; 2.1-5",
+    "sdisplay": "Gal 1.1-3, 20-24; 2.1-5",
+    "desc": "Thursday of 14th",
+    "preverse": "",
+    "prefix": "",
+    "prefixb": "",
+    "verses": "Gal_1001_1003|Gal_1020_1024|Gal_2001_2005",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1039,
+  "fields": {
+    "pericope": "309grk",
+    "book": "Matthew",
+    "display": "Matthew 22.2-14",
+    "sdisplay": "Matt 22.2-14",
+    "desc": "14th Sunday",
+    "preverse": "22001",
+    "prefix": "The Lord said this parable:",
+    "prefixb": "",
+    "verses": "Matt_22002_22014",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1040,
+  "fields": {
+    "pericope": "309grk",
+    "book": "John",
+    "display": "John 19.6-11, 13-20, 25-28, 30",
+    "sdisplay": "John 19.6-11, 13-20, 25-28, 30",
+    "desc": "Elevation",
+    "preverse": "",
+    "prefix": "At that time, the high priest and elders took council against Jesus to put Him to death and then delivered Him to Pilate, saying, &ldquo;Away with Him, away with Him, crucify Him!&rdquo;",
+    "prefixb": "",
+    "verses": "John_19006_19011|John_19013_19020|John_19025_19028|John_19030_19030",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1041,
+  "fields": {
+    "pericope": "329grk",
+    "book": "Apostol",
+    "display": "Philippians 2.12-15",
+    "sdisplay": "Phil 2.12-15",
+    "desc": "Monday of 20th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "Phil_2012_2015",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1042,
+  "fields": {
+    "pericope": "330grk",
+    "book": "Apostol",
+    "display": "Colossians 4.5-11, 14-18",
+    "sdisplay": "Col 4.5-11, 14-18",
+    "desc": "Luke",
+    "preverse": "",
+    "prefix": "Brethren, walk",
+    "prefixb": "",
+    "verses": "Col_4005_4011|Col_4014_4018",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1043,
+  "fields": {
+    "pericope": "331grk",
+    "book": "Apostol",
+    "display": "Colossians 1.24-29, 2.1",
+    "sdisplay": "Col 1.24-29, 2.1",
+    "desc": "Thursday of 21st",
+    "preverse": "",
+    "prefix": "Brethren, ",
+    "prefixb": "",
+    "verses": "Col_1024_1029|Col_2001_2001",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1044,
+  "fields": {
+    "pericope": "332grk",
+    "book": "Apostol",
+    "display": "Ephesians 4.1-7",
+    "sdisplay": "Eph 4.1-7",
+    "desc": "25th Sunday",
+    "preverse": "",
+    "prefix": "Brethren, I,",
+    "prefixb": "",
+    "verses": "Eph_4001_4007",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1045,
+  "fields": {
+    "pericope": "333grk",
+    "book": "Apostol",
+    "display": "Titus 1.5-14",
+    "sdisplay": "Titus 1.5-14",
+    "desc": "Thursday of 28th",
+    "preverse": "",
+    "prefix": "My son Titus, for",
+    "prefixb": "",
+    "verses": "Titus_1005_1014",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1046,
+  "fields": {
+    "pericope": "334grk",
+    "book": "Apostol",
+    "display": "Hebrews 9.8-23",
+    "sdisplay": "Heb 9.8-23",
+    "desc": "Tuesday of 30th",
+    "preverse": "",
+    "prefix": "Brethren, the Holy Spirit indicated",
+    "prefixb": "",
+    "verses": "Heb_9008_9023",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1047,
+  "fields": {
+    "pericope": "335grk",
+    "book": "Apostol",
+    "display": "Hebrews 11.17-31",
+    "sdisplay": "Heb 11.17-31",
+    "desc": "Monday of 31st",
+    "preverse": "",
+    "prefix": "Brethren, by",
+    "prefixb": "",
+    "verses": "Heb_11017_11031",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1048,
+  "fields": {
+    "pericope": "310grk",
+    "book": "Mark",
+    "display": "Mark 10.24-32",
+    "sdisplay": "Mark 10.24-32",
+    "desc": "Friday of 31st Sunday",
+    "preverse": "",
+    "prefix": "The Lord said:",
+    "prefixb": "",
+    "verses": "Mark_10024_10032",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1049,
+  "fields": {
+    "pericope": "310grk",
+    "book": "Matthew",
+    "display": "Matthew 9.36, 10.1-8",
+    "sdisplay": "Matt 9.36, 10.1-8",
+    "desc": "Monday of 3d Sunday",
+    "preverse": "",
+    "prefix": "At that time, when Jesus",
+    "prefixb": "",
+    "verses": "Matt_9036_9036|Matt_10001_10008",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1050,
+  "fields": {
+    "pericope": "336grk",
+    "book": "Apostol",
+    "display": "1 Corinthians 1.10-17",
+    "sdisplay": "1 Cor 1.10-17",
+    "desc": "8th Sunday",
+    "preverse": "",
+    "prefix": "Brethren, I plead with you,",
+    "prefixb": "",
+    "verses": "1Cor_1010_1017",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1051,
+  "fields": {
+    "pericope": "337grk",
+    "book": "Apostol",
+    "display": "1 John 3.9-22",
+    "sdisplay": "1 John 3.9-22",
+    "desc": "Tuesday of 35th",
+    "preverse": "",
+    "prefix": "My beloved, whoever",
+    "prefixb": "",
+    "verses": "1John_3009_3022",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1052,
+  "fields": {
+    "pericope": "338grk",
+    "book": "Apostol",
+    "display": "1 John 3.21-24; 4.1-11",
+    "sdisplay": "1 John 3.21-24; 4.1-11",
+    "desc": "Wednesday of 35th, Paremia 1",
+    "preverse": "",
+    "prefix": "My beloved,",
+    "prefixb": "",
+    "verses": "1John_3021_3024|1John_4001_4011",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1053,
+  "fields": {
+    "pericope": "339grk",
+    "book": "Apostol",
+    "display": "1 Peter 1.1-25; 2.1-10",
+    "sdisplay": "1 Pet 1.1-25; 2.1-10",
+    "desc": "Friday of 32d",
+    "preverse": "",
+    "prefix": "",
+    "prefixb": "",
+    "verses": "1Peter_1001_1025|1Peter_2001_2010",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1054,
+  "fields": {
+    "pericope": "340grk",
+    "book": "Apostol",
+    "display": "1 Thessalonians 2.14-20",
+    "sdisplay": "1 Thess 2.14-20",
+    "desc": "Friday of 23d",
+    "preverse": "",
+    "prefix": "Brethren, you",
+    "prefixb": "",
+    "verses": "1Thess_2014_2020",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1055,
+  "fields": {
+    "pericope": "341grk",
+    "book": "Apostol",
+    "display": "1 Thessalonians 3.8-13",
+    "sdisplay": "1 Thess 3.8-13",
+    "desc": "Tuesday of 24th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "1Thess_3008_3013",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1056,
+  "fields": {
+    "pericope": "342grk",
+    "book": "Apostol",
+    "display": "1 Thessalonians 4.18-5.10",
+    "sdisplay": "1 Thess 4.18-5.10",
+    "desc": "Thursday of 24th",
+    "preverse": "",
+    "prefix": "Brethren, concerning the times and the seasons,",
+    "prefixb": "",
+    "verses": "1Thess_4018_5010",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1057,
+  "fields": {
+    "pericope": "343grk",
+    "book": "Apostol",
+    "display": "2 Corinthians 13.3-13",
+    "sdisplay": "2 Cor 13.3-13",
+    "desc": "Wednesday of 14th",
+    "preverse": "",
+    "prefix": "Brethren, ",
+    "prefixb": "",
+    "verses": "2Cor_13003_13013",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1058,
+  "fields": {
+    "pericope": "344grk",
+    "book": "Apostol",
+    "display": "Acts 5.21-32",
+    "sdisplay": "Acts 5.21-32",
+    "desc": "Saturday of 2d after Pascha",
+    "preverse": "",
+    "prefix": "In those days, when the Apostles",
+    "prefixb": "",
+    "verses": "Acts_5021_5032",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1059,
+  "fields": {
+    "pericope": "345grk",
+    "book": "Apostol",
+    "display": "Colossians 1.1-3, 7-11",
+    "sdisplay": "Col 1.1-3, 7-11",
+    "desc": "Tuesday of 21st",
+    "preverse": "",
+    "prefix": "Brethren, ",
+    "prefixb": "As",
+    "verses": "Col_1001_1003|Col_1007_1011",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1060,
+  "fields": {
+    "pericope": "346grk",
+    "book": "Apostol",
+    "display": "Ephesians 5.20-25",
+    "sdisplay": "Eph 5.20-25",
+    "desc": "Tuesday of 18th",
+    "preverse": "",
+    "prefix": "Brethren, give",
+    "prefixb": "",
+    "verses": "Eph_5020_5025",
+    "suffix": ".",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1061,
+  "fields": {
+    "pericope": "347grk",
+    "book": "Apostol",
+    "display": "Hebrews 11.8-16",
+    "sdisplay": "Heb 11.8-16",
+    "desc": "Friday of 30th",
+    "preverse": "",
+    "prefix": "Brethren, by",
+    "prefixb": "",
+    "verses": "Heb_11008_11016",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1062,
+  "fields": {
+    "pericope": "309grk",
+    "book": "Luke",
+    "display": "Luke 14.1, 12-15",
+    "sdisplay": "Luke 14.1, 12-15",
+    "desc": "Monday of 26 Sunday",
+    "preverse": "",
+    "prefix": "At that time, Jesus went into the house of one of the chief Pharisees on the Sabbath day to eat bread, and He",
+    "prefixb": "",
+    "verses": "Luke_14001_14001|Luke_14012_14015",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1063,
+  "fields": {
+    "pericope": "310grk",
+    "book": "Luke",
+    "display": "Luke 9.51-57, 10.22-24, 13.22",
+    "sdisplay": "Luke 9.51-57, 10.22-24, 13.22",
+    "desc": "Icon",
+    "preverse": "",
+    "prefix": "At that time, when the time had come for Jesus to be received up,",
+    "prefixb": "And He turned to his disciples and said, ",
+    "verses": "Luke_9051_9057|Luke_10022_10024|Luke_13022_13022",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1064,
+  "fields": {
+    "pericope": "311grk",
+    "book": "Matthew",
+    "display": "Matthew 16.13-19",
+    "sdisplay": "Matt 16.13-19",
+    "desc": "blessing church",
+    "preverse": "",
+    "prefix": "At that time, when",
+    "prefixb": "",
+    "verses": "Matt_16013_16019",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1811,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -62,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1014,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1812,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -55,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1015,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1813,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -42,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1016,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1814,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -2,
+    "source": "Gospel",
+    "desc": "Composite",
+    "pericope": 1017,
+    "ordering": 531,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1815,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 3,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1018,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1816,
+  "fields": {
+    "month": 5,
+    "day": 8,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St John",
+    "pericope": 1020,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1817,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 28,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1021,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1818,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 32,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1022,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1819,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 33,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1023,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1820,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 36,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1024,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1821,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 36,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1025,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1822,
+  "fields": {
+    "month": 5,
+    "day": 21,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Saints",
+    "pericope": 1019,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1823,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 47,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1026,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1824,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 48,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1001,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1825,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 51,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1027,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1826,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 54,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1028,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1827,
+  "fields": {
+    "month": 6,
+    "day": 11,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Apostles",
+    "pericope": 1021,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1828,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 62,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1029,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1829,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 64,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1030,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1830,
+  "fields": {
+    "month": 6,
+    "day": 19,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Jude",
+    "pericope": 1031,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1831,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 85,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1032,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1832,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 102,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1033,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1833,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 103,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1034,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1834,
+  "fields": {
+    "month": 7,
+    "day": 25,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Anna",
+    "pericope": 1007,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1835,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 123,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1035,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1836,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 132,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1036,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1837,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 136,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1037,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1838,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 144,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1038,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1839,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 147,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1039,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1840,
+  "fields": {
+    "month": 9,
+    "day": 14,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Elevation",
+    "pericope": 1040,
+    "ordering": 901,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1841,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 1008,
+    "source": "Epistle",
+    "desc": "Saturday after Elevation",
+    "pericope": 1036,
+    "ordering": 801,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1842,
+  "fields": {
+    "month": 9,
+    "day": 23,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Forerunner",
+    "pericope": 1007,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1843,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 183,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1041,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1844,
+  "fields": {
+    "month": 10,
+    "day": 18,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Luke",
+    "pericope": 1042,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1845,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 193,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1043,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1846,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 224,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1044,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1847,
+  "fields": {
+    "month": 12,
+    "day": 9,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Anna",
+    "pericope": 1007,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1848,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 242,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1045,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1849,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 254,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1046,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1850,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 260,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1047,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1851,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 264,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1048,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1852,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -126,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1044,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1853,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -108,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1045,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1854,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -96,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1046,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1855,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -90,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1047,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1856,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -86,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1048,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1857,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 105,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1050,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1858,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -61,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1051,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1859,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -60,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1052,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1860,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -79,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1053,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1861,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 271,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1053,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1862,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 208,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1054,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1863,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 212,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1055,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1864,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 214,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1056,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1865,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 143,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1057,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1866,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 13,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1058,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1867,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 191,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1059,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1868,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 170,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1060,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1869,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 257,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1061,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1870,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -93,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1061,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1871,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 251,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 996,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1872,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -99,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 996,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1873,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 225,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1062,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1874,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": -125,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1062,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1875,
+  "fields": {
+    "month": 8,
+    "day": 16,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Image",
+    "pericope": 1063,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1876,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 135,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1005,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1877,
+  "fields": {
+    "month": 9,
+    "day": 13,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Church",
+    "pericope": 1064,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1878,
+  "fields": {
+    "month": 2,
+    "day": 15,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Onesimus",
+    "pericope": 751,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1879,
+  "fields": {
+    "month": 11,
+    "day": 22,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Philemon",
+    "pericope": 751,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1880,
+  "fields": {
+    "month": 12,
+    "day": 20,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Ignatius",
+    "pericope": 777,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1881,
+  "fields": {
+    "month": 12,
+    "day": 20,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Ignatius",
+    "pericope": 168,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1882,
+  "fields": {
+    "month": 8,
+    "day": 2,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Stephen",
+    "pericope": 415,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1883,
+  "fields": {
+    "month": 8,
+    "day": 2,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Stephen",
+    "pericope": 181,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1884,
+  "fields": {
+    "month": 8,
+    "day": 9,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Matthias",
+    "pericope": 400,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1885,
+  "fields": {
+    "month": 8,
+    "day": 16,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Image",
+    "pericope": 998,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1886,
+  "fields": {
+    "month": 9,
+    "day": 6,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "Archangel Michael",
+    "pericope": 754,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1887,
+  "fields": {
+    "month": 9,
+    "day": 6,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "Archangel Michael",
+    "pericope": 255,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1888,
+  "fields": {
+    "month": 9,
+    "day": 12,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Autonomos",
+    "pericope": 1025,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1889,
+  "fields": {
+    "month": 9,
+    "day": 20,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Eustathius",
+    "pericope": 671,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1890,
+  "fields": {
+    "month": 10,
+    "day": 11,
+    "pdist": 999,
+    "source": "Epistle",
+    "desc": "St Philip the Deacon",
+    "pericope": 418,
+    "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 181,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2026,
+    "month": 12,
+    "day": 30,
+    "source": "Gospel",
+    "pdist": 263,
+    "note": "goarch.org and antiochian.org: Mark 10:17-27"
+  }
+},
+{
+  "model": "calendarium.ordoreading",
+  "pk": 182,
+  "fields": {
+    "jurisdiction": "greek",
+    "year": 2026,
+    "month": 12,
+    "day": 31,
+    "source": "Gospel",
+    "pdist": 264,
+    "note": "goarch.org and antiochian.org: Mark 10:24-32"
   }
 }
 ]

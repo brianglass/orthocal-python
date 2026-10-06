@@ -52,7 +52,9 @@ class VerseManager(models.Manager):
                 m = range_re.match(verse_range)
                 last_chapter, last_verse = m.group(3), m.group(4)
                 if books.is_chapterless(book):
-                    first_chapter, first_verse = 1, m.group(1)
+                    # "Jude 11-25" and "Jude 1:11-25" both mean verses 11-25.
+                    first_chapter, first_verse = 1, m.group(2) or m.group(1)
+                    last_chapter = None
                 elif m.group(2):
                     first_chapter, first_verse = m.group(1), m.group(2)
                 elif previous_chapter:
