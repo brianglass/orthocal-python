@@ -20,13 +20,23 @@ Dates:
   calendar=julian, the year/month/day in the result are the church-calendar
   (Julian) date, which is 13 days earlier -- e.g. civil January 7 returns
   December 25, the Nativity. Report the civil date to the user.
-- search_saints returns the fixed church-calendar month/day of each
-  commemoration. On the New calendar that is also the civil date. On the Old
-  calendar, add 13 days to get the civil date (1900-2099) before calling
-  get_day. Moveable feasts tied to Pascha are not found by search_saints.
+- search_saints and get_saint return the fixed church-calendar month/day of
+  each commemoration. On the New calendar that is also the civil date. On
+  the Old calendar, add 13 days to get the civil date (1900-2099) before
+  calling get_day. The few that move each year (e.g. the Sundays of Lent)
+  have moveable=true instead, plus pascha_distance when tied to Pascha.
 
-Workflow: to tell someone about a saint, call search_saints, then get_day on
-the resulting civil date for the full life (in stories) and the readings.
+Saints:
+- search_saints finds commemorations by name. It never returns the life
+  (story) text, since a search can match many results; each result's
+  has_story says whether one exists.
+- To read a saint's life, pass a slug from that result's saint_slugs to
+  get_saint. It returns every occasion the saint is commemorated on, each
+  with its story (or null), plus a url to their page on orthocal.info.
+- Only call get_saint for results with has_story true when the life is what
+  you want; many saints, especially Greek-tradition ones, have no life yet.
+- Use get_day instead when you want everything for a date: its readings,
+  fasting, and the stories of all that day's saints.
 
 Reading results:
 - summary_title is the best one-line name for the day.
