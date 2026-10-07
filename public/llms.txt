@@ -4,7 +4,7 @@
 
 ## For AI assistants and agents
 
-- [AI Assistant](/ai-assistant/): connect an MCP client to `/mcp` (Streamable HTTP) for two tools -- look up a day's feasts/fasting/readings/saints, and search for a saint by name.
+- [AI Assistant](/ai-assistant/): connect an MCP client to `/mcp` (Streamable HTTP) for three tools -- look up a day's feasts/fasting/readings/saints, search for a saint by name, and read a saint's life.
 - [MCP Server Card](/.well-known/mcp/server-cards.json): machine-readable server metadata.
 
 ## For developers
