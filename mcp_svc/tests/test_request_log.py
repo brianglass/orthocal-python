@@ -44,6 +44,12 @@ async def _echo_app(scope, receive, send):
     await send({'type': 'http.response.body', 'body': b'{"ok":true}'})
 
 
+async def _failing_status_app(scope, receive, send):
+    await receive()
+    await send({'type': 'http.response.start', 'status': 503, 'headers': []})
+    await send({'type': 'http.response.body', 'body': b''})
+
+
 async def _run(app, scope, receive):
     out = io.StringIO()
     with contextlib.redirect_stdout(out):
@@ -64,7 +70,14 @@ class LogMCPRequestsTestCase(IsolatedAsyncioTestCase):
             ('Authorization', 'Bearer xyz'),
         ])
 
-        records = await _run(_echo_app, scope, _receiver(body[:10], body[10:]))
+        async def slow_echo_app(scope, receive, send):
+            await asyncio.sleep(0.05)
+            await _echo_app(scope, receive, send)
+
+        # Only slow (or failed) requests are logged in full.
+        with mock.patch.object(request_log, 'SLOW_AFTER_SECONDS', 0.01):
+            records = await _run(slow_echo_app, scope, _receiver(body[:10], body[10:]))
+        records = [r for r in records if r['stage'] == 'done']
 
         self.assertEqual(len(records), 1)
         record = records[0]
@@ -101,11 +114,19 @@ class LogMCPRequestsTestCase(IsolatedAsyncioTestCase):
 
     async def test_batch_and_unparseable_bodies(self):
         batch = b'[{"jsonrpc":"2.0","method":"notifications/initialized"},{"jsonrpc":"2.0","id":2,"method":"tools/list"}]'
-        records = await _run(_echo_app, _scope(), _receiver(batch))
+        records = await _run(_failing_status_app, _scope(), _receiver(batch))
         self.assertEqual([m['method'] for m in records[0]['jsonrpc']['batch']], ['notifications/initialized', 'tools/list'])
 
-        records = await _run(_echo_app, _scope(), _receiver(b'{"jsonrpc":'))
+        records = await _run(_failing_status_app, _scope(), _receiver(b'{"jsonrpc":'))
         self.assertEqual(records[0]['jsonrpc'], {'parse_error': True})
+
+    async def test_fast_successful_requests_log_nothing(self):
+        records = await _run(_echo_app, _scope(), _receiver(b'{"jsonrpc":"2.0","id":1,"method":"ping"}'))
+        self.assertEqual(records, [])
+
+    async def test_server_errors_are_logged(self):
+        records = await _run(_failing_status_app, _scope(), _receiver(b'{"jsonrpc":"2.0","id":1,"method":"ping"}'))
+        self.assertEqual([(r['stage'], r['status']) for r in records], [('done', 503)])
 
     async def test_exception_is_logged_and_reraised(self):
         async def failing_app(scope, receive, send):
