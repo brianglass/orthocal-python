@@ -91,6 +91,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'orthocal.middleware.log_language',
     'django.middleware.common.CommonMiddleware',
+    'orthocal.middleware.finite_calendar_for_crawlers',
     'orthocal.middleware.cache_control',
 ]
 

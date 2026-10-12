@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /api/gregorian/
+Disallow: /api/greek/
+Disallow: /api/slavic/
 Disallow: /api/julian/
 Disallow: /api/oca/
 Disallow: /api/rocor/
