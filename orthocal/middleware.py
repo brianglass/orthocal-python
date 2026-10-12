@@ -1,10 +1,13 @@
 import datetime
 import logging
+import re
 
 import newrelic.agent
 
 from asgiref.sync import iscoroutinefunction, markcoroutinefunction
 from django.conf import settings
+from django.http import HttpResponseNotFound
+from django.urls import Resolver404, resolve
 from django.utils import timezone
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
@@ -58,6 +61,32 @@ def log_language(get_response):
 
     return middleware
 
+@sync_and_async_middleware
+def finite_calendar_for_crawlers(get_response):
+    """404 crawlers asking for a date outside the indexable window.
+
+    Every date in every year is a valid page, so to a crawler the calendar
+    is infinite: in Oct 2026, 78% of peak-hour requests were for dates
+    beyond is_indexable's window (Meta's crawler was reading the 2280s).
+    The pages' noindex and nofollow don't help, since those crawlers work
+    from URL lists, not links. Real visitors and API clients (e.g. the
+    mobile app) are untouched -- this matches only self-declared crawlers.
+    It has to run before cache_control, which marks responses public:
+    Firebase's CDN would otherwise serve the cached 404 to people too."""
+
+    if iscoroutinefunction(get_response):
+        async def middleware(request):
+            if is_crawler_outside_window(request):
+                return out_of_window_response()
+            return await get_response(request)
+    else:
+        def middleware(request):
+            if is_crawler_outside_window(request):
+                return out_of_window_response()
+            return get_response(request)
+
+    return middleware
+
 # Helper functions
 
 def patch_headers(response):
@@ -88,3 +117,33 @@ def set_request_queueing(request):
             transaction.queue_start = float(fields[0][1:])
         except (IndexError, ValueError):
             pass
+
+CRAWLER_RE = re.compile(r'bot|crawl|spider|slurp|externalagent|externalhit', re.IGNORECASE)
+
+def is_crawler_outside_window(request):
+    if not CRAWLER_RE.search(request.META.get('HTTP_USER_AGENT', '')):
+        return False
+
+    try:
+        kwargs = resolve(request.path_info).kwargs
+    except Resolver404:
+        return False
+
+    if 'year' not in kwargs:
+        return False
+
+    try:
+        dt = datetime.date(kwargs['year'], kwargs.get('month', 1), kwargs.get('day', 1))
+    except (TypeError, ValueError):
+        return False
+
+    # Imported here: calendarium.views imports far more than middleware
+    # should pull in at settings-load time.
+    from calendarium.views import is_indexable
+    return not is_indexable(dt)
+
+def out_of_window_response():
+    response = HttpResponseNotFound()
+    response['Cache-Control'] = 'no-store'
+    response['X-Robots-Tag'] = 'noindex, nofollow'
+    return response
