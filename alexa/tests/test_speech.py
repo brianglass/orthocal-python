@@ -29,10 +29,13 @@ class SpeechTestCase(TestCase):
         self.assertNotIn('Today', actual)
 
     async def test_when_speech_today(self):
-        now = timezone.localtime()
-        later = now + timedelta(hours=2)
+        # Today's date itself, not now + a few hours: after 10pm local time
+        # (TIME_ZONE is America/Los_Angeles) that lands on tomorrow, and
+        # Dependabot's runs start ~06:00 UTC -- 10-11pm Pacific -- so every
+        # one of them failed here.
+        today = timezone.localdate()
 
-        day = liturgics.Day(later.year, later.month, later.day)
+        day = liturgics.Day(today.year, today.month, today.day)
         await day.ainitialize()
         actual = speech.when_speech(day)
 
