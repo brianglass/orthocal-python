@@ -8,6 +8,12 @@ when the request body finished arriving, the response started, and the
 response finished -- enough to tell a client that never finishes sending
 from a handler that never answers from a response that never closes.
 
+That found the cause (a subscriptions/listen stream; see server.py), so
+it now logs only the requests worth a look: a "slow" snapshot once one
+has run SLOW_AFTER_SECONDS, then a "done" line for any request that was
+slow, failed with a 5xx or no response at all, or raised. Ordinary fast
+requests log nothing.
+
 Only the method, id, and parameter *names* are logged, never argument
 values, so no user query text ends up in the logs.
 """
@@ -136,8 +142,12 @@ def log_mcp_requests(app):
                     record.mark('response_complete')
             await send(message)
 
+        slow = False
+
         async def watchdog():
+            nonlocal slow
             await asyncio.sleep(SLOW_AFTER_SECONDS)
+            slow = True
             record.emit('slow')
 
         watchdog_task = asyncio.create_task(watchdog())
@@ -148,6 +158,8 @@ def log_mcp_requests(app):
             raise
         finally:
             watchdog_task.cancel()
-            record.emit('done')
+            status = record.fields.get('status')
+            if slow or 'exception' in record.fields or status is None or status >= 500:
+                record.emit('done')
 
     return wrapped
