@@ -4,6 +4,7 @@ from datetime import date
 from typing import List
 
 from django.conf import settings
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
@@ -257,13 +258,31 @@ async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calenda
 
     return await _get_calendar_day(request, cal, tradition, year, month, day, translation)
 
-async def _get_calendar_month(request, cal, tradition, year, month) -> List[DaySchemaLite]:
-    days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)]
-    for day in days:
-        await day.aget_readings()
-        await day.aget_abbreviated_readings()
+async def _get_calendar_month(request, cal, tradition, year, month):
+    # A month costs ~0.4s of CPU to compute, and the mobile app fetches
+    # several at once on launch -- the same few current months for every
+    # user -- so cache them, like ical.py does its feeds. The result doesn't
+    # depend on the request's language or on today's date, only on these
+    # four parameters. The cache is per-instance, so this helps warm
+    # instances rather than serving as a site-wide cache.
+    #
+    # The rendered JSON is cached and returned as an HttpResponse, which
+    # ninja passes through as-is: returning validated DaySchemaLite objects
+    # instead fails, because ninja re-validates the result against the
+    # response schema by its source aliases (pdist, jdn, ...).
+    key = f'api-month-{tradition}-{cal}-{year}-{month}'
 
-    return days
+    if (content := await cache.aget(key)) is None:
+        days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)]
+        for day in days:
+            await day.aget_readings()
+            await day.aget_abbreviated_readings()
+
+        data = [DaySchemaLite.model_validate(day, from_attributes=True).model_dump() for day in days]
+        content = api.create_response(request, data, status=200).content
+        await cache.aset(key, content, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+
+    return HttpResponse(content, content_type=f'{api.renderer.media_type}; charset={api.renderer.charset}')
 
 @api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
 @instrument_endpoint
