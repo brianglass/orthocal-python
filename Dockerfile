@@ -1,4 +1,4 @@
-FROM python:3.15-rc-slim
+FROM python:3.15-slim
 
 WORKDIR /orthocal
 
