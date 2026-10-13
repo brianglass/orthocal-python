@@ -1,9 +1,10 @@
 import json
 
 from pathlib import Path
-from unittest import skip
+from unittest import mock, skip
 
 from dateutil.rrule import rrule, DAILY
+from django.core.cache import cache
 from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -210,3 +211,38 @@ class DayAPITestCase(TestCase):
 
         response = self.client.get(url, {'url': calendar_url}, format='json')
         self.assertEqual(response.status_code, 200)
+
+
+class MonthCacheTestCase(TestCase):
+    """api._get_calendar_month caches each month's response."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def setUp(self):
+        cache.clear()
+
+    def _get(self, **kwargs):
+        url = reverse('api:get_calendar_month', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 1, **kwargs})
+        response = self.client.get(url, format='json')
+        self.assertEqual(response.status_code, 200)
+        return response.json()
+
+    def test_cached_response_matches_the_golden_file(self):
+        with open(BASE_DIR / 'data/january.json') as f:
+            expected = json.loads(f.read())
+
+        self.assertEqual(expected, self._get())  # computed
+        self.assertEqual(expected, self._get())  # from the cache
+
+    def test_cache_hit_skips_computation(self):
+        self._get()
+
+        with mock.patch.object(api.liturgics, 'amonth_of_days', side_effect=AssertionError('recomputed')):
+            self._get()
+
+    def test_months_are_cached_separately(self):
+        january = self._get()
+        julian_january = self._get(cal='julian')
+
+        self.assertNotEqual(january, julian_january)
+        self.assertEqual(julian_january, self._get(cal='julian'))
