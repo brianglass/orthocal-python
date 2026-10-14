@@ -65094,6 +65094,57 @@
   }
 },
 {
+  "model": "calendarium.pericope",
+  "pk": 1064,
+  "fields": {
+    "pericope": "348grk",
+    "book": "Apostol",
+    "display": "Acts 9.19-31",
+    "sdisplay": "Acts 9.19-31",
+    "desc": "Saturday of 3d after Pascha",
+    "preverse": "",
+    "prefix": "In those days, Saul spent some days with the disciples at Damascus. And immediately",
+    "prefixb": "",
+    "verses": "Acts_9019_9031",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1065,
+  "fields": {
+    "pericope": "349grk",
+    "book": "Apostol",
+    "display": "Ephesians 4.14-17",
+    "sdisplay": "Eph 4.14-17",
+    "desc": "Thursday of 17th",
+    "preverse": "",
+    "prefix": "Brethren,",
+    "prefixb": "",
+    "verses": "Eph_4014_4017",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
+  "model": "calendarium.pericope",
+  "pk": 1066,
+  "fields": {
+    "pericope": "311grk",
+    "book": "Luke",
+    "display": "Luke 4.38-44",
+    "sdisplay": "Luke 4.38-44",
+    "desc": "Monday of 19th Sunday",
+    "preverse": "4037",
+    "prefix": "At that time, Jesus entered Simon&rsquo;s house. And the report about Him went out into every place in the surrounding region.",
+    "prefixb": "",
+    "verses": "Luke_4038_4044",
+    "suffix": "",
+    "flag": 0
+  }
+},
+{
   "model": "calendarium.reading",
   "pk": 1811,
   "fields": {
@@ -66274,6 +66325,81 @@
     "desc": "St Philip the Deacon",
     "pericope": 418,
     "ordering": 821,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1891,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 20,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1064,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1892,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 165,
+    "source": "Epistle",
+    "desc": "",
+    "pericope": 1065,
+    "ordering": 811,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1893,
+  "fields": {
+    "month": 0,
+    "day": 0,
+    "pdist": 176,
+    "source": "Gospel",
+    "desc": "",
+    "pericope": 1066,
+    "ordering": 911,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1894,
+  "fields": {
+    "month": 5,
+    "day": 10,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Simon",
+    "pericope": 226,
+    "ordering": 921,
+    "flag": 0,
+    "tradition": "greek"
+  }
+},
+{
+  "model": "calendarium.reading",
+  "pk": 1895,
+  "fields": {
+    "month": 9,
+    "day": 20,
+    "pdist": 999,
+    "source": "Gospel",
+    "desc": "St Eustathius",
+    "pericope": 311,
+    "ordering": 921,
     "flag": 0,
     "tradition": "greek"
   }

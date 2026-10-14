@@ -10,11 +10,10 @@ investigation history, kept because it records *why* decisions were made and
 which hypotheses are already dead; some of its early sections are superseded
 and are marked as such.
 
-Last measured 2026-08-27: against goarch.org over calendar 2026, the app is
-**correct on 333 of 336 days (99.1%)**.
-
-Re-measured 2026-09-18 by verse set after the exact-boundary work; see the
-addendum under "Accuracy, measured".
+Last measured 2026-10-14, by verse set against goarch.org: **6,626 of 6,696
+Epistle and Gospel fields (99.0%) over 2018-2027**, and 670 of 672 in 2026.
+An earlier "99.1%" compared only each citation's opening verse and is not
+comparable; see "Accuracy, measured".
 
 ---
 
@@ -153,40 +152,58 @@ Ranked by how much they cost a reader:
 
 ## Accuracy, measured
 
-| | days compared | correct |
+`tools/greek/goa_verse_audit.py` against `data/goarch_readings_2018_2027.json`
+(goarch.org's full citations for every civil date, 2018-2027). A field matches
+only if some app reading of the same kind covers exactly goarch.org's verses.
+
+| year | Epistle/Gospel fields | exact |
 |---|---|---|
-| app(Greek) vs goarch.org, calendar 2026 | 336 | **333 (99.1%)** |
+| 2018 | 668 | 661 (99.0%) |
+| 2019 | 668 | 659 (98.7%) |
+| 2020 | 672 | 667 (99.3%) |
+| 2021 | 668 | 661 (99.0%) |
+| 2022 | 670 | 660 (98.5%) |
+| 2023 | 670 | 659 (98.4%) |
+| 2024 | 672 | 663 (98.7%) |
+| 2025 | 668 | 665 (99.6%) |
+| 2026 | 672 | 670 (99.7%) |
+| 2027 | 668 | 661 (99.0%) |
+| **all** | **6,696** | **6,626 (99.0%)** |
 
-Three remain, and none is addressable from these sources:
+Before the exact-boundary work (PR #252) the same measure gave 90.8%; after
+it, 98.6%. Five more rows found with `--recurring` and corroborated by
+antiochian.org brought it to 99.0%. Run the
+script with `--recurring` for the current list of differences; what remains is
+mostly:
 
-| date | what |
-|---|---|
-| 2026-04-10 | Holy Friday -- the Royal Hours structure, which neither feed expresses |
-| 2026-12-30, 12-31 | the pointer suspension, in its pre-Theophany form. These are **not** the surplus weeks, which sit after Leavetaking; both are the same unmodelled mechanism in different parts of the season |
+- **Holy Friday**, every year: both sources print `Matthew 27:62-66`, the
+  Lamentations Gospel (Matins of Holy Saturday, served on Friday evening), where
+  this slot carries the Vespers composite Gospel. Fixing it means modelling the
+  Lamentations as its own service, not swapping one Gospel for the other.
+- **Apostles' feasts moved out of Holy or Bright Week** (`Luke 10:16-21` for
+  St Mark, `Acts 12:1-11` for St James, `Hebrews 13:7-16`): transfer logic,
+  not missing rows.
+- **`1 Timothy 4:4-8`** (pdist 229): goarch.org drops the `16` that
+  antiochian.org keeps, a jurisdictional difference the boundary table does not
+  take sides on.
+- **The Jan 3 and late-December cluster** and moveable-feast transfers listed
+  under "What is still wrong".
 
-Against **antiochian.org** over the same year the figure is 6 days of 365.
-Three of those are the shared unsolved items above; the other three are dates
-where the two jurisdictions genuinely differ, and on the annual-ordo ones both
-readings are now shown side by side rather than only GOA's.
+**The old figure.** Until 2026-10-14 this section reported 333 of 336 days
+(99.1%) for 2026. Every audit then (`goa_gap.py`, `three_way.py`,
+`year_diff.py`) reduced a citation to its opening chapter:verse and accepted a
+match within two verses, and `data/goa2026.txt` kept only that fingerprint. So
+a reading that began with goarch.org's but ended elsewhere (`Acts 15:5-34`
+against `Acts 15:5-12`) counted as correct. The `common` rows carry OCA's
+pericope boundaries, which differ from the Greek ones on dozens of readings a
+year, and none of that was visible. A contributor found it by comparing whole
+verse sets (#228, #236).
 
-**Addendum, 2026-09-18.** The figures above compared only a citation's
-opening chapter and verse, so a reading that starts together with goarch.org's
-but ends elsewhere (`Acts 15:5-34` against `Acts 15:5-12`) counted as correct.
-Comparing the resolved verse sets instead found 45 such fields in 2026 alone.
-`tools/greek/load_exact_boundaries.py` now carries the exact citations where
-goarch.org and antiochian.org agree, and `load_shared_menaion.py` gained the
-weekday saints' readings that 2026 hid because their dates fall on Sundays.
-Measured by verse set against goarch.org: 2024 **660 of 669 fields**, 2025
-**661 of 665**, 2026 **668 of 669**. Of the three items in the table above,
-the two December days are carried as `OrdoReading` rows for 2026; the general
-December rule is still unmodelled. Holy Friday is the remaining 2026
-difference, deliberately: both sources print `Matthew 27:62-66`, the Gospel of
-the Lamentations (Matins of Holy Saturday, served on Friday evening), where this
-slot carries the Vespers composite Gospel. Fixing it properly means modelling
-the Lamentations as its own service, not swapping one Gospel for the other. Against antiochian.org, 2026 differs
-on 3 days of 365 (Jan 24, Feb 6, Jun 14), each a jurisdictional choice rather
-than a boundary. `calendarium/tests/data/antiochian-readings.tsv` pins the
-comparison for every harvested year.
+Against **antiochian.org**, 2026 differs on 3 days of 365 (Jan 24, Feb 6,
+Jun 14), each a jurisdictional choice rather than a boundary; on the
+annual-ordo ones both readings are shown side by side.
+`calendarium/tests/data/antiochian-readings.tsv` pins that comparison, by verse
+set, for every harvested year (2018-2026).
 
 There is no separate Antiochian tradition: one was built, measured and removed
 -- see Part III.
@@ -299,9 +316,11 @@ Every one of these has produced a false result at least once:
   with the issue of blood) and `Mark 5.22-24, 35-6.1` (Jairus' daughter) open
   two verses apart and are different pericopes. Match the *closing* reference
   too. This shipped one wrong ordo row before it was caught.
-- **A one-verse opening difference is usually benign**, though: this repo
-  carries `Matt 22.1-14` where both jurisdictions print `22:2-14`, and there
-  are several such boundary variants.
+- **Compare whole verse sets, never just the opening reference.** A
+  one-verse opening difference (`Matt 22.1-14` against `22:2-14`) was once
+  written off here as benign, and opening-verse matching hid every
+  pericope-boundary error in the Greek data for months. Keep the sources' full
+  citations when harvesting; `goa_verse_audit.py` does the comparison.
 - **Coincidental text reuse.** The same pericope recurs at unrelated positions
   (saints' commons, the cycle repeating). Matching a citation against the
   `Reading` table without a plausibility window produces confident nonsense --
