@@ -678,6 +678,25 @@ class TestGreekFasting(TestCase):
                 self.assertEqual(greek.fast_exception_desc, '')
 
 
+    async def test_clean_week_feast_keeps_wine_and_oil(self):
+        """GOA lets a polyeleos saint's wine and oil through Clean Week's "no
+        overrides" -- but not on Clean Monday. goarch.org marks 2026-02-24
+        (Tuesday) `grapes` and 2031-02-24 (Monday) `strict-fast`; both are the
+        Finding of the Forerunner's Head. Slavic keeps both strict."""
+
+        for (year, month, day), greek_desc in (
+            ((2026, 2, 24), 'Wine and Oil are Allowed'),
+            ((2031, 2, 24), 'No overrides'),
+        ):
+            with self.subTest(date=date(year, month, day)):
+                slavic = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(slavic.fast_exception_desc, 'No overrides')
+                self.assertEqual(greek.fast_exception_desc, greek_desc)
+
 class TestGreekLukanNumbering(TestCase):
     """GreekYear.lukan_sunday_numbers and theophany_interpolation, checked
     against every Sunday in the antiochian.org official liturgical charts
@@ -874,6 +893,53 @@ class TestGreekLukanNumbering(TestCase):
         self.assertEqual(datetools.weekday_from_pdist(leavetaking_sunday), datetools.Weekday.Sunday)
         self.assertNotIn(leavetaking_sunday, sunday_year.floats)
 
+
+
+class TestGreekSundayTitles(TestCase):
+    """Greek Sundays are named for the Gospel read, not counted from
+    Pentecost; see GreekDay._apply_title_conventions. Expected names are
+    antiochian.org's for the same dates."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def test_sunday_titles(self):
+        for (year, month, day), expected in (
+            ((2026, 6, 7), 'Sunday of All Saints'),
+            ((2026, 7, 12), '6th Sunday of Matthew'),
+            ((2026, 9, 27), '1st Sunday of Luke'),
+            ((2026, 11, 29), '13th Sunday of Luke'),     # Lukan jump
+            ((2026, 12, 13), '11th Sunday of Luke'),     # Forefathers
+            ((2026, 12, 20), 'Sunday before Nativity'),  # no number in Greek usage
+            ((2026, 1, 18), '12th Sunday of Luke'),      # after Theophany
+            ((2026, 1, 25), '15th Sunday of Luke'),      # Zacchaeus
+            ((2021, 2, 14), 'Sunday of the Canaanite Woman'),
+            ((2021, 2, 7), '16th Sunday of Matthew'),
+        ):
+            with self.subTest(date=date(year, month, day)):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                await pday.ainitialize()
+                self.assertEqual(pday.titles[0], expected)
+                self.assertEqual(pday.summary_title, expected)
+
+    async def test_sunday_feast_promoted_to_title_is_not_repeated(self):
+        pday = liturgics.Day(2026, 12, 20, tradition=Tradition.Greek)
+        await pday.ainitialize()
+        self.assertNotIn('Sunday before Nativity', pday.feasts)
+
+    async def test_slavic_sundays_still_count_from_pentecost(self):
+        pday = liturgics.Day(2026, 9, 27, tradition=Tradition.Slavic)
+        await pday.ainitialize()
+        self.assertEqual(pday.titles, ['17th Sunday after Pentecost'])
+
+    async def test_july_fathers_differ_by_tradition(self):
+        slavic = liturgics.Day(2026, 7, 19, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 7, 19, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        self.assertIn('Fathers of the 1st Six Ecumenical Councils', slavic.feasts)
+        self.assertIn('Holy Fathers of the 4th Ecumenical Council', greek.feasts)
+        self.assertNotIn('Fathers of the 1st Six Ecumenical Councils', greek.feasts)
 
 class TestHasStory(TestCase):
     """A handful of DayCommemoration.story rows are exactly '<p></p>' --

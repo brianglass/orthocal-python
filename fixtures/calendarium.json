@@ -16879,7 +16879,28 @@
     "fast": 0,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 949,
+  "fields": {
+    "pdist": 1001,
+    "month": 0,
+    "day": 0,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Holy Fathers of the 4th Ecumenical Council",
+    "feast_level": 0,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 0,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
