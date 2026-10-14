@@ -54649,11 +54649,35 @@
   }
 },
 {
+  "model": "commemorations.daycommemoration",
+  "pk": 7251,
+  "fields": {
+    "day": 640,
+    "title": "Hieromartyr Phocas, Bishop of Sinope",
+    "story": null,
+    "rank": 2,
+    "high_rank": false,
+    "new_style": false,
+    "day_native": true,
+    "ordering": 0,
+    "tradition": "greek"
+  }
+},
+{
   "model": "commemorations.daycommemorationsaint",
   "pk": 1731,
   "fields": {
     "commemoration": 7250,
     "saint": 6846,
+    "order": 1
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1732,
+  "fields": {
+    "commemoration": 7251,
+    "saint": 5399,
     "order": 1
   }
 }

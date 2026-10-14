@@ -646,3 +646,38 @@ via this method and multi-year antiochian data plus an OCA cross-check:
   day (Feb 17) and the group day (Oct 5), same as it would need to for
   Slavic. Just a completeness gap in our own data, not a date conflict --
   out of scope today.
+
+## Pass 13 (headlines from issue #228, 2026-10-14)
+
+Issue #228 compared goarch.org's daily headline with this app's and found 19
+dates with no match. Thirteen were Sundays, fixed by naming Greek Sundays after
+the Gospel (`GreekDay._apply_title_conventions`) and by giving the July Fathers
+Sunday its Greek name. The rest were labels and commemorations the Greek data
+lacked. Each is checked against every antiochian.org year that has the date:
+
+| date | Greek | antiochian.org |
+|---|---|---|
+| Jun 25 | Leavetaking of the Nativity of the Forerunner | 2 of 2 years |
+| Jul 23 | Hieromartyr Phocas, Bishop of Sinope | 2 of 2 |
+| Oct 28 | Protection of the Most-Holy Theotokos | 4 of 5 |
+| Dec 8 | Forefeast of the Conception | 8 of 8 |
+| Dec 21-23 | Forefeast of Nativity | 8 of 8 each |
+
+The labels are feast names, which an override row cannot set (`Day.OVERRIDABLE`),
+so each `common` row became a `slavic` row and an identical `greek` copy that
+adds the name -- the shape Oct 1's Protection already has. Fasting, rank and
+saints are copied unchanged, and Slavic output is identical. Phocas is a new
+`greek` commemoration on Jul 23 linked to his existing Saint, who keeps Sep 22
+in both traditions; antiochian.org lists him on both dates. The Protection is
+the Greek Oct 28 observance, alongside Slavic's Oct 1.
+
+Left as they are:
+
+- **Dec 26**: goarch.org heads it "Afterfeast of the Nativity". The app shows
+  the Synaxis of the Theotokos, which antiochian.org also uses as the headline
+  in most years.
+- **Jan 8-13 and Feb 3**: antiochian.org heads these with the Afterfeast of
+  Theophany and of the Presentation, but goarch.org heads them with the day's
+  saints (the issue found a match for every one), and Greek here means GOA.
+  A feast name outranks the saints in `summary_title`, so adding the label
+  would move these days away from goarch.org.

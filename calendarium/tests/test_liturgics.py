@@ -288,6 +288,39 @@ class TestTraditionOverlay(TestCase):
         self.assertIn('Holy Apostle Ananias of the Seventy', slavic.saints)
         self.assertIn('Holy Apostle Ananias of the Seventy', greek.saints)
 
+    async def test_greek_only_feast_labels(self):
+        """Labels Greek practice carries on these dates and Slavic does not
+        headline; see docs/greek-commons.md, pass 13. Slavic is unchanged."""
+
+        for (month, day), label in (
+            ((6, 25), 'Leavetaking of the Nativity of the Forerunner'),
+            ((10, 28), 'Protection of the Most-Holy Theotokos'),
+            ((12, 8), 'Forefeast of the Conception by St Anna of the Theotokos'),
+            ((12, 21), 'Forefeast of Nativity'),
+            ((12, 23), 'Forefeast of Nativity'),
+        ):
+            with self.subTest(month=month, day=day):
+                slavic = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
+                await slavic.ainitialize()
+                await greek.ainitialize()
+
+                self.assertEqual(greek.summary_title, label)
+                self.assertNotIn(label, slavic.feasts)
+                self.assertEqual(
+                    (greek.fast_level, greek.feast_level),
+                    (slavic.fast_level, slavic.feast_level))
+
+    async def test_phocas_on_july_23_for_greek(self):
+        slavic = liturgics.Day(2026, 7, 23, tradition=Tradition.Slavic)
+        greek = liturgics.Day(2026, 7, 23, tradition=Tradition.Greek)
+        await slavic.ainitialize()
+        await greek.ainitialize()
+
+        phocas = 'Hieromartyr Phocas, Bishop of Sinope'
+        self.assertTrue(greek.summary_title.startswith(phocas))
+        self.assertNotIn(phocas, slavic.saints)
+
     async def test_raphael_brooklyn_differing_commemoration_date(self):
         """St. Raphael of Brooklyn -- founding bishop of Antiochian
         Orthodoxy in America -- is kept on Feb 27 (his repose date) by
