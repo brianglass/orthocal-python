@@ -24,6 +24,11 @@ touch the ORM need the Django environment:
 | GOA's Triodion disagrees with the Paschalion in exactly 2 of 30 cycles | `pp_align.py` | as above |
 | the app followed GOA on weekdays but Antiochian on Sundays | `sunday_alleg.py` | both sources |
 | GOA vs Antiochian differ on ~4 days in calendar 2026 | `fingerprint.py` then `year_diff.py` | `data/goa2026.txt`, `data/ant2026.txt` |
+| app(Greek) vs goarch.org by verse set, 2018-2027 (the current accuracy measure) | `goa_verse_audit.py` | `data/goarch_readings_2018_2027.json` |
+
+`goa_gap.py`, `three_way.py`, `year_diff.py` and `goa_audit.py` match only a
+citation's opening chapter:verse within two verses, so they cannot see
+pericope-boundary differences. Use `goa_verse_audit.py` for accuracy.
 
 ## Harvesting more
 
@@ -35,7 +40,10 @@ antiochian's horizon should be reconsidered against it.
 To harvest goarch.org: open any goarch.org page in a real browser, clear the
 Cloudflare interstitial by hand once, then `fetch()` further months from
 inside the page origin — same-origin requests inherit the clearance for the
-rest of the session. The month grid parses out of `innerText` as
+rest of the session. Save full citations, not fingerprints. The month grid's
+lectionary links carry a `type` parameter (`E`, `G`, `MG` for the Matins
+Gospel, `OT`) that labels each reading reliably; the grid also parses out of
+`innerText` as
 `[day, long date, fasting lines, label, saints..., 'Epistle Reading', '-',
 epistle, 'Gospel Reading', '-', gospel]`.
 
