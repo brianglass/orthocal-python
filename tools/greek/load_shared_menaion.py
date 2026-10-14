@@ -10,6 +10,10 @@ Rows are `greek`-tagged and additive. Where a `common` row already occupies the
 slot it is left alone -- _prefer_tradition picks the greek row for the Greek
 tradition and the common one for Slavic, so Slavic is unaffected.
 
+Run load_exact_boundaries.py first: two rows here (May 7, Sep 12) use
+pericopes that only that script creates.
+
+    docker compose exec -T local python tools/greek/load_exact_boundaries.py
     docker compose exec -T local python tools/greek/load_shared_menaion.py
     docker compose exec -T local ./manage.py dumpdata calendarium --indent=2 -o fixtures/calendarium.json
 """
@@ -20,6 +24,7 @@ os.chdir(sys.path[0])
 import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
+from django.db import transaction
 from calendarium.models import Pericope, Reading
 
 # (month, day, source, pericope sdisplay, desc, evidence)
@@ -56,7 +61,7 @@ ROWS = [
      'changed: antiochian.org showed Luke 5:12-16 in 2019-2021 and '
      'Luke 10:38-42, 11:27-28 in every year from 2022 through 2026, which '
      'goarch.org corroborates for 2026. Taking the later, stable value'),
-    (5, 7, 'Epistle', 'Acts 26.1-5, 12-20',         'Appearance of the Cross over Jerusalem',
+    (5, 7, 'Epistle', 'Acts 26.1, 12-20',           'Appearance of the Cross over Jerusalem',
      'Acts 26:1, 12-20 on all 3 harvested years where May 7 falls on a weekday '
      '(2019 Tue, 2025 Wed, 2026 Thu); the other two are outranked by Bright '
      'Week and a Sunday. The same Epistle Ss Constantine and Helen carry on '
@@ -64,21 +69,61 @@ ROWS = [
      'appeared to Constantine, and Acts 26 is Paul recounting the light from '
      'heaven. The Gospel stays with the Paschal cycle: antiochian.org shows a '
      'different one each year, matching what the app already computes'),
+    # Weekday commemorations that 2026 hid: each of these dates is a Sunday in
+    # 2026, so the Sunday readings masked them in the single-year audit.
+    (2, 15, 'Epistle', 'Philemon 1-25',             'St Onesimus',
+     'antiochian.org 2018, 2020, 2023, 2025; goarch.org 2024, 2025. Explains '
+     'the two "Philemon" years in the Prodigal Son Saturday sample in '
+     'docs/greek-commons.md: those were Feb 15 falling on that Saturday'),
+    (11, 22, 'Epistle', 'Philemon 1-25',            'St Philemon',
+     'antiochian.org 2018, 2021, 2022, 2023, 2024; goarch.org 2024, 2025'),
+    (12, 20, 'Epistle', 'Heb 10.32-38',             'St Ignatius',
+     'antiochian.org 2018, 2021-2024; goarch.org 2024. 2025 is the Saturday '
+     'before Nativity, which wins'),
+    (12, 20, 'Gospel',  'Mark 9.33-41',             'St Ignatius',
+     'antiochian.org 2018, 2021-2024; goarch.org 2024'),
+    (8, 2, 'Epistle',  'Acts 6.8-7.5, 47-60',       'St Stephen',
+     'Translation of the relics; goarch.org 2024, 2025; antiochian.org 2025'),
+    (8, 2, 'Gospel',   'Mark 12.1-12',              'St Stephen',
+     'goarch.org 2024, 2025; antiochian.org 2025'),
+    (8, 9, 'Epistle',  'Acts 1.12-17, 21-26',       'St Matthias',
+     'goarch.org 2024, 2025; antiochian.org 2025. The Gospel stays with the '
+     'cycle in both sources'),
+    (8, 16, 'Epistle', '1 Tim 3.13-4.5',            'Image',
+     'goarch.org 2024, 2025; antiochian.org 2025. Same slot as the common '
+     'Col 1:12-18, which Slavic keeps; the Gospel already has a greek row'),
+    (9, 6, 'Epistle',  'Heb 2.2-10',                'Archangel Michael',
+     'Miracle at Colossae; goarch.org 2024, 2025; antiochian.org 2025'),
+    (9, 6, 'Gospel',   'Luke 10.16-21',             'Archangel Michael',
+     'goarch.org 2024, 2025; antiochian.org 2025'),
+    (9, 12, 'Gospel',  'John 11.47-54',             'St Autonomos',
+     'goarch.org 2024, 2025; antiochian.org 2025, alongside the Leavetaking '
+     'Gospel the common row carries. The Epistle differs by year'),
+    (9, 20, 'Epistle', 'Eph 6.10-17',               'St Eustathius',
+     'goarch.org 2024, 2025; antiochian.org 2025. 2025 is the Saturday after '
+     'the Elevation, which takes the Gospel'),
+    (10, 11, 'Epistle', 'Acts 8.26-39',             'St Philip the Deacon',
+     'goarch.org 2024, 2025; antiochian.org 2025'),
 ]
 ORDERING = {'Epistle': 821, 'Gospel': 921}
 
-for month, day, source, sdisplay, desc, evidence in ROWS:
-    pericope = Pericope.objects.get(sdisplay=sdisplay)
-    row, created = Reading.objects.update_or_create(
-        month=month, day=day, source=source, tradition='greek',
-        ordering=ORDERING[source],
-        defaults={'pdist': 999, 'desc': desc, 'pericope': pericope, 'flag': 0},
-    )
-    existing = Reading.objects.filter(
-            month=month, day=day, source=source, tradition='common').first()
-    note = f'(overrides common {existing.pericope.sdisplay})' if existing else '(no prior row)'
-    print(f'{"+" if created else "~"} {month:02d}-{day:02d} {source:<8} greek {sdisplay:<26} {note}')
-    print(f'    {evidence}')
+# One transaction, so a missing pericope leaves nothing half applied.
+with transaction.atomic():
+    for month, day, source, sdisplay, desc, evidence in ROWS:
+        try:
+            pericope = Pericope.objects.get(sdisplay=sdisplay)
+        except Pericope.DoesNotExist:
+            sys.exit(f'No pericope {sdisplay!r}; run load_exact_boundaries.py first.')
+        row, created = Reading.objects.update_or_create(
+            month=month, day=day, source=source, tradition='greek',
+            ordering=ORDERING[source],
+            defaults={'pdist': 999, 'desc': desc, 'pericope': pericope, 'flag': 0},
+        )
+        existing = Reading.objects.filter(
+                month=month, day=day, source=source, tradition='common').first()
+        note = f'(overrides common {existing.pericope.sdisplay})' if existing else '(no prior row)'
+        print(f'{"+" if created else "~"} {month:02d}-{day:02d} {source:<8} greek {sdisplay:<26} {note}')
+        print(f'    {evidence}')
 
 print(f'\ngreek-tagged month/day readings now: '
       f'{Reading.objects.filter(tradition="greek", pdist=999).count()}')

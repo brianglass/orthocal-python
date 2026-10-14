@@ -208,4 +208,4 @@ class TestTraditionRouting(TestCase):
         # The annual-ordo overlay is the substantive change this PR makes to
         # what a reader actually sees on these dates.
         response = self.client.get('/readings/greek/gregorian/2021/1/19/')
-        self.assertContains(response, 'Matthew 22.1-14')
+        self.assertContains(response, 'Matthew 22.2-14')
