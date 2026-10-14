@@ -2243,7 +2243,7 @@
 2026-02-21 greek w6 feast0 fast1 exc7 rows=0,7 -> meat
 2026-02-22 greek w0 feast0 fast1 exc7 rows=0,7 -> meat
 2026-02-23 greek w1 feast0 fast2 exc10 rows=0,10 -> meat,fish,dairy,eggs,wine,oil
-2026-02-24 greek w2 feast4 fast2 exc10 rows=1,10 -> meat,fish,dairy,eggs,wine,oil
+2026-02-24 greek w2 feast4 fast2 exc1 rows=1,10 -> meat,fish,dairy,eggs
 2026-02-25 greek w3 feast1 fast2 exc10 rows=0,10 -> meat,fish,dairy,eggs,wine,oil
 2026-02-26 greek w4 feast0 fast2 exc10 rows=0,10 -> meat,fish,dairy,eggs,wine,oil
 2026-02-27 greek w5 feast1 fast2 exc10 rows=10 -> meat,fish,dairy,eggs,wine,oil

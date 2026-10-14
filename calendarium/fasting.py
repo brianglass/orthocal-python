@@ -79,6 +79,10 @@ class Season:
     # December until the 25th, even if it be Saturday or Sunday, we do not allow
     # fish." Slavic only; Greek expresses the same tightening as a second season.
     no_fish_before_nativity: bool = False
+    # A day of at least this rank is not held by the rows that cap it (Clean
+    # Week's "no overrides"); its own claims apply as they would elsewhere in
+    # the season. Off everywhere but LENT_GREEK_CLEAN_WEEK.
+    row_cap_exempt_rank: int = 99
 
     def floor_for(self, weekday):
         return self.floor.get(weekday, self.default_floor)
@@ -219,6 +223,17 @@ _BY_LEVEL = {
 # goarch.org marks the whole week `fast-day`, Wednesday and Friday included.
 CHEESEFARE_GREEK = Season('Cheesefare (Greek)', default_floor=D.MeatFast)
 
+# GOA does not let Clean Week's "no overrides" hold against a polyeleos saint:
+# the Finding of the Forerunner's Head (Feb 24) and the Forty Martyrs (Mar 9)
+# keep their wine and oil there, as they do in the rest of Lent. goarch.org
+# shows it every time one of them falls on Clean Tuesday to Friday in its
+# 2025-2035 calendar -- 2026-02-24, 2033-03-09 and 2034-02-24 -- but not on
+# Clean Monday, which stays strict (2031-02-24). Holy Week's caps are
+# untouched; it is a different stretch of pdists.
+LENT_GREEK_CLEAN_WEEK = Season('Great Lent (Greek, Clean Week)',
+                               default_floor=D.Strict, default_cap=D.WineAndOil,
+                               cap_exempt_rank=7, row_cap_exempt_rank=4)
+
 ORDINARY_GREEK = Season('ordinary Wed/Fri (Greek)',
                         floor={SAT: D.WineAndOil, SUN: D.WineAndOil},
                         default_floor=D.Strict,
@@ -236,6 +251,11 @@ def greek_season(day):
         if -55 <= day.pdist <= -49:
             return CHEESEFARE_GREEK
         return ORDINARY_GREEK
+    if day.fast_level == FastLevels.LentenFast and -47 <= day.pdist <= -44:
+        # Clean Tuesday to Friday. Clean Monday holds even against the feast:
+        # goarch.org keeps 2031-02-24 strict. The weekend has wine and oil
+        # regardless.
+        return LENT_GREEK_CLEAN_WEEK
     if day.fast_level == FastLevels.ApostlesFast:
         return APOSTLES_GREEK
     if day.fast_level == FastLevels.NativityFast:
@@ -284,8 +304,11 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
                 if grant.rung > allowance:
                     allowance, winner = grant.rung, None
 
+    exempt_from_no_overrides = feast_level >= season.row_cap_exempt_rank
     for index, cap in caps:
         if cap < allowance:
+            if exempt_from_no_overrides and index == 10:
+                continue                    # the feast's claim stands
             allowance, winner = cap, index
         elif cap == allowance and winner is None:
             winner = index                  # it agrees, and has the better label

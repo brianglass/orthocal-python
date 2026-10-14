@@ -1,6 +1,7 @@
 import collections
 import copy
 import logging
+import re
 
 from datetime import date, timedelta
 
@@ -246,6 +247,7 @@ class Day:
             await self._collect_commemorations()
             await self._add_supplemental_commemorations()
             await self._collect_ordo_readings()
+            self._apply_title_conventions()
             self._apply_fasting_adjustments()
             self._initialized = True
 
@@ -509,6 +511,9 @@ class Day:
     def _apply_fasting_adjustments(self):
         """Tradition-specific -- see SlavicDay/GreekDay."""
         raise NotImplementedError
+
+    def _apply_title_conventions(self):
+        """Rename the day's titles to the tradition's usage; see GreekDay."""
 
     @cached_property
     def fast_level_desc(self):
@@ -1006,6 +1011,76 @@ class GreekDay(Day):
         """Greek dietary rules, which differ from Slavic only in the Nativity
         fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
         fasting.apply(self, fasting.greek_season)
+
+    def _apply_title_conventions(self):
+        """Name ordinary Sundays the Greek way, after the Gospel read.
+
+        Slavic usage counts Sundays after Pentecost. Greek usage names them for
+        the Evangelist being read -- the 12th Sunday of Luke is the Sunday that
+        reads Luke's 12th Sunday Gospel, wherever the Lukan jump and the
+        Theophany interpolation have put it -- so the number comes from
+        gospel_pdist (which GreekYear.lukan_sunday_numbers drives) rather than
+        from the calendar. Checked against the antiochian.org harvest,
+        2018-2026: 123 of its 125 Sundays named this way agree. The other two
+        are January 2024, where antiochian.org reads a different Gospel from
+        goarch.org and this app, and the name follows our Gospel.
+        """
+        if self.weekday != Weekday.Sunday:
+            return
+
+        for i, title in enumerate(self.titles):
+            if _SLAVIC_SUNDAY_TITLE.match(title) or title == 'Sunday of Zacchaeus':
+                break
+        else:
+            return
+
+        if name := self._greek_sunday_name():
+            self.titles[i] = name
+            return
+
+        # The Sundays before and after Nativity and Theophany carry no number
+        # in Greek usage; they are known by the feast they lean on.
+        if sunday_feast := next((f for f in self.feasts if f.startswith('Sunday ')), None):
+            self.titles[i] = sunday_feast
+            self.feasts.remove(sunday_feast)
+        else:
+            del self.titles[i]
+
+    def _greek_sunday_name(self):
+        if self.pdist == self.pyear.forefathers:
+            # The Forefathers read their own Gospel, from the festal cycle, in
+            # the place of Luke's 11th.
+            return '11th Sunday of Luke'
+
+        gospel = self.gospel_pdist
+        if gospel is None:
+            return None
+        if gospel == -77:
+            # Zacchaeus, Luke's 15th Sunday Gospel, read from the coming
+            # year's Paschal cycle on the Sunday before the Triodion.
+            return '15th Sunday of Luke'
+        if gospel == 49 + 7:
+            return 'Sunday of All Saints'
+        if gospel == 49 + 17*7 and self.month in (1, 2):
+            # The 17th Sunday of Matthew, interpolated after Theophany.
+            return 'Sunday of the Canaanite Woman'
+
+        weeks, rest = divmod(gospel - 49, 7)
+        if rest or weeks < 2:
+            return None
+        if weeks <= 17:
+            return f'{_ordinal(weeks)} Sunday of Matthew'
+        if weeks <= 32:
+            return f'{_ordinal(weeks - 17)} Sunday of Luke'
+        return None
+
+
+_SLAVIC_SUNDAY_TITLE = re.compile(r'\d+(st|nd|rd|th) Sunday after Pentecost')
+
+
+def _ordinal(n):
+    suffix = 'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+    return f'{n}{suffix}'
 
 
 _DAY_CLASSES = {

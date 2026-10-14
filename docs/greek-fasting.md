@@ -70,7 +70,8 @@ and Fridays.
 
 ### What this means for us
 
-This app follows GOA and matches it on 3678 of 3683 days. It therefore sits at
+This app follows GOA and matches it on 3681 of 3683 days (see *Clean Week*
+below for the last rule added). It therefore sits at
 roughly 94% against Antioch **by construction**, and that residue is Antioch
 diverging from GOA rather than an error here -- worth knowing if the app is ever
 reported as disagreeing with an Antiochian parish calendar.
@@ -292,12 +293,9 @@ arithmetic, three different Nov-1 weekdays) and
 ## Remaining / not investigated
 
 - **Feb 24** (First/Second Finding of the Head of John the Baptist): never
-  landed inside actual Great Lent in any of the 4 years sampled (Pascha
-  timing kept it in the pre-Lenten Cheesefare/Meatfare season every time) --
-  no valid empirical test yet, positive or negative. Our own `common`
-  baseline also shows no override here (`fast_exception=0`), which may be a
-  pre-existing Slavic-side gap independent of the Greek question -- not
-  picked up here.
+  landed inside actual Great Lent in any of the 4 antiochian.org years
+  sampled. goarch.org has since settled the Clean Week case for GOA -- see
+  *Clean Week* below.
 - **Fifth week Thursday** (the actual Great Canon day) and **Mar 26**
   (Synaxis of the Archangel Gabriel): genuinely mixed empirical results (see
   above), not confident enough to act on either way.
@@ -311,6 +309,34 @@ arithmetic, three different Nov-1 weekdays) and
   Lent's three confirmed exceptions needed an actual `Day`-row data split
   instead (see Implementation above) -- both kinds of change turned out to
   be needed, just for different fasts.
+
+## Clean Week (2026-10-14)
+
+Issue #228 reported Feb 24, 2026 -- Clean Tuesday, and the Finding of the
+Forerunner's Head -- as wine and oil on goarch.org but strict here. Clean
+Week's `common` rows carry "no overrides" (`fast_exception=10`), a cap that
+held against the feast's own wine-and-oil row.
+
+goarch.org's 2025-2035 calendar has four Clean Week weekdays with a rank-4
+feast, and they split cleanly by day:
+
+| date | day | feast | goarch.org |
+|---|---|---|---|
+| 2026-02-24 | Tue | Finding of the Head | wine and oil |
+| 2031-02-24 | Mon | Finding of the Head | strict |
+| 2033-03-09 | Wed | Forty Martyrs | wine and oil |
+| 2034-02-24 | Fri | Finding of the Head | wine and oil |
+
+So for Greek, Clean Tuesday to Friday let a rank-4 feast's claim through and
+Clean Monday does not (`LENT_GREEK_CLEAN_WEEK` in `calendarium/fasting.py`).
+Slavic is unchanged. The audit's two remaining differences contradict
+goarch.org's own pattern in other years and are left alone: Feb 9, 2029 (Feb 9
+on a Wednesday or Friday is strict in 2033 and 2035), and the Leavetaking of
+Pascha in 2031 (fish in every other year).
+
+**Holy Saturday stays wine only.** goarch.org marks it strict; the Typikon and
+Antioch allow wine without oil. Brian chose the Typikon reading, so the audit
+keeps scoring the two as equal (see `bucket()` in `tools/fasting/goarch_audit.py`).
 
 ## Bug found 2026-08-24: 9 dates with stale/never-ingested fast_exception
 

@@ -4,7 +4,7 @@
 
 Reads data/goarch_fasting.json, which holds GOA's own daily fasting
 designations, and compares them to what this app serves for
-`Tradition.Greek`. Last run 2026-09-09: **257/276, 93.1%**.
+`Tradition.Greek`. Last run 2026-10-14: **3681/3683, 99.9%**.
 
 Harvesting more months, when it is needed
 -----------------------------------------
