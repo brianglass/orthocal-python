@@ -45,8 +45,12 @@ BOUNDARY_ROWS = (
      'goarch.org 2024, 2026; antiochian.org 2018, 2023, 2026'),
     ('Epistle', -42, 'Heb 11.24-26, 32-12.2', 'Hebrews 11:24-26, 32-40',
      'goarch.org 2024, 2026; antiochian.org 2024, 2026'),
-    ('Gospel', -2, 'Matt 27.1-38; Luke 23:39-43; Matt 27:39-54; John 19:31-37; Matt 27:55-61', 'Matthew 27:62-66',
-     'goarch.org 2024, 2025, 2026; antiochian.org 2021, 2026'),
+    # Holy Friday is deliberately absent. Both sources print Matthew 27:62-66,
+    # but that is the Gospel of the Lamentations (Matins of Holy Saturday,
+    # served on Friday evening), not of Vespers, whose composite Gospel this
+    # slot carries. Replacing it would drop the Vespers Gospel and leave a
+    # Lamentations reading under a Vespers label; it needs the Lamentations
+    # modelled as its own service instead.
     ('Epistle', 3, 'Acts 2.22-36', 'Acts 2:22-38',
      'goarch.org 2024, 2026; antiochian.org 2026'),
     ('Epistle', (5, 7), 'Acts 26.1-5, 12-20', 'Acts 26:1, 12-20',

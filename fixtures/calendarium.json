@@ -65140,21 +65140,6 @@
 },
 {
   "model": "calendarium.reading",
-  "pk": 1814,
-  "fields": {
-    "month": 0,
-    "day": 0,
-    "pdist": -2,
-    "source": "Gospel",
-    "desc": "Composite",
-    "pericope": 124,
-    "ordering": 531,
-    "flag": 0,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "calendarium.reading",
   "pk": 1815,
   "fields": {
     "month": 0,

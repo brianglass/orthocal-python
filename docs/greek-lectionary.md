@@ -177,10 +177,13 @@ Comparing the resolved verse sets instead found 45 such fields in 2026 alone.
 goarch.org and antiochian.org agree, and `load_shared_menaion.py` gained the
 weekday saints' readings that 2026 hid because their dates fall on Sundays.
 Measured by verse set against goarch.org: 2024 **660 of 669 fields**, 2025
-**661 of 665**, 2026 **669 of 669**. Of the three items in the table above,
-Holy Friday now serves the daily Gospel both sources print (`Matthew 27:62-66`)
-and the two December days are carried as `OrdoReading` rows for 2026; the
-general December rule is still unmodelled. Against antiochian.org, 2026 differs
+**661 of 665**, 2026 **668 of 669**. Of the three items in the table above,
+the two December days are carried as `OrdoReading` rows for 2026; the general
+December rule is still unmodelled. Holy Friday is the remaining 2026
+difference, deliberately: both sources print `Matthew 27:62-66`, the Gospel of
+the Lamentations (Matins of Holy Saturday, served on Friday evening), where this
+slot carries the Vespers composite Gospel. Fixing it properly means modelling
+the Lamentations as its own service, not swapping one Gospel for the other. Against antiochian.org, 2026 differs
 on 3 days of 365 (Jan 24, Feb 6, Jun 14), each a jurisdictional choice rather
 than a boundary. `calendarium/tests/data/antiochian-readings.tsv` pins the
 comparison for every harvested year.

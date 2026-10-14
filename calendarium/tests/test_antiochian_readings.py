@@ -113,7 +113,7 @@ class TestExactGreekReadingBoundaries(TestCase):
         (2, 9, 'Epistle', '1 John 2.18-29; 3.1-8'),
         (2, 16, 'Epistle', '3 John 1.1-15'),
         (3, 1, 'Epistle', 'Heb 11.24-26, 32-40'),
-        (4, 10, 'Gospel', 'Matt 27.62-66'),
+        # 4/10, Holy Friday, is left alone; see load_exact_boundaries.py.
         (4, 15, 'Epistle', 'Acts 2.22-38'),
         (5, 7, 'Epistle', 'Acts 26.1, 12-20'),
         (5, 8, 'Gospel', 'John 19.25-28, 21.24-25'),
