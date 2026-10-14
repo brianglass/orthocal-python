@@ -80,6 +80,9 @@ slots, leaving common rows intact for Slavic callers. Each row names the
 citation it replaces and the years each source corroborates it, and the script
 stops rather than overwrite a row that no longer reads what it expects.
 
+Run it before `load_shared_menaion.py`, which uses two of the pericopes it
+creates, and finish with `load_ordo.py`. Both loaders apply in one transaction.
+
 `harvest_dates.py` fills in specific calendar dates across years from
 antiochian.org's API. The standing harvest is winter-weighted, so a fixed date
 elsewhere in the year can have too few samples to confirm a Menaion reading;

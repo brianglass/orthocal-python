@@ -10,6 +10,10 @@ Rows are `greek`-tagged and additive. Where a `common` row already occupies the
 slot it is left alone -- _prefer_tradition picks the greek row for the Greek
 tradition and the common one for Slavic, so Slavic is unaffected.
 
+Run load_exact_boundaries.py first: two rows here (May 7, Sep 12) use
+pericopes that only that script creates.
+
+    docker compose exec -T local python tools/greek/load_exact_boundaries.py
     docker compose exec -T local python tools/greek/load_shared_menaion.py
     docker compose exec -T local ./manage.py dumpdata calendarium --indent=2 -o fixtures/calendarium.json
 """
@@ -20,6 +24,7 @@ os.chdir(sys.path[0])
 import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
+from django.db import transaction
 from calendarium.models import Pericope, Reading
 
 # (month, day, source, pericope sdisplay, desc, evidence)
@@ -102,18 +107,23 @@ ROWS = [
 ]
 ORDERING = {'Epistle': 821, 'Gospel': 921}
 
-for month, day, source, sdisplay, desc, evidence in ROWS:
-    pericope = Pericope.objects.get(sdisplay=sdisplay)
-    row, created = Reading.objects.update_or_create(
-        month=month, day=day, source=source, tradition='greek',
-        ordering=ORDERING[source],
-        defaults={'pdist': 999, 'desc': desc, 'pericope': pericope, 'flag': 0},
-    )
-    existing = Reading.objects.filter(
-            month=month, day=day, source=source, tradition='common').first()
-    note = f'(overrides common {existing.pericope.sdisplay})' if existing else '(no prior row)'
-    print(f'{"+" if created else "~"} {month:02d}-{day:02d} {source:<8} greek {sdisplay:<26} {note}')
-    print(f'    {evidence}')
+# One transaction, so a missing pericope leaves nothing half applied.
+with transaction.atomic():
+    for month, day, source, sdisplay, desc, evidence in ROWS:
+        try:
+            pericope = Pericope.objects.get(sdisplay=sdisplay)
+        except Pericope.DoesNotExist:
+            sys.exit(f'No pericope {sdisplay!r}; run load_exact_boundaries.py first.')
+        row, created = Reading.objects.update_or_create(
+            month=month, day=day, source=source, tradition='greek',
+            ordering=ORDERING[source],
+            defaults={'pdist': 999, 'desc': desc, 'pericope': pericope, 'flag': 0},
+        )
+        existing = Reading.objects.filter(
+                month=month, day=day, source=source, tradition='common').first()
+        note = f'(overrides common {existing.pericope.sdisplay})' if existing else '(no prior row)'
+        print(f'{"+" if created else "~"} {month:02d}-{day:02d} {source:<8} greek {sdisplay:<26} {note}')
+        print(f'    {evidence}')
 
 print(f'\ngreek-tagged month/day readings now: '
       f'{Reading.objects.filter(tradition="greek", pdist=999).count()}')

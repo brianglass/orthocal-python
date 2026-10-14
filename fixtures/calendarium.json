@@ -64313,23 +64313,6 @@
 },
 {
   "model": "calendarium.pericope",
-  "pk": 1017,
-  "fields": {
-    "pericope": "312grk",
-    "book": "Matthew",
-    "display": "Matthew 27.62-66",
-    "sdisplay": "Matt 27.62-66",
-    "desc": "Great Friday vespers",
-    "preverse": "",
-    "prefix": "At that time,",
-    "prefixb": "",
-    "verses": "Matt_27062_27066",
-    "suffix": "",
-    "flag": 0
-  }
-},
-{
-  "model": "calendarium.pericope",
   "pk": 1018,
   "fields": {
     "pericope": "313grk",
@@ -65111,23 +65094,6 @@
   }
 },
 {
-  "model": "calendarium.pericope",
-  "pk": 1064,
-  "fields": {
-    "pericope": "311grk",
-    "book": "Matthew",
-    "display": "Matthew 16.13-19",
-    "sdisplay": "Matt 16.13-19",
-    "desc": "blessing church",
-    "preverse": "",
-    "prefix": "At that time, when",
-    "prefixb": "",
-    "verses": "Matt_16013_16019",
-    "suffix": "",
-    "flag": 0
-  }
-},
-{
   "model": "calendarium.reading",
   "pk": 1811,
   "fields": {
@@ -65181,7 +65147,7 @@
     "pdist": -2,
     "source": "Gospel",
     "desc": "Composite",
-    "pericope": 1017,
+    "pericope": 124,
     "ordering": 531,
     "flag": 0,
     "tradition": "greek"
@@ -66126,7 +66092,7 @@
     "pdist": 999,
     "source": "Gospel",
     "desc": "Church",
-    "pericope": 1064,
+    "pericope": 72,
     "ordering": 921,
     "flag": 0,
     "tradition": "greek"
