@@ -45867,21 +45867,6 @@
 },
 {
   "model": "calendarium.reading",
-  "pk": 1794,
-  "fields": {
-    "month": 0,
-    "day": 0,
-    "pdist": -2,
-    "source": "Epistle",
-    "desc": "Vespers",
-    "pericope": 1012,
-    "ordering": 521,
-    "flag": 0,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "calendarium.reading",
   "pk": 1795,
   "fields": {
     "month": 0,
@@ -63288,23 +63273,6 @@
     "prefix": "At that time, the whole multitude of the Jews arose",
     "prefixb": "",
     "verses": "Luke_23001_23031|Luke_23033_23033|Luke_23044_23056",
-    "suffix": "",
-    "flag": 0
-  }
-},
-{
-  "model": "calendarium.pericope",
-  "pk": 1012,
-  "fields": {
-    "pericope": "308grk",
-    "book": "Apostol",
-    "display": "1 Corinthians 5.6-8",
-    "sdisplay": "1 Cor 5.6-8",
-    "desc": "Holy Friday Vespers (Greek)",
-    "preverse": "",
-    "prefix": "Brethren, your glorying",
-    "prefixb": "",
-    "verses": "1Cor_5006_5008",
     "suffix": "",
     "flag": 0
   }

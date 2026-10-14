@@ -10,8 +10,8 @@ investigation history, kept because it records *why* decisions were made and
 which hypotheses are already dead; some of its early sections are superseded
 and are marked as such.
 
-Last measured 2026-10-14, by verse set against goarch.org: **6,626 of 6,696
-Epistle and Gospel fields (99.0%) over 2018-2027**, and 670 of 672 in 2026.
+Last measured 2026-10-14, by verse set against goarch.org: **6,636 of 6,696
+Epistle and Gospel fields (99.1%) over 2018-2027**, and 671 of 672 in 2026.
 An earlier "99.1%" compared only each citation's opening verse and is not
 comparable; see "Accuracy, measured".
 
@@ -158,28 +158,36 @@ only if some app reading of the same kind covers exactly goarch.org's verses.
 
 | year | Epistle/Gospel fields | exact |
 |---|---|---|
-| 2018 | 668 | 661 (99.0%) |
-| 2019 | 668 | 659 (98.7%) |
-| 2020 | 672 | 667 (99.3%) |
-| 2021 | 668 | 661 (99.0%) |
-| 2022 | 670 | 660 (98.5%) |
-| 2023 | 670 | 659 (98.4%) |
-| 2024 | 672 | 663 (98.7%) |
-| 2025 | 668 | 665 (99.6%) |
-| 2026 | 672 | 670 (99.7%) |
-| 2027 | 668 | 661 (99.0%) |
-| **all** | **6,696** | **6,626 (99.0%)** |
+| 2018 | 668 | 662 (99.1%) |
+| 2019 | 668 | 660 (98.8%) |
+| 2020 | 672 | 668 (99.4%) |
+| 2021 | 668 | 662 (99.1%) |
+| 2022 | 670 | 661 (98.7%) |
+| 2023 | 670 | 660 (98.5%) |
+| 2024 | 672 | 664 (98.8%) |
+| 2025 | 668 | 666 (99.7%) |
+| 2026 | 672 | 671 (99.9%) |
+| 2027 | 668 | 662 (99.1%) |
+| **all** | **6,696** | **6,636 (99.1%)** |
 
 Before the exact-boundary work (PR #252) the same measure gave 90.8%; after
 it, 98.6%. Five more rows found with `--recurring` and corroborated by
-antiochian.org brought it to 99.0%. Run the
+antiochian.org brought it to 99.0%, and reading Holy Friday correctly (below)
+to 99.1%.
+
+**Holy Friday.** goarch.org lists `1 Corinthians 5:6-8` and `Matthew 27:62-66`
+as Holy Friday's Epistle and Gospel. Those are the Lamentations readings --
+Matins of Holy Saturday, sung on Friday evening -- which this app already
+carries as Holy Saturday's Matins readings, exactly as oca.org does. Holy
+Friday's own Vespers reads `1 Corinthians 1:18-2:2` and the composite Gospel in
+the Greek tradition too (johnsanidopoulos.com's Holy Friday readings and Holy
+Cross, Pittsburgh's service list both print them). The audit therefore also
+accepts Holy Saturday's Matins readings on Holy Friday. A `greek` row added in
+July from that Friday listing, putting `1 Cor 5:6-8` in the Vespers Epistle
+slot, was removed. Run the
 script with `--recurring` for the current list of differences; what remains is
 mostly:
 
-- **Holy Friday**, every year: both sources print `Matthew 27:62-66`, the
-  Lamentations Gospel (Matins of Holy Saturday, served on Friday evening), where
-  this slot carries the Vespers composite Gospel. Fixing it means modelling the
-  Lamentations as its own service, not swapping one Gospel for the other.
 - **Apostles' feasts moved out of Holy or Bright Week** (`Luke 10:16-21` for
   St Mark, `Acts 12:1-11` for St James, `Hebrews 13:7-16`): transfer logic,
   not missing rows.

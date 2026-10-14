@@ -1,5 +1,5 @@
 import itertools
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 from django.test import TestCase
@@ -47,6 +47,20 @@ async def characterize(entries):
         displays = [r.pericope.sdisplay for r in await day.aget_readings()]
         served = [(d, await verse_set(d)) for d in displays]
 
+        # The sources list the Lamentations (Matins of Holy Saturday, sung on
+        # Friday evening) under Holy Friday; orthocal carries them on Holy
+        # Saturday. Its Matins Epistle adds Gal 3:13-14, which the sources
+        # leave out, so containment is enough.
+        anticipated = []
+        if day.pdist == -2:
+            next_day = day_date + timedelta(days=1)
+            saturday = liturgics.Day(next_day.year, next_day.month, next_day.day,
+                                     tradition=Tradition.Greek)
+            await saturday.ainitialize()
+            anticipated = [await verse_set(r.pericope.sdisplay)
+                           for r in await saturday.aget_readings()
+                           if r.source.startswith('Matins')]
+
         for _, title in group:
             overlapping = '-'
             try:
@@ -56,6 +70,8 @@ async def characterize(entries):
             if not wanted:
                 status = 'unresolved'
             elif any(found == wanted for _, found in served):
+                status = 'exact'
+            elif any(wanted <= found for found in anticipated):
                 status = 'exact'
             elif overlaps := [d for d, found in served if found & wanted]:
                 status = 'boundary'
@@ -113,7 +129,8 @@ class TestExactGreekReadingBoundaries(TestCase):
         (2, 9, 'Epistle', '1 John 2.18-29; 3.1-8'),
         (2, 16, 'Epistle', '3 John 1.1-15'),
         (3, 1, 'Epistle', 'Heb 11.24-26, 32-40'),
-        # 4/10, Holy Friday, is left alone; see load_exact_boundaries.py.
+        # Not 4/10: Holy Friday's listing is the Lamentations, which the app
+        # carries as Holy Saturday Matins; see load_exact_boundaries.py.
         (4, 15, 'Epistle', 'Acts 2.22-38'),
         (5, 7, 'Epistle', 'Acts 26.1, 12-20'),
         (5, 8, 'Gospel', 'John 19.25-28, 21.24-25'),

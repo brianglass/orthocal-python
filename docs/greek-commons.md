@@ -318,6 +318,11 @@ Of the 4:
 - **Holy Friday**: `1 Cor 5:6-8` (Greek) vs. our existing Vespers Epistle
   `1 Cor 1.18-2.2` (Slavic) — confirmed 2/2 years (2021, 2026). Added as a
   `greek` override on the `Vespers`-desc Epistle slot (new Pericope).
+  **Reverted 2026-10-14**: this was a misreading. The sources list the
+  Lamentations (Matins of Holy Saturday, sung on Friday evening) under Friday;
+  `1 Cor 5:6-8` is that service's Epistle, which the app already carries on
+  Holy Saturday. Greek Vespers on Holy Friday reads `1 Cor 1:18-2:2` like
+  Slavic. See `docs/greek-lectionary.md`, "Accuracy, measured".
 - **Holy Thursday's compound Gospel reading**: our version and
   antiochian's differ by a few verses within an already-massive 6-part
   compound citation (`Matt 26:2-20;...` vs `Matt 26:1-20;...`, etc.) —
