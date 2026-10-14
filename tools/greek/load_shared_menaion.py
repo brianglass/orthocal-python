@@ -104,6 +104,14 @@ ROWS = [
      'the Elevation, which takes the Gospel'),
     (10, 11, 'Epistle', 'Acts 8.26-39',             'St Philip the Deacon',
      'goarch.org 2024, 2025; antiochian.org 2025'),
+    # Found by goa_verse_audit.py --recurring over the 2018-2027 harvest.
+    (5, 10, 'Gospel',  'Luke 6.12-19',              'St Simon',
+     'Simon the Zealot; goarch.org 2018, 2019, 2021, 2022, 2025, 2027; '
+     'antiochian.org 2018, 2019, 2021, 2022, 2025. Same slot as the common '
+     'Matt 13:54-58, which Slavic keeps; the Epistle already matches'),
+    (9, 20, 'Gospel',  'Luke 21.12-19',             'St Eustathius',
+     'goarch.org 2018, 2019, 2021, 2022, 2023, 2024, 2027; antiochian.org '
+     '2018, 2019, 2021, 2022, 2023, 2024'),
 ]
 ORDERING = {'Epistle': 821, 'Gospel': 921}
 

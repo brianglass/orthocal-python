@@ -167,6 +167,17 @@ BOUNDARY_ROWS = (
      'goarch.org 2025; antiochian.org 2025'),
     ('Gospel', (9, 13), 'Matt 16.13-18', 'Matthew 16:13-19',
      'goarch.org 2024, 2025; antiochian.org 2025'),
+    # Found by goa_verse_audit.py --recurring over the 2018-2027 harvest.
+    ('Epistle', 20, 'Acts 9.20-31', 'Acts 9:19-31',
+     'goarch.org 2018, 2019, 2020, 2021, 2022, 2023, 2027; '
+     'antiochian.org 2018, 2019, 2020, 2021, 2022, 2023'),
+    ('Epistle', 165, 'Eph 4.14-19', 'Ephesians 4:14-17',
+     'goarch.org 2019, 2021, 2027; antiochian.org 2019, 2021'),
+    ('Gospel', 176, 'Luke 4.37-44', 'Luke 4:38-44',
+     'goarch.org 2021, 2023, 2025, 2027; antiochian.org 2021, 2023, 2025'),
+    # Not 1 Tim 4.4-8, 16 (pdist 229): goarch.org prints 1 Timothy 4:4-8 in
+    # 2018, 2019, 2023 and 2026, but antiochian.org keeps the 16 on all four
+    # of those dates, so the sources do not agree.
 )
 
 SHORT_BOOKS = {

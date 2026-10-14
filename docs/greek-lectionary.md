@@ -10,8 +10,8 @@ investigation history, kept because it records *why* decisions were made and
 which hypotheses are already dead; some of its early sections are superseded
 and are marked as such.
 
-Last measured 2026-10-14, by verse set against goarch.org: **6,599 of 6,696
-Epistle and Gospel fields (98.6%) over 2018-2027**, and 670 of 672 in 2026.
+Last measured 2026-10-14, by verse set against goarch.org: **6,626 of 6,696
+Epistle and Gospel fields (99.0%) over 2018-2027**, and 670 of 672 in 2026.
 An earlier "99.1%" compared only each citation's opening verse and is not
 comparable; see "Accuracy, measured".
 
@@ -158,19 +158,21 @@ only if some app reading of the same kind covers exactly goarch.org's verses.
 
 | year | Epistle/Gospel fields | exact |
 |---|---|---|
-| 2018 | 668 | 658 (98.5%) |
-| 2019 | 668 | 655 (98.1%) |
-| 2020 | 672 | 666 (99.1%) |
-| 2021 | 668 | 656 (98.2%) |
-| 2022 | 670 | 657 (98.1%) |
-| 2023 | 670 | 656 (97.9%) |
-| 2024 | 672 | 662 (98.5%) |
-| 2025 | 668 | 663 (99.3%) |
+| 2018 | 668 | 661 (99.0%) |
+| 2019 | 668 | 659 (98.7%) |
+| 2020 | 672 | 667 (99.3%) |
+| 2021 | 668 | 661 (99.0%) |
+| 2022 | 670 | 660 (98.5%) |
+| 2023 | 670 | 659 (98.4%) |
+| 2024 | 672 | 663 (98.7%) |
+| 2025 | 668 | 665 (99.6%) |
 | 2026 | 672 | 670 (99.7%) |
-| 2027 | 668 | 656 (98.2%) |
-| **all** | **6,696** | **6,599 (98.6%)** |
+| 2027 | 668 | 661 (99.0%) |
+| **all** | **6,696** | **6,626 (99.0%)** |
 
-Before the exact-boundary work (PR #252) the same measure gave 90.8%. Run the
+Before the exact-boundary work (PR #252) the same measure gave 90.8%; after
+it, 98.6%. Five more rows found with `--recurring` and corroborated by
+antiochian.org brought it to 99.0%. Run the
 script with `--recurring` for the current list of differences; what remains is
 mostly:
 
@@ -178,8 +180,12 @@ mostly:
   Lamentations Gospel (Matins of Holy Saturday, served on Friday evening), where
   this slot carries the Vespers composite Gospel. Fixing it means modelling the
   Lamentations as its own service, not swapping one Gospel for the other.
-- **Recurring boundary and Menaion gaps** that only a multi-year harvest shows,
-  e.g. `Acts 9:19-31`, Sep 20 `Luke 21:12-19`, May 10 `Luke 6:12-19`.
+- **Apostles' feasts moved out of Holy or Bright Week** (`Luke 10:16-21` for
+  St Mark, `Acts 12:1-11` for St James, `Hebrews 13:7-16`): transfer logic,
+  not missing rows.
+- **`1 Timothy 4:4-8`** (pdist 229): goarch.org drops the `16` that
+  antiochian.org keeps, a jurisdictional difference the boundary table does not
+  take sides on.
 - **The Jan 3 and late-December cluster** and moveable-feast transfers listed
   under "What is still wrong".
 
