@@ -47,10 +47,9 @@ BOUNDARY_ROWS = (
      'goarch.org 2024, 2026; antiochian.org 2024, 2026'),
     # Holy Friday is deliberately absent. Both sources print Matthew 27:62-66,
     # but that is the Gospel of the Lamentations (Matins of Holy Saturday,
-    # served on Friday evening), not of Vespers, whose composite Gospel this
-    # slot carries. Replacing it would drop the Vespers Gospel and leave a
-    # Lamentations reading under a Vespers label; it needs the Lamentations
-    # modelled as its own service instead.
+    # sung on Friday evening), which the app already carries as Holy
+    # Saturday's Matins Gospel. This slot is Holy Friday Vespers, whose
+    # composite Gospel is the same in both traditions.
     ('Epistle', 3, 'Acts 2.22-36', 'Acts 2:22-38',
      'goarch.org 2024, 2026; antiochian.org 2026'),
     ('Epistle', (5, 7), 'Acts 26.1-5, 12-20', 'Acts 26:1, 12-20',

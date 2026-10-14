@@ -131,7 +131,16 @@ def verse_set(citation):
 async def app_readings(date):
     day = Day(date.year, date.month, date.day, tradition=Tradition.Greek)
     await day.ainitialize()
-    return [(r.source, r.pericope.sdisplay) for r in await day.aget_readings()]
+    return day.pdist, [(r.source, r.pericope.sdisplay) for r in await day.aget_readings()]
+
+
+# goarch.org lists the Lamentations -- Matins of Holy Saturday, sung on Friday
+# evening -- as Holy Friday's Epistle and Gospel. This app keeps them where they
+# belong liturgically, as Holy Saturday's Matins readings, so on Holy Friday
+# those count too. goarch.org prints only 1 Cor 5:6-8 of the Matins Epistle,
+# which also includes Gal 3:13-14, so containment is enough there.
+HOLY_FRIDAY = -2
+ANTICIPATED = {'Epistle': 'Matins Epistle', 'Gospel': 'Matins Gospel'}
 
 
 async def audit(years):
@@ -142,7 +151,9 @@ async def audit(years):
             continue
         label, readings = value
         date = datetime.date.fromisoformat(key)
-        ours = await app_readings(date)
+        pdist, ours = await app_readings(date)
+        if pdist == HOLY_FRIDAY:
+            _, saturday = await app_readings(date + datetime.timedelta(days=1))
         for kind, citation in readings:
             if kind not in SOURCES:
                 continue
@@ -152,6 +163,10 @@ async def audit(years):
             if want is None:
                 result = 'unparsed'
             elif want in got:
+                result = 'exact'
+            elif pdist == HOLY_FRIDAY and any(
+                    want <= (verse_set(s) or frozenset())
+                    for source, s in saturday if source == ANTICIPATED[SOURCES[kind]]):
                 result = 'exact'
             elif any(g and g & want for g in got):
                 result = 'boundary'
