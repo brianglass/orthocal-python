@@ -12763,7 +12763,28 @@
     "fast": 0,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 950,
+  "fields": {
+    "pdist": 999,
+    "month": 6,
+    "day": 25,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Leavetaking of the Nativity of the Forerunner",
+    "feast_level": 3,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 0,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
@@ -15388,7 +15409,28 @@
     "fast": 0,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 951,
+  "fields": {
+    "pdist": 999,
+    "month": 10,
+    "day": 28,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Protection of the Most-Holy Theotokos",
+    "feast_level": 3,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 0,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
@@ -16249,7 +16291,28 @@
     "fast": 5,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 952,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 8,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Forefeast of the Conception by St Anna of the Theotokos",
+    "feast_level": 0,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 5,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
@@ -16522,7 +16585,28 @@
     "fast": 5,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 953,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 21,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Forefeast of Nativity",
+    "feast_level": 0,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 5,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
@@ -16543,7 +16627,28 @@
     "fast": 5,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 954,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 22,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Forefeast of Nativity",
+    "feast_level": 0,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 5,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
@@ -16564,7 +16669,28 @@
     "fast": 5,
     "fast_exception": 0,
     "flag": 0,
-    "tradition": "common",
+    "tradition": "slavic",
+    "fast_cap_exempt": null
+  }
+},
+{
+  "model": "calendarium.day",
+  "pk": 955,
+  "fields": {
+    "pdist": 999,
+    "month": 12,
+    "day": 23,
+    "title": "",
+    "subtitle": "",
+    "feast_name": "Forefeast of Nativity",
+    "feast_level": 0,
+    "service": 0,
+    "service_note": "",
+    "story": null,
+    "fast": 5,
+    "fast_exception": 0,
+    "flag": 0,
+    "tradition": "greek",
     "fast_cap_exempt": null
   }
 },
