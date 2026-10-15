@@ -9,6 +9,12 @@ WORKDIR /orthocal
 CMD ["newrelic-admin", "run-program", "python", "server.py"]
 
 COPY requirements.txt .
+# newrelic has no wheel for this Python, so pip builds it from source, and the
+# slim image has no C compiler. Skip its optional C extensions outright:
+# newrelic 14.0.0's fallback for a failed extension build is broken (its
+# setup.py raises NameError on DistutilsPlatformError), and it would fall back
+# to pure Python anyway.
+ENV NEW_RELIC_EXTENSIONS=false
 # --no-compile skips pip's own bytecode compilation during install -- the
 # explicit compileall pass below (needed regardless, since it also covers
 # our own app code, not just installed packages) makes it redundant.
