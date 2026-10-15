@@ -7,7 +7,7 @@ django==6.1.2
 icalendar==7.3.0
 jdcal==1.4.1
 mcp==2.3.0
-newrelic==13.5.0
+newrelic==14.0.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
 servestatic==4.4.0
