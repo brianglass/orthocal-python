@@ -449,14 +449,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 5173,
-  "fields": {
-    "name": "Apostles of the Seventy Archippus and Philemon",
-    "full_name": "Apostles Archippus and Philemon of the Seventy, and Martyr Apphia"
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 5174,
   "fields": {
     "name": "St Leo, Bishop of Catania",
@@ -2645,14 +2637,6 @@
   "fields": {
     "name": "Ven. Gregory Decapolites",
     "full_name": "Our Holy Father Gregory of Decapolis (842)"
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 5470,
-  "fields": {
-    "name": "Apostles of the 70 Philemon, Archippus, Apphia",
-    "full_name": "Holy Apostle Philemon and Sts Apphia, Archippus and Onesimus"
   }
 },
 {
@@ -10569,14 +10553,6 @@
 },
 {
   "model": "commemorations.saint",
-  "pk": 6626,
-  "fields": {
-    "name": "Holy Apostles Archippus, Philemon and Onesimus",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
   "pk": 6627,
   "fields": {
     "name": "Loukia the Virgin-martyr",
@@ -12572,14 +12548,6 @@
   "pk": 7003,
   "fields": {
     "name": "Anthimos, Thallalaeos, Christopher, Euphemia & her children, the Martyrs",
-    "full_name": null
-  }
-},
-{
-  "model": "commemorations.saint",
-  "pk": 7006,
-  "fields": {
-    "name": "Onesimos the Disciple of Paul",
     "full_name": null
   }
 },
@@ -37836,21 +37804,6 @@
 },
 {
   "model": "commemorations.daycommemoration",
-  "pk": 7142,
-  "fields": {
-    "day": 762,
-    "title": "Onesimos the Disciple of Paul",
-    "story": null,
-    "rank": 0,
-    "high_rank": false,
-    "new_style": false,
-    "day_native": true,
-    "ordering": 4,
-    "tradition": "greek"
-  }
-},
-{
-  "model": "commemorations.daycommemoration",
   "pk": 7144,
   "fields": {
     "day": 762,
@@ -39612,7 +39565,7 @@
   "pk": 63,
   "fields": {
     "commemoration": 5280,
-    "saint": 5173,
+    "saint": 7112,
     "order": 1
   }
 },
@@ -42285,7 +42238,7 @@
   "pk": 360,
   "fields": {
     "commemoration": 5593,
-    "saint": 5470,
+    "saint": 7111,
     "order": 1
   }
 },
@@ -51537,7 +51490,7 @@
   "pk": 1388,
   "fields": {
     "commemoration": 6762,
-    "saint": 6626,
+    "saint": 7112,
     "order": 1
   }
 },
@@ -53802,15 +53755,6 @@
 },
 {
   "model": "commemorations.daycommemorationsaint",
-  "pk": 1640,
-  "fields": {
-    "commemoration": 7142,
-    "saint": 7006,
-    "order": 1
-  }
-},
-{
-  "model": "commemorations.daycommemorationsaint",
   "pk": 1641,
   "fields": {
     "commemoration": 7144,
@@ -54553,7 +54497,7 @@
   "fields": {
     "commemoration": 6762,
     "saint": 5168,
-    "order": 2
+    "order": 3
   }
 },
 {
@@ -54580,6 +54524,30 @@
   "fields": {
     "name": "St James the Confessor, Bishop of the Studion",
     "full_name": "Our Holy Father James the Confessor, bishop, of the Studion (8th c.)"
+  }
+},
+{
+  "model": "commemorations.saint",
+  "pk": 7111,
+  "fields": {
+    "name": "Apostle Philemon of the Seventy",
+    "full_name": "Holy Apostle Philemon of Colossae"
+  }
+},
+{
+  "model": "commemorations.saint",
+  "pk": 7112,
+  "fields": {
+    "name": "Apostle Archippus of the Seventy",
+    "full_name": "Holy Apostle Archippus of Colossae"
+  }
+},
+{
+  "model": "commemorations.saint",
+  "pk": 7113,
+  "fields": {
+    "name": "Martyr Apphia",
+    "full_name": "Holy Martyr Apphia of Colossae"
   }
 },
 {
@@ -54679,6 +54647,60 @@
     "commemoration": 7251,
     "saint": 5399,
     "order": 1
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1733,
+  "fields": {
+    "commemoration": 5280,
+    "saint": 7111,
+    "order": 2
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1734,
+  "fields": {
+    "commemoration": 5280,
+    "saint": 7113,
+    "order": 3
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1735,
+  "fields": {
+    "commemoration": 5593,
+    "saint": 7112,
+    "order": 2
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1736,
+  "fields": {
+    "commemoration": 5593,
+    "saint": 7113,
+    "order": 3
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1737,
+  "fields": {
+    "commemoration": 5593,
+    "saint": 5168,
+    "order": 4
+  }
+},
+{
+  "model": "commemorations.daycommemorationsaint",
+  "pk": 1738,
+  "fields": {
+    "commemoration": 6762,
+    "saint": 7111,
+    "order": 2
   }
 }
 ]
