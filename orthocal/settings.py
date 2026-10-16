@@ -85,15 +85,20 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'orthocal.middleware.request_queueing',
     'corsheaders.middleware.CorsMiddleware',
-    'servestatic.middleware.ServeStaticMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'orthocal.middleware.log_language',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.finite_calendar_for_crawlers',
     'orthocal.middleware.cache_control',
 ]
+
+# In production, Firebase serves the static files from public/media (see
+# cloudbuild.yaml), so only local runs need Django to serve them. Cloud Run
+# sets K_SERVICE.
+if 'K_SERVICE' not in os.environ:
+    MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.gzip.GZipMiddleware'),
+                      'servestatic.middleware.ServeStaticMiddleware')
 
 ROOT_URLCONF = 'orthocal.urls'
 
