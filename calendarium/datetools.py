@@ -1,5 +1,6 @@
 import math
 
+from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from enum import IntEnum, StrEnum
 
@@ -248,6 +249,38 @@ def surrounding_weekends(distance):
 
     return saturdaybefore, sundaybefore, saturdayafter, sundayafter
 
+@dataclass(frozen=True, order=True)
+class JulianDate:
+    """A date on the Julian calendar.
+
+    A Python `date` can't hold one: it applies Gregorian leap-year rules, so
+    it rejects Feb 29 in the century years the Julian calendar leaps but the
+    Gregorian doesn't (1700, 1800, 1900, 2100, ...), and timedelta arithmetic
+    on it skips that day. This carries the same year/month/day fields, and
+    does its day arithmetic through the Julian day number instead."""
+
+    year: int
+    month: int
+    day: int
+
+    @classmethod
+    def from_jdn(cls, jdn):
+        year, month, day, _ = jdcal.jd2jcal(jdn, 0)
+        return cls(year, month, day)
+
+    def __add__(self, delta):
+        if not isinstance(delta, timedelta):
+            return NotImplemented
+        return JulianDate.from_jdn(julian_to_jdn(self) + delta.days)
+
+    def __sub__(self, delta):
+        if not isinstance(delta, timedelta):
+            return NotImplemented
+        return self + -delta
+
+    def __str__(self):
+        return f'{self.year:04d}-{self.month:02d}-{self.day:02d}'
+
 # conversion functions
 
 def gregorian_to_julian(year, month, day):
@@ -258,18 +291,15 @@ def gregorian_to_julian(year, month, day):
 
     jd = jdcal.gcal2jd(year, month, day)
     year, month, day, _ = jdcal.jd2jcal(*jd)
-
-    # On a year that is a Julian Leap year but not a Gregorian leap year, this
-    # will raise a ValueError. This is a problem, but doesn't occur until 2100.
-    return date(year, month, day)
+    return JulianDate(year, month, day)
 
 def julian_to_gregorian(year, month, day):
     """Convert a Julian date to a Gregorian date.
 
     Takes the Julian date as three integers rather than a `date`, because a
     Julian Feb 29 in a century year that the Gregorian calendar doesn't leap
-    (1900, 2100) can't be represented as a Python `date` at all -- the same
-    limitation gregorian_to_julian runs into in the other direction."""
+    (1900, 2100) can't be represented as a Python `date` at all (see
+    JulianDate)."""
 
     jd = jdcal.jcal2jd(year, month, day)
     year, month, day, _ = jdcal.jd2gcal(*jd)

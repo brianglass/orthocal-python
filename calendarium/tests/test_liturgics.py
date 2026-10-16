@@ -1453,6 +1453,16 @@ class TestDay(TestCase):
 
         self.assertNotEqual(kjv_gospel[0].content, web_gospel[0].content)
 
+    async def test_julian_century_leap_day(self):
+        """Civil 2100-03-14 is Julian Feb 29, a day the Gregorian calendar
+        doesn't have that year; it must still be a full liturgical day."""
+
+        day = liturgics.Day(2100, 3, 14, calendar=datetools.Calendar.Julian)
+        await day.ainitialize()
+        self.assertEqual(day.date, datetools.JulianDate(2100, 2, 29))
+        self.assertEqual(str(day), '2100-02-29')
+        self.assertTrue(any('John Cassian' in s for s in day.saints))
+
     async def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
         """Issue #146: modern (new_style) commemorations are recorded
         against the civil/Gregorian date and observed there by both Old-
