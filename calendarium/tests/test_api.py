@@ -1,7 +1,7 @@
 import json
 
 from pathlib import Path
-from unittest import mock, skip
+from unittest import mock
 
 from dateutil.rrule import rrule, DAILY
 from django.core.cache import cache
@@ -156,16 +156,33 @@ class DayAPITestCase(TestCase):
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, 404)
 
-    @skip
-    def test_julian_range_error(self):
-        """A Gregorian leap year is not always a Julian leap year."""
-        url = reverse('api:get_calendar_month', kwargs={
+    def test_calendar_month_julian_century_leap_day(self):
+        """A Julian leap year is not always a Gregorian leap year: the Julian
+        Feb 29 in 1700, 1900, 2100... falls in civil March."""
+
+        for year, civil_day in [(1700, 11), (1900, 13), (2100, 14)]:
+            with self.subTest(year):
+                url = reverse('api:get_calendar_month', kwargs={
+                    'cal': 'julian',
+                    'year': year,
+                    'month': 3,
+                })
+                response = self.client.get(url, format='json')
+                self.assertEqual(response.status_code, 200)
+
+                leap_day = response.json()[civil_day - 1]
+                self.assertEqual((leap_day['month'], leap_day['day']), (2, 29))
+
+    def test_calendar_day_julian_century_leap_day(self):
+        url = reverse('api:get_calendar_day', kwargs={
             'cal': 'julian',
             'year': 2100,
             'month': 3,
+            'day': 14,
         })
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, 200)
+        self.assertEqual((response.json()['month'], response.json()['day']), (2, 29))
 
     def test_calendar_month_julian_range_error_high(self):
         url = reverse('api:get_calendar_month', kwargs={

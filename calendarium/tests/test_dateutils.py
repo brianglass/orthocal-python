@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 
 from django.test import TestCase
 
@@ -16,6 +16,34 @@ class TestDateutil(TestCase):
             with self.subTest():
                 actual = datetools.gregorian_to_jdn(day)
                 self.assertEqual(actual, expected)
+
+    def test_gregorian_to_julian_century_leap_day(self):
+        """The Julian calendar leaps in 1700, 1900, 2100... and the Gregorian
+        doesn't, so those Julian Feb 29s can't be Python dates."""
+
+        tests = [
+            ((2100, 3, 13), (2100, 2, 28)),
+            ((2100, 3, 14), (2100, 2, 29)),
+            ((2100, 3, 15), (2100, 3, 1)),
+            ((1900, 3, 13), (1900, 2, 29)),
+            ((1700, 3, 11), (1700, 2, 29)),
+            ((2026, 10, 16), (2026, 10, 3)),
+        ]
+
+        for gregorian, expected in tests:
+            with self.subTest(gregorian):
+                actual = datetools.gregorian_to_julian(*gregorian)
+                self.assertEqual(actual, datetools.JulianDate(*expected))
+
+    def test_julian_date_arithmetic(self):
+        feb28 = datetools.JulianDate(2100, 2, 28)
+        self.assertEqual(feb28 + timedelta(days=1), datetools.JulianDate(2100, 2, 29))
+        self.assertEqual(feb28 + timedelta(days=2), datetools.JulianDate(2100, 3, 1))
+        self.assertEqual(datetools.JulianDate(2100, 3, 1) - timedelta(days=1), datetools.JulianDate(2100, 2, 29))
+        self.assertEqual(datetools.JulianDate(2025, 12, 31) + timedelta(days=1), datetools.JulianDate(2026, 1, 1))
+
+    def test_julian_date_str(self):
+        self.assertEqual(str(datetools.JulianDate(2100, 2, 29)), '2100-02-29')
 
     def test_julian_to_jdn(self):
         expected = 2455676
