@@ -1,5 +1,4 @@
 import datetime
-import logging
 import re
 
 import newrelic.agent
@@ -12,8 +11,6 @@ from django.utils import timezone
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
 from newrelic.api.transaction import current_transaction
-
-logger = logging.getLogger(__name__)
 
 @sync_and_async_middleware
 def cache_control(get_response):
@@ -39,24 +36,6 @@ def request_queueing(get_response):
     else:
         def middleware(request):
             set_request_queueing(request)
-            return get_response(request)
-
-    return middleware
-
-@sync_and_async_middleware
-def log_language(get_response):
-    def log_language(request):
-        if accept_language := request.META.get('HTTP_ACCEPT_LANGUAGE'):
-            language = accept_language.split(';')[0].split(',')[0]
-            logger.debug(f"Language: {language}")
-
-    if iscoroutinefunction(get_response):
-        async def middleware(request):
-            log_language(request)
-            return await get_response(request)
-    else:
-        def middleware(request):
-            log_language(request)
             return get_response(request)
 
     return middleware
