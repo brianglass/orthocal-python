@@ -70,3 +70,30 @@ class SaintSearchTransliterationTestCase(TestCase):
         response = self.client.get(reverse('saint-search'), {'q': 'myra Nicholas'})
 
         self.assertRedirects(response, reverse('saint-detail', args=['our-father-among-the-saints-nicholas-the-wonderworker-archbishop-of-myra-345-5-9']))
+
+
+class CanonicalLinkTestCase(TestCase):
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def setUp(self):
+        call_command('backfill_saint_slugs')
+
+    def test_content_pages_name_their_canonical_url(self):
+        from commemorations.models import Saint
+
+        saint = Saint.objects.first()
+        urls = [
+            reverse('saint-detail', args=[saint.slug]),
+            reverse('saint-search'),
+            reverse('about'),
+            reverse('ai-assistant'),
+            reverse('alexa'),
+            reverse('api'),
+        ]
+        for url in urls:
+            response = self.client.get(url)
+            self.assertContains(response, f'<link rel="canonical" href="http://testserver{url}">', msg_prefix=url)
+
+    def test_search_results_point_to_the_plain_search_page(self):
+        response = self.client.get(reverse('saint-search'), {'q': 'zzzz'})
+        self.assertContains(response, f'<link rel="canonical" href="http://testserver{reverse("saint-search")}">')

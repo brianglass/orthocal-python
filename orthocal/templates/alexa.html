@@ -1,9 +1,11 @@
 {% extends "content_base.html" %}
+{% load fullurl %}
 
 {% block title %}Alexa Skill for the Orthodox Calendar{% endblock %}
 
 {% block head %}
 	<meta name="description" content="Orthocal.info powers the Orthodox Daily Alexa skill, making it easy to access the daily scripture readings and lives of the saints.">
+	<link rel="canonical" href="{% fullurl "alexa" %}">
 {% endblock %}
 
 {% block content %}

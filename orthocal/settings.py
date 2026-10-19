@@ -88,9 +88,11 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    # Outside CommonMiddleware so its APPEND_SLASH redirects are cacheable too.
+    'orthocal.middleware.cache_control',
+    'orthocal.middleware.append_api_slash',
     'django.middleware.common.CommonMiddleware',
     'orthocal.middleware.finite_calendar_for_crawlers',
-    'orthocal.middleware.cache_control',
 ]
 
 # In production, Firebase serves the static files from public/media (see

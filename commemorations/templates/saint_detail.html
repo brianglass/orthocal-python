@@ -1,10 +1,12 @@
 {% extends "content_base.html" %}
+{% load fullurl %}
 {% load commemoration_links %}
 
 {% block title %}{{ saint.display_name }}{% endblock %}
 
 {% block head %}
 	<meta name="description" content="Commemorations and life of {{ saint.display_name }}.">
+	<link rel="canonical" href="{% fullurl "saint-detail" slug=saint.slug %}">
 {% endblock %}
 
 {% block content %}
