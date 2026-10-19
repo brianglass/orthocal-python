@@ -263,3 +263,28 @@ class MonthCacheTestCase(TestCase):
 
         self.assertNotEqual(january, julian_january)
         self.assertEqual(julian_january, self._get(cal='julian'))
+
+
+class TrailingSlashTestCase(TestCase):
+    """orthocal.middleware.append_api_slash and the APPEND_SLASH redirect"""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_slashless_api_url_is_served_directly(self):
+        url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 1, 'day': 7})
+        slashless = self.client.get(url.rstrip('/'))
+
+        self.assertEqual(slashless.status_code, 200)
+        self.assertEqual(slashless.json(), self.client.get(url).json())
+
+    def test_unknown_slashless_api_url_is_still_a_404(self):
+        self.assertEqual(self.client.get('/api/no/such/thing').status_code, 404)
+
+    def test_slashless_page_url_redirects_cacheably(self):
+        url = reverse('readings', kwargs={'tradition': 'slavic', 'cal': 'gregorian', 'year': 2022, 'month': 1, 'day': 7})
+        response = self.client.get(url.rstrip('/'))
+
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response['Location'], url)
+        self.assertIn('public', response['Cache-Control'])
+        self.assertIn('s-maxage', response['Cache-Control'])

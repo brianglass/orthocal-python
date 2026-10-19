@@ -1,9 +1,11 @@
 {% extends "content_base.html" %}
+{% load fullurl %}
 
 {% block title %}Search for a Saint{% endblock %}
 
 {% block head %}
 	<meta name="description" content="Search for an Orthodox saint by name.">
+	<link rel="canonical" href="{% fullurl "saint-search" %}">
 {% endblock %}
 
 {% block content %}

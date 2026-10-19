@@ -6,7 +6,7 @@ import newrelic.agent
 from asgiref.sync import iscoroutinefunction, markcoroutinefunction
 from django.conf import settings
 from django.http import HttpResponseNotFound
-from django.urls import Resolver404, resolve
+from django.urls import Resolver404, is_valid_path, resolve
 from django.utils import timezone
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.decorators import sync_and_async_middleware
@@ -41,6 +41,28 @@ def request_queueing(get_response):
     return middleware
 
 @sync_and_async_middleware
+def append_api_slash(get_response):
+    """Serve slashless API URLs directly instead of redirecting them.
+
+    Apps call e.g. /api/julian/2027/1/9, and CommonMiddleware's APPEND_SLASH
+    redirect costs them a second round trip. In Oct 2026 these made up 10.7k
+    redirects a week, and app bursts of thousands of them forced Cloud Run
+    to cold-start instances. JSON isn't indexed, so serving it at both paths
+    has no SEO cost; HTML pages keep the redirect so crawlers settle on one
+    URL."""
+
+    if iscoroutinefunction(get_response):
+        async def middleware(request):
+            append_slash_to_api_path(request)
+            return await get_response(request)
+    else:
+        def middleware(request):
+            append_slash_to_api_path(request)
+            return get_response(request)
+
+    return middleware
+
+@sync_and_async_middleware
 def finite_calendar_for_crawlers(get_response):
     """404 crawlers asking for a date outside the indexable window.
 
@@ -50,8 +72,8 @@ def finite_calendar_for_crawlers(get_response):
     The pages' noindex and nofollow don't help, since those crawlers work
     from URL lists, not links. Real visitors and API clients (e.g. the
     mobile app) are untouched -- this matches only self-declared crawlers.
-    It has to run before cache_control, which marks responses public:
-    Firebase's CDN would otherwise serve the cached 404 to people too."""
+    Its 404s are no-store, which cache_control leaves alone: Firebase's CDN
+    would otherwise serve the cached 404 to people too."""
 
     if iscoroutinefunction(get_response):
         async def middleware(request):
@@ -69,6 +91,11 @@ def finite_calendar_for_crawlers(get_response):
 # Helper functions
 
 def patch_headers(response):
+    # Responses that must not be cached, like finite_calendar_for_crawlers'
+    # 404s, are left alone so the CDN doesn't serve them to people.
+    if 'no-store' in response.get('Cache-Control', ''):
+        return
+
     # We don't let the browser cache as long as the CDN in case we make changes
     # to the site.
     max_age = get_max_age(response) or settings.ORTHOCAL_MAX_AGE
@@ -96,6 +123,13 @@ def set_request_queueing(request):
             transaction.queue_start = float(fields[0][1:])
         except (IndexError, ValueError):
             pass
+
+def append_slash_to_api_path(request):
+    path = request.path_info
+    if (path.startswith('/api/') and not path.endswith('/')
+            and not is_valid_path(path) and is_valid_path(f'{path}/')):
+        request.path_info = f'{path}/'
+        request.path = f'{request.path}/'
 
 CRAWLER_RE = re.compile(r'bot|crawl|spider|slurp|externalagent|externalhit', re.IGNORECASE)
 

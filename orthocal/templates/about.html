@@ -1,9 +1,11 @@
 {% extends "content_base.html" %}
+{% load fullurl %}
 
 {% block title %}About the Orthodox Calendar{% endblock %}
 
 {% block head %}
 	<meta name="description" content="Orthocal.info provides a REST api and Alesa skill for daily scripture readings and commemorations.">
+	<link rel="canonical" href="{% fullurl "about" %}">
 {% endblock %}
 
 {% block content %}
