@@ -17,18 +17,18 @@ class SpeechTestCase(TestCase):
         actual = speech.human_join(items)
         self.assertEqual(expected, actual)
 
-    async def test_when_speech_tomorrow(self):
+    def test_when_speech_tomorrow(self):
         now = timezone.localtime()
         tomorrow = now + timedelta(days=1)
 
         day = liturgics.Day(tomorrow.year, tomorrow.month, tomorrow.day)
-        await day.ainitialize()
+        day.initialize()
         actual = speech.when_speech(day)
 
         self.assertIn('Tomorrow', actual)
         self.assertNotIn('Today', actual)
 
-    async def test_when_speech_today(self):
+    def test_when_speech_today(self):
         # Today's date itself, not now + a few hours: after 10pm local time
         # (TIME_ZONE is America/Los_Angeles) that lands on tomorrow, and
         # Dependabot's runs start ~06:00 UTC -- 10-11pm Pacific -- so every
@@ -36,7 +36,7 @@ class SpeechTestCase(TestCase):
         today = timezone.localdate()
 
         day = liturgics.Day(today.year, today.month, today.day)
-        await day.ainitialize()
+        day.initialize()
         actual = speech.when_speech(day)
 
         self.assertIn('Today', actual)

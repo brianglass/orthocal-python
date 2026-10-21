@@ -12,7 +12,7 @@ from ..datetools import Tradition
 GOLDEN = Path(__file__).resolve().parent / 'data/antiochian-readings.tsv'
 
 
-async def characterize(entries):
+def characterize(entries):
     """Classify each antiochian.org (date, title) against the Greek readings.
 
     One line per entry: date, title, status, and for a boundary mismatch the
@@ -30,11 +30,11 @@ async def characterize(entries):
 
     verses = {}
 
-    async def verse_set(reference):
+    def verse_set(reference):
         if reference not in verses:
             verses[reference] = frozenset({
                 (v.book, v.chapter, v.verse)
-                async for v in Verse.objects.lookup_reference(reference)
+                for v in Verse.objects.lookup_reference(reference)
             })
         return verses[reference]
 
@@ -43,9 +43,9 @@ async def characterize(entries):
         day_date = date.fromisoformat(day_iso)
         day = liturgics.Day(day_date.year, day_date.month, day_date.day,
                             tradition=Tradition.Greek)
-        await day.ainitialize()
-        displays = [r.pericope.sdisplay for r in await day.aget_readings()]
-        served = [(d, await verse_set(d)) for d in displays]
+        day.initialize()
+        displays = [r.pericope.sdisplay for r in day.get_readings()]
+        served = [(d, verse_set(d)) for d in displays]
 
         # The sources list the Lamentations (Matins of Holy Saturday, sung on
         # Friday evening) under Holy Friday; orthocal carries them on Holy
@@ -56,15 +56,15 @@ async def characterize(entries):
             next_day = day_date + timedelta(days=1)
             saturday = liturgics.Day(next_day.year, next_day.month, next_day.day,
                                      tradition=Tradition.Greek)
-            await saturday.ainitialize()
-            anticipated = [await verse_set(r.pericope.sdisplay)
-                           for r in await saturday.aget_readings()
+            saturday.initialize()
+            anticipated = [verse_set(r.pericope.sdisplay)
+                           for r in saturday.get_readings()
                            if r.source.startswith('Matins')]
 
         for _, title in group:
             overlapping = '-'
             try:
-                wanted = await verse_set(parse_reading_citation(title))
+                wanted = verse_set(parse_reading_citation(title))
             except ValueError:
                 wanted = frozenset()
             if not wanted:
@@ -174,14 +174,14 @@ class TestExactGreekReadingBoundaries(TestCase):
         (12, 31, 'Gospel', 'Mark 10.24-32'),
     )
 
-    async def test_all_reported_fields_are_exact(self):
+    def test_all_reported_fields_are_exact(self):
         for month, day, source, expected in self.CASES:
             with self.subTest(date=date(2026, month, day), source=source):
                 pday = liturgics.Day(
                     2026, month, day, tradition=Tradition.Greek
                 )
-                await pday.ainitialize()
-                readings = await pday.aget_readings()
+                pday.initialize()
+                readings = pday.get_readings()
                 actual = {
                     reading.pericope.sdisplay
                     for reading in readings
@@ -206,10 +206,10 @@ class TestAntiochianReadingCharacterization(TestCase):
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def test_antiochian_comparison_is_unchanged(self):
+    def test_antiochian_comparison_is_unchanged(self):
         expected = GOLDEN.read_text().splitlines()
         entries = [line.split('\t')[:2] for line in expected]
-        actual = await characterize(entries)
+        actual = characterize(entries)
 
         differences = [(e, a) for e, a in zip(expected, actual) if e != a]
         if differences:

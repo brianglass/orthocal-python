@@ -254,7 +254,7 @@ class MonthCacheTestCase(TestCase):
     def test_cache_hit_skips_computation(self):
         self._get()
 
-        with mock.patch.object(api.liturgics, 'amonth_of_days', side_effect=AssertionError('recomputed')):
+        with mock.patch.object(api.liturgics, 'month_of_days', side_effect=AssertionError('recomputed')):
             self._get()
 
     def test_months_are_cached_separately(self):

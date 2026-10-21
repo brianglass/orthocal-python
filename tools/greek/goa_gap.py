@@ -8,7 +8,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, collections
+import django, re, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -74,7 +74,7 @@ def retoken(fp):
     return m.group(1) + LEGACY.get(m.group(2), m.group(2)) + m.group(3)
 
 
-async def main():
+def main():
     src = {}
     for tok in open('data/goa2026.txt').read().split():
         d, e, g = (tok.split(',') + ['', ''])[:3]
@@ -89,8 +89,8 @@ async def main():
             continue
         month, dayn = int(key[:2]), int(key[2:])
         day = Day(2026, month, dayn, tradition=Tradition.Greek)
-        await day.ainitialize()
-        rs = await day.aget_readings()
+        day.initialize()
+        rs = day.get_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
         got_g = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Gospel']
         e_ok = (not want_e) or any(near(x, want_e) for x in got_e)
@@ -107,4 +107,4 @@ async def main():
         flag = ('' if e_ok else 'E') + ('' if g_ok else 'G')
         print(f'  2026-{key[:2]}-{key[2:]} {flag:<2} want E={we:<11} G={wg:<11} got E={ge} G={gg}')
 
-asyncio.run(main())
+main()

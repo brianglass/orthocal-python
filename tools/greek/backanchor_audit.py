@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])   # data/ paths below are repo-root relative
-import asyncio, django, os, re, datetime, collections
+import django, os, re, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','orthocal.settings')
 django.setup()
 from calendarium.liturgics import GreekYear, Day
@@ -38,7 +38,7 @@ def ref(s):
     v = re.search(r'(\d+)[:.](\d+)', s)
     return (book, int(v.group(1)), int(v.group(2))) if v else (book, 0, 0)
 
-async def main():
+def main():
     res = collections.Counter(); misses = []
     unresolved = 0
     for Y in sorted(obs):
@@ -47,8 +47,8 @@ async def main():
             expected = slotmap.get((sec, wk, wd))
             if not expected: unresolved += 1; continue
             b = (dt - trio_mon).days // 7
-            day = Day(dt.year, dt.month, dt.day, tradition='greek'); await day.ainitialize()
-            got = [r.pericope.sdisplay for r in await day.aget_readings() if r.source == 'Gospel']
+            day = Day(dt.year, dt.month, dt.day, tradition='greek'); day.initialize()
+            got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
             w = ref(expected)
             hit = any(ref(g) and ref(g)[0] == w[0] and ref(g)[1] == w[1] and abs(ref(g)[2]-w[2]) <= 2 for g in got)
             zone = 'b>=-3 (back-anchored)' if b >= -3 else 'b<=-4 (surplus)'
@@ -62,4 +62,4 @@ async def main():
     for dt, b, slot, exp, got in misses:
         print(f'  {dt} b{b:<3} {slot:<9} goa={exp:<22} app={got}')
 
-asyncio.run(main())
+main()

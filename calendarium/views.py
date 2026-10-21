@@ -14,10 +14,12 @@ from django.utils import timezone
 
 from . import liturgics, models
 from .datetools import Calendar, Tradition, Translation, TRANSLATION_LABELS, cal_session_key, translation_session_key
+from orthocal.decorators import in_thread_pool
 
 logger = logging.getLogger(__name__)
 
-async def readings_view(request, cal=None, tradition=None, translation=None, year=None, month=None, day=None):
+@in_thread_pool
+def readings_view(request, cal=None, tradition=None, translation=None, year=None, month=None, day=None):
     tradition = remember_tradition(request, tradition)
     cal = remember_cal(request, cal, tradition)
     translation = remember_translation(request, translation, request.LANGUAGE_CODE)
@@ -31,8 +33,8 @@ async def readings_view(request, cal=None, tradition=None, translation=None, yea
     else:
         day = liturgics.Day(now.year, now.month, now.day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
 
-    await day.ainitialize()
-    await day.aget_readings(fetch_content=True)
+    day.initialize()
+    day.get_readings(fetch_content=True)
 
     next_date = day.gregorian_date + timedelta(days=1)
     previous_date = day.gregorian_date - timedelta(days=1)
@@ -55,7 +57,8 @@ async def readings_view(request, cal=None, tradition=None, translation=None, yea
         'translation_choices': [(t.value, TRANSLATION_LABELS[t.value]) for t in Translation],
     })
 
-async def calendar_view(request, cal=None, tradition=None, year=None, month=None):
+@in_thread_pool
+def calendar_view(request, cal=None, tradition=None, year=None, month=None):
     tradition = remember_tradition(request, tradition)
     cal = remember_cal(request, cal, tradition)
     now = timezone.localtime().date()
@@ -65,7 +68,7 @@ async def calendar_view(request, cal=None, tradition=None, year=None, month=None
 
     first_day = date(year, month, 1)
 
-    content = await render_calendar_html(request, year, month, cal=cal, tradition=tradition)
+    content = render_calendar_html(request, year, month, cal=cal, tradition=tradition)
 
     previous_month = first_day - relativedelta(months=1)
     next_month = first_day + relativedelta(months=1)
@@ -82,14 +85,15 @@ async def calendar_view(request, cal=None, tradition=None, year=None, month=None
         'next_nofollow': not is_indexable(next_month),
     })
 
-async def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
+@in_thread_pool
+def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
     if not year or not month:
         now = timezone.localtime()
         year, month = now.year, now.month
 
     first_day = date(year, month, 1)
 
-    content = await render_calendar_html(request, year, month, cal=cal, tradition=tradition)
+    content = render_calendar_html(request, year, month, cal=cal, tradition=tradition)
 
     return render(request, 'calendar_embed.html', context={
         'content': content,
@@ -100,7 +104,7 @@ async def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Traditi
         'next_month': first_day + relativedelta(months=1),
     })
 
-async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tradition=Tradition.Slavic, full_urls=False):
+def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tradition=Tradition.Slavic, full_urls=False):
     class LiturgicalCalendar(calendar.HTMLCalendar):
         def formatday(self, day, weekday):
             if not day:
@@ -115,10 +119,7 @@ async def render_calendar_html(request, year, month, cal=Calendar.Gregorian, tra
                 'full_urls': full_urls,
             })
 
-    days = [
-        d async for d in
-        liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)
-    ]
+    days = list(liturgics.month_of_days(year, month, calendar=cal, tradition=tradition))
 
     lcal = LiturgicalCalendar(firstweekday=6)
     content = lcal.formatmonth(year, month)

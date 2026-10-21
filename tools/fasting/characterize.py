@@ -31,7 +31,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import datetime
 
@@ -51,14 +50,14 @@ YEARS = (2025, 2026, 2027, 2028, 2029)
 PATH = 'calendarium/tests/data/fasting-characterization.txt'
 
 
-async def lines():
+def lines():
     out = []
     for tradition, name in ((Tradition.Slavic, 'slavic'), (Tradition.Greek, 'greek')):
         for year in YEARS:
             date = datetime.date(year, 1, 1)
             while date.year == year:
                 day = Day(date.year, date.month, date.day, tradition=tradition)
-                await day.ainitialize()
+                day.initialize()
                 rows = ','.join(str(e) for e in sorted(d.fast_exception for d in day.days))
                 abstain = ','.join(
                     datetools.fast_abstentions_for(day.fast_level, day.fast_exception))
@@ -71,8 +70,8 @@ async def lines():
     return out
 
 
-async def main(write):
-    rendered = await lines()
+def main(write):
+    rendered = lines()
 
     if write:
         with open(PATH, 'w') as f:
@@ -105,4 +104,4 @@ async def main(write):
 
 
 if __name__ == '__main__':
-    asyncio.run(main('--write' in sys.argv))
+    main('--write' in sys.argv)

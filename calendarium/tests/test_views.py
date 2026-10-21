@@ -155,17 +155,17 @@ class TestCalendarView(TestCase):
         self.assertEqual(response.context['cal'], Calendar.Julian)
         self.assertEqual(response.context['day'].pyear.calendar, Calendar.Julian)
 
-    async def test_render_calendar_html(self):
+    def test_render_calendar_html(self):
         now = date(2022, 1, 7)
         request = RequestFactory().get('/')
-        html = await render_calendar_html(request, 2022, 1, cal=Calendar.Gregorian)
+        html = render_calendar_html(request, 2022, 1, cal=Calendar.Gregorian)
         self.assertIn(now.strftime('%B'), html)
         self.assertIn('Synaxis 3 Hierarchs', html)
 
-    async def test_render_calendar_html_julian(self):
+    def test_render_calendar_html_julian(self):
         now = date(2022, 1, 7)
         request = RequestFactory().get('/')
-        html = await render_calendar_html(request, 2022, 1, cal=Calendar.Julian)
+        html = render_calendar_html(request, 2022, 1, cal=Calendar.Julian)
         self.assertIn(now.strftime('%B'), html)
         self.assertIn('Nativity of Christ', html)
 

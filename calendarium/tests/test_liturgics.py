@@ -225,28 +225,28 @@ class TestTraditionOverlay(TestCase):
             with self.subTest(attr):
                 self.assertEqual(getattr(slavic, attr), getattr(greek, attr))
 
-    async def test_common_reading_is_shared_by_both_traditions(self):
+    def test_common_reading_is_shared_by_both_traditions(self):
         """With no tradition-specific override, both traditions should see the
         same 'common' Reading row."""
 
         for tradition in (Tradition.Slavic, Tradition.Greek):
             with self.subTest(tradition):
                 day = liturgics.Day(2026, 1, 1, tradition=tradition)
-                await day.ainitialize()
-                readings = await day.aget_readings()
+                day.initialize()
+                readings = day.get_readings()
                 displays = {r.pericope.sdisplay for r in readings}
                 self.assertIn('Col 2.8-12', displays)
 
-    async def test_tradition_specific_row_overrides_common_row(self):
+    def test_tradition_specific_row_overrides_common_row(self):
         """A tradition-tagged row should shadow the 'common' row for the same slot."""
 
-        pericope = await models.Pericope.objects.afirst()
+        pericope = models.Pericope.objects.first()
 
-        common = await models.Reading.objects.acreate(
+        common = models.Reading.objects.create(
             month=8, day=29, pdist=0, source='Epistle', desc='__test__',
             pericope=pericope, ordering=821, flag=0, tradition='common',
         )
-        greek_override = await models.Reading.objects.acreate(
+        greek_override = models.Reading.objects.create(
             month=8, day=29, pdist=0, source='Epistle', desc='__test__',
             pericope=pericope, ordering=821, flag=0, tradition='greek',
         )
@@ -258,10 +258,10 @@ class TestTraditionOverlay(TestCase):
             rows = liturgics.day._prefer_tradition([common, greek_override], Tradition.Slavic)
             self.assertEqual(rows, [common])
         finally:
-            await common.adelete()
-            await greek_override.adelete()
+            common.delete()
+            greek_override.delete()
 
-    async def test_day_feast_name_is_tradition_specific(self):
+    def test_day_feast_name_is_tradition_specific(self):
         """Day.feast_name/feast_level (unlike Reading) had no tradition axis
         at all until this was found via a real bug: Greek was showing
         Slavic's Oct 1 Protection-of-the-Theotokos feast/fasting rank even
@@ -274,8 +274,8 @@ class TestTraditionOverlay(TestCase):
 
         slavic = liturgics.Day(2026, 10, 1, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 10, 1, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        slavic.initialize()
+        greek.initialize()
 
         self.assertIn('Protection (Pokrov) of the Most-Holy Theotokos', slavic.feasts)
         self.assertEqual(slavic.feast_level, 6)
@@ -288,7 +288,7 @@ class TestTraditionOverlay(TestCase):
         self.assertIn('Holy Apostle Ananias of the Seventy', slavic.saints)
         self.assertIn('Holy Apostle Ananias of the Seventy', greek.saints)
 
-    async def test_greek_only_feast_labels(self):
+    def test_greek_only_feast_labels(self):
         """Labels Greek practice carries on these dates and Slavic does not
         headline; see docs/greek-commons.md, pass 13. Slavic is unchanged."""
 
@@ -302,8 +302,8 @@ class TestTraditionOverlay(TestCase):
             with self.subTest(month=month, day=day):
                 slavic = liturgics.Day(2026, month, day, tradition=Tradition.Slavic)
                 greek = liturgics.Day(2026, month, day, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
+                slavic.initialize()
+                greek.initialize()
 
                 self.assertEqual(greek.summary_title, label)
                 self.assertNotIn(label, slavic.feasts)
@@ -311,17 +311,17 @@ class TestTraditionOverlay(TestCase):
                     (greek.fast_level, greek.feast_level),
                     (slavic.fast_level, slavic.feast_level))
 
-    async def test_phocas_on_july_23_for_greek(self):
+    def test_phocas_on_july_23_for_greek(self):
         slavic = liturgics.Day(2026, 7, 23, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 7, 23, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        slavic.initialize()
+        greek.initialize()
 
         phocas = 'Hieromartyr Phocas, Bishop of Sinope'
         self.assertTrue(greek.summary_title.startswith(phocas))
         self.assertNotIn(phocas, slavic.saints)
 
-    async def test_raphael_brooklyn_differing_commemoration_date(self):
+    def test_raphael_brooklyn_differing_commemoration_date(self):
         """St. Raphael of Brooklyn -- founding bishop of Antiochian
         Orthodoxy in America -- is kept on Feb 27 (his repose date) by
         Slavic/OCA practice, but on the first Saturday of November by the
@@ -350,8 +350,8 @@ class TestTraditionOverlay(TestCase):
 
         slavic_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Slavic)
         greek_feb27 = liturgics.Day(2025, 2, 27, tradition=Tradition.Greek)
-        await slavic_feb27.ainitialize()
-        await greek_feb27.ainitialize()
+        slavic_feb27.initialize()
+        greek_feb27.initialize()
 
         self.assertEqual(slavic_feb27.feasts, ['St Raphael Bishop of Brooklyn'])
         self.assertFalse(any('Raphael' in s for s in slavic_feb27.saints))
@@ -361,8 +361,8 @@ class TestTraditionOverlay(TestCase):
         # Nov 1, 2025 is itself a Saturday.
         slavic_nov1 = liturgics.Day(2025, 11, 1, tradition=Tradition.Slavic)
         greek_nov1 = liturgics.Day(2025, 11, 1, tradition=Tradition.Greek)
-        await slavic_nov1.ainitialize()
-        await greek_nov1.ainitialize()
+        slavic_nov1.initialize()
+        greek_nov1.initialize()
 
         self.assertNotIn('St Raphael Bishop of Brooklyn', slavic_nov1.feasts)
         self.assertEqual(greek_nov1.feasts, [])
@@ -385,7 +385,7 @@ class TestGreekFasting(TestCase):
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def test_day_dispatches_to_tradition_specific_subclass(self):
+    def test_day_dispatches_to_tradition_specific_subclass(self):
         slavic = liturgics.Day(2026, 11, 20, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 11, 20, tradition=Tradition.Greek)
 
@@ -395,7 +395,7 @@ class TestGreekFasting(TestCase):
         self.assertIsInstance(greek, liturgics.GreekDay)
         self.assertNotIsInstance(slavic, liturgics.GreekDay)
 
-    async def test_nativity_fast_phase_one_monday_differs(self):
+    def test_nativity_fast_phase_one_monday_differs(self):
         """Nov 23, 2026 is an ordinary Monday in the Nativity Fast's first
         phase (Nov 15 - Dec 12), with no overriding feast. Slavic groups
         Monday with Wednesday/Friday (strict); Greek treats every day but
@@ -403,13 +403,13 @@ class TestGreekFasting(TestCase):
 
         slavic = liturgics.Day(2026, 11, 23, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 11, 23, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        slavic.initialize()
+        greek.initialize()
 
         self.assertEqual(slavic.fast_exception_desc, '')
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_greek_first_phase_is_a_fish_day(self):
+    def test_nativity_fast_greek_first_phase_is_a_fish_day(self):
         """Dec 10, 2026 is an ordinary Thursday in Greek's first phase, which
         runs through Dec 11: everything but Wednesday and Friday is a fish day.
         Slavic gets only the ordinary Tuesday/Thursday wine-and-oil allowance,
@@ -420,13 +420,13 @@ class TestGreekFasting(TestCase):
 
         slavic = liturgics.Day(2026, 12, 10, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 12, 10, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        slavic.initialize()
+        greek.initialize()
 
         self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
         self.assertEqual(greek.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_nativity_fast_greek_second_phase_starts_december_12(self):
+    def test_nativity_fast_greek_second_phase_starts_december_12(self):
         """December 2027 pins the boundary exactly, because it falls across a
         weekend: Dec 11 is a Saturday and still a fish day, Dec 12 is a Sunday
         and only wine and oil. Both are weekend days, so nothing but the phase
@@ -442,13 +442,13 @@ class TestGreekFasting(TestCase):
 
         before = liturgics.Day(2027, 12, 11, tradition=Tradition.Greek)
         after = liturgics.Day(2027, 12, 12, tradition=Tradition.Greek)
-        await before.ainitialize()
-        await after.ainitialize()
+        before.initialize()
+        after.initialize()
 
         self.assertEqual(before.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
         self.assertEqual(after.fast_exception_desc, 'Wine and Oil are Allowed')
 
-    async def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
+    def test_nativity_eve_strict_baseline_not_weakened_by_greek_stricter_period(self):
         """Regression test for a bug caught during implementation: Dec 24,
         2026 is a Thursday with a deliberately strict baseline
         (fast_exception index 9, "Strict Fast" -- distinct from the
@@ -463,12 +463,12 @@ class TestGreekFasting(TestCase):
             with self.subTest(year):
                 slavic = liturgics.Day(year, 12, 24, tradition=Tradition.Slavic)
                 greek = liturgics.Day(year, 12, 24, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
+                slavic.initialize()
+                greek.initialize()
 
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_holy_week_and_dormition_fasts_are_identical_between_traditions(self):
+    def test_holy_week_and_dormition_fasts_are_identical_between_traditions(self):
         """Holy Week and the Dormition Fast follow the same weekly pattern in
         both traditions -- a regression guard against that changing. Ordinary
         weeks of Great Lent are NOT covered here; see the wine-and-oil
@@ -495,13 +495,13 @@ class TestGreekFasting(TestCase):
             with self.subTest(d):
                 slavic = liturgics.Day(d.year, d.month, d.day, tradition=Tradition.Slavic)
                 greek = liturgics.Day(d.year, d.month, d.day, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
+                slavic.initialize()
+                greek.initialize()
 
                 self.assertEqual(slavic.fast_level_desc, greek.fast_level_desc)
                 self.assertEqual(slavic.fast_exception_desc, greek.fast_exception_desc)
 
-    async def test_apostles_fast_is_lighter_for_greek(self):
+    def test_apostles_fast_is_lighter_for_greek(self):
         """GOA keeps fish through the Apostles' fast except on Wednesday and
         Friday, where it is strict. Slavic practice follows Typikon Ch. 33
         instead -- Monday strict, Tuesday and Thursday wine and oil, weekends
@@ -524,13 +524,13 @@ class TestGreekFasting(TestCase):
             with self.subTest(day_of_month):
                 greek = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Greek)
                 slavic = liturgics.Day(2026, 6, day_of_month, tradition=Tradition.Slavic)
-                await greek.ainitialize()
-                await slavic.ainitialize()
+                greek.initialize()
+                slavic.initialize()
 
                 self.assertEqual(greek.fast_exception_desc, greek_desc)
                 self.assertEqual(slavic.fast_exception_desc, slavic_desc)
 
-    async def test_greek_fixed_date_wine_oil_grants(self):
+    def test_greek_fixed_date_wine_oil_grants(self):
         """GOA relaxes a fast to wine and oil on a fixed list of saints' days
         that our own feast ranks do not pick out -- St Eleutherius (Dec 15) is
         feast_level 2 here, and St Barbara (Dec 4) is level 0.
@@ -542,13 +542,13 @@ class TestGreekFasting(TestCase):
 
         greek = liturgics.Day(2026, 12, 15, tradition=Tradition.Greek)
         slavic = liturgics.Day(2026, 12, 15, tradition=Tradition.Slavic)
-        await greek.ainitialize()
-        await slavic.ainitialize()
+        greek.initialize()
+        slavic.initialize()
 
         self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
         self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
 
-    async def test_greek_caps_a_saints_fish_on_wednesday_and_friday(self):
+    def test_greek_caps_a_saints_fish_on_wednesday_and_friday(self):
         """Typikon Chapter X allows fish on a Wednesday or Friday only for a
         feast of the Lord. GOA applies that as a cap: St Nicholas carries a
         fish grant, but on Dec 6 2028, a Wednesday, goarch.org gives only
@@ -556,12 +556,12 @@ class TestGreekFasting(TestCase):
         days that do keep fish."""
 
         greek = liturgics.Day(2028, 12, 6, tradition=Tradition.Greek)
-        await greek.ainitialize()
+        greek.initialize()
 
         self.assertEqual(greek.feast_level, 5)
         self.assertEqual(greek.fast_exception_desc, 'Wine and Oil are Allowed')
 
-    async def test_greek_beheading_is_strict_except_at_the_weekend(self):
+    def test_greek_beheading_is_strict_except_at_the_weekend(self):
         """Our data relaxes the Beheading of the Forerunner to wine and oil.
         goarch.org keeps it strict on all five weekdays -- seven observations
         across ten years, never once relaxed -- while allowing wine and oil
@@ -573,9 +573,9 @@ class TestGreekFasting(TestCase):
         weekday = liturgics.Day(2028, 8, 29, tradition=Tradition.Greek)
         weekend = liturgics.Day(2026, 8, 29, tradition=Tradition.Greek)
         slavic = liturgics.Day(2028, 8, 29, tradition=Tradition.Slavic)
-        await weekday.ainitialize()
-        await weekend.ainitialize()
-        await slavic.ainitialize()
+        weekday.initialize()
+        weekend.initialize()
+        slavic.initialize()
 
         self.assertEqual(weekday.fast_exception_desc, '')
         self.assertEqual(weekend.fast_exception_desc, 'Wine and Oil are Allowed')
@@ -584,7 +584,7 @@ class TestGreekFasting(TestCase):
         # the Greek weekend reaches by a different route.
         self.assertEqual(slavic.fast_exception_desc, 'Strict Fast (Wine and Oil)')
 
-    async def test_greek_cheesefare_week_is_a_meat_fast_throughout(self):
+    def test_greek_cheesefare_week_is_a_meat_fast_throughout(self):
         """Cheesefare week needs its own Greek season only so that the
         Wednesday/Friday no-fish cap does not reach it: that cap means "no fish
         for a saint", and clamping a week whose whole point is that only meat is
@@ -595,10 +595,10 @@ class TestGreekFasting(TestCase):
         for day_of_month in range(16, 23):
             with self.subTest(day_of_month):
                 greek = liturgics.Day(2026, 2, day_of_month, tradition=Tradition.Greek)
-                await greek.ainitialize()
+                greek.initialize()
                 self.assertEqual(greek.fast_exception_desc, 'Meat Fast')
 
-    async def test_dormition_fast_grants_no_rank_based_exception(self):
+    def test_dormition_fast_grants_no_rank_based_exception(self):
         """Regression test for a data bug reported directly against
         production: Aug 9, 2026 (St Herman of Alaska's Vigil-rank feast)
         showed a fish allowance, contradicting antiochian.org and
@@ -631,8 +631,8 @@ class TestGreekFasting(TestCase):
         # weekend rule, not from Herman's Vigil rank.
         slavic_herman = liturgics.Day(2026, 8, 9, tradition=Tradition.Slavic)
         greek_herman = liturgics.Day(2026, 8, 9, tradition=Tradition.Greek)
-        await slavic_herman.ainitialize()
-        await greek_herman.ainitialize()
+        slavic_herman.initialize()
+        greek_herman.initialize()
         self.assertEqual(slavic_herman.fast_exception_desc, 'Wine and Oil are Allowed')
         self.assertEqual(greek_herman.fast_exception_desc, 'Wine and Oil are Allowed')
 
@@ -640,18 +640,18 @@ class TestGreekFasting(TestCase):
         # exception -- full abstention, matching antiochian.org.
         slavic_leavetaking = liturgics.Day(2026, 8, 13, tradition=Tradition.Slavic)
         greek_leavetaking = liturgics.Day(2026, 8, 13, tradition=Tradition.Greek)
-        await slavic_leavetaking.ainitialize()
-        await greek_leavetaking.ainitialize()
+        slavic_leavetaking.initialize()
+        greek_leavetaking.initialize()
         self.assertEqual(slavic_leavetaking.fast_exception_desc, '')
         self.assertEqual(greek_leavetaking.fast_exception_desc, '')
 
         # Transfiguration itself (Aug 6, feast_level=8) is the one dated
         # exception and must be unaffected by the cap.
         transfiguration = liturgics.Day(2026, 8, 6, tradition=Tradition.Slavic)
-        await transfiguration.ainitialize()
+        transfiguration.initialize()
         self.assertEqual(transfiguration.fast_exception_desc, 'Fish, Wine and Oil are Allowed')
 
-    async def test_lenten_wine_oil_exceptions_greek_stricter_than_slavic(self):
+    def test_lenten_wine_oil_exceptions_greek_stricter_than_slavic(self):
         """OCA's published Lenten rule grants a wine-and-oil exception on
         three specific occasions when they fall on an ordinary weekday: the
         Forefeast of the Annunciation (Mar 24), and Wednesday/Friday of the
@@ -671,14 +671,14 @@ class TestGreekFasting(TestCase):
             with self.subTest(dt):
                 slavic = liturgics.Day(dt.year, dt.month, dt.day, tradition=Tradition.Slavic)
                 greek = liturgics.Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
+                slavic.initialize()
+                greek.initialize()
 
                 self.assertEqual(slavic.fast_exception_desc, 'Wine and Oil are Allowed')
                 self.assertEqual(greek.fast_exception_desc, '')
 
 
-    async def test_clean_week_feast_keeps_wine_and_oil(self):
+    def test_clean_week_feast_keeps_wine_and_oil(self):
         """GOA lets a polyeleos saint's wine and oil through Clean Week's "no
         overrides" -- but not on Clean Monday. goarch.org marks 2026-02-24
         (Tuesday) `grapes` and 2031-02-24 (Monday) `strict-fast`; both are the
@@ -691,8 +691,8 @@ class TestGreekFasting(TestCase):
             with self.subTest(date=date(year, month, day)):
                 slavic = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
                 greek = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-                await slavic.ainitialize()
-                await greek.ainitialize()
+                slavic.initialize()
+                greek.initialize()
 
                 self.assertEqual(slavic.fast_exception_desc, 'No overrides')
                 self.assertEqual(greek.fast_exception_desc, greek_desc)
@@ -902,7 +902,7 @@ class TestGreekSundayTitles(TestCase):
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def test_sunday_titles(self):
+    def test_sunday_titles(self):
         for (year, month, day), expected in (
             ((2026, 6, 7), 'Sunday of All Saints'),
             ((2026, 7, 12), '6th Sunday of Matthew'),
@@ -917,25 +917,25 @@ class TestGreekSundayTitles(TestCase):
         ):
             with self.subTest(date=date(year, month, day)):
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-                await pday.ainitialize()
+                pday.initialize()
                 self.assertEqual(pday.titles[0], expected)
                 self.assertEqual(pday.summary_title, expected)
 
-    async def test_sunday_feast_promoted_to_title_is_not_repeated(self):
+    def test_sunday_feast_promoted_to_title_is_not_repeated(self):
         pday = liturgics.Day(2026, 12, 20, tradition=Tradition.Greek)
-        await pday.ainitialize()
+        pday.initialize()
         self.assertNotIn('Sunday before Nativity', pday.feasts)
 
-    async def test_slavic_sundays_still_count_from_pentecost(self):
+    def test_slavic_sundays_still_count_from_pentecost(self):
         pday = liturgics.Day(2026, 9, 27, tradition=Tradition.Slavic)
-        await pday.ainitialize()
+        pday.initialize()
         self.assertEqual(pday.titles, ['17th Sunday after Pentecost'])
 
-    async def test_july_fathers_differ_by_tradition(self):
+    def test_july_fathers_differ_by_tradition(self):
         slavic = liturgics.Day(2026, 7, 19, tradition=Tradition.Slavic)
         greek = liturgics.Day(2026, 7, 19, tradition=Tradition.Greek)
-        await slavic.ainitialize()
-        await greek.ainitialize()
+        slavic.initialize()
+        greek.initialize()
 
         self.assertIn('Fathers of the 1st Six Ecumenical Councils', slavic.feasts)
         self.assertIn('Holy Fathers of the 4th Ecumenical Council', greek.feasts)
@@ -963,17 +963,17 @@ class TestHasStory(TestCase):
 class TestDay(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def test_minimal_saints_keeps_three_of_the_full_list(self):
+    def test_minimal_saints_keeps_three_of_the_full_list(self):
         """Oct 1 Greek has 6 commemorations; minimal_saints keeps 3 of them."""
 
         day = liturgics.Day(2026, 10, 1, tradition=Tradition.Greek)
-        await day.ainitialize()
+        day.initialize()
 
         self.assertEqual(len(day.saints), 6)
         self.assertEqual(len(day.minimal_saints), 3)
         self.assertLessEqual(set(day.minimal_saints), set(day.saints))
 
-    async def test_minimal_saints_prefers_storied_over_bare_names(self):
+    def test_minimal_saints_prefers_storied_over_bare_names(self):
         """A bare harvested name must not take a storied saint's slot just
         because it is day_native and the storied one is additive."""
 
@@ -983,7 +983,7 @@ class TestDay(TestCase):
         ):
             with self.subTest(month=month, day=day_):
                 day = liturgics.Day(2026, month, day_)
-                await day.ainitialize()
+                day.initialize()
 
                 self.assertIn(bare, day.saints)
                 self.assertIn(kept, day.minimal_saints)
@@ -998,7 +998,7 @@ class TestDay(TestCase):
         self.assertEqual(_display_priority(row(story='<p></p>')), 2)
         self.assertEqual(_display_priority(row()), 2)
 
-    async def test_sixth_council_date_differs_by_tradition(self):
+    def test_sixth_council_date_differs_by_tradition(self):
         """The same council, kept on different days: Jan 23 in Slavic
         practice (oca.org), Sep 14 in Greek (antiochian.org). Neither date
         may leak into the other tradition."""
@@ -1011,45 +1011,45 @@ class TestDay(TestCase):
         ):
             with self.subTest(tradition=tradition, month=month, day=day_):
                 day = liturgics.Day(2026, month, day_, tradition=tradition)
-                await day.ainitialize()
+                day.initialize()
 
                 self.assertEqual(any('Sixth Ecumenical Council' in s or '6th Ecumenical Council' in s
                                      for s in day.saints), expected)
 
-    async def test_minimal_saints_untruncated_when_short(self):
+    def test_minimal_saints_untruncated_when_short(self):
         day = liturgics.Day(2026, 1, 7)
-        await day.ainitialize()
+        day.initialize()
 
         self.assertEqual(day.minimal_saints, day.saints)
 
-    async def test_no_memorial(self):
+    def test_no_memorial(self):
         """Memorial Saturday with no memorial readings should not have John 5.24-30."""
 
         day = liturgics.Day(2022, 3, 26)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
         short_displays = [r.pericope.sdisplay for r in readings]
         self.assertNotIn('John 5.24-30', short_displays)
 
-    async def test_scriptures(self):
+    def test_scriptures(self):
         # Cheesefare Sunday
         day = liturgics.Day(2018, 2, 18)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
 
         self.assertEqual(len(readings), 3)
 
-        count = await readings[0].pericope.get_passage().acount()
+        count = readings[0].pericope.get_passage().count()
         self.assertEqual(count, 12)
-        count = await readings[1].pericope.get_passage().acount()
+        count = readings[1].pericope.get_passage().count()
         self.assertEqual(count, 8)
-        count = await readings[2].pericope.get_passage().acount()
+        count = readings[2].pericope.get_passage().count()
         self.assertEqual(count, 8)
 
-    async def test_scriptures_pascha(self):
+    def test_scriptures_pascha(self):
         day = liturgics.Day(2023, 4, 16)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
 
         self.assertEqual(len(readings), 2)
 
@@ -1062,7 +1062,7 @@ class TestDay(TestCase):
 
         #self.assertEqual('John 20.19-25', readings[2].pericope.display)
 
-    async def test_annunciation(self):
+    def test_annunciation(self):
         """Test a sample feast day.
 
         St Mary of Egypt moved from Day.feast_name into a proper
@@ -1070,7 +1070,7 @@ class TestDay(TestCase):
         audit, 2026-08) -- she now shows via day.saints instead."""
 
         day = liturgics.Day(2018, 3, 25)
-        await day.ainitialize()
+        day.initialize()
 
         self.assertIn('Annunciation Most Holy Theotokos', day.feasts)
         self.assertTrue(any('Mary of Egypt' in s for s in day.saints))
@@ -1078,23 +1078,23 @@ class TestDay(TestCase):
         self.assertEqual(day.feast_level, 7)
         self.assertEqual(day.fast_level, 2)
         self.assertEqual(day.fast_exception, 4)
-        readings = await day.aget_readings()
+        readings = day.get_readings()
         self.assertEqual(len(readings), 12)
 
-    async def test_paremias(self):
+    def test_paremias(self):
         """Paremias should be moved from the subsequent day."""
 
         day = liturgics.Day(2018, 3, 8)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
         self.assertEqual(len(readings), 6)
 
-    async def test_sebaste(self):
+    def test_sebaste(self):
         """Paremias should be moved to the previous day."""
 
         day = liturgics.Day(2018, 3, 9)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
 
         self.assertEqual(len(readings), 6)
         self.assertEqual(readings[0].source, 'Matins Gospel')
@@ -1102,7 +1102,7 @@ class TestDay(TestCase):
         short_displays = [r.pericope.sdisplay for r in readings]
         self.assertEqual(len(short_displays), len(set(short_displays)))
 
-    async def test_tone(self):
+    def test_tone(self):
         data = [
 			(2023, 1, 1, 4),   # 29th Sunday after Pentecost
 			(2023, 4, 8, 0),   # Lazarus Saturday
@@ -1116,11 +1116,11 @@ class TestDay(TestCase):
 
         for year, month, day, tone in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest(tone):
                 self.assertEqual(tone, day.tone)
 
-    async def test_fasting_levels(self):
+    def test_fasting_levels(self):
         # Use Apostles Fast as a test case
         data = [
 			(2018, 6, 3, 0, 0),
@@ -1136,12 +1136,12 @@ class TestDay(TestCase):
 
         for year, month, day, fast, exception in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest():
                 self.assertEqual(day.fast_level, fast)
                 self.assertEqual(day.fast_exception, exception)
 
-    async def test_fast_free(self):
+    def test_fast_free(self):
         """Test fast free days."""
 
         data = [
@@ -1153,7 +1153,7 @@ class TestDay(TestCase):
 
         for year, month, day, fast, description in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest():
                 self.assertEqual(day.fast_level, fast)
                 self.assertEqual(day.fast_level_desc, description)
@@ -1190,7 +1190,7 @@ class TestDay(TestCase):
                 actual = datetools.fast_abstentions_for(datetools.FastLevels.NoFast, fast_exception)
                 self.assertEqual(actual, [])
 
-    async def test_day_fast_abstentions_desc_on_real_dates(self):
+    def test_day_fast_abstentions_desc_on_real_dates(self):
         """Integration check against real calendar dates, cross-referencing
         each fast_exception's actual meaning rather than trusting the table
         in isolation: Aug 29/Sep 14 carry fast_exception=8, Dec 24 carries 9,
@@ -1206,11 +1206,11 @@ class TestDay(TestCase):
 
         for year, month, day, expected in data:
             d = liturgics.Day(year, month, day)
-            await d.ainitialize()
+            d.initialize()
             with self.subTest((year, month, day)):
                 self.assertEqual(d.fast_abstentions_desc, expected)
 
-    async def test_eothinon(self):
+    def test_eothinon(self):
         data = [
             (2018, 3, 11, 7),
             (2023, 1, 1, 7),
@@ -1219,11 +1219,11 @@ class TestDay(TestCase):
 
         for year, month, day, gospel in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest(gospel):
                 self.assertEqual(day.eothinon_gospel, gospel)
 
-    async def test_composites(self):
+    def test_composites(self):
         """Test for composite scripture readings."""
 
         # The lengths are slightly different than the Go version because they
@@ -1237,14 +1237,14 @@ class TestDay(TestCase):
 
         for year, month, day, reading, length in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
-            readings = await day.aget_readings()
+            day.initialize()
+            readings = day.get_readings()
             with self.subTest(f'{day}: {reading}'):
                 passage = readings[reading].pericope.get_passage()
-                verse = await passage.afirst()
+                verse = passage.first()
                 self.assertEqual(len(verse.content), length)
 
-    async def test_abbreviated_readings(self):
+    def test_abbreviated_readings(self):
         data = [
 			(2023, 2, 5, 2),    # Sunday of the Publican and Pharisee; 2 NT readings
 			(2023, 2, 27, 3),   # first day of Lent + St. Raphael of Brooklyn; 3 OT readings
@@ -1258,23 +1258,23 @@ class TestDay(TestCase):
 
         for year, month, day, length in data:
             day = liturgics.Day(year, month, day)
-            await day.ainitialize()
-            readings = await day.aget_abbreviated_readings()
+            day.initialize()
+            readings = day.get_abbreviated_readings()
             with self.subTest(f'{day}'):
                 self.assertEqual(length, len(readings))
 
-    async def test_new_martyrs_russia(self):
+    def test_new_martyrs_russia(self):
         data = [
             (2023, 1, 22),
             (2022, 1, 23),
         ]
         for y, m, d in data:
             day = liturgics.Day(y, m, d)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest(y):
                 self.assertIn('New Martyrs and Confessors of Russia', day.feasts)
 
-    async def test_gospel_pdist(self):
+    def test_gospel_pdist(self):
         data = [
             (2022, 12, 4, 252),  # Sunday of the Forefathers of Christ
             (2023, 12, 3, 259),  # Sunday of the Forefathers of Christ
@@ -1285,11 +1285,11 @@ class TestDay(TestCase):
 
         for y, m, d, pdist in data:
             day = liturgics.Day(y, m, d)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest(day.gregorian_date):
                 self.assertEqual(day.gospel_pdist, pdist)
 
-    async def test_greek_theophany_interpolation_pdists(self):
+    def test_greek_theophany_interpolation_pdists(self):
         """End-to-end (Day, not just GreekYear) check that the fixes in
         test_theophany_interpolation/test_canaanite_woman_applies actually
         take effect through Day.gospel_pdist/epistle_pdist -- both need to
@@ -1336,12 +1336,12 @@ class TestDay(TestCase):
 
         for y, m, d, expected in data:
             day = liturgics.Day(y, m, d, tradition=Tradition.Greek)
-            await day.ainitialize()
+            day.initialize()
             with self.subTest((y, m, d)):
                 self.assertEqual(day.gospel_pdist, expected)
                 self.assertEqual(day.epistle_pdist, expected)
 
-    async def test_leavetaking_theophany_weekday_reading(self):
+    def test_leavetaking_theophany_weekday_reading(self):
         """End-to-end: Leavetaking of Theophany on an ordinary weekday shows
         the Greek-specific Acts 2:38-43 / Luke 4:1-15 reading additively
         alongside the ordinary continuous-cycle content, while Slavic shows
@@ -1352,10 +1352,10 @@ class TestDay(TestCase):
         for y, m, d in dates:
             greek = liturgics.Day(y, m, d, tradition=Tradition.Greek)
             slavic = liturgics.Day(y, m, d, tradition=Tradition.Slavic)
-            await greek.ainitialize()
-            await slavic.ainitialize()
-            greek_readings = await greek.aget_readings()
-            slavic_readings = await slavic.aget_readings()
+            greek.initialize()
+            slavic.initialize()
+            greek_readings = greek.get_readings()
+            slavic_readings = slavic.get_readings()
 
             greek_displays = {(r.source, r.pericope.display) for r in greek_readings}
             slavic_displays = {(r.source, r.pericope.display) for r in slavic_readings}
@@ -1366,7 +1366,7 @@ class TestDay(TestCase):
                 self.assertNotIn(('Epistle', 'Acts 2.38-43'), slavic_displays)
                 self.assertNotIn(('Gospel', 'Luke 4.1-15'), slavic_displays)
 
-    async def test_ordinary_sunday_of_luke_epistle_does_not_follow_gospel(self):
+    def test_ordinary_sunday_of_luke_epistle_does_not_follow_gospel(self):
         """On the *ordinary* (non-interpolated) numbered Sundays of Luke,
         the Epistle keeps following its own ordinary continuous-cycle
         position -- unlike the Canaanite Woman/post-Theophany-interpolation
@@ -1392,28 +1392,28 @@ class TestDay(TestCase):
         for y, m, d, plain_pdist in data:
             greek = liturgics.Day(y, m, d, tradition=Tradition.Greek)
             slavic = liturgics.Day(y, m, d, tradition=Tradition.Slavic)
-            await greek.ainitialize()
-            await slavic.ainitialize()
+            greek.initialize()
+            slavic.initialize()
             with self.subTest((y, m, d)):
                 self.assertEqual(greek.epistle_pdist, plain_pdist)
                 self.assertNotEqual(greek.epistle_pdist, greek.gospel_pdist)
                 self.assertEqual(greek.epistle_pdist, slavic.epistle_pdist)
 
-    async def test_composite_fields(self):
+    def test_composite_fields(self):
         """When a reading is a Composite, it should have the same fields as a Verse."""
 
         year, month, day = 2023, 3, 30
         day = liturgics.Day(year, month, day)
-        await day.ainitialize()
-        readings = await day.aget_readings()
-        passage = await readings[3].pericope.aget_passage()
+        day.initialize()
+        readings = day.get_readings()
+        passage = readings[3].pericope.fetch_passage()
 
         for field in Verse._meta.get_fields():
             if field.name != 'id':
                 with self.subTest(field.name):
                     self.assertTrue(hasattr(passage[0], field.name))
 
-    async def test_translation_selection(self):
+    def test_translation_selection(self):
         """Passing translation=Translation.LXX2012WEB should change the
         wording of both Old and New Testament passages, while the default
         (translation=None) should keep resolving to KJV, unchanged."""
@@ -1421,17 +1421,17 @@ class TestDay(TestCase):
         # A Lenten weekday with a plain (non-Composite) Old Testament reading.
         # fetch_content=True is required -- it's what actually threads
         # Day.translation through to the passage fetch; calling
-        # pericope.aget_passage() directly afterwards would bypass that and
+        # pericope.fetch_passage() directly afterwards would bypass that and
         # re-resolve the default translation instead.
         kjv_day = liturgics.Day(2023, 3, 30)
-        await kjv_day.ainitialize()
-        kjv_readings = await kjv_day.aget_readings(fetch_content=True)
+        kjv_day.initialize()
+        kjv_readings = kjv_day.get_readings(fetch_content=True)
         self.assertEqual(kjv_readings[1].pericope.sdisplay, 'Gen 18.20-33')
         kjv_genesis = kjv_readings[1].pericope.passage
 
         lxx_day = liturgics.Day(2023, 3, 30, translation=Translation.LXX2012WEB)
-        await lxx_day.ainitialize()
-        lxx_readings = await lxx_day.aget_readings(fetch_content=True)
+        lxx_day.initialize()
+        lxx_readings = lxx_day.get_readings(fetch_content=True)
         lxx_genesis = lxx_readings[1].pericope.passage
 
         self.assertNotEqual(kjv_genesis[0].content, lxx_genesis[0].content)
@@ -1441,29 +1441,29 @@ class TestDay(TestCase):
         # A day with a plain Gospel reading, to confirm the New Testament
         # half (WEB) is threaded through too, not just the Old Testament half.
         kjv_day = liturgics.Day(2022, 1, 7)
-        await kjv_day.ainitialize()
-        kjv_readings = await kjv_day.aget_readings(fetch_content=True)
+        kjv_day.initialize()
+        kjv_readings = kjv_day.get_readings(fetch_content=True)
         self.assertEqual(kjv_readings[2].pericope.sdisplay, 'John 1.29-34')
         kjv_gospel = kjv_readings[2].pericope.passage
 
         web_day = liturgics.Day(2022, 1, 7, translation=Translation.LXX2012WEB)
-        await web_day.ainitialize()
-        web_readings = await web_day.aget_readings(fetch_content=True)
+        web_day.initialize()
+        web_readings = web_day.get_readings(fetch_content=True)
         web_gospel = web_readings[2].pericope.passage
 
         self.assertNotEqual(kjv_gospel[0].content, web_gospel[0].content)
 
-    async def test_julian_century_leap_day(self):
+    def test_julian_century_leap_day(self):
         """Civil 2100-03-14 is Julian Feb 29, a day the Gregorian calendar
         doesn't have that year; it must still be a full liturgical day."""
 
         day = liturgics.Day(2100, 3, 14, calendar=datetools.Calendar.Julian)
-        await day.ainitialize()
+        day.initialize()
         self.assertEqual(day.date, datetools.JulianDate(2100, 2, 29))
         self.assertEqual(str(day), '2100-02-29')
         self.assertTrue(any('John Cassian' in s for s in day.saints))
 
-    async def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
+    def test_new_style_commemoration_on_civil_date_in_julian_mode(self):
         """Issue #146: modern (new_style) commemorations are recorded
         against the civil/Gregorian date and observed there by both Old-
         and New-Calendar jurisdictions alike -- unlike the traditional
@@ -1472,21 +1472,21 @@ class TestDay(TestCase):
         request for that same civil day should surface it."""
 
         day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Julian)
-        await day.ainitialize()
+        day.initialize()
         self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
 
-    async def test_new_style_commemoration_not_shown_on_shifted_julian_label_date(self):
+    def test_new_style_commemoration_not_shown_on_shifted_julian_label_date(self):
         """The flip side of the above: whichever civil day's Julian-shifted
         label happens to land on 8/9 must NOT show Herman's Glorification --
         that would be the original #146 bug (a modern commemoration bleeding
         onto an unrelated, Julian-recomputed day)."""
 
         day = liturgics.Day(2026, 8, 22, calendar=datetools.Calendar.Julian)
-        await day.ainitialize()
+        day.initialize()
         self.assertEqual((day.month, day.day), (8, 9))
         self.assertFalse(any('Herman of Alaska' in s for s in day.saints))
 
-    async def test_new_style_commemoration_unaffected_in_gregorian_mode(self):
+    def test_new_style_commemoration_unaffected_in_gregorian_mode(self):
         """In Gregorian mode self.month/self.day already equal the civil
         date, so new_style commemorations should behave exactly as any
         other -- no exclusion, no re-fetch. Herman's canonization is
@@ -1500,20 +1500,20 @@ class TestDay(TestCase):
         entry."""
 
         day = liturgics.Day(2026, 8, 9, calendar=datetools.Calendar.Gregorian)
-        await day.ainitialize()
+        day.initialize()
         self.assertTrue(any('Herman of Alaska' in s for s in day.saints))
 
-    async def test_matrona_of_moscow_new_style_civil_date(self):
+    def test_matrona_of_moscow_new_style_civil_date(self):
         day = liturgics.Day(2026, 5, 2, calendar=datetools.Calendar.Julian)
-        await day.ainitialize()
+        day.initialize()
         self.assertTrue(any('Matrona' in s for s in day.saints))
 
-    async def test_alexis_toth_new_style_civil_date(self):
+    def test_alexis_toth_new_style_civil_date(self):
         day = liturgics.Day(2026, 5, 7, calendar=datetools.Calendar.Julian, tradition=Tradition.Slavic)
-        await day.ainitialize()
+        day.initialize()
         self.assertTrue(any('Alexis Toth' in s for s in day.saints))
 
-    async def test_tradition_specific_commemoration_is_additive_not_a_replacement(self):
+    def test_tradition_specific_commemoration_is_additive_not_a_replacement(self):
         """DayCommemoration.tradition (Stage 6) supplements a day's common
         commemorations rather than replacing the whole day -- Jan 18 lists
         Athanasius/Cyril for everyone, plus Zenia the Martyr only for the
@@ -1521,9 +1521,9 @@ class TestDay(TestCase):
         (not instead of it)."""
 
         slavic = liturgics.Day(2026, 1, 18, tradition=Tradition.Slavic)
-        await slavic.ainitialize()
+        slavic.initialize()
         greek = liturgics.Day(2026, 1, 18, tradition=Tradition.Greek)
-        await greek.ainitialize()
+        greek.initialize()
 
         self.assertTrue(any('Athanasius' in s for s in slavic.saints))
         self.assertFalse(any('Zenia' in s for s in slavic.saints))
@@ -1531,7 +1531,7 @@ class TestDay(TestCase):
         self.assertTrue(any('Athanasius' in s for s in greek.saints))
         self.assertTrue(any('Zenia' in s for s in greek.saints))
 
-    async def test_greek_gap_dates_share_confirmed_common_saints(self):
+    def test_greek_gap_dates_share_confirmed_common_saints(self):
         """Stage 9: 6 dates had their only commemorations attached to a Day
         row tagged tradition='slavic' (with an empty parallel greek Day row
         winning _merge_tradition_days), so Greek users saw nothing at all,
@@ -1557,7 +1557,7 @@ class TestDay(TestCase):
         ]
         for m, d, shared, slavic_only in cases:
             greek = liturgics.Day(2026, m, d, tradition=Tradition.Greek)
-            await greek.ainitialize()
+            greek.initialize()
             with self.subTest((m, d)):
                 for fragment in shared:
                     self.assertTrue(
@@ -1584,18 +1584,18 @@ class TestDay(TestCase):
         # the slavic Day row, which never wins Greek's
         # feast-level-facts preference) -- this only changes Slavic's view.
         slavic_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Slavic)
-        await slavic_jul5.ainitialize()
+        slavic_jul5.initialize()
         self.assertEqual(slavic_jul5.feasts, [])
         self.assertTrue(any('Sergius of Radonezh' in s for s in slavic_jul5.saints))
         self.assertTrue(any('Athanasius of Mt Athos' in s for s in slavic_jul5.saints))
 
         greek_jul5 = liturgics.Day(2026, 7, 5, tradition=Tradition.Greek)
-        await greek_jul5.ainitialize()
+        greek_jul5.initialize()
         self.assertEqual(greek_jul5.feasts, [])
         self.assertTrue(any('Sergius of Radonezh' in s for s in greek_jul5.saints))
         self.assertTrue(any('Athanasius of Mt Athos' in s for s in greek_jul5.saints))
 
-    async def test_raphael_brooklyn_full_year_check_unaffected(self):
+    def test_raphael_brooklyn_full_year_check_unaffected(self):
         """Feb 27's feast_name (Raphael-specific) must still never leak to
         Greek even though Procopius, the other saint on that date, is now
         correctly shared (see test_greek_gap_dates_share_confirmed_common_saints)
@@ -1606,7 +1606,7 @@ class TestDay(TestCase):
         solely from _merge_tradition_days's Day-row selection."""
 
         greek = liturgics.Day(2026, 2, 27, tradition=Tradition.Greek)
-        await greek.ainitialize()
+        greek.initialize()
         self.assertNotIn('St Raphael Bishop of Brooklyn', greek.feasts)
 
 
@@ -1678,7 +1678,7 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
         pdist = datetools.gregorian_to_jdn(dt) - datetools.compute_pascha_jdn(dt.year)
         return (pdist + 69) // 7
 
-    async def test_last_three_weeks_before_triodion_read_luke_weeks_14_15_16(self):
+    def test_last_three_weeks_before_triodion_read_luke_weeks_14_15_16(self):
         for year, month, day in self.DATES:
             dt = date(year, month, day)
             back = self.weeks_before_triodion(dt)
@@ -1687,10 +1687,10 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
                 expected = self.LUKE_SECTION_TAIL[17 + back][dt.weekday()]
 
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-                await pday.ainitialize()
+                pday.initialize()
                 gospels = [
                     r.pericope.sdisplay
-                    for r in await pday.aget_readings()
+                    for r in pday.get_readings()
                     if r.source == 'Gospel'
                 ]
                 self.assertIn(expected, gospels)
@@ -1729,12 +1729,12 @@ class TestGreekAnnualOrdoGospels(TestCase):
         (2027, 1, 19, 'Matt 9.27-35'),      # 7th
     ]
 
-    async def test_ordo_gospel_replaces_the_cycle_reading(self):
+    def test_ordo_gospel_replaces_the_cycle_reading(self):
         for year, month, day, expected in self.ORDO:
             with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-                await pday.ainitialize()
-                gospels = [r for r in await pday.aget_readings() if r.source == 'Gospel']
+                pday.initialize()
+                gospels = [r for r in pday.get_readings() if r.source == 'Gospel']
                 displays = [r.pericope.sdisplay for r in gospels]
 
                 self.assertIn(expected, displays)
@@ -1747,39 +1747,39 @@ class TestGreekAnnualOrdoGospels(TestCase):
                     if reading.pericope.sdisplay != expected:
                         self.assertEqual(reading.desc, 'Antiochian Archdiocese')
 
-    async def test_slavic_is_untouched_by_the_greek_ordo(self):
+    def test_slavic_is_untouched_by_the_greek_ordo(self):
         # SlavicYear has no ordo hook at all; these dates must still resolve
         # through the ordinary Pascha-relative computation.
         for year, month, day, greek_gospel in self.ORDO:
             with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
-                await pday.ainitialize()
+                pday.initialize()
                 gospels = [
                     r.pericope.sdisplay
-                    for r in await pday.aget_readings()
+                    for r in pday.get_readings()
                     if r.source == 'Gospel'
                 ]
                 self.assertNotIn(greek_gospel, gospels)
 
-    async def test_outside_the_published_range_the_ordinary_cycle_stands(self):
+    def test_outside_the_published_range_the_ordinary_cycle_stands(self):
         # The overlay must not silently extend past what GOA has published.
         pday = liturgics.Day(2036, 1, 24, tradition=Tradition.Greek)
-        await pday.ainitialize()
+        pday.initialize()
         self.assertEqual(pday.ordo_readings, {})
 
-    async def test_antiochian_rows_are_inert_for_the_greek_tradition(self):
+    def test_antiochian_rows_are_inert_for_the_greek_tradition(self):
         # Both jurisdictions' ordos are stored, but a tradition only ever reads
         # its own. The two agree on 14 of the 18 dates they share; 2021-01-19
         # is one where they do not -- goarch.org assigns Matthew 22:2-14,
         # antiochian.org Matthew 19:16-26.
-        greek = await models.OrdoReading.objects.aget(
+        greek = models.OrdoReading.objects.get(
                 jurisdiction='greek', year=2021, month=1, day=19, source='Gospel')
-        antiochian = await models.OrdoReading.objects.aget(
+        antiochian = models.OrdoReading.objects.get(
                 jurisdiction='antiochian', year=2021, month=1, day=19, source='Gospel')
         self.assertNotEqual(greek.pdist, antiochian.pdist)
 
         pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
-        await pday.ainitialize()
+        pday.initialize()
         self.assertEqual(pday.ordo_readings.get('Gospel'), greek.pdist)
 
 
@@ -1828,24 +1828,24 @@ class TestGreekMenaionReadings(TestCase):
     # each date is an ordinary weekday.
     YEARS = {(7, 5): 2024, (9, 24): 2024}
 
-    async def test_greek_gets_the_menaion_reading(self):
+    def test_greek_gets_the_menaion_reading(self):
         for month, day, source, greek, _ in self.CASES:
             with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
                 year = self.YEARS.get((month, day), 2026)
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-                await pday.ainitialize()
+                pday.initialize()
                 found = [r.pericope.sdisplay
-                         for r in await pday.aget_readings() if r.source == source]
+                         for r in pday.get_readings() if r.source == source]
                 self.assertIn(greek, found)
 
-    async def test_slavic_is_unaffected(self):
+    def test_slavic_is_unaffected(self):
         for month, day, source, greek, slavic in self.CASES:
             with self.subTest(date=f'{month:02d}-{day:02d}', source=source):
                 year = self.YEARS.get((month, day), 2026)
                 pday = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
-                await pday.ainitialize()
+                pday.initialize()
                 found = [r.pericope.sdisplay
-                         for r in await pday.aget_readings() if r.source == source]
+                         for r in pday.get_readings() if r.source == source]
                 if slavic == self.SHARED:
                     self.assertIn(greek, found)
                 elif slavic == self.ABSENT:
@@ -1868,20 +1868,20 @@ class TestOrdoJurisdictionLabels(TestCase):
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
-    async def gospels(self, year, month, day, tradition=Tradition.Greek):
+    def gospels(self, year, month, day, tradition=Tradition.Greek):
         pday = liturgics.Day(year, month, day, tradition=tradition)
-        await pday.ainitialize()
+        pday.initialize()
         return [(r.pericope.sdisplay, r.desc)
-                for r in await pday.aget_readings() if r.source == 'Gospel']
+                for r in pday.get_readings() if r.source == 'Gospel']
 
-    async def labelled_gospels(self, year, month, day):
+    def labelled_gospels(self, year, month, day):
         """(reading, short label, full label) -- the two forms the page uses."""
         pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
-        await pday.ainitialize()
+        pday.initialize()
         return [(r.pericope.sdisplay, getattr(r, 'short_desc', ''), r.desc)
-                for r in await pday.aget_readings() if r.source == 'Gospel']
+                for r in pday.get_readings() if r.source == 'Gospel']
 
-    async def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
+    def test_both_are_shown_and_labelled_when_the_ordos_disagree(self):
         cases = [
             (2021, 1, 19, 'Matt 22.2-14', 'Matt 19.16-26'),
             (2021, 1, 26, 'Matt 22.35-46', 'Mark 11.11-23'),
@@ -1891,42 +1891,42 @@ class TestOrdoJurisdictionLabels(TestCase):
         for year, month, day, greek, antiochian in cases:
             with self.subTest(date=f'{year}-{month:02d}-{day:02d}'):
                 self.assertEqual(
-                        await self.gospels(year, month, day),
+                        self.gospels(year, month, day),
                         [(greek, 'Greek Archdiocese'),
                          (antiochian, 'Antiochian Archdiocese')])
 
-    async def test_labels_have_a_short_and_a_full_form(self):
+    def test_labels_have_a_short_and_a_full_form(self):
         # The reference index at the top of the page is tight, so it uses the
         # short form; the passage heading further down, and the API, use the
         # full one.
         self.assertEqual(
-                await self.labelled_gospels(2021, 1, 19),
+                self.labelled_gospels(2021, 1, 19),
                 [('Matt 22.2-14', 'GOA', 'Greek Archdiocese'),
                  ('Matt 19.16-26', 'Antiochian', 'Antiochian Archdiocese')])
 
-    async def test_ordinary_readings_have_no_short_form(self):
+    def test_ordinary_readings_have_no_short_form(self):
         # Everything else falls back to desc in both places, so the template's
         # `short_desc|default:desc` must find nothing to override.
         pday = liturgics.Day(2021, 1, 19, tradition=Tradition.Greek)
-        await pday.ainitialize()
-        others = [r for r in await pday.aget_readings()
+        pday.initialize()
+        others = [r for r in pday.get_readings()
                   if r.desc and r.source != 'Gospel']
         self.assertTrue(others, 'expected at least one other described reading')
         for reading in others:
             self.assertEqual(getattr(reading, 'short_desc', ''), '')
 
-    async def test_no_label_when_the_ordos_agree(self):
+    def test_no_label_when_the_ordos_agree(self):
         # Naming a jurisdiction is only meaningful against another one. When
         # both publish the same reading there is nothing to contrast.
-        self.assertEqual(await self.gospels(2023, 1, 24), [('Matt 22.35-46', '')])
+        self.assertEqual(self.gospels(2023, 1, 24), [('Matt 22.35-46', '')])
 
-    async def test_no_label_when_only_one_jurisdiction_published(self):
+    def test_no_label_when_only_one_jurisdiction_published(self):
         # antiochian.org's feed does not reach before 2018, so earlier dates
         # have a Greek row and no counterpart. Those show plainly.
-        self.assertEqual(await self.gospels(2013, 1, 19), [('Matt 6.22-33', '')])
+        self.assertEqual(self.gospels(2013, 1, 19), [('Matt 6.22-33', '')])
 
-    async def test_slavic_sees_none_of_this(self):
-        displays = [d for d, _ in await self.gospels(2021, 1, 19, Tradition.Slavic)]
+    def test_slavic_sees_none_of_this(self):
+        displays = [d for d, _ in self.gospels(2021, 1, 19, Tradition.Slavic)]
         self.assertNotIn('Matt 22.1-14', displays)
         self.assertNotIn('Matt 19.16-26', displays)
 
@@ -1953,24 +1953,24 @@ class TestAug28JobOfPochaev(TestCase):
     JOB_SET = ['Wis 3.1-9', 'Wis 5.15-6.3', 'Wis 4.7-15',
                'Matt 11.27-30', 'Gal 5.22-6.2', 'Luke 6.17-23']
 
-    async def readings(self, tradition):
+    def readings(self, tradition):
         pday = liturgics.Day(2026, 8, 28, tradition=tradition)
-        await pday.ainitialize()
-        return [r.pericope.sdisplay for r in await pday.aget_readings()]
+        pday.initialize()
+        return [r.pericope.sdisplay for r in pday.get_readings()]
 
-    async def test_slavic_keeps_the_whole_vigil_set(self):
-        found = await self.readings(Tradition.Slavic)
+    def test_slavic_keeps_the_whole_vigil_set(self):
+        found = self.readings(Tradition.Slavic)
         for reading in self.JOB_SET:
             self.assertIn(reading, found)
 
-    async def test_greek_gets_none_of_it(self):
-        found = await self.readings(Tradition.Greek)
+    def test_greek_gets_none_of_it(self):
+        found = self.readings(Tradition.Greek)
         for reading in self.JOB_SET:
             self.assertNotIn(reading, found)
 
-    async def test_greek_still_gets_the_daily_cycle(self):
+    def test_greek_still_gets_the_daily_cycle(self):
         # Removing the vigil set must not leave the day empty.
-        self.assertEqual(await self.readings(Tradition.Greek),
+        self.assertEqual(self.readings(Tradition.Greek),
                          ['2 Cor 11.5-21', 'Mark 4.1-9'])
 
 

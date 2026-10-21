@@ -1,7 +1,7 @@
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])   # data/ paths below are repo-root relative
-import asyncio, django, os, re, json, glob, datetime
+import django, os, re, json, glob, datetime
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -27,7 +27,7 @@ for line in open('data/goarch_winter_rows.txt'):
     dte, label, gospel = line.rstrip('\n').split('|')
     goa[dte] = (label, gospel)
 
-async def main():
+def main():
     both = sorted(set(ant) & set(goa))
     tallies = {'sunday': [0,0,0], 'weekday': [0,0,0]}   # [agrees w/ GOA, agrees w/ ANT, neither]
     notes = []
@@ -35,8 +35,8 @@ async def main():
         dt = datetime.date.fromisoformat(d)
         if ref(goa[d][1]) == ref(ant[d][1]):
             continue                                   # sources agree: tells us nothing
-        day = Day(dt.year, dt.month, dt.day, tradition='greek'); await day.ainitialize()
-        got = [r.pericope.sdisplay for r in await day.aget_readings() if r.source == 'Gospel']
+        day = Day(dt.year, dt.month, dt.day, tradition='greek'); day.initialize()
+        got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
         g, a = hit(got, goa[d][1]), hit(got, ant[d][1])
         kind = 'sunday' if dt.weekday() == 6 else 'weekday'
         tallies[kind][0 if g else (1 if a else 2)] += 1
@@ -50,4 +50,4 @@ async def main():
     for d, wd, kind, who, gg, aa, got in notes:
         print(f'  {d} {wd} {kind:<8} app follows {who:<7} | GOA={gg:<20} ANT={aa:<22} app={got}')
 
-asyncio.run(main())
+main()

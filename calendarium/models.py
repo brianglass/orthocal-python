@@ -105,10 +105,6 @@ class Reading(models.Model):
     class Meta:
         indexes = [models.Index(fields=('month', 'day'))]
 
-    async def aget_pericope(self):
-        # Using self.pericope only works synchronously.
-        return await Pericope.objects.aget(id=self.pericope_id)
-
 
 class Pericope(models.Model):
     pericope = models.CharField(max_length=8)
@@ -129,11 +125,13 @@ class Pericope(models.Model):
     def __str__(self):
         return self.display
 
-    async def aget_passage(self, language='en', translation=None):
+    def fetch_passage(self, language='en', translation=None):
+        """Load the passage's verses into self.passage, once."""
+
         try:
             return self.passage
         except AttributeError:
-            self.passage = [verse async for verse in self.get_passage(language=language, translation=translation)]
+            self.passage = list(self.get_passage(language=language, translation=translation))
             return self.passage
 
     def get_passage(self, language='en', translation=None):

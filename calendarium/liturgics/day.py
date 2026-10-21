@@ -5,7 +5,6 @@ import re
 
 from datetime import date, timedelta
 
-from asgiref.sync import async_to_sync
 from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
@@ -234,30 +233,30 @@ class Day:
         self.language = language
         self.translation = translation
 
-        # Filled by ainitialize. Defaulted here so gospel_pdist -- which is a
-        # sync cached_property and must stay one -- can read it unconditionally
-        # even if a caller skips ainitialize.
+        # Filled by initialize. Defaulted here so gospel_pdist -- a
+        # cached_property -- can read it unconditionally even if a caller
+        # skips initialize.
         self.ordo_readings = {}
         self.ordo_alternatives = []
 
-    async def ainitialize(self):
+    def initialize(self):
         """Do the expensive stuff here to keep it out of the constructor."""
 
         if not hasattr(self, '_initialized'):
-            await self._collect_commemorations()
-            await self._add_supplemental_commemorations()
-            await self._collect_ordo_readings()
+            self._collect_commemorations()
+            self._add_supplemental_commemorations()
+            self._collect_ordo_readings()
             self._apply_title_conventions()
             self._apply_fasting_adjustments()
             self._initialized = True
 
 
-    async def _collect_ordo_readings(self):
+    def _collect_ordo_readings(self):
         """Load this date's annual-ordo assignments.
 
         See models.OrdoReading. The lookup lives here rather than in
-        gospel_pdist because that is a sync property and the DB access has to
-        stay async; this is the same reason _collect_commemorations exists.
+        gospel_pdist so that, like _collect_commemorations, all of the day's
+        DB access happens up front in initialize().
 
         Both jurisdictions are loaded, not just this tradition's. Where they
         disagree the other one is shown alongside, labelled -- see
@@ -271,7 +270,7 @@ class Day:
         by_jurisdiction = collections.defaultdict(dict)
         queryset = models.OrdoReading.objects.filter(
                 year=self.year, month=self.month, day=self.day)
-        async for ordo in queryset:
+        for ordo in queryset:
             by_jurisdiction[ordo.jurisdiction][ordo.source] = ordo.pdist
 
         self.ordo_readings = by_jurisdiction.get(jurisdiction, {})
@@ -286,8 +285,6 @@ class Day:
             for source, pdist in readings.items()
             if self.ordo_readings.get(source) not in (None, pdist)
         ]
-
-    initialize = async_to_sync(ainitialize)
 
     def __str__(self):
         return str(self.date)
@@ -322,7 +319,7 @@ class Day:
 
         return ''
 
-    async def _collect_commemorations(self):
+    def _collect_commemorations(self):
         """Fetch the feasts, fasts, and saints and bake them into a composite day.
 
         Fetches every Day row matching this slot regardless of tradition
@@ -352,7 +349,7 @@ class Day:
         q |= Q(month=self.month, day=self.day)
 
         # Fetch every candidate Day row for this slot, regardless of tradition.
-        all_days = [d async for d in models.Day.objects.filter(q)]
+        all_days = list(models.Day.objects.filter(q))
         self._commemoration_day_ids = [d.id for d in all_days]
 
         # Bake the multiple "days" down into a single composite day for
@@ -371,7 +368,7 @@ class Day:
         self.fast_level = max(d.fast for d in self.days)
         self.fast_exception = max(d.fast_exception for d in self.days)
 
-    async def _add_supplemental_commemorations(self):
+    def _add_supplemental_commemorations(self):
         """Fetch saints and their stories from the Saint/DayCommemoration
         relational model (day_native entries mirror the position they'd
         have had in the old Day.saints list; additive entries are
@@ -409,22 +406,19 @@ class Day:
         )
         if self.calendar == Calendar.Julian:
             query = query.exclude(new_style=True)
-        commemorations = [dc async for dc in query.order_by('day_id', 'ordering')]
+        commemorations = list(query.order_by('day_id', 'ordering'))
 
         if self.calendar == Calendar.Julian:
-            civil_days = [
-                d async for d in models.Day.objects.filter(
-                    month=self.gregorian_date.month, day=self.gregorian_date.day,
-                )
-            ]
+            civil_days = models.Day.objects.filter(
+                month=self.gregorian_date.month, day=self.gregorian_date.day,
+            )
             civil_day_ids = [d.id for d in civil_days]
-            new_style_commemorations = [
-                dc async for dc in
+            new_style_commemorations = list(
                 DayCommemoration.objects.filter(
                     day_id__in=civil_day_ids, new_style=True, tradition__in=(self.tradition, 'common'),
                 )
                 .order_by('ordering')
-            ] if civil_day_ids else []
+            ) if civil_day_ids else []
             commemorations = commemorations + new_style_commemorations
         else:
             new_style_commemorations = []
@@ -618,7 +612,7 @@ class Day:
         """True if this day has moved paremias for the succeeding day."""
         return self.pyear.has_moved_paremias(self.pdist)
 
-    async def aget_readings(self, fetch_content=False):
+    def get_readings(self, fetch_content=False):
         """Return a list of lectionary readings."""
 
         # Return cached readings if we already have them
@@ -626,7 +620,7 @@ class Day:
         if hasattr(self, 'readings'):
             if fetch_content:
                 for reading in self.readings:
-                    await reading.pericope.aget_passage(language=self.language, translation=self.translation)
+                    reading.pericope.fetch_passage(language=self.language, translation=self.translation)
 
             return self.readings
 
@@ -685,13 +679,13 @@ class Day:
         # Do select_related to avoid later synchronous foreign key lookup
         queryset = models.Reading.objects.filter(query).select_related('pericope')
 
-        rows = [reading async for reading in queryset.order_by('ordering')]
+        rows = list(queryset.order_by('ordering'))
         rows = _prefer_tradition(rows, self.tradition)
 
         self.readings = []
         for reading in rows:
             if fetch_content:
-                await reading.pericope.aget_passage(language=self.language, translation=self.translation)
+                reading.pericope.fetch_passage(language=self.language, translation=self.translation)
 
             if -42 < self.pdist < -7 and self.feast_level < 7 and reading.source == 'Matins Gospel':
                 # Place Lenten Matins Gospel at the top
@@ -699,11 +693,11 @@ class Day:
             else:
                 self.readings.append(reading)
 
-        await self._add_ordo_alternatives(fetch_content)
+        self._add_ordo_alternatives(fetch_content)
 
         return self.readings
 
-    async def _add_ordo_alternatives(self, fetch_content=False):
+    def _add_ordo_alternatives(self, fetch_content=False):
         """Show the other jurisdiction's annual-ordo reading alongside ours.
 
         On a handful of dates a year the Greek and Antiochian ordos assign
@@ -726,14 +720,14 @@ class Day:
                     pdist=pdist, source=source,
                     tradition__in=(self.tradition, 'common'),
             ).select_related('pericope').order_by('ordering')
-            alternative = await queryset.afirst()
+            alternative = queryset.first()
             if alternative is None:
                 continue
 
             alternative.short_desc, alternative.desc = _JURISDICTION_LABELS.get(
                     jurisdiction, (jurisdiction, jurisdiction))
             if fetch_content:
-                await alternative.pericope.aget_passage(
+                alternative.pericope.fetch_passage(
                         language=self.language, translation=self.translation)
 
             # Name ours too, so the pair reads as a contrast rather than as one
@@ -744,8 +738,6 @@ class Day:
                             ours, (ours, ours))
 
             self.readings.append(alternative)
-
-    get_readings = async_to_sync(aget_readings)
 
     @staticmethod
     def _first_epistle_and_gospel(readings):
@@ -762,14 +754,14 @@ class Day:
             gospel = readings[sources.index('Gospel')]
         return [epistle, gospel]
 
-    async def aget_abbreviated_readings(self, fetch_content=False):
+    def get_abbreviated_readings(self, fetch_content=False):
         """Return an abbreviated list of lectionary readings."""
 
         # Return cached readings if we already have them
         if hasattr(self, 'abbreviated_readings'):
             if fetch_content:
                 for reading in self.abbreviated_readings:
-                    await reading.pericope.aget_passage(language=self.language, translation=self.translation)
+                    reading.pericope.fetch_passage(language=self.language, translation=self.translation)
 
             return self.abbreviated_readings
 
@@ -810,7 +802,7 @@ class Day:
         # Generate the list of readings.
         # Do select_related to avoid later synchronous foreign key lookup.
         queryset = models.Reading.objects.filter(query).select_related('pericope')
-        readings = [reading async for reading in queryset.order_by('ordering')]
+        readings = list(queryset.order_by('ordering'))
         readings = _prefer_tradition(readings, self.tradition)
 
         # Reduce to a single Epistle and Gospel -- this is what the Alexa skill
@@ -855,12 +847,10 @@ class Day:
 
         if fetch_content:
             for reading in readings:
-                await reading.pericope.aget_passage(language=self.language, translation=self.translation)
+                reading.pericope.fetch_passage(language=self.language, translation=self.translation)
 
         self.abbreviated_readings = readings
         return readings
-
-    get_abbreviated_readings = async_to_sync(aget_abbreviated_readings)
 
     @cached_property
     def abbreviated_reading_indices(self):

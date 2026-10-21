@@ -10,7 +10,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, json, glob, datetime, collections
+import django, re, json, glob, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -24,7 +24,7 @@ for path in sorted(glob.glob('data/antiochian_raw/*.json')):
     dt = datetime.date.fromisoformat(d['originalCalendarDate'])
     raw[dt] = (d.get('feastDayTitle', ''), d.get('reading1Title', ''), d.get('reading2Title', ''))
 
-async def main():
+def main():
     for month, day in CANDIDATES:
         rows = sorted((dt, v) for dt, v in raw.items() if dt.month == month and dt.day == day)
         eps = collections.Counter(v[1] for _, v in rows)
@@ -41,8 +41,8 @@ async def main():
         # what the app produces on the most recent harvested occurrence
         dt = rows[-1][0]
         pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        await pday.ainitialize()
-        rs = await pday.aget_readings()
+        pday.initialize()
+        rs = pday.get_readings()
         print(f'    app({dt}): ' + ', '.join(f'{r.source}={r.pericope.sdisplay}' for r in rs))
 
-asyncio.run(main())
+main()

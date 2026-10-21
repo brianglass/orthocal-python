@@ -9,7 +9,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, datetime, collections
+import django, re, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import GreekYear, Day
@@ -28,7 +28,7 @@ TAIL = {
     16: {0:'Mark 12.13-17', 1:'Mark 12.18-27', 2:'Mark 12.28-37', 3:'Mark 12.38-44', 4:'Mark 13.1-8', 5:'Luke 18.2-8'},
 }
 
-async def main():
+def main():
     tally = collections.Counter()
     for Y in range(2027, 2100):
         gy = GreekYear(Y)
@@ -45,8 +45,8 @@ async def main():
                 want = TAIL.get(expected_week, {}).get(d.weekday())
                 if want:
                     day = Day(d.year, d.month, d.day, tradition='greek')
-                    await day.ainitialize()
-                    got = [r.pericope.sdisplay for r in await day.aget_readings() if r.source == 'Gospel']
+                    day.initialize()
+                    got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
                     tally['match' if want in got else 'differ'] += 1
                 else:
                     tally['week out of table range'] += 1
@@ -58,4 +58,4 @@ async def main():
     if total:
         print(f'\n  -> {tally["match"]}/{total} = {tally["match"]/total*100:.0f}% of surplus days follow the extended rule')
 
-asyncio.run(main())
+main()
