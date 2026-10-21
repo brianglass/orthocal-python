@@ -9,7 +9,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, json, glob, datetime, collections
+import django, re, json, glob, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -87,7 +87,7 @@ def near(a, b):
 # The Antiochian tradition was built and removed (see docs/greek-lectionary.md),
 # so an Antiochian reader is served the Greek tradition. That is what this
 # measures: how far what we actually serve is from antiochian.org.
-async def main():
+def main():
     days = []
     for path in sorted(glob.glob('data/antiochian_raw/*.json')):
         d = json.load(open(path))
@@ -121,8 +121,8 @@ async def main():
             stats['reading1 is a Matins Gospel, not an Epistle'] += 1
             want_e = ''
         day = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        await day.ainitialize()
-        rs = await day.aget_readings()
+        day.initialize()
+        rs = day.get_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
         got_g = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Gospel']
         e_ok = (not want_e) or any(near(x, want_e) for x in got_e)
@@ -178,4 +178,4 @@ async def main():
         print(f'    {m:02d}-{d:02d} {flag:<2} x{len(rows)} [{yrs}] {"consistent" if consistent else "VARIES"}'
               f'  {title[:26]:<26} want E={we:<11} G={wg:<11} got E={ge} G={gg}')
 
-asyncio.run(main())
+main()

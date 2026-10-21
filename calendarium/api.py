@@ -21,7 +21,7 @@ from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar, Tradition, Translation
-from orthocal.decorators import etag, etag_date, instrument_endpoint
+from orthocal.decorators import etag, etag_date, in_thread_pool, instrument_endpoint
 
 logger = logging.getLogger(__name__)
 
@@ -215,16 +215,17 @@ class OembedSchema(Schema):
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
-async def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
+@in_thread_pool
+def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
     try:
         day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
     except ValueError:
         # The date is out of range or invalid
         raise Http404
 
-    await day.ainitialize()
-    await day.aget_readings(fetch_content=True)
-    await day.aget_abbreviated_readings()
+    day.initialize()
+    day.get_readings(fetch_content=True)
+    day.get_abbreviated_readings()
 
     return day
 
@@ -258,7 +259,8 @@ async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calenda
 
     return await _get_calendar_day(request, cal, tradition, year, month, day, translation)
 
-async def _get_calendar_month(request, cal, tradition, year, month):
+@in_thread_pool
+def _get_calendar_month(request, cal, tradition, year, month):
     # A month costs ~0.4s of CPU to compute, and the mobile app fetches
     # several at once on launch -- the same few current months for every
     # user -- so cache them, like ical.py does its feeds. The result doesn't
@@ -272,15 +274,15 @@ async def _get_calendar_month(request, cal, tradition, year, month):
     # response schema by its source aliases (pdist, jdn, ...).
     key = f'api-month-{tradition}-{cal}-{year}-{month}'
 
-    if (content := await cache.aget(key)) is None:
-        days = [d async for d in liturgics.amonth_of_days(year, month, calendar=cal, tradition=tradition)]
+    if (content := cache.get(key)) is None:
+        days = list(liturgics.month_of_days(year, month, calendar=cal, tradition=tradition))
         for day in days:
-            await day.aget_readings()
-            await day.aget_abbreviated_readings()
+            day.get_readings()
+            day.get_abbreviated_readings()
 
         data = [DaySchemaLite.model_validate(day, from_attributes=True).model_dump() for day in days]
         content = api.create_response(request, data, status=200).content
-        await cache.aset(key, content, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+        cache.set(key, content, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
 
     return HttpResponse(content, content_type=f'{api.renderer.media_type}; charset={api.renderer.charset}')
 
@@ -376,7 +378,7 @@ async def get_calendar_embed(request, url: AnyHttpUrl, maxwidth: int=800, maxhei
     else:
         year, month = kwargs['year'], kwargs['month']
 
-    content = await views.render_calendar_html(request, year, month, cal=calendar, tradition=tradition, full_urls=True)
+    content = await in_thread_pool(views.render_calendar_html)(request, year, month, cal=calendar, tradition=tradition, full_urls=True)
     html = render_to_string('oembed_calendar.html', {'content': content})
 
     return {

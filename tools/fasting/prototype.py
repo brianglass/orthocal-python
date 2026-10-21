@@ -30,7 +30,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import datetime
 from dataclasses import dataclass, field
@@ -242,7 +241,7 @@ def eve_on_weekend(allowance, weekday, feast_level):
     return max(allowance, D.WineAndOil) if weekday in WEEKEND else allowance
 
 
-async def main():
+def main():
     matches = collections.Counter()
     mismatches = collections.Counter()
     examples = collections.defaultdict(list)
@@ -254,7 +253,7 @@ async def main():
             date = datetime.date(year, 1, 1)
             while date.year == year:
                 day = Day(date.year, date.month, date.day, tradition=tradition)
-                await day.ainitialize()
+                day.initialize()
 
                 raw = [d.fast_exception for d in day.days]
                 # 0 makes no claim. 5, 9 and 10 assert strictness rather than
@@ -319,4 +318,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()

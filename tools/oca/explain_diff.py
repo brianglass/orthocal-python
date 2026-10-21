@@ -13,7 +13,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import datetime
 import json
 
@@ -26,14 +25,14 @@ from calendarium.datetools import Tradition          # noqa: E402
 from calendarium.liturgics import Day                # noqa: E402
 
 
-async def show(datestr):
+def show(datestr):
     date = datetime.date.fromisoformat(datestr)
     with open(f'data/oca_raw/readings-{date.year}.json') as f:
         oca = json.load(f)
 
     day = Day(date.year, date.month, date.day, tradition=Tradition.Slavic)
-    await day.ainitialize()
-    readings = await day.aget_readings()
+    day.initialize()
+    readings = day.get_readings()
 
     print(f'\n=== {datestr} ({date:%A}) ===')
     print(f'  app titles : {"; ".join(day.titles) or "-"}')
@@ -48,7 +47,7 @@ async def show(datestr):
         print(f'      {" / ".join(row["citations"])}{label}')
 
 
-async def main(args):
+def main(args):
     if args and args[0] == '--all':
         year = int(args[1])
         with open(f'data/oca_readings_diff-{year}.json') as f:
@@ -56,8 +55,8 @@ async def main(args):
     else:
         dates = args
     for d in dates:
-        await show(d)
+        show(d)
 
 
 if __name__ == '__main__':
-    asyncio.run(main(sys.argv[1:]))
+    main(sys.argv[1:])

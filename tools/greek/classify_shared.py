@@ -9,7 +9,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, json, glob, datetime, collections
+import django, re, json, glob, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -26,7 +26,7 @@ for path in sorted(glob.glob('data/antiochian_raw/*.json')):
 def short(c, n=30):
     return (c or '')[:n]
 
-async def main():
+def main():
     for month, day in SHARED:
         rows = sorted((dt, v) for dt, v in raw.items() if dt.month == month and dt.day == day)
         titles = collections.Counter(v[0] for _, v in rows)
@@ -47,10 +47,10 @@ async def main():
                 print(f'        {n}x {short(cit, 58)}')
         dt = same[-1][0]
         pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        await pday.ainitialize()
-        rs = await pday.aget_readings()
+        pday.initialize()
+        rs = pday.get_readings()
         got = ', '.join(f'{r.source}={r.pericope.sdisplay}' for r in rs
                         if r.source in ('Epistle', 'Gospel'))
         print(f'    app({dt}): {got}')
 
-asyncio.run(main())
+main()

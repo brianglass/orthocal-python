@@ -26,7 +26,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import datetime
 import json
@@ -54,7 +53,7 @@ def match(ours, theirs):
     return pool, leftover_theirs
 
 
-async def audit(year, tradition=Tradition.Slavic):
+def audit(year, tradition=Tradition.Slavic):
     with open(f'data/oca_raw/daily-{year}.json') as f:
         oca = json.load(f)
 
@@ -68,8 +67,8 @@ async def audit(year, tradition=Tradition.Slavic):
             continue
 
         day = Day(date.year, date.month, date.day, tradition=tradition)
-        await day.ainitialize()
-        readings = await day.aget_readings()
+        day.initialize()
+        readings = day.get_readings()
         ours = [c for c in (canon(r.pericope.display) for r in readings) if c]
 
         extra, missing = match(ours, theirs)
@@ -98,4 +97,4 @@ async def audit(year, tradition=Tradition.Slavic):
 
 if __name__ == '__main__':
     for year in (sys.argv[1:] or ['2026']):
-        asyncio.run(audit(int(year)))
+        audit(int(year))

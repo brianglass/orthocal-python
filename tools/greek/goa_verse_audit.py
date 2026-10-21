@@ -26,7 +26,6 @@ citations. A result is one of
 citation across years, which is how systematic gaps show up.
 """
 import argparse
-import asyncio
 import collections
 import datetime
 import json
@@ -128,10 +127,10 @@ def verse_set(citation):
     return frozenset(verses)
 
 
-async def app_readings(date):
+def app_readings(date):
     day = Day(date.year, date.month, date.day, tradition=Tradition.Greek)
-    await day.ainitialize()
-    return day.pdist, [(r.source, r.pericope.sdisplay) for r in await day.aget_readings()]
+    day.initialize()
+    return day.pdist, [(r.source, r.pericope.sdisplay) for r in day.get_readings()]
 
 
 # goarch.org lists the Lamentations -- Matins of Holy Saturday, sung on Friday
@@ -143,7 +142,7 @@ HOLY_FRIDAY = -2
 ANTICIPATED = {'Epistle': 'Matins Epistle', 'Gospel': 'Matins Gospel'}
 
 
-async def audit(years):
+def audit(years):
     harvest = json.load(open(HARVEST))
     results = []
     for key, value in sorted(harvest.items()):
@@ -151,9 +150,9 @@ async def audit(years):
             continue
         label, readings = value
         date = datetime.date.fromisoformat(key)
-        pdist, ours = await app_readings(date)
+        pdist, ours = app_readings(date)
         if pdist == HOLY_FRIDAY:
-            _, saturday = await app_readings(date + datetime.timedelta(days=1))
+            _, saturday = app_readings(date + datetime.timedelta(days=1))
         for kind, citation in readings:
             if kind not in SOURCES:
                 continue
@@ -183,7 +182,7 @@ def main():
     parser.add_argument('--recurring', action='store_true', help='group differences by citation')
     args = parser.parse_args()
 
-    results = asyncio.run(audit(set(args.years)))
+    results = audit(set(args.years))
     by_year = collections.defaultdict(collections.Counter)
     for key, *_, result, _ in results:
         by_year[key[:4]][result] += 1

@@ -336,7 +336,7 @@ cannot yet prove such a change safe.**
 | `tools/greek/goa_gap.py` | 336 days vs goarch.org | 333/336, 99.1% |
 | unit tests | | 189 |
 
-**The reading-selection logic is shared.** `aget_readings` is on the base `Day`
+**The reading-selection logic is shared.** `get_readings` is on the base `Day`
 class (`calendarium/liturgics/day.py`), which both `SlavicDay` and `GreekDay`
 inherit, so a change made for Slavic accuracy is measured for Greek against a
 *different* source. A Slavic improvement can cost Greek silently.
@@ -419,7 +419,7 @@ Jun 30 and extra on Nov 8 may be the same shape.
 
 # Choosing the abbreviated readings
 
-`Day.aget_abbreviated_readings()` reduces a day to one Epistle and one Gospel;
+`Day.get_abbreviated_readings()` reduces a day to one Epistle and one Gospel;
 it is what the Alexa skill speaks. It was hand-tuned and had never been
 measured, because there was no obvious ground truth for "the" reading of a day.
 
@@ -887,7 +887,7 @@ Old Testament set and this app drops it.
 **Kept as-is (Brian, 2026-09-02): antiochian.org and goarch.org both do what
 this app does**, publishing a single Epistle and Gospel pair for the day, so the
 divergence is from OCA specifically rather than from Greek practice. Reducing to
-one pair is the contract `aget_abbreviated_readings` promises, and two of the
+one pair is the contract `get_abbreviated_readings` promises, and two of the
 three sources agree with it.
 
 ## Oct 31's Kochurov data is OCA's, not ROCOR's -- closed

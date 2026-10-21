@@ -16,6 +16,7 @@ from django.views.decorators.cache import cache_control
 from . import liturgics
 from .datetools import Calendar, Tradition
 from .liturgics.year import SlavicYear, GreekYear
+from orthocal.decorators import in_thread_pool
 
 logger = logging.getLogger(__name__)
 
@@ -35,18 +36,19 @@ _GREAT_FASTS = [
 ]
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
-async def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
+@in_thread_pool
+def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
     key = f'ical-feed-{tradition}-{cal}'
 
-    if not (serialized_calendar := await cache.aget(key)):
+    if not (serialized_calendar := cache.get(key)):
         timestamp = timezone.localtime()
-        calendar = await generate_ical(timestamp, cal, tradition, request.build_absolute_uri)
+        calendar = generate_ical(timestamp, cal, tradition, request.build_absolute_uri)
         serialized_calendar = calendar.to_ical()
-        await cache.aset(key, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+        cache.set(key, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
 
     return HttpResponse(serialized_calendar, content_type='text/calendar')
 
-async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
+def generate_ical(timestamp, cal, tradition, build_absolute_uri):
     # Slavic keeps its original title/uid format unchanged, since existing
     # subscribers' calendar apps use the uid to track/dedupe events -- only
     # the newer, non-default traditions get a distinguishing prefix.
@@ -69,7 +71,7 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
         dt = dt.date()
         day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal, tradition=tradition)
-        await day.ainitialize()
+        day.initialize()
 
         day_path = reverse('readings', kwargs={
             'cal': cal,
@@ -87,7 +89,7 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
         event.add('dtstart', dt)
         event.add('dtend', dt + timedelta(days=1))
         event.add('summary', day.summary_title)
-        event.add('description', await ical_description(day, url))
+        event.add('description', ical_description(day, url))
         event.add('url', url)
         event.add('class', 'public')
         calendar.add_component(event)
@@ -125,7 +127,7 @@ async def generate_ical(timestamp, cal, tradition, build_absolute_uri):
 
     return calendar
 
-async def ical_description(day, url):
+def ical_description(day, url):
     description = ''
 
     if day.fast_exception_desc and day.fast_level:
@@ -139,7 +141,7 @@ async def ical_description(day, url):
     if day.saints:
         description += ' \u2022 '.join(day.saints) + '\n\n'
 
-    for reading in await day.aget_readings():
+    for reading in day.get_readings():
         if reading.desc:
             description += f'{reading.pericope.display} ({reading.source}, {reading.desc})\n'
         else:

@@ -10,7 +10,7 @@ import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio, django, re, json, glob, datetime, collections
+import django, re, json, glob, datetime, collections
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 django.setup()
 from calendarium.liturgics import Day
@@ -58,7 +58,7 @@ def near(a, b):
     if not (pa and pb): return False
     return pa.group(1) == pb.group(1) and pa.group(2) == pb.group(2) and abs(int(pa.group(3)) - int(pb.group(3))) <= 2
 
-async def main():
+def main():
     goa = {}
     for tok in open('data/goa2026.txt').read().split():
         d, e, g = (tok.split(',') + ['', ''])[:3]
@@ -77,8 +77,8 @@ async def main():
             continue
         month, dayn = int(key[:2]), int(key[2:])
         day = Day(2026, month, dayn, tradition=Tradition.Greek)
-        await day.ainitialize()
-        rs = await day.aget_readings()
+        day.initialize()
+        rs = day.get_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
         got_g = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Gospel']
         app_ok = ((not ae or any(near(x, ae) for x in got_e))
@@ -97,4 +97,4 @@ async def main():
     for key, ae, ag, ge, gg, got_e, got_g in juris:
         print(f'    2026-{key[:2]}-{key[2:]}  ant E={ae:<11} G={ag:<11} | goa E={ge:<11} G={gg:<11} | app E={got_e} G={got_g}')
 
-asyncio.run(main())
+main()

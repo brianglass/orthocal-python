@@ -10,7 +10,7 @@ daily set last. On Aug 29 it prints
     1 Corinthians 2:6-9 / Matthew 22:15-22
 
 so the Forerunner's pair is what a listener should hear. That makes the first
-row a ground truth for Day.aget_abbreviated_readings(), which until now had
+row a ground truth for Day.get_abbreviated_readings(), which until now had
 none -- the selection was tuned by hand and never measured.
 
 Reports three outcomes per date:
@@ -29,7 +29,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import datetime
 import json
@@ -68,7 +67,7 @@ def same(ours, theirs):
            ((og is None and tg is None) or near(og or '', tg or ''))
 
 
-async def audit(year, tradition=Tradition.Slavic):
+def audit(year, tradition=Tradition.Slavic):
     with open(f'data/oca_raw/readings-{year}.json') as f:
         monthly = json.load(f)
 
@@ -82,8 +81,8 @@ async def audit(year, tradition=Tradition.Slavic):
             continue
 
         day = Day(date.year, date.month, date.day, tradition=tradition)
-        await day.ainitialize()
-        abbr = await day.aget_abbreviated_readings()
+        day.initialize()
+        abbr = day.get_abbreviated_readings()
         ours = (next((canon(r.pericope.display) for r in abbr if r.source == 'Epistle'), None),
                 next((canon(r.pericope.display) for r in abbr if r.source == 'Gospel'), None))
 
@@ -119,4 +118,4 @@ async def audit(year, tradition=Tradition.Slavic):
 
 if __name__ == '__main__':
     for year in (sys.argv[1:] or ['2026']):
-        asyncio.run(audit(int(year)))
+        audit(int(year))

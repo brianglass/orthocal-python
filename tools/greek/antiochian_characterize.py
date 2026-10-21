@@ -16,7 +16,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import json
 from pathlib import Path
@@ -37,8 +36,8 @@ def entries():
                 yield path.stem, title
 
 
-async def main(write):
-    lines = await characterize(list(entries()))
+def main(write):
+    lines = characterize(list(entries()))
 
     if write:
         GOLDEN.write_text('\n'.join(lines) + '\n')
@@ -49,4 +48,4 @@ async def main(write):
 
 
 if __name__ == '__main__':
-    asyncio.run(main('--write' in sys.argv))
+    main('--write' in sys.argv)

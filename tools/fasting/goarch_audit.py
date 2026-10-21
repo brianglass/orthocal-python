@@ -41,7 +41,6 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(sys.path[0])
 
-import asyncio
 import collections
 import datetime
 import json
@@ -86,7 +85,7 @@ def bucket(rung):
     return 'strict'
 
 
-async def main():
+def main():
     with open(PATH) as f:
         goa = json.load(f)
 
@@ -99,7 +98,7 @@ async def main():
         for index, code in enumerate(codes):
             date = datetime.date(year, mon, index + 1)
             day = Day(year, mon, date.day, tradition=Tradition.Greek)
-            await day.ainitialize()
+            day.initialize()
 
             ours = ('no fast' if day.fast_level == FastLevels.NoFast
                     else bucket(RUNG[day.fast_exception]))
@@ -126,4 +125,4 @@ async def main():
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()

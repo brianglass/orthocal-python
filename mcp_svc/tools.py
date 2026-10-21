@@ -9,6 +9,8 @@ from calendarium.liturgics.day import _has_story
 from commemorations.models import DayCommemoration, Saint
 from commemorations.search import matching_saints
 
+from orthocal.decorators import in_thread_pool
+
 from .server import mcp
 
 
@@ -32,14 +34,19 @@ async def get_day(
     douay-rheims (Douay-Rheims); it has no effect on non-English content.
     """
 
+    return await _get_day(year, month, day, calendar, tradition, translation)
+
+
+@in_thread_pool
+def _get_day(year, month, day, calendar, tradition, translation):
     try:
         liturgical_day = liturgics.Day(year, month, day, calendar=calendar, tradition=tradition, translation=translation)
     except ValueError as exc:
         raise ToolError(f'{year}-{month}-{day} is not a valid date: {exc}')
 
-    await liturgical_day.ainitialize()
-    await liturgical_day.aget_readings(fetch_content=True)
-    await liturgical_day.aget_abbreviated_readings()
+    liturgical_day.initialize()
+    liturgical_day.get_readings(fetch_content=True)
+    liturgical_day.get_abbreviated_readings()
 
     return DaySchema.model_validate(liturgical_day, from_attributes=True).model_dump()
 
@@ -74,15 +81,17 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     it, pass one of the result's saint_slugs to get_saint.
     """
 
-    commemorations = [
-        commemoration
-        async for commemoration in DayCommemoration.objects.filter(
-            saints__in=matching_saints(query),
-            tradition__in=(tradition, 'common'),
-        ).select_related('day').prefetch_related('daycommemorationsaint_set__saint').order_by(
-            'day__month', 'day__day',
-        ).distinct()
-    ]
+    return await _search_saints(query, tradition)
+
+
+@in_thread_pool
+def _search_saints(query, tradition):
+    commemorations = DayCommemoration.objects.filter(
+        saints__in=matching_saints(query),
+        tradition__in=(tradition, 'common'),
+    ).select_related('day').prefetch_related('daycommemorationsaint_set__saint').order_by(
+        'day__month', 'day__day',
+    ).distinct()
 
     return [
         {
@@ -120,17 +129,19 @@ async def get_saint(slug: str, tradition: Tradition = Tradition.Slavic) -> dict:
     commemoration and appears under each of them.
     """
 
-    saint = await Saint.objects.filter(slug=slug).afirst()
+    return await _get_saint(slug, tradition)
+
+
+@in_thread_pool
+def _get_saint(slug, tradition):
+    saint = Saint.objects.filter(slug=slug).first()
     if saint is None:
         raise ToolError(f'No saint with slug {slug!r}; use a slug from search_saints.')
 
-    commemorations = [
-        commemoration
-        async for commemoration in DayCommemoration.objects.filter(
-            saints=saint,
-            tradition__in=(tradition, 'common'),
-        ).select_related('day').order_by('day__month', 'day__day')
-    ]
+    commemorations = DayCommemoration.objects.filter(
+        saints=saint,
+        tradition__in=(tradition, 'common'),
+    ).select_related('day').order_by('day__month', 'day__day')
 
     return {
         'slug': saint.slug,
