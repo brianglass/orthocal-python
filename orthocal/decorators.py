@@ -1,11 +1,14 @@
 import functools
 import hashlib
+import inspect
 import logging
 import newrelic.agent
 
 from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.core.cache import cache as default_cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.http import HttpResponse
 from django.utils import timezone
 from django.utils.cache import get_cache_key, has_vary_header, learn_cache_key, patch_response_headers
 from django.views.decorators.cache import cache_page
@@ -84,6 +87,38 @@ def in_thread_pool(func):
         return await sync_to_async(func, thread_sensitive=settings.TESTING)(*args, **kwargs)
 
     return wrapper
+
+def cache_content(key, content_type, cache=None, timeout=DEFAULT_TIMEOUT):
+    """Cache the bytes a sync function returns, and return them as an HttpResponse.
+
+    key is a format string over the function's arguments, defaults
+    included, e.g. 'api-day-{cal}-{year}-{request.LANGUAGE_CODE}'. Only
+    the content is cached, not a whole response, so the headers stay
+    whatever the view and middleware set; and only the arguments named in
+    the key distinguish entries, unlike cache_page, which keys on the URL
+    and the Vary headers.
+    """
+
+    if cache is None:
+        cache = default_cache
+
+    def decorator(func):
+        signature = inspect.signature(func)
+
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            arguments = signature.bind(*args, **kwargs)
+            arguments.apply_defaults()
+            cache_key = key.format(**arguments.arguments)
+
+            if (content := cache.get(cache_key)) is None:
+                content = func(*args, **kwargs)
+                cache.set(cache_key, content, timeout=timeout)
+
+            return HttpResponse(content, content_type=content_type)
+
+        return wrapper
+    return decorator
 
 def instrument_endpoint(view):
     @functools.wraps(view)
