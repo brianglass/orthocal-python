@@ -897,6 +897,34 @@ class TestGreekSundayTitles(TestCase):
         self.assertIn('Holy Fathers of the 4th Ecumenical Council', greek.feasts)
         self.assertNotIn('Fathers of the 1st Six Ecumenical Councils', greek.feasts)
 
+class TestGreekWeekdayTitles(TestCase):
+    """Greek weekdays in the Luke season are numbered by the week of Luke
+    being read; see GreekDay._apply_title_conventions. Expected numbers are
+    antiochian.org's for the same dates."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_weekday_titles(self):
+        for (year, month, day), expected in (
+            ((2026, 9, 21), 'Monday of the 1st week of Luke'),
+            ((2026, 10, 22), 'Thursday of the 5th week of Luke'),
+            ((2026, 10, 24), 'Saturday of the 5th week of Luke'),
+            ((2026, 12, 7), 'Monday of the 12th week of Luke'),    # Lukan jump
+            ((2026, 12, 21), 'Monday of the 14th week of Luke'),
+        ):
+            with self.subTest(date=date(year, month, day)):
+                pday = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                self.assertIn(expected, pday.titles)
+                self.assertFalse(any('after Pentecost' in t for t in pday.titles))
+
+    def test_matthew_season_weekdays_keep_the_pentecost_count(self):
+        pday = liturgics.Day(2026, 7, 15, tradition=Tradition.Greek)
+        self.assertTrue(any(t.endswith('week after Pentecost') for t in pday.titles))
+
+    def test_slavic_weekdays_still_count_from_pentecost(self):
+        pday = liturgics.Day(2026, 10, 22, tradition=Tradition.Slavic)
+        self.assertIn('Thursday of the 21st week after Pentecost', pday.titles)
+
 class TestHasStory(TestCase):
     """A handful of DayCommemoration.story rows are exactly '<p></p>' --
     non-empty and non-None, so truthy as a plain Python string, but with no
