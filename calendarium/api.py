@@ -4,7 +4,7 @@ from datetime import date
 from typing import List
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import cache, caches
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse
 from django.template.loader import render_to_string
@@ -26,6 +26,8 @@ from orthocal.decorators import etag, etag_date, in_thread_pool, instrument_endp
 logger = logging.getLogger(__name__)
 
 BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
+
+day_cache = caches['days']
 
 class ClientIpMixin:
     """
@@ -217,17 +219,29 @@ def not_implemented_handler(request, exc):
 
 @in_thread_pool
 def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
-    try:
-        day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
-    except ValueError:
-        # The date is out of range or invalid
-        raise Http404
+    # Mobile apps fetch a few months of days at once on launch -- the same
+    # days for every user of the app, a hundred or more in a few seconds --
+    # and each day costs ~20ms of CPU, so cache the rendered JSON the same
+    # way _get_calendar_month does. It depends only on these parameters and
+    # the request's language.
+    key = f'api-day-{tradition}-{cal}-{year}-{month}-{day}-{request.LANGUAGE_CODE}-{translation}'
 
-    day.initialize()
-    day.get_readings(fetch_content=True)
-    day.get_abbreviated_readings()
+    if (content := day_cache.get(key)) is None:
+        try:
+            liturgical_day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
+        except ValueError:
+            # The date is out of range or invalid
+            raise Http404
 
-    return day
+        liturgical_day.initialize()
+        liturgical_day.get_readings(fetch_content=True)
+        liturgical_day.get_abbreviated_readings()
+
+        data = DaySchema.model_validate(liturgical_day, from_attributes=True).model_dump()
+        content = api.create_response(request, data, status=200).content
+        day_cache.set(key, content)
+
+    return HttpResponse(content, content_type=f'{api.renderer.media_type}; charset={api.renderer.charset}')
 
 @api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint

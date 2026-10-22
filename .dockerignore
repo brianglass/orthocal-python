@@ -17,6 +17,7 @@ skill-package
 .firebase
 static
 default-cache
+day-cache
 
 # Scratch/research data and one-off scripts -- not used by the running app,
 # only by manual data-ingestion/analysis work. See git status for the full,

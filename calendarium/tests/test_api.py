@@ -265,6 +265,53 @@ class MonthCacheTestCase(TestCase):
         self.assertEqual(julian_january, self._get(cal='julian'))
 
 
+class DayCacheTestCase(TestCase):
+    """api._get_calendar_day caches each day's response."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def setUp(self):
+        api.day_cache.clear()
+
+    def _get(self, cal='gregorian', year=2022, month=1, day=7, tradition=None, **params):
+        kwargs = {'cal': cal, 'year': year, 'month': month, 'day': day}
+        name = 'api:get_calendar_day'
+        if tradition:
+            kwargs['tradition'] = tradition
+            name = 'api:get_calendar_day_tradition'
+        response = self.client.get(reverse(name, kwargs=kwargs), params, format='json')
+        self.assertEqual(response.status_code, 200)
+        return response.json()
+
+    def test_cached_response_matches_the_computed_one(self):
+        computed = self._get()
+        self.assertEqual('Synaxis of St John the Baptist', computed['summary_title'])
+        self.assertTrue(computed['readings'][0]['passage'])
+        self.assertEqual(computed, self._get())
+
+    def test_cache_hit_skips_computation(self):
+        self._get()
+
+        with mock.patch.object(api.liturgics, 'Day', side_effect=AssertionError('recomputed')):
+            self._get()
+
+    def test_days_are_cached_separately(self):
+        self.assertEqual((1, 7), (self._get()['month'], self._get()['day']))
+        self.assertEqual((1, 8), (self._get(day=8)['month'], self._get(day=8)['day']))
+        self.assertEqual((12, 25), (self._get(cal='julian')['month'], self._get(cal='julian')['day']))
+
+        # Tradition and translation can leave a day's content unchanged, so
+        # check that they get entries of their own.
+        self._get(tradition='greek')
+        self._get(translation='lxx2012-web')
+        self.assertEqual(5, len(api.day_cache._list_cache_files()))
+
+    def test_invalid_date_is_still_a_404(self):
+        url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 2, 'day': 30})
+        self.assertEqual(self.client.get(url).status_code, 404)
+        self.assertEqual(self.client.get(url).status_code, 404)
+
+
 class TrailingSlashTestCase(TestCase):
     """orthocal.middleware.append_api_slash and the APPEND_SLASH redirect"""
 
