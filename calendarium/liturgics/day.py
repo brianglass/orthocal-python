@@ -996,7 +996,7 @@ class GreekDay(Day):
         fasting.apply(self, fasting.greek_season)
 
     def _apply_title_conventions(self):
-        """Name ordinary Sundays the Greek way, after the Gospel read.
+        """Name ordinary Sundays and Luke-season weekdays the Greek way, after the Gospel read.
 
         Slavic usage counts Sundays after Pentecost. Greek usage names them for
         the Evangelist being read -- the 12th Sunday of Luke is the Sunday that
@@ -1007,8 +1007,17 @@ class GreekDay(Day):
         2018-2026: 123 of its 125 Sundays named this way agree. The other two
         are January 2024, where antiochian.org reads a different Gospel from
         goarch.org and this app, and the name follows our Gospel.
+
+        Weekdays in the Luke season are numbered the same way, by the week of
+        Luke being read: "Thursday of the 5th week of Luke". A week's weekdays
+        come before its Sunday, so the 1st week of Luke runs up to the 1st
+        Sunday of Luke. Checked against the antiochian.org harvest, 2018-2026:
+        301 of its 303 such weekdays agree; the other two are the late-December
+        lag of 2026 (see docs/greek-lectionary.md). Weekdays in the Matthew
+        season keep their Pentecost count, which is the same number.
         """
         if self.weekday != Weekday.Sunday:
+            self._apply_weekday_title_convention()
             return
 
         for i, title in enumerate(self.titles):
@@ -1028,6 +1037,19 @@ class GreekDay(Day):
             self.feasts.remove(sunday_feast)
         else:
             del self.titles[i]
+
+    def _apply_weekday_title_convention(self):
+        if self.gospel_pdist is None:
+            return
+
+        luke_week = (self.gospel_pdist - 49) // 7 - 16
+        if not 1 <= luke_week <= 16:
+            return
+
+        for i, title in enumerate(self.titles):
+            if match := _SLAVIC_WEEKDAY_TITLE.fullmatch(title):
+                self.titles[i] = f'{match[1]} of the {_ordinal(luke_week)} week of Luke'
+                return
 
     def _greek_sunday_name(self):
         if self.pdist == self.pyear.forefathers:
@@ -1059,6 +1081,7 @@ class GreekDay(Day):
 
 
 _SLAVIC_SUNDAY_TITLE = re.compile(r'\d+(st|nd|rd|th) Sunday after Pentecost')
+_SLAVIC_WEEKDAY_TITLE = re.compile(r'(\w+day) of the \d+(?:st|nd|rd|th) week after Pentecost')
 
 
 def _ordinal(n):
