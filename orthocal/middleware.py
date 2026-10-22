@@ -1,4 +1,5 @@
 import datetime
+import os
 import re
 
 import newrelic.agent
@@ -36,6 +37,28 @@ def request_queueing(get_response):
     else:
         def middleware(request):
             set_request_queueing(request)
+            return get_response(request)
+
+    return middleware
+
+@sync_and_async_middleware
+def record_worker(get_response):
+    """Tag each New Relic transaction with the instance and worker that
+    served it, to see how evenly a burst spreads over the uvicorn workers.
+
+    The workers share one listening socket and asyncio accepts connections
+    in batches, so one worker may take most of a burst while the other sits
+    idle. PIDs repeat across Cloud Run instances, and New Relic reports
+    every host as localhost, so the kernel's boot ID tells instances apart.
+    """
+
+    if iscoroutinefunction(get_response):
+        async def middleware(request):
+            add_worker_attributes()
+            return await get_response(request)
+    else:
+        def middleware(request):
+            add_worker_attributes()
             return get_response(request)
 
     return middleware
@@ -123,6 +146,20 @@ def set_request_queueing(request):
             transaction.queue_start = float(fields[0][1:])
         except (IndexError, ValueError):
             pass
+
+def _boot_id():
+    try:
+        with open('/proc/sys/kernel/random/boot_id') as f:
+            return f.read().strip()[:8]
+    except OSError:
+        return None
+
+BOOT_ID = _boot_id()
+
+def add_worker_attributes():
+    newrelic.agent.add_custom_attribute('worker.pid', os.getpid())
+    if BOOT_ID:
+        newrelic.agent.add_custom_attribute('worker.instance', BOOT_ID)
 
 def append_slash_to_api_path(request):
     path = request.path_info

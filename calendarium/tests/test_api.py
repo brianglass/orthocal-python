@@ -1,4 +1,5 @@
 import json
+import os
 
 from pathlib import Path
 from unittest import mock
@@ -335,3 +336,19 @@ class TrailingSlashTestCase(TestCase):
         self.assertEqual(response['Location'], url)
         self.assertIn('public', response['Cache-Control'])
         self.assertIn('s-maxage', response['Cache-Control'])
+
+
+class RecordWorkerTestCase(TestCase):
+    """orthocal.middleware.record_worker"""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_transaction_is_tagged_with_the_worker(self):
+        url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 1, 'day': 7})
+
+        with mock.patch('newrelic.agent.add_custom_attribute') as add_custom_attribute:
+            self.client.get(url)
+
+        attributes = dict(c.args for c in add_custom_attribute.call_args_list)
+        self.assertEqual(os.getpid(), attributes['worker.pid'])
+        self.assertIn('worker.instance', attributes)
