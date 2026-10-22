@@ -25,7 +25,6 @@ def main():
         label, gospel = rows[d]
         dt = datetime.date.fromisoformat(d)
         day = Day(dt.year, dt.month, dt.day, tradition='greek')
-        day.initialize()
         got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
         w = ref(gospel)
         hit = any(ref(g) and ref(g)[0] == w[0] and ref(g)[1] == w[1] and abs(ref(g)[2] - w[2]) <= 2 for g in got)

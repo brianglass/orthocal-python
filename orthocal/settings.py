@@ -155,6 +155,19 @@ CACHES = {
             'MAX_ENTRIES': 1000,
         },
     },
+    # The day API's responses. They're kept apart from the default cache so
+    # that clients sweeping through many dates can't cull the iCal feeds
+    # and months, which cost far more to rebuild. An entry is about 4KB on
+    # disk (18KB at most), so a full cache is about 12MB of Cloud Run's
+    # in-memory filesystem.
+    'days': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'TIMEOUT': ORTHOCAL_ICAL_TTL * 60 * 60,
+        'LOCATION': BASE_DIR / 'day-cache',
+        'OPTIONS': {
+            'MAX_ENTRIES': 3000,
+        },
+    },
 }
 
 CACHE_MIDDLEWARE_SECONDS = ORTHOCAL_MAX_AGE

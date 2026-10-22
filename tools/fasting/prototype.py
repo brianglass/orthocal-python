@@ -253,7 +253,6 @@ def main():
             date = datetime.date(year, 1, 1)
             while date.year == year:
                 day = Day(date.year, date.month, date.day, tradition=tradition)
-                day.initialize()
 
                 raw = [d.fast_exception for d in day.days]
                 # 0 makes no claim. 5, 9 and 10 assert strictness rather than

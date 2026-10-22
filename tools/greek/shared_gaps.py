@@ -41,7 +41,6 @@ def main():
         # what the app produces on the most recent harvested occurrence
         dt = rows[-1][0]
         pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        pday.initialize()
         rs = pday.get_readings()
         print(f'    app({dt}): ' + ', '.join(f'{r.source}={r.pericope.sdisplay}' for r in rs))
 

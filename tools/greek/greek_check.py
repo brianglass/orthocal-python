@@ -36,7 +36,7 @@ def main():
         while cur<=tri:
             k=cur.isoformat()
             if k in data:
-                day=Day(cur.year,cur.month,cur.day,tradition='greek'); day.initialize()
+                day=Day(cur.year,cur.month,cur.day,tradition='greek')
                 rs=day.get_readings()
                 got=[r.pericope.sdisplay for r in rs if r.source=='Gospel']
                 want=data[k]['reading2Title']

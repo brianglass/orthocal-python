@@ -7,8 +7,6 @@ import icalendar
 
 from dateutil.rrule import rrule, DAILY
 from django.conf import settings
-from django.core.cache import cache
-from django.http import HttpResponse
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.cache import cache_control
@@ -16,7 +14,7 @@ from django.views.decorators.cache import cache_control
 from . import liturgics
 from .datetools import Calendar, Tradition
 from .liturgics.year import SlavicYear, GreekYear
-from orthocal.decorators import in_thread_pool
+from orthocal.decorators import cache_content, in_thread_pool
 
 logger = logging.getLogger(__name__)
 
@@ -37,16 +35,10 @@ _GREAT_FASTS = [
 
 @cache_control(max_age=settings.ORTHOCAL_ICAL_TTL*60*60)
 @in_thread_pool
+@cache_content('ical-feed-{tradition}-{cal}', 'text/calendar', timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
 def ical(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic):
-    key = f'ical-feed-{tradition}-{cal}'
-
-    if not (serialized_calendar := cache.get(key)):
-        timestamp = timezone.localtime()
-        calendar = generate_ical(timestamp, cal, tradition, request.build_absolute_uri)
-        serialized_calendar = calendar.to_ical()
-        cache.set(key, serialized_calendar, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
-
-    return HttpResponse(serialized_calendar, content_type='text/calendar')
+    timestamp = timezone.localtime()
+    return generate_ical(timestamp, cal, tradition, request.build_absolute_uri).to_ical()
 
 def generate_ical(timestamp, cal, tradition, build_absolute_uri):
     # Slavic keeps its original title/uid format unchanged, since existing
@@ -71,7 +63,6 @@ def generate_ical(timestamp, cal, tradition, build_absolute_uri):
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
         dt = dt.date()
         day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal, tradition=tradition)
-        day.initialize()
 
         day_path = reverse('readings', kwargs={
             'cal': cal,

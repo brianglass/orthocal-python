@@ -98,7 +98,6 @@ def main():
         for index, code in enumerate(codes):
             date = datetime.date(year, mon, index + 1)
             day = Day(year, mon, date.day, tradition=Tradition.Greek)
-            day.initialize()
 
             ours = ('no fast' if day.fast_level == FastLevels.NoFast
                     else bucket(RUNG[day.fast_exception]))

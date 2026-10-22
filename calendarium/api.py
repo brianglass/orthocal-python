@@ -4,9 +4,9 @@ from datetime import date
 from typing import List
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.cache import caches
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.template.loader import render_to_string
 from django.urls import resolve, reverse
 from django.urls.exceptions import Resolver404
@@ -21,11 +21,13 @@ from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar, Tradition, Translation
-from orthocal.decorators import etag, etag_date, in_thread_pool, instrument_endpoint
+from orthocal.decorators import cache_content, etag, etag_date, in_thread_pool, instrument_endpoint
 
 logger = logging.getLogger(__name__)
 
 BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
+
+day_cache = caches['days']
 
 class ClientIpMixin:
     """
@@ -215,19 +217,33 @@ class OembedSchema(Schema):
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
 
+# The day and month endpoints cache their rendered JSON and return it as an
+# HttpResponse, which ninja passes through as-is: returning validated schema
+# objects instead fails, because ninja re-validates the result against the
+# response schema by its source aliases (pdist, jdn, ...).
+JSON_CONTENT_TYPE = f'{api.renderer.media_type}; charset={api.renderer.charset}'
+
+# Mobile apps fetch a few months of days at once on launch -- the same days
+# for every user of the app, a hundred or more in a few seconds -- and each
+# day costs ~20ms of CPU. A day depends only on these parameters and the
+# request's language.
 @in_thread_pool
+@cache_content(
+    'api-day-{tradition}-{cal}-{year}-{month}-{day}-{request.LANGUAGE_CODE}-{translation}',
+    JSON_CONTENT_TYPE, cache=day_cache,
+)
 def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
     try:
-        day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
+        liturgical_day = liturgics.Day(year, month, day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
     except ValueError:
         # The date is out of range or invalid
         raise Http404
 
-    day.initialize()
-    day.get_readings(fetch_content=True)
-    day.get_abbreviated_readings()
+    liturgical_day.get_readings(fetch_content=True)
+    liturgical_day.get_abbreviated_readings()
 
-    return day
+    data = DaySchema.model_validate(liturgical_day, from_attributes=True).model_dump()
+    return api.create_response(request, data, status=200).content
 
 @api.get('{cal:cal}/{year:year}/{month:month}/{day:day}/', response=DaySchema)
 @instrument_endpoint
@@ -259,32 +275,21 @@ async def get_calendar_day_tradition(request, tradition: Tradition, cal: Calenda
 
     return await _get_calendar_day(request, cal, tradition, year, month, day, translation)
 
+# A month costs ~0.4s of CPU to compute, and the mobile app fetches several
+# at once on launch -- the same few current months for every user. A month
+# doesn't depend on the request's language or on today's date, only on
+# these four parameters. The cache is per-instance, so this helps warm
+# instances rather than serving as a site-wide cache.
 @in_thread_pool
+@cache_content('api-month-{tradition}-{cal}-{year}-{month}', JSON_CONTENT_TYPE, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
 def _get_calendar_month(request, cal, tradition, year, month):
-    # A month costs ~0.4s of CPU to compute, and the mobile app fetches
-    # several at once on launch -- the same few current months for every
-    # user -- so cache them, like ical.py does its feeds. The result doesn't
-    # depend on the request's language or on today's date, only on these
-    # four parameters. The cache is per-instance, so this helps warm
-    # instances rather than serving as a site-wide cache.
-    #
-    # The rendered JSON is cached and returned as an HttpResponse, which
-    # ninja passes through as-is: returning validated DaySchemaLite objects
-    # instead fails, because ninja re-validates the result against the
-    # response schema by its source aliases (pdist, jdn, ...).
-    key = f'api-month-{tradition}-{cal}-{year}-{month}'
+    days = list(liturgics.month_of_days(year, month, calendar=cal, tradition=tradition))
+    for day in days:
+        day.get_readings()
+        day.get_abbreviated_readings()
 
-    if (content := cache.get(key)) is None:
-        days = list(liturgics.month_of_days(year, month, calendar=cal, tradition=tradition))
-        for day in days:
-            day.get_readings()
-            day.get_abbreviated_readings()
-
-        data = [DaySchemaLite.model_validate(day, from_attributes=True).model_dump() for day in days]
-        content = api.create_response(request, data, status=200).content
-        cache.set(key, content, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
-
-    return HttpResponse(content, content_type=f'{api.renderer.media_type}; charset={api.renderer.charset}')
+    data = [DaySchemaLite.model_validate(day, from_attributes=True).model_dump() for day in days]
+    return api.create_response(request, data, status=200).content
 
 @api.get('{cal:cal}/{year:year}/{month:month}/', response=List[DaySchemaLite])
 @instrument_endpoint

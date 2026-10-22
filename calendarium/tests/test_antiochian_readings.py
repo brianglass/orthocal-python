@@ -43,7 +43,6 @@ def characterize(entries):
         day_date = date.fromisoformat(day_iso)
         day = liturgics.Day(day_date.year, day_date.month, day_date.day,
                             tradition=Tradition.Greek)
-        day.initialize()
         displays = [r.pericope.sdisplay for r in day.get_readings()]
         served = [(d, verse_set(d)) for d in displays]
 
@@ -56,7 +55,6 @@ def characterize(entries):
             next_day = day_date + timedelta(days=1)
             saturday = liturgics.Day(next_day.year, next_day.month, next_day.day,
                                      tradition=Tradition.Greek)
-            saturday.initialize()
             anticipated = [verse_set(r.pericope.sdisplay)
                            for r in saturday.get_readings()
                            if r.source.startswith('Matins')]
@@ -180,7 +178,6 @@ class TestExactGreekReadingBoundaries(TestCase):
                 pday = liturgics.Day(
                     2026, month, day, tradition=Tradition.Greek
                 )
-                pday.initialize()
                 readings = pday.get_readings()
                 actual = {
                     reading.pericope.sdisplay
