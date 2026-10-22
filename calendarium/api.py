@@ -223,7 +223,6 @@ def _get_calendar_day(request, cal, tradition, year, month, day, translation=Non
         # The date is out of range or invalid
         raise Http404
 
-    day.initialize()
     day.get_readings(fetch_content=True)
     day.get_abbreviated_readings()
 

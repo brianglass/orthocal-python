@@ -121,7 +121,6 @@ def main():
             stats['reading1 is a Matins Gospel, not an Epistle'] += 1
             want_e = ''
         day = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        day.initialize()
         rs = day.get_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
         got_g = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Gospel']

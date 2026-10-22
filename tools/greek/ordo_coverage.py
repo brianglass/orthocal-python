@@ -33,7 +33,7 @@ def main():
             dt = datetime.date(year, 1, dd)
             if dt.weekday() == 6:
                 continue                       # Sundays are the Sunday mechanism, not the ordo
-            day = Day(year, 1, dd, tradition='greek'); day.initialize()
+            day = Day(year, 1, dd, tradition='greek')
             got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
             w = ref(gospel)
             ok = any(ref(g) and ref(g)[0] == w[0] and ref(g)[1] == w[1] and abs(ref(g)[2] - w[2]) <= 2 for g in got)

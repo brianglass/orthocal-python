@@ -22,7 +22,6 @@ class SpeechTestCase(TestCase):
         tomorrow = now + timedelta(days=1)
 
         day = liturgics.Day(tomorrow.year, tomorrow.month, tomorrow.day)
-        day.initialize()
         actual = speech.when_speech(day)
 
         self.assertIn('Tomorrow', actual)
@@ -36,7 +35,6 @@ class SpeechTestCase(TestCase):
         today = timezone.localdate()
 
         day = liturgics.Day(today.year, today.month, today.day)
-        day.initialize()
         actual = speech.when_speech(day)
 
         self.assertIn('Today', actual)
@@ -46,7 +44,6 @@ class SpeechTestCase(TestCase):
         builder = ResponseFactory()
 
         day = liturgics.Day(2023, 1, 7)
-        day.initialize()
 
         speech_text, card_text = speech.day_speech(day)
 
@@ -55,21 +52,18 @@ class SpeechTestCase(TestCase):
 
     def test_fasting_speech(self):
         day = liturgics.Day(2023, 1, 5)
-        day.initialize()
 
         actual = speech.fasting_speech(day)
         self.assertIn('On this day there is a fast', actual)
 
     def test_fasting_speech_great(self):
         day = liturgics.Day(2023, 2, 28)
-        day.initialize()
 
         actual = speech.fasting_speech(day)
         self.assertIn('This day is during', actual)
 
     def test_fasting_speech_no(self):
         day = liturgics.Day(2023, 1, 10)
-        day.initialize()
 
         actual = speech.fasting_speech(day)
         self.assertIn('no fast', actual)
@@ -98,7 +92,6 @@ class SpeechTestCase(TestCase):
 
     def test_estimate_group_size_long(self):
         day = liturgics.Day(2023, 4, 14)
-        day.initialize()
         readings = day.get_readings()
         passage = readings[0].pericope.get_passage()
         size = speech.estimate_group_size(passage)
@@ -108,7 +101,6 @@ class SpeechTestCase(TestCase):
 
     def test_estimate_group_size_short(self):
         day = liturgics.Day(2023, 1, 18)
-        day.initialize()
         readings = day.get_readings()
         passage = readings[0].pericope.get_passage()
 
@@ -125,7 +117,6 @@ class SpeechTestCase(TestCase):
 
         for year, month, day, expected in data:
             day = liturgics.Day(year, month, day)
-            day.initialize()
             readings = day.get_readings()
             reading = readings[0]
 
@@ -140,7 +131,6 @@ class SpeechTestCase(TestCase):
         envy"; see alexa.speech.TRANSLATION."""
 
         day = liturgics.Day(2023, 1, 18, translation=speech.TRANSLATION)
-        day.initialize()
         readings = day.get_readings()
 
         speech_text = speech.reading_speech(readings[0])

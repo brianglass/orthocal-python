@@ -44,7 +44,6 @@ def _get_day(year, month, day, calendar, tradition, translation):
     except ValueError as exc:
         raise ToolError(f'{year}-{month}-{day} is not a valid date: {exc}')
 
-    liturgical_day.initialize()
     liturgical_day.get_readings(fetch_content=True)
     liturgical_day.get_abbreviated_readings()
 

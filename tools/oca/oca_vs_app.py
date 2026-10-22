@@ -124,7 +124,6 @@ def best(theirs, their_title, candidates):
 
 def page_titles(date, tradition):
     day = Day(date.year, date.month, date.day, tradition=tradition)
-    day.initialize()
     return list(dict.fromkeys([*day.saints, *day.feasts, *day.titles]))
 
 

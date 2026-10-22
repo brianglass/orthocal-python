@@ -1824,10 +1824,11 @@ wrong 14 times in 15.
 Held in the database as `models.OrdoReading`, keyed by
 `(jurisdiction, year, month, day, source)` and carrying the target `pdist`
 plus a provenance note. `Day._collect_ordo_readings()` loads the row set for
-the date during `initialize`, and `Day.gospel_pdist` consults it first.
+the date when the `Day` is constructed, and `Day.gospel_pdist` consults it
+first.
 
-The lookup happens in `initialize` rather than in `gospel_pdist` so that, like
-`_collect_commemorations`, all of the day's DB access happens up front.
+The lookup happens in the constructor rather than in `gospel_pdist` so that,
+like `_collect_commemorations`, all of the day's DB access happens up front.
 (`Day` was async until Oct 2026, when the property couldn't have queried at
 all.) `Day.__init__` defaults `ordo_readings` to `{}` so the property can read
 it unconditionally.

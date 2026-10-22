@@ -31,7 +31,6 @@ def show(datestr):
         oca = json.load(f)
 
     day = Day(date.year, date.month, date.day, tradition=Tradition.Slavic)
-    day.initialize()
     readings = day.get_readings()
 
     print(f'\n=== {datestr} ({date:%A}) ===')
