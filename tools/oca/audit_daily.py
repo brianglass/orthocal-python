@@ -67,7 +67,6 @@ def audit(year, tradition=Tradition.Slavic):
             continue
 
         day = Day(date.year, date.month, date.day, tradition=tradition)
-        day.initialize()
         readings = day.get_readings()
         ours = [c for c in (canon(r.pericope.display) for r in readings) if c]
 

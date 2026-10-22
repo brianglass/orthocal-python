@@ -233,30 +233,23 @@ class Day:
         self.language = language
         self.translation = translation
 
-        # Filled by initialize. Defaulted here so gospel_pdist -- a
-        # cached_property -- can read it unconditionally even if a caller
-        # skips initialize.
+        # _collect_ordo_readings leaves these empty for a tradition without
+        # an annual ordo; gospel_pdist reads them unconditionally.
         self.ordo_readings = {}
         self.ordo_alternatives = []
 
-    def initialize(self):
-        """Do the expensive stuff here to keep it out of the constructor."""
-
-        if not hasattr(self, '_initialized'):
-            self._collect_commemorations()
-            self._add_supplemental_commemorations()
-            self._collect_ordo_readings()
-            self._apply_title_conventions()
-            self._apply_fasting_adjustments()
-            self._initialized = True
-
+        self._collect_commemorations()
+        self._add_supplemental_commemorations()
+        self._collect_ordo_readings()
+        self._apply_title_conventions()
+        self._apply_fasting_adjustments()
 
     def _collect_ordo_readings(self):
         """Load this date's annual-ordo assignments.
 
         See models.OrdoReading. The lookup lives here rather than in
         gospel_pdist so that, like _collect_commemorations, all of the day's
-        DB access happens up front in initialize().
+        DB access happens up front, in the constructor.
 
         Both jurisdictions are loaded, not just this tradition's. Where they
         disagree the other one is shown alongside, labelled -- see

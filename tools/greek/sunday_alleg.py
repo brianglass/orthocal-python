@@ -35,7 +35,7 @@ def main():
         dt = datetime.date.fromisoformat(d)
         if ref(goa[d][1]) == ref(ant[d][1]):
             continue                                   # sources agree: tells us nothing
-        day = Day(dt.year, dt.month, dt.day, tradition='greek'); day.initialize()
+        day = Day(dt.year, dt.month, dt.day, tradition='greek')
         got = [r.pericope.sdisplay for r in day.get_readings() if r.source == 'Gospel']
         g, a = hit(got, goa[d][1]), hit(got, ant[d][1])
         kind = 'sunday' if dt.weekday() == 6 else 'weekday'

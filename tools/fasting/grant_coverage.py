@@ -72,7 +72,6 @@ def main():
         date = datetime.date(year, 1, 1)
         while date.year == year:
             day = Day(year, date.month, date.day, tradition=Tradition.Greek)
-            day.initialize()
             season = fasting.greek_season(day)
             if season is not None and day.fast_level != FastLevels.NoFast:
                 floor = season.floor_for(day.weekday)

@@ -57,7 +57,6 @@ def lines():
             date = datetime.date(year, 1, 1)
             while date.year == year:
                 day = Day(date.year, date.month, date.day, tradition=tradition)
-                day.initialize()
                 rows = ','.join(str(e) for e in sorted(d.fast_exception for d in day.days))
                 abstain = ','.join(
                     datetools.fast_abstentions_for(day.fast_level, day.fast_exception))

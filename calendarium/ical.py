@@ -63,7 +63,6 @@ def generate_ical(timestamp, cal, tradition, build_absolute_uri):
     for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
         dt = dt.date()
         day = liturgics.Day(dt.year, dt.month, dt.day, calendar=cal, tradition=tradition)
-        day.initialize()
 
         day_path = reverse('readings', kwargs={
             'cal': cal,

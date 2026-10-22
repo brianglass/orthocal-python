@@ -35,7 +35,6 @@ def get_day(handler_input):
         dt = timezone.localtime()
 
     day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
-    day.initialize()
 
     return day
 
@@ -59,7 +58,6 @@ class LaunchHandler(AbstractRequestHandler):
 
         today = timezone.localtime()
         day = liturgics.Day(today.year, today.month, today.day, translation=speech.TRANSLATION)
-        day.initialize()
 
         speech_text, card_text = speech.day_speech(day)
 
@@ -303,7 +301,6 @@ class NextIntentHandler(AbstractRequestHandler):
     def commemorations_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
         day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
-        day.initialize()
 
         next_commemoration = session.get('next_commemoration')
 
@@ -343,7 +340,6 @@ class NextIntentHandler(AbstractRequestHandler):
     def scriptures_handler(self, session, builder):
         dt = datetime.strptime(session['date'], '%Y-%m-%d')
         day = liturgics.Day(dt.year, dt.month, dt.day, translation=speech.TRANSLATION)
-        day.initialize()
         readings = day.get_abbreviated_readings()
 
         next_reading = session.get('next_reading')

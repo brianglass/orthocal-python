@@ -81,7 +81,6 @@ def audit(year, tradition=Tradition.Slavic):
             continue
 
         day = Day(date.year, date.month, date.day, tradition=tradition)
-        day.initialize()
         abbr = day.get_abbreviated_readings()
         ours = (next((canon(r.pericope.display) for r in abbr if r.source == 'Epistle'), None),
                 next((canon(r.pericope.display) for r in abbr if r.source == 'Gospel'), None))

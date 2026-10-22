@@ -129,7 +129,6 @@ def verse_set(citation):
 
 def app_readings(date):
     day = Day(date.year, date.month, date.day, tradition=Tradition.Greek)
-    day.initialize()
     return day.pdist, [(r.source, r.pericope.sdisplay) for r in day.get_readings()]
 
 

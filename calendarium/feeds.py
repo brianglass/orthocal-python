@@ -48,7 +48,6 @@ class ReadingsFeed(Feed):
         start_dt = now - timedelta(days=10)
         for dt in rrule(DAILY, dtstart=start_dt, until=now):
             day = liturgics.Day(dt.year, dt.month, dt.day, calendar=obj['cal'], tradition=obj['tradition'], translation=obj['translation'])
-            day.initialize()
             day.get_readings(fetch_content=True)
             yield day
 

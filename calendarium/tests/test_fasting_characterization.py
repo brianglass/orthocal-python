@@ -41,7 +41,6 @@ class TestFastingCharacterization(TestCase):
                 while day_date.year == year:
                     day = Day(day_date.year, day_date.month, day_date.day,
                               tradition=tradition)
-                    day.initialize()
                     rows = ','.join(
                         str(e) for e in sorted(d.fast_exception for d in day.days))
                     abstain = ','.join(

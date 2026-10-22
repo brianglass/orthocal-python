@@ -33,7 +33,6 @@ def readings_view(request, cal=None, tradition=None, translation=None, year=None
     else:
         day = liturgics.Day(now.year, now.month, now.day, calendar=cal, tradition=tradition, language=request.LANGUAGE_CODE, translation=translation)
 
-    day.initialize()
     day.get_readings(fetch_content=True)
 
     next_date = day.gregorian_date + timedelta(days=1)

@@ -239,7 +239,6 @@ def _get_calendar_day(request, cal, tradition, year, month, day, translation=Non
         # The date is out of range or invalid
         raise Http404
 
-    liturgical_day.initialize()
     liturgical_day.get_readings(fetch_content=True)
     liturgical_day.get_abbreviated_readings()
 

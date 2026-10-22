@@ -89,7 +89,6 @@ def main():
             continue
         month, dayn = int(key[:2]), int(key[2:])
         day = Day(2026, month, dayn, tradition=Tradition.Greek)
-        day.initialize()
         rs = day.get_readings()
         got_e = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Epistle']
         got_g = [canon(r.pericope.sdisplay) for r in rs if r.source == 'Gospel']

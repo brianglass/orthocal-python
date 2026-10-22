@@ -47,7 +47,6 @@ def main():
                 print(f'        {n}x {short(cit, 58)}')
         dt = same[-1][0]
         pday = Day(dt.year, dt.month, dt.day, tradition=Tradition.Greek)
-        pday.initialize()
         rs = pday.get_readings()
         got = ', '.join(f'{r.source}={r.pericope.sdisplay}' for r in rs
                         if r.source in ('Epistle', 'Gospel'))
