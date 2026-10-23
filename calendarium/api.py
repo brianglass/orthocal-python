@@ -1,5 +1,3 @@
-import logging
-
 from datetime import date
 from typing import List
 
@@ -16,58 +14,13 @@ from ninja import Field, NinjaAPI, Redoc, Schema
 from ninja.decorators import decorate_view
 from ninja.renderers import JSONRenderer
 from ninja.responses import NinjaJSONEncoder
-from ninja.throttling import AnonRateThrottle
 from pydantic import AnyUrl, AnyHttpUrl, conint, constr, validator
 
 from . import datetools, liturgics, views
 from .datetools import Calendar, Tradition, Translation
 from orthocal.decorators import cache_content, etag, etag_date, in_thread_pool, instrument_endpoint
 
-logger = logging.getLogger(__name__)
-
-BURST_RATE = settings.ORTHOCAL_API_RATELIMIT
-
 day_cache = caches['days']
-
-class ClientIpMixin:
-    """
-    ninja's own get_ident() only extracts a single client IP out of
-    X-Forwarded-For when NINJA_NUM_PROXIES is set; left unset (as it is
-    here), it falls back to keying on the *entire* raw XFF string. Cloud
-    Run's front end puts the real client IP first in that header and
-    appends its own hop(s) after it, and those appended hops aren't
-    guaranteed to stay the same across requests from the same client --
-    so the unpatched behavior can fragment one client's requests across
-    many different throttle-cache keys instead of accumulating against a
-    single one, undercounting how often the real limit is actually hit.
-    """
-    def get_ident(self, request):
-        xff = request.META.get('HTTP_X_FORWARDED_FOR')
-        if xff:
-            return xff.split(',')[0].strip()
-        return request.META.get('REMOTE_ADDR')
-
-class ShadowAnonRateThrottle(ClientIpMixin, AnonRateThrottle):
-    """
-    Runs the real per-IP rate check and logs what WOULD be throttled, but
-    always allows the request through -- no client sees a 429 yet. This is
-    a deliberate rollout step: BURST_RATE was defined but never wired up to
-    anything, so there's no data on how real (including third-party, non-
-    browser) traffic would be affected by actually enforcing it. Watch the
-    logs this produces for a while, then swap this for a plain
-    ClientIpMixin + AnonRateThrottle combo (same rate, same identity-by-IP
-    behavior, minus the shadow logging) once it looks safe.
-    """
-    def allow_request(self, request):
-        allowed = super().allow_request(request)
-        if not allowed:
-            logger.warning(
-                'Would rate-limit (shadow mode, not enforced): ip=%s path=%s ua=%s',
-                self.get_ident(request),
-                request.path,
-                request.META.get('HTTP_USER_AGENT', ''),
-            )
-        return True
 
 class Encoder(NinjaJSONEncoder):
     def default(self, o):
@@ -104,7 +57,6 @@ api = API(
     servers=[
         {'url': settings.ORTHOCAL_PUBLIC_URL, 'description': 'Public API'},
     ],
-    throttle=[ShadowAnonRateThrottle(BURST_RATE)],
 )
 
 
