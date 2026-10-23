@@ -1,6 +1,7 @@
 import json
 import os
 
+from datetime import date
 from pathlib import Path
 from unittest import mock
 
@@ -248,12 +249,17 @@ class MonthCacheTestCase(TestCase):
 
 
 class DayCacheTestCase(TestCase):
-    """api._get_calendar_day caches each day's response."""
+    """api._get_calendar_day caches each day's response near today."""
 
     fixtures = ['calendarium.json', 'commemorations.json']
 
     def setUp(self):
         api.day_cache.clear()
+
+        # The fixtures are for early 2022.
+        patcher = mock.patch.object(api.timezone, 'localdate', return_value=date(2022, 1, 7))
+        patcher.start()
+        self.addCleanup(patcher.stop)
 
     def _get(self, cal='gregorian', year=2022, month=1, day=7, tradition=None, **params):
         kwargs = {'cal': cal, 'year': year, 'month': month, 'day': day}
@@ -286,12 +292,27 @@ class DayCacheTestCase(TestCase):
         # check that they get entries of their own.
         self._get(tradition='greek')
         self._get(translation='lxx2012-web')
-        self.assertEqual(5, len(api.day_cache._cache))
+        self.assertEqual(5, len(api.day_cache._list_cache_files()))
+
+    def test_dates_far_from_today_are_not_cached(self):
+        computed = self._get(year=2021, month=10, day=6)
+        self.assertEqual(computed, self._get(year=2021, month=10, day=6))
+        self.assertEqual(0, len(api.day_cache._list_cache_files()))
+
+    def test_window_edges(self):
+        # 92 days either side of 2022-01-07
+        self._get(year=2021, month=10, day=7)
+        self._get(year=2022, month=4, day=9)
+        self.assertEqual(2, len(api.day_cache._list_cache_files()))
+
+        self._get(year=2022, month=4, day=10)
+        self.assertEqual(2, len(api.day_cache._list_cache_files()))
 
     def test_invalid_date_is_still_a_404(self):
         url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 2, 'day': 30})
         self.assertEqual(self.client.get(url).status_code, 404)
         self.assertEqual(self.client.get(url).status_code, 404)
+        self.assertEqual(0, len(api.day_cache._list_cache_files()))
 
 
 class TrailingSlashTestCase(TestCase):

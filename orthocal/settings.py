@@ -140,43 +140,31 @@ SESSION_COOKIE_NAME = '__session'
 SESSION_COOKIE_AGE = 4 * 7 * 24 * 60 * 60  # 4 weeks
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
-# Both caches are diskcache's SQLite-backed caches, which the uvicorn workers
-# share. Cloud Run's filesystem is in memory, so size_limit is memory.
-#
-# They evict the least frequently used entries, so a client sweeping through
-# many dates, each read once, evicts its own entries rather than the popular
-# ones. Measured in Oct 2026 against Django's FileBasedCache, which deletes
-# a random third of the entries when full: through a 20,000-date sweep, LFU
-# kept all 300 popular entries and FileBasedCache about a third of them.
-# FileBasedCache also lists its directory on every write, about 1.5ms at
-# 3,000 entries; a diskcache write is about 0.03ms.
-#
-# An entry rewritten in place, as when a popular one expires and is rebuilt,
-# starts again at a count of zero and is first in line to be evicted, so a
-# sweep can push it out once. The day API's responses therefore get a cache
-# of their own: a sweep through dates can't evict the iCal feeds and months,
-# which cost far more to rebuild.
 CACHES = {
     'default': {
-        'BACKEND': 'orthocal.cache.DiskCache',
+        # We use a file base cache so that uvicorn workers can share the cache.
+        # Note also that Cloud Run's filesystem is an in-memory filesystem, so
+        # should be fast.
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'TIMEOUT': ORTHOCAL_MAX_AGE,
         'LOCATION': BASE_DIR / 'default-cache',
-        'SHARDS': 1,
         'OPTIONS': {
-            'eviction_policy': 'least-frequently-used',
-            # iCal feeds (about 160KB), months (about 70KB), calendar pages and RSS feeds
-            'size_limit': 64 * 2**20,
+            'MAX_ENTRIES': 1000,
         },
     },
+    # The day API's responses, for dates near today only (see
+    # calendarium.api.is_near_today), so clients sweeping through many dates
+    # neither fill it nor make it cull. It's kept apart from the default
+    # cache so that it can't cull the iCal feeds and months either. In Oct
+    # 2026 the window needed at most about 940 entries in a day. An entry is
+    # about 4KB on disk (18KB at most), so a full cache is about 12MB of
+    # Cloud Run's in-memory filesystem.
     'days': {
-        'BACKEND': 'orthocal.cache.DiskCache',
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
         'TIMEOUT': ORTHOCAL_ICAL_TTL * 60 * 60,
         'LOCATION': BASE_DIR / 'day-cache',
-        'SHARDS': 1,
         'OPTIONS': {
-            'eviction_policy': 'least-frequently-used',
-            # About 4KB a day (18KB at most), so about 4,000 days.
-            'size_limit': 16 * 2**20,
+            'MAX_ENTRIES': 3000,
         },
     },
 }
