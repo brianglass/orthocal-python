@@ -84,7 +84,7 @@ def in_thread_pool(func):
 
     return wrapper
 
-def cache_content(key, content_type, cache=None, timeout=DEFAULT_TIMEOUT):
+def cache_content(key, content_type, cache=None, timeout=DEFAULT_TIMEOUT, condition=None):
     """Cache the bytes a sync function returns, and return them as an HttpResponse.
 
     key is a format string over the function's arguments, defaults
@@ -93,6 +93,9 @@ def cache_content(key, content_type, cache=None, timeout=DEFAULT_TIMEOUT):
     whatever the view and middleware set; and only the arguments named in
     the key distinguish entries, unlike cache_page, which keys on the URL
     and the Vary headers.
+
+    condition, if given, is called with the same arguments as the function,
+    defaults included, and the content is only cached when it returns true.
     """
 
     if cache is None:
@@ -105,6 +108,10 @@ def cache_content(key, content_type, cache=None, timeout=DEFAULT_TIMEOUT):
         def wrapper(*args, **kwargs):
             arguments = signature.bind(*args, **kwargs)
             arguments.apply_defaults()
+
+            if condition and not condition(**arguments.arguments):
+                return HttpResponse(func(*args, **kwargs), content_type=content_type)
+
             cache_key = key.format(**arguments.arguments)
 
             if (content := cache.get(cache_key)) is None:

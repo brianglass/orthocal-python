@@ -175,6 +175,26 @@ def not_implemented_handler(request, exc):
 # response schema by its source aliases (pdist, jdn, ...).
 JSON_CONTENT_TYPE = f'{api.renderer.media_type}; charset={api.renderer.charset}'
 
+CACHED_DAYS = 92
+
+def is_near_today(request, cal, tradition, year, month, day, translation=None):
+    """Whether the day API caches this date: within CACHED_DAYS of today.
+
+    In Oct 2026 most of the day API's requests came from scripts reading
+    hundreds or thousands of dates once each, and nearly all the repeats
+    from apps and parish sites reading the current months. A week of
+    requests with a ±92-day window would have had a hit rate of at most
+    27% against at most 38% for caching every date, and the window needed
+    at most about 940 entries in a day, so the cache never fills.
+    """
+
+    try:
+        dt = date(year, month, day)
+    except ValueError:
+        return False
+
+    return abs(dt - timezone.localdate()).days <= CACHED_DAYS
+
 # Mobile apps fetch a few months of days at once on launch -- the same days
 # for every user of the app, a hundred or more in a few seconds -- and each
 # day costs ~20ms of CPU. A day depends only on these parameters and the
@@ -182,7 +202,7 @@ JSON_CONTENT_TYPE = f'{api.renderer.media_type}; charset={api.renderer.charset}'
 @in_thread_pool
 @cache_content(
     'api-day-{tradition}-{cal}-{year}-{month}-{day}-{request.LANGUAGE_CODE}-{translation}',
-    JSON_CONTENT_TYPE, cache=day_cache,
+    JSON_CONTENT_TYPE, cache=day_cache, condition=is_near_today,
 )
 def _get_calendar_day(request, cal, tradition, year, month, day, translation=None):
     try:
