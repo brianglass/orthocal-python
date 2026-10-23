@@ -158,7 +158,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 # which cost far more to rebuild.
 CACHES = {
     'default': {
-        'BACKEND': 'diskcache.DjangoCache',
+        'BACKEND': 'orthocal.cache.DiskCache',
         'TIMEOUT': ORTHOCAL_MAX_AGE,
         'LOCATION': BASE_DIR / 'default-cache',
         'SHARDS': 1,
@@ -169,7 +169,7 @@ CACHES = {
         },
     },
     'days': {
-        'BACKEND': 'diskcache.DjangoCache',
+        'BACKEND': 'orthocal.cache.DiskCache',
         'TIMEOUT': ORTHOCAL_ICAL_TTL * 60 * 60,
         'LOCATION': BASE_DIR / 'day-cache',
         'SHARDS': 1,
