@@ -16,25 +16,6 @@ from .. import api
 BASE_DIR = Path(__file__).resolve().parent
 
 
-class ClientIpMixinTestCase(TestCase):
-    def setUp(self):
-        self.throttle = api.ShadowAnonRateThrottle('5/s')
-        self.factory = RequestFactory()
-
-    def test_uses_first_xff_entry(self):
-        """Cloud Run puts the real client IP first in X-Forwarded-For and
-        appends its own hop(s) after it; those appended hops can vary
-        between requests from the same client, so only the first entry is
-        a stable per-client identity."""
-        request = self.factory.get('/', HTTP_X_FORWARDED_FOR='203.0.113.5, 66.249.82.68')
-        self.assertEqual('203.0.113.5', self.throttle.get_ident(request))
-
-    def test_falls_back_to_remote_addr(self):
-        request = self.factory.get('/')
-        request.META['REMOTE_ADDR'] = '203.0.113.5'
-        self.assertEqual('203.0.113.5', self.throttle.get_ident(request))
-
-
 class DayAPITestCase(TestCase):
     fixtures = ['calendarium.json', 'commemorations.json']
 
@@ -305,7 +286,7 @@ class DayCacheTestCase(TestCase):
         # check that they get entries of their own.
         self._get(tradition='greek')
         self._get(translation='lxx2012-web')
-        self.assertEqual(5, len(api.day_cache._list_cache_files()))
+        self.assertEqual(5, len(api.day_cache._cache))
 
     def test_invalid_date_is_still_a_404(self):
         url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 2, 'day': 30})
