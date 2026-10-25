@@ -358,6 +358,31 @@ class TestTraditionOverlay(TestCase):
         self.assertTrue(any('Raphael' in s for s in greek_nov1.saints))
         self.assertFalse(any('Raphael' in s for s in slavic_nov1.saints))
 
+    def test_slavic_only_floats(self):
+        """Demetrius Saturday, the Sunday Synaxis of the Unmercenaries and
+        the New Martyrs of Russia are Slavic observances. goarch.org shows
+        none of them on any of their dates from 2018 to 2027, and neither
+        do the antiochian.org pages for 2022, 2023, 2025 and 2026. The GOA
+        keeps the Unmercenaries on their fixed dates instead."""
+
+        data = [
+            (2026, 10, 24, 'Memorial (Demetrius) Saturday', 'Departed'),
+            (2026, 11, 8, 'Synaxis of the Holy Unmercenaries', 'Unmercenaries'),
+            (2027, 1, 24, 'New Martyrs and Confessors of Russia', None),
+        ]
+        for year, month, day, feast, desc in data:
+            with self.subTest(feast):
+                slavic = liturgics.Day(year, month, day, tradition=Tradition.Slavic)
+                greek = liturgics.Day(year, month, day, tradition=Tradition.Greek)
+                slavic.get_readings()
+                greek.get_readings()
+
+                self.assertIn(feast, slavic.feasts)
+                self.assertNotIn(feast, greek.feasts)
+                if desc:
+                    self.assertIn(desc, [r.desc for r in slavic.readings])
+                    self.assertNotIn(desc, [r.desc for r in greek.readings])
+
 
 class TestGreekFasting(TestCase):
     """Day was split into SlavicDay/GreekDay (each with its own
