@@ -101,6 +101,15 @@ class Reading(models.Model):
         ('slavic', 'Slavic-specific'),
         ('greek', 'Greek-specific'),
     ], default='common')
+    # Greek practice only: when this fixed-date Epistle or Gospel falls on a
+    # Sunday, it is read in place of the Sunday's own. The Typikon of the Great
+    # Church gives each great saint's feast its own Sunday order -- the Synaxis
+    # of the Archangels takes the saint's Epistle and the Sunday's Gospel, the
+    # Apostles Peter and Paul take both of theirs, the Apostle Thomas takes
+    # neither -- and feast_level cannot tell them apart. The rows and their
+    # sources are listed in tools/greek/load_sunday_precedence.py; GreekDay
+    # reads them, and the Slavic rule ignores them.
+    displaces_sunday = models.BooleanField(null=True, blank=True)
 
     class Meta:
         indexes = [models.Index(fields=('month', 'day'))]

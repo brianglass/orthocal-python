@@ -785,6 +785,10 @@ class Day:
                 subquery &= ~Q(desc='Theotokos')
 
             query |= subquery
+        elif self._sunday_precedence:
+            # A proper that displaces the Sunday's reading counts whatever the
+            # day's rank -- St Kyriake is feast level 0. See GreekDay.
+            query |= Q(month=self.month, day=self.day, source__in=['Epistle', 'Gospel'], displaces_sunday=True)
 
         # Add Epistles and Gospels from the floating feasts as well
         if float_index := self.pyear.floats.get(self.pdist):
@@ -797,6 +801,20 @@ class Day:
         queryset = models.Reading.objects.filter(query).select_related('pericope')
         readings = list(queryset.order_by('ordering'))
         readings = _prefer_tradition(readings, self.tradition)
+        readings = self._abbreviate(readings)
+
+        if fetch_content:
+            for reading in readings:
+                reading.pericope.fetch_passage(language=self.language, translation=self.translation)
+
+        self.abbreviated_readings = readings
+        return readings
+
+    # Tradition-specific -- see GreekDay.
+    _sunday_precedence = False
+
+    def _abbreviate(self, readings):
+        """Reduce the day's readings to the single Epistle and Gospel that characterise it."""
 
         # Reduce to a single Epistle and Gospel -- this is what the Alexa skill
         # speaks, so it has to be the pair that characterises the day.
@@ -838,11 +856,6 @@ class Day:
             if pair:
                 readings = pair
 
-        if fetch_content:
-            for reading in readings:
-                reading.pericope.fetch_passage(language=self.language, translation=self.translation)
-
-        self.abbreviated_readings = readings
         return readings
 
     @cached_property
@@ -994,6 +1007,47 @@ class GreekDay(Day):
         """Greek dietary rules, which differ from Slavic only in the Nativity
         fast -- see calendarium/fasting.py and docs/greek-fasting.md."""
         fasting.apply(self, fasting.greek_season)
+
+    @cached_property
+    def _sunday_precedence(self):
+        """True if a saint's propers can displace today's Sunday readings.
+
+        Palm Sunday, Pascha and Pentecost keep their own whatever falls on
+        them -- Palm Sunday 2021 was St Mark's day, and goarch.org read Palm
+        Sunday's pair.
+        """
+        return self.weekday == Weekday.Sunday and self.pdist not in (-7, 0, 49)
+
+    def _abbreviate(self, readings):
+        """On a Sunday, let the propers marked displaces_sunday replace the Sunday's pair.
+
+        The Slavic rule keeps the Sunday's readings over almost any saint,
+        which is what oca.org prints first. The Greek typikon gives each great
+        saint's feast its own Sunday order instead -- usually the saint's
+        Epistle with the Sunday's Gospel -- and the fixture marks the readings
+        each order names (see models.Reading.displaces_sunday). Against
+        goarch.org 2018-2027 the Slavic rule picked the wrong pair on 35% of
+        Sundays with a proper.
+
+        The Meeting and the Three Hierarchs take their Gospel too only before
+        the Triodion begins: from the Publican's Sunday on, the Triodion's
+        Sunday keeps its Gospel.
+        """
+
+        pair = super()._abbreviate(readings)
+        if not self._sunday_precedence or len(pair) != 2:
+            return pair
+
+        epistle, gospel = pair
+        in_triodion = -70 <= self.pdist < 0
+        marked = [r for r in readings if r.month and r.displaces_sunday]
+
+        if found := [r for r in marked if r.source == 'Epistle']:
+            epistle = found[0]
+        if not in_triodion and (found := [r for r in marked if r.source == 'Gospel']):
+            gospel = found[0]
+
+        return [epistle, gospel]
 
     def _apply_title_conventions(self):
         """Name ordinary Sundays and Luke-season weekdays the Greek way, after the Gospel read.

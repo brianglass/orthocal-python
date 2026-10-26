@@ -1818,6 +1818,52 @@ class TestGreekMenaionReadings(TestCase):
                     self.assertIn(slavic, found)
 
 
+class TestGreekSundayPrecedence(TestCase):
+    """Which Epistle and Gospel a Greek Sunday's abbreviated readings pick when a saint falls on it.
+
+    The Typikon of the Great Church gives each great saint's feast its own
+    Sunday order, and the fixture marks the readings it names (see
+    tools/greek/load_sunday_precedence.py). Each expected pair is the one
+    goarch.org published for that date.
+    """
+
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def test_abbreviated_pair(self):
+        data = [
+            # The saint's Epistle, the Sunday's Gospel
+            ((2026, 11, 8), ['Heb 2.2-10', 'Luke 8.41-56']),         # Archangels
+            ((2019, 7, 7), ['Gal 3.23-4.5', 'Matt 6.22-33']),        # St Kyriake, feast level 0
+            ((2021, 12, 12), ['Eph 5.8-19', 'Luke 14.16-24']),       # St Spyridon on the Forefathers' Sunday
+            # Both of the feast's
+            ((2025, 6, 29), ['2 Cor 11.21-12.9', 'Matt 16.13-19']),  # Peter and Paul
+            ((2025, 9, 14), ['1 Cor 1.18-24', 'John 19.6-11, 13-20, 25-28, 30']),  # Elevation
+            ((2022, 1, 30), ['Heb 13.7-16', 'Matt 5.14-19']),        # Three Hierarchs before the Triodion
+            # Neither: a saint with no Sunday order in the typikon
+            ((2027, 1, 24), ['1 Tim 1.15-17', 'Luke 18.35-43']),     # St Xenia
+            # The Triodion's Sunday keeps its Gospel
+            ((2031, 2, 2), ['Heb 7.7-17', 'Luke 18.10-14']),         # the Meeting on the Publican's Sunday
+            # Palm Sunday keeps both
+            ((2021, 4, 25), ['Phil 4.4-9', 'John 12.1-18']),         # St Mark
+        ]
+
+        for date, expected in data:
+            with self.subTest(date=date):
+                day = liturgics.Day(*date, tradition=Tradition.Greek)
+                day.get_readings()
+                readings = day.get_abbreviated_readings()
+                self.assertEqual(expected, [r.pericope.sdisplay for r in readings])
+                # The pair must be in the full list for the indices to resolve.
+                self.assertEqual(2, len(day.abbreviated_reading_indices))
+
+    def test_slavic_is_unaffected(self):
+        """The Slavic rule keeps the Sunday's own pair over the Archangels."""
+
+        day = liturgics.Day(2026, 11, 8, tradition=Tradition.Slavic)
+        readings = day.get_abbreviated_readings()
+        self.assertNotIn('Heb 2.2-10', [r.pericope.sdisplay for r in readings])
+
+
 class TestOrdoJurisdictionLabels(TestCase):
     """Where the two ordos disagree, show both and say which is which.
 
