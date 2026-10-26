@@ -54,6 +54,10 @@ ORTHOCAL_MAX_AGE = 60 * 60
 ORTHOCAL_VARY_HEADERS = ['Accept-Language']
 ORTHOCAL_WEBSUB_URL = 'https://pubsubhubbub.appspot.com'
 ORTHOCAL_REVISION = os.environ.get('K_REVISION', str(uuid.uuid4()))
+# Threads per worker process for the app's sync work (see
+# decorators.in_thread_pool). Keep it small: the work is CPU-bound under the
+# GIL, so extra threads only contend for it.
+ORTHOCAL_THREADS = int(os.environ.get('ORTHOCAL_THREADS', 2))
 
 SERVESTATIC_MAX_AGE = ORTHOCAL_MAX_AGE
 
