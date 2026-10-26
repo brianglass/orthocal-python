@@ -4,6 +4,7 @@ import inspect
 import newrelic.agent
 
 from asgiref.sync import sync_to_async
+from concurrent.futures import ThreadPoolExecutor
 from django.conf import settings
 from django.core.cache import cache as default_cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
@@ -57,30 +58,47 @@ etag = etag_decorator(get_etag)
 etag_date = etag_decorator(get_date_variable_etag)
 cache = cache_page(settings.ORTHOCAL_MAX_AGE)
 
+thread_pool = ThreadPoolExecutor(max_workers=settings.ORTHOCAL_THREADS, thread_name_prefix='orthocal')
+
 def in_thread_pool(func):
-    """Make a sync function awaitable, run in the event loop's thread pool.
+    """Make a sync function awaitable, run in a small persistent thread pool.
 
     The app's own work is sync and CPU-bound -- the liturgical day logic
     and the Django ORM over a local, read-only SQLite file -- so the views
     stay async only as a thin shell: each hands its whole computation to
     one of these calls instead of hopping threads for every query.
 
-    It uses the loop's persistent pool (thread_sensitive=False) rather than
-    Django's thread-sensitive path, which starts a fresh thread, and so a
-    fresh SQLite connection, for every request. That is safe here because
-    the database is read-only: there are no transactions to keep on one
-    thread. Measured in Oct 2026 against the async ORM, on 2 CPUs: about a
-    third more requests per second, and cold iCal and month builds under
-    load finished in less than half the time.
+    It uses a persistent pool (thread_sensitive=False) rather than Django's
+    thread-sensitive path, which starts a fresh thread, and so a fresh
+    SQLite connection, for every request. That is safe here because the
+    database is read-only: there are no transactions to keep on one thread.
+    Measured in Oct 2026 against the async ORM, on 2 CPUs: about a third
+    more requests per second, and cold iCal and month builds under load
+    finished in less than half the time.
+
+    The pool is sized by ORTHOCAL_THREADS rather than left to the event
+    loop's default, which is CPU count + 4 threads (6 on 2 vCPUs). Under
+    the GIL, threads past the first only contend for it: with 2 workers on
+    2 CPUs and 30 day requests in flight, 6 threads per worker served 120
+    requests/s at a p99 of 570ms; 2 threads served 274 at 220ms, and 1
+    served 319 at 180ms. One thread lets a cold month or iCal build hold
+    up every request queued behind it, though -- with builds running
+    alongside, day requests' p99 was 510-560ms on 1 thread and 230-265ms
+    on 2 -- so the default is 2.
 
     Under test, Django's TestCase loads fixtures in a transaction on the
     main thread's connection, which a pool thread's connection can't see,
     so tests take the thread-sensitive path instead.
     """
 
+    if settings.TESTING:
+        async_func = sync_to_async(func, thread_sensitive=True)
+    else:
+        async_func = sync_to_async(func, thread_sensitive=False, executor=thread_pool)
+
     @functools.wraps(func)
     async def wrapper(*args, **kwargs):
-        return await sync_to_async(func, thread_sensitive=settings.TESTING)(*args, **kwargs)
+        return await async_func(*args, **kwargs)
 
     return wrapper
 
