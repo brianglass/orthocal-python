@@ -25,6 +25,8 @@ touch the ORM need the Django environment:
 | the app followed GOA on weekdays but Antiochian on Sundays | `sunday_alleg.py` | both sources |
 | GOA vs Antiochian differ on ~4 days in calendar 2026 | `fingerprint.py` then `year_diff.py` | `data/goa2026.txt`, `data/ant2026.txt` |
 | app(Greek) vs goarch.org by verse set, 2018-2027 (the current accuracy measure) | `goa_verse_audit.py` | `data/goarch_readings_2018_2027.json` |
+| the abbreviated Epistle and Gospel on Sundays with a proper: 231/232 goarch.org, 135/139 antiochian.org | `sunday_pair_audit.py` | `data/goarch_readings_2018_2027.json`, `data/antiochian_raw/` |
+| which propers displace a Sunday's readings (`Reading.displaces_sunday`), from the typikon's Sunday orders | `load_sunday_precedence.py` | the typikon, `fixtures/calendarium.json` |
 
 `goa_gap.py`, `three_way.py`, `year_diff.py` and `goa_audit.py` match only a
 citation's opening chapter:verse within two verses, so they cannot see
