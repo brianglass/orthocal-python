@@ -9,10 +9,11 @@ from ..tools import get_day, get_saint, search_saints
 
 def _backfill_saints():
     # Fixture loading bypasses Saint.save(), so slug and normalized_name are
-    # blank until backfilled -- mirrors the Dockerfile (see
-    # commemorations/tests.py).
+    # blank until backfilled, and the search index is empty until built --
+    # mirrors the Dockerfile (see commemorations/tests.py).
     call_command('backfill_saint_slugs')
     call_command('backfill_saint_normalized_names')
+    call_command('build_saint_search_index')
 
 
 class GetDayTestCase(TestCase):
@@ -74,7 +75,7 @@ class SearchSaintsTestCase(TestCase):
         # Both occasions (repose, relics-uncovering) share one Saint identity
         # since the saint-dedup pass, so full_name should be identical across
         # both results even though title differs per occasion.
-        full_names = {r['full_name'] for r in results}
+        full_names = {r['full_name'] for r in results if r['matched'] == 'name'}
         self.assertEqual(full_names, {'St Seraphim of Sarov (1833)'})
 
     async def test_no_match_returns_empty_list(self):
@@ -91,12 +92,11 @@ class SearchSaintsTestCase(TestCase):
             'St Athanasius the Great, patriarch of Alexandria and St Cyril, archbishop of Alexandria (444)',
         )
 
-    async def test_tradition_filtering_excludes_other_traditions_saint(self):
-        greek_results = await search_saints('Zenia', tradition=Tradition.Greek)
-        self.assertTrue(greek_results)
-
-        slavic_results = await search_saints('Zenia', tradition=Tradition.Slavic)
-        self.assertEqual(slavic_results, [])
+    async def test_searches_every_tradition(self):
+        # St Xenia of Rome (spelled Zenia here) is kept only in the Greek
+        # tradition, St Seraphim of Sarov in both.
+        self.assertEqual({r['tradition'] for r in await search_saints('Zenia')}, {'greek'})
+        self.assertIn('common', {r['tradition'] for r in await search_saints('Seraphim of Sarov')})
 
     async def test_results_flag_stories_without_including_them(self):
         results = await search_saints('Seraphim of Sarov')
@@ -106,14 +106,48 @@ class SearchSaintsTestCase(TestCase):
             self.assertNotIn('story', r)
             self.assertTrue(r['saint_slugs'])
 
-        storyless = await search_saints('Anthimos, President of Crete', tradition=Tradition.Greek)
-        self.assertEqual([r['has_story'] for r in storyless], [False])
+        storyless = await search_saints('Anthimos, President of Crete')
+        self.assertEqual([r['has_story'] for r in storyless if r['matched'] == 'name'], [False])
 
     async def test_joint_commemoration_lists_every_saints_slug(self):
         results = await search_saints('Athanasius the Great')
 
         joint = next(r for r in results if r.get('month') == 1 and r.get('day') == 18)
         self.assertEqual(len(joint['saint_slugs']), 2)
+
+    async def test_name_matches_come_first(self):
+        results = await search_saints('Seraphim of Sarov')
+
+        matched = [r['matched'] for r in results]
+        self.assertEqual(matched, sorted(matched, key=['name', 'life'].index))
+        self.assertEqual(matched[0], 'name')
+
+    async def test_description_finds_saints_by_their_lives(self):
+        # Diomedes has "the Physician" in his name; Panteleimon doesn't.
+        results = [r for r in await search_saints('physician') if r['matched'] == 'life']
+
+        self.assertTrue(results)
+        for r in results:
+            self.assertIn('physician', r['excerpt'].lower())
+            self.assertNotIn('story', r)
+            self.assertTrue(r['saint_slugs'])
+            self.assertTrue(r['has_story'])
+        self.assertTrue(any('Panteleimon' in r['title'] for r in results))
+
+    async def test_life_matches_are_limited(self):
+        from ..tools import LIFE_MATCH_LIMIT
+
+        results = await search_saints('monastery')
+
+        self.assertEqual(sum(r['matched'] == 'life' for r in results), LIFE_MATCH_LIMIT)
+
+    async def test_life_matches_cover_every_tradition(self):
+        # Only the Greek-tradition life of St Jacob of Evia mentions Livisi,
+        # his birthplace.
+        results = await search_saints('Livisi')
+
+        jacob = next(r for r in results if 'Jacob of Evia' in r['title'])
+        self.assertEqual((jacob['matched'], jacob['tradition']), ('life', 'greek'))
 
     async def test_moveable_commemoration_has_no_month_or_day(self):
         results = await search_saints('Mary of Egypt')
@@ -129,8 +163,8 @@ class GetSaintTestCase(TestCase):
     def setUp(self):
         _backfill_saints()
 
-    async def _slug(self, query, tradition=Tradition.Slavic):
-        return (await search_saints(query, tradition=tradition))[0]['saint_slugs'][0]
+    async def _slug(self, query):
+        return (await search_saints(query))[0]['saint_slugs'][0]
 
     async def test_returns_every_occasion_with_its_story(self):
         slug = await self._slug('Seraphim of Sarov')
@@ -144,20 +178,20 @@ class GetSaintTestCase(TestCase):
         self.assertTrue(all(c['story'] for c in saint['commemorations']))
 
     async def test_story_is_null_when_there_is_none(self):
-        slug = await self._slug('Anthimos, President of Crete', Tradition.Greek)
+        slug = await self._slug('Anthimos, President of Crete')
 
         saint = await get_saint(slug, tradition=Tradition.Greek)
 
         self.assertEqual([c['story'] for c in saint['commemorations']], [None])
 
     async def test_tradition_filters_occasions(self):
-        slug = await self._slug('Zenia', Tradition.Greek)
+        slug = await self._slug('Zenia')
 
         self.assertTrue((await get_saint(slug, tradition=Tradition.Greek))['commemorations'])
         self.assertEqual((await get_saint(slug, tradition=Tradition.Slavic))['commemorations'], [])
 
     async def test_float_occasion_is_moveable_without_a_pascha_distance(self):
-        slug = await self._slug('Raphael Brooklyn', Tradition.Greek)
+        slug = await self._slug('Raphael Brooklyn')
 
         saint = await get_saint(slug, tradition=Tradition.Greek)
 

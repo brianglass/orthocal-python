@@ -1056,6 +1056,25 @@ p.day-number {
 .saint-search-results .no-story {
 	color: var(--color-text-faint);
 }
+.saint-search-section-title {
+	margin: 1.5em 0 0.25em;
+	font-size: 1.1em;
+	text-align: center;
+}
+.saint-search-results .search-excerpt {
+	margin-top: 0.25em;
+	font-size: 0.85em;
+	color: var(--color-text-secondary);
+}
+.search-correction {
+	font-style: italic;
+	color: var(--color-text-secondary);
+}
+.saint-search-results .search-excerpt mark {
+	background-color: transparent;
+	color: var(--color-text-strong);
+	font-weight: bold;
+}
 .story-date {
 	font-size: 0.8em;
 	color: var(--color-text-faint);

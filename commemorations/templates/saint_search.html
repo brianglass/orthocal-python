@@ -4,7 +4,7 @@
 {% block title %}Search for a Saint{% endblock %}
 
 {% block head %}
-	<meta name="description" content="Search for an Orthodox saint by name.">
+	<meta name="description" content="Search for an Orthodox saint by name, or by what is told in their life.">
 	<link rel="canonical" href="{% fullurl "saint-search" %}">
 {% endblock %}
 
@@ -18,13 +18,17 @@
 		hx-target="#search-results"
 		hx-swap="outerHTML"
 		hx-replace-url="true">
-		<input type="text" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Nicholas, Xenia" aria-label="Saint name" autofocus>
+		<input type="text" name="q" value="{{ query }}" placeholder="e.g. Seraphim, Xenia, physician" aria-label="Saint name or words from their life" autofocus>
 		<button type="submit">Search</button>
 	</form>
 
 	<div id="search-results">
 		{% if query %}
+			{% if corrected and results or corrected and life_results %}
+			<p class="search-correction">Nothing matched &ldquo;{{ query }}&rdquo;. Showing results for &ldquo;{{ corrected }}&rdquo;.</p>
+			{% endif %}
 			{% if results %}
+			{% if life_results %}<h3 class="saint-search-section-title">By name</h3>{% endif %}
 			<table class="saint-search-results">
 				<tbody>
 					{% for saint in results %}
@@ -41,7 +45,24 @@
 					{% endfor %}
 				</tbody>
 			</table>
-			{% else %}
+			{% endif %}
+			{% if life_results %}
+			<h3 class="saint-search-section-title">Found in their lives</h3>
+			<table class="saint-search-results">
+				<tbody>
+					{% for saint in life_results %}
+					<tr>
+						<td>
+							<a href="{% url "saint-detail" saint.slug %}">{{ saint.display_name }}</a>
+							<div class="search-excerpt">{{ saint.excerpt|safe }}</div>
+						</td>
+						<td class="story-date">{{ saint.occasion_dates }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% endif %}
+			{% if not results and not life_results %}
 			<p>No saints found matching &ldquo;{{ query }}&rdquo;.</p>
 			{% endif %}
 		{% endif %}

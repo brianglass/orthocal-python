@@ -27,12 +27,17 @@ Dates:
   have moveable=true instead, plus pascha_distance when tied to Pascha.
 
 Saints:
-- search_saints finds commemorations by name. It never returns the life
+- search_saints finds commemorations by name, then (matched="life") ones
+  whose life mentions every word of the query, with an excerpt -- so it
+  also answers descriptions like "physician" or "fool for Christ". It
+  searches every tradition; each result's tradition ("common", "slavic" or
+  "greek") says which calendar keeps it. It never returns the full life
   (story) text, since a search can match many results; each result's
   has_story says whether one exists.
 - To read a saint's life, pass a slug from that result's saint_slugs to
-  get_saint. It returns every occasion the saint is commemorated on, each
-  with its story (or null), plus a url to their page on orthocal.info.
+  get_saint, with tradition="greek" when the result's tradition is "greek".
+  It returns every occasion the saint is commemorated on, each with its
+  story (or null), plus a url to their page on orthocal.info.
 - Only call get_saint for results with has_story true when the life is what
   you want; many saints, especially Greek-tradition ones, have no life yet.
 - Use get_day instead when you want everything for a date: its readings,

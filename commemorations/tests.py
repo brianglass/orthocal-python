@@ -31,6 +31,7 @@ class SaintSearchTransliterationTestCase(TestCase):
         # deployment.
         call_command('backfill_saint_slugs')
         call_command('backfill_saint_normalized_names')
+        call_command('build_saint_search_index')
 
     def test_greek_spelling_finds_latin_spelled_saint(self):
         response = self.client.get(reverse('saint-search'), {'q': 'Athanasios'})
@@ -70,6 +71,117 @@ class SaintSearchTransliterationTestCase(TestCase):
         response = self.client.get(reverse('saint-search'), {'q': 'myra Nicholas'})
 
         self.assertRedirects(response, reverse('saint-detail', args=['our-father-among-the-saints-nicholas-the-wonderworker-archbishop-of-myra-345-5-9']))
+
+
+class LifeSearchTestCase(TestCase):
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    def setUp(self):
+        call_command('backfill_saint_slugs')
+        call_command('backfill_saint_normalized_names')
+        call_command('build_saint_search_index')
+
+    def _search(self, query, **headers):
+        return self.client.get(reverse('saint-search'), {'q': query}, headers=headers)
+
+    def test_description_finds_saints_by_their_lives(self):
+        response = self._search('physician')
+
+        # Diomedes has "the Physician" in his name; Panteleimon doesn't.
+        names = [saint.display_name for saint in response.context['life_results']]
+        self.assertTrue(any('Panteleimon' in name for name in names), names)
+        self.assertContains(response, 'Found in their lives')
+        self.assertContains(response, '<mark>physician</mark>')
+
+    def test_words_can_span_names_and_life(self):
+        # "Cosmas" is in the Unmercenaries' names, "physician" only in their
+        # lives.
+        names = [saint.display_name for saint in self._search('Cosmas physician').context['life_results']]
+
+        self.assertTrue(names)
+        self.assertTrue(all('Cosmas' in name or 'Damian' in name for name in names), names)
+
+    def test_last_word_matches_as_a_prefix(self):
+        # The page searches as you type.
+        names = [saint.display_name for saint in self._search('physic').context['life_results']]
+
+        self.assertTrue(any('Panteleimon' in name for name in names), names)
+
+    def test_name_matches_are_not_repeated_from_the_lives(self):
+        response = self._search('Seraphim Sarov', **{'HX-Request': 'true'})
+
+        named = {saint.pk for saint in response.context['results']}
+        self.assertTrue(named)
+        self.assertFalse(named & {saint.pk for saint in response.context['life_results']})
+        self.assertContains(response, 'By name')
+
+    def test_people_find_their_place(self):
+        # Stemming doesn't relate "Cappadocian" to "Cappadocia", and most
+        # lives name only the place.
+        names = [saint.display_name for saint in self._search('Cappadocian').context['life_results']]
+
+        self.assertTrue(any('Mamas' in name for name in names), names)
+
+    def test_places_find_their_people(self):
+        from .search import _people_forms
+
+        self.assertIn('egyptian', _people_forms('Egypt'))
+        self.assertIn('cappadocia', _people_forms('Cappadocians'))
+        self.assertEqual(_people_forms('Rome'), set())
+        self.assertNotIn('romanian', _people_forms('Roman'))
+        self.assertNotIn('roman', _people_forms('Romanian'))
+
+    def test_misspelling_is_corrected(self):
+        response = self._search('Cappdocian', **{'HX-Request': 'true'})
+
+        self.assertEqual(response.context['corrected'], 'cappadocian')
+        self.assertTrue(response.context['life_results'])
+        self.assertContains(response, 'Showing results for &ldquo;cappadocian&rdquo;')
+
+    def test_misspelled_name_is_corrected(self):
+        response = self._search('Seraphm Sarov', **{'HX-Request': 'true'})
+
+        self.assertEqual(response.context['corrected'], 'seraphim Sarov')
+        self.assertTrue(any('Seraphim' in saint.display_name for saint in response.context['results']))
+
+    def test_known_words_are_not_corrected(self):
+        from .search import corrected_query
+
+        self.assertIsNone(corrected_query('Seraphim of Sarov'))
+        self.assertIsNone(corrected_query('zzzzzzzz'))
+        response = self._search('Seraphim Sarov', **{'HX-Request': 'true'})
+        self.assertIsNone(response.context['corrected'])
+
+    def test_query_syntax_is_taken_literally(self):
+        for query in ('NOT "x', 'Myrrh-gusher', 'title:Nicholas', '*', '"'):
+            self.assertEqual(self._search(query, **{'HX-Request': 'true'}).status_code, 200, query)
+
+    def test_excerpts_are_escaped(self):
+        from .search import LifeMatch
+
+        match = LifeMatch(1, 'a <b> & \x02c\x03')
+        self.assertEqual(match.excerpt_html(), 'a &lt;b&gt; &amp; <mark>c</mark>')
+        self.assertEqual(match.excerpt_text(), 'a <b> & c')
+
+    def test_rebuilding_the_index_replaces_it(self):
+        from django.db import connection
+
+        from .models import DayCommemoration
+        from .search import LIFE_SEARCH_TABLE
+
+        call_command('build_saint_search_index')
+        with connection.cursor() as cursor:
+            cursor.execute(f'SELECT count(*) FROM {LIFE_SEARCH_TABLE}')
+            self.assertEqual(cursor.fetchone()[0], DayCommemoration.objects.count())
+
+    def test_index_holds_text_without_markup(self):
+        from django.db import connection
+
+        from .search import LIFE_SEARCH_TABLE
+
+        with connection.cursor() as cursor:
+            cursor.execute(f"SELECT count(*) FROM {LIFE_SEARCH_TABLE} WHERE story LIKE '%<p>%'")
+            self.assertEqual(cursor.fetchone()[0], 0)
 
 
 class CanonicalLinkTestCase(TestCase):
