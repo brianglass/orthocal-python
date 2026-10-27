@@ -24,16 +24,12 @@
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Ysabeau&display=fallback" rel="preload" as="style">
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Ysabeau&display=fallback" rel="stylesheet">
 
-		<!-- Google tag (gtag.js) -->
-		<link rel="preconnect" href="https://www.googletagmanager.com">
-		<link rel="preconnect" href="https://www.google-analytics.com">
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJ5DBR4P4H"></script>
+		<!-- GoatCounter -->
+		<script data-goatcounter="https://orthocal.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'G-ZJ5DBR4P4H');
+		  // htmx swaps in the next page and pushes its URL, which count.js
+		  // doesn't see on its own, so count those navigations too.
+		  document.addEventListener('htmx:pushedIntoHistory', () => window.goatcounter?.count?.());
 		</script>
 
 		<!-- RSS Feeds -->
