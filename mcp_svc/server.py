@@ -27,9 +27,11 @@ Dates:
   have moveable=true instead, plus pascha_distance when tied to Pascha.
 
 Saints:
-- search_saints finds commemorations by name. It never returns the life
-  (story) text, since a search can match many results; each result's
-  has_story says whether one exists.
+- search_saints finds commemorations by name, then (matched="life") ones
+  whose life mentions every word of the query, with an excerpt -- so it
+  also answers descriptions like "physician" or "fool for Christ". It
+  never returns the full life (story) text, since a search can match many
+  results; each result's has_story says whether one exists.
 - To read a saint's life, pass a slug from that result's saint_slugs to
   get_saint. It returns every occasion the saint is commemorated on, each
   with its story (or null), plus a url to their page on orthocal.info.

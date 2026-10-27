@@ -9,10 +9,11 @@ from ..tools import get_day, get_saint, search_saints
 
 def _backfill_saints():
     # Fixture loading bypasses Saint.save(), so slug and normalized_name are
-    # blank until backfilled -- mirrors the Dockerfile (see
-    # commemorations/tests.py).
+    # blank until backfilled, and the search index is empty until built --
+    # mirrors the Dockerfile (see commemorations/tests.py).
     call_command('backfill_saint_slugs')
     call_command('backfill_saint_normalized_names')
+    call_command('build_saint_search_index')
 
 
 class GetDayTestCase(TestCase):
@@ -74,7 +75,7 @@ class SearchSaintsTestCase(TestCase):
         # Both occasions (repose, relics-uncovering) share one Saint identity
         # since the saint-dedup pass, so full_name should be identical across
         # both results even though title differs per occasion.
-        full_names = {r['full_name'] for r in results}
+        full_names = {r['full_name'] for r in results if r['matched'] == 'name'}
         self.assertEqual(full_names, {'St Seraphim of Sarov (1833)'})
 
     async def test_no_match_returns_empty_list(self):
@@ -114,6 +115,41 @@ class SearchSaintsTestCase(TestCase):
 
         joint = next(r for r in results if r.get('month') == 1 and r.get('day') == 18)
         self.assertEqual(len(joint['saint_slugs']), 2)
+
+    async def test_name_matches_come_first(self):
+        results = await search_saints('Seraphim of Sarov')
+
+        matched = [r['matched'] for r in results]
+        self.assertEqual(matched, sorted(matched, key=['name', 'life'].index))
+        self.assertEqual(matched[0], 'name')
+
+    async def test_description_finds_saints_by_their_lives(self):
+        # Diomedes has "the Physician" in his name; Panteleimon doesn't.
+        results = [r for r in await search_saints('physician') if r['matched'] == 'life']
+
+        self.assertTrue(results)
+        for r in results:
+            self.assertIn('physician', r['excerpt'].lower())
+            self.assertNotIn('story', r)
+            self.assertTrue(r['saint_slugs'])
+            self.assertTrue(r['has_story'])
+        self.assertTrue(any('Panteleimon' in r['title'] for r in results))
+
+    async def test_life_matches_are_limited(self):
+        from ..tools import LIFE_MATCH_LIMIT
+
+        results = await search_saints('monastery')
+
+        self.assertEqual(sum(r['matched'] == 'life' for r in results), LIFE_MATCH_LIMIT)
+
+    async def test_life_matches_respect_tradition(self):
+        # Only the Greek-tradition life of St Jacob of Evia mentions Livisi,
+        # his birthplace.
+        greek = await search_saints('Livisi', tradition=Tradition.Greek)
+        self.assertTrue(any('Jacob of Evia' in r['title'] for r in greek))
+
+        slavic = await search_saints('Livisi', tradition=Tradition.Slavic)
+        self.assertFalse(any('Jacob of Evia' in r['title'] for r in slavic))
 
     async def test_moveable_commemoration_has_no_month_or_day(self):
         results = await search_saints('Mary of Egypt')

@@ -7,7 +7,7 @@ from calendarium.api import DaySchema
 from calendarium.datetools import Calendar, Translation, Tradition
 from calendarium.liturgics.day import _has_story
 from commemorations.models import DayCommemoration, Saint
-from commemorations.search import matching_saints
+from commemorations.search import matching_lives, matching_saints
 
 from orthocal.decorators import in_thread_pool
 
@@ -75,43 +75,72 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     saint's full_name -- a plainer, occasion-independent form of their
     identity.
 
-    Results never include the life (story) text, since a search can match
-    many commemorations. has_story says whether a result has one; to read
-    it, pass one of the result's saint_slugs to get_saint.
+    The query can also describe a saint instead of naming one ("physician",
+    "Cappadocia", "fool for Christ"). After the name matches, by date, come
+    up to 10 commemorations whose life mentions every word in
+    the query, best match first. matched says which kind each result is,
+    "name" or "life", and a life match has an excerpt around the words.
+
+    Results never include the full life (story) text, since a search can
+    match many commemorations. has_story says whether a result has one; to
+    read it, pass one of the result's saint_slugs to get_saint.
     """
 
     return await _search_saints(query, tradition)
 
 
+# How many matches in the lives search_saints adds after the name matches.
+LIFE_MATCH_LIMIT = 10
+
+
+def _search_result(commemoration, **extra):
+    return {
+        **_occasion_date(commemoration.day),
+        'title': commemoration.title,
+        # daycommemorationsaint_set (not the saints M2M directly) so
+        # DayCommemorationSaint.order controls display order for
+        # commemorations naming more than one saint -- .saints.all()
+        # falls back to Saint's own (undefined) ordering instead.
+        'full_name': ' and '.join(full_names) if (
+            full_names := [
+                link.saint.full_name
+                for link in commemoration.daycommemorationsaint_set.all()
+                if link.saint.full_name
+            ]
+        ) else None,
+        'has_story': _has_story(commemoration),
+        'saint_slugs': [link.saint.slug for link in commemoration.daycommemorationsaint_set.all()],
+        **extra,
+    }
+
+
 @in_thread_pool
 def _search_saints(query, tradition):
-    commemorations = DayCommemoration.objects.filter(
+    commemorations = DayCommemoration.objects.select_related('day').prefetch_related(
+        'daycommemorationsaint_set__saint',
+    )
+    by_name = commemorations.filter(
         saints__in=matching_saints(query),
         tradition__in=(tradition, 'common'),
-    ).select_related('day').prefetch_related('daycommemorationsaint_set__saint').order_by(
-        'day__month', 'day__day',
-    ).distinct()
+    ).order_by('day__month', 'day__day').distinct()
 
-    return [
-        {
-            **_occasion_date(commemoration.day),
-            'title': commemoration.title,
-            # daycommemorationsaint_set (not the saints M2M directly) so
-            # DayCommemorationSaint.order controls display order for
-            # commemorations naming more than one saint -- .saints.all()
-            # falls back to Saint's own (undefined) ordering instead.
-            'full_name': ' and '.join(full_names) if (
-                full_names := [
-                    link.saint.full_name
-                    for link in commemoration.daycommemorationsaint_set.all()
-                    if link.saint.full_name
-                ]
-            ) else None,
-            'has_story': _has_story(commemoration),
-            'saint_slugs': [link.saint.slug for link in commemoration.daycommemorationsaint_set.all()],
-        }
-        for commemoration in commemorations
-    ]
+    results = [_search_result(commemoration, matched='name') for commemoration in by_name]
+
+    # Lives are searched whole words only (no prefix): a client sends its
+    # query complete, not as it types.
+    seen = {commemoration.pk for commemoration in by_name}
+    matches = matching_lives(query)
+    in_lives = commemorations.filter(tradition__in=(tradition, 'common')).exclude(saints=None).in_bulk(
+        [match.commemoration_id for match in matches if match.commemoration_id not in seen],
+    )
+    life_results = []
+    for match in matches:
+        if commemoration := in_lives.get(match.commemoration_id):
+            life_results.append(_search_result(commemoration, matched='life', excerpt=match.excerpt_text()))
+            if len(life_results) == LIFE_MATCH_LIMIT:
+                break
+
+    return results + life_results
 
 
 @mcp.tool()

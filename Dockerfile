@@ -36,4 +36,5 @@ RUN \
 	./manage.py migrate && \
 	./manage.py loaddata calendarium commemorations && \
 	./manage.py backfill_saint_slugs && \
-	./manage.py backfill_saint_normalized_names
+	./manage.py backfill_saint_normalized_names && \
+	./manage.py build_saint_search_index
