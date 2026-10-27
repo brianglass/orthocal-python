@@ -64,7 +64,7 @@ def _occasion_date(day):
 
 
 @mcp.tool()
-async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> list[dict]:
+async def search_saints(query: str) -> list[dict]:
     """Search for a saint or commemoration by name, returning the fixed
     month/day each match is commemorated on (not a specific year's civil
     date -- the Orthodox calendar's fixed commemorations repeat every year
@@ -74,6 +74,11 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     day -- repose, translation of relics, etc.) and, when available, the
     saint's full_name -- a plainer, occasion-independent form of their
     identity.
+
+    It searches every tradition at once. Each result's tradition says whose
+    calendar keeps that commemoration: "common" (both), "slavic" or
+    "greek". Pass "slavic" or "greek" on to get_saint and get_day, which
+    show one tradition at a time.
 
     The query can also describe a saint instead of naming one ("physician",
     "Cappadocia", "fool for Christ"). After the name matches, by date, come
@@ -86,7 +91,7 @@ async def search_saints(query: str, tradition: Tradition = Tradition.Slavic) -> 
     read it, pass one of the result's saint_slugs to get_saint.
     """
 
-    return await _search_saints(query, tradition)
+    return await _search_saints(query)
 
 
 # How many matches in the lives search_saints adds after the name matches.
@@ -110,18 +115,18 @@ def _search_result(commemoration, **extra):
         ) else None,
         'has_story': _has_story(commemoration),
         'saint_slugs': [link.saint.slug for link in commemoration.daycommemorationsaint_set.all()],
+        'tradition': commemoration.tradition,
         **extra,
     }
 
 
 @in_thread_pool
-def _search_saints(query, tradition):
+def _search_saints(query):
     commemorations = DayCommemoration.objects.select_related('day').prefetch_related(
         'daycommemorationsaint_set__saint',
     )
     by_name = commemorations.filter(
         saints__in=matching_saints(query),
-        tradition__in=(tradition, 'common'),
     ).order_by('day__month', 'day__day').distinct()
 
     results = [_search_result(commemoration, matched='name') for commemoration in by_name]
@@ -130,7 +135,7 @@ def _search_saints(query, tradition):
     # query complete, not as it types.
     seen = {commemoration.pk for commemoration in by_name}
     matches = matching_lives(query)
-    in_lives = commemorations.filter(tradition__in=(tradition, 'common')).exclude(saints=None).in_bulk(
+    in_lives = commemorations.exclude(saints=None).in_bulk(
         [match.commemoration_id for match in matches if match.commemoration_id not in seen],
     )
     life_results = []
