@@ -115,6 +115,43 @@ class LifeSearchTestCase(TestCase):
         self.assertFalse(named & {saint.pk for saint in response.context['life_results']})
         self.assertContains(response, 'By name')
 
+    def test_people_find_their_place(self):
+        # Stemming doesn't relate "Cappadocian" to "Cappadocia", and most
+        # lives name only the place.
+        names = [saint.display_name for saint in self._search('Cappadocian').context['life_results']]
+
+        self.assertTrue(any('Mamas' in name for name in names), names)
+
+    def test_places_find_their_people(self):
+        from .search import _people_forms
+
+        self.assertIn('egyptian', _people_forms('Egypt'))
+        self.assertIn('cappadocia', _people_forms('Cappadocians'))
+        self.assertEqual(_people_forms('Rome'), set())
+        self.assertNotIn('romanian', _people_forms('Roman'))
+        self.assertNotIn('roman', _people_forms('Romanian'))
+
+    def test_misspelling_is_corrected(self):
+        response = self._search('Cappdocian', **{'HX-Request': 'true'})
+
+        self.assertEqual(response.context['corrected'], 'cappadocian')
+        self.assertTrue(response.context['life_results'])
+        self.assertContains(response, 'Showing results for &ldquo;cappadocian&rdquo;')
+
+    def test_misspelled_name_is_corrected(self):
+        response = self._search('Seraphm Sarov', **{'HX-Request': 'true'})
+
+        self.assertEqual(response.context['corrected'], 'seraphim Sarov')
+        self.assertTrue(any('Seraphim' in saint.display_name for saint in response.context['results']))
+
+    def test_known_words_are_not_corrected(self):
+        from .search import corrected_query
+
+        self.assertIsNone(corrected_query('Seraphim of Sarov'))
+        self.assertIsNone(corrected_query('zzzzzzzz'))
+        response = self._search('Seraphim Sarov', **{'HX-Request': 'true'})
+        self.assertIsNone(response.context['corrected'])
+
     def test_query_syntax_is_taken_literally(self):
         for query in ('NOT "x', 'Myrrh-gusher', 'title:Nicholas', '*', '"'):
             self.assertEqual(self._search(query, **{'HX-Request': 'true'}).status_code, 200, query)

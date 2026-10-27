@@ -7,7 +7,7 @@ from calendarium.datetools import Calendar, Tradition, cal_session_key, gregoria
 from calendarium.liturgics.day import _has_story
 
 from .models import DayCommemoration, Saint
-from .search import matching_lives, matching_saints
+from .search import corrected_query, matching_lives, matching_saints
 
 # How many saints the "found in their lives" section lists, after the name
 # matches.
@@ -85,26 +85,35 @@ def _life_results(query, exclude):
     return results
 
 
+def _name_results(query):
+    """Saints whose names match query, with their dates."""
+
+    results = []
+    candidates = matching_saints(query).prefetch_related('daycommemoration_set__day').order_by('name')[:50]
+    for saint in candidates:
+        dcs = list(saint.daycommemoration_set.all())
+        # A saint with no story on any commemoration has nothing to show
+        # on the detail page -- still worth listing (it confirms they
+        # exist and disambiguates from same-named saints who do have a
+        # page), but the template renders it unlinked rather than as a
+        # dead end. Every result shows its date(s) -- a saint can have
+        # more than one commemoration (e.g. a main entry and a separate
+        # relics-related one), so this is a list, not a single date.
+        saint.has_story = any(_has_story(dc) for dc in dcs)
+        sorted_dcs = sorted(dcs, key=lambda dc: (dc.day.month, dc.day.day))
+        saint.occasion_dates = ', '.join(_occasion_date(dc.day) for dc in sorted_dcs)
+        results.append(_attach_display_name(saint))
+    return results
+
+
 def search_view(request):
     query = request.GET.get('q', '').strip()
+    corrected = None
     results = []
     life_results = []
 
     if query:
-        candidates = matching_saints(query).prefetch_related('daycommemoration_set__day').order_by('name')[:50]
-        for saint in candidates:
-            dcs = list(saint.daycommemoration_set.all())
-            # A saint with no story on any commemoration has nothing to show
-            # on the detail page -- still worth listing (it confirms they
-            # exist and disambiguates from same-named saints who do have a
-            # page), but the template renders it unlinked rather than as a
-            # dead end. Every result shows its date(s) -- a saint can have
-            # more than one commemoration (e.g. a main entry and a separate
-            # relics-related one), so this is a list, not a single date.
-            saint.has_story = any(_has_story(dc) for dc in dcs)
-            sorted_dcs = sorted(dcs, key=lambda dc: (dc.day.month, dc.day.day))
-            saint.occasion_dates = ', '.join(_occasion_date(dc.day) for dc in sorted_dcs)
-            results.append(_attach_display_name(saint))
+        results = _name_results(query)
 
         # A single match with somewhere to go is unambiguous -- skip
         # straight to their page rather than making the user click through
@@ -121,8 +130,15 @@ def search_view(request):
         # than by name.
         life_results = _life_results(query, exclude={saint.pk for saint in results})
 
+        # Nothing at all usually means a misspelling. Search again with the
+        # closest words the index knows, and say so.
+        if not results and not life_results and (corrected := corrected_query(query)):
+            results = _name_results(corrected)
+            life_results = _life_results(corrected, exclude={saint.pk for saint in results})
+
     return render(request, 'saint_search.html', context={
         'query': query,
+        'corrected': corrected,
         'results': results,
         'life_results': life_results,
     })

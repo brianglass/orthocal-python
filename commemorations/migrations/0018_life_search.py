@@ -19,4 +19,10 @@ class Migration(migrations.Migration):
             )''',
             'DROP TABLE commemorations_life_search',
         ),
+        # A read-only view of every distinct word in that index, for
+        # matching word forms and correcting typos.
+        migrations.RunSQL(
+            "CREATE VIRTUAL TABLE commemorations_life_search_vocab USING fts5vocab(commemorations_life_search, 'row')",
+            'DROP TABLE commemorations_life_search_vocab',
+        ),
     ]

@@ -5,7 +5,7 @@ from django.db import connection, transaction
 from django.utils.html import strip_tags
 
 from commemorations.models import DayCommemoration
-from commemorations.search import LIFE_SEARCH_TABLE
+from commemorations.search import LIFE_SEARCH_TABLE, vocabulary
 
 
 class Command(BaseCommand):
@@ -33,5 +33,6 @@ class Command(BaseCommand):
                 f'INSERT INTO {LIFE_SEARCH_TABLE} (rowid, title, names, story) VALUES (%s, %s, %s, %s)',
                 rows,
             )
+        vocabulary.cache_clear()
 
         self.stdout.write(f'Indexed {len(rows)} commemoration(s) for search.')

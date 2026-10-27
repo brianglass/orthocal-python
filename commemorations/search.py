@@ -1,3 +1,5 @@
+import difflib
+import functools
 import re
 
 from dataclasses import dataclass
@@ -13,6 +15,14 @@ from .transliteration import normalize_transliteration
 # title, the linked saints' names, and the life as plain text. Created by
 # migration 0018 and filled by the build_saint_search_index command.
 LIFE_SEARCH_TABLE = 'commemorations_life_search'
+# Every distinct word in LIFE_SEARCH_TABLE, as indexed (lowercase, stemmed,
+# without accents).
+LIFE_SEARCH_VOCABULARY = 'commemorations_life_search_vocab'
+
+# Endings that turn a place into its people: Cappadocia -> Cappadocian,
+# Egypt -> Egyptian, Antioch -> Antiochian. Stemming doesn't relate the two,
+# and the lives mostly name the place.
+_PEOPLE_ENDINGS = ('n', 'an', 'ian', 'ns', 'ans', 'ians')
 
 # Marks the matched words in an excerpt. Control characters can't occur in
 # the lives, so they survive HTML escaping and can be swapped for markup
@@ -80,23 +90,82 @@ class LifeMatch:
         return self.excerpt.replace(_HIT_START, '').replace(_HIT_END, '')
 
 
+@functools.cache
+def vocabulary():
+    """Every distinct word in the index. Cached per process, since the
+    index is built into the image; build_saint_search_index clears it."""
+
+    with connection.cursor() as cursor:
+        cursor.execute(f'SELECT term FROM {LIFE_SEARCH_VOCABULARY}')
+        return frozenset(term for term, in cursor.fetchall())
+
+
+def _people_forms(word):
+    """word's place and people forms that occur in the index, for instance
+    {'cappadocia'} for "Cappadocian", or {'egyptian'} for "Egypt"."""
+
+    word = word.lower()
+    pairs = {(word, word + ending) for ending in _PEOPLE_ENDINGS}
+    pairs |= {
+        (word[:-len(ending)], word) for ending in _PEOPLE_ENDINGS
+        if word.endswith(ending) and len(word) - len(ending) >= 4
+    }
+    # A place ending in n doesn't take -ian: "Roman" and "Romanian" aren't
+    # a place and its people.
+    forms = {
+        people if place == word else place
+        for place, people in pairs
+        if not (place.endswith('n') and people[len(place):].startswith('i'))
+    }
+    return forms & vocabulary() if len(word) >= 4 else set()
+
+
 def _fts_query(query, prefix):
     """An FTS5 query requiring every word in query, or None if it has none.
 
     Each word is quoted, so punctuation and FTS5's own operators (AND, NOT,
     NEAR, column filters) in what someone typed are taken literally rather
-    than as syntax. With prefix, the last word also matches as the start of
-    a longer one, for search-as-you-type -- but not under three letters,
+    than as syntax. A word also matches its place or people form (see
+    _PEOPLE_ENDINGS). With prefix, the last word also matches as the start
+    of a longer one, for search-as-you-type -- but not under three letters,
     where it would match nearly everything."""
 
     words = re.findall(r'\w+', query)
     if not words:
         return None
 
-    terms = [f'"{word}"' for word in words]
-    if prefix and len(words[-1]) >= 3:
-        terms[-1] += '*'
-    return ' '.join(terms)
+    terms = []
+    for n, word in enumerate(words):
+        star = '*' if prefix and n == len(words) - 1 and len(word) >= 3 else ''
+        forms = [f'"{word}"{star}'] + [f'"{form}"' for form in sorted(_people_forms(word))]
+        terms.append(forms[0] if len(forms) == 1 else f'({" OR ".join(forms)})')
+    return ' AND '.join(terms)
+
+
+def _in_index(word):
+    with connection.cursor() as cursor:
+        cursor.execute(f'SELECT 1 FROM {LIFE_SEARCH_TABLE} WHERE {LIFE_SEARCH_TABLE} MATCH %s LIMIT 1', [f'"{word}"'])
+        return cursor.fetchone() is not None
+
+
+def corrected_query(query):
+    """query with each word the index doesn't know replaced by the closest
+    one it does ("Cappdocian" -> "cappadocian"), or None if no word needed
+    correcting or none had a close match. For when a search finds nothing.
+
+    The replacements are words as indexed, so they are lowercase and may be
+    stemmed."""
+
+    words = re.findall(r'\w+', query)
+    corrected = []
+    for word in words:
+        if len(word) >= 4 and not _in_index(word):
+            if close := difflib.get_close_matches(word.lower(), vocabulary(), n=1, cutoff=0.8):
+                corrected.append(close[0])
+                continue
+        corrected.append(word)
+
+    return ' '.join(corrected) if corrected != words else None
 
 
 def matching_lives(query, prefix=False, limit=50):

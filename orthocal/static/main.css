@@ -1066,6 +1066,10 @@ p.day-number {
 	font-size: 0.85em;
 	color: var(--color-text-secondary);
 }
+.search-correction {
+	font-style: italic;
+	color: var(--color-text-secondary);
+}
 .saint-search-results .search-excerpt mark {
 	background-color: transparent;
 	color: var(--color-text-strong);

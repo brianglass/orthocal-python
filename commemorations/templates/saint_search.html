@@ -24,6 +24,9 @@
 
 	<div id="search-results">
 		{% if query %}
+			{% if corrected and results or corrected and life_results %}
+			<p class="search-correction">Nothing matched &ldquo;{{ query }}&rdquo;. Showing results for &ldquo;{{ corrected }}&rdquo;.</p>
+			{% endif %}
 			{% if results %}
 			{% if life_results %}<h3 class="saint-search-section-title">By name</h3>{% endif %}
 			<table class="saint-search-results">
