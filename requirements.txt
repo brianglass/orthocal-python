@@ -8,7 +8,7 @@ icalendar==7.3.0
 jdcal==1.4.1
 mcp==2.3.0
 newrelic==14.0.0
-python-dateutil==2.9.0.post0
+python-dateutil==3.0.0
 requests==2.34.2
 servestatic==4.4.0
 # uvicorn[standard] bundles websockets, watchfiles, python-dotenv, and
