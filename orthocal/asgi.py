@@ -14,6 +14,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 from django.conf import settings
 from django.core.asgi import get_asgi_application
 from mcp.server.transport_security import TransportSecuritySettings
+from starlette_compress import CompressMiddleware
 
 django_application = get_asgi_application()
 
@@ -84,7 +85,7 @@ async def _reject_get(send):
     })
 
 
-async def application(scope, receive, send):
+async def route(scope, receive, send):
     is_mcp_path = scope['type'] == 'http' and scope['path'].startswith('/mcp')
     if is_mcp_path and scope['method'] == 'GET':
         await _reject_get(send)
@@ -92,3 +93,20 @@ async def application(scope, receive, send):
         await mcp_application(scope, receive, send)
     else:
         await django_application(scope, receive, send)
+
+
+# Brotli where the client accepts it, else gzip. Firebase Hosting passes
+# compressed responses from Cloud Run through and caches one copy per
+# Accept-Encoding group, so this is what clients receive.
+#
+# - zstd is off: Firebase leaves it out of its cache key, so a zstd response
+#   cached for one client (Chrome offers zstd) would be served to another
+#   that offers only gzip and br and can't decode it.
+# - Brotli quality 11 is about 20% smaller than gzip on these pages and
+#   API responses; quality 4 to 9 save only 3-8%. It costs a few
+#   milliseconds per response (about 150ms for an iCal feed), but Firebase
+#   caches the result for hours, so it's paid once per cache fill.
+# - Unlike Django's GZipMiddleware, this adds no random padding (the BREACH
+#   mitigation): no response here combines a secret with text an attacker
+#   controls, and the padding is about 50 bytes on every response.
+application = CompressMiddleware(route, zstd=False, brotli_quality=11, gzip_level=6)
