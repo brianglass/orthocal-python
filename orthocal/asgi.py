@@ -102,21 +102,11 @@ async def route(scope, receive, send):
 # - zstd is off: Firebase leaves it out of its cache key, so a zstd response
 #   cached for one client (Chrome offers zstd) would be served to another
 #   that offers only gzip and br and can't decode it.
-# - Brotli quality 9 is 7-13% smaller than gzip. Quality 10 is 15-20%
-#   smaller but cost about 17ms more than gzip per readings page on Cloud
-#   Run, and most readings pages aren't cached by Firebase, so nearly every
-#   one is compressed here.
-# - The iCal feeds get quality 8: nearly as small as 9 on a feed (about
-#   11% under gzip) and quicker.
+# - Brotli quality 8 is about 7% smaller than gzip on pages and API
+#   responses and 11% on the iCal feeds, for about the same time as gzip.
+#   On Cloud Run, quality 9 took 11-18ms per call even on small responses
+#   (10 took about as long), against about 1ms locally; quality 8 didn't.
 # - Unlike Django's GZipMiddleware, this adds no random padding (the BREACH
 #   mitigation): no response here combines a secret with text an attacker
 #   controls, and the padding is about 50 bytes on every response.
-compress = CompressMiddleware(route, zstd=False, brotli_quality=9, gzip_level=6)
-compress_ical = CompressMiddleware(route, zstd=False, brotli_quality=8, gzip_level=6)
-
-
-async def application(scope, receive, send):
-    if scope['type'] == 'http' and scope['path'].endswith('/ical/'):
-        await compress_ical(scope, receive, send)
-    else:
-        await compress(scope, receive, send)
+application = CompressMiddleware(route, zstd=False, brotli_quality=8, gzip_level=6)

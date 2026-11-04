@@ -3,18 +3,16 @@ import gzip
 
 import brotli
 
-from django.test import TestCase
+from django.test import SimpleTestCase
 
 from .asgi import application
 
 
-class CompressionTestCase(TestCase):
+class CompressionTestCase(SimpleTestCase):
     """Responses are compressed in orthocal/asgi.py, outside Django."""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    async def get(self, accept_encoding, path='/about/'):
-        """GET a path through the whole ASGI application, and return the
+    async def get(self, accept_encoding):
+        """GET /about/ through the whole ASGI application, and return the
         response headers and the body as sent, still compressed."""
 
         scope = {
@@ -23,8 +21,8 @@ class CompressionTestCase(TestCase):
             'http_version': '1.1',
             'method': 'GET',
             'scheme': 'http',
-            'path': path,
-            'raw_path': path.encode(),
+            'path': '/about/',
+            'raw_path': b'/about/',
             'query_string': b'',
             'root_path': '',
             'headers': [(b'host', b'testserver'), (b'accept-encoding', accept_encoding.encode())],
@@ -60,16 +58,7 @@ class CompressionTestCase(TestCase):
         self.assertIn('accept-encoding', headers['vary'].lower())
         html = brotli.decompress(body)
         self.assertIn(b'</html>', html)
-        self.assertEqual(body, brotli.compress(html, quality=9))
-
-    async def test_ical_quality(self):
-        # The iCal feeds are large, so they get a quicker quality.
-        headers, body = await self.get('gzip, deflate, br', '/api/gregorian/ical/')
-
-        self.assertEqual(headers['content-encoding'], 'br')
-        feed = brotli.decompress(body)
-        self.assertIn(b'END:VCALENDAR', feed)
-        self.assertEqual(body, brotli.compress(feed, quality=8))
+        self.assertEqual(body, brotli.compress(html, quality=8))
 
     async def test_gzip(self):
         headers, body = await self.get('gzip, deflate')
