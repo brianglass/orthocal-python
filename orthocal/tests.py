@@ -60,16 +60,16 @@ class CompressionTestCase(TestCase):
         self.assertIn('accept-encoding', headers['vary'].lower())
         html = brotli.decompress(body)
         self.assertIn(b'</html>', html)
-        self.assertEqual(body, brotli.compress(html, quality=10))
+        self.assertEqual(body, brotli.compress(html, quality=9))
 
     async def test_ical_quality(self):
-        # The iCal feeds are large enough that quality 10 would be slow.
+        # The iCal feeds are large, so they get a quicker quality.
         headers, body = await self.get('gzip, deflate, br', '/api/gregorian/ical/')
 
         self.assertEqual(headers['content-encoding'], 'br')
         feed = brotli.decompress(body)
         self.assertIn(b'END:VCALENDAR', feed)
-        self.assertEqual(body, brotli.compress(feed, quality=9))
+        self.assertEqual(body, brotli.compress(feed, quality=8))
 
     async def test_gzip(self):
         headers, body = await self.get('gzip, deflate')
