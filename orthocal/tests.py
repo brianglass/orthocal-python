@@ -3,16 +3,18 @@ import gzip
 
 import brotli
 
-from django.test import SimpleTestCase
+from django.test import TestCase
 
 from .asgi import application
 
 
-class CompressionTestCase(SimpleTestCase):
+class CompressionTestCase(TestCase):
     """Responses are compressed in orthocal/asgi.py, outside Django."""
 
-    async def get(self, accept_encoding):
-        """GET /about/ through the whole ASGI application, and return the
+    fixtures = ['calendarium.json', 'commemorations.json']
+
+    async def get(self, accept_encoding, path='/about/'):
+        """GET a path through the whole ASGI application, and return the
         response headers and the body as sent, still compressed."""
 
         scope = {
@@ -21,8 +23,8 @@ class CompressionTestCase(SimpleTestCase):
             'http_version': '1.1',
             'method': 'GET',
             'scheme': 'http',
-            'path': '/about/',
-            'raw_path': b'/about/',
+            'path': path,
+            'raw_path': path.encode(),
             'query_string': b'',
             'root_path': '',
             'headers': [(b'host', b'testserver'), (b'accept-encoding', accept_encoding.encode())],
@@ -56,7 +58,18 @@ class CompressionTestCase(SimpleTestCase):
 
         self.assertEqual(headers['content-encoding'], 'br')
         self.assertIn('accept-encoding', headers['vary'].lower())
-        self.assertIn(b'</html>', brotli.decompress(body))
+        html = brotli.decompress(body)
+        self.assertIn(b'</html>', html)
+        self.assertEqual(body, brotli.compress(html, quality=10))
+
+    async def test_ical_quality(self):
+        # The iCal feeds are large enough that quality 10 would be slow.
+        headers, body = await self.get('gzip, deflate, br', '/api/gregorian/ical/')
+
+        self.assertEqual(headers['content-encoding'], 'br')
+        feed = brotli.decompress(body)
+        self.assertIn(b'END:VCALENDAR', feed)
+        self.assertEqual(body, brotli.compress(feed, quality=9))
 
     async def test_gzip(self):
         headers, body = await self.get('gzip, deflate')
