@@ -86,7 +86,7 @@ MIDDLEWARE = [
     'orthocal.middleware.request_queueing',
     'orthocal.middleware.record_worker',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
+    # Responses are compressed outside Django, in orthocal/asgi.py.
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     # Outside CommonMiddleware so its APPEND_SLASH redirects are cacheable too.
@@ -100,7 +100,7 @@ MIDDLEWARE = [
 # cloudbuild.yaml), so only local runs need Django to serve them. Cloud Run
 # sets K_SERVICE.
 if 'K_SERVICE' not in os.environ:
-    MIDDLEWARE.insert(MIDDLEWARE.index('django.middleware.gzip.GZipMiddleware'),
+    MIDDLEWARE.insert(MIDDLEWARE.index('django.contrib.sessions.middleware.SessionMiddleware'),
                       'servestatic.middleware.ServeStaticMiddleware')
 
 ROOT_URLCONF = 'orthocal.urls'

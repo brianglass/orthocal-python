@@ -14,6 +14,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'orthocal.settings')
 from django.conf import settings
 from django.core.asgi import get_asgi_application
 from mcp.server.transport_security import TransportSecuritySettings
+from starlette_compress import CompressMiddleware
 
 django_application = get_asgi_application()
 
@@ -84,7 +85,7 @@ async def _reject_get(send):
     })
 
 
-async def application(scope, receive, send):
+async def route(scope, receive, send):
     is_mcp_path = scope['type'] == 'http' and scope['path'].startswith('/mcp')
     if is_mcp_path and scope['method'] == 'GET':
         await _reject_get(send)
@@ -92,3 +93,29 @@ async def application(scope, receive, send):
         await mcp_application(scope, receive, send)
     else:
         await django_application(scope, receive, send)
+
+
+# Brotli where the client accepts it, else gzip. Firebase Hosting passes
+# compressed responses from Cloud Run through and caches one copy per
+# Accept-Encoding group, so this is what clients receive.
+#
+# - zstd is off: Firebase leaves it out of its cache key, so a zstd response
+#   cached for one client (Chrome offers zstd) would be served to another
+#   that offers only gzip and br and can't decode it.
+# - Brotli quality 10 is 15-20% smaller than gzip on these pages and API
+#   responses, for 2-10ms each. Quality 11 saves only 2 points more and
+#   takes about three times as long; 5-9 save only 6-8%.
+# - The iCal feeds get quality 9 instead: about 12% smaller than gzip for
+#   3ms, where quality 10 takes about 40ms on a feed.
+# - Unlike Django's GZipMiddleware, this adds no random padding (the BREACH
+#   mitigation): no response here combines a secret with text an attacker
+#   controls, and the padding is about 50 bytes on every response.
+compress = CompressMiddleware(route, zstd=False, brotli_quality=10, gzip_level=6)
+compress_ical = CompressMiddleware(route, zstd=False, brotli_quality=9, gzip_level=6)
+
+
+async def application(scope, receive, send):
+    if scope['type'] == 'http' and scope['path'].endswith('/ical/'):
+        await compress_ical(scope, receive, send)
+    else:
+        await compress(scope, receive, send)
