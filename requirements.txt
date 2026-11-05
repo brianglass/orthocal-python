@@ -3,12 +3,12 @@ brotli==1.2.1
 django-ask-sdk==1.0.0
 django-cors-headers==4.9.0
 django-fullurl==1.4
-django-ninja==1.7.1
+django-ninja==1.7.3
 django==6.1.2
 icalendar==7.3.0
 jdcal==1.4.1
 mcp==2.3.0
-newrelic==14.0.0
+newrelic==14.2.0
 python-dateutil==2.9.0.post0
 requests==2.34.2
 servestatic==4.4.0
