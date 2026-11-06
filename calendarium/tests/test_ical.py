@@ -18,8 +18,6 @@ _FAST_UID_PREFIXES = ('great_lent-', 'apostles_fast-', 'dormition_fast-', 'nativ
 
 
 class CalendarTest(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_ical(self):
         """ical endpoint should return 200."""
         url = reverse('ical', kwargs={'cal': Calendar.Gregorian})

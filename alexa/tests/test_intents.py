@@ -16,8 +16,6 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class IntentTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_launch_intent(self):
         with open(BASE_DIR / 'data/launch_intent_envelope.json') as f:
             envelope = f.read()

@@ -15,8 +15,6 @@ MOBILE_APP = 'Expo/1017880 CFNetwork/3860.200.71 Darwin/25.1.0'
 class CrawlerWindowTestCase(TestCase):
     """orthocal.middleware.finite_calendar_for_crawlers"""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def setUp(self):
         self.this_year = timezone.localdate().year
 

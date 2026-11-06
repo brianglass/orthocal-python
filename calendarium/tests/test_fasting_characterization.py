@@ -31,8 +31,6 @@ class TestFastingCharacterization(TestCase):
     See docs/fasting-refactor-scope.md.
     """
 
-    fixtures = ['calendarium.json']
-
     def render(self):
         lines = []
         for tradition, name in ((Tradition.Slavic, 'slavic'), (Tradition.Greek, 'greek')):
