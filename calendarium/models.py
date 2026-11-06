@@ -48,7 +48,7 @@ class Day(models.Model):
     # fish away on a Wednesday means "no fish for a saint", and is not aimed at
     # a feast of the Lord -- but `feast_level` cannot always tell the two apart,
     # because it follows the Slavic reckoning. The Synaxis of the Forerunner is
-    # level 3 here and keeps its fish in Greek practice; St Matthew is level 6
+    # level 3 here and keeps its fish in Greek practice; St Matthew is level 4
     # and does not.
     #
     # The old scale said this positionally: indices 3 and 4 duplicate 1 and 2 in

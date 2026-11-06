@@ -181,7 +181,7 @@ NATIVITY_GREEK_EARLY = Season(
     cap=_GREEK_FISH_CAP, default_cap=D.FishWineOil,
     # 7, not 4: the Wednesday/Friday no-fish cap holds inside this fast exactly
     # as it does in ordinary time, and holds against high-ranking saints.
-    # St Matthew (6), St Andrew (4) and St Nicholas (5) all fall here and all
+    # St Matthew (4), St Andrew (4) and St Nicholas (5) all fall here and all
     # get wine and oil rather than fish when they land on a Wednesday or Friday.
     cap_exempt_rank=7)
 NATIVITY_GREEK_STRICT = Season(
@@ -204,7 +204,7 @@ _BY_LEVEL = {
 # Lord even during fasting seasons." GOA applies that as a *cap* -- a saint's
 # fish grant falls back to wine and oil on a Wednesday or Friday, however highly
 # ranked the saint. Ten years of data give fourteen such saints, at feast levels
-# 4, 5 and 6: Anthony the Great, Euthymius, the Three Hierarchs, John the
+# 4 and 5: Anthony the Great, Euthymius, the Three Hierarchs, John the
 # Theologian (twice a year), Constantine and Helen, Elijah, Thomas, Demetrius,
 # the Archangel Michael, Chrysostom, Matthew, Andrew and Nicholas.
 #
