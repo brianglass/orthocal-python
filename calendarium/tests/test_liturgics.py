@@ -2,11 +2,13 @@ from datetime import date
 from types import SimpleNamespace
 
 from django.test import TestCase
+from django.utils.html import strip_tags
 
 from .. import datetools, liturgics, models
 from ..datetools import Tradition, Translation
 from ..liturgics.day import _display_priority, _has_story
 from bible.models import Verse
+from commemorations.models import DayCommemoration
 
 
 class TestYear(TestCase):
@@ -951,22 +953,27 @@ class TestGreekWeekdayTitles(TestCase):
         self.assertIn('Thursday of the 21st week after Pentecost', pday.titles)
 
 class TestHasStory(TestCase):
-    """A handful of DayCommemoration.story rows are exactly '<p></p>' --
-    non-empty and non-None, so truthy as a plain Python string, but with no
-    visible text once rendered. _has_story exists so those rows don't earn a
-    clickable commemoration title or an empty entry in the story panel (see
-    day.saint_links and day.stories)."""
+    """_has_story decides whether a commemoration earns a clickable title and
+    an entry in the story panel (see day.saint_links and day.stories)."""
+
+    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_none_and_empty_are_not_a_story(self):
         self.assertFalse(_has_story(SimpleNamespace(story=None)))
         self.assertFalse(_has_story(SimpleNamespace(story='')))
-
-    def test_empty_markup_is_not_a_story(self):
-        self.assertFalse(_has_story(SimpleNamespace(story='<p></p>')))
-        self.assertFalse(_has_story(SimpleNamespace(story='<p>  </p>\n')))
+        self.assertFalse(_has_story(SimpleNamespace(story=' \n')))
 
     def test_real_content_is_a_story(self):
         self.assertTrue(_has_story(SimpleNamespace(story='<p>He was a deacon.</p>')))
+
+    def test_every_story_has_visible_text(self):
+        """_has_story doesn't strip markup, so a story that is only markup,
+        like the nine '<p></p>' rows cleared in #172, would earn an empty
+        entry. Clear such a story to null instead."""
+
+        for dc in DayCommemoration.objects.exclude(story=None).exclude(story=''):
+            with self.subTest(dc.id):
+                self.assertTrue(strip_tags(dc.story).strip(), f'{dc.title!r} has a story with no text')
 
 
 class TestDay(TestCase):
@@ -1002,7 +1009,7 @@ class TestDay(TestCase):
         self.assertEqual(_display_priority(row(rank=2)), 0)
         self.assertEqual(_display_priority(row(high_rank=True)), 0)
         self.assertEqual(_display_priority(row(story='<p>He was a deacon.</p>')), 1)
-        self.assertEqual(_display_priority(row(story='<p></p>')), 2)
+        self.assertEqual(_display_priority(row(story='')), 2)
         self.assertEqual(_display_priority(row()), 2)
 
     def test_sixth_council_date_differs_by_tradition(self):

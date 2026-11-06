@@ -7,7 +7,6 @@ from datetime import date, timedelta
 
 from django.db.models import Q
 from django.utils.functional import cached_property
-from django.utils.html import strip_tags
 
 from .. import datetools, models
 from .. import fasting
@@ -101,12 +100,12 @@ def _prefer_tradition(rows, tradition):
 
 
 def _has_story(dc):
-    """Whether dc.story has actual visible text, not just empty markup like
-    '<p></p>' -- a handful of rows have exactly that, which is truthy as a
-    plain Python string but renders as nothing, incorrectly earning a
-    clickable title and an empty entry in the story panel."""
+    """Whether dc.story has any text. Every story in the data has visible text
+    once its markup is stripped -- nine that were only '<p></p>' were cleared
+    in #172, and TestHasStory keeps it that way -- so this doesn't strip the
+    markup itself, which cost a fifth of building a month calendar."""
 
-    return bool(strip_tags(dc.story or '').strip())
+    return bool(dc.story and dc.story.strip())
 
 
 def _speech_worthy(dc):
