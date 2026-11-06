@@ -44,6 +44,19 @@ _YEAR_CLASSES = {
     Tradition.Greek: GreekYear,
 }
 
+def church_date(gregorian_date, calendar):
+    """Return the church-calendar date for a civil date, with its distance
+    from Pascha, the year of that Pascha, and its Julian day number."""
+
+    if calendar == Calendar.Gregorian:
+        dt = gregorian_date
+        pdist, pyear = datetools.compute_pascha_distance(dt)
+        return dt, pdist, pyear, datetools.gregorian_to_jdn(dt)
+
+    dt = datetools.gregorian_to_julian(gregorian_date.year, gregorian_date.month, gregorian_date.day)
+    pdist, pyear = datetools.compute_julian_pascha_distance(dt)
+    return dt, pdist, pyear, datetools.julian_to_jdn(dt)
+
 # How many commemorations Day.minimal_saints keeps -- a display-space
 # constraint (the monthly calendar grid cell, summary_title's fallback).
 # Which ones it keeps is _display_priority's job. Adjust freely if the
@@ -211,15 +224,7 @@ class Day:
 
     def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en', translation=None):
         self.gregorian_date = date(year, month, day)
-
-        if calendar == Calendar.Gregorian:
-            dt = self.gregorian_date
-            pdist, pyear = datetools.compute_pascha_distance(dt)
-            self.jdn = datetools.gregorian_to_jdn(dt)
-        else:
-            dt = datetools.gregorian_to_julian(year, month, day)
-            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
-            self.jdn = datetools.julian_to_jdn(dt)
+        dt, pdist, pyear, self.jdn = church_date(self.gregorian_date, calendar)
 
         self.date = dt
         self.year = dt.year

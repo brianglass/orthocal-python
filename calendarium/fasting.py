@@ -322,6 +322,21 @@ def resolve(season, weekday, feast_level, rows, no_fish=False,
     return allowance, (winner if winner is not None else CANONICAL[allowance])
 
 
+def fast_level(days, pdist, pyear):
+    """The fast level of a day, from its merged `Day` rows. `apply` sets it;
+    year_of_feasts reads it for a whole year without building each day."""
+
+    if FAST_FREE in (d.fast_exception for d in days):
+        return FastLevels.NoFast
+
+    # The Apostles' fast cannot be read off the database: the feast of Sts Peter
+    # and Paul belongs to the festal cycle while the fast's start is Paschal.
+    if 56 < pdist < pyear.peter_and_paul:
+        return FastLevels.ApostlesFast
+
+    return max((d.fast for d in days), default=FastLevels.NoFast)
+
+
 def apply(day, season_for):
     """Set `day.fast_level` and `day.fast_exception` for one day.
 
@@ -336,17 +351,14 @@ def apply(day, season_for):
     festal = {d.fast_exception: bool(d.month) for d in day.days}
     cap_exempt_rows = any(d.fast_cap_exempt for d in day.days)
 
+    day.fast_level = fast_level(day.days, day.pdist, day.pyear)
+
     if FAST_FREE in rows:
-        day.fast_level = FastLevels.NoFast
         day.fast_exception = FAST_FREE
         return
 
-    # The Apostles' fast cannot be read off the database: the feast of Sts Peter
-    # and Paul belongs to the festal cycle while the fast's start is Paschal.
-    if 56 < day.pdist < day.pyear.peter_and_paul:
-        day.fast_level = FastLevels.ApostlesFast
-        if day.pdist == 57:
-            day.service_notes.append("Beginning of Apostles' Fast")
+    if day.pdist == 57 and day.fast_level == FastLevels.ApostlesFast:
+        day.service_notes.append("Beginning of Apostles' Fast")
 
     season = season_for(day)
     no_fish = bool(season and season.no_fish_before_nativity
