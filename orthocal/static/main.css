@@ -569,6 +569,11 @@ a.active {
         flex-wrap: wrap;
     }
 }
+/* The second row of day links at the foot of the readings page is for
+   phones only (below). */
+.bottom-day-nav {
+    display: none;
+}
 /* Phones: the day/month links become full-width buttons at least 44px tall
    (Apple's minimum tap target), and the toggles get 16px text, below which
    iOS Safari zooms the page when a <select> is tapped. */
@@ -602,7 +607,17 @@ a.active {
         flex-wrap: wrap;
         gap: 0.5rem;
     }
-    nav.page-nav a.cal-nav {
+    .bottom-day-nav {
+        display: flex;
+        margin-top: 2.5em;
+        font-family: var(--font-sans);
+        font-size: 0.85rem;
+    }
+    .bottom-day-nav a.cal-nav:link, .bottom-day-nav a.cal-nav:visited {
+        color: var(--color-text-muted);
+        text-decoration: none;
+    }
+    nav.page-nav a.cal-nav, .bottom-day-nav a.cal-nav {
         flex: 1 1 auto;
         display: flex;
         align-items: center;
@@ -640,6 +655,15 @@ main#orthocal {
 	width: 75%;
     min-height: 100%;
     container-type: inline-size;
+}
+/* Phones: the same 16px gutter as the topbar, rather than 75% of an
+   already narrow screen. */
+@media (max-width: 600px) {
+    main#orthocal {
+        width: auto;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
 }
 main#orthocal p {
     text-indent: 1.5em;
