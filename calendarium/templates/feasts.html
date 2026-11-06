@@ -47,7 +47,7 @@
 		{% for entry in entries %}
 		{% if entry.feast %}
 		{% with feast=entry.feast %}
-		<li class="feast{% if feast.is_great %} great{% endif %}{% if feast.is_pascha %} pascha{% endif %}">
+		<li class="feast{% if feast.is_great %} great{% endif %}{% if feast.is_pascha %} pascha{% endif %}{% if entry.in_fast %} in-fast{% endif %}">
 			<a href="{% url "readings" tradition=tradition cal=cal year=feast.date.year month=feast.date.month day=feast.date.day %}">
 				<span class="feast-date">{{ feast.date|date:"M j" }}<span class="feast-weekday">{{ feast.date|date:"l" }}</span></span>
 				<span class="feast-name">{{ feast.name }}</span>

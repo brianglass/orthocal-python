@@ -27,6 +27,9 @@ class YearOfFeastsTestCase(TestCase):
         palm_sunday, = [f for f in feasts if f.pdist == -7]
         self.assertEqual(palm_sunday.name, 'Palm Sunday')
 
+        # St Matthew is a polyeleos feast, like the other apostles but Peter and Paul.
+        self.assertNotIn('Holy Apostle and Evangelist Matthew', [f.name for f in feasts])
+
         self.assertEqual(
             [(s.level, s.start, s.end) for s in seasons],
             [
@@ -83,6 +86,11 @@ class FeastsViewTestCase(TestCase):
         self.assertContains(response, 'Nativity Fast')
         pascha = reverse('readings', kwargs={'tradition': 'slavic', 'cal': 'gregorian', 'year': 2027, 'month': 5, 'day': 2})
         self.assertContains(response, f'href="{pascha}"')
+
+        # Transfiguration falls in the Dormition Fast; Pascha in no fast.
+        entries = {entry['feast'].date: entry['in_fast'] for entry in response.context['entries'] if 'feast' in entry}
+        self.assertTrue(entries[date(2027, 8, 6)])
+        self.assertFalse(entries[date(2027, 5, 2)])
 
     def test_julian_shows_neighboring_years(self):
         url = reverse('feasts', kwargs={'tradition': 'slavic', 'cal': 'julian', 'year': 2027})

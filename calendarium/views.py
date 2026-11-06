@@ -100,7 +100,9 @@ def feasts_view(request, cal=None, tradition=None, year=None):
     # One timeline for the year, each fasting season placed at its start.
     # A season that began the year before sorts first.
     entries = sorted(
-        [{'date': feast.date, 'feast': feast} for feast in feasts] +
+        [{'date': feast.date, 'feast': feast,
+          'in_fast': any(season.start <= feast.date <= season.end for season in seasons)}
+         for feast in feasts] +
         [{'date': season.start, 'season': season} for season in seasons],
         key=lambda entry: (entry['date'], 'feast' in entry),
     )
