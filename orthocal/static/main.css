@@ -47,6 +47,7 @@
     --color-bg-input: #fff;
     --color-bg-table-cell: #eee9e0;
     --color-bg-table-fast: #dfd9cd;
+    --color-bg-in-fast: #efeae2;
     --color-bg-table-fast-hover: #dbd4c5;
     --color-bg-table-hover: #e6e1d5;
 
@@ -125,6 +126,7 @@
         --color-bg-input: #222222;
         --color-bg-table-cell: #141414;
         --color-bg-table-fast: #2c2c2c;
+        --color-bg-in-fast: #212121;
         --color-bg-table-fast-hover: #363636;
         --color-bg-table-hover: #242424;
 
@@ -395,6 +397,13 @@ h1, h2, h3, h4 {
     padding: 0.4em 1em;
 }
 
+/* Just above the hamburger breakpoint the full menu only fits beside the
+   title with tighter spacing. 1280px screens are a seventh of desktop visits. */
+@media (min-width: 1201px) and (max-width: 1300px) {
+    .topbar-inner > nav > ul {
+        gap: 1em;
+    }
+}
 /* Hamburger menu -- hidden until the site nav would wrap */
 .nav-toggle {
     display: none;
@@ -1148,6 +1157,85 @@ p.day-number {
 		font-size: 0.7em;
 		font-weight: normal;
 		color: var(--color-text-secondary);
+	}
+}
+
+/* ==========================================================================
+   Feasts page -- the year's feasts and fasting seasons as one timeline.
+   ========================================================================== */
+main#orthocal p.feasts-key {
+	text-indent: 0;
+	text-align: center;
+	margin: 1.5em auto;
+	font-size: 0.85em;
+	color: var(--color-text-secondary);
+}
+ol.feast-list {
+	list-style: none;
+	max-width: 36em;
+	margin: 0 auto 2em auto;
+	padding: 0;
+}
+ol.feast-list li {
+	border-bottom: 1px solid var(--color-border-light);
+}
+ol.feast-list li > a,
+ol.feast-list li.fast-season {
+	display: grid;
+	grid-template-columns: 8em 1fr;
+	gap: 0 1em;
+	align-items: baseline;
+	padding: 0.55em 0.5em;
+}
+ol.feast-list li > a {
+	color: var(--color-text);
+	text-decoration: none;
+	transition-property: background-color;
+	transition-duration: 0.25s;
+}
+ol.feast-list li > a:hover {
+	background-color: var(--color-bg-table-hover);
+}
+.feast-date {
+	font-family: var(--font-sans);
+	font-size: 0.85em;
+	color: var(--color-text-secondary);
+}
+.feast-weekday {
+	display: block;
+	font-size: 0.85em;
+}
+/* A fasting season's range wraps only after its dash. */
+.feast-date .date-part {
+	white-space: nowrap;
+}
+ol.feast-list li.great .feast-name {
+	color: var(--color-accent);
+	font-weight: bold;
+}
+ol.feast-list li.pascha .feast-name {
+	font-size: 1.25em;
+}
+ol.feast-list li.fast-season {
+	background-color: var(--color-bg-table-fast);
+}
+/* Feasts that fall within a fasting season, lighter than the season itself. */
+ol.feast-list li.in-fast {
+	background-color: var(--color-bg-in-fast);
+}
+ol.feast-list li.fast-season .feast-name {
+	font-style: italic;
+}
+.fast-days {
+	font-style: normal;
+	font-size: 0.8em;
+	color: var(--color-text-secondary);
+}
+@media (max-width: 600px) {
+	ol.feast-list li > a,
+	ol.feast-list li.fast-season {
+		grid-template-columns: 6.5em 1fr;
+		gap: 0 0.75em;
 	}
 }
 

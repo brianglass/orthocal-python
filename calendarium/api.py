@@ -165,6 +165,32 @@ class OembedSchema(Schema):
     html: str
 
 
+
+# A field named date can't also be annotated with the name date.
+CivilDate = date
+
+class FeastSchema(Schema):
+    date: CivilDate = Field(..., description='The civil date of the feast.')
+    weekday: datetools.Weekday
+    name: str
+    feast_level: conint(ge=6, le=8) = Field(..., alias='level', description='7 and 8 are Pascha and the Twelve Great Feasts; 6 marks the other great feasts.')
+    great_feast: bool = Field(..., alias='is_great', description='Whether this is Pascha or one of the Twelve Great Feasts.')
+    pascha_distance: int = Field(..., alias='pdist')
+
+
+class FastSeasonSchema(Schema):
+    name: str
+    fast_level: datetools.FastLevels = Field(..., alias='level')
+    start: date = Field(..., description='The first day of the fast, which can be in the previous year.')
+    end: date = Field(..., description='The last day of the fast, which can be in the next year.')
+    days: int
+
+
+class FeastYearSchema(Schema):
+    year: year
+    feasts: List[FeastSchema]
+    fasts: List[FastSeasonSchema] = Field(..., description='The fasting seasons that overlap the year: Great Lent, and the Apostles, Dormition, and Nativity Fasts.')
+
 @api.exception_handler(NotImplementedError)
 def not_implemented_handler(request, exc):
     return api.create_response(request, {'message': 'Not Implemented'}, status=501)
@@ -291,6 +317,31 @@ async def get_calendar_month_tradition(request, tradition: Tradition, cal: Calen
     """
 
     return await _get_calendar_month(request, cal, tradition, year, month)
+
+@in_thread_pool
+@cache_content('api-feasts-{tradition}-{cal}-{year}', JSON_CONTENT_TYPE, timeout=settings.ORTHOCAL_ICAL_TTL*60*60)
+def _get_feasts(request, cal, tradition, year):
+    feasts, fasts = liturgics.year_of_feasts(year, calendar=cal, tradition=tradition)
+    data = FeastYearSchema.model_validate({
+        'year': year,
+        'feasts': [{'weekday': datetools.weekday_from_pdist(feast.pdist), **vars(feast), 'is_great': feast.is_great} for feast in feasts],
+        'fasts': [{'name': fast.name, 'days': fast.days, **vars(fast)} for fast in fasts],
+    }).model_dump()
+    return api.create_response(request, data, status=200).content
+
+@api.get('{tradition:tradition}/{cal:cal}/feasts/{year:year}/', response=FeastYearSchema)
+@instrument_endpoint
+@decorate_view(etag)
+async def get_feasts(request, tradition: Tradition, cal: Calendar, year: year) -> FeastYearSchema:
+    """Get the feasts and fasting seasons of a civil year, for the given
+    tradition and calendar: Pascha, the Twelve Great Feasts, the other great
+    feasts, and the four fasting seasons, all with civil dates.
+
+    The *tradition* path parameter should be `slavic` or `greek`. The *cal* path
+    parameter should be `gregorian` or `julian`.
+    """
+
+    return await _get_feasts(request, cal, tradition, year)
 
 @api.get('{cal:cal}/', response=DaySchema, summary='Get Today')
 @instrument_endpoint

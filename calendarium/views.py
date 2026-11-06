@@ -85,6 +85,41 @@ def calendar_view(request, cal=None, tradition=None, year=None, month=None):
     })
 
 @in_thread_pool
+def feasts_view(request, cal=None, tradition=None, year=None):
+    tradition = remember_tradition(request, tradition)
+    cal = remember_cal(request, cal, tradition)
+
+    if not year:
+        year = timezone.localtime().date().year
+
+    try:
+        feasts, seasons = liturgics.year_of_feasts(year, calendar=cal, tradition=tradition)
+    except ValueError:
+        raise Http404
+
+    # One timeline for the year, each fasting season placed at its start.
+    # A season that began the year before sorts first.
+    entries = sorted(
+        [{'date': feast.date, 'feast': feast,
+          'in_fast': any(season.start <= feast.date <= season.end for season in seasons)}
+         for feast in feasts] +
+        [{'date': season.start, 'season': season} for season in seasons],
+        key=lambda entry: (entry['date'], 'feast' in entry),
+    )
+
+    return render(request, 'feasts.html', context={
+        'entries': entries,
+        'year': year,
+        'cal': cal,
+        'tradition': tradition,
+        'noindex': not is_indexable(date(year, 1, 1)),
+        'previous_year': year - 1,
+        'previous_nofollow': not is_indexable(date(year - 1, 1, 1)),
+        'next_year': year + 1,
+        'next_nofollow': not is_indexable(date(year + 1, 1, 1)),
+    })
+
+@in_thread_pool
 def calendar_embed_view(request, cal=Calendar.Gregorian, tradition=Tradition.Slavic, year=None, month=None):
     if not year or not month:
         now = timezone.localtime()

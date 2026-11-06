@@ -30,6 +30,7 @@ sitemaps = {
         'static': sitemaps.StaticViewSitemap,
         'calendar': sitemaps.CalendarSitemap,
         'calendar-julian': sitemaps.CalendarJulianSitemap,
+        'feasts': sitemaps.FeastsSitemap,
         'readings': sitemaps.ReadingsSitemap,
         'readings-julian': sitemaps.ReadingsJulianSitemap,
 }

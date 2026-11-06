@@ -40,6 +40,24 @@ class CalendarJulianSitemap(CalendarSitemap):
         return reverse('calendar', kwargs={'year': item.year, 'month': item.month, 'cal': 'julian',})
 
 
+class FeastsSitemap(sitemaps.Sitemap):
+    """This year's feasts and the next few, for people planning ahead."""
+
+    priority = 0.75
+    changefreq = 'monthly'
+
+    def items(self):
+        year = timezone.localtime().year
+        return [(tradition, cal, year + offset)
+                for offset in range(-1, 3)
+                for tradition in ('slavic', 'greek')
+                for cal in ('gregorian', 'julian')]
+
+    def location(self, item):
+        tradition, cal, year = item
+        return reverse('feasts', kwargs={'tradition': tradition, 'cal': cal, 'year': year})
+
+
 class ReadingsSitemap(sitemaps.Sitemap):
     priority = 0.75
     changefreq = 'monthly'

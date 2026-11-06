@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from .day import Day, SlavicDay, GreekDay
+from .feasts import year_of_feasts
 from .year import ByzantineYear, SlavicYear, GreekYear
 
 def month_of_days(year, month, **kwargs):
