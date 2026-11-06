@@ -802,6 +802,12 @@ section.readings h2 {
     -ms-hyphens: auto;
     hyphens: auto;
 }
+/* On a phone's narrow column, justifying opens wide gaps between words. */
+@media (max-width: 600px) {
+    #content, .passage {
+        text-align: left;
+    }
+}
 .passage h2 {
     margin-top: 0;
 	font-size: 1.1em;
@@ -996,6 +1002,67 @@ table.month td.sat:hover
 }
 p.day-number {
 	font-size: 1.5em;
+}
+
+/* Phones: a seven-column grid sized in vw leaves 40px cells with 4-7px text,
+   so the month becomes a list of days instead, one per row. This is CSS
+   only: the oEmbed API hands this same table HTML to other sites, which
+   style it themselves. The weekday names are English, like the header row
+   they replace (Python's calendar module writes that). */
+@media (max-width: 600px) {
+	table.month {
+		font-size: 1.2em;
+		width: 100%;
+		margin: 1em 0;
+	}
+	table.month,
+	table.month tbody,
+	table.month tr,
+	table.month tr:first-child th,
+	table.month td {
+		display: block;
+		width: auto;
+	}
+	/* The weekday header row, and the blank cells padding the first and
+	   last weeks. */
+	table.month tr:nth-child(2),
+	table.month td.noday {
+		display: none;
+	}
+	table.month td {
+		border-width: 0 0 1px 0;
+	}
+	table.month td a {
+		padding: 0.6em 1em;
+	}
+	table.month tr td p {
+		margin-bottom: 0.3em !important;
+	}
+	table.month ul {
+		margin-bottom: 0.3em;
+	}
+	table.month li + li:before {
+		padding: 0 0.4em;
+	}
+	table.month ul.saints li {
+		font-size: 0.85em;
+	}
+	p.day-number {
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+	td.sun p.day-number::after { content: " Sunday"; }
+	td.mon p.day-number::after { content: " Monday"; }
+	td.tue p.day-number::after { content: " Tuesday"; }
+	td.wed p.day-number::after { content: " Wednesday"; }
+	td.thu p.day-number::after { content: " Thursday"; }
+	td.fri p.day-number::after { content: " Friday"; }
+	td.sat p.day-number::after { content: " Saturday"; }
+	td p.day-number::after {
+		font-size: 0.7em;
+		font-weight: normal;
+		color: var(--color-text-secondary);
+	}
 }
 
 /* ==========================================================================
