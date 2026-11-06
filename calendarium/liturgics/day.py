@@ -7,7 +7,6 @@ from datetime import date, timedelta
 
 from django.db.models import Q
 from django.utils.functional import cached_property
-from django.utils.html import strip_tags
 
 from .. import datetools, models
 from .. import fasting
@@ -43,6 +42,19 @@ _YEAR_CLASSES = {
     Tradition.Slavic: SlavicYear,
     Tradition.Greek: GreekYear,
 }
+
+def church_date(gregorian_date, calendar):
+    """Return the church-calendar date for a civil date, with its distance
+    from Pascha, the year of that Pascha, and its Julian day number."""
+
+    if calendar == Calendar.Gregorian:
+        dt = gregorian_date
+        pdist, pyear = datetools.compute_pascha_distance(dt)
+        return dt, pdist, pyear, datetools.gregorian_to_jdn(dt)
+
+    dt = datetools.gregorian_to_julian(gregorian_date.year, gregorian_date.month, gregorian_date.day)
+    pdist, pyear = datetools.compute_julian_pascha_distance(dt)
+    return dt, pdist, pyear, datetools.julian_to_jdn(dt)
 
 # How many commemorations Day.minimal_saints keeps -- a display-space
 # constraint (the monthly calendar grid cell, summary_title's fallback).
@@ -88,12 +100,12 @@ def _prefer_tradition(rows, tradition):
 
 
 def _has_story(dc):
-    """Whether dc.story has actual visible text, not just empty markup like
-    '<p></p>' -- a handful of rows have exactly that, which is truthy as a
-    plain Python string but renders as nothing, incorrectly earning a
-    clickable title and an empty entry in the story panel."""
+    """Whether dc.story has any text. Every story in the data has visible text
+    once its markup is stripped -- nine that were only '<p></p>' were cleared
+    in #172, and TestHasStory keeps it that way -- so this doesn't strip the
+    markup itself, which cost a fifth of building a month calendar."""
 
-    return bool(strip_tags(dc.story or '').strip())
+    return bool(dc.story and dc.story.strip())
 
 
 def _speech_worthy(dc):
@@ -211,15 +223,7 @@ class Day:
 
     def __init__(self, year, month, day, calendar=Calendar.Gregorian, tradition=Tradition.Slavic, language='en', translation=None):
         self.gregorian_date = date(year, month, day)
-
-        if calendar == Calendar.Gregorian:
-            dt = self.gregorian_date
-            pdist, pyear = datetools.compute_pascha_distance(dt)
-            self.jdn = datetools.gregorian_to_jdn(dt)
-        else:
-            dt = datetools.gregorian_to_julian(year, month, day)
-            pdist, pyear = datetools.compute_julian_pascha_distance(dt)
-            self.jdn = datetools.julian_to_jdn(dt)
+        dt, pdist, pyear, self.jdn = church_date(self.gregorian_date, calendar)
 
         self.date = dt
         self.year = dt.year
