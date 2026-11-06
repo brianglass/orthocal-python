@@ -573,6 +573,22 @@ a.active {
    (Apple's minimum tap target), and the toggles get 16px text, below which
    iOS Safari zooms the page when a <select> is tapped. */
 @media (max-width: 600px) {
+    /* The title row above shares the nav's gutter, so the title, the
+       hamburger and its menu line up with the buttons' edges. The column
+       gap and the nav's negative margin (1.5em each, but at different font
+       sizes) otherwise leave the hamburger 3px past the gutter. */
+    .topbar-inner {
+        width: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+        column-gap: 0;
+    }
+    .topbar-inner > nav {
+        margin-left: 0;
+    }
+    .topbar-inner > nav > ul {
+        right: 16px;
+    }
     nav.page-nav {
         width: auto;
         padding: 0.5em 16px;
