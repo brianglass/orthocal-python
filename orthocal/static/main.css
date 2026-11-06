@@ -397,6 +397,13 @@ h1, h2, h3, h4 {
     padding: 0.4em 1em;
 }
 
+/* Just above the hamburger breakpoint the full menu only fits beside the
+   title with tighter spacing. 1280px screens are a seventh of desktop visits. */
+@media (min-width: 1201px) and (max-width: 1300px) {
+    .topbar-inner > nav > ul {
+        gap: 1em;
+    }
+}
 /* Hamburger menu -- hidden until the site nav would wrap */
 .nav-toggle {
     display: none;
@@ -419,7 +426,7 @@ h1, h2, h3, h4 {
 .nav-toggle:hover span {
     background-color: var(--color-text);
 }
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
     .topbar-inner {
         align-items: center;
         position: relative;
