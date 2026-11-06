@@ -148,4 +148,13 @@
 		{% endif %}
 	</section>
 	</div>
+
+	{# The same day links again at the foot of the page, for phones (see main.css), where a day runs to several screens. show:window:top brings the new day up from its start. #}
+	{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day as previous_url %}
+	{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day as next_url %}
+	<nav class="day-nav bottom-day-nav" aria-label="Other days">
+		<a class="cal-nav" href="{{ previous_url }}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{{ previous_url }}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true show:window:top" hx-push-url="true">&larr; Previous Day</a>
+		<a class="cal-nav" href="{% url "index" %}" hx-get="{% url "index" %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true show:window:top" hx-push-url="true">Today</a>
+		<a class="cal-nav" href="{{ next_url }}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{{ next_url }}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true show:window:top" hx-push-url="true">Next Day &rarr;</a>
+	</nav>
 {% endblock %}
