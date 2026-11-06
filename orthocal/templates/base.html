@@ -64,6 +64,7 @@
 					<ul>
 						<li><a href="{% url "index" %}" {% if url_name == "index" or url_name == "readings" %}aria-current="page"{% endif %}>Readings</a></li>
 						<li><a href="{% url "calendar-default" %}" {% if url_name == "calendar-default" or url_name == "calendar" %}aria-current="page"{% endif %}>Calendar</a></li>
+						<li><a href="{% url "feasts-default" %}" {% if url_name == "feasts-default" or url_name == "feasts" %}aria-current="page"{% endif %}>Feasts</a></li>
 						<li><a href="{% url "saint-search" %}" {% if url_name == "saint-search" %}aria-current="page"{% endif %}>Saints</a></li>
 						<li>
 							<details name="nav-submenu">

@@ -1,0 +1,67 @@
+{% extends "content_base.html" %}
+{% load fullurl %}
+
+{% block title %}Orthodox Feasts and Fasts for {{ year }}{% endblock %}
+
+{% block head %}
+	<meta name="description" content="The dates of Pascha, the Twelve Great Feasts, the other great feasts, and the fasting seasons of the Orthodox Church in {{ year }}.">
+	<link rel="canonical" href="{% fullurl "feasts" tradition=tradition cal=cal year=year %}">
+
+	{% if noindex %}
+		<meta name="robots" content="noindex">
+	{% endif %}
+{% endblock %}
+
+{% block extra_nav %}
+	<div class="page-nav-row">
+		<div class="day-nav">
+			<a class="cal-nav" href="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr; {{ previous_year }}</a>
+			<a class="cal-nav" href="{% url "feasts" tradition=tradition cal=cal year=next_year %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=next_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">{{ next_year }} &rarr;</a>
+		</div>
+
+		<div class="toggle-row" hx-params="none">
+			<label class="toggle-picker" title="Liturgical tradition">
+				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+					<option value="{% url "feasts" tradition="slavic" cal=cal year=year %}" {% if tradition == "slavic" %}selected{% endif %} title="OCA, ROCOR">Slavic</option>
+					<option value="{% url "feasts" tradition="greek" cal=cal year=year %}" {% if tradition == "greek" %}selected{% endif %} title="Antiochian, Greek Archdiocese">Greek</option>
+				</select>
+			</label>
+			<label class="toggle-picker" title="Calendar">
+				<select name="calendar" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+					<option value="{% url "feasts" tradition=tradition cal="gregorian" year=year %}" {% if cal == "gregorian" %}selected{% endif %}>Gregorian</option>
+					<option value="{% url "feasts" tradition=tradition cal="julian" year=year %}" {% if cal == "julian" %}selected{% endif %}>Julian</option>
+				</select>
+			</label>
+		</div>
+	</div>
+{% endblock extra_nav %}
+
+{% block main %}
+	<header>
+		<h1>{{ year }}<span><br>Feasts and Fasts</span></h1>
+	</header>
+
+	<p class="feasts-key">Pascha and the Twelve Great Feasts are in red. Dates are civil dates{% if cal == "julian" %}, for the Julian (Old) calendar{% endif %}.</p>
+
+	<ol class="feast-list">
+		{% for entry in entries %}
+		{% if entry.feast %}
+		{% with feast=entry.feast %}
+		<li class="feast{% if feast.is_great %} great{% endif %}{% if feast.is_pascha %} pascha{% endif %}">
+			<a href="{% url "readings" tradition=tradition cal=cal year=feast.date.year month=feast.date.month day=feast.date.day %}">
+				<span class="feast-date">{{ feast.date|date:"M j" }}<span class="feast-weekday">{{ feast.date|date:"l" }}</span></span>
+				<span class="feast-name">{{ feast.name }}</span>
+			</a>
+		</li>
+		{% endwith %}
+		{% else %}
+		{% with season=entry.season %}
+		<li class="fast-season">
+			<span class="feast-date"><span class="date-part">{{ season.start|date:"M j" }}{% if season.start.year != year %}, {{ season.start.year }}{% endif %}&thinsp;&ndash;</span>&thinsp;<span class="date-part">{{ season.end|date:"M j" }}{% if season.end.year != year %}, {{ season.end.year }}{% endif %}</span></span>
+			<span class="feast-name">{{ season.name }} <span class="fast-days">({{ season.days }} day{{ season.days|pluralize }})</span></span>
+		</li>
+		{% endwith %}
+		{% endif %}
+		{% endfor %}
+	</ol>
+{% endblock %}
