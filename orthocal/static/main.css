@@ -568,14 +568,19 @@ a.active {
 	gap: 0.5rem;
 	flex-wrap: nowrap;
 }
-/* The date, month or year to jump to, between the day-nav and the
-   toggles. It uses the browser's own picker. The calendar page's month and
-   year sit in a div, not a label, so it sets the labels' size itself. */
+/* The page's date, month or year, in the browser's own picker, between
+   arrows to the previous and next one. It sets the size the global label
+   rule gives the toggles. */
 .date-jump {
 	display: flex;
 	font-size: 0.75em;
 	align-items: center;
 	gap: 0.5rem;
+}
+nav.page-nav .date-jump a.step {
+	margin: 0;
+	font-size: 1.3em;
+	line-height: 1;
 }
 .date-jump input[type="number"] {
 	width: 5em;
@@ -664,6 +669,11 @@ a.active {
     }
     nav.page-nav .date-jump input[type="number"] {
         width: auto;
+    }
+    nav.page-nav .date-jump a.cal-nav.step {
+        flex: 0 0 44px;
+        padding: 0;
+        font-size: 1.2em;
     }
     .toggle-picker {
         flex: 1 1 0;
