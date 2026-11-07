@@ -23,7 +23,7 @@
 		<div class="date-jump"
 			data-url="{% url "calendar" tradition=tradition cal=cal year=this_month.year month=this_month.month %}"
 			hx-get="" hx-trigger="change delay:400ms" hx-params="none"
-			hx-on::config-request="const year = this.querySelector('[name=year]'); if (!year.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/\d+\/$/, year.value + '/' + this.querySelector('[name=month]').value + '/')"
+			hx-on::config-request="if (event.target !== this) return; const year = this.querySelector('[name=year]'); if (!year.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/\d+\/$/, year.value + '/' + this.querySelector('[name=month]').value + '/')"
 			hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
 			<a class="cal-nav step" aria-label="Previous month" title="Previous month" href="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "calendar" tradition=tradition cal=cal year=previous_month.year month=previous_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr;</a>
 			<select name="month" aria-label="Month">
