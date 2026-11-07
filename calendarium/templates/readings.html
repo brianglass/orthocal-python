@@ -21,10 +21,14 @@
 
 {% block extra_nav %}
 	<div class="page-nav-row">
-		<div class="day-nav">
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr; Previous Day</a>
-			<a class="cal-nav" href="{% url "index" %}" hx-get="{% url "index" %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Today</a>
-			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Next Day &rarr;</a>
+		<div class="date-jump">
+			<a class="cal-nav step" aria-label="Previous day" title="Previous day" href="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=previous_date.year month=previous_date.month day=previous_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr;</a>
+			<input type="date" aria-label="Date" value="{{ date|date:"Y-m-d" }}" min="1584-01-01" max="4099-12-31" required
+				data-url="{% if translation %}{% url "readings" tradition=tradition cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition=tradition cal=cal year=date.year month=date.month day=date.day %}{% endif %}"
+				hx-get="" hx-trigger="change delay:400ms" hx-params="none"
+				hx-on::config-request="if (!this.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/\d+\/\d+\/$/, this.value.split('-').map(Number).join('/') + '/')"
+				hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+			<a class="cal-nav step" aria-label="Next day" title="Next day" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&rarr;</a>
 		</div>
 
 		<div class="toggle-row" hx-params="none">

@@ -14,9 +14,14 @@
 
 {% block extra_nav %}
 	<div class="page-nav-row">
-		<div class="day-nav">
-			<a class="cal-nav" href="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr; {{ previous_year }}</a>
-			<a class="cal-nav" href="{% url "feasts" tradition=tradition cal=cal year=next_year %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=next_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">{{ next_year }} &rarr;</a>
+		<div class="date-jump">
+			<a class="cal-nav step" aria-label="Previous year" title="Previous year" href="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" {% if previous_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=previous_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&larr;</a>
+			<input type="number" name="year" aria-label="Year" value="{{ year }}" min="1584" max="4099" required inputmode="numeric"
+				data-url="{% url "feasts" tradition=tradition cal=cal year=year %}"
+				hx-get="" hx-trigger="change delay:400ms" hx-params="none"
+				hx-on::config-request="if (!this.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/$/, this.value + '/')"
+				hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+			<a class="cal-nav step" aria-label="Next year" title="Next year" href="{% url "feasts" tradition=tradition cal=cal year=next_year %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "feasts" tradition=tradition cal=cal year=next_year %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">&rarr;</a>
 		</div>
 
 		<div class="toggle-row" hx-params="none">
