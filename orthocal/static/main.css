@@ -568,6 +568,18 @@ a.active {
 	gap: 0.5rem;
 	flex-wrap: nowrap;
 }
+/* The date, month or year to jump to, between the day-nav and the
+   toggles. It uses the browser's own picker. The calendar page's month and
+   year sit in a div, not a label, so it sets the labels' size itself. */
+.date-jump {
+	display: flex;
+	font-size: 0.75em;
+	align-items: center;
+	gap: 0.5rem;
+}
+.date-jump input[type="number"] {
+	width: 5em;
+}
 /* Let the day-nav wrap onto its own line at the narrowest viewports,
    alongside the topbar's own last-resort wrap above, when it no longer
    fits alongside the toggle row. The toggle row itself (.toggle-row,
@@ -642,6 +654,16 @@ a.active {
     }
     .toggle-row {
         justify-content: stretch;
+    }
+    nav.page-nav .date-jump select, nav.page-nav .date-jump input {
+        flex: 1 1 0;
+        min-height: 44px;
+        box-sizing: border-box;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+    nav.page-nav .date-jump input[type="number"] {
+        width: auto;
     }
     .toggle-picker {
         flex: 1 1 0;
@@ -836,7 +858,7 @@ section.readings h2 {
 /* The tradition and calendar <select>s in .toggle-row. They share the
    translation picker's input chrome but inherit the surrounding font size so
    they sit on one line with the rest of the row. */
-.toggle-picker select {
+.toggle-picker select, .date-jump select, .date-jump input {
 	font-family: var(--font-sans);
 	font-size: inherit;
 	color: var(--color-text);
@@ -848,7 +870,7 @@ section.readings h2 {
 	vertical-align: middle;
 	max-width: 100%;
 }
-.toggle-picker select:hover {
+.toggle-picker select:hover, .date-jump select:hover, .date-jump input:hover {
 	border-color: var(--color-border-input-hover);
 }
 

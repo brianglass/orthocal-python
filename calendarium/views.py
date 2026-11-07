@@ -78,6 +78,7 @@ def calendar_view(request, cal=None, tradition=None, year=None, month=None):
         'tradition': tradition,
         'noindex': not is_indexable(first_day),
         'this_month': first_day,
+        'months': list(enumerate(calendar.month_name))[1:],
         'previous_month': previous_month,
         'previous_nofollow': not is_indexable(previous_month),
         'next_month': next_month,

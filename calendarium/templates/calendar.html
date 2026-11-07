@@ -25,6 +25,19 @@
 			<a class="cal-nav" href="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "calendar" tradition=tradition cal=cal year=next_month.year month=next_month.month %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">{{ next_month|date:"F" }} &rarr;</a>
 		</div>
 
+		<div class="date-jump" title="Go to a month"
+			data-url="{% url "calendar" tradition=tradition cal=cal year=this_month.year month=this_month.month %}"
+			hx-get="" hx-trigger="change delay:400ms" hx-params="none"
+			hx-on::config-request="const year = this.querySelector('[name=year]'); if (!year.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/\d+\/$/, year.value + '/' + this.querySelector('[name=month]').value + '/')"
+			hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+			<select name="month" aria-label="Month">
+				{% for number, name in months %}
+				<option value="{{ number }}" {% if number == this_month.month %}selected{% endif %}>{{ name }}</option>
+				{% endfor %}
+			</select>
+			<input type="number" name="year" aria-label="Year" value="{{ this_month.year }}" min="1584" max="4099" required inputmode="numeric">
+		</div>
+
 		<div class="toggle-row" hx-params="none">
 			<label class="toggle-picker" title="Liturgical tradition">
 				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">

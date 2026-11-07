@@ -27,6 +27,14 @@
 			<a class="cal-nav" href="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" {% if next_nofollow %}rel="nofollow"{% endif %} hx-get="{% url "readings" tradition=tradition cal=cal year=next_date.year month=next_date.month day=next_date.day %}" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">Next Day &rarr;</a>
 		</div>
 
+		<label class="date-jump" title="Go to a date">
+			<input type="date" aria-label="Date" value="{{ date|date:"Y-m-d" }}" min="1584-01-01" max="4099-12-31" required
+				data-url="{% if translation %}{% url "readings" tradition=tradition cal=cal translation=translation year=date.year month=date.month day=date.day %}{% else %}{% url "readings" tradition=tradition cal=cal year=date.year month=date.month day=date.day %}{% endif %}"
+				hx-get="" hx-trigger="change delay:400ms" hx-params="none"
+				hx-on::config-request="if (!this.checkValidity()) return event.preventDefault(); event.detail.path = this.dataset.url.replace(/\d+\/\d+\/\d+\/$/, this.value.split('-').map(Number).join('/') + '/')"
+				hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
+		</label>
+
 		<div class="toggle-row" hx-params="none">
 			<label class="toggle-picker" title="Liturgical tradition">
 				<select name="tradition" hx-get="" hx-on::config-request="event.detail.path = this.value" hx-select="#orthocal-content" hx-target="#orthocal-content" hx-swap="outerHTML transition:true" hx-push-url="true">
