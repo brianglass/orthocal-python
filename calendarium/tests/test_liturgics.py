@@ -12,8 +12,6 @@ from commemorations.models import DayCommemoration
 
 
 class TestYear(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_pascha(self):
         year = liturgics.SlavicYear(2018)
         pascha = datetools.gregorian_to_jdn(date(2018, 4, 8))
@@ -181,8 +179,6 @@ class TestTraditionOverlay(TestCase):
     """Tests for the Slavic/Greek tradition axis added on top of the shared
     Byzantine base -- these cover the overlay mechanism itself (Year class
     selection, Reading fallback/override)."""
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_slavic_and_greek_year_are_distinct_subclasses(self):
         # Note: SlavicYear/GreekYear are decorated with @lru_cache, which
@@ -398,8 +394,6 @@ class TestGreekFasting(TestCase):
     were empirically confirmed absent from Antiochian practice -- unlike
     the Nativity Fast, that difference is a Day-row data split, not a code
     difference in _apply_fasting_adjustments."""
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_day_dispatches_to_tradition_specific_subclass(self):
         slavic = liturgics.Day(2026, 11, 20, tradition=Tradition.Slavic)
@@ -888,8 +882,6 @@ class TestGreekSundayTitles(TestCase):
     Pentecost; see GreekDay._apply_title_conventions. Expected names are
     antiochian.org's for the same dates."""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_sunday_titles(self):
         for (year, month, day), expected in (
             ((2026, 6, 7), 'Sunday of All Saints'),
@@ -929,8 +921,6 @@ class TestGreekWeekdayTitles(TestCase):
     being read; see GreekDay._apply_title_conventions. Expected numbers are
     antiochian.org's for the same dates."""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_weekday_titles(self):
         for (year, month, day), expected in (
             ((2026, 9, 21), 'Monday of the 1st week of Luke'),
@@ -956,8 +946,6 @@ class TestHasStory(TestCase):
     """_has_story decides whether a commemoration earns a clickable title and
     an entry in the story panel (see day.saint_links and day.stories)."""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_none_and_empty_are_not_a_story(self):
         self.assertFalse(_has_story(SimpleNamespace(story=None)))
         self.assertFalse(_has_story(SimpleNamespace(story='')))
@@ -977,8 +965,6 @@ class TestHasStory(TestCase):
 
 
 class TestDay(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_minimal_saints_keeps_three_of_the_full_list(self):
         """Oct 1 Greek has 6 commemorations; minimal_saints keeps 3 of them."""
 
@@ -1603,8 +1589,6 @@ class TestGreekPreTriodionWeekdayCycle(TestCase):
     asserted here.
     """
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     # Luke-section week -> weekday (Mon=0) -> Gospel, in this project's own
     # `Pericope.sdisplay` notation. Week 14 Friday follows goarch.org's and
     # antiochian.org's `Mark 10:24-32` in the Greek tradition.
@@ -1684,8 +1668,6 @@ class TestGreekAnnualOrdoGospels(TestCase):
     `GreekYear._GREEK_ORDO_GOSPEL` is therefore a deliberate per-year data
     overlay -- the only one in this codebase.
     """
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     # (year, month, day, expected Gospel), transcribed from goarch.org.
     # Deliberately spread across years whose ordo picks very different
@@ -1767,8 +1749,6 @@ class TestGreekMenaionReadings(TestCase):
     assumed, because two of these override a common Gospel.
     """
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     # (month, day, source, reading Greek must now have, what Slavic must have)
     #
     # The Slavic column is explicit per case rather than "must not contain the
@@ -1834,8 +1814,6 @@ class TestGreekSundayPrecedence(TestCase):
     goarch.org published for that date.
     """
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_abbreviated_pair(self):
         data = [
             # The saint's Epistle, the Sunday's Gospel
@@ -1879,8 +1857,6 @@ class TestOrdoJurisdictionLabels(TestCase):
     answer to everyone, both are shown, each labelled -- the same treatment
     this project already gives a saint's reading standing beside the cycle's.
     """
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def gospels(self, year, month, day, tradition=Tradition.Greek):
         pday = liturgics.Day(year, month, day, tradition=tradition)
@@ -1959,8 +1935,6 @@ class TestAug28JobOfPochaev(TestCase):
     that is how most of the Greek Menaion data in this project was found.
     """
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     JOB_SET = ['Wis 3.1-9', 'Wis 5.15-6.3', 'Wis 4.7-15',
                'Matt 11.27-30', 'Gal 5.22-6.2', 'Luke 6.17-23']
 
@@ -1993,8 +1967,6 @@ class TestDayOverrides(TestCase):
     These guard the second shape, which is the one that can rot quietly."""
 
     # commemorations.json too: one override exists only to anchor them.
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     @staticmethod
     def _overrides():
         """(base, override) for every slot with a common row and a tradition one."""

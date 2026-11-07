@@ -7,14 +7,15 @@ from bible.parse import parse_usfx
 def load_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
 
-    for verse in parse_usfx('data/eng-kjv_usfx.xml'):
-        Verse.objects.create(language='en', **verse)
-
-    for verse in parse_usfx('data/ron-rccv.usfx.xml'):
-        Verse.objects.create(language='ro', **verse)
-
-    for verse in parse_usfx('data/srp1865_usfx.xml'):
-        Verse.objects.create(language='sr', **verse)
+    # bulk_create rather than one INSERT per verse: this runs in every image
+    # build, and the row-at-a-time version took most of the build's migrate.
+    for filename, language in (
+        ('data/eng-kjv_usfx.xml', 'en'),
+        ('data/ron-rccv.usfx.xml', 'ro'),
+        ('data/srp1865_usfx.xml', 'sr'),
+    ):
+        Verse.objects.bulk_create(
+            Verse(language=language, **verse) for verse in parse_usfx(filename))
 
 def unload_default_scriptures(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')

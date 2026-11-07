@@ -10,8 +10,6 @@ from ..datetools import Calendar, Tradition
 
 
 class FeedTest(TestCase):
-    fixtures = ['calendarium.json']
-
     def setUp(self):
         # The feed view is wrapped in cache_page (see calendarium/api_urls.py),
         # backed by a real FileBasedCache outside local dev (local_settings.py's

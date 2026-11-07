@@ -18,8 +18,6 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 class DayAPITestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_get_day(self):
         with open(BASE_DIR / 'data/last_bday.json') as f:
             expected = json.loads(f.read())
@@ -179,10 +177,10 @@ class DayAPITestCase(TestCase):
     def test_errors(self):
         """We shouldn't have any errors in the API."""
 
-        # This is just a brute force test to make sure we don't have any
-        # errors in the API.
-        start_dt = timezone.datetime(2023, 1, 1)
-        end_dt = timezone.datetime(2029, 12, 31)
+        # A brute force smoke test over one year. The fasting snapshot test
+        # covers ten years of Day itself.
+        start_dt = timezone.datetime(2027, 1, 1)
+        end_dt = timezone.datetime(2027, 12, 31)
         for dt in rrule(DAILY, dtstart=start_dt, until=end_dt):
             with self.subTest(dt=dt):
                 url = reverse('api:get_calendar_day', kwargs={
@@ -216,8 +214,6 @@ class DayAPITestCase(TestCase):
 class MonthCacheTestCase(TestCase):
     """api._get_calendar_month caches each month's response."""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def setUp(self):
         cache.clear()
 
@@ -250,8 +246,6 @@ class MonthCacheTestCase(TestCase):
 
 class DayCacheTestCase(TestCase):
     """api._get_calendar_day caches each day's response near today."""
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def setUp(self):
         api.day_cache.clear()
@@ -318,8 +312,6 @@ class DayCacheTestCase(TestCase):
 class TrailingSlashTestCase(TestCase):
     """orthocal.middleware.append_api_slash and the APPEND_SLASH redirect"""
 
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_slashless_api_url_is_served_directly(self):
         url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 1, 'day': 7})
         slashless = self.client.get(url.rstrip('/'))
@@ -342,8 +334,6 @@ class TrailingSlashTestCase(TestCase):
 
 class RecordWorkerTestCase(TestCase):
     """orthocal.middleware.record_worker"""
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_transaction_is_tagged_with_the_worker(self):
         url = reverse('api:get_calendar_day', kwargs={'cal': 'gregorian', 'year': 2022, 'month': 1, 'day': 7})

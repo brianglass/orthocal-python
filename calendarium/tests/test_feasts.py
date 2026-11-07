@@ -9,8 +9,6 @@ from ..datetools import Calendar, FastLevels, Tradition
 
 
 class YearOfFeastsTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_gregorian(self):
         feasts, seasons = liturgics.year_of_feasts(2027, calendar=Calendar.Gregorian, tradition=Tradition.Slavic)
 
@@ -69,8 +67,6 @@ class YearOfFeastsTestCase(TestCase):
 
 
 class FeastsViewTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_default(self):
         response = self.client.get(reverse('feasts-default'))
 
@@ -108,8 +104,6 @@ class FeastsViewTestCase(TestCase):
 
 
 class FeastsAPITestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_feasts(self):
         response = self.client.get('/api/slavic/julian/feasts/2027/')
         self.assertEqual(response.status_code, 200)
