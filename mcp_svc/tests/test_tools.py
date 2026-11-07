@@ -1,4 +1,3 @@
-from django.core.management import call_command
 from django.test import TestCase
 from mcp.server.mcpserver.exceptions import ToolError
 
@@ -7,18 +6,7 @@ from calendarium.datetools import Tradition
 from ..tools import get_day, get_saint, search_saints
 
 
-def _backfill_saints():
-    # Fixture loading bypasses Saint.save(), so slug and normalized_name are
-    # blank until backfilled, and the search index is empty until built --
-    # mirrors the Dockerfile (see commemorations/tests.py).
-    call_command('backfill_saint_slugs')
-    call_command('backfill_saint_normalized_names')
-    call_command('build_saint_search_index')
-
-
 class GetDayTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     async def test_normal_date(self):
         result = await get_day(2026, 7, 31)
 
@@ -56,11 +44,6 @@ class GetDayTestCase(TestCase):
 
 
 class SearchSaintsTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    def setUp(self):
-        _backfill_saints()
-
     async def test_finds_matching_saint(self):
         results = await search_saints('Seraphim of Sarov')
 
@@ -158,11 +141,6 @@ class SearchSaintsTestCase(TestCase):
 
 
 class GetSaintTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    def setUp(self):
-        _backfill_saints()
-
     async def _slug(self, query):
         return (await search_saints(query))[0]['saint_slugs'][0]
 

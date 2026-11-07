@@ -120,8 +120,6 @@ class TestAntiochianReadingCitations(TestCase):
 
 
 class TestExactGreekReadingBoundaries(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     # Every field reported in the 2026 Antiochian/GOA comparison.
     CASES = (
         (2, 9, 'Epistle', '1 John 2.18-29; 3.1-8'),
@@ -200,8 +198,6 @@ class TestAntiochianReadingCharacterization(TestCase):
 
         docker compose run --rm local python tools/greek/antiochian_characterize.py --write
     """
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_antiochian_comparison_is_unchanged(self):
         expected = GOLDEN.read_text().splitlines()

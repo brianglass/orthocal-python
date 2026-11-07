@@ -10,8 +10,6 @@ from ..datetools import Calendar, Translation
 
 
 class TestReadingsView(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_gregorian_default(self):
         now = timezone.localtime()
         url = reverse('index')
@@ -124,8 +122,6 @@ class TestReadingsView(TestCase):
 
 
 class TestCalendarView(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     def test_gregorian_default(self):
         now = timezone.localtime()
         this_month = date(now.year, now.month, 1)
@@ -178,8 +174,6 @@ class TestTraditionRouting(TestCase):
     see docs/greek-lectionary.md for why -- so these aliases must keep
     behaving exactly as they always have.
     """
-
-    fixtures = ['calendarium.json', 'commemorations.json']
 
     def test_every_tradition_segment_resolves(self):
         for segment in ('slavic', 'oca', 'greek', 'goa', 'antiochian'):

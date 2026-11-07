@@ -17,17 +17,12 @@ NT_BOOKS = {
 def load_lxx2012_web(apps, schema_editor):
     Verse = apps.get_model('bible', 'Verse')
 
-    for verse in parse_usfx('data/eng-lxx2012_usfx.xml'):
-        if verse['chapter'] is None or verse['verse'] is None:
-            continue
-        Verse.objects.create(language='en', translation=TRANSLATION, **verse)
+    verses = list(parse_usfx('data/eng-lxx2012_usfx.xml'))
+    verses += [verse for verse in parse_usfx('data/eng-web_usfx.xml') if verse['book'] in NT_BOOKS]
 
-    for verse in parse_usfx('data/eng-web_usfx.xml'):
-        if verse['book'] not in NT_BOOKS:
-            continue
-        if verse['chapter'] is None or verse['verse'] is None:
-            continue
-        Verse.objects.create(language='en', translation=TRANSLATION, **verse)
+    Verse.objects.bulk_create(
+        Verse(language='en', translation=TRANSLATION, **verse) for verse in verses
+        if verse['chapter'] is not None and verse['verse'] is not None)
 
 
 def unload_lxx2012_web(apps, schema_editor):

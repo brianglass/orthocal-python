@@ -21,18 +21,6 @@ class NormalizeTransliterationTestCase(TestCase):
 
 
 class SaintSearchTransliterationTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    def setUp(self):
-        # Fixture loading bypasses Saint.save() (same reason `slug` needs
-        # its own backfill command, see the model), so normalized_name and
-        # slug are blank on freshly test-loaded fixture data unless
-        # backfilled here -- mirrors what the Dockerfile does for a real
-        # deployment.
-        call_command('backfill_saint_slugs')
-        call_command('backfill_saint_normalized_names')
-        call_command('build_saint_search_index')
-
     def test_greek_spelling_finds_latin_spelled_saint(self):
         response = self.client.get(reverse('saint-search'), {'q': 'Athanasios'})
 
@@ -74,13 +62,6 @@ class SaintSearchTransliterationTestCase(TestCase):
 
 
 class LifeSearchTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    def setUp(self):
-        call_command('backfill_saint_slugs')
-        call_command('backfill_saint_normalized_names')
-        call_command('build_saint_search_index')
-
     def _search(self, query, **headers):
         return self.client.get(reverse('saint-search'), {'q': query}, headers=headers)
 
@@ -185,11 +166,6 @@ class LifeSearchTestCase(TestCase):
 
 
 class CanonicalLinkTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
-    def setUp(self):
-        call_command('backfill_saint_slugs')
-
     def test_content_pages_name_their_canonical_url(self):
         from commemorations.models import Saint
 

@@ -1,6 +1,6 @@
 import re
 
-from xml.dom import pulldom
+from xml.parsers import expat
 
 space_re = re.compile(r'\s+', flags=re.DOTALL)
 
@@ -38,28 +38,35 @@ def parse_usfx(filename):
 
         return result
 
-    for event, node in pulldom.parse(filename):
-        match [event, node.nodeName]:
-            # Book element
-            case [pulldom.START_ELEMENT, 'book']:
-                if is_valid_content:
-                    yield make_verse()
+    # Driven by expat directly. pulldom, which this used before, builds a DOM
+    # node and attribute objects for every element and text run, and that was
+    # most of the time the image build spends loading the scriptures.
+    verses = []
 
-                book = node.getAttribute('id')
+    def start_element(name, attributes):
+        nonlocal book, chapter, verse, is_valid_content, was_valid_content, paragraph_start
+
+        match name:
+            # Book element
+            case 'book':
+                if is_valid_content:
+                    verses.append(make_verse())
+
+                book = attributes.get('id', '')
 
             # Chapter element
-            case [pulldom.START_ELEMENT, 'c']:
+            case 'c':
                 if is_valid_content:
-                    yield make_verse()
+                    verses.append(make_verse())
 
-                chapter = node.getAttribute('id')
+                chapter = attributes.get('id', '')
 
             # Verse elements
-            case [pulldom.START_ELEMENT, 'v']:
+            case 'v':
                 if is_valid_content:
-                    yield make_verse()
+                    verses.append(make_verse())
 
-                verse = node.getAttribute('id')
+                verse = attributes.get('id', '')
                 if verse and '-' in verse:
                     # A verse bridge (e.g. "1-2"), where the source merges
                     # two verses into one printed unit -- store it under the
@@ -67,11 +74,11 @@ def parse_usfx(filename):
                     # combined text is already all in this one entry.
                     verse = verse.split('-')[0]
                 is_valid_content = True
-            case [pulldom.START_ELEMENT, 've']:
-                yield make_verse()
+            case 've':
+                verses.append(make_verse())
 
             # paragraph element
-            case [pulldom.START_ELEMENT, 'p']:
+            case 'p':
                 paragraph_start = True
 
             # Footnote and cross-reference elements -- <x> (cross-reference,
@@ -80,16 +87,34 @@ def parse_usfx(filename):
             # (footnote), so it needs the same is_valid_content suppression;
             # without it, the reference text gets appended straight into the
             # verse content.
-            case [pulldom.START_ELEMENT, 'f' | 'x']:
+            case 'f' | 'x':
                 was_valid_content = is_valid_content
                 is_valid_content = False
-            case [pulldom.END_ELEMENT, 'f' | 'x']:
-                # Restore whatever was in effect before the aside rather than
-                # assuming True -- these can appear in content (like Psalm
-                # title <d> blocks) that isn't part of a verse.
-                is_valid_content = was_valid_content
 
-            # Character content
-            case [pulldom.CHARACTERS, _]:
-                if is_valid_content:
-                    strings.append(node.wholeText)
+    def end_element(name):
+        nonlocal is_valid_content
+
+        if name in ('f', 'x'):
+            # Restore whatever was in effect before the aside rather than
+            # assuming True -- these can appear in content (like Psalm
+            # title <d> blocks) that isn't part of a verse.
+            is_valid_content = was_valid_content
+
+    # Character content
+    def character_data(data):
+        if is_valid_content:
+            strings.append(data)
+
+    parser = expat.ParserCreate()
+    parser.StartElementHandler = start_element
+    parser.EndElementHandler = end_element
+    parser.CharacterDataHandler = character_data
+
+    with open(filename, 'rb') as f:
+        while chunk := f.read(1 << 16):
+            parser.Parse(chunk, False)
+            yield from verses
+            verses.clear()
+
+    parser.Parse(b'', True)
+    yield from verses

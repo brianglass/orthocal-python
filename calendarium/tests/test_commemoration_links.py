@@ -1,7 +1,6 @@
 from datetime import date
 from types import SimpleNamespace
 
-from django.core.management import call_command
 from django.test import TestCase
 from django.urls import reverse
 
@@ -109,16 +108,9 @@ class LinkCommemorationDatesTestCase(TestCase):
 
 
 class StoryLinksOnPagesTestCase(TestCase):
-    fixtures = ['calendarium.json', 'commemorations.json']
-
     # The Jan 2 story of St Seraphim of Sarov mentions the saint he was named
     # for: "Hieromartyr Seraphim, Bishop of Phanarion (Dec. 4)".
     SERAPHIM = 5209
-
-    def setUp(self):
-        # Slugs aren't in the fixture; the Dockerfile backfills them after
-        # loading it, and so does this, mirroring commemorations.tests.
-        call_command('backfill_saint_slugs')
 
     def test_readings_page_links_story_dates(self):
         response = self.client.get(readings_url(date(2026, 1, 2)))
