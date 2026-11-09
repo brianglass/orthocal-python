@@ -45,7 +45,8 @@ Saints:
   searches every tradition; each result's tradition ("common", "slavic" or
   "greek") says which calendar keeps it. It never returns the full life
   (story) text, since a search can match many results; each result's
-  has_story says whether one exists.
+  has_story says whether one exists. If a result has corrected_query, the
+  query had a misspelling and that's what was searched; tell the user.
 - To read a saint's life, pass a slug from that result's saint_slugs to
   get_saint, with tradition="greek" when the result's tradition is "greek".
   It returns every occasion the saint is commemorated on, each with its

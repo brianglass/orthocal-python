@@ -8,7 +8,7 @@ from calendarium.api import DaySchema
 from calendarium.datetools import Calendar, FeastLevels, Translation, Tradition
 from calendarium.liturgics.day import _has_story
 from commemorations.models import DayCommemoration, Saint
-from commemorations.search import matching_lives, matching_saints
+from commemorations.search import corrected_query, matching_lives, matching_saints
 
 from orthocal.decorators import in_thread_pool
 
@@ -90,6 +90,10 @@ async def search_saints(query: str) -> list[dict]:
     Results never include the full life (story) text, since a search can
     match many commemorations. has_story says whether a result has one; to
     read it, pass one of the result's saint_slugs to get_saint.
+
+    When nothing matches and a word looks misspelled ("Seraphm"), the search
+    is retried with the closest known words, and each result's
+    corrected_query says what was searched instead.
     """
 
     return await _search_saints(query)
@@ -123,6 +127,15 @@ def _search_result(commemoration, **extra):
 
 @in_thread_pool
 def _search_saints(query):
+    # As the saints page does (commemorations/views.py), retry a search that
+    # finds nothing with its misspelled words corrected.
+    results = _saint_results(query)
+    if not results and (corrected := corrected_query(query)):
+        results = [{**result, 'corrected_query': corrected} for result in _saint_results(corrected)]
+    return results
+
+
+def _saint_results(query):
     commemorations = DayCommemoration.objects.select_related('day').prefetch_related(
         'daycommemorationsaint_set__saint',
     )

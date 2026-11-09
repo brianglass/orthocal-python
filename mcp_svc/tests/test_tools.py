@@ -132,6 +132,18 @@ class SearchSaintsTestCase(TestCase):
         jacob = next(r for r in results if 'Jacob of Evia' in r['title'])
         self.assertEqual((jacob['matched'], jacob['tradition']), ('life', 'greek'))
 
+    async def test_misspelling_is_corrected(self):
+        results = await search_saints('Seraphm Sarov')
+
+        self.assertTrue(any('Seraphim' in r['title'] for r in results))
+        self.assertTrue(all(r['corrected_query'] == 'seraphim Sarov' for r in results))
+
+    async def test_correct_spelling_has_no_corrected_query(self):
+        results = await search_saints('Seraphim of Sarov')
+
+        self.assertTrue(results)
+        self.assertFalse(any('corrected_query' in r for r in results))
+
     async def test_moveable_commemoration_has_no_month_or_day(self):
         results = await search_saints('Mary of Egypt')
 
