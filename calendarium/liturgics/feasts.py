@@ -197,8 +197,12 @@ def _extend(rows, dt, step, level, calendar, tradition):
         dt += delta
 
 # Words a query can leave out of a feast's name: "the Feast of the
-# Ascension" is "Ascension of the Lord".
-_STOPWORDS = {'a', 'an', 'and', 'feast', 'of', 'on', 'the'}
+# Ascension" is "Ascension of the Lord", and "St Nicholas Day" is "St
+# Nicholas the Wonderworker".
+_STOPWORDS = {'a', 'an', 'and', 'day', 'feast', 'of', 'on', 'the'}
+
+# The names abbreviate these.
+_ABBREVIATIONS = {'saint': 'st', 'saints': 'ss'}
 
 # A moveable weekday's title counts its weeks ("Tuesday of the 12th week
 # after Pentecost") and names no feast of its own.
@@ -220,7 +224,7 @@ class FeastMatch:
         return self.row.feast_level
 
 def _words(text):
-    return re.findall(r'\w+', text.casefold())
+    return [_ABBREVIATIONS.get(word, word) for word in re.findall(r'\w+', text.casefold())]
 
 def _matches(query_words, text):
     """True when every query word starts a word of the text, so "Mid-Pentecost"

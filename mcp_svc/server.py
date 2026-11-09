@@ -34,8 +34,9 @@ Feasts:
   change every year. Matching fasting seasons ("Nativity Fast", "Lent")
   come back with their start and end dates.
 - With no query it lists the year's great feasts and fasting seasons.
-- Feasts of a saint or an icon (St Nicholas, the Kazan Icon) are found by
-  search_saints instead.
+- The major saints' days are here too ("St Nicholas"), with this year's
+  date. Lesser saints and icons (the Kazan Icon) are only in
+  search_saints.
 
 Saints:
 - search_saints finds commemorations by name, then (matched="life") ones

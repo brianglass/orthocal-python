@@ -213,6 +213,12 @@ class SearchFeastsTestCase(TestCase):
         self.assertEqual(result['feasts'][0]['name'], 'Ascension of the Lord')
         self.assertEqual(result['feasts'][0]['date'], '2026-05-21')
 
+    async def test_saint_may_be_spelled_out(self):
+        for query in ('Nicholas', 'Saint Nicholas', 'St Nicholas Day'):
+            with self.subTest(query=query):
+                result = await search_feasts(query, year=2026)
+                self.assertEqual(result['feasts'][0]['date'], '2026-12-06')
+
     async def test_julian_dates_are_civil_dates(self):
         result = await search_feasts('Theophany', year=2027, calendar='julian')
 

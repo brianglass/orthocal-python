@@ -215,8 +215,9 @@ async def search_feasts(
     church-calendar month and day; a moveable one has moveable=true, plus
     pascha_distance when it's tied to Pascha. level ranks the feast (8 and 7
     are Pascha and the Twelve Great Feasts, 6 the other great feasts, lower
-    ones the smaller feasts, forefeasts and leavetakings). Feasts of a saint
-    or an icon are in search_saints instead.
+    ones the smaller feasts, forefeasts and leavetakings). The major saints'
+    days are here too ("St Nicholas"); search_saints finds every saint and
+    icon, with their lives, but gives church-calendar dates only.
     """
 
     if year is None:
