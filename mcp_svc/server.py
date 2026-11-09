@@ -5,7 +5,7 @@ mcp = MCPServer(
     instructions='''\
 Look up Eastern Orthodox liturgical calendar data: feasts, fasting rules,
 scripture readings, and lives of the saints for a given day, or search for a
-saint by name.
+saint or a feast by name.
 
 Choosing tradition and calendar:
 - tradition=slavic follows OCA/ROCOR practice; tradition=greek follows Greek
@@ -25,6 +25,17 @@ Dates:
   the Old calendar, add 13 days to get the civil date (1900-2099) before
   calling get_day. The few that move each year (e.g. the Sundays of Lent)
   have moveable=true instead, plus pascha_distance when tied to Pascha.
+
+Feasts:
+- search_feasts answers "when is ..." questions: it finds feasts by name
+  ("Pascha", "Palm Sunday", "Mid-Pentecost", "Leavetaking of Theophany")
+  and gives the civil date each falls on in the year asked for, already
+  converted for the calendar -- including moveable feasts, whose dates
+  change every year. Matching fasting seasons ("Nativity Fast", "Lent")
+  come back with their start and end dates.
+- With no query it lists the year's great feasts and fasting seasons.
+- Feasts of a saint or an icon (St Nicholas, the Kazan Icon) are found by
+  search_saints instead.
 
 Saints:
 - search_saints finds commemorations by name, then (matched="life") ones

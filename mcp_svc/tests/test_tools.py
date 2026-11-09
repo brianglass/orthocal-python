@@ -3,7 +3,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 
 from calendarium.datetools import Tradition
 
-from ..tools import get_day, get_saint, search_saints
+from ..tools import get_day, get_saint, search_feasts, search_saints
 
 
 class GetDayTestCase(TestCase):
@@ -182,3 +182,84 @@ class GetSaintTestCase(TestCase):
     async def test_unknown_slug_raises(self):
         with self.assertRaises(ToolError):
             await get_saint('no-such-saint')
+
+
+class SearchFeastsTestCase(TestCase):
+    async def test_moveable_feast_has_this_years_date(self):
+        result = await search_feasts('Palm Sunday', year=2027)
+
+        palm_sunday = result['feasts'][0]
+        self.assertEqual(palm_sunday['name'], 'Palm Sunday')
+        self.assertEqual(palm_sunday['date'], '2027-04-25')
+        self.assertEqual(palm_sunday['weekday'], 'Sunday')
+        self.assertEqual(palm_sunday['pascha_distance'], -7)
+        self.assertTrue(palm_sunday['moveable'])
+        self.assertEqual(palm_sunday['url'], 'https://orthocal.info/readings/slavic/gregorian/2027/4/25/')
+
+    async def test_words_match_the_starts_of_words(self):
+        result = await search_feasts('Mid-Pentecost', year=2027)
+
+        self.assertIn(('Midfeast of Pentecost', '2027-05-26'), [(f['name'], f['date']) for f in result['feasts']])
+
+    async def test_feast_ranks_above_its_forefeasts_and_leavetaking(self):
+        result = await search_feasts('Pascha', year=2026)
+
+        self.assertEqual(result['feasts'][0]['date'], '2026-04-12')
+        self.assertEqual(result['feasts'][0]['level'], 8)
+
+    async def test_query_can_leave_out_words_the_name_lacks(self):
+        result = await search_feasts('the Feast of the Ascension', year=2026)
+
+        self.assertEqual(result['feasts'][0]['name'], 'Ascension of the Lord')
+        self.assertEqual(result['feasts'][0]['date'], '2026-05-21')
+
+    async def test_julian_dates_are_civil_dates(self):
+        result = await search_feasts('Theophany', year=2027, calendar='julian')
+
+        theophany = result['feasts'][0]
+        self.assertEqual(theophany['date'], '2027-01-19')
+        self.assertEqual((theophany['month'], theophany['day']), (1, 6))
+
+    async def test_tradition_chooses_the_feast(self):
+        slavic = await search_feasts('Protection', year=2026)
+        greek = await search_feasts('Protection', year=2026, tradition='greek')
+
+        self.assertEqual([(f['date'], f['level']) for f in slavic['feasts']], [('2026-10-01', 6)])
+        self.assertEqual([(f['date'], f['level']) for f in greek['feasts']], [('2026-10-28', 3)])
+
+    async def test_counted_weekday_titles_are_not_searched(self):
+        result = await search_feasts('Pentecost', year=2026)
+
+        self.assertTrue(result['feasts'])
+        for feast in result['feasts']:
+            self.assertNotRegex(feast['name'], r'week after Pentecost')
+
+    async def test_fasting_seasons_match_by_name(self):
+        result = await search_feasts('Nativity Fast', year=2026, calendar='julian')
+
+        self.assertEqual(
+            [(s['start'], s['end']) for s in result['fasting_seasons']],
+            [('2025-11-28', '2026-01-06'), ('2026-11-28', '2027-01-06')],
+        )
+
+    async def test_no_query_lists_the_years_great_feasts_and_fasts(self):
+        result = await search_feasts(year=2026)
+
+        names = [f['name'] for f in result['feasts']]
+        self.assertIn('Palm Sunday', names)
+        self.assertTrue(all(f['level'] >= 6 for f in result['feasts']))
+        self.assertEqual([f['date'] for f in result['feasts']], sorted(f['date'] for f in result['feasts']))
+        self.assertEqual(
+            [s['name'] for s in result['fasting_seasons']],
+            ['Lenten Fast', 'Apostles Fast', 'Dormition Fast', 'Nativity Fast'],
+        )
+
+    async def test_unknown_feast_returns_nothing(self):
+        result = await search_feasts('Zzyzx')
+
+        self.assertEqual(result['feasts'], [])
+        self.assertEqual(result['fasting_seasons'], [])
+
+    async def test_year_outside_the_supported_range_raises(self):
+        with self.assertRaises(ToolError):
+            await search_feasts('Pascha', year=1500)
