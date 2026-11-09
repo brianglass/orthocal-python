@@ -219,6 +219,12 @@ class SearchFeastsTestCase(TestCase):
                 result = await search_feasts(query, year=2026)
                 self.assertEqual(result['feasts'][0]['date'], '2026-12-06')
 
+    async def test_transliteration_variants_match(self):
+        for query, expected in (('Euthymios', '2026-01-20'), ('Kyril and Methodios', '2026-05-11')):
+            with self.subTest(query=query):
+                result = await search_feasts(query, year=2026)
+                self.assertEqual(result['feasts'][0]['date'], expected)
+
     async def test_julian_dates_are_civil_dates(self):
         result = await search_feasts('Theophany', year=2027, calendar='julian')
 

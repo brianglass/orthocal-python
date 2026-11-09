@@ -9,6 +9,8 @@ from datetime import date, timedelta
 
 from django.db.models import Q
 
+from commemorations.transliteration import normalize_transliteration
+
 from .. import fasting, models
 from ..datetools import Calendar, FastLevelDesc, FastLevels, julian_to_gregorian
 from .day import _YEAR_CLASSES, _merge_tradition_days, church_date
@@ -224,7 +226,13 @@ class FeastMatch:
         return self.row.feast_level
 
 def _words(text):
-    return [_ABBREVIATIONS.get(word, word) for word in re.findall(r'\w+', text.casefold())]
+    """The text's words, with abbreviations and transliteration variants
+    ("Athanasios", "Kosmas") in the forms saint search uses."""
+
+    return [
+        normalize_transliteration(_ABBREVIATIONS.get(word, word))
+        for word in re.findall(r'\w+', text.casefold())
+    ]
 
 def _matches(query_words, text):
     """True when every query word starts a word of the text, so "Mid-Pentecost"
@@ -255,7 +263,8 @@ def search_feasts(query, year, calendar, tradition):
     Every row is fetched -- there are about 900 -- and merged by tradition the
     way `Day` merges them, so an override's name or rank is the one matched."""
 
-    query_words = [word for word in _words(query) if word not in _STOPWORDS]
+    stopwords = set(_words(' '.join(_STOPWORDS)))
+    query_words = [word for word in _words(query) if word not in stopwords]
     phrase = ' '.join(_words(query))
 
     rows = _merge_tradition_days(models.Day.objects.filter(tradition__in=('common', tradition)), tradition)
