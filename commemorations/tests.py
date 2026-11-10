@@ -133,6 +133,26 @@ class LifeSearchTestCase(TestCase):
         response = self._search('Seraphim Sarov', **{'HX-Request': 'true'})
         self.assertIsNone(response.context['corrected'])
 
+    def test_long_queries_are_not_corrected(self):
+        from .search import MAX_CORRECTED_LENGTH, MAX_CORRECTED_WORDS, corrected_query
+
+        self.assertEqual(corrected_query('Seraphm ' * MAX_CORRECTED_WORDS).split(), ['seraphim'] * MAX_CORRECTED_WORDS)
+        self.assertIsNone(corrected_query('Seraphm ' * (MAX_CORRECTED_WORDS + 1)))
+        self.assertIsNone(corrected_query('Seraphm ' + 'x' * MAX_CORRECTED_LENGTH))
+        # A scanner's payload, as sent to production.
+        self.assertIsNone(corrected_query("' UNION ALL SELECT " + ','.join(['NULL'] * 300) + '--'))
+
+    def test_corrections_are_cached(self):
+        from unittest import mock
+
+        from . import search
+
+        search._corrected_word.cache_clear()
+        with mock.patch.object(search.difflib, 'get_close_matches', wraps=search.difflib.get_close_matches) as matches:
+            search.corrected_query('Seraphm Seraphm')
+            search.corrected_query('Seraphm Sarov')
+        self.assertEqual(matches.call_count, 1)
+
     def test_query_syntax_is_taken_literally(self):
         for query in ('NOT "x', 'Myrrh-gusher', 'title:Nicholas', '*', '"'):
             self.assertEqual(self._search(query, **{'HX-Request': 'true'}).status_code, 200, query)

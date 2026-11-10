@@ -5,7 +5,7 @@ from django.db import connection, transaction
 from django.utils.html import strip_tags
 
 from commemorations.models import DayCommemoration
-from commemorations.search import LIFE_SEARCH_TABLE, vocabulary
+from commemorations.search import LIFE_SEARCH_TABLE, _corrected_word, vocabulary
 
 
 class Command(BaseCommand):
@@ -34,5 +34,6 @@ class Command(BaseCommand):
                 rows,
             )
         vocabulary.cache_clear()
+        _corrected_word.cache_clear()
 
         self.stdout.write(f'Indexed {len(rows)} commemoration(s) for search.')
