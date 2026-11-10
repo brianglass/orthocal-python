@@ -148,24 +148,42 @@ def _in_index(word):
         return cursor.fetchone() is not None
 
 
+# Longer queries aren't corrected. Each unknown word is compared with the
+# whole vocabulary, a few milliseconds a word, and vulnerability scanners
+# send queries of hundreds of words ("UNION ALL SELECT NULL,NULL,...") that
+# took 4s each in production. Real searches are a name or a few words.
+MAX_CORRECTED_WORDS = 8
+MAX_CORRECTED_LENGTH = 100
+
+
 def corrected_query(query):
     """query with each word the index doesn't know replaced by the closest
     one it does ("Cappdocian" -> "cappadocian"), or None if no word needed
     correcting or none had a close match. For when a search finds nothing.
+    Queries longer than MAX_CORRECTED_WORDS words or MAX_CORRECTED_LENGTH
+    characters are never corrected.
 
     The replacements are words as indexed, so they are lowercase and may be
     stemmed."""
 
     words = re.findall(r'\w+', query)
-    corrected = []
-    for word in words:
-        if len(word) >= 4 and not _in_index(word):
-            if close := difflib.get_close_matches(word.lower(), vocabulary(), n=1, cutoff=0.8):
-                corrected.append(close[0])
-                continue
-        corrected.append(word)
+    if len(words) > MAX_CORRECTED_WORDS or len(query) > MAX_CORRECTED_LENGTH:
+        return None
 
+    corrected = [_corrected_word(word) for word in words]
     return ' '.join(corrected) if corrected != words else None
+
+
+@functools.lru_cache(maxsize=4096)
+def _corrected_word(word):
+    """The closest indexed word to word, or word itself if it is indexed,
+    short, or has no close match. Cached per process, like vocabulary, and
+    cleared with it."""
+
+    if len(word) >= 4 and not _in_index(word):
+        if close := difflib.get_close_matches(word.lower(), vocabulary(), n=1, cutoff=0.8):
+            return close[0]
+    return word
 
 
 def matching_lives(query, prefix=False, limit=50):

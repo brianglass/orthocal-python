@@ -5,7 +5,7 @@ mcp = MCPServer(
     instructions='''\
 Look up Eastern Orthodox liturgical calendar data: feasts, fasting rules,
 scripture readings, and lives of the saints for a given day, or search for a
-saint by name.
+saint or a feast by name.
 
 Choosing tradition and calendar:
 - tradition=slavic follows OCA/ROCOR practice; tradition=greek follows Greek
@@ -26,6 +26,18 @@ Dates:
   calling get_day. The few that move each year (e.g. the Sundays of Lent)
   have moveable=true instead, plus pascha_distance when tied to Pascha.
 
+Feasts:
+- search_feasts answers "when is ..." questions: it finds feasts by name
+  ("Pascha", "Palm Sunday", "Mid-Pentecost", "Leavetaking of Theophany")
+  and gives the civil date each falls on in the year asked for, already
+  converted for the calendar -- including moveable feasts, whose dates
+  change every year. Matching fasting seasons ("Nativity Fast", "Lent")
+  come back with their start and end dates.
+- With no query it lists the year's great feasts and fasting seasons.
+- The major saints' days are here too ("St Nicholas"), with this year's
+  date. Lesser saints and icons (the Kazan Icon) are only in
+  search_saints.
+
 Saints:
 - search_saints finds commemorations by name, then (matched="life") ones
   whose life mentions every word of the query, with an excerpt -- so it
@@ -33,7 +45,8 @@ Saints:
   searches every tradition; each result's tradition ("common", "slavic" or
   "greek") says which calendar keeps it. It never returns the full life
   (story) text, since a search can match many results; each result's
-  has_story says whether one exists.
+  has_story says whether one exists. If a result has corrected_query, the
+  query had a misspelling and that's what was searched; tell the user.
 - To read a saint's life, pass a slug from that result's saint_slugs to
   get_saint, with tradition="greek" when the result's tradition is "greek".
   It returns every occasion the saint is commemorated on, each with its

@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.urls import reverse
+from django.utils import timezone
 from mcp.server.mcpserver.exceptions import ToolError
 
 from calendarium import liturgics
 from calendarium.api import DaySchema
-from calendarium.datetools import Calendar, Translation, Tradition
+from calendarium.datetools import Calendar, FeastLevels, Translation, Tradition
 from calendarium.liturgics.day import _has_story
 from commemorations.models import DayCommemoration, Saint
-from commemorations.search import matching_lives, matching_saints
+from commemorations.search import corrected_query, matching_lives, matching_saints
 
 from orthocal.decorators import in_thread_pool
 
@@ -89,6 +90,10 @@ async def search_saints(query: str) -> list[dict]:
     Results never include the full life (story) text, since a search can
     match many commemorations. has_story says whether a result has one; to
     read it, pass one of the result's saint_slugs to get_saint.
+
+    When nothing matches and a word looks misspelled ("Seraphm"), the search
+    is retried with the closest known words, and each result's
+    corrected_query says what was searched instead.
     """
 
     return await _search_saints(query)
@@ -122,6 +127,15 @@ def _search_result(commemoration, **extra):
 
 @in_thread_pool
 def _search_saints(query):
+    # As the saints page does (commemorations/views.py), retry a search that
+    # finds nothing with its misspelled words corrected.
+    results = _saint_results(query)
+    if not results and (corrected := corrected_query(query)):
+        results = [{**result, 'corrected_query': corrected} for result in _saint_results(corrected)]
+    return results
+
+
+def _saint_results(query):
     commemorations = DayCommemoration.objects.select_related('day').prefetch_related(
         'daycommemorationsaint_set__saint',
     )
@@ -189,5 +203,90 @@ def _get_saint(slug, tradition):
                 'story': commemoration.story if _has_story(commemoration) else None,
             }
             for commemoration in commemorations
+        ],
+    }
+
+
+@mcp.tool()
+async def search_feasts(
+    query: str = '',
+    year: int | None = None,
+    calendar: Calendar = Calendar.Gregorian,
+    tradition: Tradition = Tradition.Slavic,
+) -> dict:
+    """Find feasts by name and the civil dates they fall on in a year (this
+    year by default) -- "Pascha", "Palm Sunday", "Mid-Pentecost", "Sunday of
+    Orthodoxy", "Leavetaking of Theophany", "Protection" -- including the
+    moveable ones that change date every year. Fasting seasons whose names
+    match come back too ("Nativity Fast", "Lent").
+
+    Without a query, returns the year's great feasts (Pascha, the Twelve
+    Great Feasts, and the other great feasts) and all its fasting seasons.
+
+    Each feast's date is the civil date for the given calendar, so on the
+    Julian (Old) calendar no conversion is needed. A fixed feast also has its
+    church-calendar month and day; a moveable one has moveable=true, plus
+    pascha_distance when it's tied to Pascha. level ranks the feast (8 and 7
+    are Pascha and the Twelve Great Feasts, 6 the other great feasts, lower
+    ones the smaller feasts, forefeasts and leavetakings). The major saints'
+    days are here too ("St Nicholas"); search_saints finds every saint and
+    icon, with their lives, but gives church-calendar dates only.
+    """
+
+    if year is None:
+        year = timezone.localtime().year
+    if not 1584 <= year <= 4099:
+        raise ToolError(f'{year} is outside the supported years, 1584-4099.')
+
+    return await _search_feasts(query, year, calendar, tradition)
+
+
+def _feast_result(match, calendar, tradition):
+    row, dt = match.row, match.date
+    if row.pdist == 999:
+        occasion = {'month': row.month, 'day': row.day}
+    elif row.pdist >= 1000:
+        occasion = {'moveable': True}
+    else:
+        occasion = {'moveable': True, 'pascha_distance': row.pdist}
+
+    level = row.feast_level or 0
+    return {
+        'name': match.name,
+        # A moveable day's own title, when its feast name is something else
+        # ("Beginning of the Lenten Triodion" is the Sunday of the Publican
+        # and the Pharisee).
+        **({'title': row.title} if row.title and row.title != match.name else {}),
+        'date': dt.isoformat(),
+        'weekday': dt.strftime('%A'),
+        **occasion,
+        'level': level,
+        'level_desc': FeastLevels[level],
+        'tradition': row.tradition,
+        'url': settings.ORTHOCAL_PUBLIC_URL + reverse(
+            'readings', kwargs={'tradition': tradition, 'cal': calendar, 'year': dt.year, 'month': dt.month, 'day': dt.day},
+        ),
+    }
+
+
+# How many feasts search_feasts returns for a query. Theophany's forefeasts,
+# afterfeasts and leavetaking alone are 14.
+FEAST_LIMIT = 25
+
+
+@in_thread_pool
+def _search_feasts(query, year, calendar, tradition):
+    matches, seasons = liturgics.search_feasts(query, year, calendar=calendar, tradition=tradition)
+    if query.strip():
+        matches = matches[:FEAST_LIMIT]
+
+    return {
+        'year': year,
+        'calendar': calendar,
+        'tradition': tradition,
+        'feasts': [_feast_result(match, calendar, tradition) for match in matches],
+        'fasting_seasons': [
+            {'name': season.name, 'start': season.start.isoformat(), 'end': season.end.isoformat(), 'days': season.days}
+            for season in seasons
         ],
     }
