@@ -625,8 +625,11 @@ nav.page-nav .date-jump a.step {
         padding: 0.5em 16px;
         font-size: 0.85rem;
     }
+    /* nowrap, since a wrapping column makes every row as wide as the
+       widest one's content, which can be wider than the phone. */
     .page-nav-row {
         flex-direction: column;
+        flex-wrap: nowrap;
         align-items: stretch;
     }
     .day-nav {
